@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.sds.android.ttpod.widget.UserAvatarView
+        android:id="@+id/image_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/ttpod"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_avatar_default" />
+
+    <TextView
+        android:id="@+id/text_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|right"
+        android:background="@drawable/img_count_flag"
+        android:gravity="center"
+        android:lines="1"
+        android:text="9"
+        android:textColor="#fff"
+        android:textSize="9sp" />
+</FrameLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF_8"?>
+
+<View BackgroundMaskColor="#000000 10" >
+
+	<Panel ID="Common" >
+		<Color ID="TitleText" Normal="#ffffff" Selected="#f6ff00" />
+		<Color ID="SubTitleText" Normal="#ffffff 80" Selected="#f6ff00 80" />
+		<Color ID="ContentText" Normal="#ffffff 80" Selected="#ffffff 80" />
+		<Color ID="SubContentText" Normal="#ffffff 80" Selected="#f6ff00 80" />
+		<Color ID="Indicator" Normal="#4eccf6 75" />
+		<Color ID="Separator" Normal="#ffffff 25" />
+
+		<Color ID="Content" Normal="#ffffff" Selected="#f4fdfe" />
+		<Color ID="TopBar" Normal="#000000 45" />
+		<Color ID="SubBar" Normal="#000000 20" />
+		<Color ID="BottomBar" Normal="#000000 45" />
+		<Color ID="Progress" Normal="#4eccf6 80" />
+		<Color ID="SecondProgress" Normal="#4eccf6 20" />
+		<Color ID="ProgressBar" Normal="#000000 0" />
+	</Panel>
+
+	<Panel ID="Home" >
+		<Color ID="Text" Normal="#ffffff" Selected="#ffffff" />
+		<Color ID="SubText" Normal="#ffffff 75" Selected="#ffffff 95" />
+		<Color ID="AvatarFrame" Normal="#ffffff" />
+		<Color ID="Background" Normal="#000000 20" Selected="#000000 30" />	
+	</Panel>
+	
+	<Panel ID="TopBar" >
+		<Color ID="Text" Normal="#ffffff" Selected="#ffffff" />
+		<Color ID="Background" Normal="#000000 45" />
+	</Panel>
+
+	<Panel ID="SubBar" >
+		<Color ID="Text" Normal="#ffffff 75" Selected="#ffffff" />
+		<Color ID="Indicator" Normal="#ffffff" />
+		<Color ID="Background" Normal="#000000 45" Selected="#000000 40" />	
+	</Panel>
+	
+	<Panel ID="PlayBar" >
+		<Color ID="Text" Normal="#ffffff" />
+		<Color ID="SubText" Normal="#ffffff 80" />
+		<Color ID="Background" Normal="#000000 45" />
+	</Panel>
+
+	<Panel ID="SongListItem" >
+		<Color ID="Text" Normal="#ffffff" Selected="#ffffff" />
+		<Color ID="SubText" Normal="#ffffff 50" Selected="#ffffff 70" />
+		<Color ID="Indicator" Normal="#ffffff" />
+		<Color ID="Background" Normal="#000000 0" Selected="#000000 15" />
+		<Color ID="AZBar" Normal="#000000 0" />
+		<Color ID="AZBarArea" Normal="#2f677a 0" />
+		<Color ID="AZBarText" Normal="#ffffff 30" Selected="#ffffff 80" />
+	</Panel>
+
+	<Panel ID="Tile" >
+		<Color ID="Text" Normal="#ffffff" Selected="#ffffff" />
+		<Color ID="SubText" Normal="#ffffff 80" Selected="#ffffff 90" />
+		<Color ID="Mask" Normal="#000000 15" Selected="#000000 25" />
+		<Color ID="Background" Normal="#000000 0" Selected="#000000 10" />
+	</Panel>
+
+	<Panel ID="Card" >
+		<Color ID="Text" Normal="#ffffff" Selected="#ffffff" />
+		<Color ID="SubText" Normal="#ffffff 75" Selected="#ffffff 85" />
+		<Color ID="ControlText" Normal="#ffffff 75" Selected="#ffffff 85" />
+		<Color ID="ControlBackground" Normal="#000000 10" Selected="#000000 15" />
+		<Color ID="Background" Normal="#000000 20" Selected="#000000 40" />
+	</Panel> 
+
+	<Panel ID="Setting" >
+		<Color ID="Text" Normal="#000000 50" Selected="#000000 80" />
+		<Color ID="Background" Normal="#ffffff 95" />
+		<Color ID="ItemBackground" Normal="#1b2022 0" Selected="#000000 7" />
+
+		<Color ID="AvatarText" Normal="#ffffff" />
+	</Panel>
+</View>

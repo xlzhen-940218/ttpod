@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/xml_listselector_item_default" android:padding="10dp" android:layout_width="match_parent" android:layout_height="match_parent">
+    <include android:id="@+id/layout_avatar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="4dp" layout="@layout/musiccircle_image_new_hint"/>
+    <TextView android:id="@+id/tv_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1 分钟前" android:layout_alignTop="@+id/layout_avatar" android:layout_alignParentRight="true" style="@style/Post_Time"/>
+    <TextView android:textSize="18sp" android:textColor="#ff375770" android:id="@+id/tv_user_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="48dp" android:layout_toRightOf="@+id/layout_avatar" android:layout_alignTop="@+id/layout_avatar"/>
+    <com.sds.android.ttpod.widget.TextViewFixTouchConsume android:textSize="12sp" android:textColor="#a6a6a6" android:id="@+id/tv_tweet" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:singleLine="false" android:layout_toRightOf="@+id/layout_avatar" android:layout_below="@+id/tv_user_name"/>
+</RelativeLayout>

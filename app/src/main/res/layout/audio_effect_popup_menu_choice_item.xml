@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/txt_title"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:ellipsize="none"
+    android:fadingEdge="horizontal"
+    android:fadingEdgeLength="5dp"
+    android:gravity="center"
+    android:lines="1"
+    android:paddingLeft="14dp"
+    android:singleLine="true"
+    android:textColor="#ffffff"
+    android:textSize="16sp"
+    tools:ignore="EllipsizeMaxLines" />

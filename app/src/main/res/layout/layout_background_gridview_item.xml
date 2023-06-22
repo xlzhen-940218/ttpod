@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/content" android:padding="4dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.sds.android.ttpod.widget.SquareImageView android:id="@+id/imageview_thumb" android:layout_width="match_parent" android:layout_height="wrap_content" android:scaleType="centerCrop"/>
+    <ImageView android:layout_gravity="top|right" android:id="@+id/imageview_delete" android:background="@drawable/img_background_skin_delete" android:visibility="gone" android:layout_width="32dp" android:layout_height="32dp"/>
+    <ImageView android:layout_gravity="bottom|right" android:id="@+id/imageview_check" android:background="@drawable/img_background_skin_checked" android:visibility="gone" android:layout_width="32dp" android:layout_height="32dp"/>
+    <TextView android:textSize="12sp" android:textColor="#ffffff" android:gravity="center" android:layout_gravity="center_horizontal" android:id="@+id/background_type_hint" android:background="#80000000" android:visibility="gone" android:fadingEdge="horizontal" android:layout_width="match_parent" android:layout_height="20dp" android:layout_marginLeft="4dp" android:layout_marginTop="6dp" android:layout_marginRight="4dp" android:lines="1" android:singleLine="true" android:shadowColor="#000000" android:shadowRadius="1"/>
+</FrameLayout>

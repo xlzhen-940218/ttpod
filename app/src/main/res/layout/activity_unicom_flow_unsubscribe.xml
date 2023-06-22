@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/unicom_flow_background_color"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/unicom_unsubscribe_msg"
+            android:textColor="@color/unicom_flow_title_color"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edit_phone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/xml_unicom_flow_edit"
+            android:digits="1234567890"
+            android:hint="输入您的手机号码"
+            android:inputType="number"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColorHint="#c8c8ce" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/edit_verify_code"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_weight="1"
+                android:background="@drawable/xml_unicom_flow_edit"
+                android:digits="1234567890"
+                android:hint="输入手机验证码"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColorHint="#c8c8ce" />
+
+            <Button
+                android:id="@+id/button_verify_code"
+                android:layout_width="122dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/unicom_verify_code_button"
+                android:singleLine="true"
+                android:text="获取短信验证码"
+                android:textColor="@color/xml_unicom_verify_code" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="选择退订原因"
+            android:textColor="@color/unicom_flow_title_color"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/unicom_unsubscribe_frame"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/radio_faq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/unicom_radio_button"
+                    android:paddingLeft="25dp"
+                    android:tag="1"
+                    android:text="觉得有点贵"
+                    android:textColor="#407785"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/unicom_radio_button"
+                    android:paddingLeft="25dp"
+                    android:tag="2"
+                    android:text="听歌不多，不划算啊"
+                    android:textColor="#407785"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/unicom_radio_button"
+                    android:paddingLeft="25dp"
+                    android:tag="3"
+                    android:text="常使用Wifi听歌"
+                    android:textColor="#407785"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/unicom_radio_button"
+                    android:paddingLeft="25dp"
+                    android:tag="4"
+                    android:text="不放心，怕消耗套餐流量"
+                    android:textColor="#407785"
+                    android:textSize="14sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edit_faq"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:hint="填写任何其它原因及建议"
+            android:textColorHint="#c8c8ce" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/button_unsubscribe"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/unicom_unsubscribe_button"
+                android:text="确定退订"
+                android:textColor="#666666"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/button_use"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/unicom_open_button"
+                android:text="继续使用"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

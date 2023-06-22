@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sds.android.ttpod.component.appwidget.AppWidget91Layout4x1 xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:background="@drawable/img_background_appwidget">
+
+        <ImageView
+            android:id="@+id/image_album_cover_background"
+            android:layout_width="80dp"
+            android:layout_height="82dp"
+            android:background="@drawable/img_appwidget_album_cover_normal_4x1"
+            android:scaleType="fitCenter" />
+
+        <ImageView
+            android:id="@+id/image_album_cover"
+            android:layout_width="82dp"
+            android:layout_height="82dp"
+            android:scaleType="fitStart" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_toRightOf="@+id/image_album_cover_background"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:ellipsize="none"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="10dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/unknown"
+                android:textColor="#f6f7f9"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="2dp">
+
+                <TextView
+                    android:id="@+id/text_time_current"
+                    android:layout_width="40dp"
+                    android:layout_height="16dp"
+                    android:gravity="center"
+                    android:textColor="#ffe3ebf1"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/text_time_duration"
+                    android:layout_width="40dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:textColor="#ffe3ebf1"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <ProgressBar
+                    android:id="@+id/seekbar_progress"
+                    style="@style/progressBarHorizontal_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="2"
+                android:baselineAligned="false"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/button_play_prev"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/xml_background_button_appwidget"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_appwidget_play_prev" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/button_play_pause"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/xml_background_button_appwidget"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_appwidget_play" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/button_play_next"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/xml_background_button_appwidget"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_appwidget_play_next" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/button_minilyric"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/xml_background_button_appwidget"
+                        android:scaleType="center"
+                        android:src="@drawable/img_appwidget_minilyric_on" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</com.sds.android.ttpod.component.appwidget.AppWidget91Layout4x1>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/market_category_section_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/img_background_market_app_category_list_item"
+    android:focusable="true"
+    android:paddingLeft="10dp"
+    android:paddingTop="3dp"
+    android:paddingRight="0dp"
+    android:paddingBottom="0dp"
+    android:shadowColor="#f3ffffff"
+    android:shadowDy="1"
+    android:shadowRadius="1"
+    android:textColor="#666666"
+    android:textSize="12sp" />

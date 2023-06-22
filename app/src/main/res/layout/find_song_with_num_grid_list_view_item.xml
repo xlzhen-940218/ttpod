@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="96dp">
+    <com.sds.android.ttpod.widget.RoundedImageView android:id="@+id/grid_view_item_mask" android:visibility="visible" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_alignBottom="@+id/grid_view_item_image" app:corner_radius="4dp" app:Image_border_width="@dimen/rounded_image_border" app:Image_border_color="@color/rounded_image_corner" app:mutate_background="true"/>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="96dp" android:layout_centerInParent="true">
+        <TextView android:textSize="18sp" android:textStyle="bold" android:textColor="@android:color/white" android:id="@+id/grid_view_item_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TOP 100" android:singleLine="true"/>
+        <TextView android:textSize="10sp" android:textColor="@android:color/white" android:id="@+id/grid_view_item_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:singleLine="true"/>
+    </LinearLayout>
+    <View android:background="@drawable/xml_find_song_list_selector" android:layout_width="match_parent" android:layout_height="match_parent"/>
+    <com.sds.android.ttpod.widget.SquareImageView android:id="@+id/grid_view_item_image" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="96dp" android:scaleType="fitCenter" android:contentDescription="@android:string/unknownName"/>
+    <ImageView android:id="@+id/grid_view_item_play_icon_back" android:visibility="invisible" android:layout_width="50dp" android:layout_height="50dp" android:layout_centerInParent="true" android:contentDescription="@string/ttpod"/>
+    <com.sds.android.ttpod.framework.modules.skin.view.Animation android:id="@+id/grid_view_item_play_icon" android:paddingBottom="4dp" android:visibility="invisible" android:layout_width="32dp" android:layout_height="32dp" android:layout_centerInParent="true" android:contentDescription="@string/ttpod"/>
+</RelativeLayout>

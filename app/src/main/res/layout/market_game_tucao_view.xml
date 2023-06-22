@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.sds.android.ttpod.framework.modules.skin.view.ModifyFitCenterImageView android:id="@+id/market_game_tucao_image" android:background="@drawable/img_background_market_default" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/img_market_default" android:scaleType="fitCenter"/>
+    <RelativeLayout android:id="@+id/market_tucao_bottom_area" android:background="@color/market_game_tucao_background_color" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="2dp" android:layout_marginRight="2dp" android:layout_alignParentBottom="true">
+        <TextView android:textSize="12sp" android:textColor="@color/market_game_tucao_text_color" android:id="@+id/tucao_comment_count" android:paddingLeft="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10dp" android:layout_alignParentRight="true"/>
+        <ImageView android:id="@+id/tucao_comment_prompt_img" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:src="@drawable/img_comment_prompt" android:layout_toLeftOf="@+id/tucao_comment_count" android:layout_alignTop="@+id/tucao_comment_count"/>
+        <TextView android:textSize="12sp" android:textColor="@color/market_game_tucao_text_color" android:gravity="right" android:id="@+id/tucao_browser_count" android:paddingTop="1dp" android:layout_width="71dp" android:layout_height="wrap_content" android:layout_below="@+id/tucao_comment_prompt_img" android:layout_alignRight="@+id/tucao_comment_count"/>
+        <TextView android:textSize="16sp" android:textColor="@color/market_game_tucao_text_color" android:ellipsize="end" android:id="@+id/tucao_content_summary" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="2" android:layout_toLeftOf="@+id/tucao_browser_count" android:layout_centerVertical="true"/>
+    </RelativeLayout>
+</merge>

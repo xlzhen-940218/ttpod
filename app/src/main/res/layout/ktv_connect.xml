@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:orientation="vertical" android:id="@+id/layout_bottom" android:background="#4d010312" android:padding="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout android:gravity="center" android:id="@+id/layout_add_media" android:background="@drawable/ktv_add_button" android:layout_width="match_parent" android:layout_height="40dp">
+        <TextView android:textSize="20sp" android:textColor="#fefffc" android:gravity="center" android:layout_gravity="center" android:id="@+id/button_add_media" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="选择歌曲" android:drawableLeft="@drawable/ktv_song_icon"/>
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:id="@+id/layout_connect_ktv" android:background="@drawable/ktv_connect_button" android:visibility="gone" android:layout_width="match_parent" android:layout_height="40dp">
+        <TextView android:textSize="20sp" android:textColor="#fefffc" android:gravity="center" android:layout_gravity="center" android:id="@+id/button_connect_ktv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="连接KTV" android:drawableLeft="@drawable/ktv_scan_icon"/>
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:id="@+id/layout_play_all_song" android:background="@drawable/ktv_connect_button" android:visibility="gone" android:layout_width="match_parent" android:layout_height="40dp">
+        <TextView android:textSize="20sp" android:textColor="#fefffc" android:gravity="center" android:layout_gravity="center" android:id="@+id/button_play_all_song" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="一键全部点歌"/>
+    </LinearLayout>
+</FrameLayout>

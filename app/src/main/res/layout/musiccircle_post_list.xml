@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:paddingBottom="@dimen/playcontrol_bar_height" android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.sds.android.ttpod.widget.PullToRefreshListView android:id="@+id/list_content" android:fadingEdge="none" android:layout_width="match_parent" android:layout_height="match_parent" android:listSelector="@drawable/transparent_drawable" android:cacheColorHint="@android:color/transparent" android:divider="@null" android:dividerHeight="0px" android:headerDividersEnabled="false" android:footerDividersEnabled="false"/>
+    <ViewStub android:id="@+id/social_login_stub" android:layout="@layout/musiccircle_login_hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true"/>
+</RelativeLayout>

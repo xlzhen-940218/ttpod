@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Activity_Background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/fragment_navigate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/mediascan_animation_status_layout" />
+
+    <RelativeLayout
+        android:id="@+id/mediascan_animation_status_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:background="#2fa6de">
+
+        <com.sds.android.ttpod.framework.modules.skin.view.Animation
+            android:id="@+id/imageview_mediascan_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/img_imageview_mediascan_anim_finished" />
+        /&gt;\10
+
+        <LinearLayout
+            android:id="@+id/layout_mediascan_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/imageview_mediascan_anim"
+            android:layout_toRightOf="@+id/imageview_mediascan_anim"
+            android:gravity="bottom|left"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/mediascan_result_prefix"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textview_mediascan_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text=""
+                android:textColor="#fff"
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/mediascan_result_sufix"
+                android:textColor="#fff"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressbar_mediascan_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@+id/layout_mediascan_status"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@+id/imageview_mediascan_anim"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/xml_background_progressbar_mediascan" />
+
+        <TextView
+            android:id="@+id/textview_mediascan_scan_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progressbar_mediascan_progress"
+            android:layout_toRightOf="@+id/imageview_mediascan_anim"
+            android:ellipsize="start"
+            android:gravity="top|left"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:text="/sdcard/xxx.mp3"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progressbar_mediascan_progress"
+            android:layout_toRightOf="@+id/imageview_mediascan_anim"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <Button
+                android:id="@+id/button_mediascan_scan_finished"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/xml_background_button_mediascan_finished"
+                android:minWidth="150dp"
+                android:text="@string/mediascan_scan_finished"
+                android:textColor="#fff"
+                android:textSize="22sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

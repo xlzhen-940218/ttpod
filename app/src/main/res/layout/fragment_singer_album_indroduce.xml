@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:textSize="16sp" android:textColor="#1b3b43" android:id="@+id/album_lang" android:paddingLeft="8dp" android:paddingRight="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="语言: 国语" android:singleLine="true" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"/>
+                <TextView android:textSize="16sp" android:textColor="#1b3b43" android:id="@+id/album_publish_time" android:paddingLeft="8dp" android:paddingRight="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2012-12-28" android:singleLine="true" android:layout_toRightOf="@+id/album_lang" android:layout_alignBaseline="@+id/album_lang"/>
+            </LinearLayout>
+            <TextView android:textSize="14sp" android:textColor="#1b3b43" android:id="@+id/album_introduce" android:padding="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="《十二新作》是周杰伦的专辑，2012年12月28日正式发行。专辑中收录了周杰伦的十二首精心创作作品。拿下众多重磅排行榜冠军宝座。2013年5月22日，第24届金曲奖公布入围名单，周杰伦凭借专辑《十二新作》成功揽获“最佳国语男歌手" android:layout_toLeftOf="@+id/album_right_arrow" android:layout_below="@+id/album_lang"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

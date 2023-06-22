@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sds.android.ttpod.widget.RatioRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:background="@drawable/xml_background_dialog_button_variable"
+    android:orientation="vertical">
+
+    <com.sds.android.ttpod.common.widget.IconTextView
+        android:id="@+id/itv_icon"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_centerInParent="true"
+        app:textColor="#595a5c" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/itv_icon">
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="#959fa5"
+            android:textSize="12sp" />
+    </FrameLayout>
+</com.sds.android.ttpod.widget.RatioRelativeLayout>

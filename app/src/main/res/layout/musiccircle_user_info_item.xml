@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:padding="4dp" android:layout_width="match_parent" android:layout_height="80dp">
+    <com.sds.android.ttpod.widget.UserAvatarView android:id="@+id/user_avatar" android:layout_width="72dp" android:layout_height="72dp" android:src="@drawable/img_avatar_default" android:scaleType="fitXY" android:layout_centerVertical="true" android:contentDescription="@string/ttpod" app:corner_radius="36dp"/>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toRightOf="@+id/user_avatar" android:layout_centerVertical="true">
+        <TextView android:id="@+id/user_name" android:layout_width="match_parent" android:layout_height="24dp" android:layout_marginLeft="4dp" android:singleLine="true" style="@style/MusicCircle_ListItem_Title"/>
+        <TextView android:id="@+id/user_extra_info_1" android:layout_width="match_parent" android:layout_height="18dp" android:layout_marginLeft="4dp" android:layout_marginTop="2dp" android:singleLine="true" android:drawablePadding="4dp" android:layout_below="@+id/user_name" style="@style/ListItem_Description1"/>
+        <TextView android:id="@+id/user_extra_info_2" android:layout_width="match_parent" android:layout_height="18dp" android:layout_marginLeft="4dp" android:singleLine="true" android:drawablePadding="4dp" android:layout_below="@+id/user_extra_info_1" style="@style/ListItem_Description2"/>
+    </RelativeLayout>
+</RelativeLayout>

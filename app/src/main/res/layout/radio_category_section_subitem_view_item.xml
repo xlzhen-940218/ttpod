@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.sds.android.ttpod.widget.RoundedImageView
+        android:id="@+id/grid_view_item_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/grid_view_item_image"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:Image_border_color="@color/rounded_image_corner"
+        app:Image_border_width="@dimen/rounded_image_border"
+        app:corner_radius="4dp"
+        app:mutate_background="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/grid_view_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="TOP 100"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/grid_view_item_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@android:color/white"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/xml_find_song_list_selector" />
+
+    <com.sds.android.ttpod.widget.online.MovementImage
+        android:id="@+id/grid_view_item_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@android:string/unknownName"
+        android:scaleType="fitCenter"
+        android:visibility="invisible" />
+
+    <com.sds.android.ttpod.widget.RectangleImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitCenter"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/grid_view_item_play_icon_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/ttpod"
+        android:visibility="invisible" />
+
+    <com.sds.android.ttpod.framework.modules.skin.view.Animation
+        android:id="@+id/grid_view_item_play_icon"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_centerInParent="true"
+        android:contentDescription="@string/ttpod"
+        android:paddingBottom="4dp"
+        android:visibility="invisible" />
+</RelativeLayout>

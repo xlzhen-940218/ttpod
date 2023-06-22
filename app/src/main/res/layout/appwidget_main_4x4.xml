@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img_background_appwidget">
+
+    <ImageView
+        android:id="@+id/image_album_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_bottom_4x4"
+        android:background="@drawable/img_background_appwidget_album_cover_4x4"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_appwidget_album_cover_4x4" />
+
+    <ImageView
+        android:id="@+id/image_album_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_bottom_4x4"
+        android:layout_alignLeft="@+id/image_album_background"
+        android:layout_alignRight="@+id/image_album_background"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:id="@+id/layout_bottom_4x4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout_meta_4x4"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:scaleType="center"
+                    android:src="@drawable/img_appwidget_title" />
+
+                <TextView
+                    android:id="@+id/text_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="none"
+                    android:fadingEdge="horizontal"
+                    android:fadingEdgeLength="10dp"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text="@string/unknown"
+                    android:textColor="#f6f7f9"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:scaleType="center"
+                    android:src="@drawable/img_appwidget_artist" />
+
+                <TextView
+                    android:id="@+id/text_artist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="none"
+                    android:fadingEdge="horizontal"
+                    android:fadingEdgeLength="10dp"
+                    android:paddingLeft="5dp"
+                    android:singleLine="true"
+                    android:text="@string/unknown"
+                    android:textColor="#f6f7f9"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+
+            <ProgressBar
+                android:id="@+id/seekbar_progress"
+                style="@style/progressBarHorizontal_color"
+                android:layout_width="match_parent"
+                android:layout_height="2dp" />
+
+            <TextView
+                android:id="@+id/text_time_current"
+                android:layout_width="40dp"
+                android:layout_height="16dp"
+                android:layout_below="@+id/seekbar_progress"
+                android:layout_marginTop="2dp"
+                android:gravity="center"
+                android:textColor="#ffe3ebf1"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/text_time_duration"
+                android:layout_width="40dp"
+                android:layout_height="16dp"
+                android:layout_below="@+id/seekbar_progress"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:textColor="#ffe3ebf1"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/appwidget_4x4_control_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageButton
+                android:id="@+id/button_playmode"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="9dp"
+                android:background="@drawable/xml_background_button_appwidget"
+                android:scaleType="center"
+                android:src="@drawable/img_appwidget_playmode_repeat" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:baselineAligned="false">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/button_play_prev"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/xml_background_button_appwidget"
+                        android:scaleType="center"
+                        android:src="@drawable/img_appwidget_play_prev" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/button_play_pause"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/xml_background_button_appwidget"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_appwidget_play" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/button_play_next"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/xml_background_button_appwidget"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/img_appwidget_play_next" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/button_minilyric"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="9dp"
+                android:background="@drawable/xml_background_button_appwidget"
+                android:scaleType="center"
+                android:src="@drawable/img_appwidget_minilyric_on" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

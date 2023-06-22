@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+    <ImageView
+        android:id="@+id/icon_left"
+        style="@style/View_State"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/icon_right"
+        style="@style/View_State"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/icon_right"
+        android:layout_toRightOf="@+id/icon_left"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/title_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/common_margin"
+                android:singleLine="true"
+                android:textColor="@color/dialog_content_text_color"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/title_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/common_margin"
+                android:singleLine="true"
+                android:textColor="@color/dialog_content_title_description_color"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <com.sds.android.ttpod.common.widget.IconTextView
+                android:id="@+id/title_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="0dp"
+                android:contentDescription="@android:string/unknownName"
+                android:visibility="gone"
+                app:text="@string/icon_text_gaozhi"
+                app:textColor="#fff"
+                app:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/subtitle"
+            style="@style/ListView_Item_Subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title_group"
+            android:layout_marginRight="@dimen/common_margin" />
+    </RelativeLayout>
+</RelativeLayout>

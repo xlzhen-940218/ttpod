@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="apshare_bkg_blue">#26afef</drawable>
+    <drawable name="apshare_bkg_blue_pressed">#2095cb</drawable>
+    <drawable name="apshare_bkg_device_disable">#cc525c61</drawable>
+    <drawable name="apshare_bkg_device_enabled">#26afef</drawable>
+    <drawable name="apshare_bkg_gray">#95a4aa</drawable>
+    <drawable name="apshare_bkg_gray_pressed">#7f8c92</drawable>
+    <drawable name="apshare_bkg_green">#3ada4a</drawable>
+    <drawable name="apshare_bkg_green_pressed">#31ba3f</drawable>
+    <drawable name="apshare_bkg_red">#ec5c5c</drawable>
+    <drawable name="apshare_bkg_red_pressed">#c94e4e</drawable>
+    <drawable name="apshare_whole_bkg">#f6fafb</drawable>
+    <drawable name="color_background_crop_normal">#80000000</drawable>
+    <drawable name="color_background_crop_pressed">#8033b5e5</drawable>
+    <drawable name="match_lycpic_bkg">#d92f9dd1</drawable>
+    <drawable name="match_lycpic_bkg_pressed">#2f9dd1</drawable>
+    <drawable name="mv_bg">#8f000000</drawable>
+    <drawable name="setting_desc_subtitle_color">#959fa5</drawable>
+    <drawable name="setting_desc_title_color">#676f73</drawable>
+    <drawable name="transparent_drawable">#00000000</drawable>
+</resources>

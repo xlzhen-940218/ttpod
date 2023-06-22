@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="audio_effect_support_devices">
+        <item>耳机</item>
+        <item>扬声器</item>
+        <item>蓝牙</item>
+    </array>
+    <array name="effect_categories">
+        <item>普通</item>
+        <item>流行</item>
+        <item>摇滚</item>
+        <item>民谣</item>
+        <item>舞曲</item>
+        <item>电子</item>
+        <item>古典音乐</item>
+        <item>爵士</item>
+        <item>其他</item>
+    </array>
+    <array name="environment_title">
+        <item>无</item>
+        <item>演唱会</item>
+        <item>卧室</item>
+        <item>石屋</item>
+        <item>剧院</item>
+        <item>洞穴</item>
+        <item>空巷</item>
+        <item>城市</item>
+        <item>停车场</item>
+        <item>客厅</item>
+        <item>礼堂</item>
+        <item>大殿</item>
+    </array>
+    <array name="feedback_status">
+        <item>待解决</item>
+        <item>解决中</item>
+        <item>已解决</item>
+        <item>已记录</item>
+        <item>待解决</item>
+    </array>
+    <array name="handpick_title">
+        <item>普通</item>
+        <item>摇滚</item>
+        <item>流行</item>
+        <item>舞曲</item>
+        <item>嘻哈</item>
+        <item>古典</item>
+        <item>超重低音</item>
+        <item>人声</item>
+    </array>
+    <array name="song_quality_list">
+        <item>无损品质 (约%.1fM)</item>
+        <item>高品质 (约%.1fM)</item>
+        <item>标准品质 (约%.1fM)</item>
+        <item>压缩品质 (约%.1fM)</item>
+    </array>
+</resources>

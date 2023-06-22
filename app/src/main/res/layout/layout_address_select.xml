@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="#ffffff" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:paddingLeft="20dp" android:paddingRight="20dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.sds.android.ttpod.widget.wheelview.WheelView android:layout_gravity="center_vertical" android:id="@+id/id_province" android:layout_width="0dp" android:layout_height="210dp" android:layout_marginRight="20dp" android:layout_weight="1"/>
+        <TextView android:textColor="#000000" android:gravity="center" android:layout_width="wrap_content" android:layout_height="210dp" android:text=" : "/>
+        <com.sds.android.ttpod.widget.wheelview.WheelView android:layout_gravity="center_vertical" android:id="@+id/id_city" android:layout_width="0dp" android:layout_height="210dp" android:layout_marginLeft="20dp" android:layout_weight="1"/>
+    </LinearLayout>
+</LinearLayout>

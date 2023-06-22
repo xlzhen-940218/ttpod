@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/unicom_flow_background_color"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="开通天天动听-包流量畅听：9元/月"
+        android:textColor="#666666"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/edit_phone"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/xml_unicom_flow_edit"
+        android:digits="1234567890"
+        android:hint="输入您的手机号码"
+        android:inputType="number"
+        android:maxLength="11"
+        android:singleLine="true"
+        android:textColorHint="#c8c8ce" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/edit_verify_code"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:background="@drawable/xml_unicom_flow_edit"
+            android:digits="1234567890"
+            android:hint="输入手机验证码"
+            android:inputType="number"
+            android:singleLine="true"
+            android:textColorHint="#c8c8ce" />
+
+        <Button
+            android:id="@+id/button_verify_code"
+            android:layout_width="122dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/unicom_verify_code_button"
+            android:singleLine="true"
+            android:text="获取短信验证码"
+            android:textColor="@color/xml_unicom_verify_code" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_open"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/unicom_trial_button"
+        android:text="确定开通"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/layout_month_end_hint_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/unicom_month_end_info" />
+
+        <TextView
+            android:id="@+id/text_flow_faq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:textColor="#9c9c9c"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pandawidgets>
+    <pandawidget
+        background="img_appwidget91_preview_4x1"
+        gravity=""
+        id="ttpod"
+        layout_height="com.sds.android.ttpod"
+        orientation="appwidget_layout_91_4x1"
+        visibility="invisible" />
+    <pandawidget
+        background="img_appwidget91_album_4x4"
+        gravity=""
+        id="ttpod"
+        layout_height="com.sds.android.ttpod"
+        orientation="appwidget_layout_91_4x4"
+        visibility="4" />
+    <pandawidget
+        background="img_appwidget91_voice_4x4"
+        gravity=""
+        id="ttpod"
+        layout_height="com.sds.android.ttpod"
+        orientation="appwidget_layout_91_voice_4x4"
+        visibility="4" />
+</pandawidgets>

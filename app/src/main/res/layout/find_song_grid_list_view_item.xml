@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:paddingTop="4dp" android:paddingRight="4dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.sds.android.ttpod.framework.modules.skin.view.ModifyFitCenterImageView android:id="@+id/grid_view_item_image" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/img_music_default_icon" android:scaleType="fitCenter" android:contentDescription="@android:string/unknownName"/>
+    <View android:background="@drawable/img_grid_item_mask" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_alignBottom="@+id/grid_view_item_image"/>
+    <ImageView android:id="@+id/grid_view_item_play_icon" android:visibility="visible" android:layout_width="32dp" android:layout_height="wrap_content" android:src="@drawable/img_play_normal" android:layout_centerInParent="true" android:contentDescription="@string/ttpod"/>
+    <TextView android:textSize="16sp" android:textStyle="bold" android:textColor="@android:color/white" android:id="@+id/grid_view_item_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="3dp" android:singleLine="true" android:layout_alignBottom="@+id/grid_view_item_image"/>
+    <View android:background="@drawable/xml_find_song_list_selector" android:layout_width="match_parent" android:layout_height="match_parent"/>
+</RelativeLayout>

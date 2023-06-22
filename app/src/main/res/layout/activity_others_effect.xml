@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1d1f1f"
+    android:orientation="vertical"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <com.sds.android.ttpod.widget.StateView
+        android:id="@+id/stateview_recommends_effect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:loading_view="@layout/loadingview_loading_effect"
+        app:nodata_view="@layout/recommends_effect_nodata_view"
+        app:success_view="@layout/recommends_effect_success_view" />
+</LinearLayout>

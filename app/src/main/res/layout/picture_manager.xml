@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/dialog_background"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/head_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/img_background_search_input">
+
+            <EditText
+                android:id="@+id/edittext_search_input"
+                style="@style/EditText.SearchInput"
+                android:layout_toLeftOf="@+id/imageview_search_clear"
+                android:hint="@string/search_input_hint" />
+
+            <ImageView
+                android:id="@+id/imageview_search"
+                style="@style/ImageView_Search"
+                android:src="@drawable/img_imageview_search" />
+
+            <View
+                android:id="@+id/search_divide"
+                android:layout_width="2dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imageview_search"
+                android:background="#d6e6ea" />
+
+            <ImageView
+                android:id="@+id/imageview_search_clear"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignBottom="@+id/imageview_search"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/search_divide"
+                android:contentDescription="@string/ttpod"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_imageview_search_clear" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/layout_list"
+            android:layout_width="match_parent"
+            android:layout_height="300dp">
+
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@drawable/transparent_drawable"
+                android:dividerHeight="0dp"
+                android:fadingEdge="none"
+                android:listSelector="@drawable/transparent_drawable" />
+
+            <com.sds.android.ttpod.widget.NetworkLoadView
+                android:id="@+id/layout_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

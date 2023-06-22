@@ -1,0 +1,5721 @@
+Manifest-Version: 1.0
+Created-By: 1.7.0_67 (Oracle Corporation)
+
+Name: res/drawable-hdpi/img_contextmenu_share.png
+SHA1-Digest: iXEyYfFHqo3TiqEl15sxxP/kINE=
+
+Name: res/layout/dialog_main.xml
+SHA1-Digest: 5sc50jBya/ZPfXvYtjCmXcOnZRs=
+
+Name: res/drawable-hdpi/img_album_list_item_cover_default.png
+SHA1-Digest: HZicwseF55jOZ+aatvZbuxKmV7A=
+
+Name: res/drawable/xml_background_textview_user_sina_login.xml
+SHA1-Digest: PZjOlQGe1w+3opZV5s30w/mVlO0=
+
+Name: res/layout/apshare_choose.xml
+SHA1-Digest: OIZhvOqjXsX8/0An/UcmRTxclAE=
+
+Name: res/drawable-hdpi/img_effect_level_fancier.png
+SHA1-Digest: QfswKn3cdrwsiwpEcqPlNHT2dfk=
+
+Name: res/drawable/audio_navget_bar.xml
+SHA1-Digest: lCAf9wu7PRkIMoQ3RCWD/8zW30Q=
+
+Name: res/drawable/xml_audio_effect_ajust_corner_bg.xml
+SHA1-Digest: VfikpoDno8L7Robki1jNwGNAyt0=
+
+Name: res/drawable/button_subscribe.xml
+SHA1-Digest: VQueL5tGy4yZjJq+Rn+GBdXMyHs=
+
+Name: res/layout/cmmusic_list_listen_activity.xml
+SHA1-Digest: R6Z7pZcyFa5NEtDK7HnkoaeObzk=
+
+Name: res/drawable-hdpi/img_grid_item_mask.9.png
+SHA1-Digest: xt+TVBVHY1+o53Zp44qx5WiWzBE=
+
+Name: res/drawable-hdpi/cmmusic_progress_6.png
+SHA1-Digest: OYPvDa3GmhLbLSfF9iOpUdwv99Y=
+
+Name: assets/landscape/BlueLight.png
+SHA1-Digest: B5Gs//ZjhdTTZo3IeMPRDeebT50=
+
+Name: res/drawable-hdpi/img_background_effect_button_share.9.png
+SHA1-Digest: 5euB5BAqZX66HGM33f6ds2OV63I=
+
+Name: res/layout/activity_boost.xml
+SHA1-Digest: eV4Kfg9W9gnvqB+8zH//840uJuc=
+
+Name: res/drawable-hdpi/img_notification_tickericon.png
+SHA1-Digest: 2E8ELFqANesUr84n1C21dGnrSs0=
+
+Name: res/drawable-hdpi/img_scan_navigation005.png
+SHA1-Digest: dYVqaYyVHzNeizNUNf0e4O0lgOE=
+
+Name: res/drawable/xml_dialog_option.xml
+SHA1-Digest: BgBeXacMVdeS3Ic4BSmIg5bYPA0=
+
+Name: res/drawable-hdpi/recommand_list_bg_2.png
+SHA1-Digest: Kf+hMqmXltNiZGxRqX9zLYgTYhc=
+
+Name: res/layout/fragment_singer_list.xml
+SHA1-Digest: BP3ye91DrMit6qbx+PWmjkJoFHQ=
+
+Name: res/layout/activity_unicom_flow_faq_detail.xml
+SHA1-Digest: WKeP7I13rkJTCmV8Dg3JRkYr6dA=
+
+Name: res/drawable-hdpi/smiley_0.png
+SHA1-Digest: QjDzDuWN4AIkTi7PpA+Cgc/bZ04=
+
+Name: res/drawable/xml_background_hotword.xml
+SHA1-Digest: 98NRzh3Gxx11qnWuo7fcZqg8M8s=
+
+Name: res/layout/share_dialog_footer.xml
+SHA1-Digest: YbL8Au6NJjVbjSKP6uwVpxbOUcI=
+
+Name: res/drawable/xml_background_button_market_update.xml
+SHA1-Digest: kcu4gJLmRJM3gMT3DBQN0etr+pI=
+
+Name: res/drawable-hdpi/ktv_song_icon.png
+SHA1-Digest: e5y7TC09pSH1Y/JDDot8qfvEDPI=
+
+Name: res/layout/dialog_audio_effect_help.xml
+SHA1-Digest: UtyTwXQElbMRCnFEj5LihW5nias=
+
+Name: res/drawable/unicom_trial_button_pressed.xml
+SHA1-Digest: VsCpavjtkoM8HZKqkpKD1JtGZos=
+
+Name: res/drawable/xml_appwidget91_pause.xml
+SHA1-Digest: RsRMPYuHt42UO740gIAM1aukYbQ=
+
+Name: res/layout/fragment_search_result_hotword.xml
+SHA1-Digest: +MeCRUlA9TZpAT89avGGdHgRpks=
+
+Name: assets/landscape/xingxingblue.png
+SHA1-Digest: 5EhbUhIrsJP0bdZS4f7GQCIOjq8=
+
+Name: res/drawable-hdpi/img_background_skin_relative.9.png
+SHA1-Digest: Ao/AJIBpmogQJJM5rEr0uRQriEw=
+
+Name: res/color/xml_unicom_verify_code.xml
+SHA1-Digest: FR8jJomu2SnW5J2c/xl6j9qW4q8=
+
+Name: res/drawable-hdpi/img_button_minilyric_gray.png
+SHA1-Digest: Is0vXzkLsF0cQ1bBAut0HnvQ5Mc=
+
+Name: res/drawable-hdpi/smiley_22.png
+SHA1-Digest: Yo5/HhYdf5M1L+Iz9GT7gmHxuaM=
+
+Name: res/drawable-hdpi/img_background_button_mediascan_finished_press
+ ed.9.png
+SHA1-Digest: 9Xy7ES4QYb4QOwuxnqa5LuPTzv4=
+
+Name: res/drawable-hdpi/recommand_list_bg_1.9.png
+SHA1-Digest: GWnf6Hb0nFkvt8kfhvh6pvxwqyU=
+
+Name: res/layout/media_title_banner.xml
+SHA1-Digest: 5dPt17n5o8az3XcowIANz4Apu0Q=
+
+Name: res/drawable-hdpi/img_seekbar_thumb_volume_landscape_pressed.png
+SHA1-Digest: jPxc4HViYTBpeQ+yDfHpE0huEeQ=
+
+Name: res/drawable-hdpi/img_imageview_radio_play_animation_2.png
+SHA1-Digest: +Fg6MCub0rc+0eoZDE3W21rDGW4=
+
+Name: res/layout/music_library_header.xml
+SHA1-Digest: dQpDcgXiYPkTww/cvWiSBg3c1+4=
+
+Name: res/drawable/xml_background_market_textview_bg.xml
+SHA1-Digest: nMLs4icvnJPRfUIL/WaeBCkmnKk=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_download_no
+ rmal.png
+SHA1-Digest: jbTs2WX/vsepLEmxPojSr/4k31g=
+
+Name: res/layout/musiccircle_radar_layout.xml
+SHA1-Digest: CNv407Yitw6r12Feqvpl20j7h1w=
+
+Name: res/drawable-hdpi/img_background_play.png
+SHA1-Digest: Ka65SjrLtO0sUdA1FMqpu34BoC4=
+
+Name: res/layout/share_dialog_body_waiting.xml
+SHA1-Digest: Wx0d5QluPN5P1ZkatOfqCFBwX1Q=
+
+Name: assets/yyb_friends.png
+SHA1-Digest: jnHduk4R6gxpMxjc6Oln2liiuRw=
+
+Name: res/drawable-hdpi/img_effect_right_arrow.png
+SHA1-Digest: 2LI00XQjs97D0sNo8u48yfh/0eE=
+
+Name: res/drawable-hdpi/img_appwidget_minilyric_off.png
+SHA1-Digest: T60L830BJSuNPuidWWczTKjczEk=
+
+Name: res/drawable-mdpi/img_scan_navigation006.png
+SHA1-Digest: njrWeyGMAziHe4Sx8w8q7ArjxTk=
+
+Name: res/layout/fragment_album_list.xml
+SHA1-Digest: Eprv4n2iu6qEi4vykYy1CZ6Wdw4=
+
+Name: res/layout/findsong_grid_section_subitem_item.xml
+SHA1-Digest: JMFpc7vKRvDSwROK6gg8tQxEn6c=
+
+Name: res/drawable/xml_background_textview_user_login.xml
+SHA1-Digest: D/DUViMyTa0wmRMK0ilNxnIOlFo=
+
+Name: res/drawable-hdpi/img_appwidget_play_next.png
+SHA1-Digest: PdBMknedBbWIlfx6wNRvUGNVZxo=
+
+Name: res/drawable/cmmusic_indicator_focused.xml
+SHA1-Digest: TsAJH+/YFqN3S/+TNBX+YJ9jQ28=
+
+Name: res/drawable-hdpi/img_button_notification_play_prev.png
+SHA1-Digest: XhorzTT+eQUiLgw/n37YjuSW9fg=
+
+Name: res/drawable-hdpi/img_progress_icon.png
+SHA1-Digest: yla1aALSPZZ9EyYTFrMIFUMInVo=
+
+Name: res/drawable-hdpi/img_background_effect_boost.9.png
+SHA1-Digest: 88JvwyOBLEVse7xrSXjgG0ltxq0=
+
+Name: res/drawable/xml_background_textview_sound_recognizer.xml
+SHA1-Digest: RwjBu7MO+aN1GtzFlTy9GbSnL8k=
+
+Name: res/layout/fragment_album_indroduce.xml
+SHA1-Digest: ZTgpgmvvNzxpzXBLtnF6qjksLbo=
+
+Name: res/drawable-hdpi/img_button_notification_play_next.png
+SHA1-Digest: Ll3Uwmxaj4Cve9P5zk+Te3AEw6M=
+
+Name: res/drawable-hdpi/img_appwidget_preview_5x2.png
+SHA1-Digest: hlfEQ0Vn4rAg6MG2mk0NJy4pAhE=
+
+Name: res/layout/market_game_tucao_view.xml
+SHA1-Digest: R+6uKU69dvCpD7RWdmIuci9j5TA=
+
+Name: res/color/xml_local_media_tab_text_transparent_glass.xml
+SHA1-Digest: 5m28q1f4jr6P7Qzv27o59NMbQyk=
+
+Name: res/drawable/xml_background_effect_recommand_button.xml
+SHA1-Digest: +qq1u0QyMruK+XkpwIyyGUohzCM=
+
+Name: res/layout/effect_user_info.xml
+SHA1-Digest: az8w4vxVO9RBpnB4uXEkx8Vp4TM=
+
+Name: res/drawable-hdpi/img_button_minilyric_pause_normal.png
+SHA1-Digest: 3txTR3pMDT41DZhNrx3f5dP2M04=
+
+Name: res/drawable-hdpi/img_appwidget_go_item.png
+SHA1-Digest: jKgLivPIF4fJmeXI6tIpcvTvyM0=
+
+Name: res/drawable-hdpi/img_landscape_switch_old_pressed.png
+SHA1-Digest: 9JrDfG4eid2zqx875cPU19qeKTQ=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_stone_h
+ ouse.jpg
+SHA1-Digest: OoaqzUQ4zSA+kdBUSzdBqpV9H6g=
+
+Name: assets/landscape/8.png
+SHA1-Digest: vbiQOCGx8BGWsHx90s+oGYnrliM=
+
+Name: res/drawable/xml_background_media_group_list_item.xml
+SHA1-Digest: uuLn+bmWFW9aG0J+VZR/EqVr3nA=
+
+Name: res/drawable-hdpi/img_lyric_color_14.png
+SHA1-Digest: CjsZCa/RL0MLo9PbNT9xO6jIGcQ=
+
+Name: res/drawable/xml_shadow_left.xml
+SHA1-Digest: 8X2juMJKrGpWiqtoaXdfnUEho+o=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_softinput.png
+SHA1-Digest: GnnL1wx3BcG8mlVPyymiIBIWPHE=
+
+Name: res/layout/search_result_clear_history.xml
+SHA1-Digest: acwRZn0gV8jKKN/nTKFI38iiFyM=
+
+Name: res/drawable/xml_lyric_kala_on_off.xml
+SHA1-Digest: 8MC6AdkXQI46WlPZ4F8JPP7u+cI=
+
+Name: res/layout/fragment_main_my.xml
+SHA1-Digest: vXgKCWdLy0/OtwsxX1+pQ6uD864=
+
+Name: res/drawable-hdpi/img_background_market_app_category_list_item.9
+ .png
+SHA1-Digest: doG7N6Z+OaKrgHwIzpPahN4YGxI=
+
+Name: res/layout/fragment_main_my_footer.xml
+SHA1-Digest: BcQewpEiYShON+c8b+mFrZO4mpE=
+
+Name: res/layout/mediascan_exclude_item.xml
+SHA1-Digest: bhasPw173nEdQafWeMf7XJPaBCQ=
+
+Name: res/drawable-hdpi/img_dropdown_audio_effect_menu_bkg.9.png
+SHA1-Digest: lMz0xemtr+H6YMafigYunfT90D8=
+
+Name: res/layout/fragment_post_introduction.xml
+SHA1-Digest: II21LYOHKR5M2oR8pQhLLXQNBqM=
+
+Name: res/drawable-hdpi/smiley_18.png
+SHA1-Digest: 7AmjHNPxVPWzFoGaYm8oDdtt9yE=
+
+Name: res/drawable-hdpi/img_effect_level_senior.png
+SHA1-Digest: M7hivzD7pkYhr77yset6vYJRtUg=
+
+Name: res/layout/fragment_local_mv_list.xml
+SHA1-Digest: TPVXt8Koidm2uUREuRouJ9kWhz8=
+
+Name: res/anim/push_out_top.xml
+SHA1-Digest: j1EcZ7b6I29V3Sknr7k3Aj5UX98=
+
+Name: res/layout/musiccircle_comment_input_layout.xml
+SHA1-Digest: KNxZlZiZ0FHJOUf5CWcJTPlQw9c=
+
+Name: res/drawable-hdpi/img_button_minilyric_ttpod_normal.png
+SHA1-Digest: z3NGDdF/mAMamyI5hpy4B9Z7sTk=
+
+Name: res/drawable-hdpi/img_textview_mediascan_custom.png
+SHA1-Digest: uipcZeXQSvsgvL1Nd/nxG+nf23Y=
+
+Name: res/anim/slide_in_right.xml
+SHA1-Digest: TchmmD1FBEsMrn/2+a+wlJaSmKA=
+
+Name: res/drawable/xml_landscape_switch_effect.xml
+SHA1-Digest: 0g9b07mGgxfQaSp90Ap2OJsgWTY=
+
+Name: res/drawable/color_progress.xml
+SHA1-Digest: DrJfZCGFqYrEbcUHZXQmKgsZMqA=
+
+Name: res/drawable/xml_background_radiobutton_userinfo_sex_male.xml
+SHA1-Digest: yFmo4iKqENStIuOv5qTIrmqSpHs=
+
+Name: res/drawable-hdpi/img_skin_relative.png
+SHA1-Digest: zukZJVklVwC3WS1Au9TV4l0XYFw=
+
+Name: res/drawable-hdpi/img_radiobutton_userinfo_sex_female_checked.pn
+ g
+SHA1-Digest: WlzrmJlAd2vVTTXfNRbLqHiOVgU=
+
+Name: res/drawable-mdpi/img_background_equalizer_animation_waveview_cu
+ stom.png
+SHA1-Digest: 2NMZbLr3cuHRdHLtz/r4SMHfVCI=
+
+Name: res/drawable-hdpi/img_musiccircle_emoticons_dot_selected.png
+SHA1-Digest: U462LUvoivcWPP1yqhSq6bjNa8s=
+
+Name: res/drawable/xml_imageview_soundsearch_center.xml
+SHA1-Digest: Tk6BizsEA6ikdeyRBnZQSFSuj7M=
+
+Name: assets/theme/play_bar_play_next_h.png
+SHA1-Digest: 1RmiS71XTj3/DlQvIq+P6t6EiN4=
+
+Name: res/layout/fragment_main_listview_header_my.xml
+SHA1-Digest: LrsP1nmR84V1fGljkh8ziIHmDN4=
+
+Name: res/layout/favorite_online_header.xml
+SHA1-Digest: thuhFh/JgGv6+gyQm0vDwYe1+mw=
+
+Name: res/drawable-hdpi/cmmusic_default_false.png
+SHA1-Digest: TxdfexGrgiuvaP0KgK+MUblTFZ0=
+
+Name: res/drawable-hdpi/img_lyric_color_6.png
+SHA1-Digest: h1nrLps4uKfwUCBxMmczG+adc8Q=
+
+Name: res/drawable-hdpi/img_download_show_button_pressed.9.png
+SHA1-Digest: a6sXmpXKbLnM9ormGAuvXJqgD2Y=
+
+Name: res/drawable-hdpi/img_notification_unicom_open.png
+SHA1-Digest: bCXBjf/xss9A+hXRoKi8jZ8MKfg=
+
+Name: res/drawable-hdpi/img_textview_soundsearch_title.png
+SHA1-Digest: eG6yB+2oQVm2gR0et2sUuANguUE=
+
+Name: res/drawable-hdpi/img_button_minilyric_pink_pressed.png
+SHA1-Digest: +f4WJfUM3VUcSodUAbbjISQqtBc=
+
+Name: res/drawable-hdpi/img_recognizer_song.png
+SHA1-Digest: A4duhQbXBLIzLaZ6iVql1Vobdpo=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_result_play_pressed.
+ png
+SHA1-Digest: B5gZscNhE68XWgfahR3idIpP7J0=
+
+Name: res/layout/dialog_body_double_message.xml
+SHA1-Digest: fbYufAWYJfCCKrkJTruRrWoX0gs=
+
+Name: res/drawable-hdpi/img_background_linearlayout_userinfo_table.9.p
+ ng
+SHA1-Digest: KgnNRyFuxKSC9kWVqkssZlT9eYk=
+
+Name: res/layout/notification_play.xml
+SHA1-Digest: ynvgWrH+Ya8u4v1MGzBcdvGebUU=
+
+Name: res/drawable/cmmusic_indicator.xml
+SHA1-Digest: xus5haxUKGg8uJ4VyUARuIiyHNY=
+
+Name: res/drawable-hdpi/img_musiccircle_follow_normal.png
+SHA1-Digest: pljbtdFmjfnOSzJ25hyuymXAAw8=
+
+Name: res/drawable-hdpi/img_appwidget_album_cover_normal_4x2.png
+SHA1-Digest: M4FEqGxMmxu9yZfzToKlroMeM1o=
+
+Name: res/color/xml_appwidget91_voice_textcolor.xml
+SHA1-Digest: UfEE7Fzokb9VhA9zM63EIqKlpJ0=
+
+Name: assets/mv_support_check.mp4
+SHA1-Digest: XjQLrDMyi6Z8Oe9gVO8IL4QtKkA=
+
+Name: res/layout/appwidget_layout_91_voice_4x4.xml
+SHA1-Digest: kryqRshaE8vsXb17Kpp7A2r1ZoM=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_playmode_shuffle.png
+SHA1-Digest: NH4Ou+euQ8G0nKrUQ5JIhAl0HOE=
+
+Name: res/drawable-hdpi/img_imageview_mediascan_animation_0.png
+SHA1-Digest: QGzDpFnWxuiXlffpFP42Ww4VNRs=
+
+Name: res/color/xml_recommand_zan_color.xml
+SHA1-Digest: ydSdVcszZTOh+bNBYutsx6yx1tE=
+
+Name: res/raw/landscape_default.png
+SHA1-Digest: sUXmlte62Le9wtdsjLp19sjyTIA=
+
+Name: res/drawable-hdpi/img_appwidget_button_pressed.png
+SHA1-Digest: TqFVEzOPCE8E+CmJNofJOpHWI9w=
+
+Name: assets/landscape/pu2.png
+SHA1-Digest: bEJkCzZnoTQFAddNE1lQOKCF/l4=
+
+Name: res/layout/audio_effect_guide.xml
+SHA1-Digest: XGirAnFOwnTCErgs1g/7p8pokMw=
+
+Name: res/layout/layout_offline_mode_audio.xml
+SHA1-Digest: tvetY5YjWAHIkmkX1YRTvLVOxxI=
+
+Name: assets/gbk2uc.dat
+SHA1-Digest: 7J478z+Kber1d86Vmkv1csOrL/8=
+
+Name: res/drawable-hdpi/smiley_30.png
+SHA1-Digest: DW2Xi7hQVLYHJFi7K6fA+AiUkXA=
+
+Name: res/drawable-hdpi/img_background_effect_button_recommand_pressed
+ .9.png
+SHA1-Digest: GviNGfljTgRiPlJYp3gMZ5eSRI8=
+
+Name: res/drawable-hdpi/img_button_minilyric_lock.png
+SHA1-Digest: RPP5gt1eDI2C5tJvKNls5czQBv0=
+
+Name: res/drawable/xml_background_take_phote_button.xml
+SHA1-Digest: MXEaXEcDU+dpwas0YIvdONLN8MA=
+
+Name: res/drawable-hdpi/spectrum_4.png
+SHA1-Digest: mhHz8x6qXL2whJSHAQZ4MzEgueA=
+
+Name: res/layout/cmmusic_set_default_or_delete_listen_activity.xml
+SHA1-Digest: sRW9YEvsWUEM/RWowj0T0zo1zOM=
+
+Name: res/drawable-hdpi/img_actionitem_refresh.png
+SHA1-Digest: yla1aALSPZZ9EyYTFrMIFUMInVo=
+
+Name: res/drawable-hdpi/img_lyric_color_9.png
+SHA1-Digest: maFadP7cBeazrBKwUzHHFfhwavs=
+
+Name: assets/landscape/xingxinglight-4.png
+SHA1-Digest: mFxTk9q7vSKdLZUMWNL+Es1eyOQ=
+
+Name: res/layout/dialog_page_choice_item.xml
+SHA1-Digest: lF2c+FxaljeCD1SZzTJYf8W6Jmw=
+
+Name: res/layout/musiccircle_user_header_bottom.xml
+SHA1-Digest: 2myak9b1PvRvq6xOh9Z8ui5nGJY=
+
+Name: res/drawable-hdpi/cmmusic_adseat_background.png
+SHA1-Digest: F2MI+bWPw7guLIrch25S2p4KzyQ=
+
+Name: res/drawable-hdpi/img_background_scan_media_pressed.png
+SHA1-Digest: vhNyQKoBWsdOo3yIfOb81UxqsaE=
+
+Name: res/layout/sleep_time_choose.xml
+SHA1-Digest: eAvrMsS0YQGQyCXi3fcKxw42wQs=
+
+Name: res/layout/musiccircle_wrap_user_post_list_layout.xml
+SHA1-Digest: 5BLllaEn+1u+nXsdgbWXiv1Yo3U=
+
+Name: res/layout/fragment_main_find_song.xml
+SHA1-Digest: /eblfjWhYY5nIwUKuD/cNisX+Nw=
+
+Name: res/layout/musiccircle_message_layout.xml
+SHA1-Digest: IZYL7csXbCF80AXn6zb65wK/8y8=
+
+Name: res/anim/scale_out.xml
+SHA1-Digest: DGUHI9vaEHtJ3uPdBRMylAsB56g=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_help_small.png
+SHA1-Digest: RlNfKTFUjIayZxnF0HznlVNbpIY=
+
+Name: res/drawable/xml_button_minilyric_zoom_in.xml
+SHA1-Digest: ykZ8oK01rPycKc5giSpG08QiRHs=
+
+Name: res/layout/musiccircle_notice_new_followers.xml
+SHA1-Digest: 7gApYIq2SSoSBiQknjA/K1cT/aU=
+
+Name: res/drawable-hdpi/spectrum_5.png
+SHA1-Digest: rcFvhhD+C9aufHB8sRvbjdHtnu4=
+
+Name: assets/yyb_appdetail_showmore.png
+SHA1-Digest: XZfoqTP4iYo9uLRrqWXGpj/YMUs=
+
+Name: res/layout/fragment_app_webpage.xml
+SHA1-Digest: YRmAgto1jVsBxBBRzDaXN6Gopnc=
+
+Name: res/layout/dialog_body_option.xml
+SHA1-Digest: kd9U1ko6ca1ajrU/pkpgoBKhrQ4=
+
+Name: res/layout/search_result_nodata.xml
+SHA1-Digest: xa7lHq0Ba6R1tozLEhSP74pX5wg=
+
+Name: res/layout/find_song_grid_list_view_item.xml
+SHA1-Digest: n+UxJmbJ6GbrThYBTkagYaHME9E=
+
+Name: res/drawable/xml_musiccircle_state_post_detail_playpause.xml
+SHA1-Digest: tYMyIyWCI/ZPMgC4J9X2687WIHM=
+
+Name: res/anim/push_top_out.xml
+SHA1-Digest: j1EcZ7b6I29V3Sknr7k3Aj5UX98=
+
+Name: res/layout/musiccircle_star_category_item.xml
+SHA1-Digest: e2qQNMO5/aUOcOCRGfb945O80nI=
+
+Name: res/layout/musiccircle_post_detail_userinfo.xml
+SHA1-Digest: z3xTydg7p8JXvMQaVuRt70jgKd8=
+
+Name: lib/armeabi/libalacdecplugin.so
+SHA1-Digest: KWSARsMP8zTwBRmqpVn3UeWr9Yc=
+
+Name: res/drawable/xml_dialog_footer_button_background_highlight.xml
+SHA1-Digest: vdVCClVo/MZjevgUywzFt6ZFloI=
+
+Name: res/drawable/xml_background_social_card.xml
+SHA1-Digest: b3Jhp1Th7HW9S1eOAoVzs/NwHRE=
+
+Name: res/layout/singer_hot_list_item.xml
+SHA1-Digest: 7eU74xCWBuTkJZgLB/TH2A7s7kE=
+
+Name: res/layout/musiccircle_post_detail_header_info.xml
+SHA1-Digest: 3HjIJPeV7n43u/QLdo88Z07iKLU=
+
+Name: res/drawable/xml_button_prev_landscape.xml
+SHA1-Digest: QCj0tNmm7xZbDYpiOZ6bJQuJhps=
+
+Name: res/layout/appwidget_layout_91_4x4.xml
+SHA1-Digest: jpZ0nPGyKb0zX775YkTpr1oiUPE=
+
+Name: res/drawable-hdpi/img_background_imageview_save.png
+SHA1-Digest: MHUc26xwkf2zwWqa0mjkJgXMkLs=
+
+Name: res/layout/share_content_dialog.xml
+SHA1-Digest: 34QJomrOPHZmCVcN+xR8bJ5h1XU=
+
+Name: res/anim/translation_out_top.xml
+SHA1-Digest: wxsCwIjScLvSKJMI+zpPHK3b0js=
+
+Name: assets/theme/play_bar_pause_n.png
+SHA1-Digest: m+hSnQOSrxmSw4sj0a8vd1V1p6E=
+
+Name: res/drawable-hdpi/cmmusic_default_true.png
+SHA1-Digest: jko+7dlC8iN+0gCFMMCfbKQ213w=
+
+Name: res/drawable-hdpi/img_share_button_dialog_normal.9.png
+SHA1-Digest: 8Q9Z5jnc8ZdQi5+//ts17q7rtrA=
+
+Name: res/layout/music_library_history_item.xml
+SHA1-Digest: p0Zb61AA6Eb20UqiESgr5J8S2vc=
+
+Name: res/drawable-hdpi/numberpicker_selection_divider.9.png
+SHA1-Digest: QlvendhtSPTycBaK9VBz7Uke3LA=
+
+Name: res/drawable/xml_imageview_soundsearch_result_share.xml
+SHA1-Digest: aRVe6kPw9rtlfQCiW+lkDHIdHaY=
+
+Name: res/drawable-hdpi/img_background_panel_minilyric_setting_bottom.
+ 9.png
+SHA1-Digest: JtiUWM6ShpXdl64f9R8WpFlopm8=
+
+Name: res/anim/push_right_out.xml
+SHA1-Digest: uVA0yRv8ZKOzUbiYpyzWAzFo9HM=
+
+Name: res/drawable/xml_button_pause_landscape.xml
+SHA1-Digest: pftPqq9BpvnkodeCETnpy1xlU6U=
+
+Name: assets/landscape/xingxinglight-1.png
+SHA1-Digest: GFXfVbncgheF2xd5XRvGliRSsW8=
+
+Name: res/drawable-hdpi/img_button_prev_landscape_normal.png
+SHA1-Digest: Luz58zwBpoQDg8R58PZN46UQiTc=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_album.png
+SHA1-Digest: 6auPdRvCSrYkBRg4wzA+OFpb7r4=
+
+Name: res/drawable/xml_musiccircle_button_bg.xml
+SHA1-Digest: N4F8PlOSnj4c/qWM3eIGhpGFnRM=
+
+Name: res/drawable/xml_checkbox_install_app.xml
+SHA1-Digest: XVXfR/BsQNCvaosWdlkwDuVF038=
+
+Name: res/drawable-hdpi/img_appwidget91_play_prev_pressed.png
+SHA1-Digest: KvgwOpLreXBm5kBK9wiG6quveFY=
+
+Name: res/drawable-hdpi/img_background_edittext_dialog_normal.9.png
+SHA1-Digest: 0SMc2nHocmWf/kJJ3EfuGpZBvNk=
+
+Name: assets/theme/play_bar_play_n.png
+SHA1-Digest: kw8H/Cw0hirizIluu9iR+yPKBzs=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_result_play_normal.p
+ ng
+SHA1-Digest: WchoAsvVhE2w1q+Bw8iuW2LmE94=
+
+Name: res/drawable/xml_skin_relative_line.xml
+SHA1-Digest: jNKslXiwsbqr1zSoVDgYJD+nLIA=
+
+Name: res/drawable-hdpi/img_landscape_switch_new_normal.png
+SHA1-Digest: U5fP4YlmEb8qlip55MbxnFrH2+s=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_none.jp
+ g
+SHA1-Digest: y2DsHDhwUoRrJEvsEfYYGILCsVc=
+
+Name: res/drawable-hdpi/cmmusic_progress_4.png
+SHA1-Digest: pFGbsimfzcvnpywnvhtl3P5J5HM=
+
+Name: res/layout/share_select_item.xml
+SHA1-Digest: EQnBMdnqT4YGJvQmD6ajpQHD1s8=
+
+Name: res/drawable-hdpi/img_imageview_download_group_state_collapsed.p
+ ng
+SHA1-Digest: 7ZkxjyZSjQTlka3b+iHBUhL8sqk=
+
+Name: res/drawable-hdpi/img_musiccircle_emoticons_dot_normal.png
+SHA1-Digest: n/uICYEeTuvZ69q6WV/6vNal0wc=
+
+Name: res/layout/effect_recommend_item_default.xml
+SHA1-Digest: FdIy7L1IB4QKAH0f4I3hVcYj6mI=
+
+Name: res/layout/popups_body_list.xml
+SHA1-Digest: 8IMS+zecuC6tIZwDlkwS153QhLA=
+
+Name: res/drawable-hdpi/img_background_textview_sound_recognizer_press
+ ed.9.png
+SHA1-Digest: 5ON9T5CN34PdrNXjU0uIJuM6zyM=
+
+Name: res/drawable/xml_imageview_soundsearch_result_pause.xml
+SHA1-Digest: Oyez8pn2HO4/dUP0azxQ9gz44CA=
+
+Name: res/drawable/xml_musiccircle_post_detail_header_pause.xml
+SHA1-Digest: d+cMxTTYQ7xfsLKs/beYziDLHyM=
+
+Name: assets/theme/play_bar_play_h.png
+SHA1-Digest: S9UO9WjvQPSLqEz3sBwtdwXiKC0=
+
+Name: res/drawable-mdpi/img_textview_mediascan_wifi_off.png
+SHA1-Digest: fuA6SqAFTuYnBpSn8qK5z1Sf/ho=
+
+Name: res/layout/musiccircle_chatting_item_middle.xml
+SHA1-Digest: EdxmNKhAWo+Y1lDUpYw0YGnVWlo=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_default.jpg
+SHA1-Digest: 1BP+cWUivVj/lPAPCJkxGSweCG8=
+
+Name: res/anim/push_in_bottom.xml
+SHA1-Digest: byNQOMSUCCO0EFus0qevdamTJMo=
+
+Name: res/layout/popups_action_copyright_list_item.xml
+SHA1-Digest: 5ZeiPNVeBzovh7702OoonLRSeto=
+
+Name: assets/yyb_topbar.9.png
+SHA1-Digest: LLKtjzYthbE3BkyGk+0D+lEJsaQ=
+
+Name: res/layout/musiccircle_chatting_item_right.xml
+SHA1-Digest: 7iScku0jtYTizYjCWXWCN+324do=
+
+Name: res/anim/push_bottom_out.xml
+SHA1-Digest: FJzjnphGXnBjVTw0sphAX61/Ubk=
+
+Name: res/layout/activity_setting_card_item.xml
+SHA1-Digest: EEmnTaqui099iuCpcp11DPS3+j4=
+
+Name: assets/landscape/ttpod_particle_effect_configuration.xml
+SHA1-Digest: OEu/Rr/eqb5OeQBAjIoaeK/dRWc=
+
+Name: res/drawable-mdpi/img_background_song_publish.jpg
+SHA1-Digest: 60pcyk6/eod5t4r8hMNLxb58kWs=
+
+Name: res/layout/rank_category_header.xml
+SHA1-Digest: kMHa1J1Kp9kZmY6t+EfW6TyDwSA=
+
+Name: res/drawable-hdpi/img_background_textview_user_login_pressed.9.p
+ ng
+SHA1-Digest: u2aON8UfydYJdmGFOTooG87oLss=
+
+Name: res/drawable-hdpi/img_musiccircle_comment_bkg.png
+SHA1-Digest: ARK1ncHCcs51Z4sovH3IIuLoZJA=
+
+Name: res/drawable-hdpi/img_dialog_spinner_pressed.png
+SHA1-Digest: 1DYBRN3VT5GARZsQkKLXHlDvgNE=
+
+Name: res/drawable-hdpi/cmmusic_progress_8.png
+SHA1-Digest: GUytfKf2wam805/r8rijvzdP1G4=
+
+Name: res/drawable-hdpi/img_background_textview_user_tencant_login_nor
+ mal.9.png
+SHA1-Digest: F3mIq/XQrQgkr+2OySLQ46naHrM=
+
+Name: res/drawable-hdpi/background_song_list_listen_count.png
+SHA1-Digest: sg0NBw72vSFF4xq5DQ3I96tNAW8=
+
+Name: res/layout/audio_effect_channel_balance.xml
+SHA1-Digest: u+iX3Dq22/lzNfT5DrwSArHkMcE=
+
+Name: res/drawable-hdpi/img_background_appwidget.9.png
+SHA1-Digest: 5fLR31Yc25YSz86uV1Fpuf/nXl0=
+
+Name: lib/armeabi/libenvironmentutils_cpu.so
+SHA1-Digest: 2/z6uyF5pDY/n5u6OZDvwImlfXo=
+
+Name: res/layout/popups_download_show_app.xml
+SHA1-Digest: 2mXVMuaRYEpWby5R7keqinZwHEY=
+
+Name: res/drawable/xml_background_imageview_expand_indicator.xml
+SHA1-Digest: GbWgsGvaRVWOhmHSeuMVQUU0Z3w=
+
+Name: res/layout/effect_level_item_title.xml
+SHA1-Digest: /hDcnjhCrTi+79loJmh7ZX6S5Z8=
+
+Name: assets/landscape/Heart.png
+SHA1-Digest: NI+4J0s+ZxyLvqQJz8Ke5ozGCzY=
+
+Name: res/drawable-hdpi/img_effect_recommand_pickcount.png
+SHA1-Digest: 0ml6PdqpJdmkxIM2XQ7AEXOA0AI=
+
+Name: res/drawable/xml_appwidget91_voice_progress.xml
+SHA1-Digest: tB9DShF6a9SXNvfZCvWI5UzFE44=
+
+Name: res/drawable-hdpi/img_background_hotword_shadow.9.png
+SHA1-Digest: xt+TVBVHY1+o53Zp44qx5WiWzBE=
+
+Name: res/drawable/xml_background_dialog_waiting.xml
+SHA1-Digest: m55K5U9R8q89BISTugXx35xy9XE=
+
+Name: res/layout/musiccircle_system_message_item.xml
+SHA1-Digest: W2JkfeIQmDtdCuMArP1FAXJc34k=
+
+Name: res/drawable/xml_background_tab_feedback.xml
+SHA1-Digest: dHnaPav06H4oQDyse2nXsa6LiEs=
+
+Name: res/drawable-hdpi/img_background_checkedtextview_effect_boost_li
+ mit_pressed.png
+SHA1-Digest: 05ePvfx8RnMyhaLPt0MGUPQ5qBU=
+
+Name: res/drawable-hdpi/img_singer_category_grid_item_title_mask.9.png
+SHA1-Digest: OkdAVFNEIjcvcvyB6s5qhdDF4XE=
+
+Name: res/drawable-hdpi/img_musiccircle_alpha.png
+SHA1-Digest: Y2WELEJly70b6tiGSfLI81vLvI0=
+
+Name: res/color/xml_online_list_item_description.xml
+SHA1-Digest: qAEHUxWFJZ+WjSVL2xE33nWifQQ=
+
+Name: res/drawable/xml_background_audio_effect_listview_item.xml
+SHA1-Digest: S1s7EixgvJ2V/ULnnMTdtcJuQ8Q=
+
+Name: lib/armeabi/libwavdecplugin.so
+SHA1-Digest: 8B8Q5Uih3pu2coXAvqIzlXCuMCM=
+
+Name: res/drawable/xml_button_minilyric_zoom_out.xml
+SHA1-Digest: ljAfnvfFuc1rmt0UzAd4vc/fkcg=
+
+Name: res/layout/activity_download_location_layout.xml
+SHA1-Digest: R74e3hgQv57yKbwPm9nnc5leYlc=
+
+Name: res/drawable/xml_listselector_item_transparent.xml
+SHA1-Digest: sYdEN3nGJH/H7aVKxOoyN93G3UY=
+
+Name: res/drawable-hdpi/img_musiccircle_favorite_mark_yes.png
+SHA1-Digest: vs+j0PxqdR9DAPpUauiY8DcUvY4=
+
+Name: res/drawable-hdpi/cmmusic_progress_7.png
+SHA1-Digest: AxqgyQT+o1UEOAv6TNRqoKzebd8=
+
+Name: res/drawable-hdpi/img_market_list_top_right_button_normal.9.png
+SHA1-Digest: iKeG9suDvbGvJSKoh4oiXh5hJUU=
+
+Name: res/layout/download_softwaregameview_indicator.xml
+SHA1-Digest: /ZPFA5nrOYCWJB7Myvf+Zez6hFE=
+
+Name: res/layout/advertisement_poster.xml
+SHA1-Digest: BseCgNE1A/O8tWw8hrEc33uRa5Y=
+
+Name: assets/yyb_icon_back.png
+SHA1-Digest: rz2iRJOIylJ3El/3FMNYEbzutiY=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_none_ov
+ al.png
+SHA1-Digest: 90+QzNsN4N2w2QMHreP2rjJLTT4=
+
+Name: res/drawable-hdpi/img_appwidget_preview_4x1.png
+SHA1-Digest: jOLbcbu/FWJgpTFxCMkpzntUpmI=
+
+Name: assets/skin/1_baise5.tsk
+SHA1-Digest: CBwsgjMY+bb5Xd5z+uue+NY6Zl8=
+
+Name: res/layout/activity_unicom_flow_unsubscribe_detail.xml
+SHA1-Digest: kkSlBO9BneQhez0SqLfelDKLI+k=
+
+Name: res/layout/musiccircle_post_detail_listview.xml
+SHA1-Digest: BqMUjX09Fh2hqOQREigxoUsRB5E=
+
+Name: res/drawable/unicom_verify_code_button_pressed.xml
+SHA1-Digest: soMVsFZFP34l9InZ8pZDwSbS9b4=
+
+Name: res/drawable-hdpi/img_imageview_mediascan_auto_scan_item_add.png
+SHA1-Digest: KBMh3GFaX9L0YdOy9qBpUjqaAl4=
+
+Name: res/layout/view_pager_ui_guide.xml
+SHA1-Digest: bKVVn3NOwl+dVu7FpHLXv4ssvWE=
+
+Name: res/layout/header_footer_gridview.xml
+SHA1-Digest: F56o81FcvlzIO6+28ITt4dce3nQ=
+
+Name: res/drawable/xml_button_minilyric_color_gray.xml
+SHA1-Digest: icSuXJGiqaeTR8fu5F9S3zgLpmw=
+
+Name: res/drawable/xml_background_apshare_cancel_normal.xml
+SHA1-Digest: ufLB8itbBAfkpgKl3MTEWKMxo2E=
+
+Name: res/color/xml_textcolor_radiobutton_userinfo_sex_female.xml
+SHA1-Digest: 6gAz5HTIQXO+SqiV5VYsarwq43I=
+
+Name: res/drawable/xml_background_search_report_error.xml
+SHA1-Digest: hag/bQrWtkSOXnlZ67+U6RJfjFE=
+
+Name: res/drawable-hdpi/img_textview_mediascan_wifi_off.png
+SHA1-Digest: +62hQDyiRpbUBocb1sU0LisAjnk=
+
+Name: res/anim/guide_text_fade_in_right.xml
+SHA1-Digest: dkV0QExNpdfDrTQfhE9R9XlK9AI=
+
+Name: res/drawable-hdpi/img_musiccircle_song.png
+SHA1-Digest: n3yYYdBAiQpjEPIJMYZqt+pb0XA=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_city.jp
+ g
+SHA1-Digest: 2oEMZqv/Nmu+bSS+Tb/z3X2muDM=
+
+Name: res/xml/xml_appwidget_info_4x1.xml
+SHA1-Digest: +BQ3BFhNfojonjHLInpepjsiBYY=
+
+Name: res/layout/media_online_listview.xml
+SHA1-Digest: oxdIe4YsojAsvRuzQdn8WZC9Ygo=
+
+Name: res/layout/fragment_main_mine_item.xml
+SHA1-Digest: ORqPKJa+lg9PsT5sjOjQyXjG9ps=
+
+Name: res/layout/fragment_singer_image_list_header.xml
+SHA1-Digest: 2K9j5rhB8xKQtuRRAHJq8uwcSbs=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_next_pressed.png
+SHA1-Digest: 63dOLc0MEdgN0E1kTycKX6Sdej0=
+
+Name: res/drawable/xml_background_button_userinfo_logout.xml
+SHA1-Digest: lXHPEyamyJ7lxzY5GDYFKTSCBRo=
+
+Name: res/drawable-nodpi/img_background_market_detail_top.9.png
+SHA1-Digest: FkEUhOFPLrtvrsoYkeJkX/x4bYY=
+
+Name: res/drawable-hdpi/img_take_photo_for_background.png
+SHA1-Digest: nCGiWp89JCHQ3EA6wdXyDI6Teis=
+
+Name: res/drawable-hdpi/img_lyric_color_select_check.png
+SHA1-Digest: 0J3LpnrbNGaqT0WZ8q60OLYTOws=
+
+Name: res/layout/dialog_week_item.xml
+SHA1-Digest: B+EDqmGhOHAvxDAcXif0NUT1goQ=
+
+Name: res/drawable-hdpi/img_lyric_color_highlight.png
+SHA1-Digest: DBEED7DNr9J0cqCP6pkxUQHTG1U=
+
+Name: res/drawable-mdpi/img_textview_mediascan_wifi_on.png
+SHA1-Digest: JG8vOCAXhVNHOXSbTwzHZmCG04s=
+
+Name: res/drawable-hdpi/cmmusic_buy.png
+SHA1-Digest: gbmGkeVzA89BEH8kYYStsZECkSs=
+
+Name: res/drawable/xml_background_apshare_delete_pressed.xml
+SHA1-Digest: ++m/JtQ9H6tTYPj1qTMvZNsKZrI=
+
+Name: res/layout/dialog_effect_info_spinner_item.xml
+SHA1-Digest: cxC8pJMvqRkayjLd0A/s8aryH0w=
+
+Name: res/layout/apshare_sharing.xml
+SHA1-Digest: sDSbkSJQEf35BG5kCYM0wM+j7p0=
+
+Name: res/drawable-hdpi/smiley_21.png
+SHA1-Digest: 70TpV9NiMCHSxHS+asN1q+XIxSM=
+
+Name: res/layout/activity_unicom_flow_open_detail.xml
+SHA1-Digest: zvlRwHqDSPxDABl970GohNAXNx0=
+
+Name: res/drawable-hdpi/icon_banner_close_button_unclick.png
+SHA1-Digest: lp876gkqE9DCJKohYwzb/9NrKEw=
+
+Name: res/drawable/ktv_connect_button_pressed.xml
+SHA1-Digest: 1zy2y911ayqmRhtcEFSTA+X3dSU=
+
+Name: res/drawable/xml_dialog_common_selector.xml
+SHA1-Digest: D6q7dYrUybpJVD+9caU/fgsLX7c=
+
+Name: res/layout/market_game_tucao_comment_item.xml
+SHA1-Digest: zLju6qkBVrXaxJeGlfq8xhFSXQQ=
+
+Name: res/layout/musiccircle_dragupdate_listview.xml
+SHA1-Digest: EltNfk61x1YR3LL/eV9yWcc3pB8=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_state_fail.png
+SHA1-Digest: TtUV94t5ASoyhJXg4hj9BJt+8q4=
+
+Name: res/drawable-hdpi/img_background_ttseekbar_effect_pressed.png
+SHA1-Digest: MtMzH3Gu3K+m2Eddz3u3DpQUKrs=
+
+Name: res/drawable-hdpi/img_mediascan_filepicker_new_folder.png
+SHA1-Digest: B98lPw+1zuXstMWAZsCYtlSwO0c=
+
+Name: lib/armeabi/libwmadecplugin.so
+SHA1-Digest: bw08DrbwhOxWsazbj5wrctn5L28=
+
+Name: res/drawable-hdpi/img_background_search_report_error_pressed.9.p
+ ng
+SHA1-Digest: C7Iu67LyIU/hin427b7ptQf0Xow=
+
+Name: res/color/xml_color_audio_effect_listview_item_title.xml
+SHA1-Digest: LOBAmlnK7BQw/gtWR20lqW2U+ek=
+
+Name: res/drawable-hdpi/img_new_state.png
+SHA1-Digest: B+S88fHfNXFMBDQF7PtPEvnf10k=
+
+Name: res/layout/activity_main.xml
+SHA1-Digest: YpYnF9PkWPh5tn6QZZ+Zz2y6ibQ=
+
+Name: res/layout/activity_setting_backlight.xml
+SHA1-Digest: vP9VI+D+LAv1VdkuQ8XoyQ0lIes=
+
+Name: res/drawable/xml_listselector_main_right_menu.xml
+SHA1-Digest: pzM23b16jl1/eJQ6ntU4/Sb58u8=
+
+Name: res/drawable-hdpi/smiley_12.png
+SHA1-Digest: SwqaCAKrAzUgEdqeE+xhc4I3cio=
+
+Name: res/drawable-hdpi/img_imageview_radio_play_animation_0.png
+SHA1-Digest: ifFhfFshAF9divZAXbw+QEChYNA=
+
+Name: res/drawable-hdpi/numberpicker_pressed_holo_light.9.png
+SHA1-Digest: AVyWywHVmqUlb40Lr0kWmnyG6x4=
+
+Name: res/layout/musiccircle_user_list_layout.xml
+SHA1-Digest: fxLOdkho8OvVbmZuCBzfv9Fkz2o=
+
+Name: res/drawable-hdpi/img_notification_artist_default_hashoneycomb.p
+ ng
+SHA1-Digest: xcEyqp4zhqUj2biCgJ7h7uN8SW8=
+
+Name: res/drawable-hdpi/img_musiccircle_reference_content_arrow_up.9.p
+ ng
+SHA1-Digest: lHt7EovCnlnzZlJDP9iScQ1dYDk=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_equalizer_hand
+ pick_voice.jpg
+SHA1-Digest: 7K+u7NKcAeMlWvoXdR2/LDId+74=
+
+Name: assets/emoticons.data
+SHA1-Digest: HDqL1VFgRsIqp99uqV+Kht3nKSY=
+
+Name: res/drawable-hdpi/img_appwidget91_playmode_repeat_current.png
+SHA1-Digest: 8PhSAbnt/cTSCtp7tr3VT0v8i2Y=
+
+Name: res/layout/dialog_week_time_picker.xml
+SHA1-Digest: gUcT2DHWoWeevb3BniiD85eVV3I=
+
+Name: res/layout/activity_unicom_flow_unsubscribe.xml
+SHA1-Digest: 4lb8ZtbRCgdaKIuAd8NUUNiWy3c=
+
+Name: res/drawable/xml_share_background_dialog_frm_edit.xml
+SHA1-Digest: uR7+lz7mwbcYTErPIhLkLXWWAOs=
+
+Name: res/layout/song_category_item.xml
+SHA1-Digest: WlhYLGNqnCujis21KGyQCht9F7U=
+
+Name: res/anim/shake.xml
+SHA1-Digest: rLysyfVPdpRpOhOB8rlzqlKm0QE=
+
+Name: res/drawable-hdpi/img_mediascan_item_file.9.png
+SHA1-Digest: Eu2P0/E7I4HJXr2HVFxO9QzIipY=
+
+Name: res/drawable-hdpi/img_lyric_color_10.png
+SHA1-Digest: b2DwfKQuuDOesHtzRxVOOljlFrw=
+
+Name: res/drawable-hdpi/img_lyric_color_7.png
+SHA1-Digest: xWNDMwd4kVtCdVxb7gerLCc8J3A=
+
+Name: res/drawable/xml_musiccircle_radar_btn.xml
+SHA1-Digest: m9u7M3AkFSr6NtZFg7GMW9yaX2s=
+
+Name: res/color/xml_fragment_main_mine_item_title.xml
+SHA1-Digest: OwiTaVQAC/EyPZVpSFcM3GS8mPk=
+
+Name: res/layout/ktv_main.xml
+SHA1-Digest: o0iatz0j4L0cp5xlrh4P/T7UmEY=
+
+Name: res/drawable/xml_downloadmanager_childdivder.xml
+SHA1-Digest: pEuuR0wwWM36l3xQzkJHL3ySHCU=
+
+Name: res/drawable/xml_button_next_landscape.xml
+SHA1-Digest: eBKIM3TVARe/ZWo3YTamc+X2w94=
+
+Name: res/drawable/xml_media_list_divider.xml
+SHA1-Digest: 9NnKvy2YaLZ9lQ6odaY8Vdhu3/Q=
+
+Name: res/drawable-hdpi/img_button_artist_pic_down_normal.png
+SHA1-Digest: oEpeuKaGs9gaW9JNMBFNUrf9BSE=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_center_normal.png
+SHA1-Digest: UtAe/4mKY/mES7wHjkgmEWfqH4U=
+
+Name: res/drawable-hdpi/qihoo_refresh_normal.png
+SHA1-Digest: DaZARNSDNeF/o6rRNDxJk/6kZao=
+
+Name: res/layout/cmmusic_listen_order_check_activity.xml
+SHA1-Digest: iBNISOLQJxGGlS3O992W++T5OgY=
+
+Name: res/anim/rotate.xml
+SHA1-Digest: d2nhcIKZ14zKqkLGBprzg1/hT/A=
+
+Name: res/drawable-hdpi/img_playmode_repeat_playinglist.png
+SHA1-Digest: AGlLBkZvCoctNOS8rQ1YJj/8K0g=
+
+Name: res/drawable-hdpi/smiley_31.png
+SHA1-Digest: 7jqjuI/hSz7EL3ouHC9N6IvlK+8=
+
+Name: res/drawable/xml_artist_pic_delete.xml
+SHA1-Digest: QGmRl8vhaxFUAzuHRLSwWqK5YLg=
+
+Name: res/drawable-hdpi/spectrum_6.png
+SHA1-Digest: VfveFbFt7tV1MoRiZ9DakaWls5g=
+
+Name: res/layout/cmmusic_open_cailing_fuction_activity.xml
+SHA1-Digest: xxAkTWfoOUqpxtk871ghfF472T4=
+
+Name: res/drawable-hdpi/img_view_pager_guide_arrow.png
+SHA1-Digest: d9S5+vUrtWb01uQ8KzMRX0regJg=
+
+Name: res/drawable-hdpi/img_favorite_large.png
+SHA1-Digest: tLZrkVRFeV0XcIca1Fkh6ZNtBew=
+
+Name: res/drawable-hdpi/smiley_36.png
+SHA1-Digest: 2MYkOmnIGzGtT3OKe24IwbKZXps=
+
+Name: res/drawable-hdpi/img_background_ttseekbar_knob_normal.png
+SHA1-Digest: 4/O6GfM4dLwE56k1jGBw3bYmjDA=
+
+Name: res/drawable/ktv_connect_button.xml
+SHA1-Digest: rOovudG6wZzJyFTwNKLYpwa3h5o=
+
+Name: res/drawable-hdpi/img_checkbox_multiselect_unchecked.png
+SHA1-Digest: B16vWgjhpG/6Rh6juMGPbVooVZQ=
+
+Name: res/layout/singer_album_introduce.xml
+SHA1-Digest: iAiSGWP9hMSu6wfF2CvyKsAGwLw=
+
+Name: res/drawable-hdpi/img_rank_play_paused.png
+SHA1-Digest: XrpqMcvH4W5KtROPjazTB1xyDFM=
+
+Name: res/drawable/xml_background_apshare_gray.xml
+SHA1-Digest: qRjnvHLIkNPyBrNaRxZDv25jcEw=
+
+Name: res/drawable/xml_background_timing.xml
+SHA1-Digest: ldsnt3Uu3bfhop3MqHgTwrbDjMQ=
+
+Name: lib/armeabi/liblocSDK4.so
+SHA1-Digest: 2kO5x73oVA4iP8neUBhr/DAQNq4=
+
+Name: res/drawable/xml_checkbox_multiselect.xml
+SHA1-Digest: Lx4MyW+5W9Q+rCh8trkL3xCPDXc=
+
+Name: res/drawable-hdpi/img_lockscreen_pause_normal.png
+SHA1-Digest: B6+fEZm7v72gh0GslehaqlSof8A=
+
+Name: res/layout/network_loadview.xml
+SHA1-Digest: +FMloAsVbYm5RoMIM4JyzLWHiTg=
+
+Name: res/drawable-hdpi/img_apshare_entry_top.jpg
+SHA1-Digest: MIyn6rjhknSYPS18qPsN+n1oBYc=
+
+Name: assets/theme/theme.xml
+SHA1-Digest: 3k5k6/dNAgSOi7uxeHhDLXm1IpA=
+
+Name: res/drawable-hdpi/img_imageview_mediascan_animation_1.png
+SHA1-Digest: oDj7tL/9AwWDEThaO8NGBGiNG+Q=
+
+Name: res/anim/search_edittext_fade_in.xml
+SHA1-Digest: O9Bp+BOOpuoI/FvSxA23XBU6VC0=
+
+Name: res/drawable-mdpi/img_skin_relative.png
+SHA1-Digest: lguOkQ7uLUvKafznDv3yf28LEQc=
+
+Name: res/drawable-mdpi/img_background_publish_poster_gallery.jpg
+SHA1-Digest: GKj1J3+UFuADqbPjuCxwMtO1NUk=
+
+Name: assets/theme/play_bar_def_artist.png
+SHA1-Digest: hWGkXVngSE75h61Axu8wyXShJH8=
+
+Name: res/drawable/xml_musiccircle_follow_button_bg.xml
+SHA1-Digest: e93tMtKWV33D58nt0nWJjmdIFiU=
+
+Name: res/layout/loadingview_loading_effect.xml
+SHA1-Digest: iO3IlLJmW2QFJwPjYzc0GxUJUN8=
+
+Name: res/layout/music_library_grid_list_view_item.xml
+SHA1-Digest: FRAw8zJ5U0Fk9FMLlcpEnvcXarE=
+
+Name: res/anim/push_bottom_in.xml
+SHA1-Digest: byNQOMSUCCO0EFus0qevdamTJMo=
+
+Name: res/drawable-hdpi/img_button_minilyric_yellow_pressed.png
+SHA1-Digest: 5iXtG4JW1VVNL6qpAJEvOjrrJ+8=
+
+Name: res/drawable-hdpi/img_background_appwidget_bottom_4x2.9.png
+SHA1-Digest: k/bF6QJdJblvALQxlmPGJVnf4ZY=
+
+Name: res/drawable/qihoo_btn_retry.xml
+SHA1-Digest: /go+zv6xKL18qQEbQEwB45kyUAA=
+
+Name: res/layout/activity_audioeffect_fragment.xml
+SHA1-Digest: gmm4RBKKdNB0XrbX/aaqNRSmc7E=
+
+Name: res/layout/activity_user_findpassword.xml
+SHA1-Digest: fkEokqIgIX9QXrmDoL9ZnoZwspo=
+
+Name: res/drawable-hdpi/img_background_skin_delete.png
+SHA1-Digest: D42sMzILk0M7XyYKbqBEHwnMAdc=
+
+Name: res/drawable-mdpi/img_music_default_icon.jpg
+SHA1-Digest: Q+3rA8VFmpqZ4xA/OEk/P17c+lM=
+
+Name: res/layout/fragment_settings.xml
+SHA1-Digest: zoDK/0lKg5u9GJE1IdysOtD3vs0=
+
+Name: res/drawable-hdpi/img_radiobutton_userinfo_sex_male_normal.png
+SHA1-Digest: /Qdh5Ct/Q6JkDvV6p/A2dkqKv6o=
+
+Name: res/drawable-xhdpi/img_market_list_top_right_button_selected.9.p
+ ng
+SHA1-Digest: oUmT3RcSVdBSLIWkNhrNeDttZDg=
+
+Name: res/drawable-hdpi/img_online_radio_play.png
+SHA1-Digest: AOfwLB8CkVcRn/mbjA8C74caD08=
+
+Name: res/drawable-hdpi/img_appwidget_preview_5x1.png
+SHA1-Digest: RrU6gMOLsTIU1KGP3jcHuIZsMGA=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_download_pressed.p
+ ng
+SHA1-Digest: RVpZl5+VYMqUWLGp8nTxkyI4GYE=
+
+Name: res/drawable-hdpi/img_button_minilyric_choice_color.png
+SHA1-Digest: atIpyYMgMLHOXhHAG4FYqTP8kJI=
+
+Name: res/layout/findsong_grid_section_view.xml
+SHA1-Digest: RY93iboVcomJAxFpSDSXDvBei/s=
+
+Name: res/drawable/xml_background_dialog_button_variable.xml
+SHA1-Digest: 1Ftf2xKp1b5Yl2d1OcZwiCiyDVU=
+
+Name: res/layout/musiccircle_shake_result_layout.xml
+SHA1-Digest: +HAx1MTxAMb99YgOEOC4Agci7WU=
+
+Name: res/drawable/xml_song_list_item_divider.xml
+SHA1-Digest: emAf/L43O5kL5rBbOc8aujWFMhY=
+
+Name: res/layout/popups_global_menu_panel.xml
+SHA1-Digest: tRda/RwdMHHTsrFHljXzl2o0cLs=
+
+Name: res/layout/fragment_base_sliding_tab.xml
+SHA1-Digest: eeZaB8cOfx9H2JvAZ8mhEvdpJ+A=
+
+Name: res/drawable/xml_edit_border_feedback.xml
+SHA1-Digest: LX8xTTBHGsSvkpKSnxyrGc7V9YI=
+
+Name: res/drawable-hdpi/img_background_effect_button_recommand.9.png
+SHA1-Digest: jbXJ5rhnhqJvXmxIbYIUlFL3MQ8=
+
+Name: res/layout/category_app_list_header.xml
+SHA1-Digest: xOWDaA3hk5eWqWeaLi+WNcS4qTw=
+
+Name: res/drawable-xxhdpi/img_channel_logo.png
+SHA1-Digest: KUJdyehGxuB7TNB56KJ1jbCxRHU=
+
+Name: res/anim/fade_out.xml
+SHA1-Digest: 11DfwuqD5ktzBqjWMJcPIpNufk8=
+
+Name: res/drawable-hdpi/img_contextmenu_mediainfo.png
+SHA1-Digest: +mgf7aYSkDLI8JnnP9ofn/kBVGQ=
+
+Name: res/drawable-hdpi/img_smile.png
+SHA1-Digest: ITa+y2bP7OhlphDxduiVLXD+C4o=
+
+Name: res/drawable-hdpi/img_lockscreen_next_pressed.png
+SHA1-Digest: lJnfZpr8iv4H69CGglPYDvsOD28=
+
+Name: res/drawable-hdpi/img_button_minilyric_green.png
+SHA1-Digest: L6m2jiHKmhWMbn/e6lnlUhsyAJI=
+
+Name: res/layout/activity_unicom_flow_attention_message.xml
+SHA1-Digest: Kl7sKa8V9j3sbKc4/6turWvV1fs=
+
+Name: res/drawable/unicom_trial_button.xml
+SHA1-Digest: GQHaEEEjorfT776dLOO47zohcqU=
+
+Name: res/drawable-hdpi/img_appwidget_album_cover_normal_4x4.png
+SHA1-Digest: P640j01qCSUqlTSmvVeaFGuBVfY=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_pause_pressed.png
+SHA1-Digest: MXxPU6SLXArZdbCzj+qPq67FnEY=
+
+Name: res/drawable-hdpi/img_background_effect_rotatebutton_indicator_n
+ ormal.png
+SHA1-Digest: kIJeddiwKQcn+yHMJ6XItcBF/bQ=
+
+Name: res/layout/media_group_item.xml
+SHA1-Digest: dlN3cXVs2wt6UWU5YaBSJu94zu0=
+
+Name: res/drawable-hdpi/img_appwidget91_playmode_repeat_all.png
+SHA1-Digest: vFR3h5o1I/M+5rdmXPiQVG4TGAM=
+
+Name: res/drawable/xml_my_fragment_list_item_selector.xml
+SHA1-Digest: iAvMGQokjKdHZr6ndgMTRVZ2j4w=
+
+Name: res/layout/activity_wechat.xml
+SHA1-Digest: Dc9OCf2adSkuGKR3Lou8iLch3+s=
+
+Name: res/layout/advertisement_layout.xml
+SHA1-Digest: BbVfQ0bklB8Beb8p7oDqq3WBCuA=
+
+Name: res/drawable/xml_imageview_radio_play_animation.xml
+SHA1-Digest: WUsfs+7AonA0hGSG0LfuSFs8ODY=
+
+Name: res/drawable-hdpi/img_delete_lyric.png
+SHA1-Digest: CnQGAbo0lwFvl2ePSempQPJVZE8=
+
+Name: res/layout/fragment_main_slidingmenu.xml
+SHA1-Digest: qaIqbWSF2xMvrvWRoeTPMVqzY4A=
+
+Name: assets/yyb_qq.png
+SHA1-Digest: /3M2VIdrF67YcAmVCOgoG38FyCU=
+
+Name: lib/armeabi/libdtsdecplugin.so
+SHA1-Digest: SIa5lBL8chrsJ7BmKNxALViz9XY=
+
+Name: res/anim/scale_in_out_sliding_menu_item.xml
+SHA1-Digest: 35Fd7A1mwtczqZ1l4d+3gL0dgpc=
+
+Name: res/layout/singer_header.xml
+SHA1-Digest: eA/b7vyTxt57A4Fh93gkborcnAQ=
+
+Name: res/drawable-hdpi/icon_setting_checked.png
+SHA1-Digest: OeOsLaubgyNs0Z/aFh9c0y8287w=
+
+Name: res/drawable-mdpi/img_splash.jpg
+SHA1-Digest: RAelk8OFqPTeKgWsOe9808eI+oM=
+
+Name: res/drawable-hdpi/img_appwidget91_playmode_shuffle.png
+SHA1-Digest: 79zcNEzEY4Rva+1wGjApo/zuOrc=
+
+Name: res/drawable/xml_only_wifi_background.xml
+SHA1-Digest: TH4ZRTdj+fwMCLFMW1Df1B/uC1Q=
+
+Name: res/drawable-hdpi/img_lyric_color_2.png
+SHA1-Digest: g3cRcBAqvGO53k2woVar9sD9i98=
+
+Name: res/drawable/xml_recommand_bj.xml
+SHA1-Digest: VgMDdNM8fkqvovY4eTZ+g7AfmxY=
+
+Name: res/layout/advertisement_close.xml
+SHA1-Digest: TwoITfLaj0cEibSBJ1aSS3SK0vQ=
+
+Name: res/drawable-hdpi/img_background_effect_rotatebutton_graduation_
+ normal.png
+SHA1-Digest: BddCmPF3Rygd78wPTX6ReUYPrjA=
+
+Name: res/drawable-hdpi/img_contextmenu_share_song.png
+SHA1-Digest: KhTb6cYPg3FChrAvQBticw6vcT4=
+
+Name: res/drawable-hdpi/cmmusic_message.png
+SHA1-Digest: l2cz26B3gX5ob0JHEcVV6DfzXLo=
+
+Name: res/drawable-hdpi/img_post_intro_user_v.png
+SHA1-Digest: m+z9QIqlZo/cTdGEcqNq/GPaiek=
+
+Name: res/drawable-hdpi/img_effect_level_professional.png
+SHA1-Digest: qSDkt+xBRTRBMwgoru9Omc2fZQg=
+
+Name: res/layout/fragment_discovery_with_head.xml
+SHA1-Digest: NYKTEZc2ZOFFPm7UfOGc/MPU72Y=
+
+Name: res/drawable/ktv_add_button.xml
+SHA1-Digest: H3oUKbyfR+jicaDYscfmkSfVB4A=
+
+Name: res/drawable-hdpi/img_appwidget_minilyric_on.png
+SHA1-Digest: smqfMJN/SuxD/zXtp19LjjNkEgU=
+
+Name: res/drawable/xml_background_toast.xml
+SHA1-Digest: awyFCaaHh2SjA7SHyf+mAJVmCiE=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_pause.png
+SHA1-Digest: uU6Hm2juxoR8WfNPpfEPT9e+0lI=
+
+Name: res/drawable/xml_unicom_flow_edit.xml
+SHA1-Digest: 97J0roXNZS8eb3NHzmWJTFFQi9U=
+
+Name: res/drawable/xml_background_ttseekbar_effect.xml
+SHA1-Digest: oKFO4zpU/TF45p/30zVzMVbieLc=
+
+Name: res/layout/musiccircle_favorite_item.xml
+SHA1-Digest: upwaQ+Kwx5R7LtsYSTxW7D0oTLE=
+
+Name: res/layout/radio_category_section_subitem_view_item.xml
+SHA1-Digest: QhzFTbDjTQzyZqZ3fOunEROLpik=
+
+Name: res/layout/count_flag.xml
+SHA1-Digest: bqQpeJXdjCZ5hWbQQttIqk9VF9g=
+
+Name: res/layout/market_app_detail_cover.xml
+SHA1-Digest: BUYx5zQFxuM+SIxJOVdC5pAikds=
+
+Name: res/drawable-hdpi/img_button_minilyric_ok.9.png
+SHA1-Digest: vo921dwg3qAVxLIssM0woP1y+bk=
+
+Name: assets/com.tencent.plus.gray_disable.png
+SHA1-Digest: 0fMmhHNVjPOxFO8244xzl2vO0Jw=
+
+Name: res/drawable/unicom_unsubscribe_button_pressed.xml
+SHA1-Digest: qNDEj45bmtO/hACzzOug/7+fuyM=
+
+Name: res/layout/layout_skin_gridview_item.xml
+SHA1-Digest: xsuNqUh4FwsDm/M23hiEEYnoch0=
+
+Name: assets/category_list/category_skin.json
+SHA1-Digest: 06Po8CRR3rweDvir5iWhN8ttf0Q=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_minilyric_off.png
+SHA1-Digest: S6+ksdQvCwyxJkcOmDVsInCPGp4=
+
+Name: res/drawable-mdpi/img_imageview_soundsearch_result_default_cover
+ .jpg
+SHA1-Digest: ybWR4N3YQ1eLMKY8OwwWF4IqGD4=
+
+Name: res/layout/new_disc_section_view.xml
+SHA1-Digest: WzrAcKGZDimNLelCPclyXuyzZFk=
+
+Name: res/drawable/cmmusic_setbar_background_down.xml
+SHA1-Digest: 1YCL65wdnV8JAWanDwYD27x9qNc=
+
+Name: res/drawable-hdpi/img_lyric_pics_volume_progress.9.png
+SHA1-Digest: hSp5gLkKOG0Cu0psC7eO+xaTFOU=
+
+Name: res/drawable/xml_selector_market_indicator_text.xml
+SHA1-Digest: Tbv73I7hSMPBDPitvL504k8QI8E=
+
+Name: res/drawable/numberpicker_selector_background_transition_holo_li
+ ght.xml
+SHA1-Digest: K5LM4DckRR3rAAv4HCkr8cJ39/4=
+
+Name: res/layout/cloud_effect.xml
+SHA1-Digest: lsFE5aiOO7CEwptG15RGkB61L3w=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_pause_normal.png
+SHA1-Digest: R6bpPGOgVCg/One4fK66nbfsYz0=
+
+Name: res/drawable/xml_background_apshare_green.xml
+SHA1-Digest: gP/pTv58rjBRGbRnca8gyl5qYJU=
+
+Name: res/drawable-hdpi/img_flag_hq.png
+SHA1-Digest: vb91+TsTnwFw6EYVxRXKV6l+nuI=
+
+Name: res/drawable-hdpi/smiley_20.png
+SHA1-Digest: TL97qwF3gUoggW950Uh9KaPYxrM=
+
+Name: res/drawable-hdpi/img_splash.jpg
+SHA1-Digest: n8+Dvy+9TTcSLuibJPb97ATw+B4=
+
+Name: res/layout/feedback_item.xml
+SHA1-Digest: 7j7kWlfw2txCZLwIrl4qRlVktUo=
+
+Name: res/drawable-xhdpi/img_recognizer_song.png
+SHA1-Digest: xVXmS2mgigv8AWOqCgv3FmCEAeM=
+
+Name: res/drawable-hdpi/img_share_background_dialog_button_positive_pr
+ essed.9.png
+SHA1-Digest: DFrrWkF6L8DukXEU1WEsc5tCiCQ=
+
+Name: res/drawable-hdpi/img_sliding_guide_arrow.png
+SHA1-Digest: 4afmnWhGl1wJp11CP0uT7/cswRQ=
+
+Name: res/drawable-hdpi/img_button_artist_pic_down_pressed.png
+SHA1-Digest: Oy8OoCCWZZTnGXgc+JxAEjY2Yw8=
+
+Name: res/drawable-hdpi/img_comment_prompt.png
+SHA1-Digest: QlzF372T0ZC/yowdCd5fyw2L9aI=
+
+Name: res/drawable/xml_lockscreen_next.xml
+SHA1-Digest: n9IwcYa3L9tWCepcBY6Z5R3NJak=
+
+Name: res/drawable/xml_dialog_spinner.xml
+SHA1-Digest: oIc/KG5bjA0keNFBQaXlyQxv834=
+
+Name: res/drawable-hdpi/img_social_pic_save_normal.png
+SHA1-Digest: DNFDzNfe5zKgxcMYUf5BbJNw5Xs=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_play_pressed.png
+SHA1-Digest: GJjtMGL0AhRL6TTfdEEQeul6Uk8=
+
+Name: res/drawable-hdpi/unicom_download_song.png
+SHA1-Digest: 7YLiAr2puI4UJIG6iNZX8hTjl8k=
+
+Name: res/layout/landscape_top_menu.xml
+SHA1-Digest: 1Uh33Z/Eef5dBa6Rr7l5xbY591E=
+
+Name: assets/yyb_weixin.png
+SHA1-Digest: JE2FXpgR+H3RdypnuvvwC7wPVVg=
+
+Name: res/layout/dialog_media_info_edit_item.xml
+SHA1-Digest: vVcuija8Zxgp9lEs8Rc6AGUoNcw=
+
+Name: res/drawable-hdpi/img_lyric_font_select_frame.png
+SHA1-Digest: RewpiQw6kWBsJNN25iqhy/oxL2I=
+
+Name: res/drawable-hdpi/audio_navget_bar_common.png
+SHA1-Digest: GEJ5Pxz05/PbldRLoS00oVYvgb8=
+
+Name: res/drawable-hdpi/img_tag_exclusive_publish.png
+SHA1-Digest: t/ZpXy/C15MVUmDTq2DsDs5NsRQ=
+
+Name: res/drawable/unicom_open_button_pressed.xml
+SHA1-Digest: RqXQTc/bPGWVF6hgTj2yJex2gpU=
+
+Name: res/drawable-hdpi/img_appwidget91_play_next_pressed.png
+SHA1-Digest: NNmDrQGOGSfviIbuQ4BvUurTkJk=
+
+Name: res/drawable-hdpi/img_appwidget91_pause_normal.png
+SHA1-Digest: 5gTGfA6YYt+b1uzT5PwfJo97zgU=
+
+Name: res/drawable-mdpi/img_musiccircle_radar_line.png
+SHA1-Digest: 7x8MedTIWmh5VVcHsLo8QvBz4Jg=
+
+Name: res/drawable-hdpi/img_theme_rank.png
+SHA1-Digest: r76vl0QW9Dsm08UJ3fT4ApOcFv4=
+
+Name: res/drawable-hdpi/qihoo_btn_bottom_black_normal.9.png
+SHA1-Digest: EqTKiS9fE6pcBzzwy5tnrOJcMiI=
+
+Name: res/drawable-hdpi/background_title_bar.9.png
+SHA1-Digest: tiDEOFZNW4M7X7vwf3tbriXfHyU=
+
+Name: res/drawable-hdpi/img_appwidget91_pause_pressed.png
+SHA1-Digest: 5LCw/pjhzgTlCLVdbgQGobvYrDE=
+
+Name: res/drawable-hdpi/img_background_song_publish.jpg
+SHA1-Digest: JBiY005Shx83tdxX0L0+oruQPhc=
+
+Name: res/drawable-hdpi/myeffect_item_hit_no.png
+SHA1-Digest: yIph0hW1E/XQMxF76ltQwAmTbSM=
+
+Name: res/drawable/xml_background_button_download_clear_finished_norma
+ l.xml
+SHA1-Digest: eMw4oHpdt7002ZwESGvDKedNZ+k=
+
+Name: assets/com.tencent.plus.gray_down.png
+SHA1-Digest: 3kvmQFE/DE41dwoZpkQMHPpWtuI=
+
+Name: res/drawable-xhdpi/img_market_ranking_new.9.png
+SHA1-Digest: ccN94mSNGgRyao6RNkgw0Eacryk=
+
+Name: res/layout/popups_action_list_item.xml
+SHA1-Digest: mGHERRCUsDtw7m2yJkAkUm3pw7g=
+
+Name: res/layout/dialog_body_waiting.xml
+SHA1-Digest: 5dnH7zCdRN/gd+M05OGqUaZwHh0=
+
+Name: res/drawable-hdpi/img_button_minilyric_blue.png
+SHA1-Digest: nr3U2PEi859vY+5P4Q/2UVpggQM=
+
+Name: res/drawable/xml_background_effect_layout_border.xml
+SHA1-Digest: cW09KDmfC3LuBLAr3/3NYoCxbK8=
+
+Name: res/layout/fragment_error_page.xml
+SHA1-Digest: pHiNxVkFxCwj9/y691bNpyXS+hs=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_refresh_pressed.png
+SHA1-Digest: BBzFIwHBKvuTDSPhgAbLzeyDmqg=
+
+Name: res/drawable/xml_background_button_download_clear_finished.xml
+SHA1-Digest: akuEJ5hAhPv+eVMbmUbPkXcUNOU=
+
+Name: res/drawable-hdpi/icon_share_sns_weixinfriend.png
+SHA1-Digest: OtrwrNps4RH9htJV8NPp/gN07U8=
+
+Name: res/layout/find_song_title_bar.xml
+SHA1-Digest: ryIKckjlyioLfYoz+ou+uf+ZQqo=
+
+Name: res/drawable-hdpi/img_background_new_song_publish_week.9.png
+SHA1-Digest: dA9zlLaMc1B438ehuCHUI70uwy8=
+
+Name: assets/landscape/LV-1.png
+SHA1-Digest: Rx26sfV6lAYFElkGTRvnPDiljuo=
+
+Name: res/drawable/img_action_bar_open_menu.png
+SHA1-Digest: nOmKRfELtC/YxQOtpLcWh5yp6Hc=
+
+Name: res/layout/musiccircle_message_entry_header.xml
+SHA1-Digest: piqk1qrLg1bziP648sSdYRB12Eo=
+
+Name: res/layout/fragment_localmusic.xml
+SHA1-Digest: KDYiZKnsF63bF4Jdp1boJX9FS84=
+
+Name: res/drawable-hdpi/audio_navget_bar_select.png
+SHA1-Digest: v/WLRx1YH5ja+elCSTwEfBFFoKA=
+
+Name: res/drawable/recommand_list_bg.xml
+SHA1-Digest: iVzhSaHQ+FtbRFquW72sPCYBzGc=
+
+Name: res/drawable-hdpi/img_background_button_splash_audio_enabled_nor
+ mal.png
+SHA1-Digest: WTYHvmvDwGT1jBEQ79dxtff3idQ=
+
+Name: res/drawable-hdpi/img_musiccircle_shake_wave.png
+SHA1-Digest: 0ZAdaKnDE+f81wOJQk/iJ6TAy70=
+
+Name: res/anim/search_edittext_fade_out.xml
+SHA1-Digest: /JNGJv2fihp2lQAYvwUrVvJZ2uM=
+
+Name: res/drawable/xml_favourite.xml
+SHA1-Digest: tU9NlKky0dTzF9nrGPMRYefwLXs=
+
+Name: res/drawable-hdpi/img_lockscreen_pause_pressed.png
+SHA1-Digest: 9Ix193+1cjfw/d004jl/nRom5vM=
+
+Name: lib/armeabi/libmediatag.so
+SHA1-Digest: p8wUpe/zSI0mLB1+nxZDd70bpGw=
+
+Name: res/drawable-hdpi/img_appwidget_playmode_shuffle.png
+SHA1-Digest: HH+epRt3Pkf9RdEIwLXrjY4QV0k=
+
+Name: res/layout/layout_category_item.xml
+SHA1-Digest: fHegQnfQ4qxT1rMpxjVfQZD+ofk=
+
+Name: res/drawable-hdpi/img_background_effect_rotatebutton_pressed.png
+SHA1-Digest: VfTPcMJPRI7Rg4Y29egon4KhBVE=
+
+Name: assets/landscape/Rain.png
+SHA1-Digest: K/IbL8x/I6XFpgdNCITXRj0A4pw=
+
+Name: res/drawable-hdpi/sliding_to_unlock_4.png
+SHA1-Digest: oE3NsuCiTm86VEKwV8MXzuNw30o=
+
+Name: res/drawable-mdpi/img_mediascan_logo.png
+SHA1-Digest: nO/8M8Gosh1jUwnoaTZKkwvFZaU=
+
+Name: res/drawable-hdpi/numberpicker_focused_holo.9.png
+SHA1-Digest: iZ2QqYCoQEmMGGOg2+XZ3jNssnA=
+
+Name: res/drawable-hdpi/img_audio_stop_image.png
+SHA1-Digest: um6atzKAAfssm+NVdj4Yf7e6Yoo=
+
+Name: res/drawable-hdpi/img_progressbar_effect_level_progress.9.png
+SHA1-Digest: bW5XDldir6paHU+8RseFxhiEUHs=
+
+Name: res/color/xml_color_timing_buildin_text.xml
+SHA1-Digest: CrRuRt6LgcM4fpXI7dgtfKtrqwk=
+
+Name: res/layout/activity_mediascan_wifi.xml
+SHA1-Digest: mFTDrJYv7EdKyjPowog1u9RQHBE=
+
+Name: res/drawable-hdpi/img_background_button_userinfo_logout_pressed.
+ 9.png
+SHA1-Digest: x+qhOrhczRwK9/i9TSzTcTScWmw=
+
+Name: res/drawable-hdpi/img_musiccircle_post_pic_default.jpg
+SHA1-Digest: LfH2IrmSWck86bAsIIj0tLh84Io=
+
+Name: res/layout/activity_media_picker.xml
+SHA1-Digest: e/cgK9Gvx+wrOi4zTrsFyEp/6Vs=
+
+Name: res/drawable/xml_match_lrcpic_bkg.xml
+SHA1-Digest: ljhKXfi319r1W74G6kG0Rp4RSDs=
+
+Name: lib/armeabi/libwmafloatdecplugin.so
+SHA1-Digest: XM41dhK/MfR19g7fPXWhvSNu6aI=
+
+Name: res/layout/musiccircle_message_entry_item.xml
+SHA1-Digest: tiLoaOd/GO9ldKGPqJB8PuIIIsQ=
+
+Name: res/drawable-xhdpi/img_background_market_search_box.9.png
+SHA1-Digest: qc1G4m0ckagf/IPtovf0GN8v6io=
+
+Name: res/drawable/xml_background_market_list_top_left_btn.xml
+SHA1-Digest: 7aG7A39NI6jkXZ8irolS0n3jI04=
+
+Name: res/layout/activity_others_effect.xml
+SHA1-Digest: 6YRuZR2zCA0ypwU9qn9PXexskts=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_parking
+ _lot.jpg
+SHA1-Digest: DS3nwB3JQTlrm+LPvrar3cKPd2g=
+
+Name: res/drawable/xml_musiccircle_emoticons_item.xml
+SHA1-Digest: w1tL3DGzrbCtpLJV+aeOkUKwohk=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_download_pr
+ essed.png
+SHA1-Digest: D+AMvCHGrXFT55P9WFjCKgz2WbQ=
+
+Name: res/drawable-hdpi/icon_share_sns_weixin.png
+SHA1-Digest: R6tgXQ9GwYrVTiZ+ioXH7OHKuk8=
+
+Name: res/drawable/xml_background_toggle_button_effect_cloud.xml
+SHA1-Digest: q6J2fTh0FwK6yWJg3owhzJfQpgw=
+
+Name: res/drawable-hdpi/img_background_search_input.9.png
+SHA1-Digest: iRR9KrMqGNCx6GfXfNY+/wgqTGo=
+
+Name: res/layout/activity_show_images.xml
+SHA1-Digest: JO7yW7fvmHFtWKAhwYEMhX3UuMA=
+
+Name: res/drawable-hdpi/img_seekbar_playcontrolbar_secondaryprogress.9
+ .png
+SHA1-Digest: zGoHI/Vl8y5ojS8uiazzXagkoBI=
+
+Name: res/layout/activity_user_register.xml
+SHA1-Digest: 5BleQ1LDWlq6M1yJu+8C5uu49aA=
+
+Name: res/layout/find_song_with_num_grid_list_view_item.xml
+SHA1-Digest: NOQAHQzxab1LIGVJMi5yM/tQXrw=
+
+Name: res/layout/audio_effect_listview_item.xml
+SHA1-Digest: xKFbW61yqgPLCuNLPl131LU2Bx4=
+
+Name: res/layout/new_song_publish_section_view.xml
+SHA1-Digest: puFsXAmG2Wll++TAdNbf49Gyw2U=
+
+Name: res/drawable/cmmusic_button_background.xml
+SHA1-Digest: RC9H8Jq2Ic3ZX+acwpjD9o3tEn8=
+
+Name: res/drawable/xml_background_radiobutton_userinfo_sex_female_sele
+ cted.xml
+SHA1-Digest: WJKZvePcD9axPmUcNvl93NonKVU=
+
+Name: res/drawable-hdpi/cmmusic_btn_setdefault.png
+SHA1-Digest: +6NYhiz5PAHJQ9hfWsfYXL4sVWw=
+
+Name: res/drawable-hdpi/img_playmode_shuffle_playinglist.png
+SHA1-Digest: 5K16cQoPY4D+7FgF2K9+a3rXfgU=
+
+Name: res/drawable-hdpi/img_play_normal.png
+SHA1-Digest: Ka65SjrLtO0sUdA1FMqpu34BoC4=
+
+Name: res/layout/apshare_sharing_waiting.xml
+SHA1-Digest: bnvL996hfnibatGdvuWGMl8gOew=
+
+Name: res/drawable-xhdpi/img_background_market_detail.9.png
+SHA1-Digest: 3UMR4AB0UMAdQ9lAGGYl9De2qY0=
+
+Name: res/drawable/xml_button_minilyric_pause.xml
+SHA1-Digest: 8I9bS2O4uxMWoVR1CV2FaQ1uUzk=
+
+Name: res/drawable/xml_background_recommandeffect_item.xml
+SHA1-Digest: 5A7POJRuzcLdA6Kb0mPjVQH7A10=
+
+Name: res/drawable-hdpi/img_imageview_download_group_state_expanded.pn
+ g
+SHA1-Digest: pJ4Dqis6j7OXjheIMIKOExLR9Rk=
+
+Name: res/layout/effect_level_item_horizontal_divider.xml
+SHA1-Digest: LTMx3TCr3xuJ+lOhznpzPIZD+uU=
+
+Name: res/layout/online_search_hotword_success.xml
+SHA1-Digest: vxSrXH0zX8GZlsgJZP9fmN3jVsU=
+
+Name: res/layout/cmmusic_recommend_search_key_list_head.xml
+SHA1-Digest: NgZYN4ixYns25+yDuE4P4hfxH/o=
+
+Name: res/drawable-hdpi/img_menu_indicator_thumb.png
+SHA1-Digest: LYCsaU7MDjUGIGvCdjKpNIOlwhI=
+
+Name: res/layout/market_game_tucao.xml
+SHA1-Digest: 4veSFqOmKwr3SVWweNKUCDPgdtw=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_equalizer_hand
+ pick_bass.jpg
+SHA1-Digest: D2sepboU8lljqU1AWVf/IKNVNFo=
+
+Name: res/drawable-hdpi/img_appwidget_go_preview_4x1.jpg
+SHA1-Digest: zBmTEFTNj7xAfD5kaOl0bLTuCVM=
+
+Name: res/drawable/recommand_list_hit_xml.xml
+SHA1-Digest: UwAipRpYTvc0dgXeSMy461ZjoVA=
+
+Name: res/drawable-hdpi/img_media_controller_seekbar.9.png
+SHA1-Digest: KWS82UukuvlRdvy8RV2OiJRA/V4=
+
+Name: res/anim/flash_hide_animation.xml
+SHA1-Digest: QdFGyFjotrqB6TtPlgR6oJo8KJs=
+
+Name: res/layout/find_song_category_section_item.xml
+SHA1-Digest: 8B0hduMaGJSNaInhPJcexlfQyks=
+
+Name: res/drawable-hdpi/img_button_notification_exit.png
+SHA1-Digest: r/wOHBvdgg+MZGMzvC/3Dk0QWfo=
+
+Name: res/drawable-hdpi/img_button_minilyric_unlock_ics.png
+SHA1-Digest: f994NGIiuS1Zvy5g5rooLepcc6k=
+
+Name: res/layout/apshare_sharing_main.xml
+SHA1-Digest: kH17ttD2TcU6MrximcvyiuCM4Ik=
+
+Name: res/layout/layout_null_linear_layout.xml
+SHA1-Digest: ZiUcA7I2LQx1J8CiaXrb34+Vpiw=
+
+Name: res/drawable/xml_radiobutton_userinfo_sex_male.xml
+SHA1-Digest: 0q35BsX0fimflF63GA+9R7Wt5Y8=
+
+Name: res/drawable-hdpi/img_lyric_color_3.png
+SHA1-Digest: R1pIDNxFbZgoRGREgE1dSUF24nk=
+
+Name: res/drawable-hdpi/img_mv_default_image.jpg
+SHA1-Digest: P5OwtNvAxNFPGNR8sERCBmD0FYk=
+
+Name: res/layout/album_download_select_item.xml
+SHA1-Digest: Vx9TbTTIBA/vf2S9IhPwVPOJb4I=
+
+Name: res/layout/musiccircle_user_list_item.xml
+SHA1-Digest: SBoUivMJD0Y6cKrPSOYvSbU17t4=
+
+Name: res/drawable-hdpi/background_song_listen_count.png
+SHA1-Digest: mbhmNF4zv7LpGSQsm6XUdHUPHwc=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_minilyric_on.png
+SHA1-Digest: m8WcW84kUsGrBN0evdNv+/ThmVE=
+
+Name: res/layout/download_softwaregameview_content.xml
+SHA1-Digest: KF8aHY6Rm2GyjPjFiWsBeeaIrOY=
+
+Name: res/layout/recommend_post_list_item.xml
+SHA1-Digest: 1HD9Tz09ht1H13hb9CRw0cjUNCo=
+
+Name: res/layout/market_game_tucao_history_list_item.xml
+SHA1-Digest: yWr0Cs3QlUwzAPKC4s7JRbodMUg=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_play_presse
+ d.png
+SHA1-Digest: lq6yCYThmjzK+XfZcWlq5OpxfF8=
+
+Name: res/drawable/xml_background_button_appwidget.xml
+SHA1-Digest: txb7u7002YDnbaAACVAHXFb4Q90=
+
+Name: res/layout/feedback_message_box_left.xml
+SHA1-Digest: D/FhM+cX1SLwd5T15C5mdttkuUQ=
+
+Name: res/layout/dialog_body_edittext.xml
+SHA1-Digest: 1B04/Ob8DlwxP4moLwKRbYcbfpM=
+
+Name: res/layout/musiccircle_entry.xml
+SHA1-Digest: omM/7yRDpCoagMan7ggijvGRAbA=
+
+Name: res/drawable-hdpi/img_contextmenu_download_song.png
+SHA1-Digest: YGXCoE07gx8J/hJMJ1/672G4u3s=
+
+Name: res/layout/musiccircle_emoticons_item.xml
+SHA1-Digest: V6ARcyCW3JOLwZ4/UP32sHO8BDo=
+
+Name: res/anim/push_left_in.xml
+SHA1-Digest: QsAHX/83/GAK5LdTR0oUVrZnZto=
+
+Name: res/drawable-hdpi/img_ip_restrict.png
+SHA1-Digest: abOJ/59styxTDGxkYbgCpvreX0M=
+
+Name: res/drawable-hdpi/img_button_artist_pic_downing_normal.png
+SHA1-Digest: VgDtkQtavU4cow/74oKmTYKN3iE=
+
+Name: res/drawable-hdpi/img_tag_new_song_publish.png
+SHA1-Digest: IByEWnrmCCujcxkA9X21iW2tm2Y=
+
+Name: res/drawable-hdpi/img_ttpod_appwidget.png
+SHA1-Digest: zYKf9XBLq0c8oVupV1qtcMESbb0=
+
+Name: res/layout/appwidget_layout_go_4x1.xml
+SHA1-Digest: nysEDpYQ6u9a0y4GNCQbMlBsl2o=
+
+Name: res/layout/musiccircle_static_user_info_layout.xml
+SHA1-Digest: kacRIkzzbH2S7oc0uaNRvjyz9EE=
+
+Name: res/drawable/xml_imageview_soundsearch_result_download.xml
+SHA1-Digest: U3SX3xg6oyDrgm+jMG9/6clCF4A=
+
+Name: assets/landscape/StarHere.png
+SHA1-Digest: 0adaULSuDezEn4Z3+tWlAfi6y1Q=
+
+Name: res/drawable/xml_dialog_optional_background.xml
+SHA1-Digest: iIlTmabFNT/qLY6tzXoHEce6UkQ=
+
+Name: res/drawable/xml_tab_text_feedback.xml
+SHA1-Digest: Aom0dtayHEq3VR5u1r36LwJc92w=
+
+Name: res/drawable-hdpi/img_button_minilyric_setting.png
+SHA1-Digest: gIuQdkldMK952Zg1nZ+6zcZf+jk=
+
+Name: res/drawable-hdpi/img_musiccircle_radar.png
+SHA1-Digest: BEPDF5LyMNsujQDrTJwebEQnwPs=
+
+Name: res/drawable-hdpi/img_tag_exclusive_plan.png
+SHA1-Digest: Qq9YxvVers9oQim7M29pIYSqALk=
+
+Name: res/drawable-hdpi/img_notification_downloading.png
+SHA1-Digest: TK9KvCp4Npt7nwEjViVhmjNxYGk=
+
+Name: res/drawable-xhdpi/img_market_ranking_down.9.png
+SHA1-Digest: KbYqUQRfqKOGCtEj9I+aQGdLKf8=
+
+Name: res/drawable-hdpi/spectrum_7.png
+SHA1-Digest: PNZZv6dsK0DpcXaQJehVIEFDELo=
+
+Name: res/drawable-hdpi/spectrum_1.png
+SHA1-Digest: 0Z5VAltoG7DSU0N3gsgxl3BCAhM=
+
+Name: res/drawable-hdpi/img_appwidget91_play_normal.png
+SHA1-Digest: UU0UBwELJMA88ly4waxZ1Guh/wI=
+
+Name: res/drawable-hdpi/img_rank_play_normal.png
+SHA1-Digest: G4aDPYnYsmaZmoVeJY4QF/eTXyU=
+
+Name: res/drawable-hdpi/numberpicker_selector_disabled_holo_light.9.pn
+ g
+SHA1-Digest: N4pxrY//CzQeTPqMUlApq1xAKjk=
+
+Name: res/layout/layout_media_menu_item.xml
+SHA1-Digest: c6THYZV0HVOCm2shY1Z8PON+LFo=
+
+Name: res/drawable/xml_share_background_dialog_button.xml
+SHA1-Digest: IAt3gSpFihMFTuS7ztCkM3B2pIU=
+
+Name: res/drawable-hdpi/img_page_indicator_selected.png
+SHA1-Digest: pdiX4KsHoipddWEfTjZpXPKMwFI=
+
+Name: res/layout/cmmusic_recommend_search_key_list_row.xml
+SHA1-Digest: Z5ALicbtg+IWBc6OXmLjlviRPiQ=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_pause_normal.png
+SHA1-Digest: uU6Hm2juxoR8WfNPpfEPT9e+0lI=
+
+Name: res/layout/finsong_head.xml
+SHA1-Digest: oST7cbM6LRACVzm3HH0XOTtwe7E=
+
+Name: res/drawable/ktv_add_button_pressed.xml
+SHA1-Digest: WgSjW5adyXneD20V9wSr0En360A=
+
+Name: res/layout/menu_global_item.xml
+SHA1-Digest: AuOwkiDRX2ZNySgkr41tayQg+9o=
+
+Name: res/drawable/cmmusic_progress_round.xml
+SHA1-Digest: Lvr3COHnLtdECfVrZVWCQHb3lDI=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_expression.png
+SHA1-Digest: Mm4og7ZGMfqDY4TfRwXxrxOjhXg=
+
+Name: res/layout/dialog_media_info_edit.xml
+SHA1-Digest: FeZrG0ssQUxE9LTKm80DrgEaI5s=
+
+Name: res/drawable-hdpi/img_musiccircle_radar_rescan_down.png
+SHA1-Digest: VhnEzWqmlXfP2Jcvh9ajuHpb8bA=
+
+Name: res/drawable-hdpi/img_background_progressbar_mediascan.9.png
+SHA1-Digest: 8YFmzJDA+5Wl3YUBinDWk3eaR48=
+
+Name: res/drawable-hdpi/img_seekbar_volume_progress_landscape.9.png
+SHA1-Digest: ePnUP40CPqqModNCrmfB03ZViuo=
+
+Name: res/layout/picture_manager_row_item.xml
+SHA1-Digest: 9v7c6p5f7W+0xEGSwZUvaGgdYKg=
+
+Name: res/drawable-hdpi/img_share_background_dialog_frm_edit_focused.9
+ .png
+SHA1-Digest: 6LLW19F+Ytdrv6vIY2DrRLprp2E=
+
+Name: res/drawable-hdpi/cmmusic_tab_tools_checked.png
+SHA1-Digest: ItdFhTkDqeLCZKDAOSyiZc72k7Q=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_result_share_normal.
+ png
+SHA1-Digest: itY0Tm1U0nMHaATZ+JXuXGCnnaU=
+
+Name: res/layout/landscape_player.xml
+SHA1-Digest: LMNxTwiwDoW+QjADFJVtzwVd0rY=
+
+Name: res/drawable-hdpi/img_button_minilyric_unlocked.png
+SHA1-Digest: tMdqvo57KKgeGUtKClwsMGGlm5A=
+
+Name: res/layout/fragment_category_gridview.xml
+SHA1-Digest: V1lDuWlcHvA5Zmh9e0DIRvY3X+o=
+
+Name: res/drawable-hdpi/recommand_list_bg_2_hit.png
+SHA1-Digest: QpTHdYF2MEfNFVZmDfv3I9vdNzY=
+
+Name: res/layout/fragment_best_album_from_new_song.xml
+SHA1-Digest: FadzaUN3VfnPQW9N56AP5QYpwcs=
+
+Name: AndroidManifest.xml
+SHA1-Digest: DA+BSnrmdFzjF6kK3KL2vN3ay2g=
+
+Name: res/drawable-hdpi/img_background_scan_media_normal.png
+SHA1-Digest: yTvLhoEbKa/P+3CreoKS/TI3RMo=
+
+Name: res/drawable-hdpi/img_progressbar_effect_level_background.9.png
+SHA1-Digest: ejSbA2iu6dQtN60IV2hN0JR6Da4=
+
+Name: res/drawable/xml_background_toggle_button.xml
+SHA1-Digest: YE4x4eY2U2p5f2p6HYduZRTbNZ4=
+
+Name: assets/com.tencent.open.config.json
+SHA1-Digest: TCAijjFuxJdEM20Vc3Fnk4fUJoQ=
+
+Name: res/drawable-hdpi/img_button_share_landscape_normal.png
+SHA1-Digest: y5LpjHhYE8SwTIU4Ytvb2AdUZRE=
+
+Name: res/layout/feedback_message_box_right.xml
+SHA1-Digest: Ktm6qov5jz4jaLucy2aNN6kxZ+o=
+
+Name: res/xml/xml_appwidget_info_4x2.xml
+SHA1-Digest: 23wLZH5TbrMZcFrI0p4U52nl+2Y=
+
+Name: res/drawable/xml_musiccircle_table_line_background.xml
+SHA1-Digest: UDi+Dd3t3EHXo4ta4hvk9c4ki9Q=
+
+Name: res/layout/singer_list_item.xml
+SHA1-Digest: v2Y+HEpiAHGsIy31StSOkGcgi7o=
+
+Name: res/drawable/xml_background_button_mediascan_finished.xml
+SHA1-Digest: aUAWwq+EhphlHoqsmwFX7M/gPvk=
+
+Name: res/drawable-hdpi/img_search.png
+SHA1-Digest: u+TunFPxSmsY2dh1dN+ZmRarb/E=
+
+Name: res/drawable/qihoo_topbar_btn.xml
+SHA1-Digest: HBd/IS425L90A9D0MkTk0gqBnGI=
+
+Name: assets/buttonPost.png
+SHA1-Digest: jAZacXy5ocEht6Mv0CIw6+BDN/w=
+
+Name: assets/com.tencent.plus.logo.png
+SHA1-Digest: B+1AMe3cF/KE17U2+A9Ol1T9mEA=
+
+Name: res/drawable-nodpi/img_landscape_menu_bottom_bg.9.png
+SHA1-Digest: y4K2UMn2xDDe3aObW3B1JZIIByg=
+
+Name: res/layout/activity_mediascan.xml
+SHA1-Digest: /x4wH7YpoBYo2SMVSW5GrJrUoP8=
+
+Name: res/drawable-hdpi/img_background_skin_checked.png
+SHA1-Digest: zs2XFnaeeXyPIrT9aw1aHdhT6ko=
+
+Name: res/drawable/unicom_verify_code_button.xml
+SHA1-Digest: OJwJfHYtxObzHfgJBYMTK3hxu5c=
+
+Name: res/drawable/xml_progressbar_match_lyric_pic.xml
+SHA1-Digest: W20AktnxeXMrj8cnauEl31uxceo=
+
+Name: res/layout/online_media_list_item.xml
+SHA1-Digest: QnSB1TFOIY65JkreTKYnNWpedx8=
+
+Name: res/drawable-hdpi/img_appwidget_preview_4x2.png
+SHA1-Digest: RFoUJPvLphIsspF0PPrU16vN1o8=
+
+Name: res/drawable-hdpi/pipei.png
+SHA1-Digest: gxI0IfBqbve3V7dkmEP+wtYe9Rg=
+
+Name: res/drawable-hdpi/picture_manager_default.jpg
+SHA1-Digest: Z4ZIqx2rF/ZvRnHuVnUUp4CURuw=
+
+Name: res/layout/cmmusic_funny_listen_activity.xml
+SHA1-Digest: H90QK2QRCgMnfE8LXu8uKDCpVYQ=
+
+Name: res/drawable-hdpi/img_album_download_checked.png
+SHA1-Digest: LAULMUlUXtSfTiUEPX0OYf7A2Wg=
+
+Name: res/drawable-hdpi/img_appwidget_album.png
+SHA1-Digest: Waa9pl6DFmZ0UkJVgYxN6X0ZSz8=
+
+Name: res/drawable-hdpi/smiley_23.png
+SHA1-Digest: qqZWBovxzDOe7apA9m08GADiFbw=
+
+Name: res/drawable-hdpi/effect_circle_green_small.png
+SHA1-Digest: oerqo4c54f0KwSqTdMDR3pCppMU=
+
+Name: res/drawable-hdpi/img_media_controller_play.png
+SHA1-Digest: 696MLpxOV3a/kDANJLGcxEZEr3o=
+
+Name: res/layout/fragment_audio_effect_boost_new.xml
+SHA1-Digest: N1nwJ/9rPdFW2NyEvk9o7BWr+TQ=
+
+Name: res/layout/cmmusic_sound_content_activity.xml
+SHA1-Digest: XS3Qc3YV2H4Pw05MJun4uIWtTGI=
+
+Name: res/layout/number_picker_with_selector_wheel.xml
+SHA1-Digest: G/PHjTPFQ2IKSnroE/NybeI+kK4=
+
+Name: res/drawable/xml_background_effect_button_recommand.xml
+SHA1-Digest: VM1LCP+QC8ma8zuOE2aWcC+vCwI=
+
+Name: res/drawable/xml_background_player_menu_dialog.xml
+SHA1-Digest: dvGfEtpKSWidJLaQppdhKEvwlYI=
+
+Name: res/layout/online_search_hotword_item.xml
+SHA1-Digest: pCjRrSfnKGgTlIwZZEFaFPwfdzY=
+
+Name: assets/landscape/FiveStar.png
+SHA1-Digest: lFBtxkvezQcyugUPk80Myfj2HxI=
+
+Name: res/layout/activity_playinglist_content.xml
+SHA1-Digest: eC9t6SmaZ6xICLwe+lurC1S5r+A=
+
+Name: res/drawable-hdpi/img_musiccircle_send_circle.png
+SHA1-Digest: sWgA4kGDbChfSa1qZr4fb7Z6ve0=
+
+Name: res/drawable-hdpi/img_background_effect_recommand_button_pressed
+ .9.png
+SHA1-Digest: 2OodCUo3ckiw6GLJx9IqAERwMXg=
+
+Name: res/drawable/unicom_verify_code_button_enabled.xml
+SHA1-Digest: IA3YnGDCO3Nv3dwg2dWBUbkdR6w=
+
+Name: res/drawable/xml_refresh.xml
+SHA1-Digest: kBxDJ5Azb6un+BD0/k7V4ZDhz2w=
+
+Name: res/drawable/xml_musiccircle_radar_userinfo_frame.xml
+SHA1-Digest: b0+bOYDUyQAO0e7rL0kzIgHzDh0=
+
+Name: res/drawable-hdpi/img_appwidget_album_cover_normal.png
+SHA1-Digest: /NmJrX4dsASHL9KHWTfo7xDn9QI=
+
+Name: res/drawable/xml_button_minilyric_ok.xml
+SHA1-Digest: EFVsBN5d9pKaFB9VpBjl1F/9j3o=
+
+Name: res/drawable-hdpi/smiley_17.png
+SHA1-Digest: VaLbOwX0B93yrrytYGMiq2RBQjA=
+
+Name: res/drawable-hdpi/myeffect_pause.png
+SHA1-Digest: wVjOyNUz0PQ8IUjB3cgww2mnJZM=
+
+Name: res/layout/activity_setting_desktop_lyric.xml
+SHA1-Digest: VOnfCar8jDrmQKG6O7qHonLght4=
+
+Name: res/drawable-nodpi/img_background_market_category_item_pressed.9
+ .png
+SHA1-Digest: sqfABJ2DJmCVADzz8fT6PqM9Jj8=
+
+Name: res/layout/loadingview_loading.xml
+SHA1-Digest: NW6Zo3+XbYIqSy13qpWRfzWR+Lw=
+
+Name: res/drawable/xml_background_tab_item.xml
+SHA1-Digest: YcRFncHIUTIJ0YqgUwRmEWFbthU=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_share_norma
+ l.png
+SHA1-Digest: 1ZBg7Py48YvBPO3x5ZgfT8uFpvo=
+
+Name: res/drawable-hdpi/sliding_to_unlock_2.png
+SHA1-Digest: MD6N1O61oMRfik7eFhWXhDRTfQs=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_cave.jp
+ g
+SHA1-Digest: 5epUbrnye0rKtQdw0xKkhUCWsK8=
+
+Name: res/drawable-hdpi/icon_song_list_author.png
+SHA1-Digest: lx+sUSoIsiGG7kNhe8GJv0MTf7s=
+
+Name: res/drawable-hdpi/smiley_11.png
+SHA1-Digest: 1FneAaTtRsv5ZUlM6PkLQQEqnDc=
+
+Name: res/layout/dialog_body_edittext_item.xml
+SHA1-Digest: yIl6owacTZZsomZuRINUoPP/qvA=
+
+Name: res/layout/musiccircle_search_result_layout.xml
+SHA1-Digest: V4nkCicXPGTODrzJD4bi6/lHfsk=
+
+Name: res/layout/fragment_audio_stop.xml
+SHA1-Digest: gmm4RBKKdNB0XrbX/aaqNRSmc7E=
+
+Name: res/drawable-nodpi/img_background_market_category_item_normal.9.
+ png
+SHA1-Digest: viI6ET4NDgF3trqfD0cjDj3UonI=
+
+Name: res/drawable-hdpi/img_background_appwidget91_time.png
+SHA1-Digest: h902lkX0iZWkbzBCl/ihoWZN4WA=
+
+Name: res/drawable-hdpi/img_musiccircle_guide_find_friend.png
+SHA1-Digest: XeRcLanV5bqa83eIFNOQFEf9Lzo=
+
+Name: res/layout/appwidget_main_4x4.xml
+SHA1-Digest: vfshpup5KgBa3XortYmlG36hsmM=
+
+Name: res/drawable-hdpi/img_lyric_font_set.png
+SHA1-Digest: zLv4I/6xBfSXluo+M1fAHbUAJso=
+
+Name: assets/bkg_list/list_20140703195731.json
+SHA1-Digest: 4/ZIO/L25M2soxWXYvOSOf0zEKo=
+
+Name: res/drawable-hdpi/img_alarm_toggle_on.png
+SHA1-Digest: DO/2fTnpK80wsZGnUdvkKkM5EsA=
+
+Name: res/drawable-hdpi/img_market_software_default.png
+SHA1-Digest: ziMWmwmzYjYJgEZkmE+x3x2TkT0=
+
+Name: res/drawable/xml_lockscreen_play.xml
+SHA1-Digest: qlfY8Vl2ib3T8oI/3bMM0EZVQ6Q=
+
+Name: res/drawable-hdpi/img_download_show_button_normal.9.png
+SHA1-Digest: ydk/piwvRXxXlmiGd1XkG+c2QY8=
+
+Name: assets/background.9.png
+SHA1-Digest: M3YQ4bymCLlirCApFCkEMdWdqrA=
+
+Name: assets/theme/play_bar_sidebar_h.png
+SHA1-Digest: Kr4fh78RftF7RpJVRPM7bZ6sBzA=
+
+Name: res/drawable-hdpi/img_flag_lossless.png
+SHA1-Digest: i6YPpitDiSdUMQ5XePAxRhnuJwA=
+
+Name: res/drawable-hdpi/img_imageview_offline_mode_logo.png
+SHA1-Digest: sGhXSRj+hvfNcH6T+K/ERjKP65E=
+
+Name: res/layout/layout_artist_frame.xml
+SHA1-Digest: sUnnmO6nj1Yi4dj3Mtfzbzlr2pA=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_equalizer_hand
+ pick_pop.jpg
+SHA1-Digest: tOAoPtEcALScf0mCtufaPTqTkSI=
+
+Name: res/drawable-hdpi/smiley_1.png
+SHA1-Digest: gEyh5RXZWag6m5ihsQm4rKeRl2E=
+
+Name: res/drawable-hdpi/img_checkbox_multiselect_checked.png
+SHA1-Digest: 8dFtmu5+WpS6UnlGdLOKOl+51+c=
+
+Name: res/layout/fragment_theme_listview.xml
+SHA1-Digest: R2wjDkvzhDsA0vjro/jQ2ny3t4s=
+
+Name: res/drawable-hdpi/img_scan_navigation003.png
+SHA1-Digest: aapLXpDrvz9YcYgjRhAkcxvp1ig=
+
+Name: res/layout/setting_container_desc.xml
+SHA1-Digest: w+i3zFdq13WEVBfsfqPhS7rsSVY=
+
+Name: res/drawable-hdpi/img_background_textview_effect_equalizer_title
+ .9.png
+SHA1-Digest: T61Dmt5oOwl/LhMwqOjGPDKSI8c=
+
+Name: res/drawable/xml_background_market_top_download_close.xml
+SHA1-Digest: cK61C34O1un3ZZTv4O/nhFA6HsY=
+
+Name: res/layout/cmmusic_search_listen_activity.xml
+SHA1-Digest: j1L2c16BeXI82dazSb3wPBiUoN0=
+
+Name: res/drawable/xml_background_market_category_item.xml
+SHA1-Digest: NpT/b3k5T1FA1Y5oOGE0dizh31c=
+
+Name: res/drawable-hdpi/smiley_15.png
+SHA1-Digest: B+jOmSBeJSOU4nI3nPb+J1AMMyA=
+
+Name: res/drawable-hdpi/img_playing_hint.png
+SHA1-Digest: ZTOSSQvcYX/yruK3NY0Rou/oT4w=
+
+Name: res/drawable-mdpi/img_scan_navigation004.png
+SHA1-Digest: ns9AlOHwcS2Rj9XZ6IsEjGb+Vws=
+
+Name: res/drawable-hdpi/img_contextmenu_search.png
+SHA1-Digest: OESqIoVV4yc9ew5qhXj/KQUlGGQ=
+
+Name: res/drawable-hdpi/img_lyric_menu_bg.9.png
+SHA1-Digest: GXiwa0DQo6nIJV6nXvLE2lG/UwY=
+
+Name: res/layout/activity_mediascan_setting.xml
+SHA1-Digest: vTJBxxuqg3DjvqTIdjlN5/hFyXI=
+
+Name: res/layout/musiccircle_message_entry.xml
+SHA1-Digest: onVL1KaVBu2AFBvUx36vUuV4yXI=
+
+Name: res/layout/layout_background_category_item.xml
+SHA1-Digest: V91tFVIyeeJdWgOoySjRpZcaqUM=
+
+Name: res/drawable/xml_button_minilyric_previous.xml
+SHA1-Digest: DfGsFEwL2sHNI42RZ6KicyoE33M=
+
+Name: res/color/xml_color_effect_equalizer_listview_item_content.xml
+SHA1-Digest: VVk6qkSerJbD9QtBM2XsEcCiF4Y=
+
+Name: res/drawable/xml_button_lock_landscape.xml
+SHA1-Digest: CrvxA9XzCLK3fOkHCu6hYHW9NaY=
+
+Name: res/layout/activity_login.xml
+SHA1-Digest: 6Ta6FwIgprrNooB9ogpOHHsqJVA=
+
+Name: res/layout/musiccircle_search_layout.xml
+SHA1-Digest: 7Z921ep7XpjkTcy06+92IvNKUcY=
+
+Name: res/drawable-hdpi/img_background_download_expand_list_group_norm
+ al.9.png
+SHA1-Digest: HraZSIpMREBT2cIUO1+E0zWnNf8=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_background_bottom.9.png
+SHA1-Digest: mw1FXTRsBeNa4pL+bF1VqinXCtI=
+
+Name: res/drawable-hdpi/img_musiccircle_small_radar.png
+SHA1-Digest: rlh7QWgpR53eL73S+0by1cTPS2A=
+
+Name: res/drawable-hdpi/ajust_wav_bg.png
+SHA1-Digest: EmAiXE15VpVRt0GojQfyRKGcnQo=
+
+Name: res/layout/effect_behavor_item_content.xml
+SHA1-Digest: Q6KcKYvRYfrNrAT3AMSo28fkr5A=
+
+Name: res/drawable-hdpi/img_background_ttseekbar_knob_pressed.png
+SHA1-Digest: PzikzAGlUJfvqNG9hKahTFvb66E=
+
+Name: res/drawable/xml_button_share_landscape.xml
+SHA1-Digest: xEZJik+pYL0Jn4B2GL3/HPqDzIE=
+
+Name: res/drawable-hdpi/img_appwidget91_play_pressed.png
+SHA1-Digest: zgy2kT6hk9gMOUmRhlTFjBlNjBM=
+
+Name: res/drawable-hdpi/effect_listitem_bg_selected.9.png
+SHA1-Digest: QW4IBLPTtEJZfxVMAEq8E5/+WKs=
+
+Name: res/color/media_menu_text.xml
+SHA1-Digest: u4AQX4NSeErkqvuTg3kOD5qKs1U=
+
+Name: res/layout/fragment_local_sub_media_list.xml
+SHA1-Digest: R3LQW68Hw/RpfU7MnLOYMdYf5yc=
+
+Name: res/drawable-hdpi/cmmusic_shiting.png
+SHA1-Digest: DdEfqTKNY2aiGkMzgfRuehFYdVw=
+
+Name: res/drawable/xml_background_beauty_item.xml
+SHA1-Digest: O+he8jhKY5SePE+65/3rUPTmxQc=
+
+Name: res/drawable-hdpi/img_playmode_repeatone_playinglist.png
+SHA1-Digest: aTfGT/WHZWOnY58bE4ZO9cDhIyA=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_center_pressed.png
+SHA1-Digest: R77QYHwv42tXmqs/1V7AU2lmIUo=
+
+Name: res/layout/fragment_search_result_header.xml
+SHA1-Digest: RrBJgyCvGS9T/lvcoAGOBDRHDI8=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_4x4.jpg
+SHA1-Digest: +m0NnSlNXHJvMZ3yX/vfvHOW6uw=
+
+Name: res/layout/activity_soundsearch_result.xml
+SHA1-Digest: NMMZCWEhrWmlwaQEcMUgITVcnLc=
+
+Name: res/drawable-hdpi/img_background_button_splash_audio_enabled_pre
+ ssed.png
+SHA1-Digest: uFEYvDNb55ZZULgB1fW52yHGe4Y=
+
+Name: res/drawable-hdpi/img_musiccircle_radar_rescan.png
+SHA1-Digest: bdDdvp5jnnhF2EqcKXjsc9hkT/s=
+
+Name: res/drawable/xml_background_button_splash_audio_disabled.xml
+SHA1-Digest: piDiW6+EgGLJpRpM9wF4NG4+pJk=
+
+Name: res/drawable-hdpi/img_scan_navigation002.png
+SHA1-Digest: ixSUunvH7UeSUnEsUNzntDoZhy4=
+
+Name: assets/theme/song_list_pop_bkg.png
+SHA1-Digest: GWPVtY5lTal/14Hh+IqSC587u3A=
+
+Name: res/layout/fragment_adjust_audio.xml
+SHA1-Digest: +HOi3xhCkDFVGV4cqtDqCFH6yCY=
+
+Name: res/layout/musiccircle_followings_layout.xml
+SHA1-Digest: sxcqpkYAV9d6YY7O2ZaIZKX74X4=
+
+Name: res/drawable-hdpi/img_appwidget_pause.png
+SHA1-Digest: /SOV4B9SmTLSyaRD+r2ew5dUOVc=
+
+Name: res/layout/fragment_media_list.xml
+SHA1-Digest: V1n3GruZACfSenqHe9c5O0nHc3s=
+
+Name: res/drawable/xml_background_button_main_right_menu_sleep.xml
+SHA1-Digest: TVeRLylHUIADtGrhQJlyeGZLSAQ=
+
+Name: res/layout/download_task_list_view.xml
+SHA1-Digest: Vsf09z32n99i/TFq60tuV1pSjgY=
+
+Name: assets/config
+SHA1-Digest: pDC4e9AK1xb8q9qk2DEzEsLgPkE=
+
+Name: res/layout/local_match_pic_lrc.xml
+SHA1-Digest: m0LeYgJmCzJ135k3UAc6Hwwc/u0=
+
+Name: res/drawable-hdpi/numberpicker_longpressed_holo.9.png
+SHA1-Digest: CryqHoFcxjamvNzipiGDoWeVOGw=
+
+Name: assets/skin_list/list_20141024175125.json
+SHA1-Digest: wM7HQqKOJVe+OWbhQ57hduiFIUY=
+
+Name: res/drawable-mdpi/img_background_imageview_userinfo_cover.jpg
+SHA1-Digest: a8CO3vuetjpTNZJX32Tsw32t1nk=
+
+Name: res/drawable-hdpi/img_dialog_seek_background.9.png
+SHA1-Digest: K6fUNC+c6RzxItziiFaYDQ4zfuI=
+
+Name: res/drawable/xml_seekbar_playcontrolbar_progress_play.xml
+SHA1-Digest: qI6pWSoyKGJa2HsShK8Tbze8bNA=
+
+Name: res/drawable/xml_musiccircle_state_post_detail_download.xml
+SHA1-Digest: imUaTY2rBa453RtBqraPA3KDZI4=
+
+Name: res/drawable-hdpi/img_background_textview_user_login_normal.9.pn
+ g
+SHA1-Digest: taoA0/MC5LHp+UPwnkL/dx7giaU=
+
+Name: res/drawable-hdpi/icon_share_sns_sina.png
+SHA1-Digest: 03Hg5tgoJThC/F39BS2uDapywys=
+
+Name: res/layout/layout_null_relative_layout.xml
+SHA1-Digest: gmm4RBKKdNB0XrbX/aaqNRSmc7E=
+
+Name: res/drawable-hdpi/img_media_controller_pause.png
+SHA1-Digest: 9B2mhSV4n6gBgAZOo5UcXNts0e4=
+
+Name: res/drawable-hdpi/img_contextmenu_rename.png
+SHA1-Digest: LZSrjuab8QdtFZnqduV7s+3hhQI=
+
+Name: res/drawable-hdpi/img_imageview_mediascan_anim_finished.png
+SHA1-Digest: e46NxWVio/fCg65O2UHRLjSwmiM=
+
+Name: res/drawable-hdpi/img_market_default.9.png
+SHA1-Digest: c+vX9geqtPa4+u3eEwAtgf2zFss=
+
+Name: res/layout/musiccircle_no_header_post_list_layout.xml
+SHA1-Digest: ZbfM5Pv9V8YaecOmPSiimm421aY=
+
+Name: res/drawable-hdpi/img_lyric_show_reset.png
+SHA1-Digest: 388/tYaVLJP06tkCfYWsaB+jyAk=
+
+Name: res/drawable/xml_find_song_list_selector.xml
+SHA1-Digest: sIQy/rQrPYxqv0q/KIc1nqowqv0=
+
+Name: res/layout/gridview_skin_background.xml
+SHA1-Digest: Io/arDkfgpX53fqpiu1Dcm12umM=
+
+Name: res/drawable-hdpi/img_lyric_pics_volume_bg.9.png
+SHA1-Digest: gXQ5qHGuMkRlQo8nluo7yS/mx3Q=
+
+Name: res/drawable-hdpi/img_musiccircle_private_message.png
+SHA1-Digest: SeXy1tGaCIyO1HnVC2aGHNa37PA=
+
+Name: res/drawable-hdpi/img_ttpod.png
+SHA1-Digest: BrK+qwwbVnjWo4j7rwjk1jG89wc=
+
+Name: res/drawable-hdpi/img_radial_progress_pointer.png
+SHA1-Digest: PmRyoPQJeJNSAWAkv7WmSUaZmOQ=
+
+Name: res/drawable/xml_shadow_top.xml
+SHA1-Digest: aVQ8eDratDZTTjhHcH99RL3yUpM=
+
+Name: res/drawable-hdpi/img_button_effect_cloud_toggle_off.png
+SHA1-Digest: uPP9ZrubQF6WSGEEwtEf0upJtx0=
+
+Name: res/drawable-hdpi/img_dialog_seek_foreground.9.png
+SHA1-Digest: KA18SIEV2HNCTEyQUZbPAih4eBQ=
+
+Name: res/drawable-hdpi/img_button_minilyric_font_zoom_out.png
+SHA1-Digest: rcan7ZmlbBn9fiEOcA8dpaCZHgo=
+
+Name: res/color/xml_local_media_tab_text.xml
+SHA1-Digest: JO+tl+PbTEAsACEMLu2ZcIOedUc=
+
+Name: res/drawable-hdpi/img_button_artist_pic_delete_pressed.png
+SHA1-Digest: XI2iGrWWMoslHpFAKQaGusxV1Go=
+
+Name: res/layout/activity_setting_notification.xml
+SHA1-Digest: DEIb5tLe5zRGM1stELT7kt5N+Wc=
+
+Name: res/drawable-hdpi/img_lyric_font_normal.png
+SHA1-Digest: 1TOb5GYZfMv6UwB7xhYAhcPv38o=
+
+Name: res/color/xml_fragment_market_top_btn_txt_color.xml
+SHA1-Digest: 1RrxxUFCG2uNZ6465m8fNkwz2Wk=
+
+Name: res/layout/download_list_header.xml
+SHA1-Digest: 6ZA1r+YnhpWggPVw3KVkVm2Vss8=
+
+Name: res/drawable-hdpi/cmmusic_progress_1.png
+SHA1-Digest: m+Et5EFb9OaVyva6o41PJkuhAn8=
+
+Name: res/drawable-hdpi/smiley_37.png
+SHA1-Digest: +V+0ebSnTmCxSnaPv8S7vs5qgfY=
+
+Name: res/layout/activity_unicom_flow_trial_detail.xml
+SHA1-Digest: 37kb32ghoocg7Qxv6QaVs6H/GyU=
+
+Name: res/drawable/xml_background_apshare_delete.xml
+SHA1-Digest: W9J7IjVvLHcdhjCtqeSMb9cWu7s=
+
+Name: res/drawable-hdpi/img_playmode_sequence_playinglist.png
+SHA1-Digest: dS1H5wvxBMTHGhq9FQrNJKOGbww=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_roadway
+ .jpg
+SHA1-Digest: dKPIB1AtAy0/CT2JZaJVQGY/g44=
+
+Name: assets/skin/2_menghuan5.tsk
+SHA1-Digest: li5ftWlBwLJGjC5N9uUynT9Veps=
+
+Name: res/layout/musiccircle_post_detail_header.xml
+SHA1-Digest: RvuWKnZ/tqMGQklw+Ml/2SR3cwQ=
+
+Name: res/layout/musiccircle_comment_empty.xml
+SHA1-Digest: yl4Io62+GPOM9tbR00bv9DD1a1s=
+
+Name: res/drawable-hdpi/img_album_list_item_cover_background.png
+SHA1-Digest: nsOITRiT4ta9gNEDb+riO0h2vjU=
+
+Name: res/layout/recommends_effect_success_view.xml
+SHA1-Digest: 7UTpNfpWMSJt5HuRwbbufNo0/eo=
+
+Name: res/layout/notification_play_hasjellybean.xml
+SHA1-Digest: 3hRKtO99wqE6IWDRRLiN16aNCho=
+
+Name: res/drawable-hdpi/img_musiccircle_repost.png
+SHA1-Digest: uPPMY/kG+JOBHpOKrJeR3bdaSFM=
+
+Name: res/layout/rank_category_item.xml
+SHA1-Digest: EintBgjJC5X31PomlKO0cArR1XA=
+
+Name: res/drawable-hdpi/img_new_skin.png
+SHA1-Digest: BhJQk3piZYfttAyUy3idp9KbVf8=
+
+Name: res/drawable/xml_action_list_item_action_background.xml
+SHA1-Digest: QFVQz5F/3cXNKYveQ7K57LhLJFc=
+
+Name: res/drawable-hdpi/icon_share_sns_friend.png
+SHA1-Digest: mrUhM45JoC87AF3qAUbpu+RGVvM=
+
+Name: res/drawable/xml_seekbar_volume_landscape.xml
+SHA1-Digest: sAyXNi9bIB7blW//hiVXgpGecaE=
+
+Name: res/drawable-hdpi/img_musiccircle_songlist.png
+SHA1-Digest: OwY0oBy3SdDP1HvwPa0FgzSUpZY=
+
+Name: res/drawable-hdpi/img_button_minilyric_lock_pressed.png
+SHA1-Digest: BQouOYyiOSbO4fVuJJfILe0wvZE=
+
+Name: res/drawable-hdpi/img_check_install_normal.png
+SHA1-Digest: JV/Z3SuFDW3XN6Pf7Z+ZpDht6Lw=
+
+Name: res/layout/music_library_history_empty.xml
+SHA1-Digest: DEYpWXZBYuFUH2FKBYV3MRUnFVA=
+
+Name: res/drawable-xhdpi/img_market_ranking_keep.9.png
+SHA1-Digest: tgeG7llQvbiJZqeGP3gmNkH+qpU=
+
+Name: assets/com.tencent.plus.bar.png
+SHA1-Digest: Uqc6Y8bgiyAUESBhMAg2jzRRLpk=
+
+Name: res/layout/musiccircle_repost_input.xml
+SHA1-Digest: QIqOn7eXtKUydKlMTbXL4Mmpcz0=
+
+Name: res/layout/dialog_footer.xml
+SHA1-Digest: X9mXXpomVQL37GpR3tL1rDBwNvk=
+
+Name: res/drawable-hdpi/img_scan_navigation001.png
+SHA1-Digest: /MtYa3aV5KdD9Nep4yM/VUAJK38=
+
+Name: res/layout/activity_album_download_select.xml
+SHA1-Digest: yS2NnZx9OyeE8Oqluty/NX/0TpM=
+
+Name: res/layout/musiccircle_find_friend_guide_stub.xml
+SHA1-Digest: eeu9rnH3YEEX9Z6doxjUMxeRFYY=
+
+Name: res/drawable-mdpi/img_musiccircle_post_pic_default.jpg
+SHA1-Digest: a8i+4NA9zygwCRQvndrXDPhBt1w=
+
+Name: res/drawable-hdpi/img_imageview_hotword_default_icon.jpg
+SHA1-Digest: tVIW+GA0ZdVedlWMo6gdqGHfQ18=
+
+Name: assets/theme/play_bar_pause_h.png
+SHA1-Digest: z/j6/XmxQ83kOU07XPdmj89NzDY=
+
+Name: res/drawable/xml_background_apshare_receive_pressed.xml
+SHA1-Digest: Db39nS2QA+tje5R0/bj1toQW8NU=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_cave.jp
+ g
+SHA1-Digest: 4BkCImf+gWCEEItRJzdIcWyfqA8=
+
+Name: res/drawable/xml_background_guide_hint.xml
+SHA1-Digest: 6pfQ/RIFnnhdpt99B9DGp+AjgGw=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_prev_normal.png
+SHA1-Digest: u7IARCRWo6urbtG0PzTVzQgnEVg=
+
+Name: res/drawable-hdpi/img_lyric_color_4.png
+SHA1-Digest: nROCj1XhYdXxfsCKWVhwdD55rLk=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_pause_pressed.png
+SHA1-Digest: YtTTyv1u4wrZFvO9Qa2OfKZN0yU=
+
+Name: res/layout/musiccircle_chatting_item.xml
+SHA1-Digest: TA2BHMB4yrMqJuuVDinu8iMYSzg=
+
+Name: res/layout/new_song_publish_list_item.xml
+SHA1-Digest: rp3iAIgc9DnwmBqaOR7lkVNzXQA=
+
+Name: res/drawable-hdpi/img_background_pannel_minilyric_setting_top.9.
+ png
+SHA1-Digest: sZhDdTkchyv/oWiKaira2Jht4cY=
+
+Name: res/drawable-hdpi/img_bttton_unlock_landscape_normal.png
+SHA1-Digest: DtGOOwCkj2du7aRNbMUme9xz1SA=
+
+Name: res/drawable-hdpi/img_contextmenu_manager_pic.png
+SHA1-Digest: UCaL0odRnoL1cw4sCmYHgi3+544=
+
+Name: res/layout/activity_setting_about.xml
+SHA1-Digest: RBhZ75admRodJTY0gHLqoUXcxHs=
+
+Name: res/drawable-hdpi/img_radial_progress_bg.png
+SHA1-Digest: d6E05IEsN+89WYzZ7n9HfMzut38=
+
+Name: res/drawable-hdpi/img_share_dialog_waiting.png
+SHA1-Digest: aD4Eaygbluiy1zUoaMvL1iG1iA0=
+
+Name: res/drawable-hdpi/img_musiccircle_radar_point.png
+SHA1-Digest: VqncfriJRcLqoKLWZlc5wXNNKHw=
+
+Name: res/drawable-hdpi/img_dialog_option_unchecked.png
+SHA1-Digest: kw8Gj2ib74UP2RzfbW8rjWTCwqk=
+
+Name: res/drawable-hdpi/img_appwidget_playmode_sequence.png
+SHA1-Digest: EgyT0xsNkbwj7IHKrC1nSpVhmzg=
+
+Name: res/layout/activity_mediascan_filepicker.xml
+SHA1-Digest: Teap99krqg3vsjT6ZAKmFofvlT8=
+
+Name: res/drawable/xml_background_apshare_receive.xml
+SHA1-Digest: PUzXC9bHIvVUX6X0geDL7czqRIg=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_result_download_norm
+ al.png
+SHA1-Digest: hlveUwZgwofC3X/8BxLiBuoQxNw=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_play_pressed.png
+SHA1-Digest: yO+qvgmN/nAZhlmJJU4P8O65/9g=
+
+Name: res/layout/landscape_new_layout.xml
+SHA1-Digest: K1lH/FJVRQnNt+WuUm9j9i4pzEI=
+
+Name: lib/armeabi/libaacdecplugin_v7.so
+SHA1-Digest: j23XYPvcPzfUrPXIiTyV9OWPSI4=
+
+Name: res/drawable-hdpi/img_scan_navigation004.png
+SHA1-Digest: 4nJy4T4nBuR+LrqUjcMLNEmG+/s=
+
+Name: res/layout/musiccircle_followers_layout.xml
+SHA1-Digest: NgfMb93CFIB7EgYpLECAhvpFztw=
+
+Name: res/drawable-hdpi/img_musiccircle_shake_animation_phone.png
+SHA1-Digest: wE0AnFfLuNjXVoR3nA7+sPz/SVM=
+
+Name: assets/landscape/LV.png
+SHA1-Digest: DvwvBbvbcc5FF/SDb2MiprYcL+0=
+
+Name: res/drawable/xml_background_textview_user_register.xml
+SHA1-Digest: xCa5wAH6x5dO8FZ0tRasStcyy3c=
+
+Name: res/drawable-hdpi/img_notification_download_completed.png
+SHA1-Digest: 1uSjxdPKH89gQPhIXnHY2NpRB4E=
+
+Name: res/drawable/xml_recommand_bj_hit.xml
+SHA1-Digest: ZKTmBEDKagzN+kwU0SZc2RRDZjA=
+
+Name: res/layout/activity_unicom_flow_authorize_open.xml
+SHA1-Digest: j9ZCrRRC6D5cxQJgfw3Klv40T94=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_guide.jpg
+SHA1-Digest: FuT1KAu8SOyi9mtrcmD27N1BQG4=
+
+Name: res/drawable/xml_edit_border_feedback_normal.xml
+SHA1-Digest: JrRmdQFb65oVzCFOWCaVRynRMPg=
+
+Name: res/layout/fragment_main.xml
+SHA1-Digest: oJEZh7gwHVOWI+j/POIRTvDUDXY=
+
+Name: assets/landscape/pu1.png
+SHA1-Digest: L4nsdXe+05AGKqxXHXzjYpv+HDc=
+
+Name: res/layout/song_category_grid_list_view_item.xml
+SHA1-Digest: Dv7tlfmx3qhAZkOvRyknp3boIWk=
+
+Name: lib/armeabi/libaudiofx.so
+SHA1-Digest: yJJU0LMf8lig7hcsBvxWuFQT5H4=
+
+Name: res/layout/activity_audio_effect.xml
+SHA1-Digest: rqfHu5M5ZrZTpGh0KjFSSrQtO2g=
+
+Name: res/drawable/unicom_unsubscribe_frame.xml
+SHA1-Digest: AyZGhXh/V2e9MrW+eLn3aZyp+qM=
+
+Name: res/drawable-hdpi/img_musiccircle_shake_fail.png
+SHA1-Digest: JtDzOsnDMtcizhqi78Gmgj+aZLw=
+
+Name: res/drawable-hdpi/img_dialog_option_checked.png
+SHA1-Digest: DwrqRVNScMiFX4wGI+Wdh1Cvdf0=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_result_pause_pressed
+ .png
+SHA1-Digest: 7vFBM0AX5OmM6XaUDDFeJLX9K0I=
+
+Name: res/drawable/xml_artist_pic_down.xml
+SHA1-Digest: aOwpPv3CkCptSchlFfqRM6lv+nI=
+
+Name: res/layout/picture_with_text.xml
+SHA1-Digest: SG9/CPEKDpH9bunYTCzhGLzif2g=
+
+Name: res/drawable-hdpi/dialog_optional_non.png
+SHA1-Digest: gV8PF8qA02LHpktNBWBpqW/Hxmw=
+
+Name: res/layout/fragment_draggable_group_list.xml
+SHA1-Digest: U5YWcXEF6yDtFhIzZL47LE648to=
+
+Name: res/drawable-hdpi/icon_setting_menu_unchoice.png
+SHA1-Digest: EFJoRtnYdLpKP+KYcZpyVZiiLY4=
+
+Name: res/layout/activity_soundsearch.xml
+SHA1-Digest: 4G007j/SmQUailATGLOWpF3yW48=
+
+Name: res/drawable-hdpi/smiley_7.png
+SHA1-Digest: lA4ZgFg7XERN7HXfzsf3CYdK2Fs=
+
+Name: res/drawable-hdpi/img_background_effect_rotatebutton_ring.png
+SHA1-Digest: A2F5wzfCY27yVIndINkTtP7DpxQ=
+
+Name: res/drawable-hdpi/img_edittext_user_input_password.png
+SHA1-Digest: VpsjC4vaTNLXeYvXU1YceZN/uIg=
+
+Name: res/layout/cmmusic_ad_seat_content_activity.xml
+SHA1-Digest: c6xoTG2vhbePuHCFHLiQwNruqpQ=
+
+Name: res/drawable/xml_button_minilyric_next.xml
+SHA1-Digest: pn0hP/a/ZpNpKGLgSa9LaAYRBFU=
+
+Name: res/layout/minilyricview_main.xml
+SHA1-Digest: RkYqcSWSNzc0Ib2mf2o9CfEPAgI=
+
+Name: res/drawable-hdpi/img_textview_mediascan_setting.png
+SHA1-Digest: hYTiR2ARhvjHwQLfU37jffYNlas=
+
+Name: res/anim/musiccircle_shake_clockwise_60.xml
+SHA1-Digest: M6npwFhLHlA8tNgYcglnB38a+H8=
+
+Name: res/drawable-hdpi/effect_circle_green.png
+SHA1-Digest: 3oEEG+hNv1O0WTjdhLK7TG37/8E=
+
+Name: res/drawable-hdpi/img_imageview_advertisement_close.png
+SHA1-Digest: j5YezoVu8juQkFmNlbNmQzzWFVw=
+
+Name: res/drawable/xml_web_view_load_progress_drawable.xml
+SHA1-Digest: yKuJaUBGW2Gd0VHgCVq9xfLqb+s=
+
+Name: assets/buttonNegt.png
+SHA1-Digest: M/KJLlnIIzm0mx/H8xU6UaR6OUo=
+
+Name: assets/button_red.9.png
+SHA1-Digest: z8N2pqVNkCyZz5wtpznaYVj1Als=
+
+Name: res/drawable-hdpi/icon_share_sns_qzone.png
+SHA1-Digest: sDXmbK3XwTV56nWZF6Pb6vivPR0=
+
+Name: res/drawable/xml_anim_sliding_to_unlock.xml
+SHA1-Digest: GxIid8QGFWLJMf3tMBUgN7CTno4=
+
+Name: res/layout/fragment_new_song_publish.xml
+SHA1-Digest: vHByPW6GHBcIuhjp1jc51R3ML1g=
+
+Name: res/drawable-hdpi/icon_setting_uncheck.png
+SHA1-Digest: BUx/rzBZWR/jf44m9dOpDhIkBxE=
+
+Name: res/layout/musiccircle_notice_repost_item.xml
+SHA1-Digest: X32r+cwbGm8Vuo1vxsfVfosWwEI=
+
+Name: res/layout/dialog_upgrade_progress.xml
+SHA1-Digest: VLPFb9fz0uH21aSOLJAtAHn6Org=
+
+Name: res/drawable-hdpi/img_appwidget91_playmode_normal.png
+SHA1-Digest: M65R/rH5O+G9YfqbrOjl0FiOlko=
+
+Name: res/anim/push_left_out.xml
+SHA1-Digest: 08CRSBukE76Llc4IvztbGoSriT0=
+
+Name: res/drawable-hdpi/img_effect_recommand_pickcount_large.png
+SHA1-Digest: D+d5lbCD+6jdf7Z5vhFzI1vpvaI=
+
+Name: res/layout/loadingview_nodata.xml
+SHA1-Digest: +nZDkGgdTl1dnKLjKvcBPp9YArw=
+
+Name: res/drawable/xml_musiccircle_unfollow_button_bg.xml
+SHA1-Digest: cA1WmFrZj1uJCj/n5AzZuzRw8wE=
+
+Name: res/drawable/xml_musiccircle_state_post_detail_pause.xml
+SHA1-Digest: VbOEYnmng969rO2rNY7Qjp2ZBH0=
+
+Name: res/layout/fragment_new_album_publish.xml
+SHA1-Digest: FPWpKxIgrezTI6/9JA+576oSaAA=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_stone_h
+ ouse.jpg
+SHA1-Digest: 51LnihFmq7nX0tm9pR2k92uH81k=
+
+Name: res/drawable/sliding_menu_shadow.xml
+SHA1-Digest: bFU2wzheqDFgUhyPS/4grKlCLGg=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_pause_norma
+ l.png
+SHA1-Digest: YB+NQBVjo7pdb07YEiAofUAnAkY=
+
+Name: res/drawable/xml_lockscreen_pause.xml
+SHA1-Digest: dz7wvIL++W/zEL4HL7PDxyAs1dM=
+
+Name: res/layout/layout_background_gridview_item.xml
+SHA1-Digest: AOoH/NtPx/lzdBcP1V+3bEvNitE=
+
+Name: res/layout/fragment_skin_local.xml
+SHA1-Digest: 2z8CvuzlH3recZenAm9xm8E5fxc=
+
+Name: res/drawable/xml_background_apshare_red.xml
+SHA1-Digest: W+L6W3SRlusXddiSwj4Zi/4SmDQ=
+
+Name: res/drawable-hdpi/img_effect_reverb.png
+SHA1-Digest: vCkxRbXzirfR5BPFLJ39pH7gC6g=
+
+Name: res/layout/musiccircle_emoticons_layout.xml
+SHA1-Digest: naqdMhbGYPnUaqNwvAZcgCFIbyU=
+
+Name: res/drawable-hdpi/img_landscape_boundary_line.png
+SHA1-Digest: CWkdJ9D5w7NOsXlpIqPtGj4oc2I=
+
+Name: res/drawable-hdpi/img_background_edittext_dialog_focused.9.png
+SHA1-Digest: 6LLW19F+Ytdrv6vIY2DrRLprp2E=
+
+Name: res/layout/cmmusic_dj_listen_activity.xml
+SHA1-Digest: yshZWThR7fOsECfwVx0I8cX7V/k=
+
+Name: res/layout/musiccircle_shake_layout.xml
+SHA1-Digest: iAfZVHXksZV7djI51ASkZPHkPto=
+
+Name: res/layout/activity_setting_card.xml
+SHA1-Digest: 0KT63igzPzwLqWjEFHtw+8OHAKY=
+
+Name: assets/theme/play_bar_sidebar_n.png
+SHA1-Digest: p8+dNkL13ZrDH/2cSKjWTn+Zc30=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_theater
+ .jpg
+SHA1-Digest: GDkP92misPyjrkd+U6Y/4n/E1RQ=
+
+Name: res/layout/layout_comments_fragment.xml
+SHA1-Digest: gX9gbZfh41xLT44j0x4KXSsx1L8=
+
+Name: res/drawable-hdpi/cmmusic_shiting_ing.png
+SHA1-Digest: g4xaXMEEiuDtzfuY1s69h7Wki34=
+
+Name: res/drawable-hdpi/effect_circle_green_middle.png
+SHA1-Digest: mka48b5D+899oUCWBKiy6SXNXVw=
+
+Name: res/drawable-hdpi/img_edittext_user_input_email.png
+SHA1-Digest: 8KVTHSEDdP4P81Vb3BBJ/iGnmp0=
+
+Name: res/drawable-hdpi/img_lyric_color_13.png
+SHA1-Digest: sVHcTSDzvZX1Cz2vr/VFAaxfhlM=
+
+Name: res/drawable/xml_background_textview_user_tencant_login.xml
+SHA1-Digest: lw78913DVl84GDNq+SvBHaDUXl4=
+
+Name: res/drawable-hdpi/img_imageview_retry_load.png
+SHA1-Digest: TR3EgBQ+QVPb0ybXRF020ESkwU8=
+
+Name: assets/landscape/partial-4.png
+SHA1-Digest: RgAVNkhzKnrRyAY12qMSu7Y+Im8=
+
+Name: res/layout/ktv_loader_activity.xml
+SHA1-Digest: 2VnCgEAcTfoRJ6Ok+4wO2/Cm6Oo=
+
+Name: res/anim/qihoo_show_out.xml
+SHA1-Digest: kIUEVpAK6Q2Bc5ModIF6iudZPoY=
+
+Name: res/drawable-hdpi/icon_share_sns_music_circle.png
+SHA1-Digest: hJITkJBNwK+ddKQXbe7y3e9F5eI=
+
+Name: res/drawable/xml_musiccircle_post_detail_header_play.xml
+SHA1-Digest: JdBa2wI9l7B9O6n99UYwokFz/YA=
+
+Name: assets/channel
+SHA1-Digest: hhhWWuaZwalHfPSMgyoSOlL2+Rs=
+
+Name: res/layout/musiccircle_post_detail.xml
+SHA1-Digest: 3byWP9lgfj2mbRqiYlu897DgslE=
+
+Name: assets/landscape/light-star.png
+SHA1-Digest: MpP85ixMa2kgEi7W1Q9npUZiId4=
+
+Name: res/layout/appwidget_layout_91_4x1.xml
+SHA1-Digest: DE8b9Yw1G7dTEGrPoDhAjvtiqw4=
+
+Name: res/drawable/xml_background_button_blue.xml
+SHA1-Digest: AFKP0j4CdniDlCeMRqqS+KovuDY=
+
+Name: res/drawable-hdpi/img_background_ttseekbar_effect_normal.png
+SHA1-Digest: 8DjTn87929CyuLjwxQri8h0tvj8=
+
+Name: res/drawable-hdpi/img_appwidget91_preview_4x1.png
+SHA1-Digest: kCHJZQJH1MbrSWWeSyPZA6HKyo8=
+
+Name: res/layout/musiccircle_entry_profile_header.xml
+SHA1-Digest: mcKLGnq9Rg0MgdyXVQ9SURhH3EI=
+
+Name: res/drawable-hdpi/img_tag_voice_program.png
+SHA1-Digest: Gf8l95ghkcPaoHHksL4pQ5pZ50A=
+
+Name: res/drawable-hdpi/img_background_imageview_userinfo_cover.jpg
+SHA1-Digest: mjnbWQOJ8QSvEbKHXf+Iauvdr+8=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_checked.png
+SHA1-Digest: gqFw0kRMJUAmULKshqOZucGc4j4=
+
+Name: res/drawable-hdpi/img_musiccircle_reply.png
+SHA1-Digest: DXhWtcSAxnzLguzHKUTVd/jJcuI=
+
+Name: res/drawable-hdpi/push.png
+SHA1-Digest: YYi4PHHSkh+QHT6Fhp4XJmce6T4=
+
+Name: res/layout/drag_update_list_header.xml
+SHA1-Digest: GMcYLoVxABvNtAJZT/tF7eR/a2g=
+
+Name: res/drawable-hdpi/img_download_highlight.png
+SHA1-Digest: 6JGE3lO4M0vcNER6KcN3OruIBFs=
+
+Name: res/drawable-hdpi/main_my_unicom_close.png
+SHA1-Digest: PSbdUn7HO44zV/ArAkHnKwhwRxA=
+
+Name: res/drawable-mdpi/img_scan_navigation001.png
+SHA1-Digest: rApRdWL5PlwYdVCqhTehaIPIdmU=
+
+Name: res/layout/market_recommend_top_ten_app.xml
+SHA1-Digest: pAjHh3/hKJ1yOdi4DoMSbFd972o=
+
+Name: res/drawable-hdpi/img_button_minilyric_setting_pressed.png
+SHA1-Digest: +mEU3QLAbBZC0y6s9mOmvBfIn+g=
+
+Name: res/layout/background_list_section_title.xml
+SHA1-Digest: P+sv9Q9q+farSPl0sThUB+p3xsg=
+
+Name: res/drawable/xml_progressbar_download_item.xml
+SHA1-Digest: 6ztlfAKdSXB/sTQu4zzFuagEJ94=
+
+Name: res/drawable-hdpi/img_guide_hand.png
+SHA1-Digest: Q1SXedE0Xg1nWoGCcqnLFrV9/rM=
+
+Name: res/layout/musiccircle_message_empty.xml
+SHA1-Digest: QTZB7+/7vFOwTqehf9ho1hUxYFs=
+
+Name: res/drawable-hdpi/img_button_market_download_normal.9.png
+SHA1-Digest: 3XDhbILgUlXHeabhuyr3hIKuPnk=
+
+Name: res/anim/fade_in.xml
+SHA1-Digest: XJbDeN3+MkUn48v4Cn9wDigLit0=
+
+Name: res/drawable/xml_musiccircle_comment_group_header_bg.xml
+SHA1-Digest: K4h9J5MKD4/nNeQSn1h5Ctccl2c=
+
+Name: res/layout/activity_setting_main.xml
+SHA1-Digest: kZjvX/LjOI/iKWDdPrW/QD8vKSk=
+
+Name: res/layout/fragment_singer_album_indroduce.xml
+SHA1-Digest: KAi2cXIOLUBwFuwD2AYy/Hr7yjw=
+
+Name: res/drawable/xml_background_timing_normal.xml
+SHA1-Digest: bnWOmUgCkJBZ5c039DLTcN1YnRk=
+
+Name: res/drawable-hdpi/img_lyric_kala_on.png
+SHA1-Digest: EbaTRdHk8G+v7GgnDiDlcHCqejQ=
+
+Name: res/layout/cmmusic_recommend_activity_imagebanner_head.xml
+SHA1-Digest: 7DJnwnXUhh+MwXAI6Iu4wagy58A=
+
+Name: res/drawable-hdpi/cmmusic_netword_notfind.png
+SHA1-Digest: TvRlDa6wwSZxdURhYfUQi9a0qRg=
+
+Name: res/drawable-hdpi/img_background_progressbar_mediascan_progress.
+ 9.png
+SHA1-Digest: sL/lJaTZZhKE7pU3HDZd8hlf6xA=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_playmode_normal.png
+SHA1-Digest: C5lB0ucPl9AKuZjRymOOm/v7baI=
+
+Name: res/layout/cmmusic_persional_list_row.xml
+SHA1-Digest: WZt43ZUa5pYrgpczKYTNaILkU8k=
+
+Name: res/drawable/xml_edit_border_feedback_focused.xml
+SHA1-Digest: u66f9LPVPYgQ6xY7qwMNW69RNbE=
+
+Name: assets/landscape/meteor_shower.png
+SHA1-Digest: ooFq3QscjfoWd1w6k71Z21s/39k=
+
+Name: res/drawable-hdpi/img_musiccircle_find_friend.png
+SHA1-Digest: XiaeOW7Xi9ekb6QbmqwgphwxIaQ=
+
+Name: res/drawable-hdpi/img_share_background_dialog_frm_edit_normal.9.
+ png
+SHA1-Digest: 0SMc2nHocmWf/kJJ3EfuGpZBvNk=
+
+Name: res/drawable-hdpi/img_lyric_font_smaller.png
+SHA1-Digest: u9EdhWzWdW56xJ2bOH7zfraNxtU=
+
+Name: res/drawable/cmmusic_viewpager_background.xml
+SHA1-Digest: kFQaWEeWdm3+uHgP1FhntplCgtM=
+
+Name: res/layout/dialog_auto_complete.xml
+SHA1-Digest: NXs+HEIs3Pl8fgTjb09SMoV8JkQ=
+
+Name: lib/armeabi/libmp3decplugin.so
+SHA1-Digest: Dtmr/LEYj7etbUZpxZptwsTJ9E4=
+
+Name: res/layout/activity_actionbar.xml
+SHA1-Digest: Ug1gRmapelNQ/D5ruGAPMl7A1Lo=
+
+Name: res/drawable-hdpi/icon_setting_menu_choice.png
+SHA1-Digest: dC8hFokuXMQGolOMGjEPB3Tsk9M=
+
+Name: res/layout/dialog_confirm_offline_mode.xml
+SHA1-Digest: 2ww1U4shBTYakg0YZdVCM/0OD8g=
+
+Name: res/drawable-hdpi/img_appwidget_playmode_repeatone.png
+SHA1-Digest: X9jVPKilUMamMIecr5Oif8GGwV8=
+
+Name: lib/armeabi/libflacdecplugin.so
+SHA1-Digest: 8t+VPnPOlUuNbRA6rVDXkqucPFM=
+
+Name: res/drawable/xml_background_apshare_receive_normal.xml
+SHA1-Digest: DxAwjfBvkKMKWP7zHhnON3gZBFg=
+
+Name: res/drawable-hdpi/fragment_my_unicom.png
+SHA1-Digest: /7UqkY8JN6qk1nIfhVGiBc64hyc=
+
+Name: res/drawable-hdpi/img_background_appwidget91_default.png
+SHA1-Digest: 20C/UOcBZk5klT4Hdt1DqBNxO0A=
+
+Name: res/drawable/xml_background_play.xml
+SHA1-Digest: aFc/y8T8jhFYyjMjpNK6+C8H84s=
+
+Name: res/drawable-hdpi/effect_pipei_bg.9.png
+SHA1-Digest: Mbax0e905DeUIQan9CYXbBaGTV0=
+
+Name: res/drawable/effect_list_item_bg.xml
+SHA1-Digest: 3aWRY2ApgPOtvYcqFXfXYt9pJ+A=
+
+Name: res/drawable-hdpi/sliding_to_unlock_3.png
+SHA1-Digest: iFwBaUkEUJmVH0+QJ/UOsppHNFk=
+
+Name: res/drawable-hdpi/img_music_default_icon.jpg
+SHA1-Digest: 5nEXqjDAF5WG9nN8BL4wqvHdgbg=
+
+Name: res/layout/section_list_header.xml
+SHA1-Digest: oK2WtR9ZkbjpfU3DZdToFZtKJ70=
+
+Name: assets/channel_logo.png
+SHA1-Digest: QC4PPpLqxVzQxH7M/k6NGRSXEuU=
+
+Name: res/drawable/unicom_trial_button_normal.xml
+SHA1-Digest: vYUmz0huBg/ZVWBJ8SRekYqZcVA=
+
+Name: res/drawable-hdpi/img_online_editor_recommend.png
+SHA1-Digest: MI1r7MdtegqoE93r37xUj3vCyPw=
+
+Name: res/layout/findsong_grid_section_subitem_view.xml
+SHA1-Digest: +yMnHLmlhhy0CONeC16w7w6CY8w=
+
+Name: res/layout/fragment_main_my_header_all.xml
+SHA1-Digest: dWOAWcfm0Yv2rMXheSfGBd+gv9Q=
+
+Name: res/drawable-hdpi/img_download_normal.png
+SHA1-Digest: +snCDEAS/2+PpnP7//s3mQf2rNI=
+
+Name: res/layout/soundsearch_multiresult_head.xml
+SHA1-Digest: 2nchUQc1OJM9In4lrYhwd2TKQ0U=
+
+Name: res/drawable-hdpi/img_imageview_radio_play_animation_1.png
+SHA1-Digest: 72sQd3QA4raEl4PO80HfPQ6X7TM=
+
+Name: res/drawable-hdpi/img_textview_mediascan_wifi_on.png
+SHA1-Digest: tGOdRIBtSeLtTadrgWM9/DLn2zY=
+
+Name: res/drawable-hdpi/img_background_ttseekbar_effect_indicator_pres
+ sed.png
+SHA1-Digest: fRtR3eeKALiy/J380WvLOscVHJo=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_result_pause_normal.
+ png
+SHA1-Digest: kH4kmEEyMaJ2H3S/2PRgpgcTAkE=
+
+Name: res/layout/fragment_base_category_layout.xml
+SHA1-Digest: uuWanPhIplbrlvGLSUbTHyjHDGU=
+
+Name: res/drawable-hdpi/img_button_reload_pressed.9.png
+SHA1-Digest: i+8C04LRWXWXss0k7JDzq0honbA=
+
+Name: res/layout/effect_listview.xml
+SHA1-Digest: KBtwGDqnBjor2yaDvKI+D9hhOBo=
+
+Name: res/layout/fragment_media_online_list.xml
+SHA1-Digest: 1PuOyw1gkZZygwaDx6BroUQw5pc=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_verifyed.pn
+ g
+SHA1-Digest: gCezfURCFn8V4YfqAj89PfiZqg4=
+
+Name: res/drawable/xml_button_reload.xml
+SHA1-Digest: 9Oh1lEzPn/VS7tDEQJwvwP8Abpk=
+
+Name: res/drawable-hdpi/img_imageview_navigate_dot_normal.png
+SHA1-Digest: p64ZzP2EHWpXqGwwoSf9X1D9/2o=
+
+Name: res/layout/media_listview_singer_list_fragment.xml
+SHA1-Digest: u8MgAtGDUVvtaz0po7XUEIihbrc=
+
+Name: res/drawable/xml_background_button_download_show_app.xml
+SHA1-Digest: lO7NDj3yMeQk1/NhF2pnhAcy40I=
+
+Name: res/drawable-hdpi/img_musiccircle_system_announcement_bg.9.png
+SHA1-Digest: 8ZK5QeIvw12y0tooGYTydv5eCRw=
+
+Name: res/drawable/xml_shadow_bottom.xml
+SHA1-Digest: GTv+SpDPfdt4GBFgB4tI3kfnGh0=
+
+Name: res/layout/fragment_group_list.xml
+SHA1-Digest: Lc3NjqbcqR1N4hCr87hIwFW7bc8=
+
+Name: res/drawable-hdpi/img_background_appwidget91_buttons.png
+SHA1-Digest: Kg5cnSmSLwxJWRHbWfvofVmDxjA=
+
+Name: res/drawable-hdpi/img_background_ttpod_music_large_logo.jpg
+SHA1-Digest: nwOF4/GcaPFWq2IXNFrmlxTUkEo=
+
+Name: res/color/xml_share_dialog_button_title.xml
+SHA1-Digest: rwe9MZYq2s3qMT00s0/TheeSE30=
+
+Name: res/drawable-hdpi/img_check_install_pressed.png
+SHA1-Digest: j7lIRBs+QoRqNJ5+gc+xTIFxGN0=
+
+Name: res/drawable/cmmusic_setbar_background_up.xml
+SHA1-Digest: MP93vCrmz/vp4+UiQ7wHNR7ZFpM=
+
+Name: res/layout/fragment_result_search.xml
+SHA1-Digest: wxBAjzJ+fWF2uJ57VDhqHAi6RAA=
+
+Name: res/layout/audio_effect_popup_menu_choice_item.xml
+SHA1-Digest: 7pPY5mCBJDtdr/adfQ+rKCdBMdQ=
+
+Name: res/layout/toast_view.xml
+SHA1-Digest: aco/SVucU1OOz7kJOc4SAAIz3cg=
+
+Name: res/layout/cmmusic_custom_progressdialog.xml
+SHA1-Digest: 2hsTDVmJB5xChnaLO7enAFM2Kcs=
+
+Name: res/drawable-hdpi/img_textview_mediascan_wifi.png
+SHA1-Digest: NgH8uD4HFp+3YMGZ9TYEiwh0VoM=
+
+Name: lib/armeabi/libaudiofxbundle.so
+SHA1-Digest: NmWvsRQVsUceEKLw14db+5uoKrM=
+
+Name: res/drawable-hdpi/img_lyric_color_11.png
+SHA1-Digest: Sr5AQZbypB64/0psrAvBX2m4kCI=
+
+Name: res/layout/fragment_equalizer_all.xml
+SHA1-Digest: evw3JqwRsFmyw0tmXoR72RRDzqY=
+
+Name: res/drawable-hdpi/img_musiccircle_chatting_left_bg.9.png
+SHA1-Digest: XZtb5l1ycJia1KD8gQPIKuf9I64=
+
+Name: res/layout/popups_list_item.xml
+SHA1-Digest: +RGtiqyqiTyJd10iBCIB2dAfG9Y=
+
+Name: res/drawable-hdpi/background_button_offline_continue_normal.9.pn
+ g
+SHA1-Digest: mE1vo4Rx3DarlwIdeOX/h9imPA8=
+
+Name: res/drawable-hdpi/cmmusic_search.png
+SHA1-Digest: pk1Wll5SGFAGB/TTOgbV6RD+5qE=
+
+Name: res/drawable-hdpi/img_download_choise_extension_sd.png
+SHA1-Digest: ryXniD/5XuQ78eP3fcCcRldNvdU=
+
+Name: res/layout/musiccircle_post_detail_header_operations.xml
+SHA1-Digest: +LYBDS2kRPiSnv+cwxZdNwYWp78=
+
+Name: res/drawable-hdpi/img_appwidget91_play_prev_normal.png
+SHA1-Digest: XV8HrrVG2q6BzRbIoo8IoBwHBQs=
+
+Name: res/layout/market_app_category_item.xml
+SHA1-Digest: ktf+wxlMKIldD7r1NgBrw4lcC7s=
+
+Name: res/layout/dialog_effect_share.xml
+SHA1-Digest: o7/EgveakTfxTlpq+EwBTbxDbD8=
+
+Name: res/layout/market_app_list.xml
+SHA1-Digest: Meq4svgz5TeCol6auI4H1zcJQ1I=
+
+Name: res/drawable-hdpi/img_imageview_search_clear.png
+SHA1-Digest: TPgNvc9oTlM/hVPB1utQrGz0J9s=
+
+Name: res/anim/slide_out_right.xml
+SHA1-Digest: Hjih/zHXeLEGY8MMLZlgb00m3hE=
+
+Name: res/layout/new_song_publish_list_header.xml
+SHA1-Digest: 2m/QSRjvKznA+ITn9nU29p9KLTg=
+
+Name: res/drawable-hdpi/smiley_4.png
+SHA1-Digest: OyRYMVBxNGhK+mTs+jd/1bwcCA8=
+
+Name: res/drawable-hdpi/img_market_top_download_close_pressed.png
+SHA1-Digest: ewboTdO/P9GsdIVE2u/UYaS5tuQ=
+
+Name: res/drawable-hdpi/img_menu_indicator_background.png
+SHA1-Digest: 53FRordb43k3UeFQjWTTbmuP+Jc=
+
+Name: assets/build
+SHA1-Digest: aTQGE9gk3CoPZv7yuXIUVQtq4kg=
+
+Name: res/drawable/xml_button_minilyric_color_green.xml
+SHA1-Digest: IPDg1bYmxVRj/hmje5E/33YEKyM=
+
+Name: res/drawable/numberpicker_background_holo_light.xml
+SHA1-Digest: yQ80GLaicYCeuO3stiP6h5Ec9fM=
+
+Name: res/drawable-hdpi/img_mv_progress_icon.png
+SHA1-Digest: RFV2BEqw86MT5AaDtn1nnqKHVTM=
+
+Name: res/layout/fragment_online_mv.xml
+SHA1-Digest: KOSI252Ut/2YmMZUZqVc6apQ8+E=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_play.png
+SHA1-Digest: Ka65SjrLtO0sUdA1FMqpu34BoC4=
+
+Name: res/drawable-nodpi/img_background_market_app_detail_cover.9.png
+SHA1-Digest: fBaxNSQuIYM/39gI+B0J2IKRT+8=
+
+Name: res/drawable-hdpi/img_background_textview_user_register_pressed.
+ 9.png
+SHA1-Digest: D3MuvHAuWO3Pe0+NXleIeF0eG6o=
+
+Name: res/drawable-hdpi/img_background_effect_section_layout.png
+SHA1-Digest: IvwfBKitEv0TQUvpuuOs/5cU+HU=
+
+Name: res/layout/activity_playinglist_header.xml
+SHA1-Digest: 8K9OkRMvPK5Dj4HnNLJIAMiZBTQ=
+
+Name: res/drawable-hdpi/img_lyric_font_bigger.png
+SHA1-Digest: AFa5Qel1GCl5XUVZdS2i85PtPbE=
+
+Name: res/drawable/xml_progressbar_effect_level.xml
+SHA1-Digest: TXFEt4+4HS1TxoINFzIAPMNBi90=
+
+Name: res/drawable/xml_musiccircle_post_star_detail_play.xml
+SHA1-Digest: CPF2CIbwqtATFNTjbdjQAJMVzwE=
+
+Name: res/drawable-hdpi/smiley_2.png
+SHA1-Digest: 79Sd9ptN4AClhH/zyT4SBtvuIn4=
+
+Name: res/drawable-hdpi/img_lyric_color_8.png
+SHA1-Digest: D8JiU0vlpouNWkKa8+/Jzv+yZ7s=
+
+Name: res/drawable-hdpi/img_download_choise_standard_sd.png
+SHA1-Digest: 1DKct3eRplh+VufgQFx5qcB3zO4=
+
+Name: res/layout/popups_lyric_color_panel.xml
+SHA1-Digest: l80cimkmziBP6+Ww5cZuF8UA8lo=
+
+Name: res/layout/activity_setting_feedback.xml
+SHA1-Digest: poo+/V6opgtzpJDGQIc1md1IXk8=
+
+Name: res/drawable/xml_button_minilyric_color_blue.xml
+SHA1-Digest: XqWMZTejzaCCuOlT7cg4r+WcYSo=
+
+Name: res/drawable-hdpi/img_background_play_pressed.png
+SHA1-Digest: yO+qvgmN/nAZhlmJJU4P8O65/9g=
+
+Name: res/drawable-hdpi/img_lockscreen_play_normal.png
+SHA1-Digest: a1PflE1mO7paXGW5RqPKb+BEQBY=
+
+Name: res/drawable/xml_background_apshare_blue.xml
+SHA1-Digest: VKqwkF5UyfS3eabgAdU8CMOtJ1g=
+
+Name: res/drawable-hdpi/img_musiccircle_radar_error.png
+SHA1-Digest: b+J55neq0ZaXJHq3PkbA1FmNE2U=
+
+Name: res/drawable-hdpi/img_online_music_loading.png
+SHA1-Digest: iDZuJmM04OSfvGxiv1H2oYXnoAg=
+
+Name: res/drawable-hdpi/smiley_38.png
+SHA1-Digest: L3ggGqVZGhdqnY5W+oXHFhIEowQ=
+
+Name: res/drawable-hdpi/img_musiccircle_bg_group_normal.9.png
+SHA1-Digest: HraZSIpMREBT2cIUO1+E0zWnNf8=
+
+Name: res/drawable-hdpi/img_button_reload_normal.9.png
+SHA1-Digest: 9ijowOW8AuCl5mzb04eyXZG/A6U=
+
+Name: res/drawable/grid_view_item_click_bg.xml
+SHA1-Digest: AIs6i/AwkipwncSBLOCwC7rrDAI=
+
+Name: res/drawable-hdpi/share_ttpod.png
+SHA1-Digest: N2o8ur8BGrR+sHMVwxY5/TiDwuA=
+
+Name: res/layout/fragment_background_header_layout.xml
+SHA1-Digest: HglkTAlBT9XZAJY/FuFf444Izo4=
+
+Name: res/drawable/xml_background_ttseekbar_effect_indicator.xml
+SHA1-Digest: WblNdWuc5a5NnGB4eSm/33t4BJY=
+
+Name: res/layout/cmmusic_recommend_activity_imagebanner_item.xml
+SHA1-Digest: twHUGRl4JrAAWD3TXdzNoiHXvlw=
+
+Name: res/drawable-hdpi/img_lyric_popup_bg.9.png
+SHA1-Digest: Je1tJfMkll8FzQMQToyKadlQRaY=
+
+Name: res/layout/effect_level_item_content.xml
+SHA1-Digest: ovXGpDd62fCFh8iUuaUE52gcfw0=
+
+Name: res/drawable-hdpi/cmmusic_img_mine.png
+SHA1-Digest: jlHiMapmdurADkUZChtPT7TBHaM=
+
+Name: res/drawable/float_letter_background.xml
+SHA1-Digest: iDxJMnPEsfH6O9HhfqPiCfMvaLI=
+
+Name: res/color/xml_text_tabitem.xml
+SHA1-Digest: kpM7xpuzNOVVYzDbYJEFgoL133c=
+
+Name: res/drawable/xml_audio_effect_popup_menu_list_item_selector.xml
+SHA1-Digest: aoJZEEaj5busgZyyxKws8k990e0=
+
+Name: res/drawable-hdpi/img_musiccircle_search_pressed.png
+SHA1-Digest: pUMjRngBXTZmBnq3RYPR+B9uPpk=
+
+Name: res/drawable-hdpi/img_background_appwidget_album_cover_4x4.png
+SHA1-Digest: V3kU7hXk++htlheOnJ+4RstJXuE=
+
+Name: res/drawable-hdpi/smiley_34.png
+SHA1-Digest: 8Pn9flImVFvtQ+IUDpkTsrbIc+k=
+
+Name: res/drawable/xml_musiccircle_post_detail_header_share.xml
+SHA1-Digest: 6Fjat9fa2SQ1oKjPc4sPUDq5DB0=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_background_top.9.png
+SHA1-Digest: atvbWQ5Wrwx6YWE640haxIas54Q=
+
+Name: res/drawable/xml_background_recommandeffect_item_title.xml
+SHA1-Digest: YkgxFHkxXFrpDUEIh3mwwYfqcfk=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_parlor.
+ jpg
+SHA1-Digest: UntECkekX/MID30oTApruGTt2mA=
+
+Name: res/drawable-hdpi/img_button_market_search_normal.9.png
+SHA1-Digest: c2CvFsD5kX9fvIxVaqguC1QYm90=
+
+Name: res/drawable-hdpi/img_musiccircle_follow_pressed.png
+SHA1-Digest: 4sJsV3LKYad0MczlpZqtYG/EPnk=
+
+Name: res/layout/dialog_share_select.xml
+SHA1-Digest: s7t2iDD1VFvUZLhwArUPjPfVnrc=
+
+Name: res/drawable-hdpi/smiley_3.png
+SHA1-Digest: 4YQkQvT4P8BUQdArLDPrgH09DAM=
+
+Name: res/drawable/xml_musiccircle_list_item_divider.xml
+SHA1-Digest: emAf/L43O5kL5rBbOc8aujWFMhY=
+
+Name: res/drawable/xml_background_button_market_send.xml
+SHA1-Digest: sICtHtCxDl8Utbes+2ZkRGifc9s=
+
+Name: res/drawable/xml_background_skin_background_item.xml
+SHA1-Digest: skozbysleto1GTQC2ZOMOK6GsRc=
+
+Name: res/drawable/xml_button_minilyric_color_yellow.xml
+SHA1-Digest: oTiQRPXbOoQy6T1GesNcxowlzMQ=
+
+Name: res/drawable-hdpi/smiley_33.png
+SHA1-Digest: 4rPXs/u897kwWYgDv8F47xcP2ug=
+
+Name: res/drawable/unicom_unsubscribe_button_normal.xml
+SHA1-Digest: SkiplKZokrG7n26aPzrFUvsDCOQ=
+
+Name: res/drawable-hdpi/img_imageview_search.png
+SHA1-Digest: YMAPggUBaX3b8mzK/DDlge9HbUw=
+
+Name: res/layout/audio_effect_gridview_item.xml
+SHA1-Digest: 48my4cMTxSsMl2pzHeEK/uuIbIg=
+
+Name: res/drawable-hdpi/cmmusic_img_back.png
+SHA1-Digest: RDrn4QA1tFbj+/nUJiEG5MOID2U=
+
+Name: res/drawable-hdpi/img_list_item_menu_arrow_down.png
+SHA1-Digest: CQ9FbhpgDS/MPE9KnA+wes0S0D4=
+
+Name: res/drawable/xml_seekbar_thumb_volume_landscape.xml
+SHA1-Digest: UUxZJmr/0GB/rdzIBK47C0pOIo4=
+
+Name: res/drawable/xml_background_edittext_dialog.xml
+SHA1-Digest: BWO0J7fIca3q+AoXb3sUJOuiBP8=
+
+Name: res/drawable-hdpi/img_musiccircle_table_divider_line.9.png
+SHA1-Digest: PGueR002RRWILle4RzLkkL5iAf8=
+
+Name: res/drawable-hdpi/img_button_minilyric_previous_normal.png
+SHA1-Digest: 68RcEkct9mWL1y2jgy39srj+qC4=
+
+Name: res/anim/translation_in_bottom.xml
+SHA1-Digest: b0Afh/+C3nI/ep70Cdyv10nip1A=
+
+Name: res/drawable-hdpi/img_button_minilyric_close.png
+SHA1-Digest: kWfuc6Y+t87StSyVAnLhVnKCjbA=
+
+Name: res/layout/activity_setting_lockscreen.xml
+SHA1-Digest: eYHM4Zp1QvBQsQvQLWBHWqreVSw=
+
+Name: res/layout/sub_fragment_container_layout.xml
+SHA1-Digest: dWZTIzlPuc7Ye1AqsgXLMi1kEjY=
+
+Name: res/drawable-hdpi/img_background_panel_minilyric_setting_center.
+ 9.png
+SHA1-Digest: 7VHjZBgvvkGWJme8UWqdo8meRhU=
+
+Name: res/anim/interpolator_cycle_7.xml
+SHA1-Digest: vCVUKJashiI9G2MsSj5z9i66icU=
+
+Name: res/drawable-hdpi/img_album_download_unchecked.png
+SHA1-Digest: wBqoeULJGKNzjCHfdrTxfNzsoog=
+
+Name: res/drawable-hdpi/icon_share_sns_tencent.png
+SHA1-Digest: qqTyQXI3AFiF8NXX7kDVvdZaEuo=
+
+Name: res/drawable-hdpi/img_background_imageview_crop_cancel.png
+SHA1-Digest: RD+de0aFCNssUsZoQFtbRIEzD5o=
+
+Name: res/layout/theme_list_item.xml
+SHA1-Digest: kF1066nQGYnr33yKPcXvA9U6YSA=
+
+Name: res/drawable-hdpi/ic_launcher.png
+SHA1-Digest: Vj/qhxk8ic8FE0/kT6E3vgRJ4mE=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_state_regoznizing.pn
+ g
+SHA1-Digest: r3NKJ42QmHRmKMPr4qDOHefuiWs=
+
+Name: res/drawable-hdpi/img_appwidget91_play_next_normal.png
+SHA1-Digest: V4ZJFOmicz5D1YPYhJeMlmJDil8=
+
+Name: res/drawable-hdpi/img_match_piclrc_stop.png
+SHA1-Digest: 9qqoZsXVLDu66ObaC+WoCU4Dy+Y=
+
+Name: res/drawable-hdpi/spectrum_2.png
+SHA1-Digest: 9TAhEBISY/ij2PTYlJnN2mkf0tQ=
+
+Name: res/layout/singer_detail_header.xml
+SHA1-Digest: UStMu9BSzaW+gljKRBQL9ETKfD0=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_equalizer_hand
+ pick_dance.jpg
+SHA1-Digest: ZgbZCSt2Hab2hanFCn2ZhA3nc8g=
+
+Name: res/drawable-hdpi/img_textview_mediascan_start.png
+SHA1-Digest: 15xxgHcNJJiMNeIZZHvGmwdwcHM=
+
+Name: res/layout/activity_custom_equalizer.xml
+SHA1-Digest: hPUXm8hISL38opo4iKWk610Xu44=
+
+Name: res/drawable-hdpi/img_musiccircle_radio.png
+SHA1-Digest: mec/S5Vq8QgfT+mgT6aPk18k+M8=
+
+Name: res/drawable-hdpi/img_button_market_update_pressed.9.png
+SHA1-Digest: 5DCJczNR/tXPYXMXeBKLqjuOM5w=
+
+Name: res/drawable-hdpi/img_effect_level_junior.png
+SHA1-Digest: ja5+bid8I+D0Ukpq5ZVBg7iiUWg=
+
+Name: res/drawable-hdpi/img_contextmenu_mv.png
+SHA1-Digest: tF7hzHxYusewxvhrSrGM0sjWfHc=
+
+Name: res/layout/ktv_connect.xml
+SHA1-Digest: qdlrzcgK+WCzY+SZwV0DiuJxRvw=
+
+Name: res/drawable-hdpi/img_background_checkedtextview_effect_boost_li
+ mit_normal.png
+SHA1-Digest: vZh3qwItcwtlLOG3H1meEDSqNsM=
+
+Name: res/drawable-hdpi/img_market_top_download_close_normal.png
+SHA1-Digest: SX7Mw4EM8ewuk+4LEY+UOlmj3oY=
+
+Name: res/drawable/cmmusic_dialog_background.xml
+SHA1-Digest: gT6wy8T1qn5ZmcK/aYaM0ETGNQ4=
+
+Name: res/color/xml_online_list_item_title.xml
+SHA1-Digest: UGtHop73koF1j2iTrpCshlYDUk4=
+
+Name: res/drawable/xml_audio_effect_popup_menu_list_item_divider.xml
+SHA1-Digest: JcYtup7k5ogEmoK0mJFFDIFrlRE=
+
+Name: res/layout/myeffect_list_item.xml
+SHA1-Digest: JXCQFpKvb5O2GDaSYSIfKqQ5NZ8=
+
+Name: res/layout-xlarge/cmmusic_funny_listen_activity.xml
+SHA1-Digest: 1x/zu+OOsMQD6kByiZb72uDsm5M=
+
+Name: res/layout/musiccircle_user_info_item.xml
+SHA1-Digest: vippG07JH9jY7Mv2mMLhntac/6M=
+
+Name: res/drawable-hdpi/img_show_dialog_frame.9.png
+SHA1-Digest: anJYssJy5rDTPj72vf+G4Ri2iDA=
+
+Name: res/layout/action_bar_search_listview.xml
+SHA1-Digest: RuVy17RgoFgXy9fLy5TWQweD0nw=
+
+Name: res/layout/find_song_singer_category_with_num_grid_list_view_ite
+ m.xml
+SHA1-Digest: rcHLgZe354LIaTp/TCAuSFetIxY=
+
+Name: assets/landscape/LV-2.png
+SHA1-Digest: xj2WnRBZEdN1KUBDaWsNKxaQnuo=
+
+Name: res/layout/fragment_audio_effect_boost.xml
+SHA1-Digest: 7JzO7ytzVaRcx/0hicVVgXBDVS8=
+
+Name: res/drawable/xml_musiccircle_post_detail_header_playpause.xml
+SHA1-Digest: TrNPCb2KTFgGpSiD+CmomlJWCHw=
+
+Name: res/anim/scale_in.xml
+SHA1-Digest: P0SmzlTph4IpeEGi8vwcNEAgatM=
+
+Name: res/layout/dialog_recommends_effect_help.xml
+SHA1-Digest: Ybg83c1ZAaoymCkdm3nNeeuaMOM=
+
+Name: res/drawable-hdpi/img_musiccircle_search_box.9.png
+SHA1-Digest: bCifldrlGscKEGjKFRK0Do4W3D4=
+
+Name: res/layout/rank_category_footer.xml
+SHA1-Digest: kMHa1J1Kp9kZmY6t+EfW6TyDwSA=
+
+Name: res/drawable-hdpi/img_appwidget_preview_4x4.png
+SHA1-Digest: KLAKWTklBFmRcdhN+rmkfWp+52Q=
+
+Name: res/drawable-hdpi/img_musiccircle_favorite_mark_no.png
+SHA1-Digest: fc3hl6w/orYJ59JzMhAZgXzXDj0=
+
+Name: res/drawable-hdpi/recommends_effect_nodata_cry_face.png
+SHA1-Digest: BWjghmTlPXoEEEcrBaVMFD44P+E=
+
+Name: res/drawable-hdpi/img_background_textview_effect_custom_save_pre
+ ssed.9.png
+SHA1-Digest: ACNCS9/mwvENA2EWQ7EF4cyZJIw=
+
+Name: res/layout/activity_lockscreen.xml
+SHA1-Digest: PNBd5tcinYZI5qtL4PeS+54OWUQ=
+
+Name: res/drawable-hdpi/icon_song_list_listen_count.png
+SHA1-Digest: nEno0m9HvS7DA/5WYf560Msj24k=
+
+Name: res/layout/musiccircle_recommend_post_list_layout.xml
+SHA1-Digest: ooQo0U4q1eUJqlafX3EmQXLhPow=
+
+Name: res/drawable-xhdpi/img_ttpod.png
+SHA1-Digest: j+5LfSmE0ff4tTOMjZ6ooaILFd0=
+
+Name: res/layout/beauty_list_item.xml
+SHA1-Digest: 3EefJNrLdCTvt8k32Zo+vqckfc8=
+
+Name: res/drawable/xml_background_ttseekbar_knob.xml
+SHA1-Digest: SgAOShfgRL7BtSYBYggcYjoIM0E=
+
+Name: res/drawable-hdpi/img_choose_photo_for_background.png
+SHA1-Digest: 0/3BUjZaylaGFN48/6kL4Gm8TFs=
+
+Name: res/drawable-hdpi/img_imageview_navigate_dot_focused.png
+SHA1-Digest: nEjfwdDqVUOxsVKSMmvllqagemA=
+
+Name: res/drawable-hdpi/img_background_button_download_clear_finished.
+ png
+SHA1-Digest: QMSNFDa+oprUzPk8iqMhSbAT5Tc=
+
+Name: res/layout/effect_list_item.xml
+SHA1-Digest: qICHWsRWGzDvy2d5ZzPuHw2XVL0=
+
+Name: res/drawable/xml_background_search_third.xml
+SHA1-Digest: zWk6wjxFeXTebmk89gDh35uLmXA=
+
+Name: res/drawable-hdpi/img_button_minilyric_next_pressed.png
+SHA1-Digest: WTLNDqis5LUGHnt3/CKSaDYtj5w=
+
+Name: res/drawable-hdpi/img_skin_default_thumbnail.png
+SHA1-Digest: EAozWwAd2/QmrWlcyf5fqFoq3+A=
+
+Name: res/layout/layout_theme_item.xml
+SHA1-Digest: 69Jp+AzMaw3NB6cR+B8IoD//yyw=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_equalizer_hand
+ pick_common.jpg
+SHA1-Digest: f2ZuDo7UF+m6P9cKdirP/2iIQ6k=
+
+Name: lib/armeabi/libaudiofxreverb.so
+SHA1-Digest: EFJjKE80/FivPGdp5bV5eQIJ1C4=
+
+Name: res/drawable-hdpi/img_contextmenu_send.png
+SHA1-Digest: 64cJiXDBHMLRkH9InP5xFLde0vs=
+
+Name: res/drawable-hdpi/img_background_market_default.9.png
+SHA1-Digest: XyXb0D6oFxzblXvw0eUSBYAtao8=
+
+Name: res/drawable-hdpi/img_notification_artist_default.png
+SHA1-Digest: xPglHfRyhEI5kLVM1USqjlW/w4w=
+
+Name: res/drawable/xml_background_linearlayout_userinfo_table_line.xml
+SHA1-Digest: UDi+Dd3t3EHXo4ta4hvk9c4ki9Q=
+
+Name: res/drawable-hdpi/img_lyric_color_1.png
+SHA1-Digest: oc/y/IvYWa/QyeZDabSiIKb/xxM=
+
+Name: res/drawable/xml_lockscreen_pre.xml
+SHA1-Digest: swLkTsxsYW/K9JWyNIfshMQQI6s=
+
+Name: res/layout/share_popups_header.xml
+SHA1-Digest: E994DzM3rnsnjcvQONjX8V2JYtc=
+
+Name: res/drawable-hdpi/img_music_more.png
+SHA1-Digest: ms5NbfQA9+pUlefXGAxl8XYBU0A=
+
+Name: res/drawable/xml_background_button_market_download_disable.xml
+SHA1-Digest: baI7p7B3bO1geJGACK2G+GtJuJc=
+
+Name: res/drawable/xml_unicom_flow_edit_normal.xml
+SHA1-Digest: XJVgcZmHfR2Oy6/Oa2gUG70qdj8=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_play_normal.png
+SHA1-Digest: Ka65SjrLtO0sUdA1FMqpu34BoC4=
+
+Name: res/drawable/xml_seek_bar_volume_progress.xml
+SHA1-Digest: bRzONsdfWFWUupothVJ6Y5gYvGk=
+
+Name: res/layout/find_song_hot_song_item.xml
+SHA1-Digest: ENNesGDC1HYP8zSKS278ZGQ1Zqo=
+
+Name: res/drawable/recommand_bj_xml.xml
+SHA1-Digest: skfj7YBtLRh2U4bncfA7S90FxUE=
+
+Name: res/layout/sliding_ui_guide.xml
+SHA1-Digest: 48nV41MZUGV4GgTykGTYL/yCr5o=
+
+Name: res/drawable/xml_dialog_progress.xml
+SHA1-Digest: JBu2LRIiqfPM+Qf3XUCVeSmh4NU=
+
+Name: res/drawable-hdpi/img_button_minilyric_font_zoom_in_pressed.png
+SHA1-Digest: fgROqBnZyrVFW2zrF9Ou9WrY064=
+
+Name: res/layout/market_app_hot_words_list_item.xml
+SHA1-Digest: zqCCW9BtqyC2Dl8N1IrkkrqCw2g=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_none.jp
+ g
+SHA1-Digest: K+6jOTAPjAXK5olrjwc+cG6sFkk=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_equalizer_hand
+ pick_hip_hop.jpg
+SHA1-Digest: ex4pkGTeIrUrWKsUDLlCo/YWCJ0=
+
+Name: res/drawable-hdpi/img_button_minilyric_next_normal.png
+SHA1-Digest: oggQkAQsAn0Mr+d4OScqf0x4AUw=
+
+Name: res/drawable-hdpi/img_musiccircle_search_normal.png
+SHA1-Digest: bURHsQNxikWfdEQeaJx3M+tLvEc=
+
+Name: res/drawable/xml_button_minilyric_color_pink.xml
+SHA1-Digest: GYBFH/HkB96iHClA1J7mE4Jw62Y=
+
+Name: res/drawable-hdpi/background_song_list_author.png
+SHA1-Digest: NeksYoasB8ZGaNjScSHszc2rrOo=
+
+Name: res/layout/find_song_grid_view_item.xml
+SHA1-Digest: zYstsmBMUFxKUoeded5vS/tNgkg=
+
+Name: res/drawable/xml_share_listselector_item_default.xml
+SHA1-Digest: dpwM5+HTiINx5070moudcMrhyWM=
+
+Name: res/layout/layout_introduciton_tags.xml
+SHA1-Digest: 1yhDvUkzjvo5alDIrVQAJZAzHcY=
+
+Name: res/drawable/signal_circle.xml
+SHA1-Digest: JXiODv0u0rmzjJepC0gYQ42+WBI=
+
+Name: res/drawable-hdpi/img_landscape_switch_new_pressed.png
+SHA1-Digest: 2riUGhZPhINpFgVTH7+MJN5pSoM=
+
+Name: res/drawable-hdpi/smiley_25.png
+SHA1-Digest: FfhbntoxXVjx3qNheqUy7t4KBP4=
+
+Name: res/drawable-hdpi/img_appwidget_play_prev.png
+SHA1-Digest: H8IghqBbx/2vq6cfNMHmMIO9ncs=
+
+Name: res/drawable/xml_musiccircle_post_detail_playpause.xml
+SHA1-Digest: 2KSje3zA8/J/3oubbuklNHnXVqw=
+
+Name: res/drawable-hdpi/img_audio_effect_reverb_grivd_view_unselector.
+ png
+SHA1-Digest: 28bXeYWpVjUCTErbPQjP15Qmts4=
+
+Name: res/layout/fragment_singer_albums.xml
+SHA1-Digest: TOUhvtM550+oKHwgXnHXwvIxLC0=
+
+Name: res/drawable-hdpi/img_button_notification_play_pause.png
+SHA1-Digest: +UYJ40BKDnm6eB0toGyl09xGVEY=
+
+Name: res/drawable-hdpi/img_radial_data_bg.9.png
+SHA1-Digest: A4F655UizwU+jlog1r0k0I47XRU=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_parking
+ _lot.jpg
+SHA1-Digest: 3uxtehHTb7gKfXapEzXVMgh7lUE=
+
+Name: res/layout/album_list_item.xml
+SHA1-Digest: F1TxbbN8xhpmOcoDJcnTfVzlCx8=
+
+Name: res/drawable-hdpi/song_erro.png
+SHA1-Digest: +cVkI1tBQS2BKR7/huSzvhT7HdU=
+
+Name: res/layout/market_top_ten_app_item.xml
+SHA1-Digest: RpH7ImQY2ucpxp9nQbPb5n253DY=
+
+Name: res/drawable/cmmusic_tab_tools_selector.xml
+SHA1-Digest: Se2lqtHQg7ewm1H4j15FYKKX3wg=
+
+Name: res/drawable-hdpi/smiley_24.png
+SHA1-Digest: JJhuvsJgGbpOjxVwYK5BKlt+i7g=
+
+Name: res/drawable/xml_background_eq_match.xml
+SHA1-Digest: 7gVmwxKV4QoMkaeHvZcGoCB9xq4=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_download_normal.pn
+ g
+SHA1-Digest: ugGmaIBrbxzjAff0NvFe50qJ+Ss=
+
+Name: res/drawable-hdpi/img_contextmenu_adjust_lyric.png
+SHA1-Digest: apu5so4NDjaYEtVXZyp3Tbm+dNc=
+
+Name: res/layout/layout_post_detail_title_bar.xml
+SHA1-Digest: 1Sf7ZQeynBetkGSdzPcjlTXGPFw=
+
+Name: res/drawable/cmmusic_edittext_background.xml
+SHA1-Digest: d+Q0Pci9YGjtzhafhlN9cnEyRUQ=
+
+Name: res/drawable-hdpi/icon_share_sns_qq.png
+SHA1-Digest: GY/itE0qOctS4U3qrfHCsyeHqX4=
+
+Name: res/layout/fragment_download_select.xml
+SHA1-Digest: 9496rKI0DVWmoqJwe6GjXW0+zow=
+
+Name: res/layout/fragment_audio_effect_equalizer.xml
+SHA1-Digest: CYCJalvO76nDNqnd4d3HeyGfxNI=
+
+Name: res/drawable-hdpi/unicom_radio_unselect.png
+SHA1-Digest: Z8NmzEgGJMRzvAKMr8BO265CjEk=
+
+Name: res/drawable-hdpi/img_musiccircle_repost_bkg.9.png
+SHA1-Digest: uYYclfeuqOdiw94LS0s3XIdNKIQ=
+
+Name: res/layout/activity_online_search_entry.xml
+SHA1-Digest: acBRpVAvVovB7HWe1xa55EvSffc=
+
+Name: res/layout/fing_song_grid_view_normal_item.xml
+SHA1-Digest: JbALiNSbZ3Y+pRZTIYQGxGmyLhk=
+
+Name: res/layout/dialog_optional_text.xml
+SHA1-Digest: OwCNHFUQe9hhsb/t4jCDgeqTaBg=
+
+Name: res/drawable-hdpi/img_button_minilyric_font_zoom_out_pressed.png
+SHA1-Digest: UVUcGSMFg9Pq82E3XzbTY0WeB0Y=
+
+Name: res/layout/activity_setting_other.xml
+SHA1-Digest: gictm8LdQHu82j2V5XxyoItRfoA=
+
+Name: res/drawable-xhdpi/img_button_market_update_normal.9.png
+SHA1-Digest: mIYgwxLxfQMF67eBkr+mfcF7m6w=
+
+Name: res/drawable-hdpi/img_background_appwidget91.png
+SHA1-Digest: EvVu1hoUCL1bcWExmBJFuNx4QQ8=
+
+Name: res/layout/cmmusic_personal_listen_control_activity.xml
+SHA1-Digest: L6SuaXuuLohJ7R1ulL+KBdzcqgg=
+
+Name: res/drawable-hdpi/unicom_mv.png
+SHA1-Digest: yhoZMQCf4rMgJFS6xY9xE/LVQSI=
+
+Name: res/layout/activity_reverb.xml
+SHA1-Digest: C1e5VYFe7KGW4PZpKI96MWCs5zk=
+
+Name: res/drawable/xml_background_download_area.xml
+SHA1-Digest: TKlrZ/HcJ0jcGV9OCLbm/XwYX4U=
+
+Name: res/drawable-hdpi/img_background_search_report_error_normal.9.pn
+ g
+SHA1-Digest: gyQ547zBWegKSmac1HI0VUVYNFA=
+
+Name: res/layout/stateview_fail_local_media.xml
+SHA1-Digest: tEklSNCvs1n+T/5BWEefCxkK2r8=
+
+Name: res/layout/cmmusic_listen_control_acitvity.xml
+SHA1-Digest: u7pc0xiO6Nl8XJSQHOKw2tS15pM=
+
+Name: res/layout/layout_find_song_gridview_image.xml
+SHA1-Digest: g5aBQDB/xc721Wj0qy1oHabXqFg=
+
+Name: res/drawable-hdpi/icon_unicom_flow_open.png
+SHA1-Digest: 6niewQXJGiHP0UwfwS2dQOSsoTA=
+
+Name: res/layout/popups_header.xml
+SHA1-Digest: vI1nsxTffHE4iiU47XB68pmSNxQ=
+
+Name: res/layout/musiccircle_comment_item.xml
+SHA1-Digest: hydiDi380FOxskb6/CH3C7KW9xk=
+
+Name: res/drawable-hdpi/img_appwidget_playmode_repeat.png
+SHA1-Digest: S80YzrbJbw2KHfAGhLzNUcYSTvs=
+
+Name: res/drawable-hdpi/img_tag_hot_activity.png
+SHA1-Digest: WtDsjuGqRvMcynb9vanRUS88n88=
+
+Name: res/drawable-hdpi/img_background_pause_pressed.png
+SHA1-Digest: MXxPU6SLXArZdbCzj+qPq67FnEY=
+
+Name: res/drawable-hdpi/img_indicator_line.png
+SHA1-Digest: Ob6ex0suZYQTbZVF7JldpaHXo/Y=
+
+Name: res/layout/musiccircle_message_comment_item.xml
+SHA1-Digest: 3XY0Wz/FcR8xVFYhCnZ3p6dCMyA=
+
+Name: res/drawable-hdpi/img_background_textview_sound_recognizer_norma
+ l.9.png
+SHA1-Digest: IAntJxIVstcisHW+Wac0SRhuHrQ=
+
+Name: res/drawable-hdpi/dialog_optional_selected.png
+SHA1-Digest: J4eFRVBP1d+HsqPpaVyUsCAeTYw=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_concert
+ .jpg
+SHA1-Digest: bSJ/RjhYtfngU1Sb5E/UP3S8vdY=
+
+Name: lib/armeabi/libapedecplugin.so
+SHA1-Digest: HzjNScVK4KM8d//F12+UuixyQDM=
+
+Name: res/drawable-hdpi/img_button_next_landscape_normal.png
+SHA1-Digest: 6b5LXDdbAXoTK2YyZBM1iXrWzrY=
+
+Name: res/drawable-hdpi/img_button_minilyric_blue_pressed.png
+SHA1-Digest: xoeydvXUBfUWPbgVbXcSbVMISbQ=
+
+Name: res/layout/fragment_audio_effect_reverb.xml
+SHA1-Digest: QNTUmkEiy/9V61hXbTKLPL33oVg=
+
+Name: res/drawable/xml_musiccircle_search.xml
+SHA1-Digest: vhRvsc3uSm+rsY9zDOHq41U8qmM=
+
+Name: res/drawable-hdpi/img_market_list_divider.png
+SHA1-Digest: 3wsfB728JqWL7xzQOTSy3uMsEQU=
+
+Name: res/drawable-hdpi/unicom_listen_song.png
+SHA1-Digest: poooq6pqFYv8+mThjc0dRszpm64=
+
+Name: res/drawable-hdpi/cmmusic_tab_tools.png
+SHA1-Digest: NIpP9Awc7gWS4fQZIXjDcf1EmLA=
+
+Name: res/color/xml_textcolor_userinfo_bind_state.xml
+SHA1-Digest: lYqh4gKyd+poJFpI4Vg/xjAXSTE=
+
+Name: res/drawable-hdpi/img_lockscreen_next_normal.png
+SHA1-Digest: QR7bUhs0RGB+9vrr44s2CCW6Kjw=
+
+Name: res/raw/torus.png
+SHA1-Digest: mG+zx/CMCDjt00buv70zUMRRR74=
+
+Name: res/drawable-hdpi/img_background_textview_user_sina_login_presse
+ d.9.png
+SHA1-Digest: l7cKPIMFntMZBc+L9fYa97hMTRY=
+
+Name: res/drawable-hdpi/img_background_skin_start_download.png
+SHA1-Digest: 8l5rFEwoFI5Woca+eq7c2aFULmg=
+
+Name: res/drawable-hdpi/img_musiccircle_radar_line.png
+SHA1-Digest: z4Xd9iv8dvB8Vc+Xmc4P+NI5Thk=
+
+Name: res/layout/activity_myeffect.xml
+SHA1-Digest: qD9D1D6ZuPgzuqZYYCT6a/M+wYE=
+
+Name: res/layout/activity_crop_image.xml
+SHA1-Digest: 695+QY5FVyMb0D4pkZuALAitJm8=
+
+Name: res/drawable-hdpi/img_background_error_page.png
+SHA1-Digest: Q3zFNOV8MsAu0X6DdrSS9AszHJs=
+
+Name: res/drawable/xml_background_button_offline_continue.xml
+SHA1-Digest: 0/yJFDbWu8nC1ziZqARfJMLDFRk=
+
+Name: res/layout/activity_effect_level.xml
+SHA1-Digest: DwDOnc6RETe/lw7s4enGEzwyIRg=
+
+Name: res/drawable-hdpi/img_favorite_count.png
+SHA1-Digest: S+wCJdYu8Phqld7PeNlQVmvj19c=
+
+Name: res/drawable-hdpi/img_contextmenu_error_report.png
+SHA1-Digest: 4WOMsWo9jhgQsDjzy9YBirpyK9s=
+
+Name: res/layout/dialog_media_info.xml
+SHA1-Digest: 1ODC8ruPJDlom2f8KZ0CxiSUMIg=
+
+Name: res/drawable-hdpi/img_button_toggle_off.png
+SHA1-Digest: Ghr1k76iegw5trwdygnali0CTNQ=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_result_download_pres
+ sed.png
+SHA1-Digest: wcHoYo2CxJF4OKrmJfuS59ivRiM=
+
+Name: res/drawable-hdpi/unicom_radio_select.png
+SHA1-Digest: x/ffPiY2K6yoxnj8MIQg6sWNcDc=
+
+Name: res/drawable-hdpi/img_background_textview_effect_custom_save_nor
+ mal.9.png
+SHA1-Digest: /HEgB28sL2HolHLO4qJqlc5bqbE=
+
+Name: res/layout/action_bar_action.xml
+SHA1-Digest: DZv2KNHdJUHovB1j4J//f5S6Qis=
+
+Name: res/layout/popups_lyric_pics_panel_item.xml
+SHA1-Digest: aGRhXjibExeXv7YYaaYKXwnxYIE=
+
+Name: res/drawable-hdpi/img_bttton_lock_landscape_pressed.png
+SHA1-Digest: z99F9vI2gHM0SWt/X6j0X26q4z4=
+
+Name: assets/landscape/wu-1.png
+SHA1-Digest: CPBCDw10UmdOBA28KX65WM5gUiY=
+
+Name: assets/category_list/category_bkg.json
+SHA1-Digest: cjCcmzwZrUH5+G6iLPdQ7bhyNvE=
+
+Name: res/layout/musiccircle_starlist_layout.xml
+SHA1-Digest: 4ikUkV/Q2Gs1mw3hojE6iNya7cM=
+
+Name: res/drawable-hdpi/img_background_media_edit_panel.9.png
+SHA1-Digest: YqKybQNK5bG7+iKgImOqCtZT3A4=
+
+Name: res/drawable-hdpi/img_page_indicator.png
+SHA1-Digest: UNIJe7R/tHS19jAEL6OB5HSIbr8=
+
+Name: res/drawable-hdpi/unicom_month_end_info.png
+SHA1-Digest: JEpeBkMVOLNcd0do3vbHvL75pu8=
+
+Name: res/drawable-hdpi/img_online_music_small_logo.png
+SHA1-Digest: q6Y+OU8Ydyw3PdOeO8Izeg7vAro=
+
+Name: assets/green.cfg
+SHA1-Digest: Izxx4bouIz2WgrfrEqTES7ycez4=
+
+Name: res/drawable-hdpi/img_background_effect_button_share_pressed.9.p
+ ng
+SHA1-Digest: xKGMuj7KsOoBROD2GbyfFg/DIaQ=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_title.png
+SHA1-Digest: YeyR/F27IBWcX1hJJWwgR4hQ0Kw=
+
+Name: res/color/xml_text_tabitem_transparent.xml
+SHA1-Digest: 5L/wplKxhN36/0nnBpgcJWf45Mk=
+
+Name: res/drawable/xml_media_controller_seekbar.xml
+SHA1-Digest: ApH1+ZOkPCcrJ68qcZU6/53X31w=
+
+Name: res/drawable/xml_appwidget_play_progress.xml
+SHA1-Digest: SGRJFfT22Vl59SWmmBCeKbWLuSs=
+
+Name: res/drawable/xml_appwidget91_voice_play.xml
+SHA1-Digest: jzxlR8qoWtSxkzfx/jwMIWtBfqw=
+
+Name: res/drawable-hdpi/img_background_effect_rotatebutton_indicator_p
+ ressed.png
+SHA1-Digest: kIJeddiwKQcn+yHMJ6XItcBF/bQ=
+
+Name: assets/theme/play_bar_play_next_n.png
+SHA1-Digest: NU/sqhupCvk8wHridg78WcZ8KVQ=
+
+Name: res/drawable-hdpi/img_avatar_default.png
+SHA1-Digest: +ceYoB7xSNFEzBVc+RW3UJxV8j4=
+
+Name: res/drawable/recommand_zan_xml.xml
+SHA1-Digest: /jduPE+/IXbrAE7i7vf4y7Prxpo=
+
+Name: res/drawable-hdpi/img_dialog_seekbar_thumb.png
+SHA1-Digest: XlAisIA+RMdd3Oj6o1OiewJ9ULE=
+
+Name: res/drawable-xhdpi/img_background_market_app_category_list_item.
+ 9.png
+SHA1-Digest: Nl5RhcYi7mGmqU6WWFmBTtl4oQ0=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_city.jp
+ g
+SHA1-Digest: j/XfM9lpkHW7pkutpySjAFfWD2w=
+
+Name: res/drawable/xml_background_apshare_delete_normal.xml
+SHA1-Digest: 0UVnQGORKH0pq2z+3dTvJlpYJeg=
+
+Name: res/drawable-hdpi/img_button_pause_landscape_pressed.png
+SHA1-Digest: FbQ2DOsjynP8Tkzev7QfcJPkuLk=
+
+Name: res/drawable-hdpi/img_lyric_pics_volume_thumb.png
+SHA1-Digest: foiTC/Bteph84Wp8UzQR3hgmzZc=
+
+Name: res/drawable-hdpi/img_dialog_waiting.png
+SHA1-Digest: aD4Eaygbluiy1zUoaMvL1iG1iA0=
+
+Name: res/layout/activity_setting_lyric_pic.xml
+SHA1-Digest: 1UKeXD9g23cdM+EHY/r6HXRPrJs=
+
+Name: res/drawable-xhdpi/img_button_market_update_pressed.9.png
+SHA1-Digest: qh+ZtE4o1VK6kMMqpgKXcblnGqY=
+
+Name: res/layout/picture_manager_item.xml
+SHA1-Digest: /TPOCg9CL+3jsrcx7mYIdX4A4wY=
+
+Name: res/drawable-hdpi/img_background_appwidget_bottom_4x4.9.png
+SHA1-Digest: e983h0xr9UUS1sAbYCHC/XRuVMk=
+
+Name: assets/com.tencent.plus.gray_normal.png
+SHA1-Digest: P6NA2qEQVIJ4nGyUaUEQaY6LYrQ=
+
+Name: res/layout/fragment_search_result.xml
+SHA1-Digest: /Fek2nkK/TrVbhAcqd2Lz4OTTFg=
+
+Name: res/drawable-hdpi/img_button_market_disable_normal.9.png
+SHA1-Digest: I7wHFQKd+OXoppmDvtS7Y98FnY4=
+
+Name: res/layout/fragment_imageheader_musiclist.xml
+SHA1-Digest: wcGafIQjF9CLUi1anXVyygxGU4A=
+
+Name: res/drawable/xml_listselector_item_default.xml
+SHA1-Digest: f0S0I40C9CgZU5sP9HdogJjUFC4=
+
+Name: res/layout-land/cmmusic_funny_listen_activity.xml
+SHA1-Digest: ThTb309FfJ42boySZW0sghZNQV4=
+
+Name: res/layout/background_list_item.xml
+SHA1-Digest: G4M2JUCKxQMMkgwxPscppVXbxRg=
+
+Name: res/drawable/xml_dialog_footer_button_background.xml
+SHA1-Digest: l5MLAeX3QfVYpYZVpgGJsDIK5dM=
+
+Name: res/drawable-hdpi/img_right_menu_arrow_up.png
+SHA1-Digest: E9oJXMG5x64tTeOxZVGOr3M8QK4=
+
+Name: res/drawable-hdpi/img_lockscreen_play_pressed.png
+SHA1-Digest: DyUeS/WIUPx7q5ejqCk0j/cJDUA=
+
+Name: res/drawable-hdpi/img_background_textview_user_sina_login_normal
+ .9.png
+SHA1-Digest: 3EDbseg6wlxqbKfX+doUmREe9sw=
+
+Name: res/drawable-hdpi/img_lockscreen_pre_pressed.png
+SHA1-Digest: F10kcUE9824Am69nH78Wa+hFbjc=
+
+Name: res/drawable-hdpi/img_album_detail_defaul.png
+SHA1-Digest: fJ0oPDjpsdZXbXHT3OGLEluvfXQ=
+
+Name: res/layout/loadingview_failed.xml
+SHA1-Digest: /bV8PSSjQlXizxDS0SlfzNmHd+Q=
+
+Name: res/drawable-hdpi/recommand_list_bg_3.9.png
+SHA1-Digest: 8gE7yY4w8Dy4WyYxDghe/Vya2k4=
+
+Name: res/drawable-hdpi/img_appwidget_album_cover_4x4.png
+SHA1-Digest: A85Gbhb8LER1wSmO/qlVP9IJD1Y=
+
+Name: res/drawable/main_my_unicom_enter.xml
+SHA1-Digest: 7lBSj8R7OSYXmvUozTG5TVucwjE=
+
+Name: res/layout/appwidget_main_4x2.xml
+SHA1-Digest: fu4OAiqOCtjyHHLU02n6nzhSoI8=
+
+Name: res/drawable/xml_background_scan_media.xml
+SHA1-Digest: AfExjNmVsMunmspMUv9z0lVjgWc=
+
+Name: res/drawable/xml_landscape_switch_new.xml
+SHA1-Digest: mKh70h/rgdQIjkvP/FHzMqgctjQ=
+
+Name: res/drawable-hdpi/img_button_artist_pic_delete_normal.png
+SHA1-Digest: OVJKi8wiB/tvzrGNRPrrb/Sru7o=
+
+Name: res/color/xml_local_media_search_tab_text.xml
+SHA1-Digest: Yl8kyppJsyyXTgIVykaKb4g6IX8=
+
+Name: res/layout/layout_avatar_frame.xml
+SHA1-Digest: PcIa+4X/H6P8bnyTE9HrbwFd36I=
+
+Name: res/drawable/xml_background_my_list_header_nickname.xml
+SHA1-Digest: cqMcXgqGzWlMssAhsQt0STLlkl8=
+
+Name: res/drawable-hdpi/img_musiccircle_message_entry_comment.png
+SHA1-Digest: t9Kwkay0gqCjq+VSRXPqGCMcrwo=
+
+Name: res/drawable-hdpi/img_appwidget_title.png
+SHA1-Digest: tJ+rt9JP7MMeSxJSVNw2pMthP1Q=
+
+Name: res/drawable-hdpi/smiley_26.png
+SHA1-Digest: y+GhRLRupWzf2EcvHXKnto13x7U=
+
+Name: res/layout/online_search_history_item.xml
+SHA1-Digest: aP5UCoUVSGGmM4bBFNJEPGXXWp4=
+
+Name: res/drawable-mdpi/img_scan_navigation003.png
+SHA1-Digest: jDH402e4nIpXqI8aigTPfvFCFzQ=
+
+Name: res/layout/fragment_playcontrolbar.xml
+SHA1-Digest: +kgDqSoShv9Kq22iQ2Y3hpuejOw=
+
+Name: res/drawable/banner_close_button_click_bg.xml
+SHA1-Digest: kr/fabOM9KcGG7CVoIhJSLAknn8=
+
+Name: res/drawable/color_background_radio_playing.xml
+SHA1-Digest: b+T3DLWO+n6YVsCQtTA9mLxdl0M=
+
+Name: res/drawable-hdpi/img_online_music_detail_play_normal.png
+SHA1-Digest: SvgJDyuurwkxaktLKqqY2TWRQeE=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_guide.jpg
+SHA1-Digest: iMy+KCotZAch2uAhHQQikatp2P4=
+
+Name: res/drawable-hdpi/img_musiccircle_comment_content_bkg.9.png
+SHA1-Digest: 1h0oadueZ6UzjGfEwHbOIkiOEHM=
+
+Name: res/drawable-hdpi/img_button_effect_cloud_toggle_on.png
+SHA1-Digest: Vc1w1gEU0MgSzIgQkn6UWL5VeBg=
+
+Name: res/drawable-hdpi/img_button_pause_landscape_normal.png
+SHA1-Digest: MBee9hEYzI/o+f2AUJBs3GbE9S0=
+
+Name: res/layout/activity_unicom_flow_open.xml
+SHA1-Digest: GXpAk363MpllZ+BJJ9pmHF+60pk=
+
+Name: lib/armeabi/libmp3decplugin_v7.so
+SHA1-Digest: AxkhSplnj7mOkO5ELyry3By8wmw=
+
+Name: res/drawable/xml_button_minilyric_ttpod.xml
+SHA1-Digest: NgIL8nc2JqMR/HEEegyxjB/pa8o=
+
+Name: res/drawable-hdpi/img_background_search_third_normal.9.png
+SHA1-Digest: yoRvRTganqJDDetjyP8PSSmS9A8=
+
+Name: res/drawable/xml_musiccircle_post_detail_header_download.xml
+SHA1-Digest: B0ZtoYtacmn0vJ+I/IuBqcVSFcU=
+
+Name: res/layout/media_controller.xml
+SHA1-Digest: AFy07rpjtW7lnXNlMWhyJalDhnc=
+
+Name: res/drawable/xml_background_button_main_right_menu_exit.xml
+SHA1-Digest: avluTseuuzv6V6l8GpgNSfmQ6W8=
+
+Name: res/drawable/xml_background_feedback_setting_input.xml
+SHA1-Digest: 7SDWrZDJrgKQ4+mnvXmu4BZ3LAU=
+
+Name: res/drawable-hdpi/img_button_minilyric_previous_pressed.png
+SHA1-Digest: uHBvUMMOX5K4OODXQJ7aDm6Z//o=
+
+Name: res/drawable-hdpi/img_musiccircle_emoticons_delete_normal.png
+SHA1-Digest: BFe1zD2tkn0ymKtqR9gsqso7RhY=
+
+Name: res/drawable-hdpi/ktv_image.png
+SHA1-Digest: ECR/umM+cZdwDTYb5LR4PPhhtHU=
+
+Name: res/layout/list_empty_view.xml
+SHA1-Digest: I6LN6pSdE/w7P/XIKV1zfKa+IZk=
+
+Name: res/drawable-hdpi/img_contextmenu_remove_lyric.png
+SHA1-Digest: h7HgAjYbldRCCAgi/o98tDS5yIU=
+
+Name: res/drawable-hdpi/img_background_equalizer_animation_waveview.pn
+ g
+SHA1-Digest: 23/G2akH8ywxfMTW2sGeiCCvQjE=
+
+Name: res/drawable-hdpi/img_musiccircle_emoticons_delete_pressed.png
+SHA1-Digest: KQN5yxY+5RbZJWG5qVEFEd6NgwQ=
+
+Name: res/drawable/xml_musiccircle_grid_selector.xml
+SHA1-Digest: sIQy/rQrPYxqv0q/KIc1nqowqv0=
+
+Name: res/drawable/xml_background_effect_section_layout.xml
+SHA1-Digest: nwtyy8QlzYpQ2eKrt4QpoOJNnzM=
+
+Name: res/drawable-hdpi/img_dialog_spinner_normal.png
+SHA1-Digest: gotLvdoafeZoeux2+FiWK/x4VMY=
+
+Name: assets/fonts/IconFont.ttf
+SHA1-Digest: hnYKEFFibPdwcXQN8WHM5xdlIHI=
+
+Name: res/layout/listview_footer_local_media.xml
+SHA1-Digest: +Cd1uXLf3yhPkgh0HM4g5nZ/p4g=
+
+Name: res/drawable-hdpi/img_contextmenu_manager_song.png
+SHA1-Digest: 6OHgFBp+yvWKQUVRNmbQ1XlcVfw=
+
+Name: res/drawable-hdpi/img_favourite_normal.png
+SHA1-Digest: pYxSL3j9QGfqKE3mMAKH9V9fnak=
+
+Name: res/layout/activity_select_delete_effect.xml
+SHA1-Digest: nYE3pP7RhWdOb9wn4exmCotvQ9k=
+
+Name: res/drawable-hdpi/smiley_19.png
+SHA1-Digest: WLi59ohqvYZPOjMLqgu2Fyw3DDM=
+
+Name: res/drawable-hdpi/smiley_8.png
+SHA1-Digest: K8BK/GmTmHOpsUdAAbRNEqUPFX4=
+
+Name: res/drawable-hdpi/img_background_search_third_pressed.9.png
+SHA1-Digest: mrgxkUstJxz/EAoihnGzojNAinU=
+
+Name: res/drawable-hdpi/effect_listitem_bg_pressed.9.png
+SHA1-Digest: JWZWtdx/c8/a45hic/Yr8p+DcqI=
+
+Name: res/layout/player_media_list_item.xml
+SHA1-Digest: +BqAKXmCG7jkcbGB1JLVJgxzroo=
+
+Name: assets/landscape/StarRain.png
+SHA1-Digest: qDSWEJbDBaHYbcAvXOvQGJeFjJA=
+
+Name: res/drawable-hdpi/img_background_edittext_user_input.9.png
+SHA1-Digest: IhvYXlFR4OjenzKizXnmrMJBOmM=
+
+Name: res/layout/song_category_detail_header.xml
+SHA1-Digest: z6bENBgFBucP0SF0d43Ei1fk7Xo=
+
+Name: res/layout/minilyricsettingview_main.xml
+SHA1-Digest: fSmfu0jrn6y2dK5DTCppGyWs82Q=
+
+Name: assets/button_green.9.png
+SHA1-Digest: 72N51zPrka+KUNiJfTjwx3sHXAI=
+
+Name: res/drawable-hdpi/img_lyric_kala_off.png
+SHA1-Digest: Fe4wMDWi2fky4YAi5De9Lkg98Ro=
+
+Name: res/drawable-hdpi/spectrum_3.png
+SHA1-Digest: eIhJvY8Bgli25MPdlfue+mBv3Hg=
+
+Name: res/layout/fragment_downloadmanager.xml
+SHA1-Digest: tP17gmfvnRcmoGJcNUkn3x2a3sM=
+
+Name: res/drawable/xml_online_music_detail_play_state.xml
+SHA1-Digest: +0gKRmAipOb26rVVP74bwbQlGO8=
+
+Name: res/layout/mv_list_item.xml
+SHA1-Digest: 0XYWd9T8s9/Sm/cwHtiKkAOnnPI=
+
+Name: res/drawable/xml_spectrum_animation.xml
+SHA1-Digest: ir4yEUShB8xZpUlSVyXxQqV6RAw=
+
+Name: res/layout/list_theme_edit_footer.xml
+SHA1-Digest: tOj88+eCEBtfQqazeixrVMrT6sI=
+
+Name: res/drawable/xml_appwidget91_voice_pause.xml
+SHA1-Digest: VYhXSXTrs7f52U30A/WGK8nMm7Y=
+
+Name: res/drawable-hdpi/img_button_minilyric_ttpod_pressed.png
+SHA1-Digest: MKHcgnfks6twL8atyTgI4AfrFaU=
+
+Name: res/drawable-hdpi/sliding_to_unlock_1.png
+SHA1-Digest: Cw7njqAlDoyd2zpV2RltEy8gA+Q=
+
+Name: res/drawable-hdpi/img_textview_search_recognizer_entry_left.png
+SHA1-Digest: lGUms+1pfts2ZB+CFhBNQB617wg=
+
+Name: res/drawable-hdpi/img_audio_effect_reverb_grivd_view_selector.pn
+ g
+SHA1-Digest: sReKglKVAENS7rDJ216YZg32f0A=
+
+Name: res/drawable-hdpi/img_musiccircle_message_entry_system.png
+SHA1-Digest: St6cLEVZDSAxBDqXJRty4nvuTwM=
+
+Name: res/drawable-xhdpi/img_button_background_market_send_normal.9.pn
+ g
+SHA1-Digest: ICF6kZBLFhkFpZJ+i3EK1w3lLTs=
+
+Name: res/drawable-hdpi/img_lyric_slow_up.png
+SHA1-Digest: xe1oxhbjzNJhWt1uWwnwUkVzLJ4=
+
+Name: res/layout/media_listview.xml
+SHA1-Digest: qU+gz5ALmL5AiHq6X5kQuA7H4EA=
+
+Name: res/color/xml_color_item_title.xml
+SHA1-Digest: a1eLjOL+rKL8uara3U4wwFLcJdk=
+
+Name: res/layout/activity_playinglist.xml
+SHA1-Digest: zfGuBUcTkEuqew5Af5A6hDfcuXI=
+
+Name: res/layout/album_list_header.xml
+SHA1-Digest: +B7YWwZ3m2Wkz7Ms20H/NlQ3hvo=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_auditor
+ ium.jpg
+SHA1-Digest: p20CxjH471qtkcYfAxw+AyUnWzI=
+
+Name: res/layout/activity_setting_divider.xml
+SHA1-Digest: ntuWSpOnadOlcDnqbElOWfqhC/s=
+
+Name: res/layout/dragupdate_listview.xml
+SHA1-Digest: vG+4tb/orCALLMIN1iT/eD/EJ28=
+
+Name: res/layout/dialog_body_more_option.xml
+SHA1-Digest: qpnRwM9E0ZnDD4LPpnDJg9dly04=
+
+Name: res/drawable-hdpi/img_background_layout_advertisement.png
+SHA1-Digest: hdZSvGwFF3b0kr01lxZkRXTg4vA=
+
+Name: res/layout/list_media_edit_footer.xml
+SHA1-Digest: fw7SRLmGLODXuxc7tnpvPzoQLuM=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_playmode_repeat_current.
+ png
+SHA1-Digest: 3fRAFtGiMKIq1J8Tbj1uEafYfuU=
+
+Name: res/layout/audio_effect_equalizer_seekbar.xml
+SHA1-Digest: xEmcJTrNcYhwxNMDm4h3wo4ED5w=
+
+Name: res/drawable/xml_background_pause.xml
+SHA1-Digest: kM1w2Fs86+F7GoD9jgdprZHAQ3Q=
+
+Name: res/raw/background.jpg
+SHA1-Digest: AYCWLhMX31fsv8T/MbRfMLQ7qR8=
+
+Name: assets/landscape/xingxinglight-2.png
+SHA1-Digest: CDVu56RKkI0hgxZxeEUcWMQOjeo=
+
+Name: res/layout/musiccircle_image_new_hint.xml
+SHA1-Digest: 5jdqatR84D6/YNtJXPoWsNnnaQc=
+
+Name: res/drawable/xml_background_checkedtextview_effect_boost_limit.x
+ ml
+SHA1-Digest: ZcAy0ayEhrAGfvaCFadx6fnLpOA=
+
+Name: res/layout/market_game_tucao_detail_header.xml
+SHA1-Digest: JmXL0qa7J8iSf55mJ+1M4bNMutg=
+
+Name: res/drawable-hdpi/img_imageview_mediascan_auto_scan_item_remove.
+ png
+SHA1-Digest: w5M2aew2n9idnOWykukLiZvGFw0=
+
+Name: res/drawable-hdpi/cmmusic_progress_3.png
+SHA1-Digest: ddpPIPPh4K182QhqxzbBPXlS7R8=
+
+Name: res/layout/singer_song_list_header.xml
+SHA1-Digest: hzQjwcz4fXA488mp+shEUpU8VKQ=
+
+Name: res/drawable/xml_volume_seekbar.xml
+SHA1-Digest: /GIt5TNXRMLqz5P0BIJGJ4EuEX0=
+
+Name: res/layout/popups_unicom_flow_dialog.xml
+SHA1-Digest: Mx8TCCKMUgo+OEjq9O+5Bt11mmE=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_next_normal.png
+SHA1-Digest: VY3nqtykQ5vdo0mE7ML8yLWCcoc=
+
+Name: res/drawable/xml_imageview_soundsearch_result_play.xml
+SHA1-Digest: W/adf7rwBKTc28BYtGeVzXKKTnU=
+
+Name: res/drawable-hdpi/img_lyric_color_0.png
+SHA1-Digest: MlBFZZ+RW51myNyEDtFoFB/mcK4=
+
+Name: res/layout/activity_apshare_entry.xml
+SHA1-Digest: 3tfvwHT1M0yPXFmEvHKuEKmQwkQ=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_result_share_pressed
+ .png
+SHA1-Digest: YdtuNQDp791IvCsFEzZwxgM/03A=
+
+Name: res/layout/dialog_copyright_notification_title.xml
+SHA1-Digest: bdEGFrcxBjDz4LjoRQOWUPUybu0=
+
+Name: res/layout-land/appwidget_layout_go_4x1.xml
+SHA1-Digest: 0C7Q/je7ux8PYi2SwTca714jFwQ=
+
+Name: res/drawable-hdpi/cmmusic_datanotfind.png
+SHA1-Digest: SyQy/XG0km0SQqzJeELZjQnKjs8=
+
+Name: res/drawable-hdpi/img_button_share_landscape_pressed.png
+SHA1-Digest: nC2pzS/WX5dWszbzuOAo9QuMag0=
+
+Name: res/layout/fragment_app_game_tucao.xml
+SHA1-Digest: WyIvcU3l7q/Rtz159YVTQkyFZqg=
+
+Name: res/drawable-hdpi/img_button_play_landscape_normal.png
+SHA1-Digest: 3xn2h4y4K7g7OZQUV66SmaZwlYU=
+
+Name: res/layout/activity_mediascan_animation.xml
+SHA1-Digest: ZHm28dsxM1q9S/3fWqDsLpliGOI=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_comment_pre
+ ssed.png
+SHA1-Digest: ywy0DE8YpeC3y5kcSrl+MNeqASw=
+
+Name: res/drawable-hdpi/img_edit_effect_delete.png
+SHA1-Digest: R0WqyLxXm0DPw4ZgL5Jy+PbP08o=
+
+Name: res/drawable-hdpi/icon_banner_close_button_click.png
+SHA1-Digest: XDs2MF6qyardg69zNPVwMI5DPb8=
+
+Name: res/drawable-hdpi/img_drag_refresh.png
+SHA1-Digest: 9q83mzG9P58gwZZNOecDDQNwpew=
+
+Name: res/drawable-hdpi/img_background_post_item_text.png
+SHA1-Digest: V1wtDhaHZSb1/0A2xuNg7fN4loQ=
+
+Name: res/drawable-hdpi/smiley_10.png
+SHA1-Digest: R79/UKVe2ZxJyJ0YabJP/HlrECg=
+
+Name: res/drawable-hdpi/img_social_pic_save_pressed.png
+SHA1-Digest: Oc64PnIVJEcy1pGFaj/WLJAzkWo=
+
+Name: res/drawable/color_background_findsong_category_section_item_tit
+ le.xml
+SHA1-Digest: Rqk2E3xiWVNB4pAWBuiQoY2p6A0=
+
+Name: assets/fonts/Uni Sans Light.ttf
+SHA1-Digest: OmSAR2CvDzMvKw+TGsyZ3rD+0ZA=
+
+Name: res/drawable-hdpi/img_clock_icon.png
+SHA1-Digest: sUe9WdLoMBZfEzdj1KZMxzBjgNs=
+
+Name: res/drawable-hdpi/img_market_list_top_right_button_selected.9.pn
+ g
+SHA1-Digest: lECa/I0a/9rTY4yLCKjKn97q8Lw=
+
+Name: res/drawable/xml_background_notification_playcontrol.xml
+SHA1-Digest: 9tmkpY/vxEPQ3f83Ib22kkh937A=
+
+Name: res/drawable-hdpi/img_apshare_song.png
+SHA1-Digest: uaOrZuqmATZBz4wyjpKM4JtqPzU=
+
+Name: res/anim/push_top_in.xml
+SHA1-Digest: UwINwKiR+m6NxQuXaAMK6HJ1CbI=
+
+Name: res/drawable/xml_radiobutton_userinfo_sex_female.xml
+SHA1-Digest: 9HjlsxFapxQeKvsgZ1wJuadpKEI=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_equalizer_hand
+ pick_rock.jpg
+SHA1-Digest: wSmc1s94mLEDBNGW9bxejMDYYj4=
+
+Name: res/drawable/xml_share_background_dialog_button_highlight.xml
+SHA1-Digest: WrLzZWyxOJvYlrdrY5ASu5zqi9g=
+
+Name: res/layout/market_indicator_label.xml
+SHA1-Digest: sxeu6phTznZ51U/hV/UnQGu5Er8=
+
+Name: res/layout/market_app_category_list_item.xml
+SHA1-Digest: b42F/pwmU9CqtjtRE+VlAjrlDuM=
+
+Name: res/drawable/xml_musiccircle_emoticons_delete.xml
+SHA1-Digest: iMgXE8Y+ajeI2lgZ01i/abnA9k8=
+
+Name: res/drawable-hdpi/img_setting_single_choice_checked.png
+SHA1-Digest: 9YHApgSFsw/mY6wNO+6RiUwbRI4=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_hall.jp
+ g
+SHA1-Digest: LvxEiFivLgfkbjufx2msGfN4Hko=
+
+Name: lib/armeabi/libtttextutils.so
+SHA1-Digest: 0/76buQnuUMP/5tOjik0Y9PxP/Y=
+
+Name: res/drawable-nodpi/img_landscape_menu_top_bg.9.png
+SHA1-Digest: LLSvKuyaIHGzfYzy1HFvgZfjDBA=
+
+Name: res/layout/musiccircle_user_listview.xml
+SHA1-Digest: JSaxnQIQRtk1Tj9EV7lT18UPUBE=
+
+Name: res/drawable-hdpi/img_background_textview_user_register_normal.9
+ .png
+SHA1-Digest: dnvfrEFfpq9usPCy4iHm6C3tuLs=
+
+Name: res/drawable/xml_appwidget91_play_next.xml
+SHA1-Digest: k8LPGNu+W0hsBPcWp6Js8+Vex70=
+
+Name: res/layout/audio_effect_equalizer_edit_layout.xml
+SHA1-Digest: e3KJrojQlTSB9ad53wazEMc8LOo=
+
+Name: res/drawable-hdpi/img_appwidget91_album_4x4.png
+SHA1-Digest: seHj976DiCP6StvLRFVAduioAjw=
+
+Name: res/drawable-hdpi/img_button_minilyric_font_zoom_in.png
+SHA1-Digest: VUMswstbJO55z8Ic/g30PMUg22c=
+
+Name: assets/landscape/fire-2.png
+SHA1-Digest: cy2sgy6PBVIp9KfozdqHrxb1Pis=
+
+Name: lib/armeabi/libfilematcher.so
+SHA1-Digest: jag2m7TjAeE1i4QAbQUrctWPdVQ=
+
+Name: res/drawable-hdpi/img_lyric_color_12.png
+SHA1-Digest: UuMRQ9CvT30v1orSQTQwFFdR6v8=
+
+Name: res/layout/pull_refresh_listview.xml
+SHA1-Digest: y4K+POA+0ZA+svbKVrmHgjSKtV4=
+
+Name: res/layout/layout_ip_support.xml
+SHA1-Digest: 29Czfi5cDGl/tZJ0/vWPBu5liTk=
+
+Name: res/layout/action_bar.xml
+SHA1-Digest: OPx3FwBQMVTYVPRJJtP2ai8NdAk=
+
+Name: res/drawable-hdpi/img_background_publish_poster_gallery.jpg
+SHA1-Digest: q9WhtyFPY69ZOrnyPL+amWU91Vc=
+
+Name: res/drawable/xml_background_effect_recommand.xml
+SHA1-Digest: DGMAdU4Lm3UOTp8hwIzErZbdKOU=
+
+Name: res/drawable/xml_background_layout_border.xml
+SHA1-Digest: 7SDWrZDJrgKQ4+mnvXmu4BZ3LAU=
+
+Name: res/drawable/xml_musiccircle_follow.xml
+SHA1-Digest: EScpgBQAGtrT1yrfgGbBLy4ACeU=
+
+Name: res/drawable-hdpi/img_alarm_toggle_off.png
+SHA1-Digest: 60C4LKzJK9PPdl/OLiXb0Ta4mUI=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_pause_press
+ ed.png
+SHA1-Digest: vqxW/qxYT7pm1w2pR4GnY9E80kM=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_help_equalizer
+ .png
+SHA1-Digest: 5jqjww9H2ccRsPLoCG3YDgMb+rE=
+
+Name: res/layout/audio_effect_equalizer_header.xml
+SHA1-Digest: n0ikg1OVUYdPh/0LlsZTdrGwahY=
+
+Name: res/layout/activity_setting_head_or_footer_divider.xml
+SHA1-Digest: 1R0EOitu84tyl7rYuDwY/8rvxEc=
+
+Name: res/layout/fragment_actionbar.xml
+SHA1-Digest: jXH7jpEAGTLvBbwdYsYzV/gfDEg=
+
+Name: res/drawable-hdpi/img_background_effect_recommand_button_normal.
+ 9.png
+SHA1-Digest: ye1bbeHPmyjZmob8j0yQM0N6gII=
+
+Name: res/drawable/xml_background_media_group_list_item_transparent_gl
+ ass.xml
+SHA1-Digest: q8cmHWQH81IzQ4K/q4TWF+rDuLg=
+
+Name: res/layout/download_list_item.xml
+SHA1-Digest: j7snGxHaOwWFd6F+KJKAgevN8bs=
+
+Name: res/drawable/ktv_connect_button_normal.xml
+SHA1-Digest: bskOEf0vfPIjWuCHD0yh9B9IXuE=
+
+Name: res/drawable/xml_button_minilyric_close.xml
+SHA1-Digest: MJ30aYGY25DqkgCESSuLD84XBBE=
+
+Name: res/drawable/xml_background_default.xml
+SHA1-Digest: TjCaFw6g5Hdk0w7GhG3TdiOnILc=
+
+Name: res/drawable-hdpi/img_button_minilyric_yellow.png
+SHA1-Digest: gmMTCQGItv4r3yxRVBY+gJtFBEE=
+
+Name: res/drawable-xhdpi/img_market_expend.9.png
+SHA1-Digest: iclHUrIacxG6on6Uq3DZWqKceCY=
+
+Name: assets/landscape/particle_effect_configuration.xml
+SHA1-Digest: pOZwyLIdUbCme88ryankMCNp1h8=
+
+Name: res/drawable-hdpi/smiley_5.png
+SHA1-Digest: Bi4xSjx4Tj9IW/pEFTxfW7DZnCg=
+
+Name: res/drawable-hdpi/img_musiccircle_send_message.png
+SHA1-Digest: YaNBb3oqDgXOngVAYLCTv5Fj6NY=
+
+Name: res/drawable-hdpi/img_tag_satellite_program.png
+SHA1-Digest: /RZT+ge/Ion13YP98v6w9NVH3ng=
+
+Name: res/drawable-hdpi/cmmusic_progress_2.png
+SHA1-Digest: uBaInqJQntemG1plD4oBzxECW9k=
+
+Name: res/layout/mediascan_filepicker_header.xml
+SHA1-Digest: AWf1zegczMoM5w8QKv9l2E1k0Fs=
+
+Name: res/drawable-hdpi/img_imageview_advertisement_entry.png
+SHA1-Digest: U+q2PoDWzV66sIxgpoJkF+yqHeo=
+
+Name: res/drawable-hdpi/img_online_music_detail_play_pause.png
+SHA1-Digest: uszDl6roQ3NGAb75fT9KEz/Uk8o=
+
+Name: res/layout/fragment_album_detail_content.xml
+SHA1-Digest: 1PuOyw1gkZZygwaDx6BroUQw5pc=
+
+Name: res/xml/xml_appwidget_info_5x2.xml
+SHA1-Digest: vSt+FlNMa8dj9N2HtQOVfFUTlmU=
+
+Name: assets/com.tencent.plus.blue_disable.png
+SHA1-Digest: KwQ2SLR32W8k+uF420pUXoLLAto=
+
+Name: res/layout/popups_lyric_color_grid_item.xml
+SHA1-Digest: v5CQYCO9lM4POLZbSVuKMkeq+qk=
+
+Name: res/drawable-hdpi/img_radiobutton_userinfo_sex_male_checked.png
+SHA1-Digest: TpvDGENcuqbONWZ0nHxKL4jQOB4=
+
+Name: res/color/xml_listview_item_title.xml
+SHA1-Digest: 0ZLpTsbk5iliZPIjSy/xlnnIpaM=
+
+Name: res/drawable-hdpi/qihoo_btn_bottom_black_pressed.9.png
+SHA1-Digest: 0ZHgkDp6Ix9eKo76R4Xa/cR2IaM=
+
+Name: res/drawable/xml_appwidget91_play.xml
+SHA1-Digest: 3VVR80Dyv8yzWeZ7Hl37Ibg8BE8=
+
+Name: res/drawable-xhdpi/img_button_background_market_send_pressed.9.p
+ ng
+SHA1-Digest: lWs+jU1BLQi9lw4+bJmvoaMCPRI=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_loading.png
+SHA1-Digest: iDZuJmM04OSfvGxiv1H2oYXnoAg=
+
+Name: res/drawable/xml_appwidget91_play_prev.xml
+SHA1-Digest: Z8RvAlMQDW8jz02CrgRQVJGKphs=
+
+Name: res/drawable-hdpi/cmmusic_progress_5.png
+SHA1-Digest: aeYItXV7NZMk8pzlwkLjMbPBDrU=
+
+Name: lib/armeabi/libaacdecplugin.so
+SHA1-Digest: WheyIPc6yThPDuAHzpn5xIvzN/I=
+
+Name: res/drawable-hdpi/img_lyric_color_5.png
+SHA1-Digest: 444dccygA+STfFhABmcfhq7HtGg=
+
+Name: res/drawable/xml_background_myeffect_big.xml
+SHA1-Digest: +xnEIbaXTwBeYbu3goOT/XzaYn4=
+
+Name: res/drawable-hdpi/img_musiccircle_message_entry_notice.png
+SHA1-Digest: 6zGmkyeImfV7uSSxuruujCV6Uy8=
+
+Name: res/drawable-mdpi/img_musiccircle_radar.png
+SHA1-Digest: SdXSrZdNMyWDOYLxKyp/V0LbyDs=
+
+Name: res/drawable-hdpi/img_musiccircle_emoticons_item_pressed.9.png
+SHA1-Digest: /vwBHdzSebZqZ22s2oPVIciaYlU=
+
+Name: res/drawable-mdpi/img_radial_progress_bg.png
+SHA1-Digest: UaFZQZrpvTySqcKkSh2EPG7tw8o=
+
+Name: res/drawable-hdpi/recommand_zan_hit.png
+SHA1-Digest: x8OX6OKmMl68+/XfwjlnP1pE30k=
+
+Name: res/layout/popups_lyric_pics_panel.xml
+SHA1-Digest: IOLiE08lbWFK/lLlDMMZriLr6ac=
+
+Name: res/color/xml_color_soundsearch_listview_item_title.xml
+SHA1-Digest: dI8l717m0pRRnoXiB3/x63iEZuY=
+
+Name: res/layout/layout_web_page.xml
+SHA1-Digest: S3oei1WZkDGmWTnaDUDweZCoS1A=
+
+Name: res/layout/layout_introduction_content.xml
+SHA1-Digest: j9WXOADigWBWgNhkJnJKMXlzqB8=
+
+Name: res/layout/musiccircle_comment_group_header.xml
+SHA1-Digest: lPGO+B4df7tVXqwom9HbDnY7asg=
+
+Name: res/drawable-hdpi/img_musiccircle_location_point.png
+SHA1-Digest: EsHfeJFdYnp+D19ory/UeNCEjCc=
+
+Name: res/layout/fragment_feedback.xml
+SHA1-Digest: Lvrwpkx6JI3krANLEESjuekj6R8=
+
+Name: res/drawable-hdpi/smiley_6.png
+SHA1-Digest: sRJO+u9xIZHqAgETIxic6q92wRE=
+
+Name: res/drawable-hdpi/img_background_effect_section_layout_pressed.p
+ ng
+SHA1-Digest: z6xT+Ua/5K+ZirFjBAF5ZcsSvQs=
+
+Name: assets/landscape/LV-3.png
+SHA1-Digest: U7M8icVQZ68+mkyexjeODEs9MMk=
+
+Name: res/drawable-hdpi/img_user_v.png
+SHA1-Digest: 9b0TM2pxWoo5hwAVNKa7JmmEZeM=
+
+Name: assets/landscape/StarHere-3.png
+SHA1-Digest: TzwEcK13fhiVm2BpwzB41/qfmLk=
+
+Name: res/anim/push_right_in.xml
+SHA1-Digest: s+6+V0TilPbU8Ok0reOApO0bvU4=
+
+Name: res/drawable-hdpi/smiley_28.png
+SHA1-Digest: BMv6HLBNKB00Wz6pprkqbSlXcjE=
+
+Name: res/layout/layout_address_select.xml
+SHA1-Digest: Ax6IB0nWxZYe4gle/LCdKYnTj8A=
+
+Name: res/layout/mediascan_filepicker_item.xml
+SHA1-Digest: 5g/OzPq4ZyhU6pYLsK97n08Wmbs=
+
+Name: res/drawable-hdpi/smiley_14.png
+SHA1-Digest: hT8k8ZbgPJ8NU0tAAQI7v7l/So8=
+
+Name: res/drawable/xml_progressbar_effect_balance.xml
+SHA1-Digest: 6h3yHqlKlbq2qoR8vdBhGPzqJ/I=
+
+Name: res/layout/picture_disc_with_bottom_text.xml
+SHA1-Digest: Y7y1zFragSfDpKzKNhGgTjIaDTE=
+
+Name: res/layout/drag_update_layout.xml
+SHA1-Digest: zwV3H2PYzASkp8YQmxdz+dGgl8E=
+
+Name: res/drawable-hdpi/img_background_button_splash_audio_disabled_no
+ rmal.png
+SHA1-Digest: nKnJwR9MJhLOAxPwLuLB6OJvCfQ=
+
+Name: res/drawable-hdpi/recommand_zan.png
+SHA1-Digest: 8tOw2ULJKldmzsH2imScyXaO3ko=
+
+Name: res/drawable-hdpi/img_seekbar_thumb_volume_landscape_normal.png
+SHA1-Digest: Rt0ouKsr/N+vElwYTh3gEIO1nLc=
+
+Name: res/xml/xml_appwidget_info_4x4.xml
+SHA1-Digest: nUL5Hjoee9pJ+jqcgWNxzpyuaKw=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_roadway
+ .jpg
+SHA1-Digest: DQyzM/t2qadEJ+SSZm93sff4ChU=
+
+Name: res/drawable-hdpi/img_button_minilyric_pink.png
+SHA1-Digest: w8kSQDjFkr+1r9V4o4XobECyJzk=
+
+Name: res/drawable-hdpi/img_actionitem_add_media.png
+SHA1-Digest: AmFAH2R1va72+l3wbJlhf/Hyiqo=
+
+Name: res/drawable-hdpi/img_rank_arrow.png
+SHA1-Digest: lv62BVjTds5zMrcjHNSXisQ946o=
+
+Name: res/drawable-hdpi/img_landscape_switch_old_normal.png
+SHA1-Digest: /e1NYNcsSZq66CSLXcb1RKG8FyE=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_playmode_repeat_all.png
+SHA1-Digest: so0i0X3ATKoYeFXuXESX/pejXNU=
+
+Name: res/drawable-hdpi/img_mediascan_item_folder.png
+SHA1-Digest: tg7e3TkQZ/ovmQVR/7aEWndPR1c=
+
+Name: res/drawable/xml_musiccircle_post_detail_play.xml
+SHA1-Digest: 5cX3McnZye2qH9D0/+kHIGOyucI=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_artist.png
+SHA1-Digest: wAxzl+BomtJ8AVvN9L6T7rxwJ6w=
+
+Name: res/drawable-hdpi/img_actionitem_history.png
+SHA1-Digest: /lKzu1Dm7GvTqVJcciFpHwOx0Ss=
+
+Name: res/drawable/xml_background_button_splash_audio_enabled.xml
+SHA1-Digest: xCE8+qKBdJJaXuUW3WLMcHD2OQE=
+
+Name: res/drawable-hdpi/img_background_pause.png
+SHA1-Digest: uU6Hm2juxoR8WfNPpfEPT9e+0lI=
+
+Name: res/layout/picture_with_center_text.xml
+SHA1-Digest: J0+cw7uwPQAAaScu1NZ5xLsRt8I=
+
+Name: res/layout/find_song_list_image_header.xml
+SHA1-Digest: +vfol6qjHm9PuwJ9/XbpcoJPRN8=
+
+Name: res/drawable/xml_slidingmenu_divider.xml
+SHA1-Digest: j6Upv3/u+Y47Tr5AXDgVXiObL2g=
+
+Name: res/drawable-hdpi/img_background_effect_rotatebutton_up.png
+SHA1-Digest: VVsY2efiLdqlRVd5JYIS+2y2v3Q=
+
+Name: res/anim/flash_show_animation.xml
+SHA1-Digest: quN/nb4luDZLsiZR/vttqRI6DfM=
+
+Name: res/layout/musiccircle_chatting_item_left.xml
+SHA1-Digest: PIUB5M54UHpEBwJE55t1ey2E1QU=
+
+Name: res/drawable-hdpi/img_appwidget_album_cover_normal_4x1.9.png
+SHA1-Digest: Xq94r44B5tJOm+P5yJ8gZxd3oks=
+
+Name: res/drawable-hdpi/smiley_29.png
+SHA1-Digest: jbU7crIwldCGQnmNMIZuo1Goj/s=
+
+Name: res/layout/beauty_item_layout.xml
+SHA1-Digest: 2wUTjdvCOMRfLI3aGJO7pFz45z0=
+
+Name: res/xml/xml_appwidget_info_5x1.xml
+SHA1-Digest: 3jlGloPdWIH9Hp4bk7417xfPems=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_equalizer_hand
+ pick_classical.jpg
+SHA1-Digest: t8m1qEFXQ8SQ8RvwQVp+03Pr3wY=
+
+Name: res/color/xml_local_media_search_tab_text_background.xml
+SHA1-Digest: Yl8kyppJsyyXTgIVykaKb4g6IX8=
+
+Name: res/drawable-hdpi/img_button_minilyric_ok_pressed.9.png
+SHA1-Digest: H3/k2DQq34wK/bmq28tvmjT9boY=
+
+Name: res/drawable-hdpi/img_guide_button_entry_pressed.png
+SHA1-Digest: sJd7cEE7vz63Yuw3La2E0OyJOVs=
+
+Name: res/drawable/ktv_download_progress.xml
+SHA1-Digest: ziabSV2cWF8ShHzeDNPZwvG7Zn8=
+
+Name: res/layout/fragment_download_listview.xml
+SHA1-Digest: nPp/r6FIgF30wb2oDXrGLr1ZgZc=
+
+Name: res/anim/push_fade_out_right.xml
+SHA1-Digest: kkgUb6fMi1yGFpSMUBBziiR2Mqo=
+
+Name: res/layout/activity_default_video_layout.xml
+SHA1-Digest: RxobAgDcGbAgc6gTPELbZZZMkHE=
+
+Name: assets/com.tencent.plus.ic_success.png
+SHA1-Digest: nfo99+6yphuEgBIZu6+cg0j1+3k=
+
+Name: res/drawable/xml_background_apshare_cancel.xml
+SHA1-Digest: aeb1cdazb8LhfayGOpgXHTdIIvM=
+
+Name: res/drawable-hdpi/img_button_minilyric_pause_pressed.png
+SHA1-Digest: 3wPkV1iw8xyQTVoCpoIFkHzLQ68=
+
+Name: res/layout/fragment_base_list_no_actionbar.xml
+SHA1-Digest: t5Ww234JaMmKliYosv2Citpbwrc=
+
+Name: res/layout/musiccircle_favorite_layout.xml
+SHA1-Digest: QfBGDlp8QxCYtaq93FCmH1IZrto=
+
+Name: res/layout/layout_unsubscribe_guide.xml
+SHA1-Digest: ACjoSkte2qDt0BqXlqcQ9AF2S8Q=
+
+Name: res/drawable-hdpi/smiley_27.png
+SHA1-Digest: zSOuXlbku9PddNBXVnOAwrRf9Ww=
+
+Name: res/drawable/xml_background_market_app_list_selector.xml
+SHA1-Digest: dpwM5+HTiINx5070moudcMrhyWM=
+
+Name: res/layout/musiccircle_list_footer.xml
+SHA1-Digest: AAOQvBMdmUu8wEuGNsOXr5cUFa8=
+
+Name: res/drawable-hdpi/ktv_scan_icon.png
+SHA1-Digest: SvInublhRaFSvVjYg7mSYwZPYuk=
+
+Name: res/layout/fragment_feedback_compose.xml
+SHA1-Digest: LFx1nRKRm7NIddDpZDv6RuKZ9d0=
+
+Name: res/drawable-hdpi/qihoo_refresh_pressed.png
+SHA1-Digest: GnZLuuI50W4AE6CJn5jpd3pD/6o=
+
+Name: res/drawable/xml_background_myeffect_item.xml
+SHA1-Digest: DGMAdU4Lm3UOTp8hwIzErZbdKOU=
+
+Name: res/drawable/xml_background_effect_button_share.xml
+SHA1-Digest: JlmYtHWKJMOQNOmOmR/NptsulGI=
+
+Name: res/drawable/xml_shadow_right.xml
+SHA1-Digest: JOwqI/XM3UgdAJoLXXZ+vpjBI/M=
+
+Name: assets/yyb_qzone.png
+SHA1-Digest: 9YwbRhD/FPWk5WZtaWPDQCeM2aE=
+
+Name: res/drawable-hdpi/img_artist_default.png
+SHA1-Digest: Vud68+iSgPS9JkjpMClYx4eAbx8=
+
+Name: res/drawable-hdpi/img_musiccircle_shake.png
+SHA1-Digest: YWv+bsoDbUkslHzRtG0aM95w/K4=
+
+Name: res/drawable-hdpi/effect_white.png
+SHA1-Digest: HneJgSGi0afw1fv7tDQF3CRwGQA=
+
+Name: res/drawable-hdpi/img_background_button_mediascan_finished_norma
+ l.9.png
+SHA1-Digest: lur4cRGhB0r4YO9Chb83XKQx98Q=
+
+Name: res/drawable/media_list_item_button.xml
+SHA1-Digest: Uxabac4cQuyzpIEqxagok6Bhqgw=
+
+Name: res/drawable-hdpi/img_mediascan_logo.png
+SHA1-Digest: 2v/9nsb4l8ypK4iMewPLo2qw8I4=
+
+Name: res/drawable-hdpi/img_imageview_radio_play_animation_3.png
+SHA1-Digest: UKpl3aKfCNzxCDpMSriaU+i+neI=
+
+Name: res/drawable-hdpi/img_right_menu_arrow_down.png
+SHA1-Digest: 1fJ00iWA/d6TljF7VkvfQWFpq8E=
+
+Name: res/drawable-hdpi/img_button_notification_play_play.png
+SHA1-Digest: GtuastqhNpTQKz5l2nnjbrpvYOs=
+
+Name: res/layout/find_song_hot_header.xml
+SHA1-Digest: p7GK5DllX8mPTmmi1BMk8GImESA=
+
+Name: res/layout/musiccircle_post_detail_header_play_container.xml
+SHA1-Digest: pQwnwxzTrIqJ0JBt3q8pX/8ug5g=
+
+Name: res/layout/find_song_poser_gallery.xml
+SHA1-Digest: yx8sOKgIDBzdMqE09agGnleiw2A=
+
+Name: res/layout/market_indicator.xml
+SHA1-Digest: 3cMCa7iDAQGp8B5LdlfXG0Vs3w8=
+
+Name: res/layout/fragment_singer_songs.xml
+SHA1-Digest: grcKQ/XCWWr0+oITTqGkJQF8rWg=
+
+Name: res/drawable-xhdpi/img_market_list_top_right_button_normal.9.png
+SHA1-Digest: AE7YpRPBz5MdKIIzYeGC9O+W7nA=
+
+Name: res/layout/activity_local_search.xml
+SHA1-Digest: BgSSJcxnwAVTegnMZt8LOZP6XB0=
+
+Name: res/drawable-hdpi/img_background_textview_user_tencant_login_pre
+ ssed.9.png
+SHA1-Digest: C1ZfTXqeBFi+fsiXRqpOAchaBb0=
+
+Name: res/drawable-hdpi/img_small_volume_landscape.png
+SHA1-Digest: KQ9KFFmaqt4XsZJRLQfK1cyBB2k=
+
+Name: res/layout/musiccircle_find_friend_layout.xml
+SHA1-Digest: WXDhC61RBjpFH0KvFBLhQJCPDh0=
+
+Name: res/drawable-hdpi/ajust_narrow.png
+SHA1-Digest: tfoGvPxsQomXfie1KQk3inJHBH8=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_parlor.
+ jpg
+SHA1-Digest: msSWQ0HqRxm+6X0RvvjC4xVRfTM=
+
+Name: res/layout/popups_lyric_tool_menu.xml
+SHA1-Digest: LFhQmRo/fRG+Mec1M4pZZV/yHmU=
+
+Name: res/drawable-hdpi/img_match_piclrc_close.png
+SHA1-Digest: 831/NLLlTErSDcoNmNRd0aA/Gzk=
+
+Name: res/drawable-hdpi/img_background_effect_rotatebutton_normal.png
+SHA1-Digest: VfTPcMJPRI7Rg4Y29egon4KhBVE=
+
+Name: res/drawable-hdpi/background_button_offline_continue_pressed.9.p
+ ng
+SHA1-Digest: 2wWlD+42Q00mwQKz7GLsor/RdGY=
+
+Name: classes.dex
+SHA1-Digest: s2opf7fKVJ9xPfkTkFncWV9nDqs=
+
+Name: res/layout/draggable_group_listview.xml
+SHA1-Digest: FK3IYCAxaF/Q8ZG6XRB6yeERPvs=
+
+Name: res/drawable/xml_background_goto_gallery_button.xml
+SHA1-Digest: sjK/SbLeAypWwS4y4nt+/Hmf3DA=
+
+Name: res/drawable-hdpi/img_background_button_userinfo_logout_normal.9
+ .png
+SHA1-Digest: BWrSTYCZ7B0rYCU8hy+Wx0ThQsY=
+
+Name: res/drawable-hdpi/img_background_appwidget_middle_4x4.9.png
+SHA1-Digest: V3laaF1FUTTEb5BFR2sIw+wId04=
+
+Name: res/drawable/xml_social_pic_save.xml
+SHA1-Digest: oCw9rUa097DZ8up2E8Wlb3YWGHM=
+
+Name: res/color/xml_color_skin_indicator_text.xml
+SHA1-Digest: 4KBAVap5NYakd/GQUSJ0MkQkEjM=
+
+Name: res/drawable-hdpi/cmmusic_open_fuciton_title_ico.png
+SHA1-Digest: 67T1XdQv/o6pvg2ImEvbukPa/wc=
+
+Name: res/anim/push_fade_in_right.xml
+SHA1-Digest: VwIkp5k3Q2qwuhz902RWjVQgjvU=
+
+Name: res/drawable-hdpi/img_flag_online.png
+SHA1-Digest: pM8hrGCPbVx4BF/RlrcrH6v8qRE=
+
+Name: res/drawable/ktv_add_button_normal.xml
+SHA1-Digest: kHLPHpHrnbac7zKkNISXWMXnUug=
+
+Name: res/layout/loading_view_layout.xml
+SHA1-Digest: YxNyK4YWnmDAGLr7NO6SuwZcGIA=
+
+Name: res/drawable-xhdpi/img_channel_logo.png
+SHA1-Digest: uelS9+11r7FHVCj1kvJSp7TlySE=
+
+Name: lib/armeabi/libwmaprodecplugin.so
+SHA1-Digest: xCxpR444py/51VxdR7fd5EuMVuA=
+
+Name: res/drawable-hdpi/img_background_button_blue_pressed.9.png
+SHA1-Digest: nScE90oknsyEmQCeMFZ0cC/xmss=
+
+Name: res/anim/musiccircle_shake_clockwise_360.xml
+SHA1-Digest: K6vCbJ1ol/xhtAYYkG0UTxfWkvM=
+
+Name: res/layout/feedback_chat_item.xml
+SHA1-Digest: 6xorXaivBj330sg2Us6iyPXx6HI=
+
+Name: assets/skin/3_yejian6.tsk
+SHA1-Digest: JZInAHygkjfCFUtaiHgTnKuut6A=
+
+Name: res/drawable/xml_background_progressbar_mediascan.xml
+SHA1-Digest: VcQlLQQ4jqz0PEN03Oup2+5vTGo=
+
+Name: res/drawable-hdpi/img_background_button_blue_normal.9.png
+SHA1-Digest: dLD5Y8kGquqKq4M3FtymJ4NF5fY=
+
+Name: res/drawable-hdpi/img_button_next_landscape_pressed.png
+SHA1-Digest: whgybhHIdhc00h8RQJT+ADfUCQY=
+
+Name: res/layout/musiccircle_login_hint.xml
+SHA1-Digest: Mqk3nWHETxp9jRXhMEw5435Md44=
+
+Name: res/drawable-hdpi/img_scan_navigation006.png
+SHA1-Digest: dGpvxxOX5/g92WPL8rFkrMCq5Ic=
+
+Name: res/drawable/xml_background_apshare_cancel_pressed.xml
+SHA1-Digest: cxKm0C0BrooKIXbowCvKQylrsME=
+
+Name: res/drawable/xml_album_dowload_checkbox.xml
+SHA1-Digest: gICiN2oNh24HRNt3kvdnTuG2M8g=
+
+Name: res/drawable-hdpi/img_background_seekbar_thumb_channel_balance.p
+ ng
+SHA1-Digest: /lr+p67eIJQ+/wBQCH9R96+DTrw=
+
+Name: assets/landscape/StarRainMore.png
+SHA1-Digest: ICEIRUe8i9O/gwGWrWnuH9RxgOU=
+
+Name: res/drawable/xml_musiccircle_post_detail_pause.xml
+SHA1-Digest: AiAjllx5amNGKnF0FaxLpKdz4b8=
+
+Name: res/layout/dialog_list_footer_remember.xml
+SHA1-Digest: H3u2pSOeEizbrKKTNMQLPYYrk/A=
+
+Name: res/drawable-hdpi/img_market_list_top_left_button_selected.9.png
+SHA1-Digest: g72nYlj7Gyoke/5YFCoWwH5knrc=
+
+Name: res/layout/mediascan_auto_scan_listview_footer.xml
+SHA1-Digest: W7R5uDo9KSCHySS20qV7GBMy+DE=
+
+Name: res/drawable-hdpi/img_button_minilyric_green_pressed.png
+SHA1-Digest: KW7D6E6D2AMr4vIUIseHRfztf2A=
+
+Name: res/layout/activity_user_findpassword_complete.xml
+SHA1-Digest: iIJxhuty1LCkzsKew6OWPKlAOFg=
+
+Name: res/layout/fragment_music_library.xml
+SHA1-Digest: RmuNmM16RqGBzP0yQyRtPISHSmg=
+
+Name: res/layout/activity_mediascan_exclude.xml
+SHA1-Digest: z3lDTSWWC6dq/8gVBPbmrvdvIEI=
+
+Name: res/layout/activity_unicom_flow_order_detail.xml
+SHA1-Digest: 5wyXe65EfY3jBZDT8fFkqwj5v94=
+
+Name: res/layout/fragment_skin_web.xml
+SHA1-Digest: tbOaZlAQAQsSVZeljRZEHP8gNBk=
+
+Name: res/drawable-hdpi/img_online_media_no_copyright.png
+SHA1-Digest: cXfQdIgUEVG1Iu8KJNcAWQVBito=
+
+Name: res/layout/popups_lyric_font_panel.xml
+SHA1-Digest: /9i92p9ZKzFZlM5QVtlvJGfRJq0=
+
+Name: res/layout/list_float_letter.xml
+SHA1-Digest: wQVGUL2sJaU1xGrv8cxS4BkfLQc=
+
+Name: res/anim/scale_in_out_addfavorite.xml
+SHA1-Digest: ks9c7Es2Wp1ty/8dveB0k1gyeqk=
+
+Name: res/drawable/xml_button_minilyric_lock.xml
+SHA1-Digest: XlFYd1C5IebtVgudHxVku1kBDKY=
+
+Name: res/layout/radio_category_section_subitem_view.xml
+SHA1-Digest: +FdOwRvt11dmtDVQzKEB95nwQE4=
+
+Name: res/drawable-hdpi/img_favorite_count_selected.png
+SHA1-Digest: gqRe8Dru6Gv9JVu/GTbIi5N2aj8=
+
+Name: res/drawable/xml_background_linearlayout_crop.xml
+SHA1-Digest: 3S/PhpD9hR7FcYwIepa9CGUzr9c=
+
+Name: res/drawable-hdpi/img_tag_song_list_recommand.png
+SHA1-Digest: iIXHUsKlmU3p3c3z1ie8mhvbDX8=
+
+Name: assets/com.tencent.plus.ic_error.png
+SHA1-Digest: HisWESn8PSVNnjhjfsbMtsajomo=
+
+Name: res/drawable-hdpi/img_background_equalizer_animation_waveview_cu
+ stom.png
+SHA1-Digest: WmGOm29wOpN1G/jz6cn6NYfzrbk=
+
+Name: res/layout/effect_recommend_item.xml
+SHA1-Digest: KNaxMoYlm8zr6NkaPKAWNb14pUU=
+
+Name: res/layout/recommends_effect_header_view.xml
+SHA1-Digest: /xT9eCUkKtLppms3ynCT1uGhFm8=
+
+Name: res/anim/unlimited_rotate.xml
+SHA1-Digest: d2nhcIKZ14zKqkLGBprzg1/hT/A=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_state_idle.png
+SHA1-Digest: F6Om08QcXG8c7e2JS9p0RbLwL18=
+
+Name: res/drawable-hdpi/img_song_publish_new.png
+SHA1-Digest: Y0Agw79VnCMMYJnFvcDmFoa/hUc=
+
+Name: res/drawable-hdpi/img_findsong_hot_changedata_anim.png
+SHA1-Digest: sUpvSoQgfnOiWWYYP/nq6V9eLZs=
+
+Name: res/layout/myeffect_list_item_new.xml
+SHA1-Digest: iGoLGoza314UaWed8HDkLuFDhd0=
+
+Name: res/drawable-hdpi/img_background_effect_rotatebutton_graduation_
+ pressed.png
+SHA1-Digest: np7y2qWku4W2McUozNJIEWgcc2s=
+
+Name: res/drawable-hdpi/img_appwidget_artist.png
+SHA1-Digest: TyYFL1tF4WxyjonwhJ/oxUSxL3E=
+
+Name: res/drawable/unicom_unsubscribe_button.xml
+SHA1-Digest: K6CRbEUXFF0ETjh9SBrEXecXM8k=
+
+Name: res/layout/cmmusic_list_row.xml
+SHA1-Digest: gp9ReVQ+UFwXAkbn6SMaXrK+upY=
+
+Name: res/drawable-hdpi/img_flag_mv.png
+SHA1-Digest: c6syX6wsr/HeSZfVOOgNRHnHuEc=
+
+Name: res/drawable-mdpi/img_scan_navigation002.png
+SHA1-Digest: jxkyNroC5aaomZzYrIDqYE4UT5c=
+
+Name: res/layout/fragment_theme_screen_layout.xml
+SHA1-Digest: mAwhvDr7gudHLoxAS8+5095SgEg=
+
+Name: assets/landscape/xingxing.png
+SHA1-Digest: QCm3i1erLcvfnV2az+7slNdx9dE=
+
+Name: res/drawable-hdpi/recommand_list_bg_1_hit.png
+SHA1-Digest: AdBZqkBhsydOfMC4CY0CyjFyXLs=
+
+Name: res/drawable/xml_background_market_search_button.xml
+SHA1-Digest: z7uKd09O/hbqiOggbUDHuJOdkA0=
+
+Name: res/anim/fade_in_1000.xml
+SHA1-Digest: 2EvDK6qlDuO17OyaJkzLM+43k64=
+
+Name: assets/yyb_appdetail_bg_floatingwindow.9.png
+SHA1-Digest: iOF6vy6Ma8SqrJZVpH/hMwRSMP0=
+
+Name: res/layout/timing_getup_item.xml
+SHA1-Digest: AvoCjlBrN4Dsn3WwMfEIED5ki4U=
+
+Name: res/layout/cmmusic_recommend_activity.xml
+SHA1-Digest: HLL7o7ccILbrrqflRbaOW6JO+Bg=
+
+Name: res/layout/layout_offline_mode.xml
+SHA1-Digest: hYF/+xaO44R8e6djZ+WAECrVtA0=
+
+Name: res/layout/media_list_item_common.xml
+SHA1-Digest: SAznR1YBAOvl2sGvc3wR4XOnPpM=
+
+Name: res/layout/fragment_background_management.xml
+SHA1-Digest: LvEyh53MvCTyGpzrzqKAqkA/WOU=
+
+Name: res/drawable/xml_appwidget91_voice_next.xml
+SHA1-Digest: M8aiHaFwHHn4Z37btCvUpih8mwQ=
+
+Name: res/layout/activity_userinfo.xml
+SHA1-Digest: B73YxBDuxWMuHhiDK/zNppDOPVY=
+
+Name: res/drawable-nodpi/img_list_divider_market.png
+SHA1-Digest: 3wsfB728JqWL7xzQOTSy3uMsEQU=
+
+Name: res/layout/activity_setting_audio_fade.xml
+SHA1-Digest: kcWQZm6S20GqwMyAn+D7/2yaJTo=
+
+Name: res/layout/ktv_list_media_empty.xml
+SHA1-Digest: KNfe/L8njcYsbrqiAO1/3KAGSEk=
+
+Name: res/layout/activity_mediascan_auto_scan.xml
+SHA1-Digest: 2EN1aZoox9eNeo8iVKeXY79WjYg=
+
+Name: res/layout/appwidget_main_5x1.xml
+SHA1-Digest: KdynW4E3ZzqfPQD2z3IiTmwAKHQ=
+
+Name: res/drawable-hdpi/img_musiccircle_table_background.9.png
+SHA1-Digest: KgnNRyFuxKSC9kWVqkssZlT9eYk=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_bedroom
+ .jpg
+SHA1-Digest: 8hxAxahh8zioPLAYnIW5tQimhH8=
+
+Name: res/drawable-hdpi/img_contextmenu_add.png
+SHA1-Digest: +860aL7Q33LRLxxE9hP14S5dNK0=
+
+Name: res/drawable/xml_imageview_mediascan_animation.xml
+SHA1-Digest: jmyDzjt4yvKs9BZz3POwbPlrhqE=
+
+Name: res/drawable-mdpi/img_musiccircle_radar_error.png
+SHA1-Digest: 4/mAwO5+mxvYdL6oecXEX+8jTcA=
+
+Name: res/color/xml_local_media_tab_text_black.xml
+SHA1-Digest: aK6tijONC/ldlTDuFI+BqGIXxsU=
+
+Name: res/drawable-hdpi/img_appwidget_play.png
+SHA1-Digest: 0qmHKlcBYJcqqGvk7F2pl59R/1I=
+
+Name: assets/widget_.xml
+SHA1-Digest: QKgcH/m3VURw+3NByonaKB2Vad8=
+
+Name: res/drawable/unicom_open_button_normal.xml
+SHA1-Digest: N2eBRg+K8YbMl7YYl5eBxZU6SK4=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_theater
+ .jpg
+SHA1-Digest: ufZjWnJLNwTajGd1cosmat5koPY=
+
+Name: res/drawable-hdpi/img_lockscreen_pre_normal.png
+SHA1-Digest: ZWuFgESF2icuKLVimFsf1MiAZFE=
+
+Name: res/drawable-hdpi/img_button_toggle_on.png
+SHA1-Digest: aOcTsklqSBwBnTCKM/Z2+DGQZkc=
+
+Name: res/layout/musiccircle_private_message_chatting_list.xml
+SHA1-Digest: 7WeaM182zyr9eWMLT3Q+3g3eh64=
+
+Name: assets/www.zip
+SHA1-Digest: BRswrXCyuSktgqrqM1Ax4JMWlKM=
+
+Name: res/drawable-hdpi/img_close_show_dialog.png
+SHA1-Digest: UVsFtRAf29rkc+DA3wdV0HLk5r8=
+
+Name: lib/armeabi/libresample.so
+SHA1-Digest: uRlR5JtEjxiI16B1IiQzEZ806VI=
+
+Name: res/layout/findsongfragment_listview.xml
+SHA1-Digest: tU6adfRttiAblhBA3DPYTWs9ih8=
+
+Name: res/drawable-hdpi/img_lyric_slow_down.png
+SHA1-Digest: v1xeiXNa4GjPIIvPZoIf/NWIzzA=
+
+Name: res/layout/fragment_album_detail.xml
+SHA1-Digest: ViRKjPWlSZQv/1k+9NEHA7zDDdA=
+
+Name: res/drawable/unicom_open_button.xml
+SHA1-Digest: Pz5VKoqEl0dPu7nxNxuBsL7qjs0=
+
+Name: lib/armeabi/libSpeex.so
+SHA1-Digest: l3gidvgzyfa0imVdPOKEEdYHT3s=
+
+Name: res/drawable-hdpi/img_market_list_top_left_button_normal.9.png
+SHA1-Digest: Va9upUDH6eocq47Xv5x/KLNrKLk=
+
+Name: res/layout/find_song_hot_image_listview_item.xml
+SHA1-Digest: DPqirKQ2fpIBY6bn2tkv8ZPRhp0=
+
+Name: res/drawable-hdpi/img_guide_button_entry_normal.png
+SHA1-Digest: 1bqEZo1arAwE48MuPkFys/F2E6Q=
+
+Name: res/drawable-hdpi/img_set_ring.png
+SHA1-Digest: 9MZjglrH7J89vqI3+RCKmoh5oy0=
+
+Name: res/layout/framelayout_container.xml
+SHA1-Digest: LzGGDkj/yyp+B2/DsiNmkfbSBKo=
+
+Name: assets/scene/snow_flake.png
+SHA1-Digest: a40I+TVFwYVU42OfGode4CIoy8Q=
+
+Name: res/drawable-hdpi/img_effect_level_normal.png
+SHA1-Digest: U36mbxiTLiZmxeVQpFwyOszyjaA=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_concert
+ .jpg
+SHA1-Digest: rzdLrsC3Sg4KF2UVvLy1aF4LwgY=
+
+Name: res/layout/musiccircle_radar_user_info.xml
+SHA1-Digest: Cio29cNLFoLt9GzY3VMqLiZl8wc=
+
+Name: res/layout/ktv_fragment_local_sub_media_list.xml
+SHA1-Digest: P134T2fqNTYVVBAvI4Ez3EdKBGI=
+
+Name: res/layout/landscape_bottom_menu.xml
+SHA1-Digest: NUju5baYbBBvMrAF43O2eWq6lPg=
+
+Name: res/layout/market_app_list_item.xml
+SHA1-Digest: DokTw5s/7TCGZ9FmcHhRG3XfIu8=
+
+Name: res/drawable-hdpi/img_album_right_arrow.png
+SHA1-Digest: JGTU9+Lhr74ekxnl87G/JkPsn5w=
+
+Name: res/drawable-hdpi/img_favourite_selected.png
+SHA1-Digest: 9XqAFeucjn+Lq76b9ePcdmicy0U=
+
+Name: res/drawable-hdpi/img_imageview_hotword_refresh.png
+SHA1-Digest: rotz9+XK1KHbrDV2JHC7nK7UXT8=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_refresh_normal.png
+SHA1-Digest: C9zCRU/U5yBA3DXmboZqyWCns8A=
+
+Name: res/drawable-hdpi/img_count_flag.9.png
+SHA1-Digest: bpMJiCcbU5ASqHxkP+ljRg+jgaY=
+
+Name: res/layout/landscape_old_layout.xml
+SHA1-Digest: aKMS1e7JicJ+8NYfxJuZ6DFRQKU=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_play_normal
+ .png
+SHA1-Digest: VKfmg48rMtVNpoCielGjU4SWFqA=
+
+Name: res/drawable/xml_background_action_title_transparent.xml
+SHA1-Digest: iwYlxqa6s46zdXc1hwCANkuIY4A=
+
+Name: res/drawable-hdpi/img_setting_right_arrow.png
+SHA1-Digest: 1qUaOFp0DJxkiQ4s8PRGgjIPcmQ=
+
+Name: res/layout/activity_soundsearch_media_list.xml
+SHA1-Digest: yL1nB2QGdh1X988A71e4lO5mIik=
+
+Name: res/anim/fade_in_splash.xml
+SHA1-Digest: vRCY0it3g6vzjPAXiyVuHe1aHdU=
+
+Name: res/drawable-hdpi/img_imameview_advertisement_default_logo.png
+SHA1-Digest: Un727NOJa+sFFe6ciAieyb5bDr8=
+
+Name: res/drawable-hdpi/smiley_35.png
+SHA1-Digest: mZnQs3WgezEhc/2axTVBQAtxpQs=
+
+Name: res/layout/soundsearch_listview_item.xml
+SHA1-Digest: XBgIlvXf0qmLqKk3SJ+MDsmV5Z0=
+
+Name: res/drawable-hdpi/cmmusic_btn_paying.png
+SHA1-Digest: H8cpXHFcqKKfg943d6IJ34ylxjM=
+
+Name: res/drawable-hdpi/img_background_volume_control_landscape.9.png
+SHA1-Digest: Yz6lJKt+g/qOPjsQGyQ2wznSh8c=
+
+Name: res/drawable-hdpi/img_button_minilyric_gray_pressed.png
+SHA1-Digest: f8Ax4Jov63Vic1DvNha8QX8fBiY=
+
+Name: res/drawable/xml_actionbar_shadow.xml
+SHA1-Digest: kB9PhJwxswkNY5dOOvtKAbeMNFY=
+
+Name: res/drawable-hdpi/smiley_32.png
+SHA1-Digest: A6WeXaFhvG/l//79iqnNRo//KhM=
+
+Name: res/drawable/xml_appwidget91_voice_refresh.xml
+SHA1-Digest: jSfjUsTNwQXHmLehTIYISAULwkw=
+
+Name: assets/com.tencent.plus.blue_down.png
+SHA1-Digest: P5pLNnim3nMuEA2ZM1/RdQsqIUY=
+
+Name: res/layout/picture_manager.xml
+SHA1-Digest: FNEB5UMYcqxvBmxNBjVfBR3uMbA=
+
+Name: res/layout/fragment_base_theme_layout.xml
+SHA1-Digest: qvomxsXsdDvcjUXzJQjHepMOfOc=
+
+Name: res/drawable/xml_appwidget91_voice_prev.xml
+SHA1-Digest: JsuqYFkbRCvn2/M01V5YZsxGJwQ=
+
+Name: res/drawable-hdpi/img_button_play_landscape_pressed.png
+SHA1-Digest: AcQfMWpForFt2kl/zwMYVbfIr3c=
+
+Name: res/drawable-hdpi/img_imageview_soundsearch_result_default_cover
+ .jpg
+SHA1-Digest: n6RcFhhPddQp+/LjJys8o7qn/Bg=
+
+Name: res/layout/fragment_feedback_list.xml
+SHA1-Digest: ittDZgmIy39QmQxtv2VmjMszwFM=
+
+Name: res/layout/fragment_base_list.xml
+SHA1-Digest: Jc1jYPWRAyYsM3H9hFIFgle19AU=
+
+Name: res/drawable-hdpi/img_background_view_userinfo_divider.9.png
+SHA1-Digest: PGueR002RRWILle4RzLkkL5iAf8=
+
+Name: res/drawable-hdpi/img_seekbar_playcontrolbar_progress.9.png
+SHA1-Digest: GhK5nCRYnpU234jfCGBrIx8eyPk=
+
+Name: res/drawable-hdpi/smiley_16.png
+SHA1-Digest: B+bSRBzZe9wwOvuzXjx0fwD8YH0=
+
+Name: res/drawable/xml_share_background_dialog_waiting.xml
+SHA1-Digest: m55K5U9R8q89BISTugXx35xy9XE=
+
+Name: res/drawable/xml_background_button_market_download.xml
+SHA1-Digest: s+rkAXMG1orVU4B7pGsQFESFJog=
+
+Name: res/drawable-hdpi/img_button_market_download_pressed.9.png
+SHA1-Digest: b8rx0djJ0+Y7w9jHeN4IT1uk/x8=
+
+Name: res/layout/appwidget_main_5x2.xml
+SHA1-Digest: fu4OAiqOCtjyHHLU02n6nzhSoI8=
+
+Name: res/color/xml_textcolor_radiobutton_userinfo_sex_male.xml
+SHA1-Digest: vDehWzI0WHiHaXB1kLD1nnUTrfc=
+
+Name: res/drawable-hdpi/img_beautiful_background.png
+SHA1-Digest: lj6IT0KfJhcuoKRl17jq0hJqNng=
+
+Name: res/layout/find_song_list_view_item.xml
+SHA1-Digest: Vh2qrtv5PQt2u+dHOKXrcfAVFWM=
+
+Name: res/drawable/xml_button_minilyric_setting.xml
+SHA1-Digest: ySXnmztVYoVMKa6Z0y3zMlsJI3I=
+
+Name: res/layout/fragment_double_item_grid_list.xml
+SHA1-Digest: 5AryaBF7nrcEMSGI/IzrTfE3MKk=
+
+Name: res/color/xml_dialog_button_title.xml
+SHA1-Digest: a1eLjOL+rKL8uara3U4wwFLcJdk=
+
+Name: res/layout/activity_feedback_chat.xml
+SHA1-Digest: s7nFtTXkGAPqmGJFOQnIbCHygpM=
+
+Name: res/layout/appwidget_main_4x1.xml
+SHA1-Digest: KdynW4E3ZzqfPQD2z3IiTmwAKHQ=
+
+Name: res/layout/musiccircle_post_item.xml
+SHA1-Digest: s3r97NRvHlHso7tJhUqDo1ljo3o=
+
+Name: res/drawable-hdpi/img_big_volume_landscape.png
+SHA1-Digest: RGCn0bNcZzbi7WtrY/7erJIQzrs=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_share_press
+ ed.png
+SHA1-Digest: u6Zf3BFrwOIduJbuoTOeQxl+Mtg=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_prev_pressed.png
+SHA1-Digest: HA5Ia/PoDc7IdGduKwe0mUsbquo=
+
+Name: res/layout/mediascan_auto_scan_item.xml
+SHA1-Digest: r7+ggzUt1OgGTyuvh0+Y9RkZ0Ag=
+
+Name: res/drawable-xhdpi/img_market_ranking_up.9.png
+SHA1-Digest: GsqERhzQAzLd8oQxIk/PdCj4vvs=
+
+Name: res/layout/fragment_main_search.xml
+SHA1-Digest: 5879Qwoy2Wz3UaIfYCrsBgiDpfc=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_reverb_bedroom
+ .jpg
+SHA1-Digest: MSdS9q0flXlh+OCPbQsbrYOtziA=
+
+Name: res/drawable/xml_background_textview_effect_custom_save.xml
+SHA1-Digest: oBB726nh8bMCSuWp6yeHRrINVaE=
+
+Name: res/layout/fragment_main_market.xml
+SHA1-Digest: 0M6xNn6pyNjUPVGkIlgafjpsb64=
+
+Name: res/drawable-hdpi/img_share_background_dialog_button_positive_no
+ rmal.9.png
+SHA1-Digest: +hQgYIsGg4OhMqb68oYIrd7Mqv8=
+
+Name: res/drawable-hdpi/img_background_ttseekbar_effect_indicator_norm
+ al.png
+SHA1-Digest: 5rQTTIoMhsFneJncEuv0G4L/nTE=
+
+Name: res/drawable-hdpi/img_contextmenu_remove.png
+SHA1-Digest: mliowhtNm+/6QI1zvUKYjgI8lI4=
+
+Name: res/drawable/xml_landscape_switch_old.xml
+SHA1-Digest: nx641YkcRXLfCr+3QBJAlT31uPY=
+
+Name: res/layout/dialog_page_choice_list.xml
+SHA1-Digest: t/Rgd0KhYJlI6f0yv/IRvibsCcA=
+
+Name: res/drawable/unicom_radio_button.xml
+SHA1-Digest: DwDWozUsbi3vEXZnQ/Xyzb+xBTU=
+
+Name: res/drawable-hdpi/img_dropdown_menu_bkg.9.png
+SHA1-Digest: zpw7dBjNEAj3wkVF3DXLe9cCs64=
+
+Name: res/drawable-hdpi/img_backgournd_effect_state_play.png
+SHA1-Digest: WsuAwU/1bJsXqkr/05OJ67ovz+Y=
+
+Name: res/layout/cmmusic_webview_activity.xml
+SHA1-Digest: PWXWFhL08Zai68vrR8GEFASn8YQ=
+
+Name: res/drawable-hdpi/img_landscape_switch_effect_normal.png
+SHA1-Digest: iIL7bkiPIUahxVU9WzJNy/YMERs=
+
+Name: res/drawable-hdpi/smiley_9.png
+SHA1-Digest: UL3YkOTx39R1YtUnBUINwSQdmM0=
+
+Name: res/drawable/cmmusic_setbag_background.xml
+SHA1-Digest: UdUy2NVrl+SK+A8v+nyJc6X1JoY=
+
+Name: res/drawable/xml_background_timing_pressed.xml
+SHA1-Digest: hKyMOJXGUpbVy3pcTdxmVYPYd0E=
+
+Name: res/layout/share_dialog_main.xml
+SHA1-Digest: GUhxuFC5JXfG73g/fPjSCdg+HTo=
+
+Name: res/drawable-hdpi/img_button_prev_landscape_pressed.png
+SHA1-Digest: 73kaqr//2E09HSrjlwCds7w5jgw=
+
+Name: res/layout/media_list_item.xml
+SHA1-Digest: F2vtafYhG+6z1zkpDGDOWOovlVE=
+
+Name: res/layout/apshare_receiver_main.xml
+SHA1-Digest: 7KhR5WAUE6jTz5YDs8MtSGyMBKk=
+
+Name: res/drawable-hdpi/myeffect_item_hit.png
+SHA1-Digest: 9z+/pgaiM7zgh/t/sbMRv+62rkE=
+
+Name: res/drawable-xhdpi/img_market_collapse.9.png
+SHA1-Digest: G9IBA1ijvVhuSG1K1XUlwyOizzg=
+
+Name: res/drawable-hdpi/img_actionitem_back.png
+SHA1-Digest: dhGNjrvjWnheaVVk3XEM3hvUdl8=
+
+Name: res/drawable/color_background_effect_title_shadow.xml
+SHA1-Digest: HIO6Qz7K2Eb5APTZoOHFWVWFmHo=
+
+Name: res/drawable-hdpi/img_share_button_dialog_pressed.9.png
+SHA1-Digest: sRnFuKbyioVZIrhNRTZ+HFMsj7E=
+
+Name: res/drawable-hdpi/img_background_skin_update.png
+SHA1-Digest: PQz33nLxcrYf+y0Pgp/qhj1zdDA=
+
+Name: res/drawable-hdpi/img_content_indicator.png
+SHA1-Digest: QdmKHVnsBdBVKys+uEbBKcpsqNE=
+
+Name: res/drawable-mdpi/img_scan_navigation005.png
+SHA1-Digest: W5jLvkitsvRz0vf7+SVnrx33GW0=
+
+Name: res/drawable-hdpi/img_song_publish_flag.png
+SHA1-Digest: d7dpkmMd2fVy9Xe4/ibOhl8OOpk=
+
+Name: res/drawable/unicom_verify_code_button_normal.xml
+SHA1-Digest: NcPmD4/NfoFinRokmMlBwH2LvTk=
+
+Name: res/drawable/xml_button_unlock_landscape.xml
+SHA1-Digest: O3ObwCme91XbwaJr81AMjv1+/Bs=
+
+Name: res/drawable-hdpi/img_contextmenu_edit.png
+SHA1-Digest: dY0zGtbMwt3t7jEzC/tvYodwBig=
+
+Name: res/drawable/xml_background_radiobutton_userinfo_sex_female.xml
+SHA1-Digest: JdA+sCBSiWVxA6DRRpW14FD0mFY=
+
+Name: res/layout/recommends_effect_nodata_view.xml
+SHA1-Digest: a7BY7KbJVPW5S37QPjSOtTPgAIU=
+
+Name: res/drawable/xml_progressbar_apshare.xml
+SHA1-Digest: SvXf8cvJMsdt4ZocqwJAGmfTe0M=
+
+Name: res/drawable-hdpi/img_background_effect_reverb.9.png
+SHA1-Digest: LCwUfzrEliEWGQCWGI7ug2fagQE=
+
+Name: res/layout/download_softwaregameview_item.xml
+SHA1-Digest: RMpiqUwXNzEnR0pWT00NHHLRmuQ=
+
+Name: res/drawable-hdpi/img_notification_unicom_close.png
+SHA1-Digest: gdGSfIzLek4yUUyYmZu1VNk4etU=
+
+Name: lib/armeabi/libmediaplayer.so
+SHA1-Digest: NHz8rJ+grI87rATZR/Y8tz/xWOI=
+
+Name: res/drawable-hdpi/img_bttton_unlock_landscape_pressed.png
+SHA1-Digest: BH8Vl4D3MQ6jyBxzmmv5dFJjVeM=
+
+Name: res/layout/fragment_cloud_audio_effect.xml
+SHA1-Digest: NTCOZG23SXUVUSC8MWw08H4fwvU=
+
+Name: resources.arsc
+SHA1-Digest: NZdleJ9hQtcvoynBCrxDVZ6IZek=
+
+Name: res/drawable/cmmusic_page_background.xml
+SHA1-Digest: Lj7k67w/Zi0hkbQ0DHUBGVexcPU=
+
+Name: res/layout/effect_recommend_item_new.xml
+SHA1-Digest: ShG0DW+3/e+icel/ajXS3Nh3Zhg=
+
+Name: res/layout/find_song_inner_section_layout.xml
+SHA1-Digest: jMY+tC9ls9vEgCJaYMdF0hGqJtA=
+
+Name: res/layout/musiccircle_post_detail_media_comment_item.xml
+SHA1-Digest: 8B9x4+VsJlXLgzkABH1GQFrH0qs=
+
+Name: res/layout/fragment_theme_header_layout.xml
+SHA1-Digest: V+ohmYrUhB8Krf69OJTwCa7IJCM=
+
+Name: res/drawable-hdpi/img_appwidget91_voice_play_normal.png
+SHA1-Digest: vOhSZLMqSmlrDWVuupMagYYMTZ0=
+
+Name: res/drawable/xml_musiccircle_post_detail_header_comment.xml
+SHA1-Digest: aWwVwNWeO9dHkAjvvmM5Bk5g92U=
+
+Name: res/drawable/xml_background_action_view.xml
+SHA1-Digest: cVfbUQvQhrVNxa+t/UrfHPtF/Xo=
+
+Name: res/layout/fragment_double_item_grid_section_list.xml
+SHA1-Digest: gyXzpBamTtdQri20uBs2sGABQkQ=
+
+Name: res/anim/qihoo_show_in.xml
+SHA1-Digest: g6JwcXWZhfLDiXwy3s1yB4Ym7rE=
+
+Name: res/layout/musiccircle_user_profile_header.xml
+SHA1-Digest: JMWDIcB8lqihfksU6wYQUXkfuNk=
+
+Name: res/drawable-hdpi/icon_share_sns_other.png
+SHA1-Digest: IcqDaxTDqz7Ge+9mkhpA0aOCzkI=
+
+Name: res/anim/fade_out_100.xml
+SHA1-Digest: WDenahZwZ0kEC0Yn2/tk22S1dvI=
+
+Name: res/drawable-hdpi/unpeipi.png
+SHA1-Digest: gdZ/slXkt9vXw6dI7cGH1U3S1kE=
+
+Name: res/drawable-xhdpi/img_market_list_top_left_button_selected.9.pn
+ g
+SHA1-Digest: ixK7HQi72SOUBOUY06W4fwB7SRs=
+
+Name: res/layout/mv_list_item_online.xml
+SHA1-Digest: Kem7i/PyY/F4GLv1dnLQJUNB5nA=
+
+Name: res/layout/activity_effect.xml
+SHA1-Digest: pAaCP+7iZO8E2ilJTcP58Riy28I=
+
+Name: res/drawable-hdpi/img_imageview_mediascan_item_folder_return.png
+SHA1-Digest: 0rRonbCFS1uFemTY1URZjTmUKeY=
+
+Name: res/drawable/xml_background_upgrade_progress.xml
+SHA1-Digest: ZnWn5Hc8g0Xya1QQo4MHH3eHoQ0=
+
+Name: res/drawable-hdpi/smiley_13.png
+SHA1-Digest: 6f7deQjnZnlbxKLF+KeZCBBTF8M=
+
+Name: res/drawable-hdpi/img_background_imageview_effect_music.png
+SHA1-Digest: njL0ewjvXIbOxQHSq9sxiFF/cFM=
+
+Name: res/drawable-hdpi/img_musiccircle_notice_new_followser.png
+SHA1-Digest: aN6br3VXEbn1Xvf/BEMvW2K2zYI=
+
+Name: res/drawable-xhdpi/img_market_list_top_left_button_normal.9.png
+SHA1-Digest: hdagK2GNHxc3G49Sd32advnyZjA=
+
+Name: res/layout/activity_common_sliding_pager.xml
+SHA1-Digest: aXM8nBrOrHBEXljHZEclL5+xwLw=
+
+Name: res/layout/fragment_singer_tab.xml
+SHA1-Digest: ySdlNyLzMhT3Mzt6CF8LkWxRyz0=
+
+Name: res/drawable-hdpi/img_musiccircle_chatting_right_bg.9.png
+SHA1-Digest: Oc/DvSlAoVLyj4rJgK2COGpNISM=
+
+Name: res/layout/activity_lightweight_entry.xml
+SHA1-Digest: 5NXSolod06ULbHfqaqJM4xuIcrg=
+
+Name: res/layout/audio_effect_popup_menu_layout.xml
+SHA1-Digest: OhzxbBpsa7D3LXpxgZgdQ/uUA44=
+
+Name: res/drawable/xml_background_effect_equalizer_list_item.xml
+SHA1-Digest: RUDzjFK+n5NW6DHbhW0zx2wPw5Y=
+
+Name: res/layout/singer_topn_list_item.xml
+SHA1-Digest: 1UQRsWARboGk4mdtuOC1wP2raSo=
+
+Name: res/layout/picture_with_bottom_text.xml
+SHA1-Digest: RAwB2nvG4pJ4ppR5svTEy8k0MMU=
+
+Name: res/drawable-hdpi/img_musiccircle_post_detail_header_comment_nor
+ mal.png
+SHA1-Digest: r2jgdwz9yCXd7x6MZuZaA5ThPy4=
+
+Name: res/drawable-mdpi/img_radial_progress_pointer.png
+SHA1-Digest: rp5gW/vKWEc9WY+R6PnaLIcR2UI=
+
+Name: res/drawable/xml_background_market_indicator_down.xml
+SHA1-Digest: PaBN3akgM8alfKOxhoZDZX7iVlY=
+
+Name: res/xml/widget.xml
+SHA1-Digest: GMe6otkaXGGlQj8VPNSthwbKf+o=
+
+Name: assets/com.tencent.plus.blue_normal.png
+SHA1-Digest: xUbCnopVA5SB7IPOU07W9fIdgcQ=
+
+Name: res/drawable-hdpi/img_apshare_phone.png
+SHA1-Digest: l5ajlpRc0u+e9suqDJN/ObjQgsc=
+
+Name: res/layout/fragment_common_navigate.xml
+SHA1-Digest: LS4jdwt5hJb0Q4iTEx5djTo6pJM=
+
+Name: res/drawable-mdpi/img_album_detail_defaul.png
+SHA1-Digest: RUsKvTjF1xmFA8g/h02jGUhLRzE=
+
+Name: res/drawable/xml_tab_indicator_feedback.xml
+SHA1-Digest: SHxPb21gsptgAZTi8I2oA+V5C6M=
+
+Name: res/layout/fragment_adjust_audio_new.xml
+SHA1-Digest: LpKeZ8wWoWWZMGuMH5dtii6OrQw=
+
+Name: res/drawable-hdpi/img_button_minilyric_close_pressed.png
+SHA1-Digest: wJ5YEcJmN/jiWsv5dDOq6FtdWAg=
+
+Name: res/layout/musiccircle_private_message.xml
+SHA1-Digest: +QA6Yn0x64e3BRkSSD2E4QsBhoA=
+
+Name: res/drawable-hdpi/img_bttton_lock_landscape_normal.png
+SHA1-Digest: BO0llyP/ryq0fbHiLZsrR1u2DsE=
+
+Name: res/layout/activity_version_upgrade.xml
+SHA1-Digest: 3dDJzjPES7PEOPQkVJYUxK/L6SA=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_hall.jp
+ g
+SHA1-Digest: Ls3+vrdEgvCqkcD525EnT2QoxCg=
+
+Name: res/drawable-mdpi/img_background_imageview_effect_reverb_auditor
+ ium.jpg
+SHA1-Digest: sLbCuTGamLRh614/uFYOiUhIDtw=
+
+Name: res/layout/singer_list_section_header.xml
+SHA1-Digest: N4KNTcLpBk//y614ZoZwxtC17r4=
+
+Name: res/layout/musiccircle_private_message_item.xml
+SHA1-Digest: /1hei3FXSq3Rac5qAvxa+04Kym0=
+
+Name: res/drawable-hdpi/img_about_ttpod_logo.png
+SHA1-Digest: cowrQL5ErpUelsAjvwmVXXRQhH0=
+
+Name: res/layout/fragment_background_screen_layout.xml
+SHA1-Digest: Xffhybefx0q4enDmxiQFl48hXUk=
+
+Name: res/drawable-hdpi/img_landscape_switch_effect_pressed.png
+SHA1-Digest: 5WSqOqeK/TCC6BKqvG/GUoK15sA=
+
+Name: res/layout/activity_skin_info_layout.xml
+SHA1-Digest: 9sGcIZm63cn1phkef2EzdPAy5AY=
+
+Name: res/color/xml_media_list_item_title_color_transparent_glass.xml
+SHA1-Digest: eLuG6pEMeh5GMrzz70d76MLGb5o=
+
+Name: res/layout/activity_unicom_flow_faq.xml
+SHA1-Digest: oYU39r7IjVK150TpWipDbVmhxpw=
+
+Name: res/drawable-hdpi/img_button_market_disable_pressed.9.png
+SHA1-Digest: q5L3vWTlpMuGr+BnKTgKZqdHbc8=
+
+Name: res/drawable/xml_unicom_flow_edit_foucus.xml
+SHA1-Digest: XJVgcZmHfR2Oy6/Oa2gUG70qdj8=
+
+Name: lib/armeabi/libosal.so
+SHA1-Digest: udAH8mw5apmTbykx9JuSq7Ygzvc=
+
+Name: res/drawable/qihoo_btn_net_config.xml
+SHA1-Digest: MmiJE/qzB1loQWp9HCpQG9cg3uA=
+
+Name: res/drawable-hdpi/img_background_imageview_soundsearch_center.pn
+ g
+SHA1-Digest: 75ToTsTCovoWR3dZKHfc4K8JdPg=
+
+Name: res/drawable-hdpi/img_background_effect_rotatebutton_down.png
+SHA1-Digest: bNZygGfHKYGslYFT4pcxprNTsy8=
+
+Name: res/drawable-hdpi/img_background_button_splash_audio_disabled_pr
+ essed.png
+SHA1-Digest: k4+j94xw2riyGfZ4hH0NcORzQvs=
+
+Name: res/drawable-hdpi/img_button_market_update_normal.9.png
+SHA1-Digest: 3ixSd4H40tyT4mc8audDfHRVhXU=
+
+Name: res/layout/apshare_media_list_item.xml
+SHA1-Digest: AjpFinM5JL4KJMaG5AaX/jVt0Z8=
+
+Name: res/drawable/xml_button_play_landscape.xml
+SHA1-Digest: D5dZTi5yT48XtBbM14J1rF++AOM=
+
+Name: res/drawable/xml_background_radiobutton_userinfo_sex_male_select
+ ed.xml
+SHA1-Digest: v4jQXiIK6j8zcIPK2hTRo/cEXS8=
+
+Name: res/drawable-hdpi/img_singer_category_grid_item_mask.9.png
+SHA1-Digest: o1dWnwwD4kwavAhMAflb55jsNFc=
+
+Name: res/layout/activity_setting_audition_download_quality.xml
+SHA1-Digest: QX3u4cEecaiVwmQQKSAe5PFe+eY=
+
+Name: res/layout/notification_default.xml
+SHA1-Digest: QRoi52Ctv63OecUzeVBhqWMDO/4=
+
+Name: res/drawable/xml_background_textview_download_softwaregameview_i
+ ndicator.xml
+SHA1-Digest: ACimReU7stKknMh9S2/4vndgyJw=
+
+Name: res/layout/dialog_body_message.xml
+SHA1-Digest: XrxMSO5HpsuM2YD4ucXw50SLtqk=
+
+Name: res/layout/musiccircle_post_list.xml
+SHA1-Digest: Q6/jBmTTv/n7hwK9/XSl1yZdc2Q=
+
+Name: res/drawable-hdpi/img_volume_icon.png
+SHA1-Digest: PkggQVaii3EPiwIYkEJMC2thq2E=
+
+Name: res/drawable/xml_background_download_progressbar.xml
+SHA1-Digest: g5JztJ4BBfYHg6aVEbIf8e9asa4=
+
+Name: res/layout/notification.xml
+SHA1-Digest: Vpq9DD+uEoSo+8EBoYNatA5x/II=
+
+Name: res/drawable/xml_background_market_list_top_right_btn.xml
+SHA1-Digest: ivdXttnh5Knrm+JiM8jAU1i5wv4=
+
+Name: res/layout/new_disc_list_item.xml
+SHA1-Digest: DuSpsfVdVtkAVpkoC9/5KVXeAO0=
+
+Name: res/drawable-hdpi/img_button_market_search_pressed.9.png
+SHA1-Digest: NwgZ3pC2kzvEvEV5MFlVNIytlpY=
+
+Name: res/layout/activity_entry.xml
+SHA1-Digest: ayj9O6QuWYHzt7qisSA4qsiyZXg=
+
+Name: res/layout/dialog_body_seekbar.xml
+SHA1-Digest: 2FeSIXSctANjdOHu4hFigZSn+q4=
+
+Name: res/layout/ktv_dialog_download_progress.xml
+SHA1-Digest: JlaAmJ6OKO9+th68SP1GCAHxF6I=
+
+Name: res/layout/dialog_mediainfo_item.xml
+SHA1-Digest: PTneV3Rptif3+Xu7T66Zd58DHqk=
+
+Name: res/layout/contextmenu.xml
+SHA1-Digest: QSNrQKge/PX+RCjvRFTJOh4QqCU=
+
+Name: res/drawable-hdpi/img_radiobutton_userinfo_sex_female_normal.png
+SHA1-Digest: 6q/4ah8+XPaNcrYyfLysqcYIpIA=
+

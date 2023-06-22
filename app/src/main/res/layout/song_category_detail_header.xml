@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/layout_detail_content"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:background="#eff5f7"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.sds.android.ttpod.widget.RoundedImageView xmlns:ns1="http://schemas.android.com/apk/res-auto"
+            xmlns:ns2="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/imageview_header"
+            android:layout_width="@dimen/song_category_detail_image_size"
+            android:layout_height="@dimen/song_category_detail_image_size"
+            android:layout_alignParentLeft="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_background_song_publish"
+            ns1:corner_radius="8dp"
+            ns2:oval="false" />
+
+        <ImageView
+            android:id="@+id/imageview_header_play"
+            android:layout_width="@dimen/song_category_detail_image_size"
+            android:layout_height="@dimen/song_category_detail_image_size"
+            android:background="#00000000"
+            android:padding="24dp"
+            android:src="@drawable/xml_musiccircle_post_detail_header_play" />
+
+        <TextView
+            android:id="@+id/textview_header_detail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/song_category_detail_image_size"
+            android:layout_toRightOf="@+id/imageview_header_play"
+            android:background="@drawable/xml_background_default"
+            android:clickable="true"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="5"
+            android:paddingLeft="10dp"
+            android:paddingRight="44dp"
+            android:text="@string/post_detail_header_tweet_default"
+            android:textColor="#646d76"
+            android:textSize="16sp" />
+
+        <com.sds.android.ttpod.common.widget.IconTextView
+            android:id="@+id/icontext_arrow_right"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="2dp"
+            app:text="@string/icon_arrow_right" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/scene_recommend_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#26ffffff" />
+
+    <LinearLayout
+        android:id="@+id/layout_song_category_operation"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/layout_next_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.sds.android.ttpod.common.widget.IconTextView
+                android:id="@+id/imageview_next_page"
+                style="@style/TextView_PostDetail_Header_Operation_Icon"
+                app:text="@string/icon_next_page" />
+
+            <TextView
+                android:id="@+id/text_next_page"
+                style="@style/TextView_PostDetail_Header_Operation_text"
+                android:text="换一批"
+                android:textColor="#a1a4a7" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_download_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.sds.android.ttpod.common.widget.IconTextView
+                android:id="@+id/imageview_download_all"
+                style="@style/TextView_PostDetail_Header_Operation_Icon"
+                app:text="@string/icon_post_header_download" />
+
+            <TextView
+                android:id="@+id/text_download_all"
+                style="@style/TextView_PostDetail_Header_Operation_text"
+                android:text="下载"
+                android:textColor="#a1a4a7" />
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Activity_Background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center_horizontal"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/feedback_content"
+        style="@style/Setting_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="top"
+        android:hint="@string/hint_feedback_content"
+        android:minLines="5"
+        android:singleLine="false" />
+
+    <EditText
+        android:id="@+id/feedback_contact"
+        style="@style/Setting_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:hint="@string/hint_feedback_contact"
+        android:singleLine="true" />
+</LinearLayout>

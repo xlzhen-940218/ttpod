@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_background">
+
+    <ListView
+        android:id="@+id/listview"
+        style="@style/ListView"
+        android:layout_above="@+id/layout_controller" />
+
+    <LinearLayout
+        android:id="@+id/layout_controller"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <CheckBox
+            android:id="@+id/checkbox_select_all"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/xml_album_dowload_checkbox"
+            android:button="@null"
+            android:checked="false" />
+
+        <TextView
+            android:id="@+id/text_select_all"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="8dp"
+            android:text="@string/select_all" />
+
+        <Button
+            android:id="@+id/button_start_download"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/xml_background_button_blue"
+            android:gravity="center"
+            android:text="@string/download_count"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>

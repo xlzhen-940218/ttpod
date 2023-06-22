@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/xml_musiccircle_radar_userinfo_frame" android:padding="1dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <ImageView android:id="@+id/avatar" android:layout_width="70dp" android:layout_height="70dp" android:src="@drawable/img_avatar_default" android:scaleType="fitXY" android:contentDescription="none"/>
+    <TextView android:textColor="#5293b9" android:id="@+id/user_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:layout_marginTop="4dp" android:text="" android:singleLine="true" android:layout_toRightOf="@+id/avatar" style="@style/ListItem_Title"/>
+    <TextView android:textColor="#60000000" android:id="@+id/info1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:layout_marginTop="4dp" android:text="" android:singleLine="true" android:layout_toRightOf="@+id/avatar" android:layout_below="@+id/user_name" style="@style/ListItem_Description"/>
+    <TextView android:textColor="#60000000" android:id="@+id/info2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:layout_marginTop="4dp" android:text="" android:singleLine="true" android:layout_toRightOf="@+id/avatar" android:layout_below="@+id/info1" style="@style/ListItem_Description"/>
+</RelativeLayout>

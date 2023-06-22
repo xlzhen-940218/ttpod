@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:id="@+id/layout_root" android:background="@color/dialog_background" android:focusable="true" android:focusableInTouchMode="true" android:layout_width="match_parent" android:layout_height="match_parent">
+    <EditText android:textSize="14sp" android:textColor="#474342" android:textColorHint="#acacac" android:gravity="top|left" android:id="@+id/et_repost_content" android:background="@drawable/img_musiccircle_comment_content_bkg" android:padding="6dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:layout_marginTop="5dp" android:layout_marginRight="5dp" android:minHeight="50dp" android:hint="请输入转发内容" android:minLines="3" android:singleLine="false" android:lineSpacingExtra="3dp"/>
+    <RelativeLayout android:id="@+id/layout_repost" android:paddingLeft="8dp" android:paddingRight="8dp" android:paddingBottom="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:layout_below="@+id/et_repost_content">
+        <View android:id="@+id/line" android:background="#c3d7de" android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginBottom="8dp"/>
+        <ImageView android:id="@+id/user_image" android:layout_width="84dp" android:layout_height="84dp" android:src="@drawable/img_avatar_default" android:scaleType="centerCrop" android:layout_below="@+id/line" android:layout_centerVertical="true" android:contentDescription="@string/ttpod"/>
+        <TextView android:id="@+id/user_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:text="" android:singleLine="true" android:layout_toRightOf="@+id/user_image" android:layout_alignTop="@+id/user_image" style="@style/MusicCircle_ListItem_Title"/>
+        <TextView android:ellipsize="end" android:id="@+id/user_info" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:maxLines="3" android:layout_below="@+id/user_name" android:layout_alignLeft="@+id/user_name" style="@style/ListItem_Description1"/>
+    </RelativeLayout>
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/layout_send" android:background="@drawable/img_musiccircle_repost_bkg" android:padding="6dp" android:layout_width="match_parent" android:layout_height="44dp" android:layout_above="@+id/layout_bottom">
+        <ImageButton android:id="@+id/btn_emoctions" android:background="#00000000" android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/img_musiccircle_post_detail_expression" android:scaleType="fitCenter"/>
+        <TextView android:textSize="14sp" android:textColor="#acacac" android:gravity="right" android:layout_width="0dp" android:layout_height="wrap_content" android:text="您还可以输入" android:layout_weight="1"/>
+        <TextView android:textSize="18sp" android:textColor="#ffffff" android:id="@+id/text_input_size" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="140"/>
+        <TextView android:textSize="14sp" android:textColor="#acacac" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=" 字"/>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/layout_bottom" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <include android:id="@+id/layout_emoticons" android:layout_width="match_parent" android:layout_height="190dp" layout="@layout/musiccircle_emoticons_layout"/>
+    </LinearLayout>
+</RelativeLayout>

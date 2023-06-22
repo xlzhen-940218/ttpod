@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="vertical" android:paddingTop="8dp" android:paddingBottom="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <RelativeLayout android:id="@+id/id_title_bar_layout" android:layout_width="match_parent" android:layout_height="34dp">
+        <View android:id="@+id/id_title_bar_left_line" android:layout_width="3dp" android:layout_height="20dp" android:layout_marginTop="7dp" android:layout_marginBottom="7dp"/>
+        <TextView android:textSize="16sp" android:textColor="#fff" android:gravity="center_vertical" android:id="@+id/id_text_title" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_marginLeft="11dp" android:text="标题"/>
+        <RelativeLayout android:id="@+id/layout_for_more" android:layout_width="80dp" android:layout_height="wrap_content" android:layout_alignParentRight="true">
+            <TextView android:textSize="13sp" android:textColor="#fff" android:gravity="center_vertical" android:id="@+id/id_text_more" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_marginRight="4dp" android:text="更多" android:layout_toLeftOf="@+id/img_arrow_more"/>
+            <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/img_arrow_more" android:layout_width="16dp" android:layout_height="16dp" android:layout_marginRight="8dp" android:layout_alignParentRight="true" android:layout_centerVertical="true" app:text="@string/icon_arrow_right"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

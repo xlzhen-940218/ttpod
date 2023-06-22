@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <com.sds.android.ttpod.widget.SlidingTabHost
+        android:id="@+id/slidingtabhost"
+        style="@style/SlidingTabHost"
+        app:indicatorColor="#b1e3ff"
+        app:indicatorHeight="@dimen/tab_indicator_height"
+        app:tabPaddingLeftRight="18dp"
+        android:layout_height="44dp" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/divider"
+        android:layout_marginBottom="@dimen/playcontrol_bar_height" />
+</LinearLayout>

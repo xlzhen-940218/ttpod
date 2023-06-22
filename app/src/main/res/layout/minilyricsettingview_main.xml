@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" android:baselineAligned="false">
+    <LinearLayout android:gravity="center_vertical" android:background="@drawable/img_background_pannel_minilyric_setting_top" android:layout_width="match_parent" android:layout_height="70dp" android:baselineAligned="false">
+        <FrameLayout android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="1">
+            <ImageView android:layout_gravity="center_horizontal" android:id="@+id/iv_font_zoomin" android:paddingBottom="20dp" android:clickable="true" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/xml_button_minilyric_zoom_in" android:contentDescription="@string/ttpod"/>
+            <TextView android:textSize="12sp" android:gravity="center" android:layout_gravity="bottom" android:layout_width="match_parent" android:layout_height="20dp" android:text="@string/minilyric_font_zoom_in"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="1">
+            <ImageView android:layout_gravity="center_horizontal" android:id="@+id/iv_font_zoomout" android:paddingBottom="20dp" android:clickable="true" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/xml_button_minilyric_zoom_out" android:contentDescription="@string/ttpod"/>
+            <TextView android:textSize="12sp" android:gravity="center" android:layout_gravity="bottom" android:layout_width="match_parent" android:layout_height="20dp" android:text="@string/minilyric_font_zoom_out"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="1">
+            <ImageView android:layout_gravity="center_horizontal" android:id="@+id/iv_lock" android:paddingBottom="20dp" android:clickable="true" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/xml_button_minilyric_lock" android:contentDescription="@string/ttpod"/>
+            <TextView android:textSize="12sp" android:gravity="center" android:layout_gravity="bottom" android:layout_width="match_parent" android:layout_height="20dp" android:text="@string/minilyric_button_lock"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="60dp" android:layout_weight="1">
+            <ImageView android:layout_gravity="center_horizontal" android:id="@+id/iv_close" android:paddingBottom="20dp" android:clickable="true" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/xml_button_minilyric_close" android:contentDescription="@string/ttpod"/>
+            <TextView android:textSize="12sp" android:gravity="center" android:layout_gravity="bottom" android:layout_width="match_parent" android:layout_height="20dp" android:text="@string/minilyric_button_close"/>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/img_background_panel_minilyric_setting_center" android:layout_width="match_parent" android:layout_height="50dp" android:baselineAligned="false">
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/iv_color_blue" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/xml_button_minilyric_color_blue" android:contentDescription="@string/ttpod"/>
+            <ImageView android:id="@+id/iv_color_blue_flag" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/img_button_minilyric_choice_color" android:contentDescription="@string/ttpod"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/iv_color_yellow" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/xml_button_minilyric_color_yellow" android:contentDescription="@string/ttpod"/>
+            <ImageView android:id="@+id/iv_color_yellow_flag" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/img_button_minilyric_choice_color" android:contentDescription="@string/ttpod"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/iv_color_pink" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/xml_button_minilyric_color_pink" android:contentDescription="@string/ttpod"/>
+            <ImageView android:id="@+id/iv_color_pink_flag" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/img_button_minilyric_choice_color" android:contentDescription="@string/ttpod"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/iv_color_gray" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/xml_button_minilyric_color_gray" android:contentDescription="@string/ttpod"/>
+            <ImageView android:id="@+id/iv_color_gray_flag" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/img_button_minilyric_choice_color" android:contentDescription="@string/ttpod"/>
+        </FrameLayout>
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/iv_color_green" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/xml_button_minilyric_color_green" android:contentDescription="@string/ttpod"/>
+            <ImageView android:id="@+id/iv_color_green_flag" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/img_button_minilyric_choice_color" android:contentDescription="@string/ttpod"/>
+        </FrameLayout>
+    </LinearLayout>
+    <LinearLayout android:background="@drawable/img_background_panel_minilyric_setting_bottom" android:padding="0dp" android:layout_width="match_parent" android:layout_height="50dp">
+        <TextView android:textSize="15sp" android:textColor="#ddd" android:gravity="center" android:layout_gravity="center" android:id="@+id/tv_ok" android:background="@drawable/xml_button_minilyric_ok" android:padding="0dp" android:clickable="true" android:layout_width="match_parent" android:layout_height="32dp" android:layout_marginLeft="16dp" android:layout_marginRight="16dp" android:text="@string/minilyric_button_ok"/>
+    </LinearLayout>
+</LinearLayout>

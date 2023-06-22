@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/media_list_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
+    android:background="@drawable/xml_background_media_group_list_item_transparent_glass">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/list_item_height"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/xml_progressbar_apshare" />
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="0dp"
+        android:contentDescription="@android:string/unknownName"
+        android:padding="3dp"
+        android:src="@drawable/img_apshare_song" />
+
+    <com.sds.android.ttpod.widget.CheckImageView
+        android:id="@+id/ck_choose"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_checkbox_multiselect_checked" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/ListView_Item_Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_toLeftOf="@+id/ck_choose"
+        android:layout_toRightOf="@+id/iv_icon"
+        android:ellipsize="end"
+        android:text="XXX - YYYYYYYYY.mp3"
+        android:textColor="@color/apshare_text_color_blue" />
+
+    <TextView
+        android:id="@+id/tv_size"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginRight="2dp"
+        android:layout_toRightOf="@+id/iv_icon"
+        android:singleLine="true"
+        android:text="44.44MB"
+        android:textColor="@color/apshare_text_color_sub_blue"
+        android:textSize="12sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_speed"
+        style="@style/ListView_Item_Subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginLeft="8dp"
+        android:layout_toLeftOf="@+id/menu_view"
+        android:layout_toRightOf="@+id/tv_size"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="2.65MB/s"
+        android:textColor="@color/apshare_text_color_sub_blue"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_receiver"
+        style="@style/ListView_Item_Subtitle"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="8dp"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="Nexus4"
+        android:textColor="@color/apshare_text_color_sub_blue"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_action"
+        android:layout_width="60dp"
+        android:layout_height="36dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/xml_background_apshare_receive"
+        android:focusable="false"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="Receive"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:visibility="visible" />
+</RelativeLayout>

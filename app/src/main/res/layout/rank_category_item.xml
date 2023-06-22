@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:app1="http://schemas.android.com/apk/res/com.sds.android.ttpod"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="#27464d" />
+
+    <View
+        android:id="@+id/id_title_bar_left_line"
+        android:layout_width="3dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
+
+    <RelativeLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title">
+
+        <com.sds.android.ttpod.widget.RoundedImageView
+            android:id="@+id/image"
+            android:layout_width="94dp"
+            android:layout_height="94dp"
+            android:layout_margin="8dp"
+            android:contentDescription="@android:string/unknownName"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_music_default_icon"
+            app1:corner_radius="4dp" />
+
+        <ImageView
+            android:id="@+id/image_play_state"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="65dp"
+            android:src="@drawable/img_rank_play_normal" />
+
+        <LinearLayout
+            android:id="@+id/layout_song_info"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_toLeftOf="@+id/layout_arrow"
+            android:layout_toRightOf="@+id/image"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingLeft="8dp">
+
+            <TextView
+                android:id="@+id/song0"
+                style="@style/TextView_Rank_Category_Song_Info" />
+
+            <TextView
+                android:id="@+id/song1"
+                style="@style/TextView_Rank_Category_Song_Info" />
+
+            <TextView
+                android:id="@+id/song2"
+                style="@style/TextView_Rank_Category_Song_Info" />
+
+            <TextView
+                android:id="@+id/song3"
+                style="@style/TextView_Rank_Category_Song_Info" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="110dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="8dp">
+
+            <com.sds.android.ttpod.common.widget.IconTextView
+                android:id="@+id/item_click_arrow"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center"
+                app:text="@string/icon_arrow_right" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

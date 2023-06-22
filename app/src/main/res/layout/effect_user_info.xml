@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.sds.android.ttpod.widget.RoundedImageView android:id="@+id/image_avatar" android:layout_width="64dp" android:layout_height="64dp" android:src="@drawable/img_avatar_default" android:scaleType="fitCenter" android:contentDescription="@android:string/unknownName" app:Image_border_width="3dp" app:Image_border_color="#333333"/>
+    <RelativeLayout android:layout_gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8dp">
+        <TextView android:textSize="20dp" android:textColor="#ffffff" android:gravity="center_vertical" android:id="@+id/textview_username" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text=""/>
+        <TextView android:textSize="13dp" android:textColor="#959595" android:gravity="center_vertical" android:id="@+id/textview_level" android:paddingTop="3dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:layout_below="@+id/textview_username"/>
+        <ImageView android:id="@+id/imageview_level" android:layout_width="20dp" android:layout_height="20dp" android:layout_marginLeft="4dp" android:src="@drawable/img_effect_level_normal" android:layout_toRightOf="@+id/textview_username" android:layout_alignBottom="@+id/textview_username"/>
+    </RelativeLayout>
+</LinearLayout>

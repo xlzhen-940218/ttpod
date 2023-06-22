@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Activity_Background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f8f8f8">
+
+        <RelativeLayout
+            android:id="@+id/standard_sdcard"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/standard_sdcard_imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/img_download_choise_standard_sd" />
+
+            <LinearLayout
+                android:id="@+id/standard_sdcard_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/standard_sdcard_imageView"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/standard_sdcard_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="存储到标准SD卡"
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/standard_sdcard_storage_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="共%1$2.2fGB,%2$2.2fGB可用"
+                    android:textColor="#666"
+                    android:textSize="12sp" />
+
+                <ProgressBar
+                    android:id="@+id/standard_sdcard_progressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="180dp"
+                    android:layout_height="4dp" />
+            </LinearLayout>
+
+            <com.sds.android.ttpod.widget.CheckImageView
+                android:id="@+id/standard_sdcard_checkView"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/standard_sdcard_status"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_checkbox_multiselect_checked" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cccccc" />
+
+        <RelativeLayout
+            android:id="@+id/extension_sdcard"
+            android:layout_width="wrap_content"
+            android:layout_height="120dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/extension_sdcard_imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/img_download_choise_extension_sd" />
+
+            <LinearLayout
+                android:id="@+id/extension_sdcard_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/extension_sdcard_imageView"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/extension_sdcard_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="存储到扩展SD卡"
+                    android:textColor="#333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/extension_sdcard_storage_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="共%1$2.2fGB,%2$2.2fGB可用"
+                    android:textColor="#666"
+                    android:textSize="12sp" />
+
+                <ProgressBar
+                    android:id="@+id/extension_sdcard_progressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="180dp"
+                    android:layout_height="4dp" />
+            </LinearLayout>
+
+            <com.sds.android.ttpod.widget.CheckImageView
+                android:id="@+id/extension_sdcard_checkView"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/extension_sdcard_status"
+                android:scaleType="centerInside"
+                android:src="@drawable/img_checkbox_multiselect_checked" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cccccc" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/store_other_dir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="36dp"
+                android:text="存储到其他目录"
+                android:textColor="#2ea9d7" />
+
+            <TextView
+                android:id="@+id/download_path_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/download_path_info"
+                android:textColor="#999"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </RadioGroup>
+</ScrollView>

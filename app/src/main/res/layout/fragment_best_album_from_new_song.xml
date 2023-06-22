@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/best_album_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.sds.android.ttpod.widget.SlidingTabHost
+        android:id="@+id/sliding_tabs_host_best_album"
+        style="@style/SlidingTabHost"
+        app:indicatorColor="#4ebbed"
+        app:indicatorHeight="@dimen/tab_indicator_height"
+        app:indicatorPaddingBottom="0dp"
+        app:tabHeight="@dimen/tab_label_height" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sliding_tabs_host_best_album" />
+
+    <com.sds.android.ttpod.widget.StateView
+        android:id="@+id/best_album_load_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:failed_view="@layout/loadingview_failed" />
+</RelativeLayout>

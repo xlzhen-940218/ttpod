@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/cmmusic_page_background"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#58aef3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/setting"
+        android:textColor="#58aef3"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="-1dp"
+        android:background="@drawable/cmmusic_setbag_background"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/text_prompt_setdefaultpage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="3"
+            android:paddingLeft="10dp"
+            android:paddingTop="35dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="35dp"
+            android:textColor="@color/prompt_textcolor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_setdefault_cancel"
+            android:layout_width="141dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:background="@drawable/cmmusic_button_background"
+            android:text="@string/cancel"
+            android:textColor="@color/prompt_textcolor"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_setdefault_submit"
+            android:layout_width="141dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:background="@drawable/cmmusic_button_background"
+            android:text="@string/confirm"
+            android:textColor="@color/prompt_textcolor"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

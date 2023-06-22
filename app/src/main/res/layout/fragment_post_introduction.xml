@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_horizontal" android:orientation="vertical" android:id="@+id/favorite_album" android:background="@color/dialog_background" android:paddingBottom="@dimen/playcontrol_bar_height" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ScrollView android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <com.sds.android.ttpod.framework.modules.skin.view.ModifyFitCenterImageView android:id="@+id/tv_post_introduction_pic" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="8dp" android:src="@drawable/img_musiccircle_post_pic_default" android:scaleType="fitCenter"/>
+            <include android:id="@+id/layout_tags" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="8dp" android:layout_marginTop="20dp" layout="@layout/layout_introduciton_tags"/>
+            <include android:id="@+id/layout_introduction" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="8dp" android:layout_marginTop="20dp" layout="@layout/layout_introduction_content"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

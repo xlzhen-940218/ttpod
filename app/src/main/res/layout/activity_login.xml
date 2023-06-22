@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Activity_User">
+
+    <TextView
+        style="@style/TextView_Login_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/your_use_login_way" />
+
+    <TextView
+        android:id="@+id/textview_qq_login"
+        style="@style/TextView_Login_QQ_or_Sina"
+        android:background="@drawable/xml_background_textview_user_tencant_login"
+        android:text="@string/use_login_qq" />
+
+    <TextView
+        android:id="@+id/textview_sina_login"
+        style="@style/TextView_Login_QQ_or_Sina"
+        android:background="@drawable/xml_background_textview_user_sina_login"
+        android:text="@string/use_login_sina" />
+
+    <TextView
+        style="@style/TextView_Login_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/use_login_ttpod" />
+
+    <EditText
+        android:id="@+id/edittext_username"
+        style="@style/EditText_Login"
+        android:drawableLeft="@drawable/img_edittext_user_input_email"
+        android:hint="@string/use_name_hint_text"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/edittext_password"
+        style="@style/EditText_Login"
+        android:contentDescription="@string/pass_word_hint_text"
+        android:drawableLeft="@drawable/img_edittext_user_input_password"
+        android:hint="@string/pass_word_hint_text"
+        android:imeOptions="actionDone"
+        android:password="true" />
+
+    <LinearLayout
+        android:id="@+id/buttonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textview_register"
+            style="@style/TextView_Login_or_Register"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/xml_background_textview_user_register"
+            android:text="@string/register_text" />
+
+        <TextView
+            android:id="@+id/textview_login"
+            style="@style/TextView_Login_or_Register"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/xml_background_textview_user_login"
+            android:text="@string/login_text" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/register_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/TextView_Login_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/textview_find_password"
+            android:text="@string/login_favorite_network_song" />
+
+        <TextView
+            android:id="@+id/textview_find_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:text="@string/forget_password"
+            android:textColor="#2ca9e3"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textview_qq_message"
+            style="@style/TextView_Login_Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:text="@string/qq_logon_fail" />
+
+        <TextView
+            android:id="@+id/textview_qq_login_html"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textview_qq_message"
+            android:layout_gravity="right"
+            android:layout_toRightOf="@+id/textview_qq_message"
+            android:linksClickable="true"
+            android:text="@string/click_login_qq"
+            android:textColor="#2ca9e3"
+            android:textColorLink="#2ca9e3"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</LinearLayout>

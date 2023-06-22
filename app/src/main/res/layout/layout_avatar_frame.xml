@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <ImageView android:id="@+id/image_avatar_frame" android:layout_width="@dimen/avatar_frame_width" android:layout_height="@dimen/avatar_frame_height" android:scaleType="fitXY" android:layout_centerInParent="true"/>
+    <ImageView android:id="@+id/image_avatar" android:background="@color/mask_background_color" android:layout_width="@dimen/avatar_frame_width" android:layout_height="@dimen/avatar_frame_height" android:src="@drawable/img_avatar_default" android:scaleType="fitXY" android:layout_centerInParent="true"/>
+    <ImageView android:id="@+id/image_avatar_mask" android:layout_width="@dimen/avatar_frame_width" android:layout_height="@dimen/avatar_frame_height" android:scaleType="fitXY" android:layout_centerInParent="true"/>
+</RelativeLayout>

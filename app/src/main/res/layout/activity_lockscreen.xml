@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutLockScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.sds.android.ttpod.framework.modules.skin.view.AnimTransView
+        android:id="@+id/songImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000" />
+
+    <RelativeLayout
+        android:id="@+id/timeControl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/timeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="#0000"
+            android:includeFontPadding="false"
+            android:paddingTop="0dp"
+            android:shadowColor="#66000000"
+            android:shadowRadius="2"
+            android:textColor="#ffffff"
+            android:textSize="60sp"
+            android:typeface="serif" />
+
+        <TextView
+            android:id="@+id/timeFormat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="4dp"
+            android:layout_toRightOf="@+id/timeText"
+            android:shadowColor="#9e000000"
+            android:shadowRadius="2"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timeControl"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="-8dp"
+        android:layout_marginRight="22dp"
+        android:textColor="@android:color/white"
+        android:textSize="15sp" />
+
+    <ImageView
+        android:id="@+id/imageview_sliding_to_unlock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/xml_anim_sliding_to_unlock"
+        android:scaleType="centerInside" />
+
+    <RelativeLayout
+        android:id="@+id/lockscreen_control_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageview_sliding_to_unlock"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="15dp">
+
+        <ImageView
+            android:id="@+id/imageview_pre"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/xml_lockscreen_pre" />
+
+        <ImageView
+            android:id="@+id/imageview_play"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/xml_lockscreen_play" />
+
+        <ImageView
+            android:id="@+id/imageview_pause"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/xml_lockscreen_pause"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/imageview_next"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/xml_lockscreen_next" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_songname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lockscreen_control_panel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="18dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="1"
+        android:singleLine="true"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="italic" />
+
+    <com.sds.android.ttpod.framework.modules.skin.view.LyricView
+        android:id="@+id/lyric_view"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_above="@+id/tv_songname"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="18dp" />
+</RelativeLayout>

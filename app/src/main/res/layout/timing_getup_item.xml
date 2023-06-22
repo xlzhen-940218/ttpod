@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_startup_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:text="08:00"
+        android:textColor="#485b66"
+        android:textSize="32sp" />
+
+    <com.sds.android.ttpod.widget.CheckImageView
+        android:id="@+id/civ_startup"
+        android:layout_width="80dp"
+        android:layout_height="52dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:padding="8dp" />
+
+    <TextView
+        android:id="@+id/tv_choosed_week"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_startup_time"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_toLeftOf="@+id/civ_startup"
+        android:text="周一，周二"
+        android:textColor="#aaaaaa"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_next_wake_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_choosed_week"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toLeftOf="@+id/civ_startup"
+        android:paddingBottom="8dp"
+        android:text="未开启"
+        android:textColor="#485b66"
+        android:textSize="16sp" />
+</RelativeLayout>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingTop="5dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="5dp">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/dialog_media_info_edit_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+    <include
+        android:id="@+id/artist"
+        layout="@layout/dialog_media_info_edit_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title" />
+
+    <include
+        android:id="@+id/album"
+        layout="@layout/dialog_media_info_edit_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/artist" />
+
+    <RelativeLayout
+        android:id="@+id/genre_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/album">
+
+        <ImageView
+            android:id="@+id/genre_spinner"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/xml_dialog_spinner" />
+
+        <include
+            android:id="@+id/genre"
+            layout="@layout/dialog_media_info_edit_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/genre_spinner" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/track_year_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/genre_row"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <include
+            android:id="@+id/track"
+            layout="@layout/dialog_media_info_edit_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <include
+            android:id="@+id/year"
+            layout="@layout/dialog_media_info_edit_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/comment"
+        layout="@layout/dialog_media_info_edit_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/track_year_group" />
+</RelativeLayout>

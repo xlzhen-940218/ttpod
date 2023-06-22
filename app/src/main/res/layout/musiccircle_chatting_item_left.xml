@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:paddingLeft="10dp" android:paddingTop="10dp" android:paddingRight="50dp" android:paddingBottom="10dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.sds.android.ttpod.widget.UserAvatarView android:id="@+id/image_userhead" android:layout_width="40dp" android:layout_height="40dp" android:src="@drawable/img_avatar_default" android:scaleType="fitXY" android:layout_alignParentLeft="true"/>
+    <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_toRightOf="@+id/image_userhead" android:layout_centerVertical="true">
+        <TextView android:textSize="14sp" android:textColor="#5e6366" android:id="@+id/text_content" android:background="@drawable/img_musiccircle_chatting_left_bg" android:paddingLeft="12dp" android:paddingTop="8dp" android:paddingRight="8dp" android:paddingBottom="8dp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"/>
+        <RelativeLayout android:layout_gravity="bottom" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp">
+            <TextView android:textSize="12sp" android:textColor="#c3c3c3" android:id="@+id/text_time" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

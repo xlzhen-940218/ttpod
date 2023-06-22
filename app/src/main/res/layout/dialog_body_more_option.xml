@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="15dp">
+
+    <ScrollView
+        android:id="@+id/scroll_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="@dimen/common_margin"
+        android:text="@string/string_dialog_remove"
+        android:textColor="#959fa5"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal">
+
+        <CheckedTextView
+            android:id="@+id/option_original_file"
+            style="@style/Dialog_More_Option_CheckedTextView"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:text="@string/string_dialog_song" />
+
+        <CheckedTextView
+            android:id="@+id/option_artist_pic"
+            style="@style/Dialog_More_Option_CheckedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/xml_dialog_optional_background"
+            android:gravity="center_vertical"
+            android:text="@string/string_dialog_artist_pic" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="@dimen/common_margin"
+        android:layout_marginRight="15dp"
+        android:orientation="horizontal">
+
+        <CheckedTextView
+            android:id="@+id/option_audio_profile"
+            style="@style/Dialog_More_Option_CheckedTextView"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@drawable/xml_dialog_optional_background"
+            android:gravity="center_vertical"
+            android:text="@string/string_dialog_audioeffect_file" />
+
+        <CheckedTextView
+            android:id="@+id/option_lyric"
+            style="@style/Dialog_More_Option_CheckedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/scroll_content"
+            android:drawableLeft="@drawable/xml_dialog_optional_background"
+            android:gravity="center_vertical"
+            android:text="@string/string_dialog_song_lyric" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Share_Dialog_Header"
+    android:layout_width="match_parent">
+
+    <View
+        android:id="@+id/top_line"
+        style="@style/Share_Dialog_Header_TopLine" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Share_Dialog_Header_Title"
+        android:layout_below="@+id/top_line"
+        android:layout_margin="10dp" />
+
+    <View
+        android:id="@+id/header_divider"
+        style="@style/Share_Dialog_Divider"
+        android:layout_below="@+id/title" />
+</RelativeLayout>

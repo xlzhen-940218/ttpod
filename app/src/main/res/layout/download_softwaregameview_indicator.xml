@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/game_category"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_weight="1"
+        android:background="@drawable/xml_background_textview_download_softwaregameview_indicator"
+        android:clickable="true"
+        android:drawableRight="@drawable/xml_background_imageview_expand_indicator"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="15dp"
+        android:text="@string/softwaregameview_game"
+        android:textColor="#828282"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="42dp"
+        android:background="#c6c6c6" />
+
+    <TextView
+        android:id="@+id/software_category"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_weight="1"
+        android:background="@drawable/xml_background_textview_download_softwaregameview_indicator"
+        android:clickable="true"
+        android:drawableRight="@drawable/xml_background_imageview_expand_indicator"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="15dp"
+        android:text="@string/softwaregameview_app"
+        android:textColor="#828282"
+        android:textSize="16sp" />
+</LinearLayout>

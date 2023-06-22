@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
+    <uses-permission android:name="com.baidu.appsearch.extinvoker.LAUNCH" />
+    <uses-permission
+        android:name="android.permission.READ_LOGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <permission
+        android:name="getui.permission.GetuiService.com.sds.android.ttpod"
+        android:protectionLevel="normal" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="getui.permission.GetuiService.com.sds.android.ttpod" />
+    <application
+        android:name="com.sds.android.ttpod.TTPodApplication"
+        android:allowBackup="true"
+        android:allowTaskReparenting="true"
+        android:exported="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/img_ttpod"
+        android:label="@string/ttpod"
+        android:largeHeap="true"
+        android:process="com.sds.android.ttpod.main"
+        android:taskAffinity="com.sds.android.ttpod.task"
+        android:theme="@style/Theme.TTPod">
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="4d707f5e112cf75410007470" />
+        <meta-data
+            android:name="QIHOO_UPDATE_CHANNEL"
+            android:value="420114" />
+
+        <activity
+            android:name="com.sds.android.ttpod.EntryActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"
+            android:exported="true"
+            android:noHistory="true"
+            
+            android:stateNotNeeded="true"
+            android:theme="@style/Theme.SplashActivity"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="com.nd.android.pandahome.widget.category" />
+                <action android:name="com.gau.go.launcherex.gowidget" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.framework.base.Action.start_entry" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="ttpod" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sds.android.ttpod.activities.MainActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"
+            android:exported="true"
+            android:launchMode="singleTask"
+            
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="audio/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:mimeType="*/*" />
+                <data android:host="*" />
+                <data android:pathPattern=".*.flac" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:mimeType="*/*" />
+                <data android:host="*" />
+                <data android:pathPattern=".*.FLAC" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:mimeType="*/*" />
+                <data android:host="*" />
+                <data android:pathPattern=".*.ape" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:mimeType="*/*" />
+                <data android:host="*" />
+                <data android:pathPattern=".*.APE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.player_entry" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.framework.base.Action.start_downloadmanager" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sds.android.ttpod.component.exception.ExceptionSendActivity"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            
+            android:stateNotNeeded="true"
+            android:theme="@android:style/Theme.Translucent">
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.framework.base.Action.exception_report" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sds.android.ttpod.activities.GuideActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.AudioEffectFragmentActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.ThemeManagementActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.ThemeRankActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.SkinCategoryDetailActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.BackgroundManagementActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.SkinInfoActivity"
+            android:configChanges="keyboard"
+            android:exported="true"
+            android:label="@string/ttpod"
+            >
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.SKININFO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:mimeType="*/*" />
+                <data android:host="*" />
+                <data android:pathPattern=".*.tsk" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+                <data android:mimeType="*/*" />
+                <data android:host="*" />
+                <data android:pathPattern=".*.TSK" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sds.android.ttpod.activities.PlayingListActivity"
+            
+            android:theme="@style/Theme.PlayingListActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.mediascan.MediaScanActivity"
+            android:exported="true"
+            
+            android:theme="@style/Theme.SlidingClosableActivity">
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.framework.base.Action.start_media_scan" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sds.android.ttpod.activities.mediascan.MediaScanAnimationActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.mediascan.FilePickerActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.local.MediaPickerActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.mediascan.MediaScanWifiActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.mediascan.setting.MediaScanSettingActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.mediascan.setting.MediaScanExcludeActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.mediascan.setting.MediaScanAutoScanActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.SoundSearchActivity"
+            android:exported="true"
+            android:icon="@drawable/img_recognizer_song"
+            android:label="@string/search_sound_search"
+            
+            android:theme="@style/Theme.SlidingClosableActivity">
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.recognizer" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.SettingEntryActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.HeadsetControlActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.DisplaySettingActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.DesktopLyricSettingActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.BacklightSettingActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.MoreSettingActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.AuditionAndDownloadQualityActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.HelpFeedbackActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.FeedbackChatActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.BackgroundActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.AboutActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.ContactUsActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.LyricPictureSettingActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.NotificationSettingActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.AudioFadeSettingActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.setting.DownloadLocationActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.user.LoginActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.user.UserInfoActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.user.RegisterActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.user.FindPasswordActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.user.FindPasswordCompleteActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.audioeffect.CloudAudioEffectActivity"
+            android:launchMode="singleTask"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.audioeffect.CustomEqualizerActivity"
+            android:launchMode="singleTask"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.audioeffect.EqualizerFragmentActivity"
+            android:launchMode="singleTask"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.audioeffect.ReverbActivity"
+            android:launchMode="singleTask"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.audioeffect.SelectDeleteEffectActivity"
+            android:launchMode="singleTask"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.audioeffect.EffectLevelActivity"
+            android:launchMode="singleTask"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.local.MediaItemSearchActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.local.MediaGroupSearchActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.component.lockscreen.LockScreenActivity"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:launchMode="singleInstance"
+            
+            android:taskAffinity="com.sds.android.ttpod.lockscreen"
+            android:theme="@style/Theme.LockViewActivity">
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.framework.base.Action.lock_screen_activity_entry" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sds.android.ttpod.activities.user.CropImageActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden"
+            android:hardwareAccelerated="false"
+             />
+        <activity
+            android:name="com.sds.android.ttpod.activities.soundsearch.SoundSearchResultActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.soundsearch.SoundSearchMultiResultActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.soundsearch.SoundSearchHistoryActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.web.WebActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.version.VersionUpgradeActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            
+            android:stateNotNeeded="true"
+            android:theme="@style/Dialog_Transparent" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.version.VersionUpgradeProgressActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            
+            android:stateNotNeeded="true"
+            android:theme="@style/Dialog_Transparent" />
+        <!--<activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent100240447" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <activity
+            android:name="com.sds.android.ttpod.activities.PictureManagerActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"
+             />
+        <activity
+            android:name="com.sds.android.ttpod.activities.user.StaticUserInfoActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.musiccircle.RepostInputActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.musiccircle.CommentInputActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.sds.android.ttpod.component.scaleimage.ScaleImageActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.mediascan.ApShareEntryActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.OpenDetailActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.OpenAuthorizeActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.TrialActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.OpenActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.TrialDetailActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.UnsubscribeActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.UnsubscribeDetailActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.UnSubscribeGuideActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.OrderFlowDetailActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.FaqActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.unicomflow.AttentionActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.DefaultVideoActivity"
+            android:alwaysRetainTaskState="true"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.share.ShareSelectActivity"
+            android:theme="@style/Activity_ShareSelect" />
+        <activity
+            android:name="com.sds.android.ttpod.wxapi.WXEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/Activity_ShareSelect" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity"
+            android:configChanges="screenSize|orientation|keyboardHidden|keyboard"
+            android:exported="true"
+            
+            android:stateNotNeeded="true">
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.online_search_entry" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!--<service
+            android:name="com.baidu.location.ServiceC0308f"
+            android:enabled="true"
+            android:process=":remote" />-->
+        <service
+            android:name="com.sds.android.ttpod.framework.support.SupportService"
+            android:exported="true"
+            android:process="com.sds.android.ttpod.support" />
+
+        <receiver
+            android:name="com.sds.android.ttpod.framework.support.monitor.MediaButtonReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process="com.sds.android.ttpod.support">
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.sds.android.ttpod.framework.storage.environment.EnvironmentContentProvider"
+            android:authorities="com.sds.android.ttpod.framework.storage.environment.EnvironmentContentProvider"
+            android:process="com.sds.android.ttpod.support" />
+        <provider
+            android:name="com.sds.android.ttpod.media.mediastore.MediaContentProvider"
+            android:authorities="com.sds.android.ttpod.media.mediastore.MediaContentProvider"
+            android:exported="true"
+            android:process="com.sds.android.ttpod.support" />
+        <provider
+            android:name="com.sds.android.ttpod.framework.modules.search.SearchContentProvider"
+            android:authorities="com.sds.android.ttpod.framework.modules.search.SearchContentProvider"
+            android:process="com.sds.android.ttpod.support" />
+        <provider
+            android:name="com.sds.android.ttpod.framework.storage.database.DownloadContentProvider"
+            android:authorities="com.sds.android.ttpod.framework.storage.database.DownloadContentProvider"
+            android:process="com.sds.android.ttpod.support" />
+
+        <receiver
+            android:name="com.sds.android.ttpod.component.appwidget.DesktopPlayer1"
+            android:exported="true"
+            android:label="@string/ttpod_4x1"
+            android:process="com.sds.android.ttpod.appwidget">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/xml_appwidget_info_4x1" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.sds.android.ttpod.component.appwidget.DesktopPlayer2"
+            android:exported="true"
+            android:label="@string/ttpod_4x2"
+            android:process="com.sds.android.ttpod.appwidget">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/xml_appwidget_info_4x2" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.sds.android.ttpod.component.appwidget.DesktopPlayer4"
+            android:exported="true"
+            android:label="@string/ttpod_4x4"
+            android:process="com.sds.android.ttpod.appwidget">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/xml_appwidget_info_4x4" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.sds.android.ttpod.component.appwidget.DesktopPlayer5x1"
+            android:exported="true"
+            android:label="@string/ttpod_5x1"
+            android:process="com.sds.android.ttpod.appwidget">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/xml_appwidget_info_5x1" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.sds.android.ttpod.component.appwidget.DesktopPlayer5x2"
+            android:exported="true"
+            android:label="@string/ttpod_5x2"
+            android:process="com.sds.android.ttpod.appwidget">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/xml_appwidget_info_5x2" />
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+        </receiver>
+        <!-- <receiver android:name="com.sds.android.ttpod.component.video.VideoPlayManager.VideoBroadcastReceiver">
+             <intent-filter>
+                 <action android:name="com.storm.smart.action.TTPOD_VIDEO_FINISH" />
+                 <action android:name="com.sds.android.ttpod.video_finished" />
+             </intent-filter>
+         </receiver>-->
+
+        <meta-data
+            android:name="PUSH_APPID"
+            android:value="zgnFAsj6un5zHtsGJl1ti9" />
+        <meta-data
+            android:name="PUSH_APPSECRET"
+            android:value="7zz8NBNtFh83MqvfbShSY" />
+        <meta-data
+            android:name="PUSH_APPKEY"
+            android:value="GpW6Eyah9680ViCbuwxKe7" />
+        <meta-data
+            android:name="PUSH_GROUPID"
+            android:value="" />
+
+        <!-- <receiver
+             android:name="com.sds.android.ttpod.component.notification.GexinSdkMessageReceiver"
+             android:exported="true"
+             android:process="com.sds.android.ttpod.pushservice">
+             <intent-filter>
+                 <action android:name="com.igexin.sdk.action.zgnFAsj6un5zHtsGJl1ti9" />
+             </intent-filter>
+         </receiver>-->
+        <!-- <service
+             android:name="com.igexin.sdk.PushService"
+             android:exported="true"
+             android:label="NotificationCenter"
+             android:process="com.sds.android.ttpod.pushservice" />
+ 
+         <receiver
+             android:name="com.igexin.sdk.PushReceiver"
+             android:process="com.sds.android.ttpod.pushservice">
+             <intent-filter>
+                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                 <action android:name="android.intent.action.USER_PRESENT" />
+                 <action android:name="com.igexin.sdk.action.refreshls" />
+             </intent-filter>
+         </receiver>
+         <receiver
+             android:name="com.igexin.sdk.PushManagerReceiver"
+             android:exported="false"
+             android:process="com.sds.android.ttpod.pushservice">
+             <intent-filter>
+                 <action android:name="com.igexin.sdk.action.pushmanager" />
+             </intent-filter>
+         </receiver>
+ 
+         <activity
+             android:name="com.igexin.sdk.PushActivity"
+             android:excludeFromRecents="true"
+             android:exported="false"
+             android:process="com.sds.android.ttpod.pushservice"
+             android:taskAffinity="com.igexin.sdk.PushActivityTask"
+             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+         <service
+             android:name="com.igexin.download.DownloadService"
+             android:process="com.sds.android.ttpod.pushservice" />
+         <receiver
+             android:name="com.igexin.download.DownloadReceiver"
+             android:process="com.sds.android.ttpod.pushservice" />
+         <provider
+             android:name="com.igexin.download.DownloadProvider"
+             android:authorities="downloads.com.sds.android.ttpod"
+             android:process="com.sds.android.ttpod.pushservice" />-->
+
+        <activity
+            android:name="com.sds.android.ttpod.activities.ktv.KtvActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+        <activity
+            android:name="com.sds.android.ttpod.activities.ktv.FragmentLoaderActivity"
+            
+            android:theme="@style/Theme.SlidingClosableActivity" />
+
+        <service
+            android:name="com.sds.android.sdk.core.statistic.SService"
+            android:process="com.sds.android.ttpod.support" />
+        <meta-data
+            android:name="miguopen_appid"
+            android:value="appid:007317470438422765" />
+
+        <activity
+            android:name="com.sds.android.ttpod.activities.cmmusic.ListenContentActivity"
+            android:exported="true"
+            
+            android:theme="@style/Theme.SlidingClosableActivity">
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.cmmusic.listen_content" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sds.android.ttpod.activities.cmmusic.ListenControlActivity"
+            android:exported="true"
+            
+            android:theme="@style/Theme.SlidingClosableActivity"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.cmmusic.listen_control" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sds.android.ttpod.activities.cmmusic.WebViewActivity"
+            android:exported="true"
+            
+            android:theme="@style/Theme.SlidingClosableActivity">
+            <intent-filter>
+                <action android:name="com.sds.android.ttpod.cmmusic.webview" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

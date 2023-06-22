@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="#1d1f1f" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginBottom="6dp" android:minHeight="@dimen/list_item_height">
+    <RelativeLayout android:id="@+id/layout_root" android:background="@drawable/recommand_bj_xml" android:layout_width="match_parent" android:layout_height="51dp">
+        <RelativeLayout android:id="@+id/myeffect_left" android:layout_width="45dp" android:layout_height="45dp" android:layout_marginLeft="5dp" android:layout_centerVertical="true">
+            <ImageView android:id="@+id/image_play" android:background="@drawable/recommand_list_hit_xml" android:layout_width="50dp" android:layout_height="50dp" android:scaleType="fitCenter" android:layout_alignParentLeft="true" android:layout_centerVertical="true"/>
+        </RelativeLayout>
+        <RelativeLayout android:id="@+id/myeffect_middle" android:layout_width="160dp" android:layout_height="61dp" android:layout_toLeftOf="@+id/myeffect_right" android:layout_toRightOf="@+id/myeffect_left">
+            <RelativeLayout android:id="@+id/top" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:layout_alignParentTop="true">
+                <TextView android:textSize="12sp" android:textColor="#ffffff" android:ellipsize="marquee" android:gravity="center_vertical" android:id="@+id/textview_title" android:paddingLeft="7dp" android:focusableInTouchMode="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="dsfsdfsd" android:singleLine="true" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:marqueeRepeatLimit="marquee_forever"/>
+                <TextView android:textSize="12sp" android:textColor="#80ffffff" android:ellipsize="marquee" android:gravity="center_vertical" android:id="@+id/textview_author" android:paddingLeft="4dp" android:focusableInTouchMode="true" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="rfdgdfgdf11111111111111" android:singleLine="true" android:layout_toRightOf="@+id/textview_title" android:layout_alignParentRight="true" android:marqueeRepeatLimit="marquee_forever"/>
+            </RelativeLayout>
+            <RelativeLayout android:id="@+id/bottom" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/top" android:layout_alignParentBottom="true">
+                <TextView android:textSize="10sp" android:textColor="#ffffff" android:ellipsize="marquee" android:id="@+id/textview_title_2" android:paddingLeft="6dp" android:focusableInTouchMode="true" android:layout_width="50dp" android:layout_height="wrap_content" android:maxWidth="50dp" android:text="dfsdfsdf" android:singleLine="true" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:marqueeRepeatLimit="marquee_forever"/>
+                <LinearLayout android:orientation="horizontal" android:id="@+id/effect_boost_layer" android:layout_width="wrap_content" android:layout_height="45dp" android:layout_marginLeft="2dp" android:maxWidth="90dp" android:weightSum="3" android:layout_toRightOf="@+id/textview_title_2">
+                    <com.sds.android.ttpod.widget.audioeffect.CircularProgress android:layout_gravity="center_vertical" android:id="@+id/rotatebutton_bass_boost" android:padding="2dp" android:layout_width="25dp" android:layout_height="25dp"/>
+                    <com.sds.android.ttpod.widget.audioeffect.CircularProgress android:layout_gravity="center_vertical" android:id="@+id/rotatebutton_treble_boost" android:padding="2dp" android:layout_width="25dp" android:layout_height="25dp"/>
+                    <com.sds.android.ttpod.widget.audioeffect.CircularProgress android:layout_gravity="center_vertical" android:id="@+id/rotatebutton_surround" android:padding="2dp" android:layout_width="25dp" android:layout_height="25dp"/>
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+        <RelativeLayout android:id="@+id/myeffect_right" android:layout_width="120dp" android:layout_height="51dp" android:layout_marginRight="5dp" android:layout_alignParentRight="true" android:layout_alignParentBottom="true">
+            <com.sds.android.ttpod.widget.audioeffect.EqualizerAnimationWaveView android:id="@+id/waveview_effect_equalizer_equ" android:paddingLeft="2dp" android:paddingRight="2dp" android:layout_width="120dp" android:layout_height="61dp" android:layout_marginLeft="4dp" android:layout_marginTop="8dp" android:layout_marginRight="4dp" android:layout_centerVertical="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

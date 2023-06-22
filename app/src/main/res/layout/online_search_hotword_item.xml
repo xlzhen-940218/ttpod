@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <com.sds.android.ttpod.widget.SquareImageView android:id="@+id/channel_img" android:layout_width="match_parent" android:layout_height="80dp" android:src="@drawable/img_imageview_hotword_default_icon" android:scaleType="centerCrop" android:layout_centerInParent="true" android:contentDescription="@android:string/unknownName"/>
+    <View android:id="@+id/online_search_item_shadow" android:background="@drawable/img_background_hotword_shadow" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_alignBottom="@+id/channel_img"/>
+    <TextView android:id="@+id/channel_name" android:layout_alignBottom="@+id/channel_img" style="@style/TextView_Search_Hotword_Item"/>
+    <View android:background="@drawable/xml_background_hotword" android:layout_width="match_parent" android:layout_height="match_parent"/>
+</RelativeLayout>

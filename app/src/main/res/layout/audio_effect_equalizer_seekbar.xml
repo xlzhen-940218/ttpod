@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="26dp"
+    android:layout_height="229dp">
+
+    <TextView
+        android:id="@+id/textview_effect_equalizer_seekbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="3dp"
+        android:text="seek"
+        android:textColor="#ffffff"
+        android:textSize="10sp" />
+
+    <ImageView
+        android:id="@+id/ttseekbar_effect_indicator"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/xml_background_ttseekbar_effect_indicator" />
+
+    <RelativeLayout
+        android:layout_width="26dp"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ttseekbar_effect_indicator"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp">
+
+        <com.sds.android.ttpod.widget.audioeffect.TTSeekBar
+            android:id="@+id/ttseekbar_effect_custom_equalizer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/xml_background_ttseekbar_effect" />
+    </RelativeLayout>
+</RelativeLayout>

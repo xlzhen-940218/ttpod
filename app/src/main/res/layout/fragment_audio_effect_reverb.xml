@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center" android:background="@color/effect_dialog_background" android:layout_width="match_parent" android:layout_height="match_parent">
+    <GridView android:id="@+id/gridview_reverb" android:listSelector="@drawable/xml_listselector_main_right_menu" android:horizontalSpacing="10dp" android:verticalSpacing="18dp" android:numColumns="3" style="@style/GridView"/>
+</RelativeLayout>

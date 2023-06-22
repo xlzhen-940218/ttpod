@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView android:id="@+id/effect_level_item_title" android:layout_width="match_parent" android:layout_toLeftOf="@+id/effect_level_item_divider" style="@style/TextView_Effect_Level_Title"/>
+    <View android:id="@+id/effect_level_item_divider" android:layout_toLeftOf="@+id/effect_level_item_icon" style="@style/View_Vertical_Divider_Effect_Lefvel"/>
+    <TextView android:id="@+id/effect_level_item_icon" android:layout_width="67dp" android:layout_centerHorizontal="true" style="@style/TextView_Effect_Level_Title"/>
+    <View android:id="@+id/effect_level_item_divider_second" android:layout_toRightOf="@+id/effect_level_item_icon" style="@style/View_Vertical_Divider_Effect_Lefvel"/>
+    <TextView android:id="@+id/effect_level_item_score" android:layout_width="match_parent" android:layout_toRightOf="@+id/effect_level_item_divider_second" style="@style/TextView_Effect_Level_Title"/>
+</RelativeLayout>

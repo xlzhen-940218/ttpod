@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_list"
+    style="@style/ListView"
+    android:listSelector="@drawable/xml_dialog_common_selector"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp" />

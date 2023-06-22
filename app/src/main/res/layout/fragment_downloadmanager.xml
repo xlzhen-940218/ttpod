@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.sds.android.ttpod.widget.SlidingTabHost
+        android:id="@+id/slidingtabhost_localmusic"
+        style="@style/SlidingTabHost"
+        app:indicatorColor="#b1e3ff"
+        app:indicatorHeight="@dimen/tab_indicator_height"
+        app:tabHeight="@dimen/tab_label_height"
+        app:tabPaddingLeftRight="18dp" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/slidingtabhost_localmusic"
+        android:layout_marginBottom="@dimen/playcontrol_bar_height" />
+</RelativeLayout>

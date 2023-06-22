@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.sds.android.ttpod.widget.RoundedImageView android:id="@+id/grid_view_item_image" android:layout_width="match_parent" android:layout_height="wrap_content" android:scaleType="centerCrop" android:contentDescription="@android:string/unknownName" app:corner_radius="4dp" app:image_ratio="1.54"/>
+    <View android:id="@+id/grid_view_item_mask" android:background="@drawable/img_singer_category_grid_item_mask" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_alignBottom="@+id/grid_view_item_image"/>
+    <ImageView android:id="@+id/grid_view_item_play_icon_back" android:visibility="invisible" android:layout_width="50dp" android:layout_height="50dp" android:layout_centerInParent="true" android:contentDescription="@string/ttpod"/>
+    <com.sds.android.ttpod.framework.modules.skin.view.Animation android:id="@+id/grid_view_item_play_icon" android:visibility="invisible" android:layout_width="32dp" android:layout_height="32dp" android:layout_centerInParent="true" android:contentDescription="@string/ttpod"/>
+    <RelativeLayout android:background="@drawable/img_singer_category_grid_item_title_mask" android:padding="2dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_alignParentBottom="true">
+        <TextView android:textSize="14sp" android:textStyle="bold" android:textColor="@android:color/white" android:id="@+id/grid_view_item_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TOP 100" android:singleLine="true" android:layout_alignParentLeft="true" android:layout_centerVertical="true"/>
+        <TextView android:textSize="8sp" android:textColor="@android:color/white" android:id="@+id/grid_view_item_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:singleLine="true" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <View android:background="@drawable/xml_find_song_list_selector" android:layout_width="match_parent" android:layout_height="match_parent"/>
+</RelativeLayout>

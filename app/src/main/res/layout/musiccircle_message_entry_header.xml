@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_horizontal" android:orientation="vertical" android:background="@color/dialog_background" android:layout_width="match_parent" android:layout_height="match_parent">
+    <include android:id="@+id/repost_notice" android:layout_width="match_parent" android:layout_height="64dp" layout="@layout/musiccircle_message_entry_item"/>
+    <View android:background="@color/listview_divider_line" android:layout_width="match_parent" android:layout_height="1px"/>
+    <include android:id="@+id/comment_notice" android:layout_width="match_parent" android:layout_height="64dp" layout="@layout/musiccircle_message_entry_item"/>
+    <View android:background="@color/listview_divider_line" android:layout_width="match_parent" android:layout_height="1px"/>
+    <include android:id="@+id/system_notice" android:layout_width="match_parent" android:layout_height="64dp" layout="@layout/musiccircle_message_entry_item"/>
+    <View android:background="@color/listview_divider_line" android:layout_width="match_parent" android:layout_height="1px"/>
+</LinearLayout>

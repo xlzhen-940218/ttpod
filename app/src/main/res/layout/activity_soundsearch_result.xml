@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_background">
+
+    <LinearLayout
+        android:id="@+id/linearlayout_soundsearch_control_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageview_soundsearch_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/xml_imageview_soundsearch_result_download" />
+
+        <ImageView
+            android:id="@+id/imageview_soundsearch_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/xml_imageview_soundsearch_result_play" />
+
+        <ImageView
+            android:id="@+id/imageview_soundsearch_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/xml_imageview_soundsearch_result_share" />
+    </LinearLayout>
+
+    <com.sds.android.ttpod.framework.modules.skin.view.LyricView
+        android:id="@+id/lyricview_soundsearch"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_above="@+id/linearlayout_soundsearch_control_banner"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/lyricview_soundsearch"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_imageview_soundsearch_result_default_cover" />
+
+    <ImageView
+        android:id="@+id/imageview_soundsearch_cover"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/lyricview_soundsearch"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignLeft="@+id/imageview_soundsearch_cover"
+        android:layout_alignRight="@+id/imageview_soundsearch_cover"
+        android:layout_alignBottom="@+id/imageview_soundsearch_cover"
+        android:background="#50000000">
+
+        <ImageView
+            android:id="@+id/imageview_soundsearch_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:background="@drawable/xml_favourite"
+            android:scaleType="centerInside" />
+
+        <LinearLayout
+            android:id="@+id/linearlayout_soundsearch_media_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_toLeftOf="@+id/imageview_soundsearch_favorite"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textview_soundsearch_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="What I&apos;ve Done"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/textview_soundsearch_album"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="歌手-专辑"
+                android:textColor="#ffb9cdd5"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textview_soundsearch_favorite_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/img_favorite_count_selected"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="1225492"
+                android:textColor="#fffa3488"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <ImageView android:id="@+id/market_new" android:padding="5dp" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dp" android:layout_alignParentTop="true" android:layout_alignParentRight="true"/>
+    <TextView android:textSize="16sp" android:textColor="@drawable/xml_selector_market_indicator_text" android:gravity="center" android:id="@+id/label_name" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/recommend" android:layout_centerInParent="true"/>
+    <ImageView android:id="@+id/market_label_arrow" android:paddingLeft="10dp" android:paddingRight="10dp" android:layout_width="match_parent" android:layout_height="5dp" android:src="@drawable/xml_background_market_indicator_down" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
+</RelativeLayout>

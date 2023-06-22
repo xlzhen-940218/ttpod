@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.sds.android.ttpod.framework.modules.skin.view.ModifyFitCenterImageView android:id="@+id/mv_img" android:layout_width="@dimen/mv_thumbnail_width" android:layout_height="@dimen/mv_thumbnail_height" android:layout_marginLeft="5dp" android:layout_marginTop="5dp" android:layout_marginBottom="5dp" android:src="@drawable/img_mv_default_image" android:scaleType="fitCenter" android:contentDescription="@string/ttpod"/>
+    <LinearLayout android:gravity="center_vertical" android:orientation="vertical" android:paddingLeft="8dp" android:layout_width="match_parent" android:layout_height="80dp" android:layout_marginTop="5dp" android:layout_marginRight="5dp" android:layout_marginBottom="5dp" android:layout_toRightOf="@+id/mv_img">
+        <TextView android:textSize="16sp" android:textColor="#ff474342" android:ellipsize="end" android:id="@+id/mv_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxWidth="200dp" android:text="" android:singleLine="true"/>
+        <TextView android:textSize="12sp" android:textColor="#ffacacac" android:id="@+id/mv_description" android:paddingTop="4dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:maxLines="3"/>
+    </LinearLayout>
+    <RelativeLayout android:id="@+id/menu_view" android:background="@drawable/xml_background_media_group_list_item_transparent_glass" android:clickable="true" android:layout_width="50dp" android:layout_height="90dp" android:layout_alignParentRight="true" android:layout_alignWithParentIfMissing="true">
+        <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/menu_icon_image" android:layout_width="15dp" android:layout_height="15dp" android:layout_margin="8dp" android:src="@drawable/img_list_item_menu_arrow_down" android:scaleType="centerInside" android:layout_toLeftOf="@+id/drag_handle" android:layout_centerInParent="true" android:layout_alignWithParentIfMissing="true" android:contentDescription="@android:string/unknownName"/>
+    </RelativeLayout>
+</RelativeLayout>

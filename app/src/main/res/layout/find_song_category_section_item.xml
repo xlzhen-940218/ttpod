@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/item_click_view" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.sds.android.ttpod.widget.SquareImageView android:id="@+id/item_picture" android:layout_width="match_parent" android:layout_height="80dp" android:scaleType="centerCrop"/>
+    <ImageView android:id="@+id/imageview_music_library_header_item" android:visibility="visible" android:layout_width="34dp" android:layout_height="34dp" android:src="@drawable/img_online_editor_recommend" android:layout_centerInParent="true"/>
+    <TextView android:textSize="12sp" android:textColor="#ffffff" android:gravity="center" android:id="@+id/textview_music_library_header_item" android:background="@drawable/color_background_findsong_category_section_item_title" android:layout_width="match_parent" android:layout_height="24dp" android:text="排行榜" android:layout_alignParentBottom="true"/>
+</RelativeLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_horizontal" android:orientation="vertical" android:id="@+id/linearlayout_mediascan_autoscan_listview_footer" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <ImageView android:id="@+id/imageview_mediascan_autoscan_add" android:background="@drawable/xml_background_layout_border" android:padding="12dp" android:layout_width="match_parent" android:layout_height="56dp" android:src="@drawable/img_imageview_mediascan_auto_scan_item_add" android:scaleType="fitCenter" android:contentDescription="@string/ttpod"/>
+    <TextView android:textSize="14sp" android:textColor="#acacac" android:gravity="center" android:id="@+id/textview_mediascan_setting_auto_scan_tips" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="@string/mediascan_setting_auto_scan_tips" android:singleLine="true"/>
+    <LinearLayout android:paddingLeft="20dp" android:paddingTop="10dp" android:paddingRight="20dp" android:paddingBottom="10dp" android:layout_width="match_parent" android:layout_height="?android:attr/listPreferredItemHeight">
+        <TextView android:textSize="18sp" android:textColor="#ffffff" android:gravity="center" android:id="@+id/textview_mediascan_setting_auto_scan_start" android:background="@drawable/xml_background_button_blue" android:layout_width="match_parent" android:layout_height="match_parent" android:text="@string/mediascan_setting_auto_scan_start"/>
+    </LinearLayout>
+</LinearLayout>

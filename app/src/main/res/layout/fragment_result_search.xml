@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.sds.android.ttpod.widget.StateView
+        android:id="@+id/loading_view"
+        app:failed_view="@layout/loadingview_failed"
+        app:success_view="@layout/media_online_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/dialog_background" />
+</LinearLayout>

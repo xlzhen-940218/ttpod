@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_bkg_mask"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/playcontrol_bar_height">
+
+    <com.sds.android.ttpod.widget.StateView
+        android:id="@+id/post_detail_loadingview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:failed_view="@layout/loadingview_failed"
+        app:success_view="@layout/musiccircle_post_detail_listview" />
+</RelativeLayout>

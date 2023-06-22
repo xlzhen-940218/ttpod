@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundcolor_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_djlistenpage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:src="@drawable/cmmusic_netword_notfind" />
+
+        <Button
+            android:id="@+id/btn_tryagain_djlistenpage"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:background="@drawable/cmmusic_button_background"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/tryagain"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_djlistenpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alwaysDrawnWithCache="true"
+        android:background="@color/backgroundcolor_white"
+        android:cacheColorHint="#00000000"
+        android:divider="#c7dae1"
+        android:dividerHeight="1px"
+        android:fadingEdge="none"
+        android:listSelector="#00000000"
+        android:scrollingCache="false"
+        android:visibility="gone" />
+</LinearLayout>

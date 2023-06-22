@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <RelativeLayout android:id="@+id/layout_title" android:layout_width="match_parent" android:layout_height="30dp">
+        <TextView android:textSize="14sp" android:textColor="@android:color/black" android:gravity="center_vertical" android:id="@+id/find_song_section_title" android:paddingLeft="8dp" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="ttpod" android:layout_alignParentLeft="true"/>
+        <TextView android:textSize="14sp" android:gravity="center_vertical" android:id="@+id/text_change_data" android:paddingLeft="18dp" android:paddingRight="8dp" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="match_parent" android:text="@string/refresh_playlist" android:layout_alignParentRight="true"/>
+        <ImageView android:id="@+id/image_change_data_anim" android:visibility="gone" android:layout_width="18dp" android:layout_height="18dp" android:layout_marginRight="8dp" android:src="@drawable/img_findsong_hot_changedata_anim" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>
+    </RelativeLayout>
+    <RelativeLayout android:id="@+id/layout_gridview" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.sds.android.ttpod.widget.SimpleGridView android:gravity="center" android:id="@+id/find_song_section_grid_view" android:visibility="gone" android:descendantFocusability="afterDescendants" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="@dimen/new_song_publish_item_margin"/>
+    </RelativeLayout>
+</LinearLayout>

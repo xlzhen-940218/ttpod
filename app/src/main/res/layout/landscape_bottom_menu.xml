@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/img_landscape_menu_bottom_bg" android:visibility="gone" android:clickable="true" android:layout_width="match_parent" android:layout_height="60dp">
+    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+    <ImageButton android:id="@+id/imagebutton_previous_landscape" android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/xml_button_prev_landscape" android:scaleType="fitCenter"/>
+    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+    <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <ImageButton android:id="@+id/imagebutton_play_landscape" android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/xml_button_play_landscape" android:scaleType="fitCenter"/>
+        <ImageButton android:id="@+id/imagebutton_pause_landscape" android:background="@null" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/xml_button_pause_landscape" android:scaleType="fitCenter"/>
+    </RelativeLayout>
+    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+    <ImageButton android:id="@+id/imagebutton_next_landscape" android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/xml_button_next_landscape" android:scaleType="fitCenter"/>
+    <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1"/>
+</LinearLayout>

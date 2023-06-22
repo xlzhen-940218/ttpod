@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:id="@+id/root" android:background="#f8f8f8" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="@dimen/playcontrol_bar_height">
+    <LinearLayout android:id="@+id/layout_users_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:baselineAligned="false" android:layout_above="@+id/layout_radar">
+        <include android:id="@+id/layout_user_info4" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:layout_marginBottom="5dp" android:layout_weight="1" layout="@layout/musiccircle_radar_user_info"/>
+        <include android:id="@+id/layout_user_info1" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginLeft="3dp" android:layout_marginRight="5dp" android:layout_marginBottom="5dp" android:layout_weight="1" layout="@layout/musiccircle_radar_user_info"/>
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:id="@+id/layout_users_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:baselineAligned="false" android:layout_below="@+id/layout_radar">
+        <include android:id="@+id/layout_user_info3" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:layout_weight="1" layout="@layout/musiccircle_radar_user_info"/>
+        <include android:id="@+id/layout_user_info2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginLeft="3dp" android:layout_marginRight="5dp" android:layout_weight="1" layout="@layout/musiccircle_radar_user_info"/>
+    </LinearLayout>
+    <FrameLayout android:orientation="vertical" android:id="@+id/layout_radar" android:background="@drawable/img_musiccircle_radar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <ImageView android:id="@+id/radar_line_view" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/img_musiccircle_radar_line"/>
+        <ImageView android:layout_gravity="center" android:id="@+id/center_point" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_musiccircle_radar_point"/>
+        <ImageView android:layout_gravity="center" android:id="@+id/point1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_musiccircle_radar_point"/>
+        <ImageView android:layout_gravity="center" android:id="@+id/point2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_musiccircle_radar_point"/>
+        <ImageView android:layout_gravity="center" android:id="@+id/point3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_musiccircle_radar_point"/>
+        <ImageView android:layout_gravity="center" android:id="@+id/point4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_musiccircle_radar_point"/>
+    </FrameLayout>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/linearLayout" android:paddingTop="5dp" android:paddingBottom="3dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:layout_alignParentBottom="true">
+        <TextSwitcher android:textSize="16sp" android:textColor="#66000000" android:id="@+id/info" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="5dp" android:text=""/>
+        <Button android:textSize="18sp" android:textColor="#66000000" android:id="@+id/rescan" android:background="@drawable/xml_musiccircle_radar_btn" android:paddingBottom="3dp" android:layout_width="100dp" android:layout_height="wrap_content" android:text="@string/rescan"/>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/layout_root" android:background="@color/dialog_background" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="50dp">
+    <RelativeLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <ImageView android:id="@+id/user_avatar" android:layout_width="120dp" android:layout_height="120dp" android:layout_marginLeft="25dp" android:layout_marginTop="25dp" android:src="@drawable/img_avatar_default" android:scaleType="fitXY" android:contentDescription="@string/ttpod"/>
+        <TextView android:id="@+id/user_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:layout_marginTop="8dp" android:singleLine="true" android:layout_toRightOf="@+id/user_avatar" android:layout_alignTop="@+id/user_avatar" style="@style/UserInfo_Label"/>
+        <TextView android:id="@+id/user_extra_info_1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:layout_marginTop="8dp" android:singleLine="true" android:layout_toRightOf="@+id/user_avatar" android:layout_below="@+id/user_name" style="@style/UserInfo_Content"/>
+        <TextView android:id="@+id/user_extra_info_2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:layout_marginTop="8dp" android:singleLine="true" android:layout_toRightOf="@+id/user_avatar" android:layout_below="@+id/user_extra_info_1" style="@style/UserInfo_Content"/>
+        <LinearLayout android:layout_marginTop="20dp" android:layout_below="@+id/user_avatar" style="@style/UserInfo_Table">
+            <LinearLayout android:id="@+id/linear_sex" style="@style/UserInfo_Line">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:text="性别" android:layout_weight="1" style="@style/UserInfo_Label"/>
+                <TextView android:id="@+id/text_sex" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" style="@style/UserInfo_Content"/>
+            </LinearLayout>
+            <View style="@style/UserInfo_Table_Dividing_Line"/>
+            <LinearLayout android:id="@+id/linear_sex" style="@style/UserInfo_Line">
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:text="生日" android:layout_weight="1" style="@style/UserInfo_Label"/>
+                <TextView android:id="@+id/text_birthday" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="2" style="@style/UserInfo_Content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

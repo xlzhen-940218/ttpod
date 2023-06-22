@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_actionbar"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/no_media_area"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.sds.android.ttpod.common.widget.IconTextView
+            android:id="@+id/no_media_icon"
+            android:layout_width="96dp"
+            android:layout_height="127dp"
+            android:scaleType="centerInside"
+            app:text="@string/icon_no_song" />
+
+        <TextView
+            android:id="@+id/textview_load_failed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:singleLine="false"
+            android:text="@string/no_song_local_music"
+            android:textColor="#1f2d34"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/no_data_action_view"
+        android:layout_width="150dp"
+        android:layout_height="44dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/xml_background_scan_media"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/scan_media"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="@drawable/xml_background_media_group_list_item" android:layout_width="match_parent" android:layout_height="@dimen/list_item_height">
+    <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/drag_handle" android:paddingLeft="8dp" android:paddingRight="16dp" android:visibility="gone" android:layout_width="32dp" android:layout_height="@dimen/list_item_height" android:scaleType="fitCenter" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_alignWithParentIfMissing="true" app:textSize="32sp" app:text="@string/icon_drag_sort"/>
+    <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/menu_view" android:paddingLeft="36dp" android:paddingRight="8dp" android:layout_width="@dimen/list_item_height" android:layout_height="@dimen/list_item_height" android:scaleType="centerInside" android:layout_toLeftOf="@+id/drag_handle" android:contentDescription="@android:string/unknownName"/>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="@dimen/list_item_height" android:layout_marginLeft="10dp" android:layout_toLeftOf="@+id/menu_view">
+        <TextView android:id="@+id/title_view" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="2dp" style="@style/ListView_Item_Title"/>
+        <TextView android:id="@+id/subtitle_view" android:layout_width="match_parent" android:layout_height="wrap_content" style="@style/ListView_Item_Subtitle"/>
+    </LinearLayout>
+    <View android:id="@+id/view_playstate_group" android:background="#43bdf0" android:visibility="gone" android:layout_width="4dp" android:layout_height="@dimen/list_item_height" android:layout_alignParentLeft="true"/>
+</RelativeLayout>

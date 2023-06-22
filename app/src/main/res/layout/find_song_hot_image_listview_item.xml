@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:padding="8dp" android:layout_width="match_parent" android:layout_height="82dp">
+    <ImageView android:id="@+id/image" android:layout_width="66dp" android:layout_height="66dp" android:src="@drawable/img_music_default_icon" android:scaleType="centerCrop" android:layout_centerVertical="true" android:contentDescription="@android:string/unknownName"/>
+    <LinearLayout android:orientation="vertical" android:id="@+id/layout_song_info" android:paddingLeft="8dp" android:paddingTop="0dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_toLeftOf="@+id/layout_arrow" android:layout_toRightOf="@+id/image">
+        <TextView android:textSize="16sp" android:gravity="top" android:id="@+id/title" android:paddingTop="0dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="0dp" android:text="title" android:singleLine="true"/>
+        <TextView android:textSize="14sp" android:id="@+id/subtitle" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="sub title" android:lines="2"/>
+    </LinearLayout>
+    <LinearLayout android:gravity="center_vertical" android:id="@+id/layout_arrow" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_alignParentRight="true" android:layout_centerVertical="true">
+        <ImageView android:layout_gravity="center" android:id="@+id/item_click_arrow" android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/img_rank_arrow"/>
+    </LinearLayout>
+</RelativeLayout>

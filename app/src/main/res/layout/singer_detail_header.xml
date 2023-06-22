@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.sds.android.ttpod.widget.RectangleImageView
+        android:id="@+id/image_blur"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/mask"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/image_blur"
+        android:layout_alignTop="@+id/image_blur"
+        android:layout_alignRight="@+id/image_blur"
+        android:layout_alignBottom="@+id/image_blur"
+        android:background="#20000000" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.sds.android.ttpod.widget.RoundedImageView
+            android:id="@+id/image_singer_avatar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_margin="0dp"
+            app:Image_border_color="#ffffff"
+            app:Image_border_width="2dp" />
+
+        <TextView
+            android:id="@+id/text_singer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="周杰伦"
+            android:textSize="16sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/album_play_button"
+        style="@style/ImageView_MusicCircle_PlayButton"
+        android:layout_alignBottom="@+id/image_blur"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>

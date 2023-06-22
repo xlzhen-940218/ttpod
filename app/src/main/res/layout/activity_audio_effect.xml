@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/effect_dialog_background">
+
+    <LinearLayout
+        android:id="@+id/textview_effect_equalizer_media_top"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_alignParentTop="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image_play_state"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="4dp"
+            android:src="@drawable/img_backgournd_effect_state_play" />
+
+        <com.sds.android.ttpod.framework.modules.skin.view.AutoScrollableTextView
+            android:id="@+id/textview_effect_equalizer_media"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:drawablePadding="4dp"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:lines="1"
+            android:singleLine="true"
+            android:textColor="@color/effect_blue"
+            android:textSize="12sp"
+            app:autoScrollEnable="true" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_effect_cloud"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_below="@+id/textview_effect_equalizer_media_top"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:background="@drawable/effect_pipei_bg"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textview_effect_equalizer_cloud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="4dp"
+                android:layout_toLeftOf="@+id/togglebutton_effect_equalizer_cloud"
+                android:singleLine="true"
+                android:text="@string/effect_equalizer_cloud"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textview_effect_equalizer_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@drawable/xml_background_eq_match"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/effect_listview_header_textcolor"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <ToggleButton
+            android:id="@+id/togglebutton_effect_equalizer_cloud"
+            android:layout_width="54dp"
+            android:layout_height="34dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/xml_background_toggle_button_effect_cloud"
+            android:textOff=""
+            android:textOn="" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@+id/layout_effect_cloud">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="2dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_effect_equalizer"
+                style="@style/TextView_Effect_Small_Title"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/effect_equalizer"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
+
+            <com.sds.android.ttpod.widget.audioeffect.EqualizerAnimationWaveView
+                android:id="@+id/waveview_effect_equalizer_equ"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:background="@drawable/img_background_equalizer_animation_waveview"
+                android:minHeight="70dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="2dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="9dp">
+
+                <TextView
+                    android:id="@+id/textview_effect_equalizer"
+                    style="@style/TextView_Effect_Small_Title"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="2dp"
+                    android:background="#00000000"
+                    android:drawableStart="@drawable/effect_white"
+                    android:drawablePadding="4dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="流行POP"
+                    android:textColor="#ffffff"
+                    android:textSize="11sp" />
+            </com.sds.android.ttpod.widget.audioeffect.EqualizerAnimationWaveView>
+
+            <TextView
+                android:id="@+id/title_effect_reverb"
+                style="@style/TextView_Effect_Small_Title"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="0dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/effect_reverb_label"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/textview_effect_reverb"
+                style="@style/TextView_Effect_Title"
+                android:layout_height="53dp"
+                android:background="@drawable/img_background_effect_reverb"
+                android:drawableLeft="@drawable/img_effect_reverb"
+                android:drawableRight="@null"
+                android:drawablePadding="4dp"
+                android:paddingLeft="8dp"
+                android:text="演唱会" />
+
+            <TextView
+                android:id="@+id/title_effect_boost"
+                style="@style/TextView_Effect_Small_Title"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="0dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/effect_boost"
+                android:textColor="#ffffff"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/effect_boost_layer"
+                android:layout_width="match_parent"
+                android:layout_height="106dp"
+                android:background="@drawable/img_background_effect_boost"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="10dp"
+                android:weightSum="3">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        style="@style/TextView_Effect_Small_Title"
+                        android:layout_centerInParent="true"
+                        android:background="@null"
+                        android:text="@string/effect_bass"
+                        android:textColor="#aeb7b7"
+                        android:textSize="12sp" />
+
+                    <com.sds.android.ttpod.widget.audioeffect.RotatePic
+                        android:id="@+id/rotatebutton_bass_boost"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        style="@style/TextView_Effect_Small_Title"
+                        android:layout_centerInParent="true"
+                        android:background="@null"
+                        android:text="@string/effect_treble"
+                        android:textColor="#aeb7b7"
+                        android:textSize="12sp" />
+
+                    <com.sds.android.ttpod.widget.audioeffect.RotatePic
+                        android:id="@+id/rotatebutton_treble_boost"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        style="@style/TextView_Effect_Small_Title"
+                        android:layout_centerInParent="true"
+                        android:background="@null"
+                        android:text="@string/effect_virtualizer"
+                        android:textColor="#aeb7b7"
+                        android:textSize="12sp" />
+
+                    <com.sds.android.ttpod.widget.audioeffect.RotatePic
+                        android:id="@+id/rotatebutton_surround"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_centerInParent="true" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/xml_background_effect_button_recommand"
+            android:singleLine="true"
+            android:text="@string/recommend_effect"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/button_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/xml_background_effect_button_share"
+            android:singleLine="true"
+            android:text="@string/save_effect"
+            android:textColor="#ffffff"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/scrollView"
+        android:layout_toRightOf="@+id/bottom_layout"
+        android:src="@drawable/effect_circle_green" />
+</RelativeLayout>

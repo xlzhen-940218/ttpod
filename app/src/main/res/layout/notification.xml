@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:id="@+id/notification_background" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerCrop"/>
+    <LinearLayout android:orientation="horizontal" android:id="@+id/notification_layout" android:paddingLeft="6dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="2" android:layout_centerVertical="true">
+        <LinearLayout android:orientation="horizontal" android:paddingTop="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:id="@+id/notification_icon" android:layout_width="42dp" android:layout_height="42dp" android:scaleType="centerCrop"/>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:paddingTop="5dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10dp">
+            <TextView android:textStyle="bold" android:gravity="center_vertical" android:id="@+id/notification_title" android:paddingLeft="3dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" style="@android:style/TextAppearance.StatusBar.EventContent"/>
+            <TextView android:textStyle="normal" android:gravity="center_vertical" android:id="@+id/notification_name" android:paddingLeft="4dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true" style="@android:style/TextAppearance.StatusBar.EventContent"/>
+            <LinearLayout android:orientation="horizontal" android:id="@+id/update_notification_progressblock" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:layout_marginRight="5dp">
+                <ProgressBar android:id="@+id/update_notification_progressbar" android:layout_width="match_parent" android:layout_height="wrap_content" style="?android:attr/progressBarStyleHorizontal"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

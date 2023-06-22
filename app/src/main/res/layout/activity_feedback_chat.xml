@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/common_padding">
+
+    <com.sds.android.ttpod.widget.StateView
+        android:id="@+id/chat_loadingview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:failed_view="@layout/loadingview_failed"
+        app:success_view="@layout/musiccircle_private_message_chatting_list" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/xml_edit_border_feedback_normal"
+        android:orientation="horizontal"
+        android:padding="@dimen/common_margin">
+
+        <EditText
+            android:id="@+id/et_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/xml_edit_border_feedback"
+            android:imeOptions="actionDone"
+            android:padding="@dimen/common_padding_small"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:background="@drawable/img_background_button_blue_normal"
+            android:paddingLeft="@dimen/common_padding_big"
+            android:paddingRight="@dimen/common_padding_big"
+            android:text="@string/send"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>

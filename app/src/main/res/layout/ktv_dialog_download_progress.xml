@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="@color/dialog_background" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView android:textSize="16sp" android:textColor="#284f7a" android:id="@+id/text_downloading_progress" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_marginTop="15dp" android:layout_marginRight="10dp" android:layout_marginBottom="15dp" android:lines="2"/>
+    <ProgressBar android:id="@+id/downloading_progress_bar" android:layout_width="match_parent" android:layout_height="14dp" android:layout_marginLeft="5dp" android:layout_marginRight="5dp" android:max="100" android:progress="0" android:progressDrawable="@drawable/ktv_download_progress" style="?android:attr/progressBarStyleHorizontal"/>
+</LinearLayout>

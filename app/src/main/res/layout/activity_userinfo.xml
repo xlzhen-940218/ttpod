@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sds.android.ttpod.widget.PullToRefreshScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_background"
+    android:fadingEdge="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cover_height">
+
+            <ImageView
+                android:id="@+id/imageview_userinfo_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_background_imageview_userinfo_cover" />
+
+            <com.sds.android.ttpod.widget.RoundRectImageView
+                android:id="@+id/imageview_userinfo_avatar"
+                style="@style/RoundRectImageView_UserInfo_Avatar"
+                android:layout_alignParentBottom="true"
+                app:frameColor="#b0ffffff"
+                app:frameWidth="2dp" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/TextView_UserInfo_Table_Label"
+            android:layout_marginTop="5dp"
+            android:text="@string/userinfo_personal_information" />
+
+        <LinearLayout style="@style/LinearLayout_UserInfo_Table">
+
+            <LinearLayout
+                android:id="@+id/linearlayout_userinfo_nickname"
+                style="@style/LinearLayout_UserInfo_Table_Line">
+
+                <TextView
+                    style="@style/TextView_UserInfo_Table_Line_Label"
+                    android:layout_weight="1"
+                    android:text="@string/userinfo_nick_name" />
+
+                <TextView
+                    android:id="@+id/textview_userinfo_nickname"
+                    style="@style/TextView_UserInfo_Table_Line_Content"
+                    android:layout_weight="3" />
+            </LinearLayout>
+
+            <View style="@style/View_Divider_UserInfo" />
+
+            <LinearLayout
+                android:id="@+id/linearlayout_userinfo_sex"
+                style="@style/LinearLayout_UserInfo_Table_Line">
+
+                <TextView
+                    style="@style/TextView_UserInfo_Table_Line_Label"
+                    android:layout_weight="1"
+                    android:text="@string/userinfo_sex" />
+
+                <RadioGroup
+                    android:id="@+id/radiogroup_userinfo_sex"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_userinfo_sex_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="15dp"
+                        android:background="@drawable/xml_background_radiobutton_userinfo_sex_male"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/xml_radiobutton_userinfo_sex_male"
+                        android:drawablePadding="2dp"
+                        android:text="@string/userinfo_male"
+                        android:textColor="@color/xml_textcolor_radiobutton_userinfo_sex_male" />
+
+                    <RadioButton
+                        android:id="@+id/radiobutton_userinfo_sex_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/xml_background_radiobutton_userinfo_sex_female"
+                        android:button="@null"
+                        android:drawableLeft="@drawable/xml_radiobutton_userinfo_sex_female"
+                        android:drawablePadding="2dp"
+                        android:text="@string/userinfo_female"
+                        android:textColor="@color/xml_textcolor_radiobutton_userinfo_sex_female" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <View style="@style/View_Divider_UserInfo" />
+
+            <LinearLayout
+                android:id="@+id/linearlayout_userinfo_birthday"
+                style="@style/LinearLayout_UserInfo_Table_Line">
+
+                <TextView
+                    style="@style/TextView_UserInfo_Table_Line_Label"
+                    android:layout_weight="1"
+                    android:text="@string/userinfo_birthday"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/textview_userinfo_birthday"
+                    style="@style/TextView_UserInfo_Table_Line_Content"
+                    android:layout_weight="2" />
+
+                <TextView
+                    android:id="@+id/textview_userinfo_constellation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="2dp"
+                    android:gravity="center"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
+
+            <View style="@style/View_Divider_UserInfo" />
+
+            <LinearLayout
+                android:id="@+id/linearlayout_userinfo_vip"
+                style="@style/LinearLayout_UserInfo_Table_Line"
+                android:paddingRight="2dp">
+
+                <TextView
+                    style="@style/TextView_UserInfo_Table_Line_Label"
+                    android:layout_width="wrap_content"
+                    android:text="@string/userinfo_grade"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/textview_userinfo_vip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:paddingLeft="5dp">
+
+                    <TextView
+                        android:id="@+id/textview_userinfo_vip_expiretime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="有效期至: 2013-07-07"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/textview_userinfo_vip_download_limit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="下载限制: 无限"
+                        android:textColor="@android:color/black"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextView_UserInfo_Table_Label"
+            android:text="@string/userinfo_account_security" />
+
+        <LinearLayout style="@style/LinearLayout_UserInfo_Table">
+
+            <LinearLayout
+                android:id="@+id/linearlayout_userinfo_email"
+                style="@style/LinearLayout_UserInfo_Table_Line">
+
+                <TextView
+                    style="@style/TextView_UserInfo_Table_Line_Label"
+                    android:layout_weight="1"
+                    android:text="@string/userinfo_email" />
+
+                <TextView
+                    android:id="@+id/textview_userinfo_email"
+                    style="@style/TextView_UserInfo_Table_Line_Content"
+                    android:layout_weight="2" />
+
+                <TextView
+                    android:id="@+id/textview_userinfo_email_state"
+                    style="@style/TextView_UserInfo_Bind_State"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <View style="@style/View_Divider_UserInfo" />
+
+            <LinearLayout
+                android:id="@+id/linearlayout_userinfo_password"
+                style="@style/LinearLayout_UserInfo_Table_Line">
+
+                <TextView
+                    style="@style/TextView_UserInfo_Table_Line_Label"
+                    android:layout_weight="1"
+                    android:text="@string/userinfo_password" />
+
+                <TextView
+                    android:id="@+id/textview_userinfo_password"
+                    style="@style/TextView_UserInfo_Table_Line_Content"
+                    android:layout_weight="2"
+                    android:hint="@string/userinfo_modify_password_hint" />
+
+                <TextView
+                    android:id="@+id/textview_userinfo_password_state"
+                    style="@style/TextView_UserInfo_Bind_State"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_userinfo_logout"
+            style="@style/LinearLayout_UserInfo_Table"
+            android:background="@drawable/xml_background_button_userinfo_logout"
+            android:text="@string/userinfo_logout"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+</com.sds.android.ttpod.widget.PullToRefreshScrollView>

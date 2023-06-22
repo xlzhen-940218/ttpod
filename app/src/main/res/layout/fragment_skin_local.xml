@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:paddingLeft="4dp" android:paddingTop="6dp" android:paddingRight="4dp" android:layout_width="match_parent" android:layout_height="match_parent">
+    <include android:id="@+id/gridview" layout="@layout/gridview_skin_background"/>
+</LinearLayout>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dialog_background"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/dividerTop"
+        android:layout_width="wrap_content"
+        android:layout_height="5dp"
+        android:layout_gravity="top"
+        android:background="@color/dialog_divider_line" />
+
+    <LinearLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/pdialog_upgrade_progress_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/dialog_standard_title"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:background="@color/dialog_divider_line" />
+
+    <LinearLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/version_downloading_progress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:lines="2"
+            android:textColor="#284f7a"
+            android:textSize="16sp" />
+
+        <ProgressBar
+            android:id="@+id/version_downloading_progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="14dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/xml_background_upgrade_progress"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pdialog_standard_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dialog_background"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <Button
+            android:id="@+id/pdialog_standard_left"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_gravity="left"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/dialog_footer_button_background"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/dialog_footer_button_text" />
+
+        <Button
+            android:id="@+id/pdialog_standard_mid"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@color/dialog_footer_button_background"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/dialog_footer_button_text" />
+
+        <Button
+            android:id="@+id/pdialog_standard_right"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_gravity="right"
+            android:layout_weight="1"
+            android:background="@color/dialog_footer_button_background"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/dialog_footer_button_text" />
+    </LinearLayout>
+</LinearLayout>

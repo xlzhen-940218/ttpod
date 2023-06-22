@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sds.android.ttpod.widget.ActionBarFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_switcher_standard_dialog_header"
+    style="@style/ActionBar"
+    android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/relative_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_header_height">
+
+        <View
+            android:id="@+id/view_bottom_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#e6d7d3d8" />
+
+        <LinearLayout
+            android:id="@+id/linear_action"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/view_bottom_divider"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_above="@+id/view_bottom_divider"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/linear_action"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/linear_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:background="@drawable/xml_background_action_view"
+                android:orientation="horizontal">
+
+                <com.sds.android.ttpod.common.widget.IconTextView
+                    android:id="@+id/itv_avatar"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/mask_background_color"
+                    app:text="@string/icon_arrow_left"
+                    app:textColor="@color/default_action_bar_color" />
+
+                <com.sds.android.ttpod.framework.modules.skin.view.AutoScrollableTextView
+                    android:id="@+id/text_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/mask_background_color"
+                    android:drawablePadding="1dp"
+                    android:ellipsize="marquee"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:paddingRight="8dp"
+                    android:paddingBottom="1dp"
+                    android:singleLine="true"
+                    android:textColor="@color/default_action_bar_color"
+                    android:textSize="18dp"
+                    app:autoScrollEnable="true"
+                    tools:ignore="EllipsizeMaxLines" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/search_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/img_background_search_input"
+                android:gravity="center_vertical">
+
+                <EditText
+                    android:id="@+id/edittext_search_input"
+                    style="@style/EditText.SearchInput"
+                    android:layout_toLeftOf="@+id/imageview_search_clear"
+                    android:hint="@string/search_input_hint" />
+
+                <com.sds.android.ttpod.common.widget.IconTextView
+                    android:id="@+id/imageview_search_clear"
+                    android:layout_width="36dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/edittext_search_input"
+                    android:layout_alignBottom="@+id/edittext_search_input"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@string/ttpod"
+                    android:padding="2dp"
+                    app:text="@string/icon_error"
+                    app:textColor="#959fa5" />
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relative_custom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_header_height" />
+</com.sds.android.ttpod.widget.ActionBarFrameLayout>

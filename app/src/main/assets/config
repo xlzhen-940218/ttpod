@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config_parameter>
+    <!-- 程序的版本信息 -->
+	<string value="app_version">7.6.1.2014121015</string>
+
+    <!-- 是否打开检查程序版本更新功能 -->
+    <string value="app_checkupdate_enable">true</string>
+
+	<!-- 是否需要输入注册码 -->
+    <string value="verification_enable">false</string>
+
+    <!-- 版本的名字，alpha, beta, release -->
+    <string value="version_name">7.6.1 正式版</string>
+
+    <!-- 皮肤版本信息 -->
+    <string value="skin_version">0x10012</string>
+
+    <!-- 是否打印交互地址 -->
+	<string value="url_print_enable">false</string>
+
+    <!-- 是否打开测试开关，打开测试开关会出现测试功能 -->
+    <string value="test_mode">false</string>
+
+    <!-- 是否根据服务器的配置来打开付费相关的配置 -->
+    <string value="control_vip">true</string>
+
+    <!-- 是否打开sdk广告 -->
+    <string value="ad_sdk_enable">true</string>
+
+    <!-- 是否显示天天推荐和浏览器  -->
+    <string value="recommend_browser_enable">true</string>
+
+    <!-- 智能升级类别(0,360,W,H,B) -->
+    <string value="update_category">B</string>
+
+    <!-- 不显示下载管理页广告的渠道, 以 _ 分隔 -->
+    <string value="no_ad_channels">173_504</string>
+
+    <!-- 启动时不创建桌面图标的渠道, 以 _ 分隔 -->
+    <string value="no_shortcut_channels">168_786_983</string>
+
+    <!-- 是否显示360换量联盟-->
+    <string value="360union_enable">true</string>
+</config_parameter>

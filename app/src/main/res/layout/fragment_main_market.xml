@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sds.android.ttpod.widget.AsyncDrawFragment xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/market_fragment_holder" android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:orientation="vertical" android:id="@+id/market_sub_fragment_content" android:layout_width="match_parent" android:layout_height="match_parent">
+        <com.sds.android.ttpod.widget.market.MarketSubPageIndicator android:id="@+id/app_sub_page_indicator" android:layout_width="match_parent" android:layout_height="45dp"/>
+    </LinearLayout>
+</com.sds.android.ttpod.widget.AsyncDrawFragment>

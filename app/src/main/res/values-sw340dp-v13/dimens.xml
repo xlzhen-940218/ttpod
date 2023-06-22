@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="guide_entry_button_height">44dp</dimen>
+    <dimen name="guide_entry_button_margin_bottom">140dp</dimen>
+    <dimen name="guide_entry_button_width">182dp</dimen>
+    <dimen name="media_menu_layout_width">70dp</dimen>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginLeft="20dp"
+        android:drawableLeft="@drawable/img_textview_soundsearch_title"
+        android:gravity="center"
+        android:text="为您模糊匹配了以下结果"
+        android:textColor="#ffdfdfdf"
+        android:textSize="16sp" />
+</RelativeLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dialog_background">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="8dp"
+        android:background="@color/listview_divider_line" />
+
+    <TextView
+        android:id="@+id/effect_dialog_subtitle"
+        style="@style/Dialog_MediaInfo_Item_Label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/effect_share_dialog_subtitle"
+        android:textStyle="normal" />
+
+    <RelativeLayout
+        android:id="@+id/checked_view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/effect_dialog_subtitle"
+        android:layout_marginBottom="8dp"
+        android:drawableRight="@drawable/xml_dialog_option">
+
+        <CheckedTextView
+            android:id="@+id/checked_share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:drawableRight="@drawable/xml_dialog_option"
+            android:text="@string/effect_share_to_others"
+            android:textColor="#868686"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/checked_share_noajust"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/effect_share_no_ajust"
+            android:textColor="#868686"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

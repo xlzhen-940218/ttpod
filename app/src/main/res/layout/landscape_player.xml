@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@android:color/black" android:layout_width="match_parent" android:layout_height="match_parent">
+    <FrameLayout android:id="@+id/layout_landscape_content" android:layout_width="match_parent" android:layout_height="match_parent"/>
+    <LinearLayout android:orientation="horizontal" android:id="@+id/layout_switch_landscape" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:layout_marginRight="5dp" android:layout_alignParentTop="true" android:layout_alignParentRight="true">
+        <ImageButton android:id="@+id/button_share" android:background="@null" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/xml_button_share_landscape" android:scaleType="fitCenter"/>
+        <ImageView android:id="@+id/switch_effect" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/xml_landscape_switch_effect" android:scaleType="fitCenter"/>
+        <ImageView android:id="@+id/select_landscape" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:scaleType="fitCenter"/>
+    </LinearLayout>
+    <include android:id="@+id/volume_panel" android:layout_width="match_parent" android:layout_height="60dp" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" layout="@layout/landscape_top_menu"/>
+    <include android:id="@+id/control_panel" android:layout_width="match_parent" android:layout_height="60dp" android:layout_alignParentBottom="true" layout="@layout/landscape_bottom_menu"/>
+</RelativeLayout>

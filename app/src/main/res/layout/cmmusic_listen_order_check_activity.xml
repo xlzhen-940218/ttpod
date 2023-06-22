@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/cmmusic_page_background"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#58aef3" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:maxLines="1"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="@string/dingdan"
+        android:textColor="#58aef3"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="-1dp"
+        android:background="@drawable/cmmusic_setbag_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_songname_orderpage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/songname"
+            android:textColor="#1f2d34" />
+
+        <TextView
+            android:id="@+id/text_singername_orderpage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/songername"
+            android:textColor="#1f2d34" />
+
+        <TextView
+            android:id="@+id/text_price_orderpage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/orderprice"
+            android:textColor="#1f2d34" />
+
+        <TextView
+            android:id="@+id/text_invaliddate_orderpage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/shiyingtimeout"
+            android:textColor="#1f2d34" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:paddingRight="16dp"
+            android:text="@string/buyprompt"
+            android:textColor="#1f2d34" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel_orderpage"
+            android:layout_width="141dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:background="@drawable/cmmusic_button_background"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/prompt_textcolor"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_submit_orderpage"
+            android:layout_width="141dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:background="@drawable/cmmusic_button_background"
+            android:gravity="center"
+            android:text="@string/confirm"
+            android:textColor="@color/prompt_textcolor"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

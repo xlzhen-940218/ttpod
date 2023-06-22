@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/playcontrol_bar_height"
+    android:background="@color/dialog_background">
+
+    <include
+        android:id="@+id/layout_private_message_input"
+        layout="@layout/musiccircle_comment_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+    <com.sds.android.ttpod.widget.StateView
+        android:id="@+id/private_message_loadingview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_private_message_input"
+        app:failed_view="@layout/loadingview_failed"
+        app:success_view="@layout/musiccircle_private_message_chatting_list" />
+</RelativeLayout>

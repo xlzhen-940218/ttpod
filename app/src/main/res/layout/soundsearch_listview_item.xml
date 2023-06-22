@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recognizer_item"
+    android:layout_width="match_parent"
+    android:layout_height="64dp">
+
+    <View
+        android:id="@+id/active_flag"
+        android:layout_width="4dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#ff43bdf0" />
+
+    <ImageView
+        android:id="@+id/toggle_favorite_imageview"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/active_flag"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_favourite_normal" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_list_item_menu_arrow_down" />
+
+    <View
+        android:id="@+id/context_menu"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout_soundsearch_media_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/context_menu"
+        android:layout_toRightOf="@+id/toggle_favorite_imageview"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textview_soundsearch_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="What I&apos;ve Done"
+            android:textColor="@color/xml_color_soundsearch_listview_item_title"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textview_soundsearch_album"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="歌手-专辑"
+            android:textColor="#ffdfdfdf"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textview_soundsearch_favorite_count"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/img_favorite_count"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="#ffacacac"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/media_similarity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="4dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="#ffacacac"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

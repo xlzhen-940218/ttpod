@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/software_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/xml_background_media_group_list_item"
+    android:clickable="true"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp">
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="7dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_market_software_default" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="永恒战士2"
+            android:textColor="#333333"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="动作 84.0M"
+            android:textColor="#999999"
+            android:textSize="10sp" />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="22dp"
+            android:background="@drawable/xml_background_button_market_download"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:text="@string/download"
+            android:textColor="#fff"
+            android:textSize="13sp" />
+    </LinearLayout>
+</LinearLayout>

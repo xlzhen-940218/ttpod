@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/top_action_panel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <LinearLayout
+        android:id="@+id/left_action"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/xml_listselector_item_default"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/left_action_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pause_all_download"
+            android:textColor="@color/common_title_color"
+            android:textSize="16sp" />
+
+        <com.sds.android.ttpod.common.widget.IconTextView
+            android:id="@+id/left_action_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="@dimen/common_margin"
+            app:text="@string/icon_hollow_pause" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/right_action"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:background="@drawable/xml_listselector_item_default"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/right_action_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_all_download"
+            android:textColor="@color/common_title_color"
+            android:textSize="16sp" />
+
+        <com.sds.android.ttpod.common.widget.IconTextView
+            android:id="@+id/right_action_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="@dimen/common_margin"
+            app:text="@string/icon_hollow_play" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="#4f000000" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/following_layout" android:background="@drawable/xml_musiccircle_button_bg" android:padding="2dp" android:focusable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+        <TextView android:id="@+id/following_value" android:text="5000" style="@style/Follow_Content"/>
+        <TextView android:id="@+id/following_label" android:text="关注" style="@style/Follow_Label"/>
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/follower_layout" android:background="@drawable/xml_musiccircle_button_bg" android:padding="2dp" android:focusable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@+id/following_layout" android:layout_centerVertical="true">
+        <TextView android:id="@+id/follower_value" android:text="5000" style="@style/Follow_Content"/>
+        <TextView android:id="@+id/follower_label" android:text="粉丝" style="@style/Follow_Label"/>
+    </LinearLayout>
+    <Button android:textColor="#ff34393c" android:id="@+id/private_message" android:background="@drawable/xml_musiccircle_follow" android:layout_marginRight="4dp" android:text="发私信" android:drawableLeft="@drawable/img_musiccircle_private_message" android:layout_toLeftOf="@+id/toggle_follow" android:layout_centerVertical="true" android:layout_alignWithParentIfMissing="true" style="@style/Follow_Button"/>
+    <Button android:textColor="#ff34393c" android:id="@+id/toggle_follow" android:background="@drawable/xml_musiccircle_follow" android:focusable="true" android:layout_marginRight="4dp" android:text="关注" android:layout_alignParentRight="true" android:layout_centerVertical="true" style="@style/Follow_Button"/>
+</RelativeLayout>

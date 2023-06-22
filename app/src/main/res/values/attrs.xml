@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="centered" format="boolean"/>
+
+    <attr name="numberPickerStyle" format="reference"/>
+
+    <attr name="strokeWidth" format="dimension"/>
+    <attr name="unselectedColor" format="color"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <attr name="hasStickyHeaders" format="boolean"/>
+    <attr name="isDrawingListUnderStickyHeader" format="boolean"/>
+
+
+
+
+
+    <declare-styleable name="ViewPagerIndicator">
+        <attr name="vpiCirclePageIndicatorStyle" format="reference"/>
+        <attr name="vpiIconPageIndicatorStyle" format="reference"/>
+        <attr name="vpiLinePageIndicatorStyle" format="reference"/>
+        <attr name="vpiTitlePageIndicatorStyle" format="reference"/>
+        <attr name="vpiTabPageIndicatorStyle" format="reference"/>
+        <attr name="vpiUnderlinePageIndicatorStyle" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="UnderlineIndicator">
+        <attr name="android:background" format="integer"/>
+        <attr name="selectedColor" format="color"/>
+        <attr name="fades" format="boolean"/>
+        <attr name="fadeDelay" format="integer"/>
+        <attr name="fadeLength" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="IconTextView">
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="text" format="string" />
+        <attr name="bkgTextColor" format="color" />
+        <attr name="bkgText" format="string" />
+    </declare-styleable>
+    <declare-styleable name="AutoScrollableTextView">
+        <attr name="autoScrollEnable" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="AppTheme">
+        <attr name="defaultBackgroundColor" format="reference|color" />
+        <attr name="titleTextColor" format="reference|color" />
+        <attr name="subTitleTextColor" format="reference|color" />
+        <attr name="actionBarTextColor" format="reference|color" />
+        <attr name="actionBarBackgroundColor" format="reference|color" />
+        <attr name="contentTextColor" format="reference|color"/>
+        <attr name="titleTextBackground" format="reference|color"/>
+        <attr name="subTitleTextBackground" format="reference|color"/>
+        <attr name="actionBarBackground" format="reference|color"/>
+        <attr name="contentTextBackground" format="reference|color"/>
+        <attr name="contentAreaBackground" format="reference|color"/>
+        <attr name="screenBackground" format="reference|color"/>
+        <attr name="slideBoardBackground" format="reference|color"/>
+        <attr name="listDividerColor" format="reference|color"/>
+        <attr name="musicPostItemTitle" format="reference|color"/>
+        <attr name="musicPostItemSubTitle" format="reference|color"/>
+        <attr name="musicPostItemText" format="reference|color"/>
+        <attr name="musicPostItemReplyText" format="reference|color"/>
+        <attr name="musicPostItemTitleBackground" format="reference|color"/>
+        <attr name="musicPostItemTextBackground" format="reference|color"/>
+        <attr name="musicPostItemReplyTextBackground" format="reference|color"/>
+        <attr name="musicPostItemSubTitleBackground" format="reference|color"/>
+        <attr name="musicPostItemBackground" format="reference|color"/>
+        <attr name="musicPostPageBackground" format="reference|color"/>
+        <attr name="findSongItemText" format="reference|color"/>
+        <attr name="secondSlidingTabHostBackground" format="reference|color"/>
+        <attr name="secondSlidingTabHostSelectedTextColor" format="reference|color"/>
+        <attr name="secondSlidingTabHostUnselectedTextColor" format="reference|color"/>
+        <attr name="mediaItemTitleTextColor" format="reference|color"/>
+        <attr name="mediaItemSubtitleTextColor" format="reference|color"/>
+        <attr name="mediaItemPlayStateViewColor" format="reference|color"/>
+        <attr name="mediaListHeaderViewBackgorund" format="reference|color"/>
+        <attr name="mediaListHeaderViewTextColor" format="reference|color"/>
+        <attr name="AZBarBackgroundColor" format="reference|color"/>
+        <attr name="AZBarLetterColor" format="reference|color"/>
+        <attr name="AZBarSelectedLetterColor" format="reference|color"/>
+        <attr name="AZBarPressedColor" format="reference|color"/>
+    </declare-styleable>
+    <declare-styleable name="SlidingTabHost">
+        <attr name="indicatorColor" format="color"/>
+        <attr name="indicatorHeight" format="dimension"/>
+        <attr name="indicatorPaddingBottom" format="dimension"/>
+        <attr name="underlineColor" format="color"/>
+        <attr name="dividerColor" format="color"/>
+        <attr name="underlineHeight" format="dimension"/>
+        <attr name="dividerPadding" format="dimension"/>
+        <attr name="tabPaddingLeftRight" format="dimension"/>
+        <attr name="scrollOffset" format="dimension"/>
+        <attr name="tabBackground" format="reference"/>
+        <attr name="shouldExpand" format="boolean"/>
+        <attr name="textAllCaps" format="boolean"/>
+        <attr name="tabHeight" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="AZSideBar">
+        <attr name="normalBkgColor" format="color"/>
+        <attr name="pressedBkgColor" format="color"/>
+        <attr name="normalTextColor" format="color"/>
+        <attr name="pressedTextColor" format="color"/>
+    </declare-styleable>
+    <declare-styleable name="CircularProgress">
+        <attr name="background_resource" format="reference"/>
+        <attr name="paint_text" format="string"/>
+        <attr name="text_size" format="float"/>
+        <attr name="text_color" format="color"/>
+        <attr name="border_color" format="color"/>
+        <attr name="border_width" format="float"/>
+        <attr name="show_text" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="LinearLayout">
+        <attr name="gravity">
+            <flag name="top" value="0x30" />
+            <flag name="bottom" value="0x50" />
+            <flag name="left" value="0x3" />
+            <flag name="right" value="0x5" />
+            <flag name="center_vertical" value="0x10" />
+            <flag name="fill_vertical" value="0x70" />
+            <flag name="center_horizontal" value="0x1" />
+            <flag name="fill_horizontal" value="0x7" />
+            <flag name="center" value="0x11" />
+            <flag name="fill" value="0x77" />
+            <flag name="clip_vertical" value="0x80" />
+            <flag name="clip_horizontal" value="0x8" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="NumberPicker">
+        <attr name="solidColor" format="reference|color"/>
+        <attr name="selectionDivider" format="reference"/>
+        <attr name="selectionDividerHeight" format="dimension"/>
+        <attr name="selectionDividersDistance" format="dimension"/>
+        <attr name="internalMinHeight" format="dimension"/>
+        <attr name="internalMaxHeight" format="dimension"/>
+        <attr name="internalMinWidth" format="dimension"/>
+        <attr name="internalMaxWidth" format="dimension"/>
+        <attr name="internalLayout" format="reference"/>
+        <attr name="virtualButtonPressedDrawable" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="RadialProgressWidget">
+        <attr name="backgroundResource" format="reference"/>
+        <attr name="ringResource" format="reference"/>
+        <attr name="pointerResource" format="reference"/>
+        <attr name="ringShadowColor" format="color"/>
+        <attr name="ringDoubleColor" format="color"/>
+        <attr name="ringDoubleWidth" format="float"/>
+        <attr name="borderColor" format="color"/>
+        <attr name="radialBorderWidth" format="float"/>
+        <attr name="ringDoubleOutsideExtendValue" format="integer"/>
+        <attr name="ringDoubleInsideExtendValue" format="integer"/>
+        <attr name="radialTextBackground" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="RatioView">
+        <attr name="ratio_width" format="integer"/>
+        <attr name="ratio_height" format="integer"/>
+        <attr name="design_width" format="dimension"/>
+        <attr name="scale_child" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="RectangleImageView">
+        <attr name="aspect_ratio" format="float"/>
+    </declare-styleable>
+    <declare-styleable name="RoundRectImageView">
+        <attr name="cornerLength" format="dimension"/>
+        <attr name="frameWidth" format="dimension"/>
+        <attr name="frameColor" format="color"/>
+    </declare-styleable>
+    <declare-styleable name="RoundedImageView">
+        <attr name="android:scaleType" format="integer"/>
+        <attr name="corner_radius" format="dimension"/>
+        <attr name="image_ratio" format="float"/>
+        <attr name="Image_border_width" format="dimension"/>
+        <attr name="Image_border_color" format="color"/>
+        <attr name="mutate_background" format="boolean"/>
+        <attr name="oval" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="SlidingClosableRelativeLayout">
+        <attr name="open_state" format="boolean"/>
+        <attr name="close_mode">
+            <enum name="none" value="0" />
+            <enum name="horizontal_left" value="1" />
+            <enum name="horizontal_right" value="2" />
+            <enum name="vertical_top" value="4" />
+            <enum name="vertical_bottom" value="8" />
+            <enum name="horizontal" value="3" />
+            <enum name="vertical" value="12" />
+            <enum name="both_side" value="15" />
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="SlidingMenu">
+        <attr name="mode">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="viewAbove" format="reference"/>
+        <attr name="menu_layout" format="reference"/>
+        <attr name="menu_width" format="dimension"/>
+        <attr name="menu_shadowDrawable" format="reference"/>
+        <attr name="menu_shadowWidth" format="dimension"/>
+        <attr name="secondary_menu_layout" format="reference"/>
+        <attr name="secondary_menu_width" format="dimension"/>
+        <attr name="secondary_menu_shadowDrawable" format="reference"/>
+        <attr name="secondary_menu_shadowWidth" format="dimension"/>
+        <attr name="scroll_scale" format="float"/>
+        <attr name="touchModeAbove">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+        </attr>
+        <attr name="touchModeBehind">
+            <enum name="margin" value="0" />
+            <enum name="fullscreen" value="1" />
+        </attr>
+        <attr name="fadeEnabled" format="boolean"/>
+        <attr name="fadeDegree" format="float"/>
+        <attr name="selectorEnabled" format="boolean"/>
+        <attr name="selectorDrawable" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="StandardAdView">
+        <attr name="ad_title_text_color" format="color"/>
+        <attr name="ad_title_text_size" format="dimension"/>
+        <attr name="ad_detail_text_color" format="color"/>
+        <attr name="ad_detail_text_size" format="dimension"/>
+        <attr name="ad_logo_src" format="reference"/>
+        <attr name="ad_title" format="string"/>
+        <attr name="ad_detail" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="StateView">
+        <attr name="loading_view" format="reference"/>
+        <attr name="success_view" format="reference"/>
+        <attr name="failed_view" format="reference"/>
+        <attr name="nodata_view" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="TTSeekBar">
+        <attr name="knobIcon" format="reference"/>
+        <attr name="offset" format="dimension"/>
+        <attr name="slideProgress" format="integer"/>
+        <attr name="slideMaxProgress" format="integer"/>
+    </declare-styleable>
+    <declare-styleable name="ThemeThumbnailView">
+        <attr name="widthFactor" format="float"/>
+        <attr name="heightFactor" format="float"/>
+    </declare-styleable>
+    <declare-styleable name="WaveView">
+        <attr name="waveShadowColor" format="color"/>
+        <attr name="waveShadowRadius" format="float"/>
+        <attr name="waveColor" format="color"/>
+        <attr name="waveStrokeWidth" format="integer"/>
+        <attr name="PathEffectRadius" format="integer"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:paddingLeft="@dimen/new_song_publish_item_margin" android:paddingTop="@dimen/new_song_publish_item_margin" android:paddingRight="@dimen/new_song_publish_item_margin" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView android:textColor="@color/dialog_title" android:gravity="center" android:id="@+id/new_song_publish_list_header_title" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/new_song_publish_item_margin" android:text="@string/select" android:drawableLeft="@drawable/img_song_publish_new" android:drawablePadding="6dp"/>
+    <com.sds.android.ttpod.widget.SimpleGridView android:gravity="center" android:id="@+id/new_song_publish_list_header_grid_view" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_below="@+id/new_song_publish_list_header_title"/>
+</RelativeLayout>

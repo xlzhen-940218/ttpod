@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dialog_background"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/spinner"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/xml_dialog_spinner" />
+
+    <TextView
+        android:id="@+id/label"
+        style="@style/Dialog_MediaInfo_Item_Label"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_alignParentLeft="true"
+        android:text="xxxx"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/chosen_text"
+        style="@style/Dialog_Edit_Text"
+        android:layout_width="100dp"
+        android:layout_height="24dp"
+        android:layout_margin="0dp"
+        android:layout_toLeftOf="@+id/spinner"
+        android:paddingLeft="3dp"
+        android:paddingTop="0dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="0dp"
+        android:textSize="13sp" />
+</RelativeLayout>

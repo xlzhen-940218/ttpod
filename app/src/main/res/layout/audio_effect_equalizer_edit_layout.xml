@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/effect_action_bar_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/textview_effect_custom_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/xml_background_effect_button_recommand"
+            android:text="@string/effect_equalizer_default"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/textview_effect_custom_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/xml_background_effect_button_recommand"
+            android:text="@string/effect_equalizer_save"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/textview_effect_custom_reset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/xml_background_effect_button_recommand"
+            android:text="@string/effect_custom_reset"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_scroll_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_layout"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                style="@style/TextView_Effect_Custom_Scroll_Tips"
+                android:layout_alignParentTop="true"
+                android:text="+15db" />
+
+            <TextView
+                style="@style/TextView_Effect_Custom_Scroll_Tips"
+                android:layout_centerInParent="true"
+                android:text="0db" />
+
+            <TextView
+                style="@style/TextView_Effect_Custom_Scroll_Tips"
+                android:layout_alignParentBottom="true"
+                android:text="-15db" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

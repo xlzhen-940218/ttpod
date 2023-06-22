@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="audio_effect_support_devices">
+        <item>耳机</item>
+        <item>扬声器</item>
+        <item>蓝牙</item>
+    </array>
+    <array name="columnlist">
+        <item>4</item>
+    </array>
+    <array name="effect_categories">
+        <item>普通</item>
+        <item>流行</item>
+        <item>摇滚</item>
+        <item>民谣</item>
+        <item>舞曲</item>
+        <item>电子</item>
+        <item>古典音乐</item>
+        <item>爵士</item>
+        <item>其他</item>
+    </array>
+    <array name="environment_title">
+        <item>Disable</item>
+        <item>Concert</item>
+        <item>Bedroom</item>
+        <item>Stone House</item>
+        <item>Theater</item>
+        <item>Cave</item>
+        <item>Roadway</item>
+        <item>City</item>
+        <item>Parking Lot</item>
+        <item>Parlor</item>
+        <item>Auditorium</item>
+        <item>Hall</item>
+    </array>
+    <array name="feedback_status">
+        <item>Waiting</item>
+        <item>Solving</item>
+        <item>Solved</item>
+        <item>Recorded</item>
+        <item>Waiting</item>
+    </array>
+    <array name="handpick_key">
+        <item>普通/Normal</item>
+        <item>摇滚/Rock</item>
+        <item>流行/Pop</item>
+        <item>舞曲/Dance</item>
+        <item>嘻哈/Hip-Hop</item>
+        <item>古典/Classic</item>
+        <item>超重低音/Bass</item>
+        <item>人声/Vocal</item>
+    </array>
+    <array name="handpick_title">
+        <item>Common</item>
+        <item>Rock</item>
+        <item>Pop</item>
+        <item>Dance</item>
+        <item>Hip Hop</item>
+        <item>Classical</item>
+        <item>Base</item>
+        <item>Vocal</item>
+    </array>
+    <array name="ic_lockscreen_targets">
+        <item>@drawable/xml_lockscreen_next</item>
+        <item>@drawable/xml_lockscreen_pause</item>
+        <item>@drawable/xml_lockscreen_pre</item>
+    </array>
+    <array name="layoutidlist">
+        <item>appwidget_layout_go_4x1</item>
+    </array>
+    <array name="mailDomain">
+        <item>ttpod.com</item>
+        <item>qq.com</item>
+        <item>163.com</item>
+        <item>126.com</item>
+        <item>gmail.com</item>
+        <item>yahoo.com.tw</item>
+    </array>
+    <array name="minHeight">
+        <item>40</item>
+    </array>
+    <array name="minWidth">
+        <item>294</item>
+    </array>
+    <array name="mv_suffix">
+        <item>mp4</item>
+        <item>flv</item>
+        <item>rm</item>
+        <item>mpg</item>
+        <item>avi</item>
+        <item>mpeg</item>
+    </array>
+    <array name="poetry">
+        <item>高山流水遇知音，</item>
+        <item>知音不在谁堪听？</item>
+        <item>四时皆为觅音时，</item>
+        <item>为何知音来却迟？</item>
+        <item>知我者谓我心忧，</item>
+        <item>不知我者谓我何求。</item>
+        <item>阳春白雪觅蹊径，</item>
+        <item>高山流水遇知音。</item>
+        <item>素琴弹复弹，</item>
+        <item>会有知音知。</item>
+        <item>知音说与知音听，</item>
+        <item>不是知音莫与谈。</item>
+        <item>莫愁前路无知己，</item>
+        <item>天下谁人不识君。</item>
+        <item>不惜歌声若，</item>
+        <item>但伤知音稀。</item>
+    </array>
+    <array name="rowlist">
+        <item>1</item>
+    </array>
+    <array name="song_quality_list">
+        <item>Loseless (About%.1fMB)</item>
+        <item>Super (About%.1fMB)</item>
+        <item>Standard (About%.1fMB)</item>
+        <item>Compressed (About%.1fMB)</item>
+    </array>
+    <array name="stylenamelist">
+        <item>ttpod_4x1</item>
+    </array>
+    <array name="stylepreviewlist">
+        <item>img_appwidget_go_preview_4x1</item>
+    </array>
+    <array name="styletypelist">
+        <item>0</item>
+    </array>
+</resources>

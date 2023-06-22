@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/new_song_publish_half_item_margin"
+    android:paddingRight="4dp">
+
+    <include
+        android:id="@+id/song_item1"
+        layout="@layout/radio_category_section_subitem_view_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_weight="1" />
+
+    <include
+        android:id="@+id/song_item2"
+        layout="@layout/radio_category_section_subitem_view_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_weight="1" />
+</LinearLayout>

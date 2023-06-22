@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="@dimen/playcontrol_bar_height" android:layout_height="@dimen/playcontrol_bar_height">
+    <com.sds.android.ttpod.framework.modules.skin.view.AnimTransView android:id="@+id/imageview_playcontrolbar_artist" android:tag="AlbumCover" android:layout_width="@dimen/playcontrol_bar_height" android:layout_height="@dimen/playcontrol_bar_height" android:src="@drawable/img_artist_default"/>
+    <ImageView android:id="@+id/imageview_play_bar_artist_mask" android:layout_width="@dimen/playcontrol_bar_height" android:layout_height="@dimen/playcontrol_bar_height" android:scaleType="fitXY" android:layout_centerInParent="true"/>
+</RelativeLayout>

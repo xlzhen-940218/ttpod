@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sds.android.ttpod.widget.dragupdatelist.ModifySizeNotifyLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <include
+        android:id="@+id/drag_update_layout"
+        layout="@layout/drag_update_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</com.sds.android.ttpod.widget.dragupdatelist.ModifySizeNotifyLayout>

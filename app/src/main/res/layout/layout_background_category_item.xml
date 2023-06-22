@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ttpod="http://schemas.android.com/apk/res-auto" android:gravity="center" android:paddingTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <com.sds.android.ttpod.widget.ThemeThumbnailView android:id="@+id/imageview_thumb" android:layout_width="match_parent" android:layout_height="wrap_content" android:src="@drawable/img_skin_default_thumbnail" android:scaleType="fitXY" ttpod:widthFactor="5" ttpod:heightFactor="5"/>
+    <View android:background="@color/market_game_tucao_background_color" android:layout_width="match_parent" android:layout_height="25dp" android:layout_alignBottom="@+id/imageview_thumb"/>
+    <TextView android:textSize="12sp" android:textColor="#ffffff" android:gravity="center" android:id="@+id/category_name" android:fadingEdge="horizontal" android:layout_width="match_parent" android:layout_height="25dp" android:text="@string/unknown" android:lines="1" android:singleLine="true" android:layout_alignBottom="@+id/imageview_thumb"/>
+</RelativeLayout>

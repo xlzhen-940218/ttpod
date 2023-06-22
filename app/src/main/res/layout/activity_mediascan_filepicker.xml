@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Activity_Background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.sds.android.ttpod.widget.FastScrollListView
+        android:id="@+id/listview_mediascan_filepicker"
+        style="@style/ListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/frame_confirm"
+        android:layout_alignParentTop="true"
+        android:fadingEdge="none"
+        android:fastScrollEnabled="true" />
+
+    <FrameLayout
+        android:id="@+id/frame_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_alignParentBottom="true"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp">
+
+        <Button
+            android:id="@+id/button_filepicker_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/xml_background_button_blue"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+    </FrameLayout>
+</RelativeLayout>

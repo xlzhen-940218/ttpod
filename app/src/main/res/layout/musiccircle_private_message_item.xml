@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/xml_background_action_view" android:padding="3dp" android:layout_width="match_parent" android:layout_height="64dp">
+    <include android:id="@+id/layout_avatar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0dp" layout="@layout/count_flag"/>
+    <LinearLayout android:id="@+id/layout_artist_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="9dp" android:layout_marginTop="5dp" android:layout_toLeftOf="@+id/text_datetime" android:layout_toRightOf="@+id/layout_avatar" android:layout_alignTop="@+id/layout_avatar">
+        <TextView android:textSize="16sp" android:textColor="#5293b9" android:ellipsize="end" android:id="@+id/artist_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:singleLine="true"/>
+    </LinearLayout>
+    <TextView android:textSize="12sp" android:textColor="#9fa0a0" android:id="@+id/text_datetime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10dp" android:text="06-16 11:20" android:layout_alignTop="@+id/layout_artist_name" android:layout_alignParentRight="true"/>
+    <TextView android:textSize="14sp" android:textColor="#525353" android:ellipsize="end" android:id="@+id/text_message" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="这是最新的信息" android:singleLine="true" android:layout_toRightOf="@+id/layout_avatar" android:layout_below="@+id/layout_artist_name" android:layout_alignLeft="@+id/layout_artist_name"/>
+</RelativeLayout>

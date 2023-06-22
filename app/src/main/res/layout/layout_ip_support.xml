@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="#dfdfdf" android:layout_width="match_parent" android:layout_height="match_parent">
+    <View android:id="@+id/divide_line" android:layout_width="match_parent" android:layout_height="1dp" android:layout_centerInParent="true"/>
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_ip_restrict" android:scaleType="centerInside" android:layout_above="@+id/divide_line" android:layout_centerHorizontal="true" android:contentDescription="@string/ttpod"/>
+    <TextView android:textSize="24sp" android:textColor="#1f1f1f" android:id="@+id/restrict_ip_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="6dp" android:text="@string/restrict_ip_title" android:layout_below="@+id/divide_line" android:layout_centerHorizontal="true"/>
+    <TextView android:textSize="16sp" android:textColor="#3f3f3f" android:id="@+id/restrict_ip_detail" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="6dp" android:text="@string/restrict_ip_detail" android:layout_below="@+id/restrict_ip_title" android:layout_centerHorizontal="true"/>
+</RelativeLayout>

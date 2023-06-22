@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <FrameLayout android:id="@+id/content" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <com.sds.android.ttpod.widget.ThemeThumbnailView android:id="@+id/imageview_thumb" android:layout_width="match_parent" android:layout_height="wrap_content" android:scaleType="fitXY" android:color="@color/recomm_day_of_week_color"/>
+        <ImageView android:id="@+id/image_new_skin" android:visibility="gone" android:layout_width="26dp" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:src="@drawable/img_new_skin" android:scaleType="fitStart"/>
+        <View android:layout_gravity="bottom|center_horizontal" android:id="@+id/update_click_area" android:layout_width="match_parent" android:layout_height="60dp"/>
+        <RelativeLayout android:layout_gravity="bottom|center_horizontal" android:id="@+id/download_area" android:background="@drawable/xml_background_download_area" android:layout_width="wrap_content" android:layout_height="18dp" android:layout_marginBottom="3dp" android:minWidth="50dp">
+            <ProgressBar android:id="@+id/progressbar_skin_download" android:visibility="gone" android:layout_width="37dp" android:layout_height="2dp" android:max="100" android:progress="0" android:indeterminate="false" android:progressDrawable="@drawable/xml_background_download_progressbar" android:layout_centerInParent="true" style="?android:attr/progressBarStyleHorizontal"/>
+            <View android:id="@+id/view_download_start_icon" android:background="@drawable/img_background_skin_start_download" android:visibility="visible" android:layout_width="18dp" android:layout_height="18dp" android:layout_alignParentLeft="true" android:layout_centerVertical="true"/>
+            <TextView android:textSize="9sp" android:textColor="@android:color/white" android:ellipsize="end" android:gravity="center" android:id="@+id/download_hint" android:paddingRight="3dp" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="18dp" android:layout_marginRight="2dp" android:text="893k" android:singleLine="true" android:layout_centerVertical="true"/>
+        </RelativeLayout>
+        <ImageView android:layout_gravity="bottom|right" android:id="@+id/imageview_check" android:background="@drawable/img_background_skin_checked" android:visibility="gone" android:layout_width="18dp" android:layout_height="18dp" android:layout_marginRight="4dp" android:layout_marginBottom="4dp"/>
+    </FrameLayout>
+    <TextView android:textSize="12sp" android:textColor="#acacac" android:gravity="center" android:id="@+id/skin_name" android:visibility="gone" android:fadingEdge="horizontal" android:layout_width="match_parent" android:layout_height="25dp" android:text="@string/unknown" android:lines="1" android:singleLine="true" android:layout_below="@+id/content"/>
+</LinearLayout>

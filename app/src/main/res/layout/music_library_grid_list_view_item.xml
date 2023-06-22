@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="96dp">
+    <View android:id="@+id/grid_view_item_mask" android:background="@drawable/img_singer_category_grid_item_mask" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_alignBottom="@+id/grid_view_item_image"/>
+    <View android:background="@drawable/xml_find_song_list_selector" android:layout_width="match_parent" android:layout_height="match_parent"/>
+    <com.sds.android.ttpod.widget.online.MovementImage android:id="@+id/grid_view_item_image" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="96dp" android:scaleType="fitCenter" android:contentDescription="@android:string/unknownName"/>
+    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+        <ImageView android:id="@+id/grid_view_item_icon" android:visibility="visible" android:layout_width="30dp" android:layout_height="30dp" android:contentDescription="@string/ttpod"/>
+        <TextView android:textSize="18sp" android:textStyle="bold" android:textColor="@android:color/white" android:id="@+id/grid_view_item_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:text="TOP 100" android:singleLine="true"/>
+    </LinearLayout>
+</RelativeLayout>

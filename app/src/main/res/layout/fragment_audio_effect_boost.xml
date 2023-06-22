@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="#1f2223" android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout style="@style/LinearLayout_Effect_Boost">
+        <LinearLayout style="@style/LinearLayout_Effect_Boost_RotateButton">
+            <com.sds.android.ttpod.widget.audioeffect.RotateButton android:id="@+id/rotatebutton_bass_boost" style="@style/RotateButton"/>
+            <TextView android:text="@string/effect_boost_bass" style="@style/TextView_Effect_Boost"/>
+        </LinearLayout>
+        <LinearLayout style="@style/LinearLayout_Effect_Boost_RotateButton">
+            <com.sds.android.ttpod.widget.audioeffect.RotateButton android:id="@+id/rotatebutton_treble_boost" style="@style/RotateButton"/>
+            <TextView android:text="@string/effect_boost_treble" style="@style/TextView_Effect_Boost"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout style="@style/LinearLayout_Effect_Boost">
+        <LinearLayout style="@style/LinearLayout_Effect_Boost_RotateButton">
+            <com.sds.android.ttpod.widget.audioeffect.RotateButton android:id="@+id/rotatebutton_surround" style="@style/RotateButton"/>
+            <TextView android:text="@string/effect_boost_virutalizer" style="@style/TextView_Effect_Boost"/>
+        </LinearLayout>
+        <LinearLayout style="@style/LinearLayout_Effect_Boost_RotateButton">
+            <CheckedTextView android:layout_gravity="center" android:id="@+id/button_channel_limit" android:background="@drawable/xml_background_checkedtextview_effect_boost_limit" android:layout_width="104dp" android:layout_height="104dp" android:layout_marginTop="7dp" android:checked="true" android:scaleType="centerCrop"/>
+            <TextView android:layout_marginTop="13dp" android:text="@string/effect_boost_voltage_limiter" style="@style/TextView_Effect_Boost"/>
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout android:paddingLeft="8dp" android:paddingTop="16dp" android:paddingRight="8dp" android:paddingBottom="14dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <include android:id="@+id/layout_channel" android:layout_width="wrap_content" android:layout_height="41dp" android:layout_toLeftOf="@+id/effect_channel_balance_right" android:layout_toRightOf="@+id/effect_channel_balance_left" layout="@layout/audio_effect_channel_balance"/>
+        <TextView android:textSize="14sp" android:textColor="#ffffff" android:id="@+id/effect_channel_balance_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="8dp" android:text="@string/left" android:layout_alignParentLeft="true" android:layout_centerVertical="true"/>
+        <TextView android:textSize="14sp" android:textColor="#ffffff" android:gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/effect_boost_channel_blance" android:layout_below="@+id/layout_channel" android:layout_centerHorizontal="true"/>
+        <TextView android:textSize="14sp" android:textColor="#ffffff" android:id="@+id/effect_channel_balance_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="8dp" android:text="@string/right" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>
+    </RelativeLayout>
+</LinearLayout>

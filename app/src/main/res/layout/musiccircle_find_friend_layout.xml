@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/musiccircle_find_friend"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_background"
+    android:paddingBottom="@dimen/playcontrol_bar_height">
+
+    <com.sds.android.ttpod.widget.SlidingTabHost
+        android:id="@+id/slidingtabshost"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#f0f6f8"
+        android:textColor="@color/xml_text_tabitem"
+        android:textSize="18sp"
+        app:indicatorColor="#63b4c2"
+        app:indicatorHeight="@dimen/tab_indicator_height"
+        app:indicatorPaddingBottom="2dp" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/slidingtabshost"
+        android:background="@color/dialog_background" />
+</RelativeLayout>

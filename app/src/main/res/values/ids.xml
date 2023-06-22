@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   <!-- <item name="tag_event_on_click" type="id">0x7f080027</item>
+    <item name="tag_layout_offset" type="id">0x7f080028</item>-->
+    <item name="surface_view_scene" type="id"/>
+    <item name="main_pannel_player" type="id"/>
+    <item name="tag_layout_offset" type="id" />
+    <item name="media_menu_add" type="id" />
+    <item name="media_menu_delete" type="id" />
+    <item name="media_menu_download" type="id" />
+    <item name="media_menu_favor" type="id" />
+    <item name="media_menu_favor_icon" type="id" />
+    <item name="media_menu_more" type="id" />
+    <item name="media_menu_mv" type="id" />
+    <item name="media_menu_ring" type="id" />
+    <item name="media_menu_share" type="id" />
+    <item name="tag_event_on_click" type="id" />
+    <item name="tag_view_key" type="id" />
+    <item name="view_tag_view_holder" type="id" />
+    <item name="view_bind_data" type="id" />
+    <item name="view_tag_index" type="id" />
+    <item name="np__increment" type="id" />
+ <item name="np__decrement" type="id" />
+</resources>

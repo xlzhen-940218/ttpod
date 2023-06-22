@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/dialog_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="340dp">
+
+        <LinearLayout
+            android:id="@+id/text_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Title"
+                android:text="@string/effect_help_auto_match_title" />
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Content"
+                android:text="@string/effect_help_auto_match_content" />
+
+            <View style="@style/View_Divider" />
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Title"
+                android:text="@string/effect_help_equalizer_title" />
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Content"
+                android:layout_marginBottom="0dp"
+                android:text="@string/effect_help_equalizer_content" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="12dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_background_imageview_effect_help_equalizer" />
+
+            <View style="@style/View_Divider" />
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Title"
+                android:text="@string/effect_help_reverb_title" />
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Content"
+                android:text="@string/effect_help_reverb_content" />
+
+            <View style="@style/View_Divider" />
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Title"
+                android:text="@string/effect_help_boost_title" />
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Content"
+                android:text="@string/effect_help_boost_content" />
+
+            <View style="@style/View_Divider" />
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Title"
+                android:text="@string/effect_help_surrond_title" />
+
+            <TextView
+                style="@style/TextView_Effect_Help_Item_Content"
+                android:text="@string/effect_help_surrond_content" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="184dp">
+    <include android:id="@+id/post_detail_header_operations" layout="@layout/musiccircle_post_detail_header_operations"/>
+    <View android:id="@+id/post_header_background" android:background="#eff5f7" android:layout_width="match_parent" android:layout_height="128dp"/>
+    <include android:id="@+id/post_header_play_container" layout="@layout/musiccircle_post_detail_header_play_container"/>
+    <include android:id="@+id/post_header_info_container" layout="@layout/musiccircle_post_detail_header_info"/>
+    <View android:id="@+id/post_header_bottom_divider" android:background="#26ffffff" android:layout_width="match_parent" android:layout_height="1px" android:layout_above="@+id/post_detail_header_operations"/>
+</RelativeLayout>

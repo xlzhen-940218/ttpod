@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:gravity="left" android:layout_gravity="center" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView android:textSize="15sp" android:textColor="@color/common_title_color" android:gravity="center" android:id="@+id/textview_online_favorite_all_download" android:layout_width="wrap_content" android:layout_height="40dp" android:layout_marginLeft="16dp" android:text="@string/favorite_all_download" android:singleLine="true" android:layout_centerVertical="true"/>
+    <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/itv_download" android:layout_width="@dimen/media_item_menu_image_width" android:layout_height="40dp" android:layout_marginLeft="8dp" android:layout_toRightOf="@+id/textview_online_favorite_all_download" app:text="@string/icon_download"/>
+</RelativeLayout>

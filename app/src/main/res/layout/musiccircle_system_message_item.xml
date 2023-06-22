@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_horizontal" android:orientation="vertical" android:background="@drawable/xml_listselector_item_default" android:paddingLeft="8dp" android:paddingTop="4dp" android:paddingRight="8dp" android:paddingBottom="4dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView android:textSize="10sp" android:textColor="#ffffffff" android:gravity="center_horizontal" android:id="@+id/message_time" android:background="#ffd8dcdc" android:paddingLeft="8dp" android:paddingRight="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="4dp" android:text="2013-11-02"/>
+    <LinearLayout android:orientation="vertical" android:background="@drawable/img_musiccircle_system_announcement_bg" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="20sp" android:textColor="#ff000000" android:id="@+id/message_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="天天动听校园歌手大赛"/>
+        <ImageView android:id="@+id/message_pic" android:layout_width="match_parent" android:layout_height="150dp" android:layout_marginTop="10dp" android:layout_marginBottom="10dp" android:src="@drawable/img_background_imageview_effect_equalizer_handpick_rock" android:scaleType="centerCrop"/>
+        <TextView android:textSize="17sp" android:textColor="#ff000000" android:id="@+id/message_content" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="天天动听校园歌手大赛于2013-12-01开始"/>
+    </LinearLayout>
+</LinearLayout>

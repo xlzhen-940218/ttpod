@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="@dimen/list_item_height" android:minHeight="@dimen/list_item_height">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@+id/check_view" android:layout_centerVertical="true">
+        <LinearLayout android:orientation="horizontal" android:id="@+id/layout_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@+id/check_view">
+            <TextView android:textSize="16sp" android:textColor="@color/effect_blue" android:id="@+id/textview_title" android:paddingLeft="8dp" android:paddingTop="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:singleLine="true" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"/>
+            <TextView android:textSize="16sp" android:textColor="#ffffff" android:id="@+id/textview_style" android:paddingTop="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:text="" android:singleLine="true" android:layout_toRightOf="@+id/textview_title" android:layout_alignParentTop="true"/>
+        </LinearLayout>
+        <TextView android:textSize="12sp" android:textColor="#ffffff" android:id="@+id/textview_author" android:paddingLeft="8dp" android:paddingBottom="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:singleLine="true" android:layout_toLeftOf="@+id/check_view" android:layout_below="@+id/layout_title" android:layout_alignLeft="@+id/layout_title"/>
+    </LinearLayout>
+    <CheckBox android:id="@+id/check_view" android:background="@null" android:paddingRight="20dp" android:focusable="false" android:layout_width="48dp" android:layout_height="match_parent" android:button="@null" android:drawableRight="@drawable/xml_checkbox_multiselect" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_alignWithParentIfMissing="true"/>
+</RelativeLayout>

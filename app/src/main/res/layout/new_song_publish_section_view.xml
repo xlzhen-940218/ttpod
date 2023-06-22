@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:paddingBottom="@dimen/new_song_publish_half_item_margin" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <View android:id="@+id/new_song_publish_divider_line" android:background="@drawable/xml_song_list_item_divider" android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginBottom="@dimen/new_song_publish_item_margin" android:layout_alignParentTop="true"/>
+    <TextView android:textColor="@android:color/white" android:gravity="bottom|right" android:id="@+id/new_song_publish_section_week" android:background="@drawable/img_background_new_song_publish_week" android:layout_width="36dp" android:layout_height="36dp" android:layout_marginLeft="@dimen/new_song_publish_item_margin" android:text="99" android:layout_below="@+id/new_song_publish_divider_line"/>
+    <TextView android:textSize="24sp" android:textColor="#474342" android:gravity="center" android:id="@+id/new_song_publish_section_year" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/new_song_publish_item_margin" android:text="2013" android:layout_below="@+id/new_song_publish_divider_line" android:layout_alignParentRight="true"/>
+</RelativeLayout>

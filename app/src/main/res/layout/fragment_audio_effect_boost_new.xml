@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sds.android.ttpod.widget.audioeffect.CustomScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/scroll_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#1f2223"
+    android:splitMotionEvents="false">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="35dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:paddingTop="2dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="38dp">
+
+                    <com.sds.android.ttpod.widget.audioeffect.RadialProgress
+                        android:id="@+id/rotatebutton_bass_boost"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="20dp"
+                        android:clickable="true"
+                        android:padding="12dp"
+                        app:borderColor="#1f2223"
+                        app:radialBorderWidth="16"
+                        app:radialTextBackground="@drawable/img_radial_data_bg"
+                        app:ringDoubleColor="#333333"
+                        app:ringDoubleInsideExtendValue="0"
+                        app:ringDoubleOutsideExtendValue="1" />
+
+                    <TextView
+                        android:id="@+id/boost_bass_value"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#cdd5d5"
+                        android:textSize="26dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/TextView_Effect_Boost"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/effect_boost_bass" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.sds.android.ttpod.widget.audioeffect.RadialProgress
+                        android:id="@+id/rotatebutton_treble_boost"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="20dp"
+                        android:clickable="true"
+                        android:padding="12dp"
+                        app:borderColor="#1f2223"
+                        app:radialBorderWidth="16"
+                        app:radialTextBackground="@drawable/img_radial_data_bg"
+                        app:ringDoubleColor="#333333"
+                        app:ringDoubleInsideExtendValue="0"
+                        app:ringDoubleOutsideExtendValue="1" />
+
+                    <TextView
+                        android:id="@+id/boost_treble_value"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#cdd5d5"
+                        android:textSize="26dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/TextView_Effect_Boost"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/effect_boost_treble" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:orientation="vertical"
+                android:paddingTop="77dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp">
+
+                    <com.sds.android.ttpod.widget.audioeffect.RadialProgress
+                        android:id="@+id/rotatebutton_surround"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="14dp"
+                        android:clickable="true"
+                        android:padding="12dp"
+                        app:borderColor="#1f2223"
+                        app:radialBorderWidth="16"
+                        app:radialTextBackground="@drawable/img_radial_data_bg"
+                        app:ringDoubleColor="#333333"
+                        app:ringDoubleInsideExtendValue="0"
+                        app:ringDoubleOutsideExtendValue="1" />
+
+                    <TextView
+                        android:id="@+id/boost_virtualizer_value"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="#cdd5d5"
+                        android:textSize="26dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/TextView_Effect_Boost"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/effect_boost_virutalizer" />
+                </RelativeLayout>
+
+                <LinearLayout style="@style/LinearLayout_Effect_Boost_RotateButton">
+
+                    <CheckedTextView
+                        android:id="@+id/button_channel_limit"
+                        android:layout_width="104dp"
+                        android:layout_height="104dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/xml_background_checkedtextview_effect_boost_limit"
+                        android:checked="true"
+                        android:scaleType="centerCrop" />
+
+                    <TextView
+                        style="@style/TextView_Effect_Boost"
+                        android:text="@string/effect_boost_voltage_limiter" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:paddingBottom="30dp">
+
+            <include
+                android:id="@+id/layout_channel"
+                layout="@layout/audio_effect_channel_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="41dp"
+                android:layout_toLeftOf="@+id/effect_channel_balance_right"
+                android:layout_toRightOf="@+id/effect_channel_balance_left" />
+
+            <TextView
+                android:id="@+id/effect_channel_balance_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="4dp"
+                android:text="@string/left"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_channel"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:text="@string/effect_boost_channel_blance"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/effect_channel_balance_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:text="@string/right"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</com.sds.android.ttpod.widget.audioeffect.CustomScrollView>

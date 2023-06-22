@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android" android:icon="@drawable/img_ttpod_appwidget" android:minWidth="290dp" android:minHeight="294dp" android:updatePeriodMillis="3600000" android:initialLayout="@layout/appwidget_main_4x4" android:previewImage="@drawable/img_appwidget_preview_4x4"/>

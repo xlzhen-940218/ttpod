@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:focusable="true" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout android:orientation="horizontal" android:id="@+id/top_ten_app_line1" android:tag="topAppLine0" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="3dp" android:layout_marginTop="3dp" android:layout_marginRight="3dp" android:layout_marginBottom="4dp">
+        <include layout="@layout/market_top_ten_app_item"/>
+        <include layout="@layout/market_top_ten_app_item"/>
+        <include layout="@layout/market_top_ten_app_item"/>
+        <include layout="@layout/market_top_ten_app_item"/>
+        <include layout="@layout/market_top_ten_app_item"/>
+    </LinearLayout>
+    <LinearLayout android:orientation="horizontal" android:id="@+id/top_ten_app_line2" android:tag="topAppLine1" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="3dp" android:layout_marginRight="3dp" android:layout_marginBottom="3dp" android:layout_below="@+id/top_ten_app_line1">
+        <include layout="@layout/market_top_ten_app_item"/>
+        <include layout="@layout/market_top_ten_app_item"/>
+        <include layout="@layout/market_top_ten_app_item"/>
+        <include layout="@layout/market_top_ten_app_item"/>
+        <include layout="@layout/market_top_ten_app_item"/>
+    </LinearLayout>
+</merge>

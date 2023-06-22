@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/img_dropdown_menu_bkg">
+
+    <ListView
+        android:id="@+id/lst_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:cacheColorHint="@color/transparent"
+        android:divider="@drawable/xml_song_list_item_divider"
+        android:dividerHeight="2px"
+        android:listSelector="@drawable/xml_my_fragment_list_item_selector" />
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cmmusic_page_background"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/ad_list_seatpage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:alwaysDrawnWithCache="true"
+        android:background="@drawable/cmmusic_page_background"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="#dedede"
+        android:dividerHeight="1px"
+        android:fadingEdge="none"
+        android:listSelector="@android:color/transparent"
+        android:scrollingCache="false" />
+</LinearLayout>

@@ -1,0 +1,1106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<particle_system>
+
+	<particle_effect_list name="star">
+
+		<particle_effect>
+			<life>5.0</life>
+			<emit_angle_var>180.0</emit_angle_var>
+			<start_revolution_radius>40.0</start_revolution_radius>
+			<start_revolution_radius_var>20.0</start_revolution_radius_var>
+			<end_revolution_radius>600.0</end_revolution_radius>
+			<end_revolution_radius_var>50.0</end_revolution_radius_var>
+			<start_width_size>300.0</start_width_size>
+			<end_width_size>512.0</end_width_size>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.3" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>15</total_count>
+			<emit_count>10</emit_count>
+			<particle_image>xingxing.png</particle_image>
+		</particle_effect>
+
+		<particle_effect>
+			<life>1.0</life>
+			<emit_angle_var>180.0</emit_angle_var>
+			<start_revolution_radius>60.0</start_revolution_radius>
+			<start_revolution_radius_var>20.0</start_revolution_radius_var>
+			<end_revolution_radius>600.0</end_revolution_radius>
+			<end_revolution_radius_var>50.0</end_revolution_radius_var>
+			<start_width_size>200.0</start_width_size>
+			<end_width_size>256.0</end_width_size>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.3" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>100</total_count>
+			<emit_count>100</emit_count>
+			<particle_image>xingxinglight-1.png</particle_image>
+		</particle_effect>
+
+		<particle_effect>
+			<life>0.8</life>
+			<emit_angle_var>180.0</emit_angle_var>
+			<start_revolution_radius>500.0</start_revolution_radius>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<start_width_size>128.0</start_width_size>
+			<end_width_size>128.0</end_width_size>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.3" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>50</total_count>
+			<emit_count>50</emit_count>
+			<particle_image>xingxingblue.png</particle_image>
+		</particle_effect>
+
+	</particle_effect_list>
+
+	<particle_effect_list name="water">
+
+		<particle_effect>
+			<life>3600.0</life>
+			<emit_angle_var>180.0</emit_angle_var>
+			<revolution_angle_delta_var>180.0</revolution_angle_delta_var>
+			<end_revolution_radius>0.0</end_revolution_radius>
+			<start_width_size>200.0</start_width_size>
+			<end_width_size>200.0</end_width_size>
+			<start_color r="1.0" g="1.0" b="1.0" a="1.0" />
+			<end_color r="0.6" g="0.6" b="0.6" a="1.0" />
+			<end_color_var r="0.2" g="0.2" b="0.2" a="0.1" />
+			<total_count>1</total_count>
+			<emit_count>1</emit_count>
+			<particle_image>8.png</particle_image>
+		</particle_effect>
+
+		<particle_effect>
+			<life>3.0</life>
+			<emit_angle_var>180.0</emit_angle_var>
+			<speed>100.0</speed>
+			<start_revolution_radius>40.0</start_revolution_radius>
+			<start_revolution_radius_var>20.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>50.0</end_revolution_radius_var>
+			<rotate_angle>45.0</rotate_angle>
+			<start_width_size>400.0</start_width_size>
+			<end_width_size>512.0</end_width_size>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.2" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.2" />
+			<end_color_var r="0.2" g="0.2" b="0.2" a="0.1" />
+			<total_count>100</total_count>
+			<emit_count>100</emit_count>
+			<particle_image>partial-4.png</particle_image>
+		</particle_effect>
+
+		<particle_effect>
+			<life>5.0</life>
+			<emit_angle_var>180.0</emit_angle_var>
+			<speed>100.0</speed>
+			<start_revolution_radius>40.0</start_revolution_radius>
+			<start_revolution_radius_var>20.0</start_revolution_radius_var>
+			<end_revolution_radius>300.0</end_revolution_radius>
+			<end_revolution_radius_var>50.0</end_revolution_radius_var>
+			<start_width_size>200.0</start_width_size>
+			<end_width_size>400.0</end_width_size>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.2" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.2" />
+			<end_color_var r="0.2" g="0.2" b="0.2" a="0.1" />
+			<total_count>20</total_count>
+			<emit_count>4</emit_count>
+			<particle_image>wu-1.png</particle_image>
+		</particle_effect>
+
+	</particle_effect_list>
+
+	<particle_effect_list name="meteor_shower">
+
+		<particle_effect>
+			<life>5.0</life>
+			<emit_angle_var>180.0</emit_angle_var>
+			<speed>100.0</speed>
+			<start_revolution_radius>40.0</start_revolution_radius>
+			<start_revolution_radius_var>20.0</start_revolution_radius_var>
+			<end_revolution_radius>300.0</end_revolution_radius>
+			<end_revolution_radius_var>50.0</end_revolution_radius_var>
+			<start_width_size>300.0</start_width_size>
+			<end_width_size>300.0</end_width_size>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.8" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>5</total_count>
+			<emit_count>1</emit_count>
+			<particle_image>fire-2.png</particle_image>
+		</particle_effect>
+
+		<particle_effect>
+			<life>10.0</life>
+			<emit_angle_var>180.0</emit_angle_var>
+			<speed>100.0</speed>
+			<start_revolution_radius>40.0</start_revolution_radius>
+			<start_revolution_radius_var>20.0</start_revolution_radius_var>
+			<end_revolution_radius>300.0</end_revolution_radius>
+			<end_revolution_radius_var>50.0</end_revolution_radius_var>
+			<start_width_size>200.0</start_width_size>
+			<end_width_size>300.0</end_width_size>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.8" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>20</total_count>
+			<emit_count>4</emit_count>
+			<particle_image>light-star.png</particle_image>
+		</particle_effect>
+
+		<particle_effect>
+			<life>0.8</life>
+			<emit_angle_var>180.0</emit_angle_var>
+			<speed>100.0</speed>
+			<start_revolution_radius>60.0</start_revolution_radius>
+			<end_revolution_radius>120.0</end_revolution_radius>
+			<end_revolution_radius_var>50.0</end_revolution_radius_var>
+			<rotate_angle>50.0</rotate_angle>
+			<start_width_size>200.0</start_width_size>
+			<end_width_size>250.0</end_width_size>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.8" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.7" />
+			<total_count>150</total_count>
+			<emit_count>100</emit_count>
+			<particle_image>meteor_shower.png</particle_image>
+		</particle_effect>
+
+	</particle_effect_list>
+
+	<particle_effect_list name="wu_tai">
+
+		<particle_effect id="1" name="Lighting">
+			<life>0.4</life><!-- 一个粒子从出现到消失存在的时间 -->
+			<life_var>0.0</life_var><!-- 粒子存在时间的波动范围，例如设置5，粒子的存在时间就是 5 ~ 15之间的一个值，这样粒子有不同的生命值 -->
+			<emit_angle>0</emit_angle><!-- 粒子源发射粒子的角度 -->
+			<emit_angle_var>180.0</emit_angle_var><!-- 粒子发射角度的范围，此处就是 -60 ~ -120 -->
+			<emit_angle_delta>0.0</emit_angle_delta><!-- 粒子源发射粒子的方向，每秒钟改变度数 -->
+			<speed>0.0</speed><!-- 单位是：PX ,离子源发射粒子，而粒子是绕一个点公转，这个点称为公转中心，有点像太阳与地球，地球就是粒子，太阳就是粒子公转的中心，这个速度是粒子源喷射太阳（公转中心）的速度 -->
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle><!-- 粒子公转的初始角度 -->
+			<revolution_angle_var>0.0</revolution_angle_var><!-- 粒子公转初始角度的范围 -->
+			<revolution_angle_delta>0.0</revolution_angle_delta><!-- 每秒粒子公转的角度 -->
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var><!-- 每秒粒子公转的角度范围 -->
+			<start_revolution_radius>200.0</start_revolution_radius><!-- 粒子出生时的公转半径 
+				离圆心有多远 -->
+			<start_revolution_radius_var>0.0</start_revolution_radius_var><!-- 粒子出生时的公转半径范围 -->
+			<end_revolution_radius>200.0</end_revolution_radius><!-- 粒子死亡时的公转半径 -->
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle><!-- 粒子自转的初始角度 -->
+			<rotate_angle_var>0.0</rotate_angle_var><!-- 粒子自转的初始角度的范围 -->
+			<rotate_angle_delta>0.0</rotate_angle_delta><!-- 粒子每秒自转的角度 -->
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var><!-- 粒子每秒自转的角度范围 -->
+			<start_width_size>20.0</start_width_size><!-- 粒子出生时的宽度值（粒子图片是矩形的，有长度和宽度，这里是较小的值，宽度） -->
+			<start_width_size_var>15.0</start_width_size_var>
+			<end_width_size>20.0</end_width_size>
+			<end_width_size_var>15.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.3" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>400</total_count><!-- 粒子源拥有的粒子数 -->
+			<emit_count>400</emit_count><!-- 粒子源每秒钟喷射的粒子数 -->
+			<particle_image>StarHere.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting1">
+			<life>0.4</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>250.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>250.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>20.0</start_width_size>
+			<start_width_size_var>15.0</start_width_size_var>
+			<end_width_size>20.0</end_width_size>
+			<end_width_size_var>15.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.3" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>300</total_count>
+			<emit_count>300</emit_count>
+			<particle_image>StarHere.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting1">
+			<life>0.8</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>300.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>300.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>20.0</start_width_size>
+			<start_width_size_var>15.0</start_width_size_var>
+			<end_width_size>20.0</end_width_size>
+			<end_width_size_var>15.0</end_width_size_var>
+			<start_color r="1.0" g="0.5" b="0.6" a="0.3" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>500</total_count>
+			<emit_count>500</emit_count>
+			<particle_image>StarHere.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="StarRain">
+			<life>60.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0.0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>700.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>-40.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>50.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>50.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.2" />
+			<total_count>2</total_count>
+			<emit_count>2</emit_count>
+			<particle_image>StarRain.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="StarRain">
+			<life>70.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0.0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>700.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>-40.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>50.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>50.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.2" />
+			<total_count>2</total_count>
+			<emit_count>2</emit_count>
+			<particle_image>StarRainMore.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="BlueLight">
+			<life>999999.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>340.0</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="70.0" y="-250.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>0.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>678.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>678.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>1</total_count>
+			<emit_count>1</emit_count>
+			<particle_image>BlueLight.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="BlueLight">
+			<life>999999.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>200.0</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="-70.0" y="-250.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>0.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>678.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>678.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>1</total_count>
+			<emit_count>1</emit_count>
+			<particle_image>BlueLight.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="FiveStar">
+			<life>6.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>270.0</emit_angle>
+			<emit_angle_var>90.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>450.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>450.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>300.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>300.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>3</total_count>
+			<emit_count>2</emit_count>
+			<particle_image>FiveStar.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="FiveStar">
+			<life>10.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0.0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>50.0</start_revolution_radius>
+			<start_revolution_radius_var>10.0</start_revolution_radius_var>
+			<end_revolution_radius>600.0</end_revolution_radius>
+			<end_revolution_radius_var>100.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>300.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>300.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.2" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>6</total_count>
+			<emit_count>1</emit_count>
+			<particle_image>wu-1.png</particle_image>
+		</particle_effect>
+
+	</particle_effect_list>
+
+	<particle_effect_list name="shuaiqiu">
+
+		<particle_effect id="1" name="Lighting">
+			<life>10.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0.0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>400.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<end_width_size>30.0</end_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>120.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.3" b="0.4" a="0.5" />
+			<end_color r="1.0" g="0.5" b="0.4" a="0.5" />
+			<total_count>20</total_count>
+			<emit_count>2</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>260</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>90.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<end_width_size>30.0</end_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>30.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.2" b="0.4" a="0.5" />
+			<end_color r="1.0" g="0.6" b="0.3" a="0.5" />
+			<total_count>60</total_count>
+			<emit_count>15</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>230</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>90.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<end_width_size>30.0</end_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>30.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.1" b="0.2" a="0.5" />
+			<end_color r="1.0" g="0.3" b="0.6" a="0.5" />
+			<total_count>60</total_count>
+			<emit_count>15</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>200</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>90.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<end_width_size>30.0</end_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>30.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.3" b="0.4" a="0.5" />
+			<end_color r="1.0" g="0.4" b="0.3" a="0.5" />
+			<total_count>60</total_count>
+			<emit_count>15</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>170</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>90.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<end_width_size>30.0</end_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>30.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.4" b="0.4" a="0.5" />
+			<end_color r="1.0" g="0.4" b="0.3" a="0.5" />
+			<total_count>60</total_count>
+			<emit_count>15</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>140</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>90.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<end_width_size>30.0</end_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>30.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.4" b="0.3" a="0.5" />
+			<end_color r="1.0" g="0.3" b="0.4" a="0.5" />
+			<total_count>60</total_count>
+			<emit_count>15</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>170</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>90.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<end_width_size>30.0</end_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>30.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.4" b="0.2" a="0.3" />
+			<end_color r="1.0" g="0.4" b="0.2" a="0.4" />
+			<total_count>60</total_count>
+			<emit_count>15</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>130</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>90.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>20.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>30.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.3" b="0.4" a="0.5" />
+			<end_color r="1.0" g="0.4" b="0.4" a="0.5" />
+			<total_count>60</total_count>
+			<emit_count>15</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>100</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>90.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>20.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>30.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.3" b="0.4" a="0.5" />
+			<end_color r="1.0" g="0.4" b="0.3" a="0.5" />
+			<total_count>60</total_count>
+			<emit_count>15</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>70</emit_angle>
+			<emit_angle_var>0.0</emit_angle_var>
+			<emit_angle_delta>90.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>180.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>20.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>30.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="0.4" b="0.3" a="0.5" />
+			<end_color r="1.0" g="0.4" b="0.3" a="0.5" />
+			<total_count>60</total_count>
+			<emit_count>15</emit_count>
+			<particle_image>Heart.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>500.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>150.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>200.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>8</total_count>
+			<emit_count>2</emit_count>
+			<particle_image>xingxinglight-2.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>400.0</start_revolution_radius>
+			<start_revolution_radius_var>150.0</start_revolution_radius_var>
+			<end_revolution_radius>400.0</end_revolution_radius>
+			<end_revolution_radius_var>100.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>150.0</start_width_size>
+			<start_width_size_var>100.0</start_width_size_var>
+			<end_width_size>150.0</end_width_size>
+			<end_width_size_var>50.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>16</total_count>
+			<emit_count>4</emit_count>
+			<particle_image>StarHere-3.png</particle_image>
+		</particle_effect>
+
+		<particle_effect id="1" name="Lighting">
+			<life>2.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>0.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>0.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>400.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>400.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>8</total_count>
+			<emit_count>4</emit_count>
+			<particle_image>xingxinglight-4.png</particle_image>
+		</particle_effect>
+
+	</particle_effect_list>
+	
+	<particle_effect_list name="lv">
+	
+		<particle_effect id="1" name="FiveStar">
+			<life>6.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>270.0</emit_angle>
+			<emit_angle_var>90.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="0.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>450.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>450.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>300.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>300.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<start_color_var r="1.0" g="1.0" b="1.0" a="0.2" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>3</total_count>
+			<emit_count>2</emit_count>
+			<particle_image>FiveStar.png</particle_image>
+		</particle_effect>
+	
+		<particle_effect id="1" name="Lighting">
+			<life>6.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="-70.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>600.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>0.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>30.0</start_width_size>
+			<start_width_size_var>0.0</start_width_size_var>
+			<end_width_size>10.0</end_width_size>
+			<end_width_size_var>0.0</end_width_size_var>
+			<start_color r="0.5" g="0.5" b="0.5" a="0.5" />
+			<start_color_var r="0.5" g="0.5" b="0.5" a="0.2" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>300</total_count>
+			<emit_count>20</emit_count>
+			<particle_image>LV.png</particle_image>
+		</particle_effect>
+	
+		<particle_effect id="1" name="Lighting">
+			<life>4.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="-70.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>400.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>0.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>40.0</start_width_size>
+			<start_width_size_var>40.0</start_width_size_var>
+			<end_width_size>10.0</end_width_size>
+			<end_width_size_var>5.0</end_width_size_var>
+			<start_color r="0.5" g="0.5" b="0.5" a="0.5" />
+			<start_color_var r="0.5" g="0.5" b="0.5" a="0.2" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>200</total_count>
+			<emit_count>20</emit_count>
+			<particle_image>LV-1.png</particle_image>
+		</particle_effect>
+	
+		<particle_effect id="1" name="Lighting">
+			<life>5.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="-70.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>500.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>0.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>40.0</start_width_size>
+			<start_width_size_var>30.0</start_width_size_var>
+			<end_width_size>10.0</end_width_size>
+			<end_width_size_var>5.0</end_width_size_var>
+			<start_color r="0.5" g="0.5" b="0.5" a="0.5" />
+			<start_color_var r="0.5" g="0.5" b="0.5" a="0.2" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>250</total_count>
+			<emit_count>20</emit_count>
+			<particle_image>LV-2.png</particle_image>
+		</particle_effect>
+	
+		<particle_effect id="1" name="Lighting">
+			<life>6.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="-70.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>500.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>0.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>0.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>150.0</start_width_size>
+			<start_width_size_var>10.0</start_width_size_var>
+			<end_width_size>100.0</end_width_size>
+			<end_width_size_var>5.0</end_width_size_var>
+			<start_color r="0.5" g="0.5" b="0.5" a="0.5" />
+			<start_color_var r="0.5" g="0.5" b="0.5" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<start_color_var r="0.5" g="0.5" b="0.5" a="0.5" />
+			<total_count>3</total_count>
+			<emit_count>2</emit_count>
+			<particle_image>LV-3.png</particle_image>
+		</particle_effect>
+	
+		<particle_effect id="1" name="Lighting">
+			<life>6.0</life>
+			<life_var>0.0</life_var>
+			<emit_angle>0</emit_angle>
+			<emit_angle_var>180.0</emit_angle_var>
+			<emit_angle_delta>0.0</emit_angle_delta>
+			<speed>0.0</speed>
+			<speed_var>0.0</speed_var>
+			<position x="0.0" y="-70.0" />
+			<position_var x="0.0" y="0.0" />
+			<revolution_angle>0.0</revolution_angle>
+			<revolution_angle_var>0.0</revolution_angle_var>
+			<revolution_angle_delta>0.0</revolution_angle_delta>
+			<revolution_angle_delta_var>0.0</revolution_angle_delta_var>
+			<start_revolution_radius>500.0</start_revolution_radius>
+			<start_revolution_radius_var>0.0</start_revolution_radius_var>
+			<end_revolution_radius>0.0</end_revolution_radius>
+			<end_revolution_radius_var>0.0</end_revolution_radius_var>
+			<rotate_angle>180.0</rotate_angle>
+			<rotate_angle_var>0.0</rotate_angle_var>
+			<rotate_angle_delta>0.0</rotate_angle_delta>
+			<rotate_angle_delta_var>0.0</rotate_angle_delta_var>
+			<start_width_size>150.0</start_width_size>
+			<start_width_size_var>10.0</start_width_size_var>
+			<end_width_size>100.0</end_width_size>
+			<end_width_size_var>5.0</end_width_size_var>
+			<start_color r="0.5" g="0.5" b="0.5" a="0.5" />
+			<end_color r="1.0" g="1.0" b="1.0" a="0.5" />
+			<total_count>3</total_count>
+			<emit_count>2</emit_count>
+			<particle_image>xingxinglight-2.png</particle_image>
+		</particle_effect>
+	</particle_effect_list>
+</particle_system>

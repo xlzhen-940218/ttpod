@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<particle_system>
+
+	<ttpod_particle_effect_list name="star">
+
+		<ttpod_particle_effect />
+
+		<ttpod_particle_effect>
+			<impact_life />
+			<impact_emit_count />
+			<impact_speed />
+			<impact_size />
+		</ttpod_particle_effect>
+
+		<ttpod_particle_effect>
+			<impact_life />
+			<impact_emit_count />
+			<impact_size />
+			<impact_position_x>400</impact_position_x>
+			<impact_position_y>400</impact_position_y>
+		</ttpod_particle_effect>
+	</ttpod_particle_effect_list>
+
+	<ttpod_particle_effect_list name="water">
+
+		<ttpod_particle_effect />
+
+		<ttpod_particle_effect>
+			<impact_life />
+			<impact_emit_count />
+			<impact_size />
+			<impact_emit_angle>10</impact_emit_angle>
+			<impact_emit_angle_delta />
+		</ttpod_particle_effect>
+
+	</ttpod_particle_effect_list>
+
+	<ttpod_particle_effect_list name="meteor_shower">
+
+		<ttpod_particle_effect />
+
+		<ttpod_particle_effect />
+
+		<ttpod_particle_effect>
+			<impact_life />
+			<impact_emit_count />
+			<impact_size />
+			<impact_emit_angle>10</impact_emit_angle>
+			<impact_emit_angle_delta />
+		</ttpod_particle_effect>
+
+	</ttpod_particle_effect_list>
+
+	<ttpod_particle_effect_list name="wu_tai">
+		<ttpod_particle_effect>
+			<impact_life />
+			<impact_emit_count />
+			<impact_speed />
+			<impact_size />
+		</ttpod_particle_effect>
+	</ttpod_particle_effect_list>
+
+	<ttpod_particle_effect_list name="shuaiqiu">
+		<ttpod_particle_effect>
+			<impact_life />
+		</ttpod_particle_effect>
+	</ttpod_particle_effect_list>
+
+	<ttpod_particle_effect_list name="lv">
+	    
+		<ttpod_particle_effect>
+		</ttpod_particle_effect>
+		
+		<ttpod_particle_effect>
+			<impact_life />
+			<impact_emit_count /> <!-- 影响发射粒子的数量 -->
+			<impact_speed />
+			<impact_size />
+			<impact_rotate_angle /> <!-- 影响粒子的自转角度 -->
+		</ttpod_particle_effect>
+		
+		<ttpod_particle_effect>
+			<impact_life />
+			<impact_emit_count /> <!-- 影响发射粒子的数量 -->
+			<impact_speed />
+			<impact_size />
+			<impact_rotate_angle /> <!-- 影响粒子的自转角度 -->
+		</ttpod_particle_effect>
+		
+		<ttpod_particle_effect>
+			<impact_life />
+			<impact_emit_count /> <!-- 影响发射粒子的数量 -->
+			<impact_speed />
+			<impact_size />
+			<impact_rotate_angle /> <!-- 影响粒子的自转角度 -->
+		</ttpod_particle_effect>
+		
+		<ttpod_particle_effect>
+			<impact_life />
+			<impact_emit_count /> <!-- 影响发射粒子的数量 -->
+			<impact_speed />
+			<impact_size />
+			<impact_rotate_angle /> <!-- 影响粒子的自转角度 -->
+		</ttpod_particle_effect>
+		
+	</ttpod_particle_effect_list>
+	
+</particle_system>

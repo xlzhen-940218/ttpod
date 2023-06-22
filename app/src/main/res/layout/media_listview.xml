@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.sds.android.ttpod.widget.AZSideBar
+        android:id="@+id/azsidebar"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingLeft="3dp"
+        android:paddingTop="8dp"
+        android:paddingRight="6dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone"
+        app:normalBkgColor="#663a5969"
+        app:normalTextColor="#80ffffff"
+        app:pressedBkgColor="#663a5969"
+        app:pressedTextColor="#ffffff" />
+
+    <com.sds.android.ttpod.widget.expandablelist.ActionExpandableListView
+        android:id="@+id/media_listview"
+        style="@style/ListView"
+        android:layout_toLeftOf="@+id/azsidebar"
+        android:divider="@drawable/xml_media_list_divider"
+        android:scrollbars="none" />
+</RelativeLayout>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center" android:orientation="vertical" android:paddingBottom="@dimen/playcontrol_bar_height" android:layout_width="match_parent" android:layout_height="match_parent">
+    <include android:id="@+id/market_app_list" android:layout_width="match_parent" android:layout_height="match_parent" layout="@layout/market_app_list"/>
+    <com.sds.android.ttpod.widget.NetworkLoadView android:id="@+id/loading_view" android:layout_width="match_parent" android:layout_height="match_parent"/>
+</LinearLayout>

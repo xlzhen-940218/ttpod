@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/id_divider_view"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/setting_listview_header_or_footer_divider_color" />
+</LinearLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center" android:background="#f8f8f8" android:paddingBottom="60dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="@dimen/playcontrol_bar_height">
+    <ImageView android:id="@+id/shake_icon" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_musiccircle_shake_animation_phone" android:layout_centerInParent="true" android:contentDescription="@string/ttpod"/>
+    <ImageView android:id="@+id/shake_wave" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_musiccircle_shake_wave" android:layout_centerInParent="true" android:contentDescription="@string/ttpod"/>
+    <TextView android:textColor="#898989" android:gravity="center" android:id="@+id/shake_hint" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="@string/online_favorite_prompt" android:layout_below="@+id/shake_wave"/>
+</RelativeLayout>

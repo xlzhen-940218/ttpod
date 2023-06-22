@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="@drawable/xml_background_default" android:paddingTop="0dp" android:paddingBottom="4dp" android:layout_width="60dp" android:layout_height="80dp">
+    <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/itv_icon" android:padding="10dp" android:layout_width="48dp" android:layout_height="48dp" android:layout_centerHorizontal="true"/>
+    <TextView android:textSize="14sp" android:textColor="#333" android:gravity="center_vertical" android:id="@+id/tv_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="48dp" android:text="test" android:singleLine="true" android:layout_centerHorizontal="true"/>
+    <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/itv_indicator" android:visibility="visible" android:layout_width="6dp" android:layout_height="6dp" android:layout_marginTop="8dp" android:layout_marginRight="13dp" android:layout_alignParentRight="true" android:contentDescription="@android:string/unknownName" app:textColor="#000" app:text="@string/icon_dot"/>
+</RelativeLayout>

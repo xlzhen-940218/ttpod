@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="false"
+    android:orientation="horizontal"
+    android:padding="@dimen/new_song_publish_half_item_margin">
+
+    <include
+        android:id="@+id/song_item1"
+        layout="@layout/picture_with_bottom_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/new_song_publish_half_item_margin"
+        android:layout_marginRight="@dimen/new_song_publish_half_item_margin"
+        android:layout_weight="1" />
+
+    <include
+        android:id="@+id/song_item2"
+        layout="@layout/picture_with_bottom_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/new_song_publish_half_item_margin"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="@dimen/new_song_publish_half_item_margin"
+        android:layout_marginBottom="0dp"
+        android:layout_weight="1" />
+
+    <include
+        android:id="@+id/song_item3"
+        layout="@layout/picture_with_bottom_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/new_song_publish_half_item_margin"
+        android:layout_marginRight="@dimen/new_song_publish_half_item_margin"
+        android:layout_weight="1" />
+
+    <include
+        android:id="@+id/song_item4"
+        layout="@layout/picture_with_bottom_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/new_song_publish_half_item_margin"
+        android:layout_marginRight="@dimen/new_song_publish_half_item_margin"
+        android:layout_weight="1" />
+</LinearLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.sds.android.ttpod.widget.StateView
+        android:id="@+id/media_task_loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:success_view="@layout/fragment_download_listview" />
+</LinearLayout>

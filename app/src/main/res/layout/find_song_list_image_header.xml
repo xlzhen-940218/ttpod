@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.sds.android.ttpod.widget.RectangleImageView
+        android:id="@+id/find_song_list_image_header_pic"
+        android:layout_width="match_parent"
+        android:layout_height="188dp"
+        android:maxHeight="188dp"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/find_song_list_image_header_pic"
+        android:background="@drawable/img_grid_item_mask" />
+
+    <ImageView
+        android:id="@+id/find_song_list_image_header_clock_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/find_song_list_image_header_pic"
+        android:layout_alignBottom="@+id/find_song_list_image_header_pic"
+        android:layout_margin="6dp"
+        android:contentDescription="@string/ttpod"
+        android:src="@drawable/img_clock_icon" />
+
+    <ImageView
+        android:id="@+id/find_song_list_image_header_download"
+        style="@style/ImageView_MusicCircle_DownloadButton"
+        android:layout_alignTop="@+id/find_song_list_image_header_play"
+        android:layout_toLeftOf="@+id/find_song_list_image_header_play"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/find_song_list_image_header_play"
+        style="@style/ImageView_MusicCircle_PlayButton"
+        android:layout_alignBottom="@+id/find_song_list_image_header_pic"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/find_song_list_image_header_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/find_song_list_image_header_pic"
+        android:layout_margin="3dp"
+        android:layout_toRightOf="@+id/find_song_list_image_header_clock_icon"
+        android:gravity="bottom"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/find_song_list_image_header_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/find_song_list_image_header_pic"
+        android:layout_margin="6dp"
+        android:layout_marginRight="6dp"
+        android:gravity="left"
+        android:minLines="1"
+        android:textColor="#ff000000"
+        android:textSize="16sp" />
+</RelativeLayout>

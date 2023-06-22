@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="51dp">
+    <RelativeLayout android:id="@+id/root_hit" android:background="@drawable/recommand_bj_xml" android:layout_width="match_parent" android:layout_height="51dp">
+        <RelativeLayout android:id="@+id/recommand_left" android:paddingLeft="4dp" android:layout_width="52dp" android:layout_height="50dp" android:layout_alignParentLeft="true" android:layout_centerInParent="true">
+            <com.sds.android.ttpod.widget.RoundRectImageView android:id="@+id/imageview_avatar" android:layout_width="45dp" android:layout_height="45dp" android:src="@drawable/img_avatar_default" android:scaleType="fitCenter" android:layout_alignParentLeft="true" android:layout_centerVertical="true" android:contentDescription="@android:string/unknownName" app:frameWidth="2dp" app:frameColor="#b0ffffff"/>
+            <ImageView android:id="@+id/imageview_level" android:layout_width="24dp" android:layout_height="24dp" android:layout_alignRight="@+id/imageview_avatar" android:layout_alignParentRight="true" android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
+        <RelativeLayout android:id="@+id/recommand_middle" android:layout_width="match_parent" android:layout_height="61dp" android:layout_marginLeft="2dp" android:layout_toLeftOf="@+id/layout_play" android:layout_toRightOf="@+id/recommand_left">
+            <RelativeLayout android:id="@+id/middle_left" android:layout_width="80dp" android:layout_height="51dp" android:layout_alignParentLeft="true">
+                <TextView android:textSize="12sp" android:textColor="#ffffff" android:ellipsize="marquee" android:id="@+id/textview_nickname" android:paddingLeft="4dp" android:focusableInTouchMode="true" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:text="Min.Yang" android:singleLine="true" android:marqueeRepeatLimit="marquee_forever"/>
+                <LinearLayout android:orientation="horizontal" android:id="@+id/effect_boost_layer" android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="3" android:layout_below="@+id/textview_nickname" android:layout_alignParentLeft="true" android:layout_centerVertical="true">
+                    <com.sds.android.ttpod.widget.audioeffect.CircularProgress android:layout_gravity="center_vertical" android:id="@+id/rotatebutton_bass_boost" android:padding="2dp" android:layout_width="25dp" android:layout_height="25dp"/>
+                    <com.sds.android.ttpod.widget.audioeffect.CircularProgress android:layout_gravity="center_vertical" android:id="@+id/rotatebutton_treble_boost" android:padding="2dp" android:layout_width="25dp" android:layout_height="25dp"/>
+                    <com.sds.android.ttpod.widget.audioeffect.CircularProgress android:layout_gravity="center_vertical" android:id="@+id/rotatebutton_surround" android:padding="2dp" android:layout_width="25dp" android:layout_height="25dp"/>
+                </LinearLayout>
+            </RelativeLayout>
+            <com.sds.android.ttpod.widget.audioeffect.EqualizerAnimationWaveView android:gravity="center_vertical" android:id="@+id/waveview_effect_equalizer_equ" android:paddingLeft="2dp" android:paddingTop="2dp" android:paddingRight="2dp" android:paddingBottom="1dp" android:layout_width="180dp" android:layout_height="50dp" android:layout_marginLeft="2dp" android:layout_marginBottom="2dp" android:layout_toRightOf="@+id/middle_left" android:layout_centerVertical="true"/>
+        </RelativeLayout>
+        <RelativeLayout android:id="@+id/layout_play" android:background="@drawable/recommand_zan_xml" android:layout_width="45dp" android:layout_height="45dp" android:layout_marginLeft="2dp" android:layout_marginRight="4dp" android:layout_alignParentRight="true" android:layout_centerVertical="true">
+            <CheckedTextView android:textSize="10sp" android:textColor="@color/xml_recommand_zan_color" android:id="@+id/textview_pickcount" android:paddingTop="16dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="赞" android:layout_centerInParent="true" android:layout_centerVertical="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

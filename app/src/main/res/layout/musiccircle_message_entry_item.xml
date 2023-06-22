@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/xml_background_action_view" android:padding="3dp" android:layout_width="match_parent" android:layout_height="match_parent">
+    <include android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="0dp" layout="@layout/count_flag"/>
+    <TextView android:textSize="16sp" android:textColor="#3d3d3d" android:id="@+id/tv_text" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginLeft="9dp" android:layout_marginRight="4dp" android:text="Test Kai" android:layout_weight="1"/>
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10dp" android:src="@drawable/img_setting_right_arrow" android:scaleType="centerInside" android:contentDescription="@string/ttpod"/>
+</LinearLayout>

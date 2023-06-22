@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center" android:orientation="vertical" android:id="@+id/offline_mode_frame" android:background="#1d1f1f" android:padding="30dp" android:clickable="true" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img_imageview_offline_mode_logo"/>
+    <TextView android:textSize="16sp" android:textColor="#cacaca" android:gravity="center" android:clickable="false" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="@string/offline_mode_tip"/>
+    <Button android:textColor="#ffffff" android:id="@+id/button_offline_continue" android:background="@drawable/xml_background_button_offline_continue" android:layout_width="120dp" android:layout_height="40dp" android:layout_marginTop="60dp" android:text="@string/continue_view"/>
+</LinearLayout>

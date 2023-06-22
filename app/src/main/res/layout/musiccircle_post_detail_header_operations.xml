@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="horizontal" android:paddingLeft="10dp" android:paddingRight="10dp" android:layout_width="match_parent" android:layout_height="56dp" android:baselineAligned="false" android:layout_alignParentBottom="true">
+    <RelativeLayout style="@style/TextView_PostDetail_Header_Operation_container">
+        <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/post_head_favorite_icon_text" app:text="@string/icon_post_header_favorite_no" style="@style/TextView_PostDetail_Header_Operation_Icon"/>
+        <TextView android:id="@+id/post_header_favorite" android:text="@string/favorite" style="@style/TextView_PostDetail_Header_Operation_text"/>
+    </RelativeLayout>
+    <RelativeLayout style="@style/TextView_PostDetail_Header_Operation_container">
+        <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/post_head_comment_icon_text" app:text="@string/icon_post_header_comments" style="@style/TextView_PostDetail_Header_Operation_Icon"/>
+        <TextView android:id="@+id/post_header_comment" android:text="@string/musiccircle_comment" style="@style/TextView_PostDetail_Header_Operation_text"/>
+    </RelativeLayout>
+    <RelativeLayout style="@style/TextView_PostDetail_Header_Operation_container">
+        <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/post_head_share_icon_text" app:text="@string/icon_post_header_share" style="@style/TextView_PostDetail_Header_Operation_Icon"/>
+        <TextView android:id="@+id/post_header_share" android:text="@string/share" style="@style/TextView_PostDetail_Header_Operation_text"/>
+    </RelativeLayout>
+    <RelativeLayout style="@style/TextView_PostDetail_Header_Operation_container">
+        <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/post_head_download_icon_text" app:text="@string/icon_post_header_download" style="@style/TextView_PostDetail_Header_Operation_Icon"/>
+        <TextView android:id="@+id/post_header_download" android:text="@string/download_post" style="@style/TextView_PostDetail_Header_Operation_text"/>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android" android:insetLeft="-1px" android:insetRight="-1px" android:insetTop="-1px" android:insetBottom="-1px">
+    <inset android:insetLeft="@dimen/musiccircle_recommend_margin_small" android:insetRight="@dimen/musiccircle_recommend_margin_small" android:insetTop="@dimen/musiccircle_recommend_margin_small" android:insetBottom="@dimen/musiccircle_recommend_margin_small">
+        <shape android:dither="false" android:shape="rectangle">
+            <solid android:color="@android:color/transparent"/>
+            <corners android:radius="0px"/>
+            <stroke android:width="1px" android:color="@color/post_stroke"/>
+        </shape>
+    </inset>
+</inset>

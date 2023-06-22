@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:gravity="center_vertical" android:background="@drawable/img_background_media_edit_panel" android:layout_width="match_parent" android:layout_height="@dimen/playcontrol_bar_height">
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@+id/btn_remove" android:background="@drawable/xml_background_action_view" android:paddingLeft="14dp" android:paddingRight="14dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+        <com.sds.android.ttpod.common.widget.IconTextView android:layout_width="28dp" android:layout_height="28dp" app:textColor="#fff" app:text="@string/icon_delete_trash"/>
+        <TextView android:textSize="16sp" android:textColor="#ffffffff" android:gravity="center" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginLeft="4dp" android:text="@string/remove" android:singleLine="true"/>
+    </LinearLayout>
+    <View android:background="#ff9b9b9b" android:layout_width="1dp" android:layout_height="match_parent" android:layout_marginTop="10dp" android:layout_marginBottom="8dp"/>
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@+id/btn_add" android:background="@drawable/xml_background_action_view" android:paddingLeft="14dp" android:paddingRight="14dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+        <com.sds.android.ttpod.common.widget.IconTextView android:layout_width="28dp" android:layout_height="28dp" app:textColor="#fff" app:text="@string/icon_add_list"/>
+        <TextView android:textSize="16sp" android:textColor="#ffffffff" android:gravity="center" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginLeft="4dp" android:text="@string/add" android:singleLine="true"/>
+    </LinearLayout>
+    <View android:background="#ff9b9b9b" android:layout_width="1dp" android:layout_height="match_parent" android:layout_marginTop="10dp" android:layout_marginBottom="8dp"/>
+    <LinearLayout android:gravity="center" android:orientation="horizontal" android:id="@+id/btn_send" android:background="@drawable/xml_background_action_view" android:paddingLeft="14dp" android:paddingRight="14dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+        <com.sds.android.ttpod.common.widget.IconTextView android:layout_width="28dp" android:layout_height="28dp" app:textColor="#fff" app:text="@string/icon_share"/>
+        <TextView android:textSize="16sp" android:textColor="#ffffffff" android:gravity="center" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginLeft="4dp" android:text="@string/send" android:singleLine="true"/>
+    </LinearLayout>
+</LinearLayout>

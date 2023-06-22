@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/textview_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/unicom_flow_trial_title"
+        android:textColor="@color/dialog_message_text_color"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/textview_phone"
+        style="@style/Dialog_Message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/unicom_flow_trial_message" />
+
+    <TextView
+        android:id="@+id/textview_more"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:gravity="right"
+        android:paddingRight="10dp"
+        android:text="了解详情 &gt;&gt;"
+        android:textColor="@color/unicom_flow_title_color"
+        android:textSize="12sp"
+        android:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/check_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_margin"
+        android:button="@drawable/xml_dialog_option"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:text="不再提示"
+        android:textColor="@color/unicom_flow_title_color"
+        android:textSize="14sp"
+        android:visibility="gone" />
+</LinearLayout>

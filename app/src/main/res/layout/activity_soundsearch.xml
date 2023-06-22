@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/animLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_background">
+
+    <com.sds.android.ttpod.widget.SoundSearchAnimView
+        android:id="@+id/soundSearchAnimView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/imagview_soundsearch_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/img_background_imageview_soundsearch_center"
+        android:scaleType="centerInside"
+        android:src="@drawable/xml_imageview_soundsearch_center" />
+
+    <ImageView
+        android:id="@+id/imageview_soundsearch_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/img_imageview_soundsearch_state_idle" />
+
+    <TextView
+        android:id="@+id/textview_soundsearch_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imagview_soundsearch_center"
+        android:layout_centerHorizontal="true"
+        android:drawableLeft="@drawable/img_textview_soundsearch_title"
+        android:gravity="center"
+        android:text="@string/start_soundsearch"
+        android:textColor="#1b3b43"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textview_soundsearch_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_soundsearch_title"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/soundsearch_state_idle_title"
+        android:textColor="#acacac"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="@string/soundsearch_support"
+        android:textColor="#acacac"
+        android:textSize="12sp" />
+</RelativeLayout>

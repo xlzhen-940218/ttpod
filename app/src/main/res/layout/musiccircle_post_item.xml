@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_social_post_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/musiccircle_recommend_margin_small">
+
+    <RelativeLayout
+        android:id="@+id/layout_userinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp">
+
+        <com.sds.android.ttpod.widget.UserAvatarView
+            android:id="@+id/image_avatar"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_margin="@dimen/musiccircle_recommend_margin_small"
+            android:contentDescription="@string/unknown"
+            android:src="@drawable/img_avatar_default"
+            app:corner_radius="22dp" />
+
+        <TextView
+            android:id="@+id/text_name"
+            style="@style/Post_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/musiccircle_recommend_margin_small"
+            android:layout_toRightOf="@+id/image_avatar" />
+
+        <TextView
+            android:id="@+id/text_time"
+            style="@style/Post_Time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_name"
+            android:layout_marginTop="1dp"
+            android:layout_toRightOf="@+id/image_avatar" />
+
+        <TextView
+            android:id="@+id/tv_from"
+            style="@style/Post_From"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_name"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginRight="4dp"
+            android:layout_toRightOf="@+id/text_time" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_pics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_userinfo"
+        android:orientation="vertical">
+
+        <com.sds.android.ttpod.widget.RectangleImageView
+            android:id="@+id/pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img_musiccircle_post_pic_default"
+            app:aspect_ratio="1.88" />
+
+        <ImageView
+            android:id="@+id/iv_playpause"
+            style="@style/ImageView_MusicCircle_PlayButton"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/img_background_post_item_text"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+
+            <ImageView
+                android:id="@+id/iv_post_type"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginLeft="@dimen/musiccircle_recommend_margin_small"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_musiccircle_radio" />
+
+            <TextView
+                android:id="@+id/tv_post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="作为女人，你必须精致！"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/text_tweet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_pics"
+        android:padding="@dimen/musiccircle_recommend_margin_small"
+        android:text="test tweet"
+        android:textColor="@color/post_text_tweet"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/layout_amount"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_below="@+id/text_tweet"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layout_reply_amount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/xml_musiccircle_grid_selector"
+            android:baselineAligned="false"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_reply_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/img_musiccircle_reply"
+                android:drawablePadding="3dp"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/post_text_amount"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_amount_divider_reply"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/post_stroke" />
+
+        <LinearLayout
+            android:id="@+id/layout_repost_amount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/xml_musiccircle_grid_selector"
+            android:baselineAligned="false"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tv_repost_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/img_musiccircle_repost"
+                android:drawablePadding="3dp"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/post_text_amount"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_amount_divider_repost"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/post_stroke" />
+
+        <LinearLayout
+            android:id="@+id/layout_pick_amount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/xml_musiccircle_grid_selector"
+            android:baselineAligned="false"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/text_pick_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:drawableLeft="@drawable/img_musiccircle_favorite_mark_no"
+                android:drawablePadding="3dp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="0"
+                android:textColor="@color/post_text_amount"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

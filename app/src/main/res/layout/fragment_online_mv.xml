@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center" android:orientation="vertical" android:paddingBottom="@dimen/playcontrol_bar_height" android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.sds.android.ttpod.widget.expandablelist.ActionExpandableListView android:id="@+id/lv_online_mv" android:fadingEdge="none" android:fadingEdgeLength="0dp" android:layout_width="match_parent" android:layout_height="match_parent" android:listSelector="@drawable/xml_background_market_app_list_selector" android:cacheColorHint="#00000000" android:divider="@drawable/img_market_list_divider" android:dividerHeight="1dp"/>
+    <com.sds.android.ttpod.widget.NetworkLoadView android:id="@+id/loading_view" android:layout_width="match_parent" android:layout_height="match_parent"/>
+</LinearLayout>

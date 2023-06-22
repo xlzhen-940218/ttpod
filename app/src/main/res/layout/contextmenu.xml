@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dialog_background">
+
+    <RelativeLayout
+        android:id="@+id/layout_menu_header"
+        android:layout_width="240dp"
+        android:layout_height="48dp" />
+
+    <RelativeLayout
+        android:id="@+id/layout_menu_body"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_menu_header" />
+</RelativeLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/dialog_background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/dialog_header"
+        layout="@layout/share_popups_header" />
+
+    <FrameLayout
+        android:id="@+id/dialog_body"
+        style="@style/Share_Dialog_Body" />
+
+    <include
+        android:id="@+id/dialog_footer"
+        layout="@layout/share_dialog_footer" />
+</LinearLayout>

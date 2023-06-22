@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:id="@+id/double_category" android:descendantFocusability="afterDescendants" android:layout_width="match_parent" android:layout_height="wrap_content" android:baselineAligned="false">
+    <include android:id="@+id/left_category" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" layout="@layout/market_app_category_item"/>
+    <include android:id="@+id/right_category" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" layout="@layout/market_app_category_item"/>
+</LinearLayout>

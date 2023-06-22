@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="#ffffff" android:padding="10dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView android:textSize="20sp" android:textColor="#333333" android:id="@+id/game_tucao_history_item_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="shi shang zui niu"/>
+    <TextView android:textSize="14sp" android:textColor="#797979" android:id="@+id/game_tucao_history_item_summary" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp" android:layout_marginBottom="2dp" android:text="sdfajdsklfja" android:layout_below="@+id/game_tucao_history_item_title"/>
+    <TextView android:id="@+id/game_tucao_history_item_comment_number" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="100/233" android:drawableLeft="@drawable/img_comment_prompt" android:drawablePadding="2dp" android:layout_below="@+id/game_tucao_history_item_summary"/>
+    <TextView android:textSize="12sp" android:textColor="#a9a9a9" android:gravity="right" android:layout_gravity="right" android:id="@+id/game_tucao_history_item_comment_date" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="2012-12-12 00:00:00" android:layout_below="@+id/game_tucao_history_item_summary"/>
+</RelativeLayout>

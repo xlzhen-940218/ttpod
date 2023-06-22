@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/cmmusic_page_background"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@color/prompt" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="@string/openfuctionprompt"
+                android:textColor="@color/prompt"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="6dp"
+                android:text="@string/openfuctionmsg"
+                android:textColor="@color/prompt"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/cmmusic_open_fuciton_title_ico" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cmmusic_setbag_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="4dp"
+            android:text="@string/opencailingfuncionorder"
+            android:textColor="#1f2d34"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/text_coloropenprice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingBottom="4dp"
+            android:textColor="#1f2d34"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingBottom="24dp"
+            android:text="@string/promptprompt"
+            android:textColor="#1f2d34"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingBottom="4dp"
+            android:text="@string/promptopen"
+            android:textColor="#1f2d34"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingBottom="4dp"
+            android:text="@string/promptinfo"
+            android:textColor="#1f2d34"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:text="@string/cmmusichelp"
+            android:textColor="#1f2d34"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel_opencailing"
+            android:layout_width="141dp"
+            android:layout_height="52dp"
+            android:background="@drawable/cmmusic_button_background"
+            android:gravity="center"
+            android:text="@string/cancel"
+            android:textColor="@color/prompt_textcolor"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_confirm_opencailing"
+            android:layout_width="141dp"
+            android:layout_height="52dp"
+            android:background="@drawable/cmmusic_button_background"
+            android:gravity="center"
+            android:text="@string/open"
+            android:textColor="@color/prompt_textcolor"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

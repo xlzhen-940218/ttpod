@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@android:color/white" android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/hint_banner" android:background="#ffff9000" android:padding="4dp" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="12sp" android:textColor="#ffffffff" android:ellipsize="end" android:id="@+id/hint_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/online_search_statement" android:singleLine="true"/>
+        <TextView android:textSize="12sp" android:textColor="#ffffffff" android:ellipsize="end" android:id="@+id/hint_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true"/>
+    </LinearLayout>
+    <FrameLayout android:id="@+id/web_view" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_below="@+id/hint_banner"/>
+    <include layout="@layout/fragment_error_page"/>
+    <ProgressBar android:id="@+id/web_view_load_progress" android:background="#ffefefef" android:focusable="false" android:layout_width="match_parent" android:layout_height="2dp" android:max="100" android:progress="0" android:progressDrawable="@drawable/xml_web_view_load_progress_drawable" android:layout_alignParentTop="true" style="@android:style/Widget.ProgressBar.Horizontal"/>
+</RelativeLayout>

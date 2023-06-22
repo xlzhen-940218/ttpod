@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.sds.android.ttpod.widget.AZSideBar android:id="@+id/azsidebar" android:paddingLeft="3dp" android:paddingRight="6dp" android:visibility="gone" android:layout_width="24dp" android:layout_height="match_parent" android:layout_marginTop="8dp" android:layout_marginBottom="8dp" android:layout_alignParentRight="true" app:normalBkgColor="#9fbbc2" app:pressedBkgColor="#3f7785" app:normalTextColor="#7fffffff" app:pressedTextColor="#ffffff"/>
+    <com.sds.android.ttpod.widget.dragupdatelist.DragUpdateListView android:id="@+id/media_listview" android:scrollbars="none" android:fadingEdge="none" android:fadingEdgeLength="0dp" android:listSelector="@drawable/xml_background_market_app_list_selector" android:cacheColorHint="#00000000" android:divider="@drawable/img_market_list_divider" android:dividerHeight="2px" android:layout_toLeftOf="@+id/azsidebar" style="@style/ListView"/>
+</RelativeLayout>

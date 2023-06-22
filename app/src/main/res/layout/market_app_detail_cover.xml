@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sds.android.ttpod.framework.modules.skin.view.ModifyFitCenterImageView xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/cover" android:background="@drawable/img_background_market_app_detail_cover" android:paddingLeft="3dp" android:paddingRight="3dp" android:layout_width="wrap_content" android:layout_height="match_parent"/>

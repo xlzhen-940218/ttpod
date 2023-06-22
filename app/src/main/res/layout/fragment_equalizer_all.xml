@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="@color/effect_dialog_background" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ListView android:id="@+id/listview_equalizer_all" android:background="@color/effect_dialog_background" android:listSelector="@drawable/xml_listselector_main_right_menu" android:divider="#222425" style="@style/ListView"/>
+</LinearLayout>

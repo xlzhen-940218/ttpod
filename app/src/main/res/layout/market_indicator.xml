@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:background="#356d7f" android:layout_width="match_parent" android:layout_height="45dp" android:baselineAligned="false">
+    <include android:id="@+id/app_indicator_recommend" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" layout="@layout/market_indicator_label"/>
+    <include android:id="@+id/app_indicator_game" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" layout="@layout/market_indicator_label"/>
+    <include android:id="@+id/app_indicator_beauty" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" layout="@layout/market_indicator_label"/>
+    <include android:id="@+id/app_indicator_category" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" layout="@layout/market_indicator_label"/>
+    <include android:id="@+id/app_indicator_headset" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" layout="@layout/market_indicator_label"/>
+</LinearLayout>

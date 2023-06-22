@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android" android:oneshot="false">
+    <item android:duration="300" android:drawable="@drawable/sliding_to_unlock_1"/>
+    <item android:duration="300" android:drawable="@drawable/sliding_to_unlock_2"/>
+    <item android:duration="300" android:drawable="@drawable/sliding_to_unlock_3"/>
+    <item android:duration="300" android:drawable="@drawable/sliding_to_unlock_4"/>
+</animation-list>

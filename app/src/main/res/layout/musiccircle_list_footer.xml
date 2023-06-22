@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center" android:orientation="vertical" android:id="@+id/layout_root" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <ImageView android:id="@+id/top_divider_line" android:background="@drawable/xml_musiccircle_list_item_divider" android:visibility="gone" android:layout_width="match_parent" android:layout_height="2dp"/>
+    <View android:layout_width="match_parent" android:layout_height="@dimen/footer_padding"/>
+    <ImageView android:id="@+id/icon_progressing" android:background="@drawable/img_drag_refresh" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="2dp"/>
+    <TextView android:textSize="12sp" android:textColor="@color/footer_text_color" android:gravity="center_vertical" android:id="@+id/text_rear_content" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/footer_padding"/>
+</LinearLayout>

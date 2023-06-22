@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:orientation="horizontal" android:padding="10dp" android:layout_width="match_parent" android:layout_height="46dp">
+    <TextView android:textSize="16sp" android:textColor="#555555" android:id="@+id/hot_word" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerVertical="true" style="@style/TextView_Market_Text_Shadow"/>
+    <TextView android:textSize="13sp" android:textColor="#a6a6a6" android:gravity="center" android:id="@+id/hot_word_ascend_number" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="30dp" android:layout_alignParentRight="true" android:layout_centerVertical="true" style="@style/TextView_Market_Text_Shadow"/>
+    <ImageView android:id="@+id/hot_word_ascend_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="5dp" android:layout_toLeftOf="@+id/hot_word_ascend_number" android:layout_centerVertical="true"/>
+</RelativeLayout>

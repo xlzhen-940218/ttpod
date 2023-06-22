@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cmmusic_page_background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/menu_backgroundcolor"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/edit_searchkey_searchpage"
+            android:layout_width="45dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="14"
+            android:background="@drawable/cmmusic_edittext_background"
+            android:padding="1dp"
+            android:paddingLeft="4dp"
+            android:paddingTop="1dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="1dp"
+            android:singleLine="true"
+            android:textColor="#464646" />
+
+        <Button
+            android:id="@+id/btn_submit_searchpage_submit"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_weight="2"
+            android:background="#eff5f7"
+            android:text="@string/search"
+            android:textColor="#464646"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="#d0d3d6" />
+
+    <ListView
+        android:id="@+id/list_recommend_searchpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alwaysDrawnWithCache="true"
+        android:background="@drawable/cmmusic_page_background"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="#c7dae1"
+        android:dividerHeight="1px"
+        android:listSelector="@android:color/transparent"
+        android:scrollingCache="false"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/list_searchpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alwaysDrawnWithCache="true"
+        android:background="@drawable/cmmusic_page_background"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="#c7dae1"
+        android:dividerHeight="1px"
+        android:listSelector="@android:color/transparent"
+        android:scrollingCache="false"
+        android:visibility="gone" />
+</LinearLayout>

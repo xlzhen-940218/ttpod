@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/effect_dialog_background"
+    android:orientation="vertical">
+
+    <com.sds.android.ttpod.widget.audioeffect.EqualizerAnimationWaveView
+        android:id="@+id/equ_wave_custom"
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:background="@drawable/img_background_equalizer_animation_waveview_custom"
+        android:paddingLeft="6dp"
+        android:paddingTop="6dp"
+        android:paddingRight="6dp"
+        android:paddingBottom="25dp">
+
+        <TextView
+            android:id="@+id/textview_effect_equalizer"
+            style="@style/TextView_Effect_Small_Title"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="6dp"
+            android:background="#00000000"
+            android:drawableLeft="@drawable/effect_white"
+            android:drawablePadding="4dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="11sp" />
+
+        <View
+            android:id="@+id/view_scroll_block"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dp"
+            android:background="#104ab7e5" />
+    </com.sds.android.ttpod.widget.audioeffect.EqualizerAnimationWaveView>
+
+    <include
+        android:id="@+id/layout_equ_edit"
+        layout="@layout/audio_effect_equalizer_edit_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Dialog_Header"
+    android:layout_width="match_parent">
+
+    <View
+        android:id="@+id/top_line"
+        style="@style/Dialog_Header_TopLine" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Dialog_Header_Title"
+        android:layout_below="@+id/top_line"
+        android:layout_margin="10dp" />
+
+    <View
+        android:id="@+id/header_divider"
+        style="@style/Dialog_Divider"
+        android:layout_below="@+id/title" />
+
+    <Button
+        android:id="@+id/header_button"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_below="@+id/header_divider"
+        android:background="@drawable/xml_dialog_common_selector"
+        android:gravity="center"
+        android:textColor="@color/dialog_title"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/header_button_divider"
+        style="@style/Dialog_Divider"
+        android:layout_below="@+id/header_button"
+        android:visibility="gone" />
+</RelativeLayout>

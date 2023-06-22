@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/layout" android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView android:id="@+id/imageview_notification_play" android:layout_width="64dp" android:layout_height="64dp" android:layout_marginRight="8dp" android:scaleType="centerCrop" android:layout_alignParentLeft="true" android:layout_centerVertical="true"/>
+    <LinearLayout android:id="@+id/control_bar" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentRight="true" android:layout_centerVertical="true">
+        <ImageView android:id="@+id/button_previous_notification_play" android:background="@drawable/xml_background_notification_playcontrol" android:layout_width="40dp" android:layout_height="64dp" android:src="@drawable/img_button_notification_play_prev"/>
+        <FrameLayout android:background="@drawable/xml_background_notification_playcontrol" android:layout_width="40dp" android:layout_height="match_parent">
+            <ImageView android:id="@+id/button_play_notification_play" android:background="@drawable/xml_background_notification_playcontrol" android:layout_width="40dp" android:layout_height="64dp" android:src="@drawable/img_button_notification_play_play"/>
+            <ImageView android:id="@+id/button_pause_notification_play" android:background="@drawable/xml_background_notification_playcontrol" android:layout_width="40dp" android:layout_height="64dp" android:src="@drawable/img_button_notification_play_pause"/>
+        </FrameLayout>
+        <ImageView android:id="@+id/button_next_notification_play" android:background="@drawable/xml_background_notification_playcontrol" android:layout_width="40dp" android:layout_height="64dp" android:src="@drawable/img_button_notification_play_next"/>
+        <ImageView android:id="@+id/button_exit_notification_play" android:layout_width="36dp" android:layout_height="64dp" android:src="@drawable/img_button_notification_exit" android:scaleType="centerInside"/>
+    </LinearLayout>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@+id/control_bar" android:layout_toRightOf="@+id/imageview_notification_play" android:layout_centerVertical="true">
+        <TextView android:ellipsize="none" android:id="@+id/title" android:fadingEdge="horizontal" android:fadingEdgeLength="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true" style="@android:style/TextAppearance.StatusBar.EventContent.Title"/>
+        <TextView android:ellipsize="none" android:id="@+id/text" android:fadingEdge="horizontal" android:fadingEdgeLength="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:singleLine="true" android:layout_below="@+id/title" style="@android:style/TextAppearance.StatusBar.EventContent"/>
+    </RelativeLayout>
+</RelativeLayout>

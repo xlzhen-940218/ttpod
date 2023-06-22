@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sds.android.ttpod.widget.dragupdatelist.DragUpdateListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dragupdate_listview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:alwaysDrawnWithCache="true"
+    android:divider="@color/transparent"
+    android:dividerHeight="0dp"
+    android:drawSelectorOnTop="true"
+    android:fadingEdge="none"
+    android:fastScrollAlwaysVisible="false"
+    android:fastScrollEnabled="false"
+    android:footerDividersEnabled="false"
+    android:headerDividersEnabled="false"
+    android:listSelector="@color/transparent"
+    android:scrollbarStyle="insideOverlay"
+    android:scrollbars="vertical"
+    android:scrollingCache="true" />

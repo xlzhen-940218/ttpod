@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="#1f2223" android:layout_width="match_parent" android:layout_height="104dp" android:minHeight="@dimen/list_item_height">
+    <RelativeLayout android:id="@+id/layout_root" android:layout_width="match_parent" android:layout_height="match_parent">
+        <RelativeLayout android:orientation="horizontal" android:id="@+id/layout_title" android:background="@drawable/xml_background_recommandeffect_item_title" android:layout_width="match_parent" android:layout_height="31dp" android:layout_alignParentLeft="true" android:layout_alignParentTop="true">
+            <TextView android:textSize="16sp" android:textColor="@color/effect_blue" android:ellipsize="end" android:id="@+id/textview_title" android:paddingLeft="6dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:singleLine="true" android:layout_centerVertical="true"/>
+            <TextView android:textSize="12sp" android:textColor="#ffffff" android:ellipsize="end" android:id="@+id/textview_author" android:paddingLeft="4dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:singleLine="true" android:layout_toRightOf="@+id/textview_title" android:layout_centerVertical="true"/>
+        </RelativeLayout>
+        <RelativeLayout android:background="@drawable/xml_background_myeffect_item" android:layout_width="match_parent" android:layout_height="73dp" android:layout_below="@+id/layout_title">
+            <TextView android:textSize="10sp" android:textColor="#ffffff" android:id="@+id/textview_effect_equalizer" android:background="#00000000" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:layout_marginTop="5dp" android:layout_marginBottom="2dp" android:text="流行POP" android:drawablePadding="4dp" android:layout_alignParentLeft="true" android:layout_alignParentTop="true" android:drawableStart="@drawable/effect_white" style="@style/TextView_Effect_Small_Title"/>
+            <com.sds.android.ttpod.widget.audioeffect.EqualizerAnimationWaveView android:id="@+id/waveview_effect_equalizer_equ" android:paddingLeft="2dp" android:paddingTop="2dp" android:paddingRight="2dp" android:paddingBottom="9dp" android:layout_width="210dp" android:layout_height="66dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_marginBottom="2dp" android:layout_below="@+id/textview_effect_equalizer"/>
+            <LinearLayout android:orientation="horizontal" android:id="@+id/effect_boost_layer" android:paddingBottom="1dp" android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="3" android:layout_toRightOf="@+id/waveview_effect_equalizer_equ" android:layout_alignParentRight="true">
+                <RelativeLayout android:gravity="top" android:paddingTop="8dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+                    <TextView android:textSize="8sp" android:textColor="#ffffff" android:id="@+id/lay_1" android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="4dp" android:text="@string/effect_bass" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+                    <com.sds.android.ttpod.widget.audioeffect.SmallRotatePic android:id="@+id/rotatebutton_bass_boost" android:layout_width="60dp" android:layout_height="60dp" android:layout_below="@+id/lay_1" android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+                <RelativeLayout android:gravity="top" android:paddingTop="8dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+                    <TextView android:textSize="8sp" android:textColor="#ffffff" android:id="@+id/lay_2" android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="4dp" android:text="@string/effect_treble" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+                    <com.sds.android.ttpod.widget.audioeffect.SmallRotatePic android:id="@+id/rotatebutton_treble_boost" android:layout_width="60dp" android:layout_height="60dp" android:layout_below="@+id/lay_2" android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+                <RelativeLayout android:gravity="top" android:paddingTop="8dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+                    <TextView android:textSize="8sp" android:textColor="#ffffff" android:id="@+id/lay_3" android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="4dp" android:text="@string/effect_virtualizer" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"/>
+                    <com.sds.android.ttpod.widget.audioeffect.SmallRotatePic android:id="@+id/rotatebutton_surround" android:layout_width="60dp" android:layout_height="60dp" android:layout_below="@+id/lay_3" android:layout_centerInParent="true" android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

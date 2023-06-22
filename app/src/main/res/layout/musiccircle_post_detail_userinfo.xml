@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:id="@+id/layout_user_info" android:visibility="visible" android:layout_width="match_parent" android:layout_height="54dp">
+    <com.sds.android.ttpod.widget.RoundedImageView android:id="@+id/user_avatar" android:layout_width="54dp" android:layout_height="54dp" android:layout_marginRight="8dp" android:src="@drawable/img_avatar_default" android:scaleType="fitXY" android:contentDescription="@string/ttpod"/>
+    <TextView android:textSize="17sp" android:gravity="center_vertical" android:id="@+id/user_name" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_toRightOf="@+id/user_avatar" android:layout_alignParentTop="true" android:layout_centerVertical="true"/>
+    <ImageView android:layout_gravity="center_vertical" android:id="@+id/iv_user_v" android:visibility="invisible" android:layout_width="14dp" android:layout_height="14dp" android:layout_marginLeft="8dp" android:src="@drawable/img_post_intro_user_v" android:layout_toRightOf="@+id/user_name" android:layout_centerVertical="true"/>
+    <ImageView android:layout_gravity="center_vertical" android:id="@+id/iv_right_arrow" android:layout_width="10dp" android:layout_height="match_parent" android:src="@drawable/img_setting_right_arrow" android:scaleType="fitCenter" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>
+</RelativeLayout>

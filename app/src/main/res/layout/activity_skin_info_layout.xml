@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eff0f4"
+    android:gravity="center"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/skininfo_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
+        android:background="@drawable/img_skin_relative" />
+
+    <LinearLayout
+        android:id="@+id/skininfo_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/skininfo_confirm"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="64dp"
+            android:background="@drawable/xml_background_dialog_button_variable"
+            android:minWidth="72dp"
+            android:padding="8dp"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="0"
+            android:shadowDy="-0.8"
+            android:shadowRadius="0.5"
+            android:text="@string/apply"
+            android:textColor="@color/xml_color_item_title"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/skininfo_cancel"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/xml_background_dialog_button_variable"
+            android:minWidth="72dp"
+            android:padding="8dp"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="0"
+            android:shadowDy="-0.8"
+            android:shadowRadius="0.5"
+            android:text="@string/cancel"
+            android:textColor="@color/xml_color_item_title"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/skininfo_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/skininfo_button"
+        android:layout_below="@+id/skininfo_logo"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/img_background_skin_relative"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/skininfo_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="#242424"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/xml_skin_relative_line" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/skininfo_author"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="left"
+                    android:text="@string/author"
+                    android:textColor="#373737"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/skininfo_version"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="left"
+                    android:text="@string/version"
+                    android:textColor="#373737"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/skininfo_mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:autoLink="email"
+                    android:gravity="left"
+                    android:singleLine="true"
+                    android:text="@string/email"
+                    android:textColor="#373737"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/skininfo_page"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:gravity="left"
+                    android:singleLine="true"
+                    android:text="@string/website"
+                    android:textColor="#373737"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</RelativeLayout>
