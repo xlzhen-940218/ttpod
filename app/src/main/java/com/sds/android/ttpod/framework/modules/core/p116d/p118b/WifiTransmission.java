@@ -34,17 +34,17 @@ public final class WifiTransmission implements HttpServer.InterfaceC1874a {
                     try {
                         this.f6023b = new HttpServer(m8376a, 8888, m4177d, TTPodConfig.m5296l(), this);
                         this.f6023b.m4218a();
-                        CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, new CommonResult(ErrCode.ErrNone, "ok", "http://" + m8376a + ":8888")), ModuleID.MEDIA_SCAN);
+                        CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, new CommonResult(ErrCode.ErrNone, "ok", "http://" + m8376a + ":8888")), ModuleID.MEDIA_SCAN);
                         return;
                     } catch (IOException e) {
                         e.printStackTrace();
-                        CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, new CommonResult(ErrCode.ErrPathNotFound, e.getMessage())), ModuleID.MEDIA_SCAN);
+                        CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, new CommonResult(ErrCode.ErrPathNotFound, e.getMessage())), ModuleID.MEDIA_SCAN);
                         return;
                     }
                 }
                 return;
             }
-            CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, new CommonResult(ErrCode.ErrNotReady, "getLocalWiFiIPAddress Error")), ModuleID.MEDIA_SCAN);
+            CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, new CommonResult(ErrCode.ErrNotReady, "getLocalWiFiIPAddress Error")), ModuleID.MEDIA_SCAN);
         }
     }
 
@@ -76,6 +76,6 @@ public final class WifiTransmission implements HttpServer.InterfaceC1874a {
     @Override // com.sds.android.ttpod.framework.modules.core.p116d.p118b.HttpServer.InterfaceC1874a
     /* renamed from: a */
     public void mo4180a() {
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, new CommonResult(ErrCode.ErrCompletion, "transmission completion")), ModuleID.MEDIA_SCAN);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, new CommonResult(ErrCode.ErrCompletion, "transmission completion")), ModuleID.MEDIA_SCAN);
     }
 }

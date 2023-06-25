@@ -44,22 +44,22 @@ public class SkinCache extends SkinReader {
     private HashMap<String, Typeface> f6647d = new HashMap<>();
 
     /* renamed from: e */
-    private String f6648e = null;
+    private String path = null;
 
     /* renamed from: f */
-    private SerializableSkin f6649f = null;
+    private SerializableSkin serializableSkin = null;
 
     /* renamed from: g */
     private SSkinInfo f6650g = null;
 
     /* renamed from: h */
-    private long f6651h = 0;
+    private long lastModified = 0;
 
     /* renamed from: i */
-    private String f6652i;
+    private String name;
 
     /* renamed from: j */
-    private int f6653j;
+    private int type;
 
     public SkinCache(String str) {
         m3592a(str);
@@ -67,21 +67,21 @@ public class SkinCache extends SkinReader {
 
     /* renamed from: a */
     public void m3592a(String str) {
-        if (!TextUtils.equals(str, this.f6648e)) {
-            m3579i();
-            this.f6648e = str;
+        if (!TextUtils.equals(str, this.path)) {
+            clear();
+            this.path = str;
             if (str.startsWith("assets://")) {
-                this.f6653j = 1;
-                this.f6652i = str.substring("assets://".length());
+                this.type = 1;
+                this.name = str.substring("assets://".length());
             } else if (str.startsWith("package://")) {
-                this.f6653j = 2;
-                this.f6652i = str.substring("package://".length());
+                this.type = 2;
+                this.name = str.substring("package://".length());
             } else if (str.startsWith("file://")) {
-                this.f6653j = 0;
-                this.f6652i = str.substring("file://".length());
+                this.type = 0;
+                this.name = str.substring("file://".length());
             } else {
-                this.f6653j = 0;
-                this.f6652i = str;
+                this.type = 0;
+                this.name = str;
             }
             m3578m();
         }
@@ -89,33 +89,33 @@ public class SkinCache extends SkinReader {
 
     /* renamed from: m */
     private void m3578m() {
-        if (this.f6653j == 0) {
-            this.f6651h = new File(this.f6652i).lastModified();
+        if (this.type == 0) {
+            this.lastModified = new File(this.name).lastModified();
         }
     }
 
     /* renamed from: a */
-    public String m3598a() {
-        return this.f6648e;
+    public String getPath() {
+        return this.path;
     }
 
     /* renamed from: b */
-    public SerializableSkin m3590b() {
-        return this.f6649f;
+    public SerializableSkin getSerializableSkin() {
+        return this.serializableSkin;
     }
 
     /* renamed from: c */
-    public long m3587c() {
-        return this.f6651h;
+    public long getLastModified() {
+        return this.lastModified;
     }
 
     /* renamed from: d */
-    public boolean m3585d() {
-        return this.f6649f != null;
+    public boolean serializableSkinNotNull() {
+        return this.serializableSkin != null;
     }
 
     /* renamed from: a */
-    public Typeface m3593a(SFont sFont) {
+    public Typeface getTypeFace(SFont sFont) {
         String str;
         if (sFont == null || this.f6647d == null) {
             return null;
@@ -238,7 +238,7 @@ public class SkinCache extends SkinReader {
         if (str.startsWith("assets://")) {
             throw new UnsupportedOperationException("not support yet");
         }
-        if (this.f6692b == null || !this.f6692b.mo3757a()) {
+        if (this.packHandle == null || !this.packHandle.streamNotNull()) {
             return null;
         }
         int indexOf = str.indexOf(File.separatorChar);
@@ -262,7 +262,7 @@ public class SkinCache extends SkinReader {
     public Bitmap m3591a(String str, BitmapFactory.Options options) {
         Bitmap bitmap = null;
         try {
-            byte[] mo3753b = this.f6692b.mo3753b(str);
+            byte[] mo3753b = this.packHandle.mo3753b(str);
             if (mo3753b != null) {
                 options.inJustDecodeBounds = true;
                 BitmapFactory.decodeByteArray(mo3753b, 0, mo3753b.length, options);
@@ -281,25 +281,25 @@ public class SkinCache extends SkinReader {
 
     /* renamed from: d */
     public byte[] m3584d(String str) throws IOException {
-        return this.f6692b.mo3753b(str);
+        return this.packHandle.mo3753b(str);
     }
 
     /* renamed from: e */
     public Iterable<String> m3583e() {
-        return this.f6692b;
+        return this.packHandle;
     }
 
     /* renamed from: f */
     public SSkinInfo m3582f() {
-        return this.f6649f == null ? this.f6650g : this.f6649f.m3853a();
+        return this.serializableSkin == null ? this.f6650g : this.serializableSkin.m3853a();
     }
 
     /* renamed from: g */
     public boolean m3581g() {
-        if (this.f6652i == null || TextUtils.isEmpty(this.f6652i)) {
-            this.f6652i = (String) CommandCenter.m4607a().m4602a(new Command(CommandID.GET_SKIN_PROTOCOL_PATH, new Object[0]), String.class);
+        if (this.name == null || TextUtils.isEmpty(this.name)) {
+            this.name = (String) CommandCenter.getInstance().m4602a(new Command(CommandID.GET_SKIN_PROTOCOL_PATH, new Object[0]), String.class);
         }
-        return this.f6653j == 0 ? m3526e(this.f6652i) : m3530a(m3533a(this.f6653j, this.f6652i));
+        return this.type == 0 ? m3526e(this.name) : m3530a(m3533a(this.type, this.name));
     }
 
     /* renamed from: h */
@@ -309,7 +309,7 @@ public class SkinCache extends SkinReader {
             try {
                 if (k != null) {
                     try {
-                        this.f6649f = SerializableSkin.m3845a(m3598a(), m3587c(), k, 65552);
+                        this.serializableSkin = SerializableSkin.m3845a(getPath(), getLastModified(), k, 65552);
                     } catch (Exception e) {
                         e.printStackTrace();
                         try {
@@ -330,17 +330,17 @@ public class SkinCache extends SkinReader {
     }
 
     /* renamed from: i */
-    public void m3579i() {
+    public void clear() {
         this.f6645a.clear();
         this.f6646c.clear();
         this.f6647d.clear();
-        this.f6648e = null;
-        this.f6649f = null;
+        this.path = null;
+        this.serializableSkin = null;
         this.f6650g = null;
-        this.f6651h = 0L;
-        this.f6652i = null;
-        this.f6653j = 0;
-        m3525j();
+        this.lastModified = 0L;
+        this.name = null;
+        this.type = 0;
+        handleClose();
         System.gc();
     }
 
@@ -352,11 +352,11 @@ public class SkinCache extends SkinReader {
         }
         Bitmap m3586c = m3586c("/background.jpg");
         if (m3586c == null) {
-            bitmapDrawable = m3590b().m3851a(context, this, 0);
+            bitmapDrawable = getSerializableSkin().m3851a(context, this, 0);
         } else {
             bitmapDrawable = new BitmapDrawable(m3586c);
         }
-        m3525j();
+        handleClose();
         return bitmapDrawable;
     }
 
@@ -365,8 +365,8 @@ public class SkinCache extends SkinReader {
         if (!m3581g()) {
             return null;
         }
-        Drawable m3851a = m3590b().m3851a(context, this, 0);
-        m3525j();
+        Drawable m3851a = getSerializableSkin().m3851a(context, this, 0);
+        handleClose();
         return m3851a;
     }
 }

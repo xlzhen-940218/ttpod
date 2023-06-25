@@ -21,13 +21,13 @@ public class TskPackHandle extends PackHandle {
     private long f6517c;
 
     /* renamed from: e */
-    private InputStream f6519e;
+    private InputStream stream;
 
     /* renamed from: a */
-    private String f6515a = null;
+    private String title = null;
 
     /* renamed from: d */
-    private HashMap<String, int[]> f6518d = null;
+    private HashMap<String, int[]> skinResourceMaps = null;
 
     /* renamed from: f */
     private ArrayList f6520f = new ArrayList(10);
@@ -72,15 +72,15 @@ public class TskPackHandle extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: a */
-    public boolean mo3757a() {
-        return this.f6519e != null;
+    public boolean streamNotNull() {
+        return this.stream != null;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle, java.io.Closeable, java.lang.AutoCloseable
     public void close() throws IOException {
-        if (this.f6519e != null) {
-            this.f6519e.close();
-            this.f6519e = null;
+        if (this.stream != null) {
+            this.stream.close();
+            this.stream = null;
         }
     }
 
@@ -90,12 +90,12 @@ public class TskPackHandle extends PackHandle {
         if (str == null) {
             throw new IOException("file name is null");
         }
-        int[] iArr = this.f6518d.get(str.toLowerCase(Locale.US));
+        int[] iArr = this.skinResourceMaps.get(str.toLowerCase(Locale.US));
         if (iArr != null) {
-            this.f6519e.reset();
-            this.f6519e.skip(iArr[0]);
+            this.stream.reset();
+            this.stream.skip(iArr[0]);
             byte[] bArr = new byte[iArr[1]];
-            this.f6519e.read(bArr);
+            this.stream.read(bArr);
             return bArr;
         }
         return null;
@@ -103,7 +103,7 @@ public class TskPackHandle extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle, java.lang.Iterable
     public Iterator<String> iterator() {
-        return this.f6518d.keySet().iterator();
+        return this.skinResourceMaps.keySet().iterator();
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
@@ -113,8 +113,8 @@ public class TskPackHandle extends PackHandle {
             throw new IOException("INPUT STREAM NOT SUPPORTED");
         }
         inputStream.mark(inputStream.available());
-        if (!z && this.f6518d.size() > 0) {
-            this.f6519e = inputStream;
+        if (!z && this.skinResourceMaps.size() > 0) {
+            this.stream = inputStream;
             return;
         }
         byte[] bArr = new byte[16784];
@@ -123,7 +123,7 @@ public class TskPackHandle extends PackHandle {
             m3758a(bArr, 8);
             m3758a(bArr, 12);
             int m3758a = m3758a(bArr, 16);
-            this.f6515a = CodeUtils.m4763a(bArr, 24, m3758a(bArr, 20));
+            this.title = CodeUtils.m4763a(bArr, 24, m3758a(bArr, 20));
             int i = m3758a + 20;
             int[] iArr = new int[m3758a(bArr, i) >> 2];
             int i2 = i + 4;
@@ -131,7 +131,7 @@ public class TskPackHandle extends PackHandle {
                 iArr[i3] = m3758a(bArr, i2);
                 i2 += 4;
             }
-            this.f6518d = new HashMap<>();
+            this.skinResourceMaps = new HashMap<>();
             for (int i4 = 0; i4 < iArr.length - 2; i4 += 2) {
                 int i5 = iArr[i4 + 2] - iArr[i4];
                 int[] iArr2 = {iArr[i4 + 1], iArr[i4 + 3] - iArr[i4 + 1]};
@@ -140,11 +140,11 @@ public class TskPackHandle extends PackHandle {
                     String m4763a = CodeUtils.m4763a(bArr, i2 + 4, m3758a2);
                     i2 += i5;
                     if (m4763a != null) {
-                        this.f6518d.put(m4763a.toLowerCase(Locale.US), iArr2);
+                        this.skinResourceMaps.put(m4763a.toLowerCase(Locale.US), iArr2);
                     }
                 }
             }
-            this.f6519e = inputStream;
+            this.stream = inputStream;
             return;
         }
         throw new IOException("NOT TSK FORMATION");

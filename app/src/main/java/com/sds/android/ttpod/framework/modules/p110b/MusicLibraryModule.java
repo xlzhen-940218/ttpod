@@ -14,7 +14,7 @@ import java.util.Map;
 public class MusicLibraryModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.MUSIC_LIBRARY;
     }
 
@@ -26,10 +26,10 @@ public class MusicLibraryModule extends BaseModule {
     }
 
     public void getMusicCategory(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8908a(num.intValue(), num2.intValue()), CommandID.UPDATE_MUSIC_CATEGORY, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongAPI.m8908a(num.intValue(), num2.intValue()), CommandID.UPDATE_MUSIC_CATEGORY, id(), null);
     }
 
     public void getSubMusicCategory(Long l, Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8905a(l.longValue(), num.intValue(), num2.intValue()), CommandID.UPDATE_MUSIC_SUB_CATEGORY, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongAPI.m8905a(l.longValue(), num.intValue(), num2.intValue()), CommandID.UPDATE_MUSIC_SUB_CATEGORY, id(), null);
     }
 }

@@ -194,7 +194,7 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
-    public void m7188b(View view) {
+    public void hiddenImageProgress(View view) {
         if (view.getVisibility() == View.VISIBLE) {
             view.clearAnimation();
             view.setVisibility(View.GONE);
@@ -250,16 +250,16 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
     /* renamed from: a */
     public C1070a m7198a(Drawable drawable, String str) {
         C1070a m7192a = m7192a(str);
-        m7192a.m7162b(0);
-        m7192a.m7160b(drawable);
+        m7192a.showTextOrImage(0);
+        m7192a.setDrawable(drawable);
         return m7192a;
     }
 
     /* renamed from: e */
     public C1070a m7175e(int i) {
         C1070a m7192a = m7192a((String) null);
-        m7192a.m7162b(1);
-        m7192a.m7156c(i);
+        m7192a.showTextOrImage(1);
+        m7192a.setText(i);
         return m7192a;
     }
 
@@ -324,19 +324,19 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
     public final class C1070a {
 
         /* renamed from: b */
-        private View f3625b;
+        private View actionBarAction;
 
         /* renamed from: c */
-        private RelativeLayout f3626c;
+        private RelativeLayout relativeVariable;
 
         /* renamed from: d */
-        private IconTextView f3627d;
+        private IconTextView imageProgress;
 
         /* renamed from: e */
-        private TextView f3628e;
+        private TextView textVariable;
 
         /* renamed from: f */
-        private IconTextView f3629f;
+        private IconTextView imageVariable;
 
         /* renamed from: g */
         private InterfaceC1072b f3630g;
@@ -349,13 +349,13 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
 
         private C1070a(View view) {
             this.f3632i = true;
-            this.f3625b = view;
-            this.f3626c = (RelativeLayout) view.findViewById(R.id.relative_variable);
-            this.f3627d = (IconTextView) view.findViewById(R.id.image_progress);
-            this.f3628e = (TextView) view.findViewById(R.id.text_variable);
-            this.f3629f = (IconTextView) view.findViewById(R.id.image_variable);
-            this.f3627d.setVisibility(View.INVISIBLE);
-            this.f3626c.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.component.a.a.1
+            this.actionBarAction = view;
+            this.relativeVariable = (RelativeLayout) view.findViewById(R.id.relative_variable);
+            this.imageProgress = (IconTextView) view.findViewById(R.id.image_progress);
+            this.textVariable = (TextView) view.findViewById(R.id.text_variable);
+            this.imageVariable = (IconTextView) view.findViewById(R.id.image_variable);
+            this.imageProgress.setVisibility(View.INVISIBLE);
+            this.relativeVariable.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.component.a.a.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view2) {
                     if (C1070a.this.f3630g != null && !C1070a.this.m7154d()) {
@@ -369,14 +369,14 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
         public void m7165a(boolean z) {
             this.f3632i = z;
             if (m7157c()) {
-                this.f3626c.setEnabled(z);
+                this.relativeVariable.setEnabled(z);
             }
         }
 
         /* renamed from: b */
         public void m7159b(boolean z) {
-            this.f3626c.setVisibility(z ? 4 : 8);
-            this.f3626c.setEnabled(false);
+            this.relativeVariable.setVisibility(z ? 4 : 8);
+            this.relativeVariable.setEnabled(false);
         }
 
         /* renamed from: a */
@@ -391,13 +391,13 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
 
         /* renamed from: c */
         public void m7155c(boolean z) {
-            this.f3626c.setVisibility(z ? View.VISIBLE : View.GONE);
-            this.f3626c.setEnabled(this.f3632i & z);
+            this.relativeVariable.setVisibility(z ? View.VISIBLE : View.GONE);
+            this.relativeVariable.setEnabled(this.f3632i & z);
         }
 
         /* renamed from: c */
         public boolean m7157c() {
-            return this.f3626c.getVisibility() == View.VISIBLE;
+            return this.relativeVariable.getVisibility() == View.VISIBLE;
         }
 
         /* renamed from: a */
@@ -407,36 +407,36 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
 
         /* renamed from: d */
         public boolean m7154d() {
-            return this.f3627d.getVisibility() == View.VISIBLE;
+            return this.imageProgress.getVisibility() == View.VISIBLE;
         }
 
         /* renamed from: a */
         public void m7169a(Drawable drawable) {
             if (drawable != null) {
-                this.f3627d.setImageDrawable(drawable);
+                this.imageProgress.setImageDrawable(drawable);
             }
         }
 
         /* renamed from: a */
         public void m7171a(int i) {
             if (i != 0) {
-                this.f3627d.setText(i);
+                this.imageProgress.setText(i);
             }
         }
 
         /* renamed from: a */
         public void m7170a(ColorStateList colorStateList) {
             if (colorStateList != null) {
-                this.f3627d.setTextColor(colorStateList);
+                this.imageProgress.setTextColor(colorStateList);
             }
         }
 
         /* renamed from: e */
         public void m7152e() {
-            ActionBarController.this.m7182c(this.f3627d);
-            this.f3626c.setEnabled(false);
-            this.f3629f.setVisibility(View.INVISIBLE);
-            this.f3628e.setVisibility(View.INVISIBLE);
+            ActionBarController.this.m7182c(this.imageProgress);
+            this.relativeVariable.setEnabled(false);
+            this.imageVariable.setVisibility(View.INVISIBLE);
+            this.textVariable.setVisibility(View.INVISIBLE);
         }
 
         /* renamed from: a */
@@ -451,49 +451,46 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
 
         /* renamed from: g */
         public void m7149g() {
-            ActionBarController.this.m7188b(this.f3627d);
-            this.f3626c.setEnabled(true);
-            this.f3629f.setVisibility(View.VISIBLE);
-            this.f3628e.setVisibility(View.VISIBLE);
+            ActionBarController.this.hiddenImageProgress(this.imageProgress);
+            this.relativeVariable.setEnabled(true);
+            this.imageVariable.setVisibility(View.VISIBLE);
+            this.textVariable.setVisibility(View.VISIBLE);
         }
 
         /* renamed from: b */
-        public void m7162b(int i) {
-            switch (i) {
-                case 0:
-                    this.f3628e.setVisibility(View.INVISIBLE);
-                    this.f3629f.setVisibility(View.VISIBLE);
-                    return;
-                default:
-                    this.f3629f.setVisibility(View.INVISIBLE);
-                    this.f3628e.setVisibility(View.VISIBLE);
-                    return;
+        public void showTextOrImage(int i) {
+            if (i == 0) {
+                this.textVariable.setVisibility(View.INVISIBLE);
+                this.imageVariable.setVisibility(View.VISIBLE);
+                return;
             }
+            this.imageVariable.setVisibility(View.INVISIBLE);
+            this.textVariable.setVisibility(View.VISIBLE);
         }
 
         /* renamed from: c */
-        public void m7156c(int i) {
-            this.f3628e.setText(i);
+        public void setText(int i) {
+            this.textVariable.setText(i);
         }
 
         /* renamed from: d */
-        public void m7153d(int i) {
-            this.f3629f.setImageResource(i);
+        public void setImageResource(int i) {
+            this.imageVariable.setImageResource(i);
         }
 
         /* renamed from: b */
-        public void m7160b(Drawable drawable) {
-            this.f3629f.setImageDrawable(drawable);
+        public void setDrawable(Drawable drawable) {
+            this.imageVariable.setImageDrawable(drawable);
         }
 
         /* renamed from: e */
-        public void m7151e(int i) {
-            this.f3629f.setText(i);
+        public void setImageText(int i) {
+            this.imageVariable.setText(i);
         }
 
         /* renamed from: b */
-        public void m7161b(ColorStateList colorStateList) {
-            this.f3629f.setTextColor(colorStateList);
+        public void setTextColor(ColorStateList colorStateList) {
+            this.imageVariable.setTextColor(colorStateList);
         }
     }
 }

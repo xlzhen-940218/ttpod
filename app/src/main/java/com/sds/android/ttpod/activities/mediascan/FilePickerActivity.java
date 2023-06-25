@@ -68,7 +68,7 @@ public class FilePickerActivity extends SlidingClosableActivity {
     private TextView mTextViewHeader;
     private TextView mTextViewHeaderIcon;
     private int mToastId;
-    private static final File EXTERNAL_STORAGE_DIRECTORY = new File(EnvironmentUtils.C0605d.m8467b());
+    private static final File EXTERNAL_STORAGE_DIRECTORY = new File(EnvironmentUtils.C0605d.getSdcardPath());
     private static final List<String> EMPTY_STRING_LIST = new ArrayList();
     private String mExcludedExtensions = "";
     private String mIncludeExtensions = "";
@@ -107,7 +107,7 @@ public class FilePickerActivity extends SlidingClosableActivity {
                 if (m8266a <= -1) {
                     return;
                 }
-                if (FileUtils.m8409d(FilePickerActivity.this.mAdapter.getItem(m8266a).f2692a)) {
+                if (FileUtils.isDir(FilePickerActivity.this.mAdapter.getItem(m8266a).f2692a)) {
                     FilePickerActivity.this.mAdapter.m8028a(FilePickerActivity.this.mAdapter.getItem(m8266a).f2692a, false, m8266a, FilePickerActivity.EMPTY_STRING_LIST);
                 } else {
                     FilePickerActivity.this.mAdapter.m8029a(FilePickerActivity.this.mAdapter.getItem(m8266a).f2692a);
@@ -130,20 +130,20 @@ public class FilePickerActivity extends SlidingClosableActivity {
     /* JADX INFO: Access modifiers changed from: private */
     public void setSelectAllAction() {
         this.mSelectAction.m7166a((Object) this.mSelectAction);
-        this.mSelectAction.m7151e(R.string.icon_checked);
+        this.mSelectAction.setImageText(R.string.icon_checked);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void setSelectNoneAction() {
         this.mSelectAction.m7166a((Object) null);
-        this.mSelectAction.m7151e(R.string.icon_unchecked);
+        this.mSelectAction.setImageText(R.string.icon_unchecked);
     }
 
     private void initActionBar() {
         ActionBarController actionBarController = getActionBarController();
         if (isMultiMode()) {
             this.mSelectAction = actionBarController.m7198a((Drawable) null, "selectAction");
-            this.mSelectAction.m7161b(getResources().getColorStateList(R.color.default_action_bar_color));
+            this.mSelectAction.setTextColor(getResources().getColorStateList(R.color.default_action_bar_color));
             setSelectNoneAction();
             this.mSelectAction.m7167a(new ActionBarController.InterfaceC1072b() { // from class: com.sds.android.ttpod.activities.mediascan.FilePickerActivity.2
                 @Override // com.sds.android.ttpod.component.ActionBarController.InterfaceC1072b
@@ -201,8 +201,8 @@ public class FilePickerActivity extends SlidingClosableActivity {
             this.mIncludeExtensions = stringExtra2;
             this.mShowFileType = intent.getIntExtra(KEY_EXTRA_SHOW_FILE_TYPE, 0);
             this.mEntryPath = intent.getStringExtra(KEY_EXTRA_PATH);
-            if (!FileUtils.m8409d(this.mEntryPath)) {
-                this.mEntryPath = EnvironmentUtils.C0605d.m8467b();
+            if (!FileUtils.isDir(this.mEntryPath)) {
+                this.mEntryPath = EnvironmentUtils.C0605d.getSdcardPath();
             }
             this.mChoiceMode = intent.getIntExtra(KEY_EXTRA_CHOICE_MODE, 2);
             this.mIsNewFolderEnable = intent.getBooleanExtra(KEY_EXTRA_NEW_FOLDER, false);
@@ -288,7 +288,7 @@ public class FilePickerActivity extends SlidingClosableActivity {
     /* JADX INFO: Access modifiers changed from: private */
     public boolean doUpperPath() {
         File parentFile;
-        if (StringUtils.m8346a(this.mAdapter.f2697d) || (parentFile = new File(this.mAdapter.f2697d).getParentFile()) == null) {
+        if (StringUtils.isEmpty(this.mAdapter.f2697d) || (parentFile = new File(this.mAdapter.f2697d).getParentFile()) == null) {
             return false;
         }
         this.mAdapter.m8028a(parentFile.getAbsolutePath(), true, 0, EMPTY_STRING_LIST);
@@ -323,7 +323,7 @@ public class FilePickerActivity extends SlidingClosableActivity {
                 } else if (!file.isFile() || FilePickerActivity.this.mShowFileType == 2) {
                     return false;
                 } else {
-                    String m8399m = FileUtils.m8399m(file.getName());
+                    String m8399m = FileUtils.getSuffix(file.getName());
                     return m8399m.length() > 0 && FilePickerActivity.this.mIncludeExtensions.contains(new StringBuilder().append(m8399m.toLowerCase(Locale.US)).append("|").toString());
                 }
             }
@@ -441,7 +441,7 @@ public class FilePickerActivity extends SlidingClosableActivity {
                 file = new File(str);
             }
             if (!file.exists() && !file.mkdirs()) {
-                LogUtils.m8388a(FilePickerActivity.TAG, "create " + file + " failed.");
+                LogUtils.debug(FilePickerActivity.TAG, "create " + file + " failed.");
             } else if (file.isDirectory()) {
                 if (FilePickerActivity.this.isMultiMode() && FilePickerActivity.this.mSelectAction.m7150f() != null) {
                     FilePickerActivity.this.setSelectNoneAction();
@@ -535,13 +535,13 @@ public class FilePickerActivity extends SlidingClosableActivity {
                     }
                 }
             });
-            c0755c.f2710b.setText(FileUtils.m8402j(item.f2692a));
+            c0755c.f2710b.setText(FileUtils.getFilename(item.f2692a));
             if (new File(item.f2692a).isDirectory()) {
                 c0755c.f2709a.setBackgroundResource(R.drawable.img_mediascan_item_folder);
                 c0755c.f2709a.setText("");
             } else {
                 c0755c.f2709a.setBackgroundResource(R.drawable.img_mediascan_item_file);
-                c0755c.f2709a.setText(FileUtils.m8399m(item.f2692a.toUpperCase(Locale.US)));
+                c0755c.f2709a.setText(FileUtils.getSuffix(item.f2692a.toUpperCase(Locale.US)));
             }
             return view;
         }

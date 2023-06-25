@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.AlbumItem;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.request.RequestCallback;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.R;
@@ -33,12 +33,8 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ListStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SearchStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -77,7 +73,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
 
     public void updatePlayStatus(PlayStatus playStatus) {
         this.mPlayStatus = OnlinePlayStatus.from(playStatus);
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (m3225N != null) {
             Long songID = m3225N.getSongID();
             this.mPlayingSongId = songID == null ? 0L : songID.longValue();
@@ -93,7 +89,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
-        ListStatistic.m5211a(0);
+        //ListStatistic.m5211a(0);
     }
 
     public void playMediaChanged() {
@@ -154,8 +150,8 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
             Intent intent = new Intent(getActivity(), AlbumDownloadSelectActivity.class);
             intent.putExtra(AlbumDownloadSelectActivity.KEY_MEDIA_LIST, (Serializable) this.mAlbumListFragment.getList());
             startActivity(intent);
-            SearchStatistic.m4933f();
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_MENU_DOWNLOAD.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue(), SPage.PAGE_SEARCH_ALBUM_DOWNLOAD.getValue()).append("song_album_id", Long.valueOf(this.mAlbumItem.getId())).post();
+            //SearchStatistic.m4933f();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_MENU_DOWNLOAD.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue(), SPage.PAGE_SEARCH_ALBUM_DOWNLOAD.getValue()).append("song_album_id", Long.valueOf(this.mAlbumItem.getId())).post();
         }
     }
 
@@ -166,14 +162,8 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
             bundle.putString(AbsMediaListFragment.KEY_GROUP_ID, MediaStorage.GROUP_ID_ONLINE_TEMPORARY);
             this.mAlbumListFragment.setArguments(bundle);
             this.mAlbumListFragment.setModule("search");
-            this.mAlbumListFragment.setOrigin(SearchStatistic.m4942b() + "-album");
-            this.mAlbumListFragment.setOnDataRequestListener(new OnlineMediaListFragment.InterfaceC1666a() { // from class: com.sds.android.ttpod.fragment.search.AlbumDetailFragment.2
-                @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment.InterfaceC1666a
-                /* renamed from: a */
-                public void mo5420a() {
-                    AlbumDetailFragment.this.requestSongList();
-                }
-            });
+            this.mAlbumListFragment.setOrigin("-album");
+            this.mAlbumListFragment.setOnDataRequestListener(() -> AlbumDetailFragment.this.requestSongList());
         }
         getChildFragmentManager().beginTransaction().replace(R.id.album_list, this.mAlbumListFragment).commitAllowingStateLoss();
     }
@@ -196,8 +186,8 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
                     AlbumDetailFragment.this.mPlayView.startAnimation(AnimationUtils.loadAnimation(AlbumDetailFragment.this.getActivity(), R.anim.unlimited_rotate));
                 }
                 AlbumDetailFragment.this.togglePlayMedia();
-                SearchStatistic.m4936d();
-                new SUserEvent("PAGE_CLICK", SAction.ACTOIN_CLICK_SEARCH_ALBUM_PLAY_ALL.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue(), 0).append("song_album_id", Long.valueOf(AlbumDetailFragment.this.mAlbumItem.getId())).post();
+                //SearchStatistic.m4936d();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTOIN_CLICK_SEARCH_ALBUM_PLAY_ALL.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue(), 0).append("song_album_id", Long.valueOf(AlbumDetailFragment.this.mAlbumItem.getId())).post();
             }
         });
         this.mAlbumListFragment.getListView().addHeaderView(this.mAlbumHeader);
@@ -225,7 +215,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
             @Override // android.view.View.OnClickListener
             public void onClick(View view2) {
                 AlbumDetailFragment.this.launchAlbumIntroduceFragment();
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_DETAIL_INTRODUCTION.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue(), SPage.PAGE_SEARCH_ALBUM_INTRODUCTION.getValue()).append("song_album_id", Long.valueOf(AlbumDetailFragment.this.mAlbumItem.getId())).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_DETAIL_INTRODUCTION.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue(), SPage.PAGE_SEARCH_ALBUM_INTRODUCTION.getValue()).append("song_album_id", Long.valueOf(AlbumDetailFragment.this.mAlbumItem.getId())).post();
             }
         });
     }
@@ -242,7 +232,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
         AlbumIntroduceFragment albumIntroduceFragment = new AlbumIntroduceFragment();
         albumIntroduceFragment.setArguments(getArguments());
         launchFragment(albumIntroduceFragment);
-        SearchStatistic.m4934e();
+        //SearchStatistic.m4934e();
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
@@ -269,7 +259,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
                     AlbumDetailFragment.this.mSongCount.setText(AlbumDetailFragment.this.getString(R.string.album_song_count, Integer.valueOf(arrayList.size())));
                     AlbumDetailFragment.this.mAlbumListFragment.updateMediaList(arrayList);
                 }
-                SearchStatistic.m4940b(Integer.valueOf(onlineMediaItemsResult.getCode()));
+                //SearchStatistic.m4940b(Integer.valueOf(onlineMediaItemsResult.getCode()));
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
@@ -278,7 +268,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
                 if (AlbumDetailFragment.this.isAdded()) {
                     AlbumDetailFragment.this.mAlbumListFragment.updateMediaList(null);
                 }
-                SearchStatistic.m4940b(Integer.valueOf(onlineMediaItemsResult.getCode()));
+                //SearchStatistic.m4940b(Integer.valueOf(onlineMediaItemsResult.getCode()));
             }
         });
     }
@@ -336,14 +326,14 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
         @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
         public void onMediaItemClicked(MediaItem mediaItem, int i) {
             super.onMediaItemClicked(mediaItem, i);
-            StatisticUtils.m4907a("search", "listen", getOrigin(), 0L, OnlineMediaStatistic.m5029f(), SearchStatistic.m4938c(), SearchStatistic.m4950a());
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_SONG_ITEM.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue(), 0).append("song_album_id", Long.valueOf(AlbumDetailFragment.this.mAlbumItem.getId())).append("song_id", mediaItem.getSongID()).append("position", Integer.valueOf(OnlineMediaStatistic.m5029f())).post();
+            //StatisticUtils.m4907a("search", "listen", getOrigin(), 0L, //OnlineMediaStatistic.m5029f(), //SearchStatistic.m4938c(), //SearchStatistic.m4950a());
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_SONG_ITEM.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue(), 0).append("song_album_id", Long.valueOf(AlbumDetailFragment.this.mAlbumItem.getId())).append("song_id", mediaItem.getSongID()).append("position", Integer.valueOf(//OnlineMediaStatistic.m5029f())).post();
         }
 
         @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
         protected void showRightContextMenu(MediaItem mediaItem) {
             if (getOrigin() != null) {
-                StatisticUtils.m4907a(getModule(), "menu", getOrigin(), 0L, OnlineMediaStatistic.m5029f(), SearchStatistic.m4938c(), SearchStatistic.m4950a());
+                //StatisticUtils.m4907a(getModule(), "menu", getOrigin(), 0L, //OnlineMediaStatistic.m5029f(), //SearchStatistic.m4938c(), //SearchStatistic.m4950a());
             }
             new DownloadMenuHandler(getActivity()).m6927a(mediaItem, getOrigin());
         }
@@ -352,8 +342,8 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
         @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
         public void onFavoriteChanged(MediaItem mediaItem, boolean z) {
             super.onFavoriteChanged(mediaItem, z);
-            SearchStatistic.m4943a(z);
-            ListStatistic.m5206a(mediaItem.getSongID().longValue(), OnlineMediaStatistic.m5029f(), z);
+            //SearchStatistic.m4943a(z);
+            //ListStatistic.m5206a(mediaItem.getSongID().longValue(), //OnlineMediaStatistic.m5029f(), z);
         }
 
         @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment

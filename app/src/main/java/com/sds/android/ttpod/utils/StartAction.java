@@ -11,8 +11,8 @@ import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
 import com.sds.android.cloudapi.ttpod.data.FeedbackMessage;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
 import com.sds.android.cloudapi.ttpod.data.User;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
+
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
@@ -42,7 +42,6 @@ import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.framework.support.p134a.PlayMode;
@@ -171,7 +170,7 @@ public class StartAction {
     private boolean m8213c(Uri uri) {
         String queryParameter = uri.getQueryParameter("id");
         String queryParameter2 = uri.getQueryParameter("target");
-        if (!StringUtils.m8346a(queryParameter) && !StringUtils.m8346a(queryParameter2)) {
+        if (!StringUtils.isEmpty(queryParameter) && !StringUtils.isEmpty(queryParameter2)) {
             long m8204f = m8204f(queryParameter);
             Bundle bundle = new Bundle();
             if ("post".equals(queryParameter2)) {
@@ -191,48 +190,48 @@ public class StartAction {
         if (0 != m8227a) {
             bundle.putLong("post_id", m8227a);
             bundle.putInt("category_type", 1);
-            StatisticUtils.m4909a("push", "show", "gexin", 1L);
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_POST_DETAIL.getValue()).append("cid", Preferences.m2945az()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(m8227a)).post();
+            //StatisticUtils.m4909a("push", "show", "gexin", 1L);
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_POST_DETAIL.getValue()).append("cid", Preferences.m2945az()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(m8227a)).post();
             return m8189r(bundle);
         }
         long m8227a2 = m8227a(bundle, "rankId", 0L);
         if (m8227a2 > 0) {
             this.f2521c.launchFragment(new SubRankDetailFragment((int) m8227a2));
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_RANK_DETAIL.getValue()).append("cid", Preferences.m2945az()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(m8227a2)).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_RANK_DETAIL.getValue()).append("cid", Preferences.m2945az()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(m8227a2)).post();
             return true;
         }
         long m8227a3 = m8227a(bundle, "categoryId", 0L);
         if (m8227a3 > 0) {
             this.f2521c.launchFragment(new SubSongCategoryDetailFragment(String.valueOf(m8227a3)));
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_SONG_CATEGORY.getValue()).append("cid", Preferences.m2945az()).append("channel_id", Long.valueOf(m8227a3)).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_SONG_CATEGORY.getValue()).append("cid", Preferences.m2945az()).append("channel_id", Long.valueOf(m8227a3)).post();
             return true;
         }
         String string = bundle.getString("link");
-        if (!StringUtils.m8346a(string)) {
+        if (!StringUtils.isEmpty(string)) {
             bundle.putInt("category_type", 1);
             bundle.putString(WebFragment.EXTRA_TITLE, this.f2521c.getString(R.string.detail_page));
             bundle.putString(WebFragment.EXTRA_URL, string);
             bundle.putBoolean(WebFragment.EXTRA_IS_SHOW_PLAY_CONTROL_BAR, true);
-            StatisticUtils.m4909a("push", "show", "gexin", 2L);
+            //StatisticUtils.m4909a("push", "show", "gexin", 2L);
             WebSlidingClosableFragment webSlidingClosableFragment = new WebSlidingClosableFragment();
             webSlidingClosableFragment.setArguments(bundle);
             this.f2521c.launchFragment(webSlidingClosableFragment);
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_POST_DETAIL_WEB.getValue()).append("cid", Preferences.m2945az()).append("url", string).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_POST_DETAIL_WEB.getValue()).append("cid", Preferences.m2945az()).append("url", string).post();
             return true;
         }
         String string2 = bundle.getString("search");
-        if (!StringUtils.m8346a(string2)) {
+        if (!StringUtils.isEmpty(string2)) {
             bundle.putString("search", string2);
             return m8187t(bundle);
         }
         String string3 = bundle.getString("uri");
         int m8227a4 = (int) m8227a(bundle, OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY, 0L);
-        if (!StringUtils.m8346a(string3) && m8227a4 > 0) {
+        if (!StringUtils.isEmpty(string3) && m8227a4 > 0) {
             bundle.putString("uri", string3);
             return m8212c(bundle);
         } else if (bundle.getBoolean("push_redirect_id")) {
             m8218b();
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_FIND_SONG.getValue()).append("cid", Preferences.m2945az()).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_PUSH_OPEN.getValue(), SPage.PAGE_PUSH.getValue(), SPage.PAGE_ONLINE_FIND_SONG.getValue()).append("cid", Preferences.m2945az()).post();
             return true;
         } else {
             return false;
@@ -249,7 +248,7 @@ public class StartAction {
         if (m8198i(string)) {
             return m8195l(bundle);
         }
-        if (!StringUtils.m8346a(string2)) {
+        if (!StringUtils.isEmpty(string2)) {
             return m8196k(bundle);
         }
         return false;
@@ -258,35 +257,35 @@ public class StartAction {
     /* renamed from: d */
     private boolean m8209d(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.m4607a().m4596b(new Command(CommandID.NEXT, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.NEXT, new Object[0]));
         return true;
     }
 
     /* renamed from: e */
     private boolean m8207e(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.m4607a().m4596b(new Command(CommandID.PREVIOUS, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.PREVIOUS, new Object[0]));
         return true;
     }
 
     /* renamed from: f */
     private boolean m8205f(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.m4607a().m4596b(new Command(CommandID.STOP, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
         return true;
     }
 
     /* renamed from: g */
     private boolean m8203g(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.m4607a().m4596b(new Command(CommandID.PAUSE, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.PAUSE, new Object[0]));
         return true;
     }
 
     /* renamed from: h */
     private boolean m8201h(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.m4607a().m4596b(new Command(CommandID.RESUME, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.RESUME, new Object[0]));
         return true;
     }
 
@@ -295,8 +294,8 @@ public class StartAction {
     public void m8230a(long j, boolean z, Bundle bundle) {
         if (!z && 1 == j && this.f2521c != null) {
             String m8226a = m8226a(bundle, "uri", "");
-            if (!StringUtils.m8346a(m8226a)) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.START_COMMON_UPGRADE, m8226a));
+            if (!StringUtils.isEmpty(m8226a)) {
+                CommandCenter.getInstance().m4606a(new Command(CommandID.START_COMMON_UPGRADE, m8226a));
                 this.f2521c.startActivity(new Intent(this.f2521c, VersionUpgradeProgressActivity.class));
             }
         }
@@ -323,10 +322,10 @@ public class StartAction {
                     StartAction.this.m8230a(m8227a, true, bundle);
                 }
             });
-            if (!StringUtils.m8346a(m8226a3)) {
+            if (!StringUtils.isEmpty(m8226a3)) {
                 messageDialog.m7258a(m8226a3);
             }
-            if (!StringUtils.m8346a(m8226a4)) {
+            if (!StringUtils.isEmpty(m8226a4)) {
                 messageDialog.m7252b(m8226a4);
             }
             messageDialog.setTitle(m8226a);
@@ -339,7 +338,7 @@ public class StartAction {
     /* renamed from: j */
     private boolean m8197j(Bundle bundle) {
         String m8226a = m8226a(bundle, "url", "");
-        if (StringUtils.m8346a(m8226a)) {
+        if (StringUtils.isEmpty(m8226a)) {
             return false;
         }
         String m8226a2 = m8226a(bundle, "title", "");
@@ -362,7 +361,7 @@ public class StartAction {
         String string = bundle.getString("song_id");
         final int m8227a = (int) m8227a(bundle, "play_mode", -1L);
         final int m8227a2 = (int) m8227a(bundle, "position", 0L);
-        if (StringUtils.m8346a(string)) {
+        if (StringUtils.isEmpty(string)) {
             return false;
         }
         List<Long> m8338b = StringUtils.m8338b(string, ",");
@@ -384,10 +383,10 @@ public class StartAction {
     private boolean m8195l(Bundle bundle) {
         String string = bundle.getString("uri");
         int m8227a = (int) m8227a(bundle, "play_mode", -1L);
-        if (StringUtils.m8346a(string) || !FileUtils.m8419a(string)) {
+        if (StringUtils.isEmpty(string) || !FileUtils.m8419a(string)) {
             return false;
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.PLAY, string));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY, string));
         m8217b(m8227a);
         return true;
     }
@@ -401,7 +400,7 @@ public class StartAction {
         int m8227a = (int) m8227a(bundle, "position", 0L);
         int m8227a2 = (int) m8227a(bundle, "duration", 0L);
         int m8227a3 = (int) m8227a(bundle, "play_mode", -1L);
-        if (StringUtils.m8346a(string)) {
+        if (StringUtils.isEmpty(string)) {
             return false;
         }
         arrayList.add(MediaItemUtils.m4711a(string, string2, string3, m8227a2));
@@ -413,18 +412,18 @@ public class StartAction {
         if (i <= 0) {
             return;
         }
-        new SSystemEvent("SYS_THIRDPARTY", str).append("sid", Integer.valueOf(i)).append("action", z ? FeedbackItem.STATUS_WAITING : "1").post();
+        //new //SSystemEvent("SYS_THIRDPARTY", str).append("sid", Integer.valueOf(i)).append("action", z ? FeedbackItem.STATUS_WAITING : "1").post();
     }
 
     /* renamed from: n */
     private boolean m8193n(Bundle bundle) {
         String string = bundle.getString("song_id");
-        if (!StringUtils.m8346a(string)) {
+        if (!StringUtils.isEmpty(string)) {
             return m8214b(string);
         }
         DownloadTaskInfo m8192o = m8192o(bundle);
         if (m8192o != null) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m8192o));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m8192o));
             return true;
         }
         return false;
@@ -432,7 +431,7 @@ public class StartAction {
 
     /* renamed from: b */
     private boolean m8214b(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return false;
         }
         List<Long> m8338b = StringUtils.m8338b(str, ",");
@@ -442,7 +441,7 @@ public class StartAction {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo4039a(List<MediaItem> list) {
                     if (list != null && list.size() > 0) {
-                        CommandCenter.m4607a().m4605a(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, DownloadUtils.m4758a(list, AudioQuality.HIGH), Boolean.FALSE), 10);
+                        CommandCenter.getInstance().m4605a(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, DownloadUtils.m4758a(list, AudioQuality.HIGH), Boolean.FALSE), 10);
                     }
                 }
             });
@@ -454,35 +453,35 @@ public class StartAction {
     /* renamed from: o */
     private DownloadTaskInfo m8192o(Bundle bundle) {
         String string = bundle.getString("uri");
-        if (StringUtils.m8346a(string)) {
+        if (StringUtils.isEmpty(string)) {
             return null;
         }
         int m8227a = (int) m8227a(bundle, "type", m8211c(string));
         int intValue = (m8227a > DownloadTaskInfo.TYPE_APP.intValue() || m8227a < DownloadTaskInfo.TYPE_AUDIO.intValue()) ? DownloadTaskInfo.TYPE_AUDIO.intValue() : m8227a;
         String string2 = bundle.getString("path");
-        if (StringUtils.m8346a(string2) || !FileUtils.m8419a(string2)) {
+        if (StringUtils.isEmpty(string2) || !FileUtils.m8419a(string2)) {
             string2 = m8232a(intValue);
         }
         String string3 = bundle.getString("name");
         StringBuilder append = new StringBuilder(string2).append(File.separator);
-        if (!StringUtils.m8346a(string3)) {
-            String m8399m = FileUtils.m8399m(string);
-            String m8399m2 = FileUtils.m8399m(string3);
+        if (!StringUtils.isEmpty(string3)) {
+            String m8399m = FileUtils.getSuffix(string);
+            String m8399m2 = FileUtils.getSuffix(string3);
             append.append(string3);
-            if (StringUtils.m8346a(m8399m2) && !StringUtils.m8346a(m8399m)) {
+            if (StringUtils.isEmpty(m8399m2) && !StringUtils.isEmpty(m8399m)) {
                 append.append(".").append(m8399m);
             }
         } else {
             string3 = FileUtils.m8401k(string);
-            append.append(FileUtils.m8402j(string));
+            append.append(FileUtils.getFilename(string));
         }
         return DownloadUtils.m4760a(string, append.toString(), 0L, string3, Integer.valueOf(intValue), true, "thirdparty_download");
     }
 
     /* renamed from: c */
     private int m8211c(String str) {
-        String m8399m = FileUtils.m8399m(str);
-        if (!StringUtils.m8346a(m8399m)) {
+        String m8399m = FileUtils.getSuffix(str);
+        if (!StringUtils.isEmpty(m8399m)) {
             if (m8399m.equalsIgnoreCase("apk")) {
                 return DownloadTaskInfo.TYPE_APP.intValue();
             }
@@ -514,7 +513,7 @@ public class StartAction {
     private void m8217b(int i) {
         if (i >= 0 && i < PlayMode.values().length) {
             Preferences.m3018a(PlayMode.values()[i]);
-            CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_PLAY_MODE, new Object[0]), ModuleID.SUPPORT);
+            CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_PLAY_MODE, new Object[0]), ModuleID.SUPPORT);
         }
     }
 
@@ -527,8 +526,8 @@ public class StartAction {
         if (i2 >= list.size()) {
             i2 = 0;
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
-        CommandCenter.m4607a().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(i2)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(i2)));
         m8217b(i);
         return true;
     }
@@ -538,7 +537,7 @@ public class StartAction {
         String string = bundle.getString("media_json");
         int m8227a = (int) m8227a(bundle, "play_mode", -1L);
         int m8227a2 = (int) m8227a(bundle, "position", 0L);
-        if (StringUtils.m8346a(string)) {
+        if (StringUtils.isEmpty(string)) {
             return false;
         }
         return m8221a(m8220a(m8202g(m8206e(string))), m8227a, m8227a2);
@@ -575,7 +574,7 @@ public class StartAction {
         String string = bundle.getString("uri");
         String string2 = bundle.getString("title");
         long m8227a = m8227a(bundle, "display_type", 0L);
-        if (StringUtils.m8346a(string)) {
+        if (StringUtils.isEmpty(string)) {
             return false;
         }
         Intent intent = new Intent(this.f2521c, WebActivity.class);
@@ -592,7 +591,7 @@ public class StartAction {
     /* renamed from: t */
     private boolean m8187t(Bundle bundle) {
         String string = bundle.getString("search");
-        if (StringUtils.m8346a(string)) {
+        if (StringUtils.isEmpty(string)) {
             return false;
         }
         m8222a(string, (int) m8227a(bundle, "id", 0L));
@@ -640,7 +639,7 @@ public class StartAction {
     /* renamed from: a */
     private long m8227a(Bundle bundle, String str, long j) {
         Object obj = bundle.get(str);
-        if (obj != null && !StringUtils.m8346a(obj.toString())) {
+        if (obj != null && !StringUtils.isEmpty(obj.toString())) {
             return m8204f(obj.toString());
         }
         return j;
@@ -649,7 +648,7 @@ public class StartAction {
     /* renamed from: a */
     private String m8226a(Bundle bundle, String str, String str2) {
         String string = bundle.getString(str);
-        return StringUtils.m8346a(string) ? str2 : string;
+        return StringUtils.isEmpty(string) ? str2 : string;
     }
 
     /* renamed from: d */
@@ -659,7 +658,7 @@ public class StartAction {
         bundle.putString("action", uri.getHost());
         for (String str : m8223a(uri.getEncodedQuery())) {
             String queryParameter = uri.getQueryParameter(str);
-            if (!StringUtils.m8346a(queryParameter)) {
+            if (!StringUtils.isEmpty(queryParameter)) {
                 bundle.putString(str, queryParameter);
             }
         }
@@ -699,7 +698,7 @@ public class StartAction {
 
     /* renamed from: g */
     private JSONArray m8202g(String str) {
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             try {
                 return new JSONArray(str);
             } catch (Exception e) {
@@ -719,7 +718,7 @@ public class StartAction {
             try {
                 JSONObject jSONObject = jSONArray.getJSONObject(i);
                 String string = jSONObject.getString("uri");
-                if (!StringUtils.m8346a(string)) {
+                if (!StringUtils.isEmpty(string)) {
                     arrayList.add(MediaItemUtils.m4711a(string, jSONObject.optString("title", ""), jSONObject.optString("artist", ""), (int) m8204f(jSONObject.optString("duration", FeedbackItem.STATUS_WAITING))));
                 }
             } catch (Exception e) {
@@ -731,11 +730,11 @@ public class StartAction {
 
     /* renamed from: h */
     private boolean m8200h(String str) {
-        return !StringUtils.m8346a(str) && (str.startsWith("http://") || str.startsWith("https://"));
+        return !StringUtils.isEmpty(str) && (str.startsWith("http://") || str.startsWith("https://"));
     }
 
     /* renamed from: i */
     private boolean m8198i(String str) {
-        return !StringUtils.m8346a(str) && FileUtils.m8419a(str);
+        return !StringUtils.isEmpty(str) && FileUtils.m8419a(str);
     }
 }

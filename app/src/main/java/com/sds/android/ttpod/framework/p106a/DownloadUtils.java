@@ -28,7 +28,7 @@ public class DownloadUtils {
 
     /* renamed from: a */
     public static DownloadTaskInfo m4759a(String str, String str2, String str3, Long l, String str4, Integer num, Boolean bool, String str5) {
-        DownloadTaskInfo downloadTaskInfo = new DownloadTaskInfo(StringUtils.m8346a(str) ? MediaStorage.GROUP_ID_DOWNLOAD : str, str2, str3, num, bool);
+        DownloadTaskInfo downloadTaskInfo = new DownloadTaskInfo(StringUtils.isEmpty(str) ? MediaStorage.GROUP_ID_DOWNLOAD : str, str2, str3, num, bool);
         downloadTaskInfo.setFileId(l);
         downloadTaskInfo.setFileName(str4);
         downloadTaskInfo.setOrigin(str5);
@@ -49,7 +49,7 @@ public class DownloadUtils {
         DownloadTaskInfo m4760a = m4760a(m4682b.getUrl(), OnlineMediaItemUtils.m4688a(onlineMediaItem, m4682b), Long.valueOf(onlineMediaItem.getSongId()), onlineMediaItem.getTitle(), DownloadTaskInfo.TYPE_AUDIO, true, "专辑下载");
         m4760a.setAudioQuality(AudioQuality.quality(m4682b.getBitrate()).toString());
         m4760a.setTag(mediaItem);
-        if (!StringUtils.m8346a(mediaItem.getGroupID())) {
+        if (!StringUtils.isEmpty(mediaItem.getGroupID())) {
             m4760a.setGroupId(mediaItem.getGroupID());
             return m4760a;
         }
@@ -73,7 +73,7 @@ public class DownloadUtils {
     public static String m4762a(DownloadTaskInfo downloadTaskInfo) {
         if (f5630a || downloadTaskInfo == null) {
             String groupId = downloadTaskInfo.getGroupId();
-            if (StringUtils.m8346a(groupId)) {
+            if (StringUtils.isEmpty(groupId)) {
                 return groupId;
             }
             if (StringUtils.m8344a(MediaStorage.GROUP_ID_FAV_LOCAL, groupId) || groupId.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {

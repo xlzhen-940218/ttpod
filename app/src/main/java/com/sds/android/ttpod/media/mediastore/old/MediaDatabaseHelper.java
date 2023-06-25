@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.media.mediastore.old.MediaStoreOld;
 
 
 /* loaded from: classes.dex */
@@ -204,61 +203,61 @@ public final class MediaDatabaseHelper extends SQLiteOpenHelper {
 
     @Override // android.database.sqlite.SQLiteOpenHelper
     public void onUpgrade(SQLiteDatabase sQLiteDatabase, int i, int i2) {
-        LogUtils.m8379d(LOG_TAG, "databaseUpgrade:" + i + "->" + i2);
+        LogUtils.info(LOG_TAG, "databaseUpgrade:" + i + "->" + i2);
         if (i <= 24) {
             try {
                 upgradeToVer25(sQLiteDatabase);
             } catch (Exception e) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 25 error", e);
+                LogUtils.error(LOG_TAG, "database upgrade to 25 error", e);
             }
         }
         if (i < 26) {
             try {
                 upgradeToVer26(sQLiteDatabase);
             } catch (Exception e2) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 26 error", e2);
+                LogUtils.error(LOG_TAG, "database upgrade to 26 error", e2);
             }
         }
         if (i < 27) {
             try {
                 upgradeToVer27(sQLiteDatabase);
             } catch (Exception e3) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 27 error", e3);
+                LogUtils.error(LOG_TAG, "database upgrade to 27 error", e3);
             }
         }
         if (i < 28) {
             try {
                 upgradeToVer28(sQLiteDatabase);
             } catch (Exception e4) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 28 error", e4);
+                LogUtils.error(LOG_TAG, "database upgrade to 28 error", e4);
             }
         }
         if (i < 29) {
             try {
                 upgradeToVer29(sQLiteDatabase);
             } catch (Exception e5) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 29 error", e5);
+                LogUtils.error(LOG_TAG, "database upgrade to 29 error", e5);
             }
         }
         if (i < 30) {
             try {
                 upgradeToVer30(sQLiteDatabase);
             } catch (Exception e6) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 30 error", e6);
+                LogUtils.error(LOG_TAG, "database upgrade to 30 error", e6);
             }
         }
         if (i < 31) {
             try {
                 upgradeToVer31(sQLiteDatabase);
             } catch (Exception e7) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 31 error", e7);
+                LogUtils.error(LOG_TAG, "database upgrade to 31 error", e7);
             }
         }
         if (i < 32) {
             try {
                 upgradeToVer32(sQLiteDatabase);
             } catch (Exception e8) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 32 error", e8);
+                LogUtils.error(LOG_TAG, "database upgrade to 32 error", e8);
             }
         }
         if (i < 33) {
@@ -272,35 +271,35 @@ public final class MediaDatabaseHelper extends SQLiteOpenHelper {
             try {
                 upgradeToVer35(sQLiteDatabase);
             } catch (Exception e10) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 35 error", e10);
+                LogUtils.error(LOG_TAG, "database upgrade to 35 error", e10);
             }
         }
         if (i < DATABASE_VERSION_38) {
             try {
                 upgradeToVer38(sQLiteDatabase);
             } catch (Exception e11) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 38 error", e11);
+                LogUtils.error(LOG_TAG, "database upgrade to 38 error", e11);
             }
         }
         if (i < DATABASE_VERSION_41) {
             try {
                 upgradeToVer41(sQLiteDatabase);
             } catch (Exception e12) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 41 error", e12);
+                LogUtils.error(LOG_TAG, "database upgrade to 41 error", e12);
             }
         }
         if (i < DATABASE_VERSION_45) {
             try {
                 upgradeToVer45(sQLiteDatabase);
             } catch (Exception e13) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 45 error", e13);
+                LogUtils.error(LOG_TAG, "database upgrade to 45 error", e13);
             }
         }
         if (i < 46) {
             try {
                 upgradeToVer46(sQLiteDatabase);
             } catch (Exception e14) {
-                LogUtils.m8383b(LOG_TAG, "database upgrade to 46 error", e14);
+                LogUtils.error(LOG_TAG, "database upgrade to 46 error", e14);
             }
         }
     }
@@ -411,14 +410,14 @@ public final class MediaDatabaseHelper extends SQLiteOpenHelper {
             try {
                 int version = sQLiteDatabase2.getVersion();
                 z = version != 46;
-                LogUtils.m8388a(LOG_TAG, String.format("lookdbversion: curDbVersion %d , support Version_Newest %d.", Integer.valueOf(version), 46));
+                LogUtils.debug(LOG_TAG, String.format("lookdbversion: curDbVersion %d , support Version_Newest %d.", Integer.valueOf(version), 46));
                 if (version > 46) {
                     try {
                         sQLiteDatabase2.close();
-                        LogUtils.m8388a(LOG_TAG, String.format("curVersion %d > Version_Newest %d will delete db.", Integer.valueOf(version), 46));
+                        LogUtils.debug(LOG_TAG, String.format("curVersion %d > Version_Newest %d will delete db.", Integer.valueOf(version), 46));
                         FileUtils.m8404h(path);
                     } catch (Exception e) {
-                        LogUtils.m8381c(LOG_TAG, "TTMessage1:" + e.getMessage());
+                        LogUtils.error(LOG_TAG, "TTMessage1:" + e.getMessage());
                     } catch (Throwable th2) {
                         th = th2;
                         if (sQLiteDatabase2 != null) {
@@ -432,20 +431,20 @@ public final class MediaDatabaseHelper extends SQLiteOpenHelper {
                     try {
                         sQLiteDatabase3.close();
                     } catch (Exception e2) {
-                        LogUtils.m8378e(LOG_TAG, "TTMessage2:" + e2.getMessage());
+                        LogUtils.verbose(LOG_TAG, "TTMessage2:" + e2.getMessage());
                     }
                 }
             } catch (Throwable th3) {
                 th = th3;
                 sQLiteDatabase = sQLiteDatabase2;
                 try {
-                    LogUtils.m8388a(LOG_TAG, "TTMessage:" + th.getMessage());
+                    LogUtils.debug(LOG_TAG, "TTMessage:" + th.getMessage());
                     if (sQLiteDatabase != null) {
                         try {
                             sQLiteDatabase.close();
                             z = false;
                         } catch (Exception e3) {
-                            LogUtils.m8378e(LOG_TAG, "TTMessage2:" + e3.getMessage());
+                            LogUtils.verbose(LOG_TAG, "TTMessage2:" + e3.getMessage());
                             z = false;
                         }
                     } else {
@@ -459,7 +458,7 @@ public final class MediaDatabaseHelper extends SQLiteOpenHelper {
                         try {
                             sQLiteDatabase2.close();
                         } catch (Exception e4) {
-                            LogUtils.m8378e(LOG_TAG, "TTMessage2:" + e4.getMessage());
+                            LogUtils.verbose(LOG_TAG, "TTMessage2:" + e4.getMessage());
                         }
                     }
                     //throw th;

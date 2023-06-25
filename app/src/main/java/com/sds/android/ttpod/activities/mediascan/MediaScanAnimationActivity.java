@@ -92,12 +92,12 @@ public class MediaScanAnimationActivity extends BaseActivity {
         if (strArr == null) {
             setPage(SPage.PAGE_SCAN_MUSIC_ONE_KEY);
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.STOP_SCAN, new Object[0]));
-        CommandCenter m4607a = CommandCenter.m4607a();
+        CommandCenter.getInstance().m4606a(new Command(CommandID.STOP_SCAN, new Object[0]));
+        CommandCenter m4607a = CommandCenter.getInstance();
         CommandID commandID = CommandID.START_SCAN;
         Object[] objArr = new Object[2];
         objArr[0] = strArr != null ? Arrays.asList(strArr) : null;
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             str = MediaStorage.GROUP_ID_ALL_LOCAL;
         }
         objArr[1] = str;
@@ -115,9 +115,9 @@ public class MediaScanAnimationActivity extends BaseActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void refreshProgress() {
-        this.mMediaScanCountTextView.setText(String.valueOf((Integer) CommandCenter.m4607a().m4602a(new Command(CommandID.SCANNED_FILE_COUNT, new Object[0]), Integer.class)));
-        this.mMediaScanPathTextView.setText((CharSequence) CommandCenter.m4607a().m4602a(new Command(CommandID.SCANNING_FILE_PATH, new Object[0]), String.class));
-        this.mProgressBar.setProgress(((Integer) CommandCenter.m4607a().m4602a(new Command(CommandID.SCAN_PROGRESS, new Object[0]), Integer.class)).intValue());
+        this.mMediaScanCountTextView.setText(String.valueOf((Integer) CommandCenter.getInstance().m4602a(new Command(CommandID.SCANNED_FILE_COUNT, new Object[0]), Integer.class)));
+        this.mMediaScanPathTextView.setText((CharSequence) CommandCenter.getInstance().m4602a(new Command(CommandID.SCANNING_FILE_PATH, new Object[0]), String.class));
+        this.mProgressBar.setProgress(((Integer) CommandCenter.getInstance().m4602a(new Command(CommandID.SCAN_PROGRESS, new Object[0]), Integer.class)).intValue());
     }
 
     public void onScanFinished(Integer num) {

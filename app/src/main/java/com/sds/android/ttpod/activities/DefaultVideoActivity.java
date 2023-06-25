@@ -36,7 +36,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
     private MediaPlayer.OnPreparedListener mOnPreparedListener = new MediaPlayer.OnPreparedListener() { // from class: com.sds.android.ttpod.activities.DefaultVideoActivity.1
         @Override // android.media.MediaPlayer.OnPreparedListener
         public void onPrepared(MediaPlayer mediaPlayer) {
-            LogUtils.m8379d(DefaultVideoActivity.LOG_TAG, "onPrepared");
+            LogUtils.info(DefaultVideoActivity.LOG_TAG, "onPrepared");
         }
     };
     private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() { // from class: com.sds.android.ttpod.activities.DefaultVideoActivity.2
@@ -49,8 +49,8 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
         @Override // android.media.MediaPlayer.OnErrorListener
         public boolean onError(MediaPlayer mediaPlayer, int i, int i2) {
             int i3;
-            LogUtils.m8379d(DefaultVideoActivity.LOG_TAG, "position: " + mediaPlayer.getCurrentPosition());
-            LogUtils.m8379d(DefaultVideoActivity.LOG_TAG, "what:" + i + " :extra:" + i2);
+            LogUtils.info(DefaultVideoActivity.LOG_TAG, "position: " + mediaPlayer.getCurrentPosition());
+            LogUtils.info(DefaultVideoActivity.LOG_TAG, "what:" + i + " :extra:" + i2);
             int i4 = EnvironmentUtils.C0604c.m8474e() ? i2 : -1004;
             if (1 == i) {
                 i4 = -1010;
@@ -85,7 +85,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
     private MediaPlayer.OnInfoListener mOnInfoListener = new MediaPlayer.OnInfoListener() { // from class: com.sds.android.ttpod.activities.DefaultVideoActivity.4
         @Override // android.media.MediaPlayer.OnInfoListener
         public boolean onInfo(MediaPlayer mediaPlayer, int i, int i2) {
-            LogUtils.m8379d(DefaultVideoActivity.LOG_TAG, "info:" + i + ":" + i2);
+            LogUtils.info(DefaultVideoActivity.LOG_TAG, "info:" + i + ":" + i2);
             return true;
         }
     };
@@ -99,7 +99,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
     private View.OnClickListener mOnBackEventListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.DefaultVideoActivity.6
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            LogUtils.m8381c(DefaultVideoActivity.LOG_TAG, "OnBackEventListener listener");
+            LogUtils.error(DefaultVideoActivity.LOG_TAG, "OnBackEventListener listener");
             DefaultVideoActivity.this.hideBufferingAnimation();
             DefaultVideoActivity.this.finish();
         }
@@ -120,7 +120,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
         Intent intent = getIntent();
         this.mVideoUrl = intent.getStringExtra("param_video_url");
         this.mVideoTitle = intent.getStringExtra("param_video_title");
-        LogUtils.m8379d(LOG_TAG, "url:" + this.mVideoUrl);
+        LogUtils.info(LOG_TAG, "url:" + this.mVideoUrl);
         this.mVideoView.setVideoURI(Uri.parse(this.mVideoUrl));
         this.mVideoView.setVideoTitle(this.mVideoTitle);
         this.mVideoView.mo1689b();
@@ -155,7 +155,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onResume() {
         super.onResume();
-        LogUtils.m8379d(LOG_TAG, "onResume");
+        LogUtils.info(LOG_TAG, "onResume");
         getWindow().getDecorView().setKeepScreenOn(true);
         this.mBufferingAnimation.setVisibility(View.VISIBLE);
         this.mBufferingAnimation.startAnimation(AnimationUtils.loadAnimation(this, R.anim.unlimited_rotate));
@@ -170,7 +170,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onPause() {
         super.onPause();
-        LogUtils.m8379d(LOG_TAG, "onPause");
+        LogUtils.info(LOG_TAG, "onPause");
         getWindow().getDecorView().setKeepScreenOn(false);
         this.mPositionWhenPaused = this.mVideoView.getCurrentPosition();
         this.mVideoView.mo1688c();
@@ -180,7 +180,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onStop() {
         super.onStop();
-        LogUtils.m8379d(LOG_TAG, "onStop");
+        LogUtils.info(LOG_TAG, "onStop");
         this.mVideoView.m1871a();
         this.mVideoView.m1850g();
     }
@@ -190,7 +190,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
     public void onDestroy() {
         super.onDestroy();
         sendBroadcast(new Intent("com.sds.android.ttpod.video_finished"));
-        LogUtils.m8379d(LOG_TAG, "onDestroy");
+        LogUtils.info(LOG_TAG, "onDestroy");
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity, android.view.KeyEvent.Callback

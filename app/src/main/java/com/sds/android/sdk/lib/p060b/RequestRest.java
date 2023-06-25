@@ -74,7 +74,7 @@ public abstract class RequestRest {
 
     /* renamed from: a */
     private boolean m8671a(Object obj) {
-        return obj == null || StringUtils.m8346a(obj.toString());
+        return obj == null || StringUtils.isEmpty(obj.toString());
     }
 
     /* renamed from: b */
@@ -88,12 +88,12 @@ public abstract class RequestRest {
 
     /* renamed from: b */
     public BaseResultRest m8668b() {
-        LogUtils.m8379d("Request", "in execute lookNetProblem");
+        LogUtils.info("Request", "in execute lookNetProblem");
         if (m8665c()) {
             return this.f2353a;
         }
         this.f2362j = m8663e();
-        LogUtils.m8380c("Request", "in execute lookNetProblem url=%s", this.f2362j);
+        LogUtils.info("Request", "in execute lookNetProblem url=%s", this.f2362j);
         return m8667b(mo8669a(this.f2362j, this.f2357e, this.f2355c, this.f2356d));
     }
 
@@ -112,17 +112,17 @@ public abstract class RequestRest {
     protected String m8663e() {
         String m8673a = m8673a();
         String m8343a = StringUtils.m8343a("/", this.f2358f);
-        if (!StringUtils.m8346a(m8343a)) {
+        if (!StringUtils.isEmpty(m8343a)) {
             m8673a = StringUtils.m8342a("/", m8673a, m8343a);
         }
-        LogUtils.m8388a("Request", m8673a);
+        LogUtils.debug("Request", m8673a);
         return m8673a;
     }
 
     /* renamed from: a */
     protected BaseResultRest m8672a(HttpRequest.C0586a c0586a) {
         if (c0586a == null) {
-            LogUtils.m8381c("Request", "Http request result is null, stop parse.");
+            LogUtils.error("Request", "Http request result is null, stop parse.");
             return null;
         }
         BaseResultRest baseResultRest = new BaseResultRest();
@@ -131,7 +131,7 @@ public abstract class RequestRest {
         try {
             try {
                 String m8347a = StringUtils.m8347a(c0586a.m8688e());
-                LogUtils.m8386a("Request", "TEST: jsonString %s", m8347a);
+                LogUtils.debug("Request", "TEST: jsonString %s", m8347a);
                 if (this.f2361i != null) {
                     m8347a = this.f2361i.m8662a(m8347a);
                 }
@@ -210,13 +210,13 @@ public abstract class RequestRest {
             str6 = str3 + it3.next() + ":" + this.f2356d.get(next) + " ";
         }
         String str7 = "url: " + m8663e();
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             str7 = str7 + " " + str;
         }
-        if (!StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str2)) {
             str7 = str7 + " " + str2;
         }
-        if (!StringUtils.m8346a(str3)) {
+        if (!StringUtils.isEmpty(str3)) {
             return str7 + " " + str3;
         }
         return str7;

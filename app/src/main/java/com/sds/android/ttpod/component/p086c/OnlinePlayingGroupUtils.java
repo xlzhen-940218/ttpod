@@ -18,7 +18,7 @@ public class OnlinePlayingGroupUtils {
 
     /* renamed from: a */
     public static boolean m6912a(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return false;
         }
         return str.startsWith("排行榜_");
@@ -36,7 +36,7 @@ public class OnlinePlayingGroupUtils {
 
     /* renamed from: b */
     public static boolean m6909b(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return false;
         }
         return str.startsWith("电台_");
@@ -59,7 +59,7 @@ public class OnlinePlayingGroupUtils {
 
     /* renamed from: c */
     public static String m6908c(String str) {
-        return StringUtils.m8346a(str) ? "" : "音乐圈_" + str;
+        return StringUtils.isEmpty(str) ? "" : "音乐圈_" + str;
     }
 
     /* renamed from: a */

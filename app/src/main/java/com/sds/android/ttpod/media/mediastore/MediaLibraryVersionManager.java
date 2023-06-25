@@ -53,7 +53,7 @@ public final class MediaLibraryVersionManager {
     }
 
     private void doVersionCompact(Context context) {
-        LogUtils.m8381c(TAG, "OldVersion:" + this.mOldVersion + " NewVersion:" + this.mNewVersion);
+        LogUtils.error(TAG, "OldVersion:" + this.mOldVersion + " NewVersion:" + this.mNewVersion);
         if (this.mOldVersion < 700) {
             doUpdate2Version700(context);
         }

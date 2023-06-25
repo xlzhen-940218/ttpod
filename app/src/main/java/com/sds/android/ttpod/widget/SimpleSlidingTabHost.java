@@ -35,7 +35,7 @@ public class SimpleSlidingTabHost extends SlidingTabHost {
     @Override // com.sds.android.ttpod.widget.SlidingTabHost
     /* renamed from: a */
     public void mo1478a(int i) {
-        LogUtils.m8388a("SimpleSlidingTabHost", "onTabClick tab=" + i);
+        LogUtils.debug("SimpleSlidingTabHost", "onTabClick tab=" + i);
         this.f7999b = i;
         m1477a(i, 0);
         invalidate();

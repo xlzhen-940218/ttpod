@@ -41,10 +41,10 @@ public final class BDLBSManager {
         public void onReceiveLocation(BDLocation bDLocation) {
             if (bDLocation != null) {
                 BDLBSManager.this.f2915c = bDLocation;
-                LogUtils.m8379d("BDLBSManager", "onReceiveLocation=>longitude:" + bDLocation.getLongitude() + ":latitude:" + bDLocation.getLatitude());
+                LogUtils.info("BDLBSManager", "onReceiveLocation=>longitude:" + bDLocation.getLongitude() + ":latitude:" + bDLocation.getLatitude());
                 return;
             }
-            LogUtils.m8381c("BDLBSManager", "onReceiveLocation error...");
+            LogUtils.error("BDLBSManager", "onReceiveLocation error...");
         }
 
 

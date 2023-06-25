@@ -19,7 +19,7 @@ import android.widget.ToggleButton;
 import com.sds.android.cloudapi.ttpod.data.AudioEffectUser;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
 import com.sds.android.cloudapi.ttpod.result.AudioEffectUserResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -34,10 +34,8 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectCache;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -93,7 +91,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
             }
             CloudAudioEffectFragment.this.mDefaultEffectLayout.setVisibility(z ? View.VISIBLE : View.GONE);
             CloudAudioEffectFragment.this.updatePlayView();
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_EFFECT_MATCH_CLOUD_AUDIO.getValue(), SPage.PAGE_AUDIO_CLOUD_EFFECT.getValue(), SPage.PAGE_NONE.getValue()).append("status", Boolean.valueOf(z)).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_EFFECT_MATCH_CLOUD_AUDIO.getValue(), SPage.PAGE_AUDIO_CLOUD_EFFECT.getValue(), SPage.PAGE_NONE.getValue()).append("status", Boolean.valueOf(z)).post();
         }
     };
     private Runnable mRequestRunnable = new Runnable() { // from class: com.sds.android.ttpod.fragment.audioeffect.CloudAudioEffectFragment.5
@@ -135,7 +133,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
             public void onClick(View view) {
                 Preferences.m2814x(false);
                 Preferences.m3077B(true);
-                CommandCenter.m4607a().m4606a(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, false));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, false));
                 CloudAudioEffectFragment.this.requestAudioEffect();
             }
         });
@@ -145,18 +143,18 @@ public class CloudAudioEffectFragment extends BaseFragment {
         this.mLayoutRoot.setSelected(true);
         this.mHeadPlaystatusView = (ImageView) this.mRootView.findViewById(R.id.head_playstatus);
         updatePlayView();
-        CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
         this.mTitleLayer = (RelativeLayout) this.mRootView.findViewById(R.id.new_title);
         this.mTitleLayer.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.audioeffect.CloudAudioEffectFragment.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
                 if (m2463m == PlayStatus.STATUS_PAUSED) {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
                 } else if (m2463m == PlayStatus.STATUS_PLAYING) {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
                 } else {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.START, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
                 }
                 CloudAudioEffectFragment.this.updateAudioEffectInfoByRunnable();
             }
@@ -165,7 +163,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
     }
 
     private void initDefaultAudioEffectViews(boolean z) {
-        this.mCurrentMediaItem = Cache.m3218a().m3225N();
+        this.mCurrentMediaItem = Cache.getInstance().getCurrentPlayMediaItem();
         this.mDefaultEffectLayout = this.mRootView.findViewById(R.id.recommends_effect_default);
         ((CircularProgress) this.mDefaultEffectLayout.findViewById(R.id.rotatebutton_bass_boost)).setPaintText(VersionUpdateConst.KEY_BAIDU_UPDATE_CATEGORY);
         ((CircularProgress) this.mDefaultEffectLayout.findViewById(R.id.rotatebutton_treble_boost)).setPaintText("T");
@@ -192,8 +190,8 @@ public class CloudAudioEffectFragment extends BaseFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void handleClickDefaultAudioEffect(View view) {
-        AudioEffectStatistic.m5252t();
-        SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_AJUST_RESET, SPage.PAGE_NONE, SPage.PAGE_NONE);
+        //AudioEffectStatistic.m5252t();
+        //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_AJUST_RESET, SPage.PAGE_NONE, SPage.PAGE_NONE);
         if (!this.mCurrentMediaItem.isNull() && !view.isSelected()) {
             view.setSelected(true);
             restoreCurrentEffect();
@@ -201,7 +199,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
     }
 
     private void restoreCurrentEffect() {
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SET_AUDIO_EFFECT_RESET, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_AUDIO_EFFECT_RESET, new Object[0]));
         String title = this.mCurrentMediaItem.getTitle();
         String artist = this.mCurrentMediaItem.getArtist();
         TTPodUser m2954aq = Preferences.m2954aq();
@@ -225,8 +223,8 @@ public class CloudAudioEffectFragment extends BaseFragment {
         audioEffectCache.m4409a(sArr);
         audioEffectCache.m4406b(System.currentTimeMillis());
         audioEffectCache.m4390g(this.mCurrentMediaItem.getLocalDataSource());
-        LogUtils.m8388a("CloudAudioEffectFragment", "saveToLocal " + audioEffectCache);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SAVE_EFFECT, this.mCurrentMediaItem, audioEffectCache, false));
+        LogUtils.debug("CloudAudioEffectFragment", "saveToLocal " + audioEffectCache);
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SAVE_EFFECT, this.mCurrentMediaItem, audioEffectCache, false));
     }
 
     public RecommandAudioEffectFragment getRecommandEffectFragment() {
@@ -295,7 +293,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
 
     public void updatePlayMediaInfo() {
         this.mChangedMedia = true;
-        this.mCurrentMediaItem = Cache.m3218a().m3225N();
+        this.mCurrentMediaItem = Cache.getInstance().getCurrentPlayMediaItem();
         updatePlayView();
         updateAudioEffectInfoByRunnable();
     }
@@ -368,8 +366,8 @@ public class CloudAudioEffectFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void performCloudMatchChanged(boolean z) {
         PopupsUtils.m6721a(getString(z ? R.string.effect_equalizer_cloud_match_enabled : R.string.effect_equalizer_cloud_match_disabled));
-        CommandCenter.m4607a().m4606a(new Command(CommandID.SET_CLOUD_AUDIO_EFFECT_ENABLED, Boolean.valueOf(z)));
-        CommandCenter m4607a = CommandCenter.m4607a();
+        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_CLOUD_AUDIO_EFFECT_ENABLED, Boolean.valueOf(z)));
+        CommandCenter m4607a = CommandCenter.getInstance();
         CommandID commandID = CommandID.SET_LOCAL_AUDIO_EFFECT;
         Object[] objArr = new Object[1];
         objArr[0] = Boolean.valueOf(!z);
@@ -437,7 +435,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
                         bool = false;
                         break;
                 }
-                if (bool.booleanValue() && m2974ad && (m2457s.m4420h() != 3 || !StringUtils.m8346a(m2457s.m4419i()))) {
+                if (bool.booleanValue() && m2974ad && (m2457s.m4420h() != 3 || !StringUtils.isEmpty(m2457s.m4419i()))) {
                     if (isDefaultAudioEffect(m2457s)) {
                         showNoMatch(m2974ad);
                         return;

@@ -53,18 +53,18 @@ public class SoundRecognizer implements MRadarSdkListener {
             List list;
             switch (message.what) {
                 case 1:
-                    LogUtils.m8388a(SoundRecognizer.f6379a, "MSG_FAILED: " + message.obj);
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.SEARCH_RECOGNIZE_ERROR, (EnumC1975a) message.obj), ModuleID.SEARCH);
+                    LogUtils.debug(SoundRecognizer.f6379a, "MSG_FAILED: " + message.obj);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.SEARCH_RECOGNIZE_ERROR, (EnumC1975a) message.obj), ModuleID.SEARCH);
                     return;
                 case 2:
                     DoresoMusicTrack[] doresoMusicTrackArr = (DoresoMusicTrack[]) message.obj;
-                    LogUtils.m8388a(SoundRecognizer.f6379a, "MSG_RESULT_OK: " + (doresoMusicTrackArr == null ? "null" : "length" + doresoMusicTrackArr.length));
+                    LogUtils.debug(SoundRecognizer.f6379a, "MSG_RESULT_OK: " + (doresoMusicTrackArr == null ? "null" : "length" + doresoMusicTrackArr.length));
                     if (doresoMusicTrackArr == null || doresoMusicTrackArr.length <= 0) {
                         list = null;
                     } else {
                         list = Arrays.asList(doresoMusicTrackArr);
                     }
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.SEARCH_RECOGNIZE_SUCCESS, list), ModuleID.SEARCH);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.SEARCH_RECOGNIZE_SUCCESS, list), ModuleID.SEARCH);
                     return;
                 default:
                     return;
@@ -99,7 +99,7 @@ public class SoundRecognizer implements MRadarSdkListener {
     /* renamed from: c */
     public synchronized void m3877c() {
         if (!this.f6383d) {
-            LogUtils.m8388a(f6379a, "recognize start");
+            LogUtils.debug(f6379a, "recognize start");
             this.f6386g = System.currentTimeMillis();
             this.f6382c.m8997a((File) null);
             this.f6383d = true;
@@ -111,7 +111,7 @@ public class SoundRecognizer implements MRadarSdkListener {
     /* renamed from: d */
     public synchronized void m3876d() {
         if (this.f6383d) {
-            LogUtils.m8388a(f6379a, "stop()");
+            LogUtils.debug(f6379a, "stop()");
             this.f6382c.onRecordEnd();
         }
     }
@@ -119,7 +119,7 @@ public class SoundRecognizer implements MRadarSdkListener {
     /* renamed from: e */
     public synchronized void m3875e() {
         if (!this.f6385f) {
-            LogUtils.m8388a(f6379a, "cancel()");
+            LogUtils.debug(f6379a, "cancel()");
             this.f6382c.m8996b();
             this.f6383d = false;
             this.f6384e = false;
@@ -142,10 +142,10 @@ public class SoundRecognizer implements MRadarSdkListener {
     @Override // com.mradar.sdk.record.DoresoListener
     /* renamed from: a */
     public void onError(int i, String str) {
-        LogUtils.m8388a(f6379a, "onError errorcode=" + i + ":" + str);
-        LogUtils.m8388a(f6379a, "recognize onError cost time: " + (System.currentTimeMillis() - this.f6386g) + "ms");
+        LogUtils.debug(f6379a, "onError errorcode=" + i + ":" + str);
+        LogUtils.debug(f6379a, "recognize onError cost time: " + (System.currentTimeMillis() - this.f6386g) + "ms");
         if (!this.f6385f) {
-            LogUtils.m8388a(f6379a, "cancel");
+            LogUtils.debug(f6379a, "cancel");
             this.f6382c.m8996b();
             this.f6385f = true;
             this.f6383d = false;
@@ -162,7 +162,7 @@ public class SoundRecognizer implements MRadarSdkListener {
     @Override // com.mradar.sdk.record.DoresoListener
     /* renamed from: a */
     public void onRecordEnd() {
-        LogUtils.m8388a(f6379a, "onRecordEnd");
+        LogUtils.debug(f6379a, "onRecordEnd");
         this.f6382c.onRecordEnd();
         this.f6383d = false;
     }
@@ -170,8 +170,8 @@ public class SoundRecognizer implements MRadarSdkListener {
     @Override // com.mradar.sdk.record.DoresoListener
     /* renamed from: a */
     public void onFinish(DoresoMusicTrack[] doresoMusicTrackArr,String str) {
-        LogUtils.m8388a(f6379a, "onFinish");
-        LogUtils.m8388a(f6379a, "recognize onFinish cost time: " + (System.currentTimeMillis() - this.f6386g) + "ms");
+        LogUtils.debug(f6379a, "onFinish");
+        LogUtils.debug(f6379a, "recognize onFinish cost time: " + (System.currentTimeMillis() - this.f6386g) + "ms");
         this.f6382c.onRecordEnd();
         this.f6383d = false;
         if (this.f6384e) {

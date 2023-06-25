@@ -14,7 +14,7 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.p128a.CategoryItem;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Map;
@@ -63,7 +63,7 @@ public class BackgroundCategoryFragment extends BaseCategoryFragment {
         intent.putExtra("id", categoryItem.m3867a());
         intent.putExtra("name", categoryItem.m3863b());
         getActivity().startActivity(intent);
-        ThemeStatistic.m4890e(categoryItem.m3863b());
+        //ThemeStatistic.m4890e(categoryItem.m3863b());
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseCategoryFragment

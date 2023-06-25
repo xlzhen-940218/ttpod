@@ -57,7 +57,7 @@ public class ThirdPartyApp implements Serializable {
 
     /* renamed from: g */
     public boolean m8320g() {
-        return (StringUtils.m8346a(this.f2487b) || StringUtils.m8346a(this.f2488c) || StringUtils.m8346a(this.f2489d)) ? false : true;
+        return (StringUtils.isEmpty(this.f2487b) || StringUtils.isEmpty(this.f2488c) || StringUtils.isEmpty(this.f2489d)) ? false : true;
     }
 
     /* renamed from: h */

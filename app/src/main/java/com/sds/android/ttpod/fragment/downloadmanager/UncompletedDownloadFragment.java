@@ -14,10 +14,8 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import java.lang.reflect.Method;
@@ -79,8 +77,8 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
         this.mLeftActionView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.downloadmanager.UncompletedDownloadFragment.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view2) {
-                LocalStatistic.m5149aE();
-                SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_PAUSE_ALL, SPage.PAGE_NONE);
+                //LocalStatistic.m5149aE();
+                //SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_PAUSE_ALL, SPage.PAGE_NONE);
                 UncompletedDownloadFragment.this.pauseAll();
             }
         });
@@ -88,8 +86,8 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
         this.mRightActionView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.downloadmanager.UncompletedDownloadFragment.3
             @Override // android.view.View.OnClickListener
             public void onClick(View view2) {
-                LocalStatistic.m5150aD();
-                SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_START_ALL, SPage.PAGE_NONE);
+                //LocalStatistic.m5150aD();
+                //SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_START_ALL, SPage.PAGE_NONE);
                 UncompletedDownloadFragment.this.startAll();
             }
         });
@@ -119,7 +117,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
     public void setUserVisibleHint(boolean z) {
         super.setUserVisibleHint(z);
         if (z) {
-            LocalStatistic.m5151aC();
+            //LocalStatistic.m5151aC();
         }
     }
 
@@ -158,7 +156,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
 
     @Override // com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment
     protected List<DownloadTaskInfo> readTaskList() {
-        List<DownloadTaskInfo> list = (List) CommandCenter.m4607a().m4602a(new Command(CommandID.GET_TASK_LIST_WITH_STATE, 1), List.class);
+        List<DownloadTaskInfo> list = (List) CommandCenter.getInstance().m4602a(new Command(CommandID.GET_TASK_LIST_WITH_STATE, 1), List.class);
         ArrayList<DownloadTaskInfo> arrayList = list == null ? new ArrayList(0) : (ArrayList<DownloadTaskInfo>) list;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             DownloadTaskInfo downloadTaskInfo = arrayList.get(size);
@@ -181,10 +179,10 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo2038a(MessageDialog messageDialog2) {
                         if (UncompletedDownloadFragment.this.getActivity() != null) {
-                            SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL_SURE, SPage.PAGE_NONE);
+                            //SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL_SURE, SPage.PAGE_NONE);
                             messageDialog2.dismiss();
                             UncompletedDownloadFragment.this.deleteAllUncompleted();
-                            LocalStatistic.m5148aF();
+                            //LocalStatistic.m5148aF();
                         }
                     }
                 }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
@@ -200,7 +198,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
     public void startAll() {
         for (DownloadTaskInfo downloadTaskInfo : this.mTasks) {
             if (downloadTaskInfo.getState().intValue() == 3 || downloadTaskInfo.getState().intValue() == 5) {
-                CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
             }
         }
     }
@@ -210,7 +208,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
         this.mHandler.removeMessages(0);
         for (DownloadTaskInfo downloadTaskInfo : this.mTasks) {
             if (downloadTaskInfo.getState().intValue() == 0 || downloadTaskInfo.getState().intValue() == 2 || downloadTaskInfo.getState().intValue() == 1) {
-                CommandCenter.m4607a().m4596b(new Command(CommandID.CANCEL_DOWNLOAD_TASK, downloadTaskInfo));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.CANCEL_DOWNLOAD_TASK, downloadTaskInfo));
             }
         }
     }
@@ -219,7 +217,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
     public void deleteAllUncompleted() {
         Iterator<DownloadTaskInfo> it = this.mTasks.iterator();
         while (it.hasNext()) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_DOWNLOAD_TASK, it.next(), true));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_DOWNLOAD_TASK, it.next(), true));
         }
         this.mDownloadingTaskIds.clear();
         this.mHandler.removeMessages(0);

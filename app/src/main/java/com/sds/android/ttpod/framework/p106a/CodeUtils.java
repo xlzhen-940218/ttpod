@@ -5,7 +5,6 @@ package com.sds.android.ttpod.framework.p106a;
 /* renamed from: com.sds.android.ttpod.framework.a.d */
 /* loaded from: classes.dex */
 public class CodeUtils {
-    /* renamed from: a */
     public static String m4763a(byte[] bArr, int i, int i2) {
         int i3;
         int i4;
@@ -37,47 +36,70 @@ public class CodeUtils {
         return new String(cArr, 0, i6);
     }
 
+
+    /* JADX WARN: Code restructure failed: missing block: B:40:0x00ae, code lost:
+        if (r6 >= r0) goto L47;
+     */
     /* renamed from: a */
+    /*
+        Code decompiled incorrectly, please refer to instructions dump.
+    */
     public static boolean m4764a(byte[] bArr) {
+        boolean z;
         int i;
         int length = bArr.length;
         int i2 = 0;
-        boolean z = true;
+        boolean z2 = true;
         int i3 = 0;
-        while (i2 < length) {
-            int i4 = bArr[i2] & 255;
-            if ((i4 & 128) != 0) {
-                z = false;
-            }
-            if (i3 == 0) {
-                if (i4 < 128) {
-                    continue;
-                } else {
-                    if (i4 >= 252 && i4 <= 253) {
-                        i = 6;
-                    } else if (i4 >= 248) {
-                        i = 5;
-                    } else if (i4 >= 240) {
-                        i = 4;
-                    } else if (i4 >= 224) {
-                        i = 3;
-                    } else if (i4 < 192) {
-                        return false;
-                    } else {
-                        i = 2;
-                    }
-                    i3 = i - 1;
+        while (true) {
+            if (i2 < length) {
+                int i4 = bArr[i2] & 255;
+                if ((i4 & 128) != 0) {
+                    z2 = false;
                 }
-            } else if ((i4 & 192) != 128) {
-                return false;
+                if (i3 == 0) {
+                    if (i4 < 128) {
+                        i2++;
+                        continue;
+                    } else {
+                        if (i4 >= 252 && i4 <= 253) {
+                            i = 6;
+                        } else if (i4 < 248) {
+                            if (i4 < 240) {
+                                if (i4 < 224) {
+                                    z = false;
+                                    if (i4 < 192) {
+                                        break;
+                                    }
+                                    i = 2;
+                                } else {
+                                    i = 3;
+                                }
+                            } else {
+                                i = 4;
+                            }
+                        } else {
+                            i = 5;
+                        }
+                        i3 = i - 1;
+                    }
+                    i2++;
+                } else if ((i4 & 192) != 128) {
+                    z = false;
+                    break;
+                } else {
+                    i3--;
+                    i2++;
+                }
             } else {
-                i3--;
+                if (i3 > 0) {
+                    z = false;
+                }
+                z = !z2;
+                return z;
             }
-            i2++;
         }
-        if (i3 <= 0 || i2 >= length) {
-            return !z;
-        }
-        return false;
+        return z;
     }
+
 }

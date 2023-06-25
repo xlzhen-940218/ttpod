@@ -4,7 +4,7 @@ import android.os.Bundle;
 import com.sds.android.cloudapi.ttpod.data.RadioChannel;
 import com.sds.android.cloudapi.ttpod.data.User;
 import com.sds.android.cloudapi.ttpod.result.OnlineMusicSubCategoryResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.request.DataListResult;
 import com.sds.android.sdk.lib.request.Extra;
 import com.sds.android.sdk.lib.util.ReflectUtils;
@@ -19,8 +19,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.MediaItemListResult;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -55,10 +53,10 @@ public class SongCategoryDetailFragment extends SceneRecommendFragment {
     private void initSubCategoryData(OnlineMusicSubCategoryResult.SubCategoryData subCategoryData) {
         this.mSubCategoryData = subCategoryData;
         setPlayingGroupName(OnlinePlayingGroupUtils.m6913a(this.mSubCategoryData));
-        MusicLibraryStatistic.m5067a("category-detail_" + this.mSubCategoryData.getName() + "_" + MusicLibraryStatistic.m5069a());
+        //MusicLibraryStatistic.m5067a("category-detail_" + this.mSubCategoryData.getName() + "_" + //MusicLibraryStatistic.m5069a());
         updateStatisticListenInfo();
         updatePage(onLoadTitleText());
-        updatePageProperties(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(this.mSubCategoryData.getId()));
+
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -74,7 +72,7 @@ public class SongCategoryDetailFragment extends SceneRecommendFragment {
         super.onLoadFinished();
         updateCategoryDetailView(this.mResult);
         if (this.mId != 0) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.GET_SONG_CATEGORY_INFO, getRequestId()));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SONG_CATEGORY_INFO, getRequestId()));
         }
     }
 
@@ -154,16 +152,6 @@ public class SongCategoryDetailFragment extends SceneRecommendFragment {
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
-    protected void postForwardIntroductionStatistic() {
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_INTRODUCTION.getValue(), String.valueOf(SPage.PAGE_ONLINE_SONG_CATEGORY.getValue()), String.valueOf(SPage.PAGE_ONLINE_POST_DETAIL_INTRODUCTION.getValue())).append("channel_id", Integer.valueOf(this.mId)).append("channel_name", onLoadTitleText()).post();
-    }
-
-    @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
-    protected void postButtonClickStatistic(SAction sAction) {
-        new SUserEvent("PAGE_CLICK", sAction.getValue(), String.valueOf(SPage.PAGE_ONLINE_SONG_CATEGORY.getValue()), String.valueOf(SPage.PAGE_NONE.getValue())).append("channel_id", Integer.valueOf(this.mId)).append("channel_name", onLoadTitleText()).post();
-    }
-
-    @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
     protected Bundle buildForwardIntroductionArguments() {
         if (this.mSubCategoryData == null) {
             PopupsUtils.m6760a((int) R.string.post_no_description);
@@ -179,30 +167,23 @@ public class SongCategoryDetailFragment extends SceneRecommendFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void requestDataList(int i) {
         super.requestDataList(i);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_SONG_CATEGORY_DETAIL, Integer.valueOf(String.valueOf(this.mId)), Integer.valueOf(i), getRequestId()));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SONG_CATEGORY_DETAIL, Integer.valueOf(String.valueOf(this.mId)), Integer.valueOf(i), getRequestId()));
     }
 
-    @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment.InterfaceC1667b
-    public void doStatistic(MediaItem mediaItem, int i) {
-        updateStatisticListenInfo();
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_ITEM.getValue(), SPage.PAGE_ONLINE_SONG_CATEGORY.getValue(), 0).append("song_id", mediaItem.getSongID()).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mId)).append("song_list_name", onLoadTitleText()).append("position", Integer.valueOf(i + 1)).post();
-    }
+
 
     private void updateStatisticListenInfo() {
         if (this.mSubCategoryData != null) {
-            OnlineMediaStatistic.m5045a(origin());
-            OnlineMediaStatistic.m5054a();
+            //OnlineMediaStatistic.m5045a(origin());
+            //OnlineMediaStatistic.m5054a();
         }
     }
 
     private String origin() {
-        return "library-music-category_" + this.mSubCategoryData.getName() + "_" + MusicLibraryStatistic.m5069a();
+        return "library-music-category_" + this.mSubCategoryData.getName();
     }
 
-    @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
-    protected String onLoadStatisticModule() {
-        return MusicLibraryStatistic.m5057e();
-    }
+
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
     protected String getRequestId() {

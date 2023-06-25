@@ -5,7 +5,7 @@ import com.sds.android.cloudapi.ttpod.result.AudioEffectAddResult;
 import com.sds.android.cloudapi.ttpod.result.AudioEffectCommResult;
 import com.sds.android.cloudapi.ttpod.result.AudioEffectItemResult;
 import com.sds.android.cloudapi.ttpod.result.AudioEffectUserResult;
-import com.sds.android.sdk.core.statistic.SEvent;
+
 import com.sds.android.sdk.lib.request.GetMethodRequest;
 import com.sds.android.sdk.lib.request.PostMethodRequest;
 import com.sds.android.sdk.lib.request.Request;
@@ -22,12 +22,12 @@ public class CloudAudioEffectAPI {
 
     /* renamed from: a */
     public static Request<AudioEffectItemResult> m8930a(long j, int i, int i2) {
-        return new GetMethodRequest(AudioEffectItemResult.class, "http://ae.hotchanson.com/public/query_by_song_id", "eq").m8537b("song_id", Long.valueOf(j)).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(AudioEffectItemResult.class, "http://ae.hotchanson.com/public/query_by_song_id", "eq").m8537b("song_id", Long.valueOf(j)).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
     public static Request<AudioEffectItemResult> m8927a(String str, String str2, int i, int i2) {
-        return new GetMethodRequest(AudioEffectItemResult.class, "http://ae.hotchanson.com/public/query_by_song_info", "eq").m8537b("song_name", str).m8537b("singer_name", str2).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(AudioEffectItemResult.class, "http://ae.hotchanson.com/public/query_by_song_info", "eq").m8537b("song_name", str).m8537b("singer_name", str2).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */

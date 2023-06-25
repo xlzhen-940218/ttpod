@@ -1,11 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:orientation="horizontal" android:paddingLeft="4dp" android:paddingTop="8dp" android:paddingRight="4dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:weightSum="2">
-    <com.sds.android.ttpod.widget.RatioRelativeLayout android:id="@+id/button_toggle_background_manager" android:background="@color/recomm_day_of_week_color" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_weight="1" app:ratio_width="50" app:ratio_height="32">
-        <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/itv_bkg_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:layout_marginBottom="6dp" android:layout_alignParentBottom="true" app:textColor="#fff" app:textSize="20sp" app:text="@string/icon_theme_background"/>
-        <TextView android:textSize="16sp" android:textColor="#fff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="2dp" android:layout_marginBottom="-1dp" android:text="@string/beautiful_background" android:layout_toRightOf="@+id/itv_bkg_text" android:layout_alignBottom="@+id/itv_bkg_text"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="4dp"
+    android:paddingTop="8dp"
+    android:paddingRight="4dp"
+    android:weightSum="2"
+    android:baselineAligned="false">
+
+    <com.sds.android.ttpod.widget.RatioRelativeLayout
+        android:id="@+id/button_toggle_background_manager"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="1"
+        android:background="@color/recomm_day_of_week_color"
+        app:ratio_height="32"
+        app:ratio_width="50">
+
+        <com.sds.android.ttpod.common.widget.IconTextView
+            android:id="@+id/itv_bkg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="6dp"
+            app:text="@string/icon_theme_background"
+            app:textColor="#fff"
+            app:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/itv_bkg_text"
+            android:layout_marginLeft="2dp"
+            android:layout_marginBottom="-1dp"
+            android:layout_toRightOf="@+id/itv_bkg_text"
+            android:text="@string/beautiful_background"
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </com.sds.android.ttpod.widget.RatioRelativeLayout>
-    <com.sds.android.ttpod.widget.RatioRelativeLayout android:id="@+id/button_toggle_theme_rank" android:background="@color/effect_blue" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_marginLeft="8dp" android:layout_marginRight="8dp" android:layout_weight="1" app:ratio_width="50" app:ratio_height="32">
-        <com.sds.android.ttpod.common.widget.IconTextView android:id="@+id/itv_rank_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="4dp" android:layout_marginBottom="6dp" android:layout_alignParentBottom="true" app:textColor="#fff" app:textSize="20sp" app:text="@string/icon_theme_rank"/>
-        <TextView android:textSize="16sp" android:textColor="#fff" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="2dp" android:layout_marginBottom="-1dp" android:text="@string/theme_rank" android:layout_toRightOf="@+id/itv_rank_text" android:layout_alignBottom="@+id/itv_rank_text"/>
+
+    <com.sds.android.ttpod.widget.RatioRelativeLayout
+        android:id="@+id/button_toggle_theme_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_weight="1"
+        android:background="@color/effect_blue"
+        app:ratio_height="32"
+        app:ratio_width="50">
+
+        <com.sds.android.ttpod.common.widget.IconTextView
+            android:id="@+id/itv_rank_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="6dp"
+            app:text="@string/icon_theme_rank"
+            app:textColor="#fff"
+            app:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/itv_rank_text"
+            android:layout_marginLeft="2dp"
+            android:layout_marginBottom="-1dp"
+            android:layout_toRightOf="@+id/itv_rank_text"
+            android:text="@string/theme_rank"
+            android:textColor="#fff"
+            android:textSize="16sp" />
     </com.sds.android.ttpod.widget.RatioRelativeLayout>
 </LinearLayout>

@@ -23,6 +23,6 @@ public class PlayingPanelViewController extends PanelViewController {
     /* renamed from: r */
     public void mo6404r() {
         super.mo6404r();
-        CommandCenter.m4607a().m4606a(new Command(CommandID.NOTIFY_PLAYING_PANEL_ON_SHOW, new Object[0]));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.NOTIFY_PLAYING_PANEL_ON_SHOW, new Object[0]));
     }
 }

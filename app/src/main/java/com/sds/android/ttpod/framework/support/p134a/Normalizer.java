@@ -30,13 +30,13 @@ final class Normalizer {
         byte[] bArr;
         int i3;
         if (iArr == null || sArr == null || i < 0 || i > 128 || sArr.length < i2) {
-            LogUtils.m8388a("Normalizer", "argument error -1");
+            LogUtils.debug("Normalizer", "argument error -1");
             return -1;
         } else if (i2 < i) {
-            LogUtils.m8388a("Normalizer", "argument error -2");
+            LogUtils.debug("Normalizer", "argument error -2");
             return -2;
         } else if (i2 != 512) {
-            LogUtils.m8388a("Normalizer", "argument error -3");
+            LogUtils.debug("Normalizer", "argument error -3");
             return -3;
         } else {
             if (i <= 64) {
@@ -44,7 +44,7 @@ final class Normalizer {
             } else if (i <= 128) {
                 bArr = f7084b;
             } else {
-                LogUtils.m8388a("Normalizer", "argument error -4");
+                LogUtils.debug("Normalizer", "argument error -4");
                 return -4;
             }
             int i4 = 0;

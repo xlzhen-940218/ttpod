@@ -22,7 +22,6 @@ import com.sds.android.ttpod.component.apshare.WifiAPManager;
 import com.sds.android.ttpod.component.apshare.WifiStateImpl;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.framework.base.BaseFragment;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.media.mediastore.MediaStorage;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class ApShareChooseFragment extends ApShareBaseFragment implements ApShar
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
             if (view == ApShareChooseFragment.this.mTvAction) {
-                LocalStatistic.m5099g();
+                //LocalStatistic.m5099g();
                 WifiInfo m7028k = ApShareChooseFragment.this.mWifiApManager.m7028k();
                 if (m7028k != null) {
                     ApShareUtils.m7109c(m7028k.getSSID());
@@ -53,7 +52,7 @@ public class ApShareChooseFragment extends ApShareBaseFragment implements ApShar
         @Override // android.os.Handler
         public void handleMessage(Message message) {
             String str;
-            LogUtils.m8379d(ApShareChooseFragment.TAG, "what= " + message.what);
+            LogUtils.info(ApShareChooseFragment.TAG, "what= " + message.what);
             switch (message.what) {
                 case 12:
                 default:
@@ -68,7 +67,7 @@ public class ApShareChooseFragment extends ApShareBaseFragment implements ApShar
                         str = ApShareChooseFragment.this.getString(R.string.share_enabled_ap);
                     }
                     String str2 = (String) message.obj;
-                    if (StringUtils.m8346a(str2)) {
+                    if (StringUtils.isEmpty(str2)) {
                         ApShareChooseFragment.this.openApError();
                         return;
                     }
@@ -123,7 +122,7 @@ public class ApShareChooseFragment extends ApShareBaseFragment implements ApShar
             /* renamed from: a */
             public void mo5433a(ActionBarController.C1070a c1070a) {
                 boolean z = !ApShareChooseFragment.this.mAdapter.m7654c();
-                ApShareChooseFragment.this.mChooseAction.m7153d(z ? R.drawable.img_checkbox_multiselect_checked : R.drawable.img_checkbox_multiselect_unchecked);
+                ApShareChooseFragment.this.mChooseAction.setImageResource(z ? R.drawable.img_checkbox_multiselect_checked : R.drawable.img_checkbox_multiselect_unchecked);
                 ApShareChooseFragment.this.mAdapter.m7655a(z);
             }
         });
@@ -131,7 +130,7 @@ public class ApShareChooseFragment extends ApShareBaseFragment implements ApShar
         if (this.mWifiApManager.m7038c()) {
             this.mWifiApManager.m7033f();
         }
-        LogUtils.m8379d(TAG, "setWifiStateListener");
+        LogUtils.info(TAG, "setWifiStateListener");
         this.mWifiApManager.m7049a(new WifiStateImpl(this.mHandler));
         ApShareUtils.m7110b(this.mWifiApManager.m7054a());
         ApShareUtils.m7112a(this.mWifiApManager.m7036d());
@@ -179,7 +178,7 @@ public class ApShareChooseFragment extends ApShareBaseFragment implements ApShar
 
     @Override // com.sds.android.ttpod.adapter.p069a.ApShareChooseAdapter.InterfaceC0954a
     public void onChooseAmountChanged() {
-        this.mChooseAction.m7153d(this.mAdapter.m7654c() ? R.drawable.img_checkbox_multiselect_checked : R.drawable.img_checkbox_multiselect_unchecked);
+        this.mChooseAction.setImageResource(this.mAdapter.m7654c() ? R.drawable.img_checkbox_multiselect_checked : R.drawable.img_checkbox_multiselect_unchecked);
         flushChoosedCountView();
     }
 
@@ -187,7 +186,7 @@ public class ApShareChooseFragment extends ApShareBaseFragment implements ApShar
     public void launch() {
         Object[] objArr = new Object[1];
         objArr[0] = Boolean.valueOf(getActivity() != null);
-        LogUtils.m8386a(TAG, "launch getActivity() != null %b", objArr);
+        LogUtils.debug(TAG, "launch getActivity() != null %b", objArr);
         if (getActivity() != null) {
             this.mWifiApManager.m7049a((WifiAPManager.InterfaceC1132a) null);
             finish();
@@ -227,7 +226,7 @@ public class ApShareChooseFragment extends ApShareBaseFragment implements ApShar
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
     public void onPause() {
-        LogUtils.m8379d(TAG, "onPause");
+        LogUtils.info(TAG, "onPause");
         this.mWifiApManager.m7049a((WifiAPManager.InterfaceC1132a) null);
         finish();
         super.onPause();

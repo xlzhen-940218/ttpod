@@ -3,7 +3,6 @@ package com.sds.android.ttpod.fragment.musiccircle;
 import android.view.View;
 import android.widget.AdapterView;
 import com.sds.android.ttpod.activities.musiccircle.MusicCircleStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 
 /* loaded from: classes.dex */
 public class StarListOfRecommendFragment extends StarListOfRankFragment {
@@ -28,7 +27,7 @@ public class StarListOfRecommendFragment extends StarListOfRankFragment {
     @Override // com.sds.android.ttpod.fragment.musiccircle.StarListOfRankFragment, com.sds.android.ttpod.fragment.musiccircle.UserListFragment
     public void onItemClickEvent(AdapterView<?> adapterView, View view, int i, long j) {
         MusicCircleStatistic.m7957r();
-        OnlineMediaStatistic.m5045a("music-circle");
+        //OnlineMediaStatistic.m5045a("music-circle");
     }
 
     @Override // com.sds.android.ttpod.fragment.musiccircle.StarListOfRankFragment, com.sds.android.ttpod.fragment.musiccircle.UserListFragment

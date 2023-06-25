@@ -13,7 +13,7 @@ import com.sds.android.cloudapi.ttpod.data.AlbumItem;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.data.SingerData;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.request.RequestCallback;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -29,8 +29,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -63,8 +61,6 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
     public SingerAlbumDetailFragmentNew(AlbumItem albumItem) {
         this.mAlbumItem = albumItem;
         setGroupID(MediaStorage.GROUP_ID_ONLINE_TEMPORARY);
-        setModule(MusicLibraryStatistic.m5057e());
-        setOrigin(OnlineMediaStatistic.m5043b());
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SingerTabFragment, com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
@@ -83,7 +79,6 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
         this.mTab = 0;
         if (this.mAlbumItem != null) {
             setPage(this.mAlbumItem.getName());
-            setPageProperties(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(this.mAlbumItem.getId()));
         }
     }
 
@@ -100,7 +95,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
 
     public void updatePlayStatus(PlayStatus playStatus) {
         this.mPlayStatus = OnlinePlayStatus.from(playStatus);
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (m3225N != null) {
             Long songID = m3225N.getSongID();
             this.mPlayingSongId = songID == null ? 0L : songID.longValue();
@@ -167,7 +162,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
             public void onClick(View view) {
                 boolean z = false;
                 if (SingerAlbumDetailFragmentNew.this.mSingerData != null) {
-                    MusicLibraryStatistic.m5068a(SingerAlbumDetailFragmentNew.this.mSingerData.getId(), SingerAlbumDetailFragmentNew.this.mSingerData.getName());
+                    //MusicLibraryStatistic.m5068a(SingerAlbumDetailFragmentNew.this.mSingerData.getId(), SingerAlbumDetailFragmentNew.this.mSingerData.getName());
                 }
                 if (SingerAlbumDetailFragmentNew.this.isPlayingItem()) {
                     SingerAlbumDetailFragmentNew.this.mPlayView.clearAnimation();
@@ -178,7 +173,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
                     SingerAlbumDetailFragmentNew.this.mPlayView.startAnimation(AnimationUtils.loadAnimation(SingerAlbumDetailFragmentNew.this.getActivity(), R.anim.unlimited_rotate));
                     z = true;
                 }
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGER_ALBUM_MUSIC_PLAY_ALL.getValue(), SingerAlbumDetailFragmentNew.this.mAlbumItem.getName(), String.valueOf(SPage.PAGE_NONE)).append("song_album_id", Long.valueOf(SingerAlbumDetailFragmentNew.this.mAlbumItem.getId())).append("status", Boolean.valueOf(z)).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGER_ALBUM_MUSIC_PLAY_ALL.getValue(), SingerAlbumDetailFragmentNew.this.mAlbumItem.getName(), String.valueOf(SPage.PAGE_NONE)).append("song_album_id", Long.valueOf(SingerAlbumDetailFragmentNew.this.mAlbumItem.getId())).append("status", Boolean.valueOf(z)).post();
                 SingerAlbumDetailFragmentNew.this.togglePlayMedia();
             }
         });
@@ -311,7 +306,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
         Preferences.m2828t(OnlinePlayingGroupUtils.m6918a(this.mAlbumItem));
         MediaItem item = this.mSongAdapter.getItem(i);
         if (item != null) {
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_ITEM.getValue(), this.mAlbumItem.getName(), String.valueOf(SPage.PAGE_NONE)).append("song_id", item.getSongID()).append("song_album_id", Long.valueOf(this.mAlbumItem.getId())).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_ITEM.getValue(), this.mAlbumItem.getName(), String.valueOf(SPage.PAGE_NONE)).append("song_id", item.getSongID()).append("song_album_id", Long.valueOf(this.mAlbumItem.getId())).post();
         }
     }
 
@@ -325,7 +320,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
     }
 
     private void onSongItemLongClick(AdapterView<?> adapterView, View view, int i, long j) {
-        OnlineMediaStatistic.m5053a(i + 1);
+        //OnlineMediaStatistic.m5053a(i + 1);
         this.mSongAdapter.m7401a(this.mSongAdapter.getItem(i));
     }
 

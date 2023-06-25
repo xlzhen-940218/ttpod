@@ -60,7 +60,7 @@ public class OpenUDIDManager implements ServiceConnection {
             Parcel obtain2 = Parcel.obtain();
             iBinder.transact(1, Parcel.obtain(), obtain2, 0);
             if (obtain.readInt() == obtain2.readInt() && (readString = obtain2.readString()) != null) {
-                LogUtils.m8388a("OpenUDID", "Received " + readString);
+                LogUtils.debug("OpenUDID", "Received " + readString);
                 if (this.f2402c.containsKey(readString)) {
                     this.f2402c.put(readString, Integer.valueOf(this.f2402c.get(readString).intValue() + 1));
                 } else {
@@ -68,7 +68,7 @@ public class OpenUDIDManager implements ServiceConnection {
                 }
             }
         } catch (RemoteException e) {
-            LogUtils.m8381c("OpenUDID", "RemoteException: " + e.getMessage());
+            LogUtils.error("OpenUDID", "RemoteException: " + e.getMessage());
         }
         this.f2400a.unbindService(this);
         m8567d();
@@ -87,7 +87,7 @@ public class OpenUDIDManager implements ServiceConnection {
 
     /* renamed from: c */
     private void m8568c() {
-        LogUtils.m8388a("OpenUDID", "Generating openUDID");
+        LogUtils.debug("OpenUDID", "Generating openUDID");
         f2398f = Settings.Secure.getString(this.f2400a.getContentResolver(), "android_id");
         if (f2398f == null || f2398f.equals("9774d56d682e549c") || f2398f.length() < 15) {
             f2398f = new BigInteger(64, new SecureRandom()).toString(16);
@@ -97,7 +97,7 @@ public class OpenUDIDManager implements ServiceConnection {
     /* renamed from: d */
     private void m8567d() {
         if (this.f2401b.size() > 0) {
-            LogUtils.m8388a("OpenUDID", "Trying service " + ((Object) this.f2401b.get(0).loadLabel(this.f2400a.getPackageManager())));
+            LogUtils.debug("OpenUDID", "Trying service " + ((Object) this.f2401b.get(0).loadLabel(this.f2400a.getPackageManager())));
             ServiceInfo serviceInfo = this.f2401b.get(0).serviceInfo;
             Intent intent = new Intent();
             intent.setComponent(new ComponentName(serviceInfo.applicationInfo.packageName, serviceInfo.name));
@@ -114,7 +114,7 @@ public class OpenUDIDManager implements ServiceConnection {
         if (f2398f == null) {
             m8568c();
         }
-        LogUtils.m8388a("OpenUDID", "OpenUDID: " + f2398f);
+        LogUtils.debug("OpenUDID", "OpenUDID: " + f2398f);
         m8569b();
         f2399g = true;
     }
@@ -131,7 +131,7 @@ public class OpenUDIDManager implements ServiceConnection {
     /* renamed from: a */
     public static String m8572a() {
         if (!f2399g) {
-            LogUtils.m8381c("OpenUDID", "Initialisation isn't done");
+            LogUtils.error("OpenUDID", "Initialisation isn't done");
         }
         return f2398f;
     }
@@ -142,14 +142,14 @@ public class OpenUDIDManager implements ServiceConnection {
         f2398f = openUDIDManager.f2403d.getString("openudid", null);
         if (f2398f == null) {
             openUDIDManager.f2401b = context.getPackageManager().queryIntentServices(new Intent("org.OpenUDID.GETUDID"), 0);
-            LogUtils.m8388a("OpenUDID", openUDIDManager.f2401b.size() + " services matches OpenUDID");
+            LogUtils.debug("OpenUDID", openUDIDManager.f2401b.size() + " services matches OpenUDID");
             if (openUDIDManager.f2401b != null) {
                 openUDIDManager.m8567d();
                 return;
             }
             return;
         }
-        LogUtils.m8388a("OpenUDID", "OpenUDID: " + f2398f);
+        LogUtils.debug("OpenUDID", "OpenUDID: " + f2398f);
         f2399g = true;
     }
 

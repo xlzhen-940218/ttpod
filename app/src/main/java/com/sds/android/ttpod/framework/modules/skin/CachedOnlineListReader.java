@@ -13,7 +13,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.c */
@@ -125,7 +124,7 @@ public class CachedOnlineListReader {
             m3768a((Closeable) null);
             return null;
         }
-        String str3 = str2 + File.separator + FileUtils.m8402j(list[0]);
+        String str3 = str2 + File.separator + FileUtils.getFilename(list[0]);
         FileUtils.m8407e(str3);
 
         try {

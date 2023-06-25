@@ -23,7 +23,7 @@ public class DownloadStateReceiver extends BroadcastReceiver {
             if (intExtra != -1) {
                 enumC0579b = Task.EnumC0579b.values()[intExtra];
             }
-            CommandCenter.m4607a().m4595b(new Command(CommandID.DOWNLOAD_STATE_CHANGED, downloadTaskInfo, enumC0579b), ModuleID.MONITOR);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.DOWNLOAD_STATE_CHANGED, downloadTaskInfo, enumC0579b), ModuleID.MONITOR);
         }
     }
 

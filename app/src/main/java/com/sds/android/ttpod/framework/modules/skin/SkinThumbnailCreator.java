@@ -180,7 +180,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
     @Override // java.lang.Runnable
     public void run() {
         boolean a;
-        Bitmap m4748a = ImageCacheUtils.m4748a(this.f6696e.m3571b(), f6693a, f6694c);
+        Bitmap m4748a = ImageCacheUtils.m4748a(this.f6696e.getPath(), f6693a, f6694c);
         if ((m4748a == null && 4 == this.f6696e.m3575a()) || 3 == this.f6696e.m3575a()) {
             OnlineSkinItem m3566f = this.f6696e.m3566f();
             if (m3566f != null) {
@@ -190,9 +190,9 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
             return;
         }
         if (this.f6696e.f6658a == 0) {
-            a = m3526e(this.f6696e.f6660c);
+            a = m3526e(this.f6696e.path);
         } else {
-            a = m3530a(m3533a(this.f6696e.f6658a, this.f6696e.f6660c));
+            a = m3530a(m3533a(this.f6696e.f6658a, this.f6696e.path));
         }
         if (a && m3522a()) {
             if (m4748a == null) {
@@ -200,7 +200,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
             }
             m3520a(this.f6696e);
         }
-        m3525j();
+        handleClose();
     }
 
     /* renamed from: a */
@@ -209,7 +209,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
         if (m3516c == null) {
             return false;
         }
-        this.f6696e.f6659b = m3516c.m3778d();
+        this.f6696e.title = m3516c.m3778d();
         return true;
     }
 
@@ -226,7 +226,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
                 break;
             }
             try {
-                bArr = this.f6692b.mo3753b(strArr[i]);
+                bArr = this.packHandle.mo3753b(strArr[i]);
             } catch (IOException e) {
                 e.printStackTrace();
                 bArr = null;
@@ -239,7 +239,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
             }
         }
         if (bitmap != null) {
-            ImageCacheUtils.m4747a(this.f6696e.m3571b(), f6693a, f6694c, bitmap);
+            ImageCacheUtils.m4747a(this.f6696e.getPath(), f6693a, f6694c, bitmap);
             return true;
         }
         return false;
@@ -248,9 +248,9 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
     /* renamed from: a */
     private void m3521a(OnlineSkinItem onlineSkinItem) {
         Bitmap decodeFile;
-        String str = TTPodConfig.m5298j() + File.separator + FileUtils.m8402j(onlineSkinItem.getPictureUrl());
+        String str = TTPodConfig.m5298j() + File.separator + FileUtils.getFilename(onlineSkinItem.getPictureUrl());
         if (m3519a(onlineSkinItem.getPictureUrl(), str) && (decodeFile = BitmapFactory.decodeFile(str)) != null) {
-            ImageCacheUtils.m4747a(this.f6696e.m3571b(), f6693a, f6694c, decodeFile);
+            ImageCacheUtils.m4747a(this.f6696e.getPath(), f6693a, f6694c, decodeFile);
         }
         m3520a(this.f6696e);
     }
@@ -315,6 +315,6 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
     /* renamed from: a */
     private void m3520a(SkinItem skinItem) {
         SkinModule.logD("SkinThumbnailCreator.notifySkinThumbnailCreated--->");
-        CommandCenter.m4607a().m4595b(new Command(CommandID.DECODE_SKIN_THUMBNAIL_FINISHED, skinItem), ModuleID.SKIN);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.DECODE_SKIN_THUMBNAIL_FINISHED, skinItem), ModuleID.SKIN);
     }
 }

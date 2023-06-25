@@ -12,7 +12,6 @@ import com.sds.android.ttpod.framework.modules.core.p113b.AutoDownloadNetworkTyp
 import com.sds.android.ttpod.framework.p106a.PlatformUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,29 +42,29 @@ public class LyricPictureSettingActivity extends SlidingClosableActivity {
             switch (actionItem.m7005e()) {
                 case 1:
                     LyricPictureSettingActivity.this.setLyricDownloadNetwork(((Checkable) actionItem).isChecked());
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_AUTO_DOWNLOAD_LYRIC, ((Checkable) actionItem).isChecked());
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_AUTO_DOWNLOAD_LYRIC, ((Checkable) actionItem).isChecked());
                     return;
                 case 2:
                     LyricPictureSettingActivity.this.setDownloadPicAmount(actionItem, i, Preferences.m3005aB(), true);
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_WIFI_NUMBER, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_WIFI_NUMBER, SPage.PAGE_NONE);
                     return;
                 case 3:
                     LyricPictureSettingActivity.this.setDownloadPicAmount(actionItem, i, Preferences.m3004aC(), false);
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_2G_3G_NUMBER, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_2G_3G_NUMBER, SPage.PAGE_NONE);
                     return;
                 case 4:
                     if (!f2986a && !(actionItem instanceof Checkable)) {
                         throw new AssertionError();
                     }
                     Preferences.m3057L(((Checkable) actionItem).isChecked());
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_PIC_AUTO, ((Checkable) actionItem).isChecked());
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_PIC_AUTO, ((Checkable) actionItem).isChecked());
                     return;
                 case 5:
                     if (!f2986a && !(actionItem instanceof Checkable)) {
                         throw new AssertionError();
                     }
                     Preferences.m2823u(((Checkable) actionItem).isChecked());
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_MUSIC_PIC, ((Checkable) actionItem).isChecked());
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_MUSIC_PIC, ((Checkable) actionItem).isChecked());
                     return;
                 default:
                     return;

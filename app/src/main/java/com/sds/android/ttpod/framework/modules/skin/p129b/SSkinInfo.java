@@ -9,40 +9,40 @@ import java.io.Serializable;
 public class SSkinInfo implements Serializable {
 
     /* renamed from: a */
-    protected String f6478a;
+    protected String name;
 
     /* renamed from: b */
-    protected String f6479b;
+    protected String author;
 
     /* renamed from: c */
-    protected String f6480c;
+    protected String version;
 
     /* renamed from: d */
-    protected String f6481d;
+    protected String email;
 
     /* renamed from: e */
-    protected String f6482e;
+    protected String webpage;
 
     /* renamed from: f */
-    protected String f6483f;
+    protected String background;
 
     /* renamed from: g */
-    protected String f6484g;
+    protected String preview;
 
     /* renamed from: h */
-    protected int f6485h;
+    protected int loaderVersion;
 
     /* renamed from: i */
     protected long f6486i;
 
     /* renamed from: a */
     public String m3781a() {
-        return this.f6479b;
+        return this.author;
     }
 
     /* renamed from: b */
     public String m3780b() {
-        return this.f6480c;
+        return this.version;
     }
 
     /* renamed from: c */
@@ -52,52 +52,52 @@ public class SSkinInfo implements Serializable {
 
     /* renamed from: d */
     public String m3778d() {
-        return this.f6478a;
+        return this.name;
     }
 
     /* renamed from: e */
     public String m3777e() {
-        return this.f6481d;
+        return this.email;
     }
 
     /* renamed from: f */
     public String m3776f() {
-        return this.f6482e;
+        return this.webpage;
     }
 
     public SSkinInfo(KXmlParser kXmlParser) {
-        this.f6478a = null;
-        this.f6479b = null;
-        this.f6480c = null;
-        this.f6481d = null;
-        this.f6482e = null;
-        this.f6485h = 0;
+        this.name = null;
+        this.author = null;
+        this.version = null;
+        this.email = null;
+        this.webpage = null;
+        this.loaderVersion = 0;
         this.f6486i = 0L;
-        this.f6478a = kXmlParser.getAttributeValue(null, "Name");
-        this.f6479b = kXmlParser.getAttributeValue(null, "Author");
-        this.f6480c = kXmlParser.getAttributeValue(null, "Ver");
-        this.f6481d = kXmlParser.getAttributeValue(null, "EMail");
-        this.f6482e = kXmlParser.getAttributeValue(null, "WebPage");
-        this.f6483f = kXmlParser.getAttributeValue(null, "Background");
-        this.f6484g = kXmlParser.getAttributeValue(null, "Preview");
-        this.f6485h = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "LoaderVer"), 0);
+        this.name = kXmlParser.getAttributeValue(null, "Name");
+        this.author = kXmlParser.getAttributeValue(null, "Author");
+        this.version = kXmlParser.getAttributeValue(null, "Ver");
+        this.email = kXmlParser.getAttributeValue(null, "EMail");
+        this.webpage = kXmlParser.getAttributeValue(null, "WebPage");
+        this.background = kXmlParser.getAttributeValue(null, "Background");
+        this.preview = kXmlParser.getAttributeValue(null, "Preview");
+        this.loaderVersion = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "LoaderVer"), 0);
     }
 
     public SSkinInfo(SSkinInfo sSkinInfo) {
-        this.f6478a = null;
-        this.f6479b = null;
-        this.f6480c = null;
-        this.f6481d = null;
-        this.f6482e = null;
-        this.f6485h = 0;
+        this.name = null;
+        this.author = null;
+        this.version = null;
+        this.email = null;
+        this.webpage = null;
+        this.loaderVersion = 0;
         this.f6486i = 0L;
-        this.f6478a = sSkinInfo.f6478a;
-        this.f6479b = sSkinInfo.f6479b;
-        this.f6480c = sSkinInfo.f6480c;
-        this.f6481d = sSkinInfo.f6481d;
-        this.f6482e = sSkinInfo.f6482e;
-        this.f6485h = sSkinInfo.f6485h;
-        this.f6483f = sSkinInfo.f6483f;
+        this.name = sSkinInfo.name;
+        this.author = sSkinInfo.author;
+        this.version = sSkinInfo.version;
+        this.email = sSkinInfo.email;
+        this.webpage = sSkinInfo.webpage;
+        this.loaderVersion = sSkinInfo.loaderVersion;
+        this.background = sSkinInfo.background;
         this.f6486i = sSkinInfo.f6486i;
     }
 }

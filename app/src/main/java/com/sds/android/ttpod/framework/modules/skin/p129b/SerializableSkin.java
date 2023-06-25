@@ -17,13 +17,13 @@ import java.util.HashMap;
 public class SerializableSkin implements Container<SBaseView>, Serializable {
 
     /* renamed from: a */
-    private String f6401a;
+    private String path;
 
     /* renamed from: b */
     private long f6402b;
 
     /* renamed from: c */
-    private SSkinInfo f6403c;
+    private SSkinInfo sSkinInfo;
 
     /* renamed from: d */
     private int f6404d;
@@ -32,14 +32,14 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     private SBaseView[] f6405e;
 
     public SerializableSkin(String str, long j, int i) {
-        this.f6401a = str;
+        this.path = str;
         this.f6402b = j;
         this.f6404d = i;
     }
 
     /* renamed from: a */
     public void m3849a(KXmlParser kXmlParser) {
-        this.f6403c = new SSkinInfo(kXmlParser);
+        this.sSkinInfo = new SSkinInfo(kXmlParser);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.Container
@@ -50,10 +50,10 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
 
     /* renamed from: a */
     public SSkinInfo m3853a() {
-        if (this.f6403c == null) {
+        if (this.sSkinInfo == null) {
             return null;
         }
-        return new SSkinInfo(this.f6403c);
+        return new SSkinInfo(this.sSkinInfo);
     }
 
     /* renamed from: a */
@@ -107,7 +107,7 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     /* renamed from: a */
     public Drawable m3851a(Context context, SkinCache skinCache, int i) {
         SPlayerView m3852a;
-        Drawable m3595a = this.f6403c != null ? skinCache.m3595a(context.getResources(), this.f6403c.f6483f) : null;
+        Drawable m3595a = this.sSkinInfo != null ? skinCache.m3595a(context.getResources(), this.sSkinInfo.background) : null;
         if (!m3850a(m3595a) && (m3852a = m3852a(i)) != null) {
             m3595a = m3852a.m3810d(context, skinCache);
         }
@@ -141,7 +141,7 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
         kXmlParser.nextTag();
         kXmlParser.require(2, null, "Theme");
         serializableSkin.m3849a(kXmlParser);
-        int i2 = serializableSkin.f6403c.f6485h;
+        int i2 = serializableSkin.sSkinInfo.loaderVersion;
         ArrayList arrayList = new ArrayList(10);
         HashMap hashMap = new HashMap(10);
         HashMap hashMap2 = new HashMap(10);

@@ -39,7 +39,7 @@ public class ThemeUtils {
         if (c1070a != null) {
             Drawable m3265a = ThemeManager.m3265a(str);
             if (m3265a != null) {
-                c1070a.m7160b(m3265a);
+                c1070a.setDrawable(m3265a);
             } else {
                 m8170a(c1070a, i, str2);
             }
@@ -49,10 +49,10 @@ public class ThemeUtils {
     /* renamed from: a */
     public static void m8170a(ActionBarController.C1070a c1070a, int i, String str) {
         if (i != 0) {
-            c1070a.m7151e(i);
+            c1070a.setImageText(i);
             ColorStateList colorStateList = (ColorStateList) ThemeManager.m3262a(str, false, true);
             if (colorStateList != null) {
-                c1070a.m7161b(colorStateList);
+                c1070a.setTextColor(colorStateList);
             }
         }
     }
@@ -79,7 +79,7 @@ public class ThemeUtils {
 
     /* renamed from: a */
     public static Drawable m8182a() {
-        Drawable drawable = (Drawable) CommandCenter.m4607a().m4602a(new Command(CommandID.GET_BACKGROUND, new Object[0]), Drawable.class);
+        Drawable drawable = (Drawable) CommandCenter.getInstance().m4602a(new Command(CommandID.GET_BACKGROUND, new Object[0]), Drawable.class);
         if (drawable == null) {
             return null;
         }
@@ -88,7 +88,7 @@ public class ThemeUtils {
 
     /* renamed from: b */
     public static String m8163b() {
-        return (String) CommandCenter.m4607a().m4602a(new Command(CommandID.GET_SKIN_PROTOCOL_PATH, new Object[0]), String.class);
+        return (String) CommandCenter.getInstance().m4602a(new Command(CommandID.GET_SKIN_PROTOCOL_PATH, new Object[0]), String.class);
     }
 
     /* renamed from: a */
@@ -154,10 +154,10 @@ public class ThemeUtils {
 
     /* renamed from: d */
     public static int m8159d() {
-        int intValue = Cache.m3218a().m3141w().intValue();
+        int intValue = Cache.getInstance().m3141w().intValue();
         if (intValue == 0) {
             int m8160c = m8160c();
-            Cache.m3218a().m3208a(Integer.valueOf(m8160c));
+            Cache.getInstance().m3208a(Integer.valueOf(m8160c));
             return m8160c;
         }
         return intValue;

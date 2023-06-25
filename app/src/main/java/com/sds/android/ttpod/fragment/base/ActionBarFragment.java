@@ -24,7 +24,6 @@ import com.sds.android.ttpod.fragment.main.SearchResultFragment;
 import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.utils.EntryUtils;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import com.sds.android.ttpod.widget.ListPopupWindow;
@@ -62,7 +61,7 @@ public abstract class ActionBarFragment extends BaseFragment implements OnDropdo
         });
         addCustomActions();
         if (needSearchAction()) {
-            this.mSearchAction = this.mActionBarController.m7198a((Drawable) null, "searchAction");
+            this.mSearchAction = this.mActionBarController.m7198a(getResources().getDrawable(R.drawable.cmmusic_search), "searchAction");
             this.mSearchAction.m7167a(new ActionBarController.InterfaceC1072b() { // from class: com.sds.android.ttpod.fragment.base.ActionBarFragment.2
                 @Override // com.sds.android.ttpod.component.ActionBarController.InterfaceC1072b
                 /* renamed from: a */
@@ -97,7 +96,7 @@ public abstract class ActionBarFragment extends BaseFragment implements OnDropdo
 
     protected void onSearchActionClicked() {
         launchFragment((BaseFragment) Fragment.instantiate(getActivity(), SearchResultFragment.class.getName()));
-        LocalStatistic.m5111av();
+        //LocalStatistic.m5111av();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -237,7 +236,7 @@ public abstract class ActionBarFragment extends BaseFragment implements OnDropdo
             }
         };
         if (collection != null && !collection.isEmpty()) {
-            if (SDKVersionUtils.m8371c()) {
+            if (SDKVersionUtils.checkVersionThanAndroid11()) {
                 arrayAdapter.addAll(collection);
             } else {
                 for (ActionItem actionItem : collection) {
@@ -290,7 +289,7 @@ public abstract class ActionBarFragment extends BaseFragment implements OnDropdo
             }
         };
         if (collection != null && !collection.isEmpty()) {
-            if (SDKVersionUtils.m8371c()) {
+            if (SDKVersionUtils.checkVersionThanAndroid11()) {
                 arrayAdapter.addAll(collection);
             } else {
                 for (ActionItem actionItem : collection) {
@@ -334,7 +333,7 @@ public abstract class ActionBarFragment extends BaseFragment implements OnDropdo
         } else if (needMenuAction() && this.mMenuAction.m7157c() && (onCreateDropDownMenu = onCreateDropDownMenu()) != null && !onCreateDropDownMenu.isEmpty()) {
             this.mDropDownMenu = popupMenu(getActivity(), onCreateDropDownMenu, z, this);
         }
-        LocalStatistic.m5126ag();
+        //LocalStatistic.m5126ag();
     }
 
     @Override // androidx.fragment.app.Fragment

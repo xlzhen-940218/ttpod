@@ -44,7 +44,7 @@ public final class SensitiveWordUtils {
 
     /* renamed from: a */
     public boolean m8242a(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return false;
         }
         for (String str2 : this.f2516c) {

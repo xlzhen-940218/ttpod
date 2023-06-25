@@ -17,7 +17,7 @@ public abstract class BaseModule {
     protected static Context sContext = null;
 
     /* renamed from: id */
-    protected abstract ModuleID mo3239id();
+    protected abstract ModuleID id();
 
     protected abstract void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException;
 
@@ -32,14 +32,14 @@ public abstract class BaseModule {
     public void onCreate() {
         Map<CommandID, Method> requestCommandMap = requestCommandMap();
         assertCommandMap(requestCommandMap);
-        CommandCenter.m4607a().m4597a(this, requestCommandMap);
+        CommandCenter.getInstance().m4597a(this, requestCommandMap);
     }
 
     public void onPreDestroy() {
     }
 
     public void onDestroy() {
-        CommandCenter.m4607a().m4599a(this);
+        CommandCenter.getInstance().m4599a(this);
     }
 
     private Map<CommandID, Method> requestCommandMap() {
@@ -55,10 +55,10 @@ public abstract class BaseModule {
     private void assertCommandMap(Map<CommandID, Method> map) {
         if (EnvironmentUtils.C0602a.m8502i()) {
             for (CommandID commandID : map.keySet()) {
-                if (commandID.getCommandType().equals(CommandType.TO_MODULE) && !commandID.getModuleID().equals(mo3239id())) {
-                    throw new IllegalArgumentException("the CommandID." + commandID.name() + " is not belong to this module(ModuleID." + mo3239id().name() + ")!");
+                if (commandID.getCommandType().equals(CommandType.TO_MODULE) && !commandID.getModuleID().equals(id())) {
+                    throw new IllegalArgumentException("the CommandID." + commandID.name() + " is not belong to this module(ModuleID." + id().name() + ")!");
                 }
-                if (commandID.getCommandType().equals(CommandType.FROM_MODULE) && !ModuleManager.m4114a(commandID, mo3239id())) {
+                if (commandID.getCommandType().equals(CommandType.FROM_MODULE) && !ModuleManager.m4114a(commandID, id())) {
                     throw new IllegalArgumentException("the CommandID." + commandID.name() + " can not register in Module, because the CommandType is CommandType.FROM_MODULE and not be Declared in " + getClass() + " with annotation ObserverCommand !");
                 }
             }

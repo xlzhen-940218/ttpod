@@ -92,7 +92,7 @@ public class SendSongHandler implements Runnable {
                     }
                 }
                 this.f3753b.flush();
-                LogUtils.m8379d("SendSongHandler", "结束传送歌曲: " + m5772a.getTitle() + ", transfer ratio = " + (i / m5772a.getSize()));
+                LogUtils.info("SendSongHandler", "结束传送歌曲: " + m5772a.getTitle() + ", transfer ratio = " + (i / m5772a.getSize()));
                 if (this.f3754c != null && i == this.f3752a.m5772a().getSize()) {
                     this.f3755d.post(new Runnable() { // from class: com.sds.android.ttpod.component.apshare.f.3
                         @Override // java.lang.Runnable

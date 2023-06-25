@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.sds.android.cloudapi.ttpod.data.MusicCircleFirstPublish;
 import com.sds.android.cloudapi.ttpod.result.FirstPublishNewSongCategoryResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.musiccircle.PostDetailFragment;
@@ -67,7 +67,7 @@ public class BestAlbumFromNewSongFragment extends SlidingClosableFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void loadData() {
         this.mStateLoadingView.setState(StateView.EnumC2248b.LOADING);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_NEW_SONG_CATEGORY_PUBLISH_LIST, new Object[0]));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_NEW_SONG_CATEGORY_PUBLISH_LIST, new Object[0]));
     }
 
     private void bindView() {
@@ -104,7 +104,7 @@ public class BestAlbumFromNewSongFragment extends SlidingClosableFragment {
 
             @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
             public void onPageSelected(int i) {
-                BestAlbumFromNewSongFragment.this.doStatisticWhenPageSelected(i);
+                //BestAlbumFromNewSongFragment.this.doStatisticWhenPageSelected(i);
             }
 
             @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -114,18 +114,6 @@ public class BestAlbumFromNewSongFragment extends SlidingClosableFragment {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void doStatisticWhenPageSelected(int i) {
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_ONLINE_BEST_ALBUM_PAGE_SELECTED.getValue(), SPage.PAGE_ONLINE_BEST_ALBUM_FROM_NEW_SONG.getValue());
-        sUserEvent.setPageParameter(true);
-        sUserEvent.append("position", Integer.valueOf(i + 1));
-        if (this.mResult != null && this.mResult.getSingleList().size() >= i + 1) {
-            long msgId = this.mResult.getSingleList().get(i).getMsgId();
-            String title = this.mResult.getSingleList().get(i).getTitle();
-            sUserEvent.append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(msgId));
-            sUserEvent.append("song_list_name", title);
-        }
-        sUserEvent.post();
-    }
 
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onDestroyView() {

@@ -97,12 +97,12 @@ public class BitmapUtils {
                     if (m8434c()) {
                         m8449a(this.f2465b);
                     }
-                    LogUtils.m8388a("BitmapUtils", "decodeBitmap, filePath: " + str);
+                    LogUtils.debug("BitmapUtils", "decodeBitmap, filePath: " + str);
                     return m8439b(BitmapFactory.decodeFile(str, this.f2465b));
                 }
             }
         } catch (OutOfMemoryError e) {
-            LogUtils.m8388a("BitmapUtils", "decodeBitmap OutOfMemoryError filePath=" + str);
+            LogUtils.debug("BitmapUtils", "decodeBitmap OutOfMemoryError filePath=" + str);
         }
         return null;
     }
@@ -202,7 +202,7 @@ public class BitmapUtils {
             float min2 = Math.min(min, i) / min;
             Matrix matrix = new Matrix();
             matrix.setScale(min2, min2);
-            LogUtils.m8388a("BitmapUtils", String.format("cropBitmapToSquare bitmapW=%d H=%d squareLen=%d scale=%f", Integer.valueOf(bitmap.getWidth()), Integer.valueOf(bitmap.getHeight()), Integer.valueOf(i), Float.valueOf(min2)));
+            LogUtils.debug("BitmapUtils", String.format("cropBitmapToSquare bitmapW=%d H=%d squareLen=%d scale=%f", Integer.valueOf(bitmap.getWidth()), Integer.valueOf(bitmap.getHeight()), Integer.valueOf(i), Float.valueOf(min2)));
             try {
                 Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, min, min, matrix, true);
                 if (SDKVersionUtils.m8370d()) {
@@ -347,12 +347,12 @@ public class BitmapUtils {
             int width = imageView.getWidth();
             int height = imageView.getHeight();
             if (intrinsicHeight > 0 && intrinsicWidth > 0 && width > 0 && height > 0) {
-                LogUtils.m8388a("BitmapUtils", String.format("amendMatrixForCenterCrop tag=%s view=%d,%d drawable=%d,%d", imageView.getTag(), Integer.valueOf(width), Integer.valueOf(height), Integer.valueOf(intrinsicWidth), Integer.valueOf(intrinsicHeight)));
+                LogUtils.debug("BitmapUtils", String.format("amendMatrixForCenterCrop tag=%s view=%d,%d drawable=%d,%d", imageView.getTag(), Integer.valueOf(width), Integer.valueOf(height), Integer.valueOf(intrinsicWidth), Integer.valueOf(intrinsicHeight)));
                 float f = (width * 1.0f) / intrinsicWidth;
                 float f2 = (height * 1.0f) / intrinsicHeight;
                 if (f2 >= f) {
                     imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    LogUtils.m8388a("BitmapUtils", String.format("use system center_crop %f %f", Float.valueOf(f), Float.valueOf(f2)));
+                    LogUtils.debug("BitmapUtils", String.format("use system center_crop %f %f", Float.valueOf(f), Float.valueOf(f2)));
                     return;
                 }
                 imageView.setScaleType(ImageView.ScaleType.MATRIX);
@@ -360,7 +360,7 @@ public class BitmapUtils {
                 Matrix matrix = new Matrix();
                 matrix.postScale(max, max);
                 imageView.setImageMatrix(matrix);
-                LogUtils.m8388a("BitmapUtils", String.format("use my matrix %f %f scale=%f", Float.valueOf(f), Float.valueOf(f2), Float.valueOf(max)));
+                LogUtils.debug("BitmapUtils", String.format("use my matrix %f %f scale=%f", Float.valueOf(f), Float.valueOf(f2), Float.valueOf(max)));
             }
         }
     }
@@ -452,7 +452,7 @@ public class BitmapUtils {
             bitmap2 = bitmap;
         }
         try {
-            LogUtils.m8388a("BitmapUtils", "BitmapUtils src=" + width + "," + height + " new=" + i6 + "," + i3 + " dst=" + i + "," + i2 + " dstBitmap=" + bitmap2.getWidth() + "," + bitmap2.getHeight() + " tryRecycleSource=" + z);
+            LogUtils.debug("BitmapUtils", "BitmapUtils src=" + width + "," + height + " new=" + i6 + "," + i3 + " dst=" + i + "," + i2 + " dstBitmap=" + bitmap2.getWidth() + "," + bitmap2.getHeight() + " tryRecycleSource=" + z);
             if (bitmap2 != bitmap && z) {
                 bitmap.recycle();
                 return bitmap2;

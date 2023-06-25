@@ -17,7 +17,6 @@ import com.sds.android.ttpod.adapter.p072d.BaseSearchAdapter;
 import com.sds.android.ttpod.component.p085b.MediaItemViewHolder;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.utils.ListViewUtils;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import com.sds.android.ttpod.widget.expandablelist.AbstractExpandableListAdapter;
@@ -87,7 +86,7 @@ public abstract class BaseSearchActivity extends SlidingClosableActivity impleme
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long j) {
                 int m8266a = ListViewUtils.m8266a(BaseSearchActivity.this.mSearchResultListView.getHeaderViewsCount(), i, BaseSearchActivity.this.mAdapter.getCount());
                 if (m8266a > -1) {
-                    OnlineMediaStatistic.m5053a(m8266a + 1);
+                    //OnlineMediaStatistic.m5053a(m8266a + 1);
                     BaseSearchActivity.this.onMediaItemLongClicked(adapterView, view, m8266a, j);
                     return true;
                 }
@@ -107,7 +106,7 @@ public abstract class BaseSearchActivity extends SlidingClosableActivity impleme
 
             /* renamed from: a */
             private void m8084a(MediaItemViewHolder mediaItemViewHolder, boolean z) {
-                mediaItemViewHolder.m6961d().setText(z ? R.string.icon_arrow_top : R.string.icon_arrow_down);
+                mediaItemViewHolder.getMenuView().setText(z ? R.string.icon_arrow_top : R.string.icon_arrow_down);
             }
         });
         ThemeManager.m3269a(this.mSearchResultListView, ThemeElement.BACKGROUND_MASK);

@@ -33,11 +33,8 @@ import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.p107a.ActionPage;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportService;
 import com.sds.android.ttpod.media.mediastore.GroupType;
@@ -124,7 +121,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
             if (view != LocalMediaEntryFragment.this.mLayoutMatcher || LocalMediaEntryFragment.this.mMatching) {
                 if (view == LocalMediaEntryFragment.this.mIvAction) {
                     if (LocalMediaEntryFragment.this.mMatching) {
-                        SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_STOP, SPage.PAGE_NONE);
+                        //SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_STOP, SPage.PAGE_NONE);
                         MessageDialog messageDialog = new MessageDialog(LocalMediaEntryFragment.this.getActivity(), (int) R.string.prompt_match_not_complete, (int) R.string.prompt_stop, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.LocalMediaEntryFragment.5.1
                             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                             /* renamed from: a  reason: avoid collision after fix types in other method */
@@ -133,7 +130,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
                                     LocalMediaEntryFragment.this.getActivity().unregisterReceiver(LocalMediaEntryFragment.this.mBroadcastReceiver);
                                     LocalMediaEntryFragment.this.mRegisteredBroadcast = false;
                                 }
-                                SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_STOP_SURE, SPage.PAGE_NONE);
+                                //SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_STOP_SURE, SPage.PAGE_NONE);
                                 LocalMediaEntryFragment.this.doBatchLyricPicOperate("stop");
                                 LocalMediaEntryFragment.this.mMatching = false;
                                 LocalMediaEntryFragment.this.flushHeaderView();
@@ -143,13 +140,13 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
                         messageDialog.show();
                         return;
                     }
-                    SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_BANNER_CLOSE, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_BANNER_CLOSE, SPage.PAGE_NONE);
                     LocalMediaEntryFragment.this.hideMatchBanner();
                     return;
                 }
                 return;
             }
-            LocalStatistic.m5160W();
+            //LocalStatistic.m5160W();
             LocalMediaEntryFragment.this.doMatchLyricPic();
         }
     };
@@ -157,8 +154,8 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
     @Override // com.sds.android.ttpod.fragment.base.ActionBarFragment
     protected void onSearchActionClicked() {
         search();
-        LocalStatistic.m5127af();
-        SUserUtils.m4956a(SAction.ACTION_LOCAL_SEARCH, SPage.PAGE_NONE);
+        //LocalStatistic.m5127af();
+        //SUserUtils.m4956a(SAction.ACTION_LOCAL_SEARCH, SPage.PAGE_NONE);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -201,7 +198,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
         if (isEditing) {
             return null;
         }
-        SUserUtils.m4956a(SAction.ACTION_OPEN_LOCAL_DROP_MENU, SPage.PAGE_NONE);
+        //SUserUtils.m4956a(SAction.ACTION_OPEN_LOCAL_DROP_MENU, SPage.PAGE_NONE);
         ArrayList<ActionItem> arrayList = new ArrayList<>();
         if (!isEditing) {
             arrayList.add(new ActionItem(4, 0, (int) R.string.menu_scan_media));
@@ -256,8 +253,8 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
             case 4:
                 if (getActivity() != null) {
                     startActivity(new Intent(getActivity(), MediaScanActivity.class));
-                    LocalStatistic.m5125ah();
-                    SUserUtils.m4956a(SAction.ACTION_MENU_SCAN_MUSIC, SPage.PAGE_SCAN_MUSIC);
+                    //LocalStatistic.m5125ah();
+                    //SUserUtils.m4956a(SAction.ACTION_MENU_SCAN_MUSIC, SPage.PAGE_SCAN_MUSIC);
                     return;
                 }
                 return;
@@ -266,13 +263,13 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
                 return;
             case 6:
                 order(((Number) actionItem.m7004f()).intValue());
-                LocalStatistic.m5123aj();
+                //LocalStatistic.m5123aj();
                 return;
             case 15:
                 if (getActivity() != null) {
                     startEdit();
-                    LocalStatistic.m5124ai();
-                    SUserUtils.m4956a(SAction.ACTION_MENU_BATCH_OPERATE, SPage.PAGE_NONE);
+                    //LocalStatistic.m5124ai();
+                    //SUserUtils.m4956a(SAction.ACTION_MENU_BATCH_OPERATE, SPage.PAGE_NONE);
                     return;
                 }
                 return;
@@ -282,8 +279,8 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
             case 29:
                 if (getActivity() != null) {
                     clickOneKeyMatch();
-                    LocalStatistic.m5093m();
-                    SUserUtils.m4956a(SAction.ACTION_MENU_ONE_KEY_MATCH_LRC_PIC, SPage.PAGE_NONE);
+                    //LocalStatistic.m5093m();
+                    //SUserUtils.m4956a(SAction.ACTION_MENU_ONE_KEY_MATCH_LRC_PIC, SPage.PAGE_NONE);
                     return;
                 }
                 return;
@@ -301,8 +298,8 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
     public void onResume() {
         super.onResume();
         getView().setKeepScreenOn(Preferences.m2813y());
-        OnlineMediaStatistic.m5045a("local");
-        OnlineMediaStatistic.m5054a();
+        //OnlineMediaStatistic.m5045a("local");
+        //OnlineMediaStatistic.m5054a();
     }
 
     protected List<SlidingTabFragmentPagerAdapter.C0998a> buildFragmentBinders() {
@@ -348,20 +345,20 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
     protected void doStatistic(int i) {
         switch ((int) this.mPagerAdapter.getItemId(i)) {
             case 0:
-                LocalStatistic.m5166Q();
+                //LocalStatistic.m5166Q();
                 break;
             case 1:
-                LocalStatistic.m5165R();
+                //LocalStatistic.m5165R();
                 break;
             case 2:
-                LocalStatistic.m5164S();
+                //LocalStatistic.m5164S();
                 break;
             case 3:
-                LocalStatistic.m5163T();
+                //LocalStatistic.m5163T();
                 break;
         }
         ActionPage actionPage = ACTION_PAGE_MAP.get(i);
-        SUserUtils.m4956a(actionPage.m5275a(), actionPage.m5274b());
+        //SUserUtils.m4956a(actionPage.m5275a(), actionPage.m5274b());
     }
 
     protected void resetActionBar(int i) {
@@ -554,7 +551,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
         MessageDialog messageDialog = new MessageDialog(getActivity(), getString(R.string.prompt_match_detail, Integer.valueOf(this.mSuccessCount + this.mSkipCount), Integer.valueOf(this.mFailedCount)), (int) R.string.iknown, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
         messageDialog.setTitle(R.string.prompt_match_result_title);
         messageDialog.show();
-        SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_SUCCESS, SPage.PAGE_NONE);
+        //SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_SUCCESS, SPage.PAGE_NONE);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -619,8 +616,8 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
     }
 
     public void clickOneKeyMatch() {
-        LocalStatistic.m5161V();
-        SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_BANNER, SPage.PAGE_NONE);
+        //LocalStatistic.m5161V();
+        //SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_BANNER, SPage.PAGE_NONE);
         doMatchLyricPic();
     }
 

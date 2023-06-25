@@ -78,7 +78,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
         this.f3328a = new ArrayList();
         this.f3332h = str;
         this.f3329e = OnlinePlayStatus.from(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
-        Long songID = Cache.m3218a().m3225N().getSongID();
+        Long songID = Cache.getInstance().getCurrentPlayMediaItem().getSongID();
         this.f3330f = songID == null ? 0L : songID.longValue();
         this.f3331g = Preferences.m2926bc();
         Preferences.m3023a(context, PreferencesID.ONLINE_MEDIA_LIST_GROUP_NAME, new Preferences.InterfaceC2031a() { // from class: com.sds.android.ttpod.adapter.e.e.1
@@ -86,7 +86,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
             /* renamed from: a */
             public void mo2553a(PreferencesID preferencesID) {
                 PostListAdapter.this.f3331g = Preferences.m2926bc();
-                PostListAdapter.this.f3330f = Cache.m3218a().m3225N().getSongID().longValue();
+                PostListAdapter.this.f3330f = Cache.getInstance().getCurrentPlayMediaItem().getSongID().longValue();
             }
         });
     }
@@ -329,7 +329,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
     /* renamed from: b */
     private void m7464b(PostViewItemHolder postViewItemHolder, final Post post) {
         postViewItemHolder.m7452f().setText(post.getFavoriteCount() > 0 ? String.valueOf(post.getFavoriteCount()) : "收藏");
-        final boolean booleanValue = ((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_FAVORITE_POST, Long.valueOf(post.getId())), Boolean.class)).booleanValue();
+        final boolean booleanValue = ((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_FAVORITE_POST, Long.valueOf(post.getId())), Boolean.class)).booleanValue();
         postViewItemHolder.m7452f().setCompoundDrawablesWithIntrinsicBounds(booleanValue ? R.drawable.img_musiccircle_favorite_mark_yes : R.drawable.img_musiccircle_favorite_mark_no, 0, 0, 0);
         postViewItemHolder.m7442p().setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.e.e.6
             @Override // android.view.View.OnClickListener
@@ -339,10 +339,10 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
                     arrayList.add(Long.valueOf(post.getId()));
                     if (booleanValue) {
                         post.decreaseFavoriteCount();
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.REMOVE_FAVORITE_POSTS, arrayList, ""));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.REMOVE_FAVORITE_POSTS, arrayList, ""));
                     } else {
                         post.increaseFavoriteCount();
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_FAVORITE_POSTS, arrayList, ""));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_FAVORITE_POSTS, arrayList, ""));
                     }
                     PostListAdapter.this.mo5431a(post, booleanValue);
                     return;

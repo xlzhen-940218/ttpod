@@ -31,7 +31,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p124f.NoticeType;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.utils.ListViewUtils;
 import com.sds.android.ttpod.widget.StateView;
@@ -171,7 +170,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
 
                     @Override // com.sds.android.sdk.lib.request.RequestCallback
                     public void onRequestFailure(BaseResult baseResult) {
-                        ErrorStatistic.m5232g(m8873a.m8532e());
+                        //ErrorStatistic.m5232g(m8873a.m8532e());
                     }
                 });
             }
@@ -182,7 +181,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
     /* JADX INFO: Access modifiers changed from: private */
     public void requestComments() {
         this.mRequestState = RequestState.REQUESTING;
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_COMMENT_NOTICES, 0, 20, "comment_notice"));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_COMMENT_NOTICES, 0, 20, "comment_notice"));
     }
 
     @Override // android.widget.AdapterView.OnItemClickListener
@@ -238,7 +237,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 public void onRequestFailure(BaseResult baseResult) {
                     PopupsUtils.m6721a("删除失败");
-                    ErrorStatistic.m5232g(m8870a.m8532e());
+                    //ErrorStatistic.m5232g(m8870a.m8532e());
                 }
             });
         }

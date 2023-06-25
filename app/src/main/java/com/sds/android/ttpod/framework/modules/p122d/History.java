@@ -109,11 +109,11 @@ public class History<D> {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public List<D> m4094a(String str) {
-        return Cache.m3218a().m3192b(str);
+        return Cache.getInstance().m3192b(str);
     }
 
     /* renamed from: b */
     private void m4090b(String str) {
-        Cache.m3218a().m3204a(str, this.f6098a);
+        Cache.getInstance().m3204a(str, this.f6098a);
     }
 }

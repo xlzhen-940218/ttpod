@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId 'com.sds.android.ttpod'
         minSdkVersion 19
-        targetSdkVersion 33
+        targetSdkVersion 21
         versionCode 7610
         versionName "7.6.1"
         multiDexEnabled true

@@ -24,7 +24,7 @@ public final class ValueParser {
                     i = (int) Long.parseLong(str);
                 }
             } catch (Exception e) {
-                LogUtils.m8386a("ValueParser", "parse int error, parse %s", str);
+                LogUtils.debug("ValueParser", "parse int error, parse %s", str);
             }
         }
         return i;
@@ -35,7 +35,7 @@ public final class ValueParser {
         try {
             return Float.parseFloat(str);
         } catch (Exception e) {
-            LogUtils.m8386a("ValueParser", "parse float error, parse %s", str);
+            LogUtils.debug("ValueParser", "parse float error, parse %s", str);
             return f;
         }
     }

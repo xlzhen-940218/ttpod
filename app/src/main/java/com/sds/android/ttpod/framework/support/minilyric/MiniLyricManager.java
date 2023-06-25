@@ -38,7 +38,7 @@ public final class MiniLyricManager {
     private Runnable f7193g = new Runnable() { // from class: com.sds.android.ttpod.framework.support.minilyric.MiniLyricManager.1
         @Override // java.lang.Runnable
         public void run() {
-            LogUtils.m8388a("MiniLyricManager", "mRefreshRunnable");
+            LogUtils.debug("MiniLyricManager", "mRefreshRunnable");
             while (!MiniLyricManager.f7190d) {
                 if (!MiniLyricManager.f7192f) {
                     MiniLyricManager.f7188b.m2339b();
@@ -54,7 +54,7 @@ public final class MiniLyricManager {
     };
 
     private MiniLyricManager() {
-        LogUtils.m8381c("MiniLyricManager", "stopMiniLyric");
+        LogUtils.error("MiniLyricManager", "stopMiniLyric");
         f7187a = new MiniLyric(BaseApplication.getApplication());
         f7187a.m2323a();
     }
@@ -114,13 +114,13 @@ public final class MiniLyricManager {
 
     /* renamed from: b */
     private void m2338b(String str) {
-        LogUtils.m8388a("MiniLyricManager", "tryStart");
+        LogUtils.debug("MiniLyricManager", "tryStart");
         if (!f7191e) {
             Lyric m3647b = LyricParser.m3647b(str);
             Object[] objArr = new Object[2];
             objArr[0] = str;
             objArr[1] = Boolean.valueOf(m3647b != null);
-            LogUtils.m8386a("MiniLyricManager", "tryStart parseLyric lyricPath=%s lyric!=null_%b", objArr);
+            LogUtils.debug("MiniLyricManager", "tryStart parseLyric lyricPath=%s lyric!=null_%b", objArr);
             if (!f7187a.m2310b() && m3647b == null) {
                 m2340a(true);
             } else {
@@ -132,23 +132,23 @@ public final class MiniLyricManager {
     /* renamed from: a */
     public void m2341a(String str) {
         if (PlayStatus.STATUS_PLAYING == Player.m2611e().m2604h() && Preferences.m2838r() && BaseApplication.getApplication().m4627k()) {
-            LogUtils.m8381c("MiniLyricManager", "lyricPath = " + str);
+            LogUtils.error("MiniLyricManager", "lyricPath = " + str);
             m2338b(str);
         }
     }
 
     /* renamed from: c */
     public void m2336c() {
-        LogUtils.m8388a("MiniLyricManager", "stopMiniLyric");
+        LogUtils.debug("MiniLyricManager", "stopMiniLyric");
         m2340a(true);
     }
 
     /* renamed from: a */
     void m2342a(Lyric lyric) {
-        LogUtils.m8388a("MiniLyricManager", "entry Start");
+        LogUtils.debug("MiniLyricManager", "entry Start");
         f7187a.m2317a(lyric);
         if (f7190d) {
-            LogUtils.m8388a("MiniLyricManager", "start");
+            LogUtils.debug("MiniLyricManager", "start");
             f7190d = false;
             f7187a.m2296e();
             new Thread(this.f7193g).start();
@@ -169,7 +169,7 @@ public final class MiniLyricManager {
 
     /* renamed from: e */
     public void m2332e() {
-        LogUtils.m8388a("MiniLyricManager", "unInit");
+        LogUtils.debug("MiniLyricManager", "unInit");
         m2326k();
         f7191e = true;
         f7187a.m2312a(true);
@@ -193,7 +193,7 @@ public final class MiniLyricManager {
 
     /* renamed from: f */
     public void m2331f() {
-        LogUtils.m8388a("MiniLyricManager", "PlayStatus = " + Player.m2611e().m2604h());
+        LogUtils.debug("MiniLyricManager", "PlayStatus = " + Player.m2611e().m2604h());
         if (PlayStatus.STATUS_PLAYING == Player.m2611e().m2604h()) {
             f7188b.m2341a(Preferences.m2935b(Player.m2611e().m2606g()));
         } else {
@@ -222,7 +222,7 @@ public final class MiniLyricManager {
         @Override // android.content.BroadcastReceiver
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            LogUtils.m8381c("MiniLyricManager", "onReceive action=" + action);
+            LogUtils.error("MiniLyricManager", "onReceive action=" + action);
             if (Action.MINI_LYRIC_LOCK_STATUS_CHANGED.equals(action)) {
                 boolean booleanExtra = intent.getBooleanExtra("is_locked", false);
                 Preferences.m2810z(booleanExtra);

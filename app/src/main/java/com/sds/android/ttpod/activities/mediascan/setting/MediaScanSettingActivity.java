@@ -59,7 +59,7 @@ public class MediaScanSettingActivity extends SlidingClosableActivity {
     }
 
     private Card buildCommonCard() {
-        SettingCard settingCard = new SettingCard(this, new SettingItem[]{new CheckableSettingItem(0, 0, R.string.mediascan_setting_exclude_60, 0, 0, Preferences.m2878h()), new CheckableSettingItem(1, 0, R.string.mediascan_setting_exclude_formats, 0, 0, Preferences.m2874i()), new CheckableSettingItem(2, 0, R.string.mediascan_setting_exclude_hidden_folders, 0, 0, Preferences.m2870j()), new SettingItem(3, 0, (int) R.string.mediascan_setting_exclude_folders, 0, (int) R.drawable.img_setting_right_arrow), new SettingItem(4, 0, (int) R.string.mediascan_setting_auto_scan_foders, 0, (int) R.drawable.img_setting_right_arrow)}, R.string.mediascan_setting_auto_scan_start, this.mOnItemClickListener);
+        SettingCard settingCard = new SettingCard(this, new SettingItem[]{new CheckableSettingItem(0, 0, R.string.mediascan_setting_exclude_60, 0, 0, Preferences.durationLessThan60()), new CheckableSettingItem(1, 0, R.string.mediascan_setting_exclude_formats, 0, 0, Preferences.excludeAmrMid()), new CheckableSettingItem(2, 0, R.string.mediascan_setting_exclude_hidden_folders, 0, 0, Preferences.excludeHiddenFolder()), new SettingItem(3, 0, (int) R.string.mediascan_setting_exclude_folders, 0, (int) R.drawable.img_setting_right_arrow), new SettingItem(4, 0, (int) R.string.mediascan_setting_auto_scan_foders, 0, (int) R.drawable.img_setting_right_arrow)}, R.string.mediascan_setting_auto_scan_start, this.mOnItemClickListener);
         settingCard.m6995a(false);
         return settingCard;
     }

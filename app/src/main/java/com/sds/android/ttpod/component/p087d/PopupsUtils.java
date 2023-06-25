@@ -16,7 +16,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.sds.android.cloudapi.ttpod.data.Post;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.DebugUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
@@ -57,10 +57,8 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.mediastore.AudioQuality;
@@ -132,14 +130,14 @@ public class PopupsUtils {
     /* renamed from: a */
     public static void m6749a(Context context) {
         f4017a = Toast.makeText(context, "", Toast.LENGTH_LONG);
-        if (SDKVersionUtils.m8371c()) {
+        if (SDKVersionUtils.checkVersionThanAndroid11()) {
             f4020d = context;
         }
     }
 
     /* renamed from: a */
     public static void m6721a(String str) {
-        if (SDKVersionUtils.m8371c()) {
+        if (SDKVersionUtils.checkVersionThanAndroid11()) {
             f4017a.cancel();
             f4017a = Toast.makeText(f4020d, "", Toast.LENGTH_LONG);
         }
@@ -309,18 +307,15 @@ public class PopupsUtils {
                         }
                         switch (actionItem.m7005e()) {
                             case 0:
-                                LocalStatistic.m5140aN();
-                                PopupsUtils.m6708b(localDataSource, SAction.ACTION_RIGHT_MENU_RING_INCOMING);
+                                //LocalStatistic.m5140aN();
                                 m8247a = RingtoneUtils.m8247a(context, localDataSource, 1);
                                 break;
                             case 1:
-                                PopupsUtils.m6708b(localDataSource, SAction.ACTION_RIGHT_MENU_RING_NOTIFICATION);
-                                LocalStatistic.m5139aO();
+                                //LocalStatistic.m5139aO();
                                 m8247a = RingtoneUtils.m8247a(context, localDataSource, 2);
                                 break;
                             default:
-                                PopupsUtils.m6708b(localDataSource, SAction.ACTION_RIGHT_MENU_RING_ALL);
-                                LocalStatistic.m5138aP();
+                                //LocalStatistic.m5138aP();
                                 m8247a = RingtoneUtils.m8247a(context, localDataSource, 1);
                                 RingtoneUtils.m8247a(context, localDataSource, 2);
                                 RingtoneUtils.m8247a(context, localDataSource, 4);
@@ -357,11 +352,7 @@ public class PopupsUtils {
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
-    public static void m6708b(String str, SAction sAction) {
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", sAction.getValue(), SPage.PAGE_NONE.getValue(), SPage.PAGE_NONE.getValue());
-        sUserEvent.setPageParameter(true);
-        sUserEvent.append(BaseFragment.KEY_SONG_LIST_ID, str).post();
-    }
+
 
     /* renamed from: a */
     public static void m6739a(Context context, MediaItem mediaItem, DialogInterface.OnDismissListener onDismissListener) {
@@ -443,7 +434,7 @@ public class PopupsUtils {
     public static void m6710b(Context context, String str, final BaseDialog.InterfaceC1064a<EditTextDialog> interfaceC1064a) {
         if (context != null) {
             EditTextDialog.C1144a[] c1144aArr = new EditTextDialog.C1144a[1];
-            if (StringUtils.m8346a(str)) {
+            if (StringUtils.isEmpty(str)) {
                 str = GroupItemUtils.m8269a();
             }
             c1144aArr[0] = new EditTextDialog.C1144a(0, "", str, context.getString(R.string.input_playlist_name_hint));
@@ -477,8 +468,8 @@ public class PopupsUtils {
             public void mo2038a(MultiChoiceListDialog multiChoiceListDialog2) {
                 List<CheckableActionItem> m6813e = multiChoiceListDialog2.m6813e();
                 if (m6813e != null && !m6813e.isEmpty()) {
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_CLEAR_CACHE_CLEAR, SPage.PAGE_NONE);
-                    LocalStatistic.m5089q();
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_CLEAR_CACHE_CLEAR, SPage.PAGE_NONE);
+                    //LocalStatistic.m5089q();
                     PopupsUtils.m6744a(context, (int) R.string.cleaning_cache, false, false);
                     TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<List<CheckableActionItem>, Boolean>(m6813e) { // from class: com.sds.android.ttpod.component.d.d.20.1
                         /* JADX INFO: Access modifiers changed from: protected */
@@ -495,7 +486,7 @@ public class PopupsUtils {
                                     FileUtils.m8415b(new File(TTPodConfig.m5299i()));
                                     z2 = true;
                                 } else if (1 == checkableActionItem.m7005e()) {
-                                    MediaItem m3225N = Cache.m3218a().m3225N();
+                                    MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
                                     FileUtils.m8417a(TTPodConfig.m5301g(), 0L, m3225N != null ? new String[]{TTPodConfig.m5310C(), TTPodConfig.m5308a(m3225N.getSongID())} : null);
                                     z2 = true;
                                 } else if (2 == checkableActionItem.m7005e()) {
@@ -589,16 +580,16 @@ public class PopupsUtils {
                 public void mo2038a(EditTextDialog editTextDialog2) {
                     try {
                         String obj = editTextDialog2.m6902c(1).m6896d().toString();
-                        Integer valueOf = Integer.valueOf(StringUtils.m8346a(obj) ? 0 : Integer.parseInt(obj));
+                        Integer valueOf = Integer.valueOf(StringUtils.isEmpty(obj) ? 0 : Integer.parseInt(obj));
                         editTextDialog2.m7242f(true);
                         if (valueOf.intValue() <= 0) {
                             PopupsUtils.m6721a(context.getString(R.string.input_invalid_args));
                             editTextDialog2.m7242f(false);
-                        } else if (ErrCode.ErrNone != ((ErrCode) CommandCenter.m4607a().m4602a(new Command(CommandID.START_SLEEP_MODE, valueOf), ErrCode.class))) {
+                        } else if (ErrCode.ErrNone != ((ErrCode) CommandCenter.getInstance().m4602a(new Command(CommandID.START_SLEEP_MODE, valueOf), ErrCode.class))) {
                             PopupsUtils.m6721a(context.getString(R.string.input_invalid_args));
                         } else {
-                            LocalStatistic.m5155a(valueOf.intValue());
-                            new SUserEvent("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SLEEP.getValue(), SPage.PAGE_GLOBAL_MENU.getValue(), SPage.PAGE_GLOBAL_MENU_DIALOG.getValue()).append("sleep_time", valueOf).post();
+                            //LocalStatistic.m5155a(valueOf.intValue());
+                            //new SUserEvent("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SLEEP.getValue(), SPage.PAGE_GLOBAL_MENU.getValue(), SPage.PAGE_GLOBAL_MENU_DIALOG.getValue()).append("sleep_time", valueOf).post();
                             PopupsUtils.m6721a(context.getString(R.string.sleep_after_num_minute, valueOf));
                             if (interfaceC1064a != null) {
                                 interfaceC1064a.mo2038a(editTextDialog2);
@@ -629,33 +620,33 @@ public class PopupsUtils {
                     switch (actionItem.m7005e()) {
                         case 0:
                             if (interfaceC1135b != null) {
-                                LocalStatistic.m5145aI();
-                                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_DELETE.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_DIALOG_DELETE.getValue()).post();
+                                //LocalStatistic.m5145aI();
+                                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_DELETE.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_DIALOG_DELETE.getValue()).post();
                                 interfaceC1135b.mo5409a(actionItem, i);
                                 return;
                             }
                             return;
                         case 1:
                             if (interfaceC1135b2 != null) {
-                                LocalStatistic.m5144aJ();
-                                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_ADD.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_DIALOG_ADD_SONG.getValue()).post();
+                                //LocalStatistic.m5144aJ();
+                                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_ADD.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_DIALOG_ADD_SONG.getValue()).post();
                                 interfaceC1135b2.mo5409a(actionItem, i);
                                 return;
                             }
                             return;
                         case 2:
-                            LocalStatistic.m5146aH();
-                            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_SHARE.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_DIALOG_SHARE.getValue()).post();
+                            //LocalStatistic.m5146aH();
+                            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_SHARE.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_DIALOG_SHARE.getValue()).post();
                             PopupsUtils.m6756a(activity, mediaItem);
                             return;
                         case 3:
-                            LocalStatistic.m5142aL();
-                            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_SEND.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_NONE.getValue()).post();
+                            //LocalStatistic.m5142aL();
+                            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_SEND.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_NONE.getValue()).post();
                             BlueToothUtils.m8308a(activity, new File[]{new File(mediaItem.getLocalDataSource())});
                             return;
                         case 4:
-                            LocalStatistic.m5137aQ();
-                            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_SONG_INFO.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_DIALOG_MORE_MUSIC_INFO.getValue()).post();
+                            //LocalStatistic.m5137aQ();
+                            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_SONG_INFO.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_DIALOG_MORE_MUSIC_INFO.getValue()).post();
                             PopupsUtils.m6739a(activity, mediaItem, onDismissListener);
                             return;
                         default:
@@ -669,11 +660,11 @@ public class PopupsUtils {
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(ListDialog listDialog2) {
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_CANCEL.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue()).post();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_CANCEL.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue()).post();
                     listDialog2.dismiss();
                 }
             });
-            LocalStatistic.m5147aG();
+            //LocalStatistic.m5147aG();
             listDialog.show();
         }
     }
@@ -698,7 +689,7 @@ public class PopupsUtils {
                     listDialog.dismiss();
                     switch (actionItem.m7005e()) {
                         case 0:
-                            LocalStatistic.m5146aH();
+                            //LocalStatistic.m5146aH();
                             PopupsUtils.m6756a(activity, mediaItem);
                             return;
                         case 1:
@@ -715,7 +706,7 @@ public class PopupsUtils {
                                     VideoPlayManager.m5816a(activity, mediaItem);
                                 }
                             }, 0);
-                            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_MV.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_PLAYER_PLAY_MV.getValue()).post();
+                            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_MV.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_PLAYER_PLAY_MV.getValue()).post();
                             return;
                         default:
                             return;
@@ -724,7 +715,7 @@ public class PopupsUtils {
             };
             listDialog.m7251b(true);
             listDialog.setTitle(R.string.more);
-            LocalStatistic.m5147aG();
+            //LocalStatistic.m5147aG();
             listDialog.m6844a(interfaceC1135b);
             listDialog.show();
         }
@@ -753,11 +744,11 @@ public class PopupsUtils {
                 int intValue = ((Number) actionItem.m7004f()).intValue();
                 if (intValue <= 0) {
                     PopupsUtils.m6713b(context, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
-                } else if (ErrCode.ErrNone != ((ErrCode) CommandCenter.m4607a().m4602a(new Command(CommandID.START_SLEEP_MODE, Integer.valueOf(intValue)), ErrCode.class))) {
+                } else if (ErrCode.ErrNone != ((ErrCode) CommandCenter.getInstance().m4602a(new Command(CommandID.START_SLEEP_MODE, Integer.valueOf(intValue)), ErrCode.class))) {
                     PopupsUtils.m6721a(context.getString(R.string.input_invalid_args));
                 } else {
-                    LocalStatistic.m5155a(intValue);
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SLEEP.getValue(), SPage.PAGE_GLOBAL_MENU.getValue(), SPage.PAGE_GLOBAL_MENU_DIALOG.getValue()).append("sleep_time", Integer.valueOf(intValue)).post();
+                    //LocalStatistic.m5155a(intValue);
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SLEEP.getValue(), SPage.PAGE_GLOBAL_MENU.getValue(), SPage.PAGE_GLOBAL_MENU_DIALOG.getValue()).append("sleep_time", Integer.valueOf(intValue)).post();
                     PopupsUtils.m6721a(context.getString(R.string.sleep_after_num_minute, Integer.valueOf(intValue)));
                 }
             }
@@ -772,7 +763,7 @@ public class PopupsUtils {
             ListDialog listDialog = new ListDialog(activity, new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_share, (int) R.string.share), new ActionItem(1, (int) R.drawable.img_contextmenu_send, (int) R.string.send), new ActionItem(2, (int) R.drawable.img_contextmenu_mediainfo, (int) R.string.media_info)}, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
             listDialog.setTitle(R.string.more);
             listDialog.m6844a(new C1197a(activity, mediaItem, listDialog, null));
-            LocalStatistic.m5147aG();
+            //LocalStatistic.m5147aG();
             listDialog.show();
         }
     }
@@ -823,19 +814,19 @@ public class PopupsUtils {
         public void mo5409a(ActionItem actionItem, int i) {
             switch (actionItem.m7005e()) {
                 case 0:
-                    LocalStatistic.m5146aH();
+                    //LocalStatistic.m5146aH();
                     PopupsUtils.m6756a(this.activity, this.mediaItem);
-                    PopupsUtils.m6709b(this.mediaItem, SAction.ACTION_RIGHT_MENU_SHARE);
+
                     break;
                 case 1:
-                    LocalStatistic.m5142aL();
+                    //LocalStatistic.m5142aL();
                     BlueToothUtils.m8308a(this.activity, new File[]{new File(this.mediaItem.getLocalDataSource())});
-                    PopupsUtils.m6709b(this.mediaItem, SAction.ACTION_RIGHT_MENU_SEND);
+
                     break;
                 case 2:
-                    LocalStatistic.m5137aQ();
+                    //LocalStatistic.m5137aQ();
                     PopupsUtils.m6739a(this.activity, this.mediaItem, (DialogInterface.OnDismissListener) null);
-                    PopupsUtils.m6709b(this.mediaItem, SAction.ACTION_RIGHT_MENU_MUSIC_INFO);
+
                     break;
                 case 3:
                     this.mediaItem.setFav(false);
@@ -848,7 +839,7 @@ public class PopupsUtils {
                     }
                     break;
                 case 5:
-                    PopupsUtils.m6729a(this.activity, Cache.m3218a().m3155k(), this.mediaItem, (ActionItem.InterfaceC1135b) null, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
+                    PopupsUtils.m6729a(this.activity, Cache.getInstance().m3155k(), this.mediaItem, (ActionItem.InterfaceC1135b) null, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
                     break;
                 case 6:
                     PopupsUtils.m6740a((Context) this.activity, this.mediaItem);
@@ -876,14 +867,7 @@ public class PopupsUtils {
         }
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: b */
-    public static void m6709b(MediaItem mediaItem, SAction sAction) {
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", sAction.getValue(), SPage.PAGE_NONE.getValue());
-        sUserEvent.setPageParameter(true);
-        sUserEvent.append("song_id", mediaItem.getLocalDataSource());
-        sUserEvent.post();
-    }
+
 
     /* renamed from: a */
     public static void m6757a(Activity activity, FavoriteSubMediaListFragment.FavoriteSongFragment favoriteSongFragment, MediaItem mediaItem) {
@@ -897,7 +881,7 @@ public class PopupsUtils {
             ListDialog listDialog = new ListDialog(activity, m6704d, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
             listDialog.setTitle(R.string.more);
             listDialog.m6844a(new C1197a(activity, mediaItem, listDialog, favoriteSongFragment));
-            LocalStatistic.m5147aG();
+            //LocalStatistic.m5147aG();
             listDialog.show();
         }
     }
@@ -945,7 +929,7 @@ public class PopupsUtils {
                         /* renamed from: a  reason: avoid collision after fix types in other method */
                         public void mo2038a(EditTextDialog editTextDialog) {
                             String obj = editTextDialog.m6902c(0).m6896d().toString();
-                            CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, (String) CommandCenter.m4607a().m4602a(new Command(CommandID.ADD_GROUP, obj), String.class), collection));
+                            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, (String) CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, obj), String.class), collection));
                             PopupsUtils.m6721a(context.getString(R.string.add_to_group_success, obj));
                             if (interfaceC1064a != null) {
                                 interfaceC1064a.mo2038a(editTextDialog);
@@ -960,11 +944,8 @@ public class PopupsUtils {
                 /* renamed from: a */
                 public void mo5409a(ActionItem actionItem, int i2) {
                     String str = (String) actionItem.m7004f();
-                    LocalStatistic.m5143aK();
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, str, collection));
-                    SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_RIGHT_MENU_ADD_TO_OK.getValue(), SPage.PAGE_NONE.getValue(), SPage.PAGE_NONE.getValue());
-                    sUserEvent.setPageParameter(true);
-                    sUserEvent.append(AbsMediaListFragment.KEY_GROUP_ID, str).post();
+                    //LocalStatistic.m5143aK();
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, str, collection));
                     PopupsUtils.m6721a(context.getString(R.string.add_to_group_success, actionItem.m7006d()));
                     if (interfaceC1135b != null) {
                         interfaceC1135b.mo5409a(actionItem, i2);
@@ -992,9 +973,9 @@ public class PopupsUtils {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
                     if (str.equals(MediaStorage.GROUP_ID_FAV)) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     } else {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM, str, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM, str, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     }
                     if (interfaceC1064a != null) {
                         interfaceC1064a.mo2038a(moreOptionalDialog);
@@ -1002,17 +983,14 @@ public class PopupsUtils {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(mediaItem);
                     if (moreOptionalDialog.m6817e()) {
-                        CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, arrayList));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, arrayList));
                     }
                     if (moreOptionalDialog.m6819c()) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_PICTURE, arrayList));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_PICTURE, arrayList));
                     }
                     if (moreOptionalDialog.m6816f()) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_LYRIC, arrayList));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_LYRIC, arrayList));
                     }
-                    SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_RIGHT_MENU_DIALOG_DELETE.getValue(), SPage.PAGE_NONE.getValue(), SPage.PAGE_NONE.getValue());
-                    sUserEvent.setPageParameter(true);
-                    sUserEvent.append("song_id", mediaItem.getLocalDataSource()).append(AbsMediaListFragment.KEY_GROUP_ID, str).post();
                 }
             });
         }
@@ -1035,9 +1013,9 @@ public class PopupsUtils {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
                     if (str.equals(MediaStorage.GROUP_ID_FAV)) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM_LIST, collection, Boolean.valueOf(moreOptionalDialog.m6821b())));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM_LIST, collection, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     } else {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM_LIST, str, collection, Boolean.valueOf(moreOptionalDialog.m6821b())));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM_LIST, str, collection, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     }
                     if (moreOptionalDialog.m6817e()) {
                         PopupsUtils.m6707b(collection);
@@ -1046,10 +1024,10 @@ public class PopupsUtils {
                         interfaceC1064a.mo2038a(moreOptionalDialog);
                     }
                     if (moreOptionalDialog.m6819c()) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_PICTURE, collection));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_PICTURE, collection));
                     }
                     if (moreOptionalDialog.m6816f()) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_LYRIC, collection));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_LYRIC, collection));
                     }
                 }
             });
@@ -1061,7 +1039,7 @@ public class PopupsUtils {
     public static void m6707b(Collection<MediaItem> collection) {
         ArrayList arrayList = new ArrayList();
         arrayList.addAll(collection);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, arrayList));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, arrayList));
     }
 
     /* renamed from: a */
@@ -1122,15 +1100,15 @@ public class PopupsUtils {
                 public void onClick(View view2) {
                     switch (view2.getId()) {
                         case R.id.btn_send /* 2131230855 */:
-                            SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_SEND, SPage.PAGE_NONE);
+                            //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_SEND, SPage.PAGE_NONE);
                             interfaceC1677a.onSendToRequested();
                             return;
                         case R.id.btn_remove /* 2131231668 */:
-                            SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_REMOVE, SPage.PAGE_NONE);
+                            //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_REMOVE, SPage.PAGE_NONE);
                             interfaceC1677a.onRemoveRequested();
                             return;
                         case R.id.btn_add /* 2131231669 */:
-                            SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_ADD, SPage.PAGE_NONE);
+                            //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_ADD, SPage.PAGE_NONE);
                             interfaceC1677a.onAddToRequested();
                             return;
                         default:

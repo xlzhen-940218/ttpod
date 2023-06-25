@@ -10,8 +10,7 @@ import android.net.Uri;
 import android.util.Pair;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.framework.base.Action;
-import com.sds.android.ttpod.framework.storage.environment.EnvironmentContentProvider;
-import com.sds.android.ttpod.framework.storage.environment.Preferences;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -134,9 +133,9 @@ public final class AccessHelper {
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
-    public static String m3092a(String str, String str2, String str3) {
+    public static String m3092a(String content, String uri, String str3) {
         try {
-            Cursor query = f6987b.getContentResolver().query(m3100a(str, str2), null, m3104a(), null, null);
+            Cursor query = f6987b.getContentResolver().query(m3100a(content, uri), null, m3104a(), null, null);
             if (query != null) {
                 if (query.moveToNext()) {
                     str3 = query.getString(0);
@@ -307,7 +306,7 @@ public final class AccessHelper {
     /* renamed from: a */
     public static Set<String> m3101a(String str) {
         HashSet hashSet = new HashSet();
-        if (str != null && !StringUtils.m8346a(str)) {
+        if (str != null && !StringUtils.isEmpty(str)) {
             for (String str2 : str.split("=_=")) {
                 hashSet.add(str2);
             }

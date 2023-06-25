@@ -7,7 +7,7 @@ import com.sds.android.cloudapi.ttpod.result.FindSongModuleResult;
 import com.sds.android.cloudapi.ttpod.result.HotSongOnlineMediaItemsResultNew;
 import com.sds.android.cloudapi.ttpod.result.OperationZoneResult;
 import com.sds.android.cloudapi.ttpod.result.SingerListResult;
-import com.sds.android.sdk.core.statistic.SEvent;
+
 import com.sds.android.sdk.lib.request.GetMethodRequest;
 import com.sds.android.sdk.lib.request.Request;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
@@ -33,17 +33,17 @@ public class FindSongHotModuleAPI {
 
     /* renamed from: a */
     public static Request<HotSongOnlineMediaItemsResultNew> m8898a(String str, int i, int i2) {
-        return new GetMethodRequest(HotSongOnlineMediaItemsResultNew.class, str).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(HotSongOnlineMediaItemsResultNew.class, str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
     }
 
     /* renamed from: b */
     public static Request<FindSongHotListResultNew> m8895b(String str, int i, int i2) {
-        return new GetMethodRequest(FindSongHotListResultNew.class, str).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(FindSongHotListResultNew.class, str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
     public static Request<SingerListResult> m8897a(String str, int i, int i2, String str2, Collection collection) {
-        return new GetMethodRequest(SingerListResult.class, str).m8537b("v", EnvironmentUtils.C0603b.m8491c()).m8537b("singer_name", str2).m8537b("singer_id", collection).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(SingerListResult.class, str).m8537b("v", EnvironmentUtils.C0603b.m8491c()).m8537b("singer_name", str2).m8537b("singer_id", collection).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
     }
 
     /* renamed from: b */

@@ -35,9 +35,9 @@ public class SocketClient {
             this.f3777a.setSoTimeout(360000);
             this.f3777a.setSendBufferSize(32768);
             this.f3777a.setReceiveBufferSize(32768);
-            LogUtils.m8388a("SocketClient", "connected to server: " + str);
+            LogUtils.debug("SocketClient", "connected to server: " + str);
         } catch (IOException e) {
-            LogUtils.m8383b("SocketClient", e.getMessage(), e);
+            LogUtils.error("SocketClient", e.getMessage(), e);
         }
     }
 
@@ -54,7 +54,7 @@ public class SocketClient {
         try {
             if (this.f3777a != null && !this.f3777a.isClosed()) {
                 this.f3777a.close();
-                LogUtils.m8388a("SocketClient", "client socket is closed");
+                LogUtils.debug("SocketClient", "client socket is closed");
             }
         } catch (IOException e) {
             e.printStackTrace();

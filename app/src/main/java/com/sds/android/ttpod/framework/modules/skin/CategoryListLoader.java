@@ -91,7 +91,7 @@ public class CategoryListLoader implements Runnable {
             Collections.sort(arrayList);
             j = onlineCategoryListResult.m3858b();
         }
-        CommandCenter.m4607a().m4595b(new Command(this.f6605j, arrayList, Long.valueOf(j)), ModuleID.SKIN);
+        CommandCenter.getInstance().m4595b(new Command(this.f6605j, arrayList, Long.valueOf(j)), ModuleID.SKIN);
     }
 
     /* renamed from: a */

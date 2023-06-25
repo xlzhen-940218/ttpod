@@ -35,7 +35,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p124f.NoticeType;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.utils.ListViewUtils;
 import com.sds.android.ttpod.widget.StateView;
@@ -169,7 +168,7 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
 
                         @Override // com.sds.android.sdk.lib.request.RequestCallback
                         public void onRequestFailure(BaseResult baseResult) {
-                            ErrorStatistic.m5232g(m8873a.m8532e());
+                            //ErrorStatistic.m5232g(m8873a.m8532e());
                         }
                     });
                 }
@@ -261,13 +260,13 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
     /* JADX INFO: Access modifiers changed from: private */
     public void requestRepostNotices() {
         this.mRepostNoticeRequestState = RequestState.REQUESTING;
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_REPOST_NOTICES, Integer.valueOf(this.mRepostNotices.size()), 20, "repost_notice"));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_REPOST_NOTICES, Integer.valueOf(this.mRepostNotices.size()), 20, "repost_notice"));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestNewFollowerNotices() {
         this.mIsRefreshing = true;
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_NEW_FOLLOWER_NOTICES, "new_follower_notice"));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_NEW_FOLLOWER_NOTICES, "new_follower_notice"));
     }
 
     @Override // android.widget.AdapterView.OnItemClickListener
@@ -301,7 +300,7 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
 
                             @Override // com.sds.android.sdk.lib.request.RequestCallback
                             public void onRequestFailure(BaseResult baseResult) {
-                                ErrorStatistic.m5232g(m8870a.m8532e());
+                                //ErrorStatistic.m5232g(m8870a.m8532e());
                                 PopupsUtils.m6721a("删除失败");
                             }
                         });

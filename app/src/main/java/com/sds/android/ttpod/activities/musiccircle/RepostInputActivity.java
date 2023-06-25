@@ -18,7 +18,7 @@ public class RepostInputActivity extends BaseInputActivity {
 
     @Override // com.sds.android.ttpod.activities.musiccircle.BaseInputActivity
     protected void onSend(String str) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.RE_POST, Long.valueOf(this.mPost.getId()), Long.valueOf(this.mPost.getUser().getUserId()), str, ""));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.RE_POST, Long.valueOf(this.mPost.getId()), Long.valueOf(this.mPost.getUser().getUserId()), str, ""));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -32,7 +32,7 @@ public class RepostInputActivity extends BaseInputActivity {
         if (baseResult.isSuccess()) {
             onSendFinished();
             this.mPost.setRepostCount(this.mPost.getRepostCount() + 1);
-            CommandCenter.m4607a().m4606a(new Command(CommandID.CHANGE_POST_REPOST_COUNT, this.mPost));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.CHANGE_POST_REPOST_COUNT, this.mPost));
             return;
         }
         onSendFail();

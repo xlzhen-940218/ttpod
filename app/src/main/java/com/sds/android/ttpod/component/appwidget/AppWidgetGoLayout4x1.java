@@ -87,7 +87,7 @@ public class AppWidgetGoLayout4x1 extends GoWidgetFrame implements View.OnLongCl
             /* renamed from: a */
             public void mo2446a(MediaItem mediaItem) {
                 super.mo2446a(mediaItem);
-                LogUtils.m8388a(AppWidgetGoLayout4x1.TAG, "onPlayMediaChanged");
+                LogUtils.debug(AppWidgetGoLayout4x1.TAG, "onPlayMediaChanged");
                 if (mediaItem != null && !mediaItem.isNull()) {
                     AppWidgetGoLayout4x1.this.onMetaChanged(mediaItem.getArtist(), mediaItem.getTitle());
                     AppWidgetGoLayout4x1.this.onAlbumCoverChanged(Preferences.m3014a(AppWidgetGoLayout4x1.this.mSupport.m2454v()));
@@ -129,7 +129,7 @@ public class AppWidgetGoLayout4x1 extends GoWidgetFrame implements View.OnLongCl
 
     @Override // com.sds.android.ttpod.component.appwidget.GoWidgetLife
     public void onStart(Bundle bundle) {
-        LogUtils.m8388a(TAG, "onStart");
+        LogUtils.debug(TAG, "onStart");
         this.mImageViewAlbumCover = (ImageView) findViewById(R.id.image_album_cover);
         this.mTextViewTitle = (TextView) findViewById(R.id.text_title);
         this.mProgressBar = (ProgressBar) findViewById(R.id.seekbar_progress);
@@ -198,36 +198,36 @@ public class AppWidgetGoLayout4x1 extends GoWidgetFrame implements View.OnLongCl
 
     @Override // com.sds.android.ttpod.component.appwidget.GoWidgetLife
     public void onPause(int i) {
-        LogUtils.m8388a(TAG, "onPause");
+        LogUtils.debug(TAG, "onPause");
     }
 
     @Override // com.sds.android.ttpod.component.appwidget.GoWidgetLife
     public void onResume(int i) {
-        LogUtils.m8388a(TAG, "onResume");
+        LogUtils.debug(TAG, "onResume");
     }
 
     @Override // com.sds.android.ttpod.component.appwidget.GoWidgetLife
     public void onDelete(int i) {
-        LogUtils.m8388a(TAG, "onDelete");
+        LogUtils.debug(TAG, "onDelete");
         destroy();
     }
 
     @Override // com.sds.android.ttpod.component.appwidget.GoWidgetLife
     public void onRemove(int i) {
-        LogUtils.m8388a(TAG, "onRemove");
+        LogUtils.debug(TAG, "onRemove");
         destroy();
     }
 
     @Override // com.sds.android.ttpod.component.appwidget.GoWidgetLife
     public boolean onApplyTheme(Bundle bundle) {
-        LogUtils.m8388a(TAG, "onApplyTheme");
+        LogUtils.debug(TAG, "onApplyTheme");
         return false;
     }
 
     @Override // android.view.View
     protected void onFinishInflate() {
         super.onFinishInflate();
-        LogUtils.m8388a(TAG, "onFinishInflate");
+        LogUtils.debug(TAG, "onFinishInflate");
     }
 
     @Override // android.view.View.OnLongClickListener

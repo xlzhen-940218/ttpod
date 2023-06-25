@@ -52,7 +52,7 @@ public abstract class UserListFragment<Data extends TTPodUser> extends BaseFragm
         super.onCreate(bundle);
         TTPodUser m2954aq = Preferences.m2954aq();
         if (m2954aq != null) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
         }
     }
 

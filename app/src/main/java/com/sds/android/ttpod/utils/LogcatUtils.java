@@ -22,7 +22,7 @@ public class LogcatUtils {
         try {
             Runtime.getRuntime().exec((String[]) m8258d.toArray(new String[m8258d.size()]));
         } catch (IOException e) {
-            LogUtils.m8388a("LOGCAT", "something wrong with logcat");
+            LogUtils.debug("LOGCAT", "something wrong with logcat");
         }
     }
 

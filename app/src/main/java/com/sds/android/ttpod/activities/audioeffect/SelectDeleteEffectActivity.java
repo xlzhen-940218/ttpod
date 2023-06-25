@@ -16,10 +16,8 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.PrivateEffectItem;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,12 +72,12 @@ public class SelectDeleteEffectActivity extends SlidingClosableActivity {
             public void mo5433a(ActionBarController.C1070a c1070a) {
                 if (c1070a.m7150f() == null) {
                     c1070a.m7166a((Object) c1070a);
-                    c1070a.m7153d(R.drawable.img_checkbox_multiselect_checked);
+                    c1070a.setImageResource(R.drawable.img_checkbox_multiselect_checked);
                     SelectDeleteEffectActivity.this.mFragment.selectAll();
                     return;
                 }
                 c1070a.m7166a((Object) null);
-                c1070a.m7153d(R.drawable.img_checkbox_multiselect_unchecked);
+                c1070a.setImageResource(R.drawable.img_checkbox_multiselect_unchecked);
                 SelectDeleteEffectActivity.this.mFragment.selectNone();
             }
         });
@@ -91,11 +89,11 @@ public class SelectDeleteEffectActivity extends SlidingClosableActivity {
     public void updateAction() {
         if (this.mFragment.getSelectedCount() == this.mList.size()) {
             this.mSelectionAction.m7166a((Object) this.mSelectionAction);
-            this.mSelectionAction.m7153d(R.drawable.img_checkbox_multiselect_checked);
+            this.mSelectionAction.setImageResource(R.drawable.img_checkbox_multiselect_checked);
             return;
         }
         this.mSelectionAction.m7166a((Object) null);
-        this.mSelectionAction.m7153d(R.drawable.img_checkbox_multiselect_unchecked);
+        this.mSelectionAction.setImageResource(R.drawable.img_checkbox_multiselect_unchecked);
     }
 
     private void initMyEffectFragment() {
@@ -112,12 +110,12 @@ public class SelectDeleteEffectActivity extends SlidingClosableActivity {
     public void performDeleteClick() {
         List<PrivateEffectItem> selectItems = this.mFragment.getSelectItems();
         this.mList.removeAll(selectItems);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, selectItems));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, selectItems));
         this.mFragment.updateData(this.mList);
         this.mSelectionAction.m7155c(this.mList.size() > 0);
         this.mIsSelected = false;
-        AudioEffectStatistic.m5246z();
-        SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_DEL_SELECTED_OK, SPage.PAGE_NONE, SPage.PAGE_AUDIO_MY_CLOUD_EFFECT);
+        //AudioEffectStatistic.m5246z();
+        //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_DEL_SELECTED_OK, SPage.PAGE_NONE, SPage.PAGE_AUDIO_MY_CLOUD_EFFECT);
         if (selectItems != null && !selectItems.isEmpty()) {
             PopupsUtils.m6760a((int) R.string.string_del_audio);
         }
@@ -178,8 +176,8 @@ public class SelectDeleteEffectActivity extends SlidingClosableActivity {
             notifyDataSetChanged();
             SelectDeleteEffectActivity.this.updateAction();
             if (!SelectDeleteEffectActivity.this.mIsSelected) {
-                AudioEffectStatistic.m5247y();
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_DEL_SELECTED, SPage.PAGE_NONE, SPage.PAGE_AUDIO_MY_CLOUD_EFFECT);
+                //AudioEffectStatistic.m5247y();
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_DEL_SELECTED, SPage.PAGE_NONE, SPage.PAGE_AUDIO_MY_CLOUD_EFFECT);
                 SelectDeleteEffectActivity.this.mIsSelected = true;
             }
         }

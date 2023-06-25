@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.web.WebActivity;
@@ -14,7 +14,6 @@ import com.sds.android.ttpod.fragment.WebFragment;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SearchStatistic;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,8 +95,8 @@ public class CensorHandler {
         intent.putExtra(WebFragment.EXTRA_TITLE, outListItem.getName());
         intent.putExtra(WebFragment.EXTRA_ENABLE_SLIDING_CLOSABLE, false);
         this.f3854a.startActivity(intent);
-        SearchStatistic.m4941b(this.f3855b);
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_OUT_LIST.getValue(), String.valueOf(SPage.PAGE_DIALOG_COPYRIGHT.getValue()), outListItem.getName()).post();
+        //SearchStatistic.m4941b(this.f3855b);
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_OUT_LIST.getValue(), String.valueOf(SPage.PAGE_DIALOG_COPYRIGHT.getValue()), outListItem.getName()).post();
     }
 
     /* renamed from: a */
@@ -114,7 +113,7 @@ public class CensorHandler {
                 return arrayList;
             }
             OnlineMediaItem.OutListItem outListItem = outList.get(i2);
-            if (!StringUtils.m8346a(outListItem.getUrl())) {
+            if (!StringUtils.isEmpty(outListItem.getUrl())) {
                 ActionItem actionItem = new ActionItem(i2, (int) R.drawable.img_setting_right_arrow, outListItem.getName());
                 actionItem.m7011a(ActionItem.EnumC1134a.RIGHT_ICON);
                 actionItem.m7009a(outListItem);

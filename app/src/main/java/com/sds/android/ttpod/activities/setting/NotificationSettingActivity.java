@@ -3,7 +3,7 @@ package com.sds.android.ttpod.activities.setting;
 import android.os.Bundle;
 import android.util.SparseIntArray;
 import android.view.ViewGroup;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.SDKVersionUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.base.SlidingClosableActivity;
@@ -14,7 +14,6 @@ import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.component.p087d.p088a.SingleChoiceListDialog;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 /* loaded from: classes.dex */
@@ -37,28 +36,28 @@ public class NotificationSettingActivity extends SlidingClosableActivity {
             switch (actionItem.m7005e()) {
                 case 1:
                     NotificationSettingActivity.this.showPrioritySetting(actionItem, i);
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_NOTIFICATION_PRIORITY, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_NOTIFICATION_PRIORITY, SPage.PAGE_NONE);
                     return;
                 case 2:
                     if (!f2990a && !(actionItem instanceof CheckableSettingItem)) {
                         throw new AssertionError();
                     }
                     Preferences.m3031Y(((CheckableSettingItem) actionItem).isChecked());
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_PREVIOUS_BUTTON, ((CheckableSettingItem) actionItem).isChecked());
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_PREVIOUS_BUTTON, ((CheckableSettingItem) actionItem).isChecked());
                     return;
                 case 3:
                     if (!f2990a && !(actionItem instanceof CheckableSettingItem)) {
                         throw new AssertionError();
                     }
                     Preferences.m3029Z(((CheckableSettingItem) actionItem).isChecked());
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_CLOSE_BUTTON, ((CheckableSettingItem) actionItem).isChecked());
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_CLOSE_BUTTON, ((CheckableSettingItem) actionItem).isChecked());
                     return;
                 case 4:
                     if (!f2990a && !(actionItem instanceof CheckableSettingItem)) {
                         throw new AssertionError();
                     }
                     Preferences.m2979aa(!((CheckableSettingItem) actionItem).isChecked());
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_PAUSE_AUTO_HIDE, ((CheckableSettingItem) actionItem).isChecked());
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_PAUSE_AUTO_HIDE, ((CheckableSettingItem) actionItem).isChecked());
                     return;
                 default:
                     return;
@@ -99,10 +98,7 @@ public class NotificationSettingActivity extends SlidingClosableActivity {
                 actionItem.m7010a(actionItem2.m7006d());
                 NotificationSettingActivity.this.mSettingCard.m7799a((SettingItem) actionItem, i);
                 Preferences.m2845p(actionItem2.m7005e());
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_SETTING_NOTIFICATION_PRIORITY_SELECT.getValue(), 0, 0);
-                sUserEvent.setPageParameter(true);
-                sUserEvent.append("type", Integer.valueOf(i2));
-                sUserEvent.post();
+
             }
         }, (BaseDialog.InterfaceC1064a<SingleChoiceListDialog>) null);
     }

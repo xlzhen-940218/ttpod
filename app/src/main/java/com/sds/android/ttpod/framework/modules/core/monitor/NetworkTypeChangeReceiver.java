@@ -22,7 +22,7 @@ public class NetworkTypeChangeReceiver extends BroadcastReceiver {
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
         if ("android.net.conn.CONNECTIVITY_CHANGE".equals(intent.getAction())) {
-            CommandCenter.m4607a().m4604a(new Command(CommandID.NET_WORK_TYPE_CHANGED, new Object[0]), ModuleID.MONITOR);
+            CommandCenter.getInstance().m4604a(new Command(CommandID.NET_WORK_TYPE_CHANGED, new Object[0]), ModuleID.MONITOR);
         }
     }
 }

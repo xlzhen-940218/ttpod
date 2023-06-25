@@ -45,8 +45,7 @@ public class SlidingTabFragmentPagerAdapter extends FragmentPagerAdapter impleme
             BaseFragment baseFragment = (BaseFragment) getItem(i);
             if (topFragment != null) {
                 topFragment.setPage(baseFragment.getPage());
-                topFragment.setPageProperties(baseFragment.getPageProperties());
-                topFragment.updatePageProperties();
+
                 return;
             }
             ((BaseActivity) this.f3380b).updatePage(baseFragment.getPage());

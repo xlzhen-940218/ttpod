@@ -6,7 +6,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 
 
@@ -64,13 +63,13 @@ public class ReportTask implements Runnable {
         Boolean valueOf;
         Boolean.valueOf(false);
         if (EnumC2097b.REPORT_TYPE_LYRIC == this.f7311a) {
-            StatisticUtils.m4907a("lyric_pic", "report", "lyric", this.f7312b.ordinal(), this.f7313c.getSongID().longValue(), this.f7313c.getArtist(), this.f7313c.getTitle());
+            //StatisticUtils.m4907a("lyric_pic", "report", "lyric", this.f7312b.ordinal(), this.f7313c.getSongID().longValue(), this.f7313c.getArtist(), this.f7313c.getTitle());
             valueOf = Boolean.valueOf(m2120a("http://lrc.ttpod.com/report?", m2121a()));
         } else {
-            StatisticUtils.m4907a("lyric_pic", "report", "picture", this.f7312b.ordinal(), this.f7313c.getSongID().longValue(), this.f7313c.getArtist(), this.f7313c.getTitle());
+            //StatisticUtils.m4907a("lyric_pic", "report", "picture", this.f7312b.ordinal(), this.f7313c.getSongID().longValue(), this.f7313c.getArtist(), this.f7313c.getTitle());
             valueOf = Boolean.valueOf(m2120a("http://picdown.ttpod.cn/picreport?", m2118b()));
         }
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_REPORT, this.f7311a, this.f7313c, valueOf), ModuleID.SEARCH);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_REPORT, this.f7311a, this.f7313c, valueOf), ModuleID.SEARCH);
     }
 
     /* renamed from: a */
@@ -130,7 +129,7 @@ public class ReportTask implements Runnable {
         arrayList.add(new BasicNameValuePair("title", this.f7313c.getTitle()));
         arrayList.add(new BasicNameValuePair("artist", this.f7313c.getArtist()));
         arrayList.add(new BasicNameValuePair("album", this.f7313c.getAlbum()));
-        String m8402j = FileUtils.m8402j(this.f7313c.getLocalDataSource());
+        String m8402j = FileUtils.getFilename(this.f7313c.getLocalDataSource());
         arrayList.add(new BasicNameValuePair("filename", m8402j));
         arrayList.add(new BasicNameValuePair("mediatype", m8402j.substring(m8402j.lastIndexOf(46) + 1)));
         arrayList.add(new BasicNameValuePair("duration", String.valueOf(this.f7313c.getDuration())));

@@ -34,13 +34,13 @@ public class SinaWeiboApi extends BaseApi {
     public ShareResult mo2076b(ShareInfo shareInfo, ApiCallback apiCallback) {
         String m1928a;
         List<NameValuePair> m2086a = m2086a(shareInfo);
-        if (StringUtils.m8346a(shareInfo.m1964c())) {
+        if (StringUtils.isEmpty(shareInfo.m1964c())) {
             m1928a = ShareHttpUtil.m1929a("https://upload.api.weibo.com/2/statuses/update.json", m2086a);
         } else {
             m1928a = ShareHttpUtil.m1928a("https://upload.api.weibo.com/2/statuses/upload.json", m2086a, (NameValuePair[]) m2085b(shareInfo).toArray(new NameValuePair[0]));
         }
         ShareResult shareResult = new ShareResult();
-        if (StringUtils.m8346a(m1928a)) {
+        if (StringUtils.isEmpty(m1928a)) {
             shareResult.m2090a("result is empty");
         } else {
             try {
@@ -82,7 +82,7 @@ public class SinaWeiboApi extends BaseApi {
     @Override // com.sds.android.ttpod.share.p136a.BaseApi
     /* renamed from: e */
     public boolean mo2083e() {
-        if (!StringUtils.m8346a(this.f7348a)) {
+        if (!StringUtils.isEmpty(this.f7348a)) {
             try {
                 int parseInt = Integer.parseInt(this.f7348a);
                 if (parseInt >= 21314 && parseInt <= 21327) {

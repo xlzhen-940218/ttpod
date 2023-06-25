@@ -6,7 +6,6 @@ import com.sds.android.cloudapi.ttpod.data.MVOnlineData;
 import com.sds.android.ttpod.fragment.main.findsong.MvManager;
 import com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack;
 import com.sds.android.ttpod.fragment.main.findsong.OnlineMVFragment;
-import com.sds.android.ttpod.framework.p106a.p107a.MVStatistic;
 import com.sds.android.ttpod.utils.ListViewUtils;
 import com.sds.android.ttpod.widget.expandablelist.ActionExpandableListView;
 
@@ -33,7 +32,7 @@ public class OnOnlineMVDownloadClickListener implements View.OnClickListener {
     public void onClick(View view) {
         ListViewUtils.m8264a(this.f8390c);
         if (this.f8389b != null && this.f8388a != null) {
-            MVStatistic.m5070d();
+            //MVStatistic.m5070d();
             MvManager.m5557b(this.f8388a, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.widget.mediamenu.b.1
                 @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
                 /* renamed from: a */

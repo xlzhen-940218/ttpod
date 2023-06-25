@@ -27,7 +27,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
-import libcore.internal.StringPool;
+import libcore.ttpod.StringPool;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 /**

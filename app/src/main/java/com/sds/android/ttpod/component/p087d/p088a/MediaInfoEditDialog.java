@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.JSONUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -20,7 +20,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectCache;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -62,10 +61,7 @@ public class MediaInfoEditDialog extends ScrollableDialog {
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public void mo2038a(MediaInfoEditDialog mediaInfoEditDialog) {
-                LocalStatistic.m5135aS();
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_RIGHT_MENU_MUSIC_INFO_SAVE.getValue(), SPage.PAGE_NONE.getValue(), SPage.PAGE_NONE.getValue());
-                sUserEvent.setPageParameter(true);
-                sUserEvent.append("song_id", mediaItem.getLocalDataSource()).post();
+
                 MediaInfoEditDialog.this.m6827c(mediaItem);
             }
         }, R.string.cancel, (BaseDialog.InterfaceC1064a) null);
@@ -148,7 +144,7 @@ public class MediaInfoEditDialog extends ScrollableDialog {
         }
         FileUtils.m8410c(m4341a, AudioEffectUtils.m4341a(mediaItem));
         m6825d(mediaItem);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.UPDATE_MEDIA_ITEM, mediaItem));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.UPDATE_MEDIA_ITEM, mediaItem));
     }
 
     /* JADX WARN: Removed duplicated region for block: B:14:? A[RETURN, SYNTHETIC] */
@@ -164,12 +160,12 @@ public class MediaInfoEditDialog extends ScrollableDialog {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (!StringUtils.m8346a(m8403i)) {
+        if (!StringUtils.isEmpty(m8403i)) {
             audioEffectCache = (AudioEffectCache) JSONUtils.fromJson(m8403i, AudioEffectCache.class);
             if (audioEffectCache == null) {
                 audioEffectCache.m4405b(mediaItem.getArtist());
                 audioEffectCache.m4402c(mediaItem.getTitle());
-                CommandCenter.m4607a().m4596b(new Command(CommandID.SAVE_EFFECT, mediaItem, audioEffectCache, false));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.SAVE_EFFECT, mediaItem, audioEffectCache, false));
                 return;
             }
             return;

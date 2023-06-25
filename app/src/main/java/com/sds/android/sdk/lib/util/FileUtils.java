@@ -26,12 +26,12 @@ public class FileUtils {
 
     /* renamed from: a */
     public static boolean m8419a(String str) {
-        return !StringUtils.m8346a(str) && new File(str).exists();
+        return !StringUtils.isEmpty(str) && new File(str).exists();
     }
 
     /* renamed from: b */
     public static boolean m8414b(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return false;
         }
         File file = new File(str);
@@ -52,11 +52,11 @@ public class FileUtils {
     }
 
     /* renamed from: d */
-    public static boolean m8409d(String str) {
-        if (StringUtils.m8346a(str)) {
+    public static boolean isDir(String path) {
+        if (StringUtils.isEmpty(path)) {
             return false;
         }
-        File file = new File(str);
+        File file = new File(path);
         return file.exists() && file.isDirectory();
     }
 
@@ -64,7 +64,7 @@ public class FileUtils {
     public static synchronized File m8407e(String str) {
         File file = null;
         synchronized (FileUtils.class) {
-            if (!StringUtils.m8346a(str)) {
+            if (!StringUtils.isEmpty(str)) {
                 File file2 = new File(str);
                 if (file2.isFile()) {
                     file = file2;
@@ -95,7 +95,7 @@ public class FileUtils {
     public static synchronized File m8406f(String str) {
         File file = null;
         synchronized (FileUtils.class) {
-            if (!StringUtils.m8346a(str)) {
+            if (!StringUtils.isEmpty(str)) {
                 File file2 = new File(str);
                 if (!file2.isDirectory()) {
                 }
@@ -109,7 +109,7 @@ public class FileUtils {
     public static synchronized long m8405g(String str) {
         long m8421a;
         synchronized (FileUtils.class) {
-            m8421a = StringUtils.m8346a(str) ? 0L : m8421a(new File(str));
+            m8421a = StringUtils.isEmpty(str) ? 0L : m8421a(new File(str));
         }
         return m8421a;
     }
@@ -202,7 +202,7 @@ public class FileUtils {
     public static synchronized boolean m8404h(String str) {
         boolean z = false;
         synchronized (FileUtils.class) {
-            if (!StringUtils.m8346a(str)) {
+            if (!StringUtils.isEmpty(str)) {
                 z = m8412c(new File(str));
             }
         }
@@ -271,7 +271,7 @@ public class FileUtils {
                     e = e2;
                 }
                 if (m8407e == null) {
-                    LogUtils.m8386a("FileUtils", "file == null path=%s", str2);
+                    LogUtils.debug("FileUtils", "file == null path=%s", str2);
                     if (0 != 0) {
                         try {
                             bufferedWriter.close();
@@ -362,7 +362,7 @@ public class FileUtils {
                 e = e1;
             }
             if (m8407e == null) {
-                LogUtils.m8386a("FileUtils", "inputStream file == null path=%s", str);
+                LogUtils.debug("FileUtils", "inputStream file == null path=%s", str);
                 if (0 != 0) {
                     try {
                         fileOutputStream.close();
@@ -461,28 +461,28 @@ public class FileUtils {
     }
 
     /* renamed from: j */
-    public static String m8402j(String str) {
-        if (StringUtils.m8346a(str)) {
+    public static String getFilename(String filename) {
+        if (StringUtils.isEmpty(filename)) {
             return "";
         }
-        int lastIndexOf = str.lastIndexOf(63);
+        int lastIndexOf = filename.lastIndexOf(63);
         if (lastIndexOf > 0) {
-            str = str.substring(0, lastIndexOf);
+            filename = filename.substring(0, lastIndexOf);
         }
-        int lastIndexOf2 = str.lastIndexOf(f2471b);
-        return lastIndexOf2 >= 0 ? str.substring(lastIndexOf2 + 1) : str;
+        int lastIndexOf2 = filename.lastIndexOf(f2471b);
+        return lastIndexOf2 >= 0 ? filename.substring(lastIndexOf2 + 1) : filename;
     }
 
     /* renamed from: k */
     public static String m8401k(String str) {
-        String m8402j = m8402j(str);
+        String m8402j = getFilename(str);
         int lastIndexOf = m8402j.lastIndexOf(46);
         return lastIndexOf > 0 ? m8402j.substring(0, lastIndexOf) : m8402j;
     }
 
     /* renamed from: l */
     public static String m8400l(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return "";
         }
         int lastIndexOf = (str == null || !str.startsWith(f2470a)) ? -1 : str.lastIndexOf(f2471b);
@@ -490,9 +490,9 @@ public class FileUtils {
     }
 
     /* renamed from: m */
-    public static String m8399m(String str) {
+    public static String getSuffix(String str) {
         int lastIndexOf;
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             int lastIndexOf2 = str.lastIndexOf(63);
             if (lastIndexOf2 > 0) {
                 str = str.substring(0, lastIndexOf2);
@@ -510,7 +510,7 @@ public class FileUtils {
 
     /* renamed from: n */
     public static long m8398n(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return 0L;
         }
         return new File(str).lastModified();

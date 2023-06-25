@@ -1,5 +1,6 @@
 package com.sds.android.ttpod.fragment.main.findsong;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import com.sds.android.cloudapi.ttpod.data.SingerData;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.adapter.BaseListAdapter;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
@@ -20,8 +21,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.utils.ArtistUtils;
 import com.sds.android.ttpod.utils.ListViewUtils;
@@ -44,7 +43,6 @@ public class SingerCategoryHotDetailFragment extends ListLoadingFragment<SingerD
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setPage(this.mTitle);
-        setPageProperties(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mId));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ListLoadingFragment
@@ -69,22 +67,22 @@ public class SingerCategoryHotDetailFragment extends ListLoadingFragment<SingerD
     /* JADX INFO: Access modifiers changed from: private */
     public void performSingerClick(SingerData singerData) {
         if (singerData != null) {
-            MusicLibraryStatistic.m5067a("singer-rank-detail_" + this.mTitle + "_" + MusicLibraryStatistic.m5069a());
+            //MusicLibraryStatistic.m5067a("singer-rank-detail_" + this.mTitle + "_" + //MusicLibraryStatistic.m5069a());
             Bundle bundle = new Bundle();
-            OnlineMediaStatistic.m5045a("library-music-singer_" + this.mTitle + "_" + MusicLibraryStatistic.m5069a());
+            //OnlineMediaStatistic.m5045a("library-music-singer_" + this.mTitle + "_" + //MusicLibraryStatistic.m5069a());
             String name = singerData.getName();
             SingerDetailFragmentNew singerDetailFragmentNew = new SingerDetailFragmentNew(name);
             bundle.putString(KEY_CHANNEL, this.mTitle);
             bundle.putSerializable("key_data", singerData);
             singerDetailFragmentNew.setArguments(bundle);
             launchFragment(singerDetailFragmentNew);
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGER_NAME.getValue(), this.mTitle, name).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(singerData.getId())).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGER_NAME.getValue(), this.mTitle, name).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(singerData.getId())).post();
         }
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ListLoadingFragment
     protected void requestDataList(int i) {
-        CommandCenter.m4607a().m4606a(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
+        CommandCenter.getInstance().m4606a(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
     }
 
     @Override // android.widget.AdapterView.OnItemLongClickListener
@@ -161,6 +159,7 @@ public class SingerCategoryHotDetailFragment extends ListLoadingFragment<SingerD
         }
 
         /* renamed from: a */
+        @SuppressLint("WrongConstant")
         private void m5573a(NewSongPublishFragment.C1542b c1542b, boolean z) {
             if (c1542b != null) {
                 int i = z ? 0 : 4;

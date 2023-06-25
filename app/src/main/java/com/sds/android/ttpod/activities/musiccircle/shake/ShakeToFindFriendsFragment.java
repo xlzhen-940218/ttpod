@@ -13,8 +13,6 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.musiccircle.MusicCircleStatistic;
-import com.sds.android.ttpod.activities.musiccircle.shake.ShakeController;
-import com.sds.android.ttpod.activities.musiccircle.shake.Shaker;
 import com.sds.android.ttpod.activities.user.ResultUtils;
 import com.sds.android.ttpod.fragment.base.SlidingClosableFragment;
 import com.sds.android.ttpod.framework.modules.CommandID;
@@ -203,7 +201,7 @@ public class ShakeToFindFriendsFragment extends SlidingClosableFragment implemen
             this.mHint.setVisibility(View.VISIBLE);
             this.mHint.setText(R.string.shake_error_hint);
         } else if (System.currentTimeMillis() - this.mResumeTime > SHAKE_INTERVAL && !this.mShakeController.m7833b()) {
-            LogUtils.m8379d(TAG, "onShake");
+            LogUtils.info(TAG, "onShake");
             vibrate(VIBRATE_DURATION);
             this.mShakeController.m7835a(this.mLBSManager.m7842a());
             MusicCircleStatistic.m7963l();

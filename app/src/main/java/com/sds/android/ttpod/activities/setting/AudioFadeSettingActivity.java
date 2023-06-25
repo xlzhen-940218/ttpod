@@ -7,7 +7,6 @@ import com.sds.android.ttpod.activities.base.SlidingClosableActivity;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.component.p087d.p088a.SeekBarDialog;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 /* loaded from: classes.dex */
@@ -79,18 +78,18 @@ public class AudioFadeSettingActivity extends SlidingClosableActivity {
                 switch (i2) {
                     case 0:
                         Preferences.m2841q(m6789b);
-                        StatisticUtils.m4909a("local", "click", "fade-over-cut", m6789b);
+                        //StatisticUtils.m4909a("local", "click", "fade-over-cut", m6789b);
                         return;
                     case 1:
                     default:
                         return;
                     case 2:
                         Preferences.m2837r(m6789b);
-                        StatisticUtils.m4909a("local", "click", "fade-over-play", m6789b);
+                        //StatisticUtils.m4909a("local", "click", "fade-over-play", m6789b);
                         return;
                     case 3:
                         Preferences.m2833s(m6789b);
-                        StatisticUtils.m4909a("local", "click", "fade-over-adjust", m6789b);
+                        //StatisticUtils.m4909a("local", "click", "fade-over-adjust", m6789b);
                         return;
                 }
             }

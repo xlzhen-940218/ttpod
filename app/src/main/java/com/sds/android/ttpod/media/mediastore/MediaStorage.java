@@ -271,7 +271,7 @@ public final class MediaStorage {
     private void assertOrderBy(String str, String str2) {
         if (EnvironmentUtils.C0602a.m8502i()) {
             if (str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
-                LogUtils.m8384b(TAG, "groupID:" + str + " will ignore orderBy " + str2);
+                LogUtils.warning(TAG, "groupID:" + str + " will ignore orderBy " + str2);
             } else if (!str.startsWith(GROUP_ID_CUSTOM_PREFIX)) {
                 if (str2.equals(MEDIA_ORDER_BY_ADD_CUSTOM_GROUP_TIME) || str2.equals(MEDIA_ORDER_BY_ADD_CUSTOM_GROUP_TIME_DESC) || str2.equals(MEDIA_ORDER_BY_CUSTOM) || str2.equals(MEDIA_ORDER_BY_CUSTOM_DESC)) {
                     throw new UnsupportedOperationException("groupID:" + str + " not support orderBy" + str2);

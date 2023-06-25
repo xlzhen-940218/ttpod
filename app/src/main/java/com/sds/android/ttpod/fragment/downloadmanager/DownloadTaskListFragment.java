@@ -28,7 +28,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.AudioQuality;
 import com.sds.android.ttpod.utils.ListViewUtils;
@@ -123,12 +122,12 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
                     case 0:
                     case 1:
                     case 2:
-                        SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_PAUSE, SPage.PAGE_NONE);
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.CANCEL_DOWNLOAD_TASK, downloadTaskInfo));
+                        //SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_PAUSE, SPage.PAGE_NONE);
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.CANCEL_DOWNLOAD_TASK, downloadTaskInfo));
                         return;
                     case 3:
                     case 5:
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
                         return;
                     case 4:
                     default:
@@ -310,7 +309,7 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
         private void m5714a(int i, C1435a c1435a) {
             final DownloadTaskInfo downloadTaskInfo = (DownloadTaskInfo) getItem(i);
             m5712a(c1435a, downloadTaskInfo);
-            if (!StringUtils.m8346a(downloadTaskInfo.getAudioQuality())) {
+            if (!StringUtils.isEmpty(downloadTaskInfo.getAudioQuality())) {
                 m5713a(c1435a.f5034g, downloadTaskInfo);
             } else {
                 c1435a.f5034g.setVisibility(View.GONE);
@@ -318,13 +317,13 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
             c1435a.f5035h.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment.a.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
-                    SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_CLICK_DELETE, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_CLICK_DELETE, SPage.PAGE_NONE);
                     PopupsUtils.m6733a(DownloadTaskListFragment.this.getActivity(), C1432a.this.m5710a(downloadTaskInfo), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment.a.1.1
                         @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                         /* renamed from: a  reason: avoid collision after fix types in other method */
                         public void mo2038a(MessageDialog messageDialog) {
-                            SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_CLICK_DELETE_SURE, SPage.PAGE_NONE);
-                            CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, true));
+                            //SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_CLICK_DELETE_SURE, SPage.PAGE_NONE);
+                            CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, true));
                             DownloadTaskListFragment.this.removeTask(downloadTaskInfo);
                         }
                     });
@@ -359,7 +358,7 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
             switch (downloadTaskInfo.getState().intValue()) {
                 case 1:
                 case 2:
-                    int intValue = ((Integer) CommandCenter.m4607a().m4602a(new Command(CommandID.GET_TASK_DOWNLOADED_LENGTH, downloadTaskInfo), Integer.class)).intValue();
+                    int intValue = ((Integer) CommandCenter.getInstance().m4602a(new Command(CommandID.GET_TASK_DOWNLOADED_LENGTH, downloadTaskInfo), Integer.class)).intValue();
                     downloadTaskInfo.setDownloadLength(intValue);
                     i = 0;
                     i2 = intValue;

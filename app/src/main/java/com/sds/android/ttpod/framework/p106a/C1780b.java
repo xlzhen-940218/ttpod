@@ -100,12 +100,12 @@ public class C1780b {
                     if (m4769d()) {
                         m4783a(this.f5623b);
                     }
-                    LogUtils.m8388a("BitmapUtils", "decodeBitmap, filePath: " + str);
+                    LogUtils.debug("BitmapUtils", "decodeBitmap, filePath: " + str);
                     return m4788a(BitmapFactory.decodeFile(str, this.f5623b));
                 }
             }
         } catch (OutOfMemoryError e) {
-            LogUtils.m8388a("BitmapUtils", "decodeBitmap OutOfMemoryError filePath=" + str);
+            LogUtils.debug("BitmapUtils", "decodeBitmap OutOfMemoryError filePath=" + str);
         }
         return null;
     }
@@ -229,7 +229,7 @@ public class C1780b {
         float min2 = Math.min(min, i) / min;
         Matrix matrix = new Matrix();
         matrix.setScale(min2, min2);
-        LogUtils.m8388a("BitmapUtils", String.format("cropBitmapToSquare bitmapW=%d H=%d squareLen=%d scale=%f", Integer.valueOf(bitmap.getWidth()), Integer.valueOf(bitmap.getHeight()), Integer.valueOf(i), Float.valueOf(min2)));
+        LogUtils.debug("BitmapUtils", String.format("cropBitmapToSquare bitmapW=%d H=%d squareLen=%d scale=%f", Integer.valueOf(bitmap.getWidth()), Integer.valueOf(bitmap.getHeight()), Integer.valueOf(i), Float.valueOf(min2)));
         Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, min, min, matrix, true);
         if (SDKVersionUtils.m8370d()) {
             createBitmap.setHasAlpha(bitmap.hasAlpha());
@@ -556,7 +556,7 @@ public class C1780b {
         Bitmap bitmap2;
         Throwable th;
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
-        if (!SDKVersionUtils.m8371c()) {
+        if (!SDKVersionUtils.checkVersionThanAndroid11()) {
             config = Bitmap.Config.ARGB_4444;
         }
         try {

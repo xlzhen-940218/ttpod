@@ -2,7 +2,6 @@ package com.sds.android.sdk.core.p057a;
 
 import android.util.LruCache;
 
-import android.util.LruCache;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import java.io.File;
@@ -62,7 +61,7 @@ public final class ObjectCache {
         if (f < 0.005f || f > 0.5f) {
             throw new IllegalArgumentException("memCacheSizePercent - percent must be between0.0050and0.5 (inclusive)");
         }
-        LogUtils.m8379d("ObjectCache", "MaxSize:" + (Math.round(((float) Runtime.getRuntime().maxMemory()) * f) / 1024));
+        LogUtils.info("ObjectCache", "MaxSize:" + (Math.round(((float) Runtime.getRuntime().maxMemory()) * f) / 1024));
         this.f2301f = new LruCache<String, C0571a>(Math.round(((float) Runtime.getRuntime().maxMemory()) * f) / 1024) { // from class: com.sds.android.sdk.core.a.f.1
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // android.support.v4.util.LruCache
@@ -114,7 +113,7 @@ public final class ObjectCache {
             }
         } else {
             if (z) {
-                LogUtils.m8381c("ObjectCache", "Object must be implement Serializable if can be serialized");
+                LogUtils.error("ObjectCache", "Object must be implement Serializable if can be serialized");
             }
             this.f2302g.put(str, new C0571a(obj, currentTimeMillis));
         }
@@ -128,7 +127,7 @@ public final class ObjectCache {
     /* renamed from: a */
     public synchronized boolean m8773a(String str) {
         boolean z = false;
-        if (m8763c(str) == null) {
+        if (getValue(str) == null) {
             z = m8762d(str) != null;
         }
         return z;
@@ -141,27 +140,26 @@ public final class ObjectCache {
 
     /* renamed from: b */
     public synchronized <T> T m8764b(String str, T t, boolean z) throws Exception {
-        Object m8763c = m8763c(str);
-        if (z && m8763c == null) {
-            m8763c = m8762d(str);
+        Object value = getValue(str);
+        if (z && value == null) {
+            value = m8762d(str);
         }
-        if (m8763c != null) {
-            t = (T) m8763c;
+        if (value != null) {
+            t = (T) value;
         }
         return t;
     }
 
     /* renamed from: c */
-    private synchronized Object m8763c(String str) {
-        Object obj;
-        if (this.f2302g.containsKey(str)) {
-            if (this.f2302g.get(str).m8757b() >= System.currentTimeMillis()) {
-                obj = this.f2302g.get(str).m8758a();
+    private synchronized Object getValue(String key) {
+        Object obj = null;
+        if (this.f2302g.containsKey(key)) {
+            if (this.f2302g.get(key).m8757b() >= System.currentTimeMillis()) {
+                obj = this.f2302g.get(key).m8758a();
             } else {
-                this.f2302g.remove(str);
+                this.f2302g.remove(key);
             }
         }
-        obj = null;
         return obj;
     }
 

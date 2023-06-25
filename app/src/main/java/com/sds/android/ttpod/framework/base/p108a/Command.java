@@ -8,26 +8,26 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 public final class Command {
 
     /* renamed from: a */
-    private CommandID f5709a;
+    private CommandID commandID;
 
     /* renamed from: b */
-    private Object[] f5710b;
+    private Object[] objects;
 
     public Command(CommandID commandID, Object... objArr) {
         objArr = objArr == null ? new Object[1] : objArr;
         m4609a(commandID, objArr);
-        this.f5710b = (Object[]) objArr.clone();
-        this.f5709a = commandID;
+        this.objects = (Object[]) objArr.clone();
+        this.commandID = commandID;
     }
 
     /* renamed from: a */
-    public CommandID m4610a() {
-        return this.f5709a;
+    public CommandID getCommandId() {
+        return this.commandID;
     }
 
     /* renamed from: b */
-    public Object[] m4608b() {
-        return this.f5710b;
+    public Object[] getObjects() {
+        return this.objects;
     }
 
     /* renamed from: a */

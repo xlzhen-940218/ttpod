@@ -37,7 +37,7 @@ public class ExceptionReporter {
                 StringWriter stringWriter = new StringWriter();
                 th.printStackTrace(new PrintWriter(stringWriter));
                 String obj = stringWriter.toString();
-                LogUtils.m8381c("ExceptionReporter", "TTPod_Crash_Exception:\n" + obj);
+                LogUtils.error("ExceptionReporter", "TTPod_Crash_Exception:\n" + obj);
                 if (context != null && EnvironmentUtils.C0604c.m8474e()) {
                     Intent intent = new Intent(str);
                     intent.putExtra("android.intent.extra.SUBJECT", th.toString());

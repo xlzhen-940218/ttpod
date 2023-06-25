@@ -119,7 +119,7 @@ public class ShakeController implements Animation.AnimationListener {
         if (f == 0.0f) {
             f = defaultSharedPreferences.getFloat("location_latitude", 0.0f);
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_SHACK_USERS, Float.valueOf(f2), Float.valueOf(f), "shake"));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_SHACK_USERS, Float.valueOf(f2), Float.valueOf(f), "shake"));
     }
 
     /* renamed from: a */

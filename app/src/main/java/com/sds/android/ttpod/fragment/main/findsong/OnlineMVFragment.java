@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import com.sds.android.cloudapi.ttpod.data.MVOnlineData;
 import com.sds.android.sdk.core.p057a.ImageCache;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -32,11 +32,8 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.MVStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ThemeUtils;
@@ -95,13 +92,13 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        MVStatistic.m5076a("mv_channel");
+        //MVStatistic.m5076a("mv_channel");
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onPause() {
         super.onPause();
-        MVStatistic.m5076a("other_channel");
+        //MVStatistic.m5076a("other_channel");
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -144,10 +141,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
                 OnlineMVFragment.this.launchFragment((BaseFragment) Fragment.instantiate(OnlineMVFragment.this.getActivity(), LocalMVFragment.class.getName(), bundle2));
                 Preferences.m3041T(false);
                 OnlineMVFragment.flushDownloadAction();
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_MY_DOWNLOAD.getValue(), 0, SPage.PAGE_MY_DOWNLOAD_DOWNLOADED.getValue());
-                sUserEvent.append(DownloadManagerFragment.DOWNLOAD_TYPE, DownloadTaskInfo.TYPE_VIDEO);
-                sUserEvent.setPageParameter(true);
-                sUserEvent.post();
+
             }
         });
     }
@@ -188,7 +182,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
             this.mFooterView.m1877a();
         }
         VideoPlayManager.m5813a(getActivity(), null, null, EnvironmentUtils.C0604c.m8476d() == 2);
-        CommandCenter.m4607a().m4606a(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
+        CommandCenter.getInstance().m4606a(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
     }
 
     @Override // android.widget.AdapterView.OnItemClickListener
@@ -211,21 +205,17 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
             if (highQualityUrl == null || 2 != EnvironmentUtils.C0604c.m8476d()) {
                 highQualityUrl = mVOnlineData.getNormalQualityUrl();
             }
-            MVStatistic.m5076a("mv_channel");
+            //MVStatistic.m5076a("mv_channel");
             VideoPlayManager.m5814a(getActivity(), highQualityUrl, mVOnlineData.getName());
-            MusicLibraryStatistic.m5056e(mVOnlineData.getId(), mVOnlineData.getName());
-            SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_MV_CLICK_LIST_ITEM.getValue(), 0, 0);
-            sUserEvent.setPageParameter(true);
-            sUserEvent.append("song_id", Integer.valueOf(mVOnlineData.getId()));
-            sUserEvent.append("song_name", mVOnlineData.getName());
-            sUserEvent.post();
+            //MusicLibraryStatistic.m5056e(mVOnlineData.getId(), mVOnlineData.getName());
+
         }
     }
 
     protected static void startDownloadMV(String str, String str2, MVOnlineData mVOnlineData) {
         DownloadTaskInfo m4760a = DownloadUtils.m4760a(str, str2, Long.valueOf(mVOnlineData.getId()), mVOnlineData.getName(), DownloadTaskInfo.TYPE_VIDEO, true, "mv_channel");
         m4760a.setTag(mVOnlineData);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
     }
 
     private static void saveDownloadMvThumbnail(Context context, MVOnlineData mVOnlineData) {
@@ -265,16 +255,16 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
 
     public static void downloadMv(Context context, MVOnlineData mVOnlineData) {
         String str = null;
-        if (!StringUtils.m8346a(mVOnlineData.getNormalQualityUrl())) {
+        if (!StringUtils.isEmpty(mVOnlineData.getNormalQualityUrl())) {
             str = mVOnlineData.getNormalQualityUrl();
-        } else if (!StringUtils.m8346a(mVOnlineData.getHighQualityUrl())) {
+        } else if (!StringUtils.isEmpty(mVOnlineData.getHighQualityUrl())) {
             str = mVOnlineData.getHighQualityUrl();
         }
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             PopupsUtils.m6721a("没有资源可以下载");
             return;
         }
-        SUserUtils.m4956a(SAction.ACTION_MV_DOWNLOAD_MV, SPage.PAGE_NONE);
+        //SUserUtils.m4956a(SAction.ACTION_MV_DOWNLOAD_MV, SPage.PAGE_NONE);
         downloadMv(context, str, mVOnlineData);
     }
 

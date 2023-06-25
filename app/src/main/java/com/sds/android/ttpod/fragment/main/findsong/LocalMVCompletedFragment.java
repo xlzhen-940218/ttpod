@@ -33,7 +33,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.MVStatistic;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import com.sds.android.ttpod.widget.StateView;
@@ -159,8 +158,8 @@ public class LocalMVCompletedFragment extends MVListFragment {
 
     @Override // android.widget.AdapterView.OnItemClickListener
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
-        MVStatistic.m5076a("mv_channel");
-        MVStatistic.m5072c();
+        //MVStatistic.m5076a("mv_channel");
+        //MVStatistic.m5072c();
         playMv((MVOnlineData) view.getTag(R.id.view_bind_data));
     }
 
@@ -201,7 +200,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
         File[] listFiles = file.listFiles(new FileFilter() { // from class: com.sds.android.ttpod.fragment.main.findsong.LocalMVCompletedFragment.2
             @Override // java.io.FileFilter
             public boolean accept(File file2) {
-                String lowerCase = FileUtils.m8399m(file2.getPath()).toLowerCase();
+                String lowerCase = FileUtils.getSuffix(file2.getPath()).toLowerCase();
                 for (String str : stringArray) {
                     if (lowerCase.endsWith(str)) {
                         return true;
@@ -295,7 +294,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
                             m5533e.setImageDrawable(new BitmapDrawable(bitmap));
                         }
                     } else {
-                        CommandCenter.m4607a().m4596b(new Command(CommandID.GET_MV_THUMBNAIL, str));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.GET_MV_THUMBNAIL, str));
                     }
                 }
                 ThemeManager.m3269a(c1594a.m5537c(), ThemeElement.SONG_LIST_ITEM_TEXT);
@@ -335,7 +334,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
         protected void m5635c(final MVOnlineData mVOnlineData) {
             final File downloadFile = LocalMVCompletedFragment.getDownloadFile(mVOnlineData);
             if (downloadFile != null) {
-                new MessageDialog(this.f5263e, this.f5263e.getString(R.string.remove_confirm, new Object[]{FileUtils.m8402j(downloadFile.getPath())}), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.LocalMVCompletedFragment.a.1
+                new MessageDialog(this.f5263e, this.f5263e.getString(R.string.remove_confirm, new Object[]{FileUtils.getFilename(downloadFile.getPath())}), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.LocalMVCompletedFragment.a.1
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo2038a(MessageDialog messageDialog) {

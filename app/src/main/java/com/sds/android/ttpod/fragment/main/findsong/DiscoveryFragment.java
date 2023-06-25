@@ -6,7 +6,7 @@ import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.data.Post;
 import com.sds.android.cloudapi.ttpod.data.RecommendPost;
 import com.sds.android.cloudapi.ttpod.result.PostResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
@@ -30,7 +30,7 @@ public class DiscoveryFragment extends RecommendPostListFragment {
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         String string = getArguments().getString("name");
-        if (StringUtils.m8346a(string)) {
+        if (StringUtils.isEmpty(string)) {
             string = getString(R.string.discovery);
         }
         getActionBarController().m7193a((CharSequence) string);
@@ -65,7 +65,7 @@ public class DiscoveryFragment extends RecommendPostListFragment {
             default:
                 throw new IllegalStateException();
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_CELEBRITY_POSTS, valueOf));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_CELEBRITY_POSTS, valueOf));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment
@@ -89,12 +89,12 @@ public class DiscoveryFragment extends RecommendPostListFragment {
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment
     public void playMediaItemStatistic(long j, int i) {
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_DISCOVERY_PLAY.getValue(), SPage.PAGE_ONLINE_DISCOVERY.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(j)).append("position", Integer.valueOf(i + 1)).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_DISCOVERY_PLAY.getValue(), SPage.PAGE_ONLINE_DISCOVERY.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(j)).append("position", Integer.valueOf(i + 1)).post();
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment
     public void startPostDetailStatistic(long j, int i) {
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_DISCOVERY_POST.getValue(), SPage.PAGE_ONLINE_DISCOVERY.getValue(), SPage.PAGE_ONLINE_POST_DETAIL.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(j)).append("position", Integer.valueOf(i + 1)).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_DISCOVERY_POST.getValue(), SPage.PAGE_ONLINE_DISCOVERY.getValue(), SPage.PAGE_ONLINE_POST_DETAIL.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(j)).append("position", Integer.valueOf(i + 1)).post();
     }
 
     private void addSongId(List<Long> list, Long l) {

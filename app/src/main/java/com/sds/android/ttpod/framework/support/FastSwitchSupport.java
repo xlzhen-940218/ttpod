@@ -55,7 +55,7 @@ public final class FastSwitchSupport extends Support {
     public void mo2505a() {
         if (this.f7137e == null) {
             this.f7135c.bindService(new Intent(this.f7135c, SupportService.class), this.f7142j, Context.BIND_AUTO_CREATE);
-            LogUtils.m8379d("Support", "音效：重现绑定service");
+            LogUtils.info("Support", "音效：重现绑定service");
         }
         if (MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.m2858m(), Preferences.m2854n()) == null) {
             this.f7003k.m2652e();

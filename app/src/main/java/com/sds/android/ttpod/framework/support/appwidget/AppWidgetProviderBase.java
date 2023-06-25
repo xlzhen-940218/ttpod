@@ -92,7 +92,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
     /* renamed from: a */
     public static void m2551a() {
         C2060a[] c2060aArr;
-        LogUtils.m8388a("AppWidgetProviderBase", "updateAppWidgetStop");
+        LogUtils.debug("AppWidgetProviderBase", "updateAppWidgetStop");
         android.appwidget.AppWidgetManager appWidgetManager = android.appwidget.AppWidgetManager.getInstance(BaseApplication.getApplication());
         for (C2060a c2060a : f7123c) {
             RemoteViews remoteViews = new RemoteViews(BaseApplication.getApplication().getPackageName(), c2060a.f7128a);
@@ -118,7 +118,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
                 m2544a(remoteViews, m8445a);
             } catch (Exception e) {
                 String m2537a = m2537a(Preferences.m3014a(m2606g));
-                LogUtils.m8381c("AppWidgetProviderBase", "setAlbumCoverToRemoteView e albumCoverFile = " + m2537a);
+                LogUtils.error("AppWidgetProviderBase", "setAlbumCoverToRemoteView e albumCoverFile = " + m2537a);
                 m2541a(remoteViews, m2537a);
             }
             m2547a(remoteViews);
@@ -145,7 +145,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
     /* renamed from: a */
     public static void m2538a(PlayStatus playStatus) {
         C2060a[] c2060aArr;
-        LogUtils.m8381c("AppWidgetProviderBase", "updatePlayStatus");
+        LogUtils.error("AppWidgetProviderBase", "updatePlayStatus");
         android.appwidget.AppWidgetManager appWidgetManager = android.appwidget.AppWidgetManager.getInstance(BaseApplication.getApplication());
         for (C2060a c2060a : f7123c) {
             RemoteViews remoteViews = new RemoteViews(BaseApplication.getApplication().getPackageName(), c2060a.f7128a);
@@ -224,7 +224,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
 
     @Override // android.appwidget.AppWidgetProvider
     public void onUpdate(Context context, android.appwidget.AppWidgetManager appWidgetManager, int[] iArr) {
-        LogUtils.m8381c("AppWidgetProviderBase", "onUpdate");
+        LogUtils.error("AppWidgetProviderBase", "onUpdate");
         AppWidgetProviderInfo appWidgetInfo = appWidgetManager.getAppWidgetInfo(iArr[0]);
         if (appWidgetInfo != null) {
             m2548a(context, appWidgetManager, appWidgetInfo.provider, appWidgetInfo.initialLayout);
@@ -241,14 +241,14 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
 
     /* renamed from: a */
     private static void m2548a(Context context, android.appwidget.AppWidgetManager appWidgetManager, ComponentName componentName, int i) {
-        LogUtils.m8381c("AppWidgetProviderBase", "initAppWidget");
+        LogUtils.error("AppWidgetProviderBase", "initAppWidget");
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), i);
         AppWidgetPreference m2525a = AppWidgetPreference.m2525a();
         try {
             m2544a(remoteViews, BitmapUtils.m8445a(m2525a.m2513e(), DisplayUtils.m7229a(200)));
         } catch (Exception e) {
             String m2537a = m2537a(m2525a.m2513e());
-            LogUtils.m8381c("AppWidgetProviderBase", "setAlbumCoverToRemoteView e albumCoverFile = " + m2537a);
+            LogUtils.error("AppWidgetProviderBase", "setAlbumCoverToRemoteView e albumCoverFile = " + m2537a);
             m2541a(remoteViews, m2537a);
         }
         m2540a(remoteViews, m2525a.m2520b(), m2525a.m2517c(), m2525a.m2515d());
@@ -281,18 +281,20 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
 
     /* renamed from: a */
     private static void m2545a(RemoteViews remoteViews, int i, int i2, String str) {
-        remoteViews.setOnClickPendingIntent(i2, PendingIntent.getService(BaseApplication.getApplication(), i, new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", str).setAction(str), 134217728));
+        remoteViews.setOnClickPendingIntent(i2, PendingIntent.getService(BaseApplication.getApplication()
+                , i, new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", str)
+                        .setAction(str), PendingIntent.FLAG_IMMUTABLE));
     }
 
     /* renamed from: b */
     private static void m2531b(RemoteViews remoteViews, int i, int i2, String str) {
-        remoteViews.setOnClickPendingIntent(i2, PendingIntent.getActivity(BaseApplication.getApplication(), i, new Intent(str), 134217728));
+        remoteViews.setOnClickPendingIntent(i2, PendingIntent.getActivity(BaseApplication.getApplication(), i, new Intent(str), PendingIntent.FLAG_MUTABLE));
     }
 
     @Override // android.appwidget.AppWidgetProvider, android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        LogUtils.m8381c("AppWidgetProviderBase", intent.getAction());
+        LogUtils.error("AppWidgetProviderBase", intent.getAction());
         this.f7126b.removeMessages(0);
         this.f7126b.sendEmptyMessageDelayed(0, 30000L);
     }
@@ -300,7 +302,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
     @Override // android.appwidget.AppWidgetProvider
     public void onEnabled(Context context) {
         super.onEnabled(context);
-        LogUtils.m8381c("AppWidgetProviderBase", "onEnabled");
+        LogUtils.error("AppWidgetProviderBase", "onEnabled");
         AppWidgetPreference.m2525a().m2518b(true);
         context.sendBroadcast(new Intent(Action.APP_WIDGET_ENABLE_CHANGED).putExtra("app_widget_enable", true));
     }
@@ -308,14 +310,14 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
     @Override // android.appwidget.AppWidgetProvider
     public void onDisabled(Context context) {
         super.onDisabled(context);
-        LogUtils.m8381c("AppWidgetProviderBase", "onDisabled");
+        LogUtils.error("AppWidgetProviderBase", "onDisabled");
         AppWidgetPreference.m2525a().m2518b(false);
         context.sendBroadcast(new Intent(Action.APP_WIDGET_ENABLE_CHANGED).putExtra("app_widget_enable", false));
     }
 
     /* renamed from: b */
     public static void m2530b(PlayStatus playStatus) {
-        LogUtils.m8381c("AppWidgetProviderBase", "updateProcessStatus");
+        LogUtils.error("AppWidgetProviderBase", "updateProcessStatus");
         boolean m2511g = AppWidgetPreference.m2525a().m2511g();
         if (playStatus == PlayStatus.STATUS_PLAYING) {
             if (m2511g) {
@@ -332,7 +334,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
     /* renamed from: b */
     public static void m2533b(int i, int i2, float f) {
         C2060a[] c2060aArr;
-        LogUtils.m8381c("AppWidgetProviderBase", "refreshProcess");
+        LogUtils.error("AppWidgetProviderBase", "refreshProcess");
         int i3 = (int) (i2 * f);
         if (i3 < 0) {
             i3 = 0;

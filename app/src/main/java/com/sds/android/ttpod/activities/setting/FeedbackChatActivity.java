@@ -121,9 +121,9 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
             public void onClick(View view) {
                 if (EnvironmentUtils.C0604c.m8474e()) {
                     String obj = FeedbackChatActivity.this.mEtInput.getText().toString();
-                    if (!StringUtils.m8346a(obj)) {
+                    if (!StringUtils.isEmpty(obj)) {
                         FeedbackChatActivity.this.mBtnSend.setClickable(false);
-                        CommandCenter.m4607a().m4596b(new Command(CommandID.SEND_FEEDBACK_MESSAGE, new FeedbackMessage(FeedbackChatActivity.this.mFeedbackItem.getId(), FeedbackMessage.TYPE_TEXT, obj)));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.SEND_FEEDBACK_MESSAGE, new FeedbackMessage(FeedbackChatActivity.this.mFeedbackItem.getId(), FeedbackMessage.TYPE_TEXT, obj)));
                         return;
                     }
                     return;
@@ -166,7 +166,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
         if (!this.mIsRequestingMessage) {
             this.mRequestState = RequestState.REQUESTING;
             this.mIsRequestingMessage = true;
-            CommandCenter.m4607a().m4596b(new Command(CommandID.REQUEST_FEEDBACK_MESSAGES, this.mFeedbackItem.getId(), l, bool));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_FEEDBACK_MESSAGES, this.mFeedbackItem.getId(), l, bool));
         }
     }
 

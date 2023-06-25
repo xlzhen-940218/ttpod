@@ -108,7 +108,7 @@ public class TTAudioTrack {
                         TTAudioTrack.access$020(TTAudioTrack.this, write);
                         return 1;
                     }
-                    LogUtils.m8381c(TTAudioTrack.LOG_TAG, "AudioTrack write return " + write);
+                    LogUtils.error(TTAudioTrack.LOG_TAG, "AudioTrack write return " + write);
                     return 2;
                 }
                 TTAudioTrack.this.mBytesInPCMBuffer = 0;
@@ -134,10 +134,10 @@ public class TTAudioTrack {
             AudioTrack audioTrack = this.mAudioTrack;
             if (Build.VERSION.SDK_INT < 9) {
                 this.mAudioTrack = new AudioTrack(3, i, i3, 2, BUFFER_SIZE, 1);
-                LogUtils.m8388a(LOG_TAG, "createAudioTrack-1: " + i + " - " + i2);
+                LogUtils.debug(LOG_TAG, "createAudioTrack-1: " + i + " - " + i2);
             } else if (mAudioSessionId != 0) {
                 this.mAudioTrack = new AudioTrack(3, i, i3, 2, BUFFER_SIZE, 1, mAudioSessionId);
-                LogUtils.m8388a(LOG_TAG, "createAudioTrack-2: " + i + " - " + i2);
+                LogUtils.debug(LOG_TAG, "createAudioTrack-2: " + i + " - " + i2);
             } else {
                 do {
                     mAudioSessionId = Math.abs(new Random().nextInt());
@@ -145,7 +145,7 @@ public class TTAudioTrack {
                         mAudioSessionId = VIPPolicy.Entry.MAX_LIMIT;
                     }
                     this.mAudioTrack = new AudioTrack(3, i, i3, 2, BUFFER_SIZE, 1, mAudioSessionId);
-                    LogUtils.m8388a(LOG_TAG, "createAudioTrack-3: " + i + " - " + i2);
+                    LogUtils.debug(LOG_TAG, "createAudioTrack-3: " + i + " - " + i2);
                 } while (mAudioSessionId != this.mAudioTrack.getAudioSessionId());
             }
             if (audioTrack != null) {

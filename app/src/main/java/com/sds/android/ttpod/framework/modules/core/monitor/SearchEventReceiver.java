@@ -21,6 +21,6 @@ public class SearchEventReceiver extends BroadcastReceiver {
 
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.RECEIVED_SEARCH_EVENT, intent));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.RECEIVED_SEARCH_EVENT, intent));
     }
 }

@@ -29,7 +29,7 @@ public final class AppWidgetManager {
         /* renamed from: a */
         public void mo2553a(PreferencesID preferencesID) {
             if (preferencesID == PreferencesID.CURRENT_ARTIST_BITMAP_PATH) {
-                LogUtils.m8388a("AppWidgetManager", "CURRENT_ARTIST_BITMAP_PATH");
+                LogUtils.debug("AppWidgetManager", "CURRENT_ARTIST_BITMAP_PATH");
                 AppWidgetPreference.m2525a().m2514d(Preferences.m3014a(Player.m2611e().m2606g()));
                 AppWidgetProviderBase.m2535b();
             } else if (preferencesID == PreferencesID.PLAY_MODE) {
@@ -91,14 +91,14 @@ public final class AppWidgetManager {
         @Override // android.content.BroadcastReceiver
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            LogUtils.m8388a("AppWidgetManager", action);
+            LogUtils.debug("AppWidgetManager", action);
             if (Action.PLAY_STATUS_CHANGED.equals(action)) {
                 PlayStatus m2604h = Player.m2611e().m2604h();
                 AppWidgetPreference.m2525a().m2523a(m2604h);
                 AppWidgetProviderBase.m2530b(m2604h);
                 AppWidgetProviderBase.m2538a(m2604h);
             } else if (Action.PLAY_MEDIA_CHANGED.equals(action)) {
-                LogUtils.m8388a("AppWidgetManager", "PLAY_MEDIA_CHANGED");
+                LogUtils.debug("AppWidgetManager", "PLAY_MEDIA_CHANGED");
                 MediaItem m2606g = Player.m2611e().m2606g();
                 AppWidgetPreference m2525a = AppWidgetPreference.m2525a();
                 if (m2606g != null && !m2606g.isNull()) {
@@ -112,10 +112,10 @@ public final class AppWidgetManager {
                     }
                 }
             } else if (Action.APP_WIDGET_QUERY.equals(action)) {
-                LogUtils.m8388a("AppWidgetManager", "APP_WIDGET_QUERY");
+                LogUtils.debug("AppWidgetManager", "APP_WIDGET_QUERY");
                 AppWidgetProviderBase.m2535b();
             } else if (Action.APP_WIDGET_ENABLE_CHANGED.equals(action)) {
-                LogUtils.m8388a("AppWidgetManager", "APP_WIDGET_ENABLE_CHANGED");
+                LogUtils.debug("AppWidgetManager", "APP_WIDGET_ENABLE_CHANGED");
                 AppWidgetPreference.m2525a().m2518b(intent.getBooleanExtra("app_widget_enable", false));
                 AppWidgetProviderBase.m2530b(Player.m2611e().m2604h());
             }

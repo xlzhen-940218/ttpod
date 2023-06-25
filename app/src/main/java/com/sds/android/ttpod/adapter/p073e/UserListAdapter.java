@@ -69,7 +69,7 @@ public class UserListAdapter<Data extends TTPodUser> extends BaseListAdapter<Dat
         userInfoViewHolder.m7435b().setText(data.getNickName());
         userInfoViewHolder.m7434c().setText(m7664a().getString(R.string.follower_str, Integer.valueOf(data.getFollowersCount())));
         final long userId = data.getUserId();
-        final boolean booleanValue = ((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(userId)), Boolean.class)).booleanValue();
+        final boolean booleanValue = ((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(userId)), Boolean.class)).booleanValue();
         if (booleanValue) {
             userInfoViewHolder.m7432e().setText(R.string.remove_follow);
             userInfoViewHolder.m7432e().setBackgroundResource(R.drawable.xml_musiccircle_follow_button_bg);
@@ -90,9 +90,9 @@ public class UserListAdapter<Data extends TTPodUser> extends BaseListAdapter<Dat
                 if (Preferences.m2954aq() != null) {
                     userInfoViewHolder.m7432e().setText(R.string.is_processing);
                     if (booleanValue) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.UNFOLLOW_FRIEND, Long.valueOf(userId), ""));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.UNFOLLOW_FRIEND, Long.valueOf(userId), ""));
                     } else {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.FOLLOW_FRIEND, Long.valueOf(userId), ""));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.FOLLOW_FRIEND, Long.valueOf(userId), ""));
                     }
                     if (UserListAdapter.this.f3374a != null) {
                         if (booleanValue) {

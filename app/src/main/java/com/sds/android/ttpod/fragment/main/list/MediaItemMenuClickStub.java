@@ -3,7 +3,7 @@ package com.sds.android.ttpod.fragment.main.list;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p085b.ActionItem;
@@ -13,11 +13,8 @@ import com.sds.android.ttpod.component.p087d.p088a.EditTextDialog;
 import com.sds.android.ttpod.component.video.VideoPlayManager;
 import com.sds.android.ttpod.fragment.main.findsong.MvManager;
 import com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.utils.ListViewUtils;
@@ -58,19 +55,19 @@ public abstract class MediaItemMenuClickStub implements View.OnClickListener {
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         ListViewUtils.m8264a(this.f5422b);
-        SUserUtils.m4958a(this.f5424d);
+        //SUserUtils.m4958a(this.f5424d);
         switch (view.getId()) {
             case R.id.media_menu_add /* 2131230745 */:
-                PopupsUtils.m6729a(this.f5421a, Cache.m3218a().m3155k(), this.f5423c, (ActionItem.InterfaceC1135b) null, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
-                LocalStatistic.m5144aJ();
-                m5442a(SAction.ACTION_RIGHT_MENU_ADD_TO, SPage.PAGE_DIALOG_ADD_SONG);
+                PopupsUtils.m6729a(this.f5421a, Cache.getInstance().m3155k(), this.f5423c, (ActionItem.InterfaceC1135b) null, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
+                //LocalStatistic.m5144aJ();
+                //m5442a(SAction.ACTION_RIGHT_MENU_ADD_TO, SPage.PAGE_DIALOG_ADD_SONG);
                 return;
             case R.id.media_menu_delete /* 2131230746 */:
                 mo5440b(this.f5423c);
-                m5442a(SAction.ACTION_RIGHT_MENU_DELETE, SPage.PAGE_DIALOG_DELETE);
+                //m5442a(SAction.ACTION_RIGHT_MENU_DELETE, SPage.PAGE_DIALOG_DELETE);
                 return;
             case R.id.media_menu_download /* 2131230747 */:
-                new DownloadMenuHandler(this.f5421a).m6927a(this.f5423c, OnlineMediaStatistic.m5043b());
+                new DownloadMenuHandler(this.f5421a).m6927a(this.f5423c,null);
                 return;
             case R.id.media_menu_favor /* 2131230748 */:
                 mo5444a();
@@ -80,7 +77,7 @@ public abstract class MediaItemMenuClickStub implements View.OnClickListener {
                 return;
             case R.id.media_menu_more /* 2131230750 */:
                 mo5441a(this.f5423c);
-                m5442a(SAction.ACTION_RIGHT_MENU_MORE, SPage.PAGE_DIALOG_MORE);
+                //m5442a(SAction.ACTION_RIGHT_MENU_MORE, SPage.PAGE_DIALOG_MORE);
                 return;
             case R.id.media_menu_mv /* 2131230751 */:
                 final MediaItem mediaItem = this.f5423c;
@@ -97,28 +94,19 @@ public abstract class MediaItemMenuClickStub implements View.OnClickListener {
                         MvManager.m5559a(mediaItem);
                     }
                 }, 0);
-                m5442a(SAction.ACTION_RIGHT_MENU_MV, SPage.PAGE_NONE);
+                //m5442a(SAction.ACTION_RIGHT_MENU_MV, SPage.PAGE_NONE);
                 return;
             case R.id.media_menu_ring /* 2131230752 */:
                 PopupsUtils.m6740a((Context) this.f5421a, this.f5423c);
-                m5442a(SAction.ACTION_RIGHT_MENU_RING, SPage.PAGE_DIALOG_RING);
+                //m5442a(SAction.ACTION_RIGHT_MENU_RING, SPage.PAGE_DIALOG_RING);
                 return;
             case R.id.media_menu_share /* 2131230753 */:
                 PopupsUtils.m6756a(this.f5421a, this.f5423c);
-                m5442a(SAction.ACTION_RIGHT_MENU_SHARE, SPage.PAGE_DIALOG_SHARE);
+                //m5442a(SAction.ACTION_RIGHT_MENU_SHARE, SPage.PAGE_DIALOG_SHARE);
                 return;
         }
     }
 
     /* renamed from: a */
-    private void m5442a(SAction sAction, SPage sPage) {
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", sAction.getValue(), SPage.PAGE_NONE.getValue(), sPage.getValue());
-        if (this.f5423c.getSongID().longValue() == 0) {
-            sUserEvent.append("song_id", this.f5423c.getLocalDataSource());
-        } else {
-            sUserEvent.append("song_id", this.f5423c.getSongID());
-        }
-        sUserEvent.setPageParameter(true);
-        sUserEvent.post();
-    }
+   
 }

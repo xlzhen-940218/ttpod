@@ -18,7 +18,6 @@ import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.fragment.musiccircle.WrapUserPostListFragment;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.utils.TimeUtils;
 import com.sds.android.ttpod.widget.UserAvatarView;
 import java.util.ArrayList;
@@ -88,7 +87,7 @@ public class PrivateMessageAdapter extends BaseAdapter {
             } else if (privateMessageContent.getSenderId() == this.f3279b.getUserId()) {
                 arrayList.add(new PrivateMessageItem(this.f3279b, privateMessageContent.getPmId(), privateMessageContent.getTimestamp(), privateMessageContent.getMessage(), 1));
             }
-            if (this.f3281d < 0 && !StringUtils.m8346a(privateMessageContent.getPmId()) && privateMessageContent.getPmId().equals(this.f3282e)) {
+            if (this.f3281d < 0 && !StringUtils.isEmpty(privateMessageContent.getPmId()) && privateMessageContent.getPmId().equals(this.f3282e)) {
                 this.f3281d = arrayList.size();
             }
             j = m7535a;
@@ -185,7 +184,7 @@ public class PrivateMessageAdapter extends BaseAdapter {
                             @Override // com.sds.android.sdk.lib.request.RequestCallback
                             public void onRequestFailure(BaseResult baseResult) {
                                 PopupsUtils.m6721a("删除失败");
-                                ErrorStatistic.m5232g(m8838a.m8532e());
+                                //ErrorStatistic.m5232g(m8838a.m8532e());
                             }
                         });
                     }

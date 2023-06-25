@@ -4,8 +4,9 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.RemoteException;
-import com.sds.android.sdk.core.statistic.StatisticEvent;
+
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import java.util.List;
@@ -27,7 +28,6 @@ public interface ISupportService extends IInterface {
     void mo2393a(long j) throws RemoteException;
 
     /* renamed from: a */
-    void mo2392a(StatisticEvent statisticEvent) throws RemoteException;
 
     /* renamed from: a */
     void mo2391a(DownloadTaskInfo downloadTaskInfo) throws RemoteException;
@@ -187,7 +187,7 @@ public interface ISupportService extends IInterface {
                     parcel2.writeNoException();
                     if (f != null) {
                         parcel2.writeInt(1);
-                        f.writeToParcel(parcel2, 1);
+                        f.writeToParcel(parcel2, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
                         return true;
                     }
                     parcel2.writeInt(0);
@@ -221,7 +221,7 @@ public interface ISupportService extends IInterface {
                     return true;
                 case 15:
                     parcel.enforceInterface("com.sds.android.ttpod.framework.support.ISupportService");
-                    mo2392a(parcel.readInt() != 0 ? StatisticEvent.CREATOR.createFromParcel(parcel) : null);
+                    //mo2392a(parcel.readInt() != 0 ? StatisticEvent.CREATOR.createFromParcel(parcel) : null);
                     parcel2.writeNoException();
                     return true;
                 case 16:
@@ -245,7 +245,7 @@ public interface ISupportService extends IInterface {
                     parcel2.writeNoException();
                     if (b3 != null) {
                         parcel2.writeInt(1);
-                        b3.writeToParcel(parcel2, 1);
+                        b3.writeToParcel(parcel2, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
                         return true;
                     }
                     parcel2.writeInt(0);
@@ -256,7 +256,7 @@ public interface ISupportService extends IInterface {
                     parcel2.writeNoException();
                     if (c2 != null) {
                         parcel2.writeInt(1);
-                        c2.writeToParcel(parcel2, 1);
+                        c2.writeToParcel(parcel2, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
                         return true;
                     }
                     parcel2.writeInt(0);
@@ -573,27 +573,6 @@ public interface ISupportService extends IInterface {
                     this.f7132a.transact(14, obtain, obtain2, 0);
                     obtain2.readException();
                     return obtain2.readString();
-                } finally {
-                    obtain2.recycle();
-                    obtain.recycle();
-                }
-            }
-
-            @Override // com.sds.android.ttpod.framework.support.ISupportService
-            /* renamed from: a */
-            public void mo2392a(StatisticEvent statisticEvent) throws RemoteException {
-                Parcel obtain = Parcel.obtain();
-                Parcel obtain2 = Parcel.obtain();
-                try {
-                    obtain.writeInterfaceToken("com.sds.android.ttpod.framework.support.ISupportService");
-                    if (statisticEvent != null) {
-                        obtain.writeInt(1);
-                        statisticEvent.writeToParcel(obtain, 0);
-                    } else {
-                        obtain.writeInt(0);
-                    }
-                    this.f7132a.transact(15, obtain, obtain2, 0);
-                    obtain2.readException();
                 } finally {
                     obtain2.recycle();
                     obtain.recycle();

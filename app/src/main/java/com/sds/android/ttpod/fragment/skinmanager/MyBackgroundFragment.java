@@ -29,7 +29,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.SkinCache;
 import com.sds.android.ttpod.framework.modules.theme.BackgroundItem;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ThemeUtils;
@@ -111,7 +110,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
             public void onClick(View view) {
                 if (!MyBackgroundFragment.this.isInEditMode()) {
                     MyBackgroundFragment.this.getPickImageHelper().m7711a(MyBackgroundFragment.this, MyBackgroundFragment.this.getString(R.string.add_background), 1, DisplayUtils.m7225c(), DisplayUtils.m7224d());
-                    ThemeStatistic.m4881k();
+                    //ThemeStatistic.m4881k();
                     return;
                 }
                 MyBackgroundFragment.this.promptInEditMode();
@@ -122,7 +121,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
             public void onClick(View view) {
                 if (!MyBackgroundFragment.this.isInEditMode()) {
                     MyBackgroundFragment.this.getPickImageHelper().m7708b(MyBackgroundFragment.this, MyBackgroundFragment.this.getString(R.string.add_background), 1, DisplayUtils.m7225c(), DisplayUtils.m7224d());
-                    ThemeStatistic.m4880l();
+                    //ThemeStatistic.m4880l();
                     return;
                 }
                 MyBackgroundFragment.this.promptInEditMode();
@@ -216,7 +215,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
     }
 
     private void loadBackgroundList() {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.LOAD_BACKGROUND_LIST, true));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.LOAD_BACKGROUND_LIST, true));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BackgroundBaseFragment
@@ -327,7 +326,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
         BackgroundItem backgroundItem = new BackgroundItem(this.mUserBackgroundName);
         this.mBackgroundAdapter.m5357e(backgroundItem);
         this.mBackgroundAdapter.m5364b(backgroundItem);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SET_BACKGROUND, this.mUserBackgroundName));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_BACKGROUND, this.mUserBackgroundName));
     }
 
     private void cropPhoto(int i, Intent intent) {
@@ -452,7 +451,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
                         MyBackgroundFragment.this.deleteItem((BackgroundItem) MyBackgroundFragment.this.mSelectItemHashMap.get(it.next()));
                         it.remove();
                     }
-                    ThemeStatistic.m4897b(selectedCount);
+                    //ThemeStatistic.m4897b(selectedCount);
                 }
                 MyBackgroundFragment.this.tryNotifyStopEditRequested();
             }
@@ -491,7 +490,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
 
     /* JADX INFO: Access modifiers changed from: private */
     public void deleteItem(BackgroundItem backgroundItem) {
-        CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_BACKGROUND, backgroundItem.toString()));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_BACKGROUND, backgroundItem.toString()));
         this.mBackgroundAdapter.m5358d(backgroundItem);
         performBkgDeleted(backgroundItem);
     }

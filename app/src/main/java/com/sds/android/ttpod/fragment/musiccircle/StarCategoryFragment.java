@@ -10,7 +10,6 @@ import com.sds.android.ttpod.adapter.p073e.StarCategoryAdapter;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.widget.StateView;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -58,7 +57,7 @@ public class StarCategoryFragment extends BaseStarCategoryFragment {
     @Override // com.sds.android.ttpod.fragment.musiccircle.BaseStarCategoryFragment
     protected void onRequestData() {
         if (this.mDatas.isEmpty()) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_STAR_CATEGORIES, "star_category"));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_STAR_CATEGORIES, "star_category"));
         }
     }
 
@@ -72,6 +71,6 @@ public class StarCategoryFragment extends BaseStarCategoryFragment {
     public void onItemClickEvent(StarCategory starCategory) {
         super.onItemClickEvent(starCategory);
         MusicCircleStatistic.m7973d(starCategory.getName());
-        OnlineMediaStatistic.m5045a("music-circle");
+        //OnlineMediaStatistic.m5045a("music-circle");
     }
 }

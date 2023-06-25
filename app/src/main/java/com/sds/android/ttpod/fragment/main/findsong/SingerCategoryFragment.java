@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import com.sds.android.cloudapi.ttpod.data.SingerCategory;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.adapter.GridListAdapter;
 import com.sds.android.ttpod.fragment.main.findsong.base.GridViewFragment;
@@ -15,7 +15,6 @@ import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.widget.NetworkLoadView;
 
@@ -50,7 +49,6 @@ public class SingerCategoryFragment extends GridViewFragment<SingerCategory> {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setPage(this.mTitle);
-        setPageProperties(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mId));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.GridViewFragment
@@ -59,7 +57,7 @@ public class SingerCategoryFragment extends GridViewFragment<SingerCategory> {
     }
 
     protected void requestDataList() {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_SINGER_CATEGORY_LIST, Integer.valueOf(this.mId)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SINGER_CATEGORY_LIST, Integer.valueOf(this.mId)));
     }
 
     @Override // android.widget.AdapterView.OnItemClickListener
@@ -72,8 +70,8 @@ public class SingerCategoryFragment extends GridViewFragment<SingerCategory> {
         } else {
             launchFragment(new SingerListImageHeaderFragment(title, id));
         }
-        MusicLibraryStatistic.m5060c(id, title);
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGERS_CLASSIFICATION.getValue(), this.mTitle, title).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(id)).post();
+        //MusicLibraryStatistic.m5060c(id, title);
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGERS_CLASSIFICATION.getValue(), this.mTitle, title).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(id)).post();
     }
 
     /* renamed from: com.sds.android.ttpod.fragment.main.findsong.SingerCategoryFragment$a */

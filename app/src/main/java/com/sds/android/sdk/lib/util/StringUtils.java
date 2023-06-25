@@ -66,7 +66,7 @@ public class StringUtils {
             } else {
                 String obj2 = obj.toString();
                 sb.append(obj2);
-                if (!m8346a(obj2) && !obj2.endsWith(str)) {
+                if (!isEmpty(obj2) && !obj2.endsWith(str)) {
                     sb.append(str);
                 }
             }
@@ -74,7 +74,7 @@ public class StringUtils {
     }
 
     /* renamed from: a */
-    public static boolean m8346a(String str) {
+    public static boolean isEmpty(String str) {
         return str == null || str.trim().length() == 0;
     }
 
@@ -96,7 +96,7 @@ public class StringUtils {
     /* renamed from: c */
     public static List<String> m8335c(String str, String str2) {
         ArrayList arrayList = new ArrayList();
-        if (!m8346a(str)) {
+        if (!isEmpty(str)) {
             int length = str.length();
             int i = 0;
             do {
@@ -158,7 +158,7 @@ public class StringUtils {
 
     /* renamed from: b */
     public static boolean m8339b(String str) {
-        if (m8346a(str)) {
+        if (isEmpty(str)) {
             return false;
         }
         return Pattern.matches("^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$", str);
@@ -166,7 +166,7 @@ public class StringUtils {
 
     /* renamed from: c */
     public static boolean m8336c(String str) {
-        if (m8346a(str)) {
+        if (isEmpty(str)) {
             return false;
         }
         return Pattern.matches("^\\s*\\w+(?:\\.?[\\w-]+\\.?)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$", str);

@@ -7,8 +7,7 @@ import com.sds.android.cloudapi.ttpod.data.MVOnlineData;
 import com.sds.android.sdk.core.download.Manager;
 import com.sds.android.sdk.core.download.Task;
 import com.sds.android.sdk.core.download.TaskInfo;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
-import com.sds.android.sdk.core.statistic.SessionStatisticEvent;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
@@ -19,8 +18,6 @@ import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ListStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.database.SqliteDb;
 import com.sds.android.ttpod.framework.storage.database.SqliteDbWrapper;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -51,9 +48,9 @@ public final class DownloadTaskFacade {
     private SqliteDbWrapper f7147b;
 
     /* renamed from: d */
-    private SEngineWrapper f7148d;
 
-    public DownloadTaskFacade(SqliteDbWrapper sqliteDbWrapper, ManagerWrapper managerWrapper, SEngineWrapper sEngineWrapper) {
+
+    public DownloadTaskFacade(SqliteDbWrapper sqliteDbWrapper, ManagerWrapper managerWrapper) {
         this.f7146a.put("download_normal", new C2067a(1, new Task.AbstractC0578a() { // from class: com.sds.android.ttpod.framework.support.download.a.1
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: a */
@@ -82,18 +79,17 @@ public final class DownloadTaskFacade {
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: b */
             public void mo2409b(TaskInfo taskInfo, Task.EnumC0579b enumC0579b) {
-                DownloadTaskFacade.this.m2422b(taskInfo, enumC0579b);
+                //DownloadTaskFacade.this.m2422b(taskInfo, enumC0579b);
             }
         }, sqliteDbWrapper));
         this.f7147b = sqliteDbWrapper;
         f7145c = managerWrapper;
-        this.f7148d = sEngineWrapper;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m2437a(TaskInfo taskInfo) {
-        LogUtils.m8388a("DownloadTaskFacade", taskInfo.getSavePath() + " onConnecting");
+        LogUtils.debug("DownloadTaskFacade", taskInfo.getSavePath() + " onConnecting");
         DownloadTaskInfo downloadTaskInfo = (DownloadTaskInfo) taskInfo;
         C2067a c2067a = this.f7146a.get(downloadTaskInfo.getGroupId());
         if (c2067a != null && c2067a.m2401c(downloadTaskInfo)) {
@@ -101,14 +97,14 @@ public final class DownloadTaskFacade {
             m2400d.setState(taskInfo.getState());
             m2400d.setConnectTimeStamp(Long.valueOf(System.nanoTime()));
             m2434a(m2400d, (Task.EnumC0579b) null);
-            m2427a("connection", m2400d);
+            //m2427a("connection", m2400d);
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public void m2423b(TaskInfo taskInfo) {
-        LogUtils.m8388a("DownloadTaskFacade", taskInfo.getSavePath() + " onStarted");
+        LogUtils.debug("DownloadTaskFacade", taskInfo.getSavePath() + " onStarted");
         DownloadTaskInfo downloadTaskInfo = (DownloadTaskInfo) taskInfo;
         C2067a c2067a = this.f7146a.get(downloadTaskInfo.getGroupId());
         if (c2067a != null && c2067a.m2401c(downloadTaskInfo)) {
@@ -116,7 +112,7 @@ public final class DownloadTaskFacade {
             m2400d.setRespondTime(Long.valueOf(System.nanoTime() - m2400d.getConnectTimeStamp().longValue()));
             m2400d.setState(taskInfo.getState());
             m2434a(m2400d, (Task.EnumC0579b) null);
-            m2427a("start_download", m2400d);
+            //m2427a("start_download", m2400d);
         }
     }
 
@@ -124,7 +120,7 @@ public final class DownloadTaskFacade {
     /* renamed from: c */
     public void m2416c(TaskInfo taskInfo) {
         MediaItem m4712a;
-        LogUtils.m8388a("DownloadTaskFacade", taskInfo.getSavePath() + " onFinished");
+        LogUtils.debug("DownloadTaskFacade", taskInfo.getSavePath() + " onFinished");
         DownloadTaskInfo downloadTaskInfo = (DownloadTaskInfo) taskInfo;
         C2067a c2067a = this.f7146a.get(downloadTaskInfo.getGroupId());
         if (c2067a != null && c2067a.m2401c(downloadTaskInfo)) {
@@ -148,7 +144,7 @@ public final class DownloadTaskFacade {
                 }
             }
             m2433a(m2400d, false);
-            m2427a("finish", m2400d);
+            //m2427a("finish", m2400d);
             c2067a.m2406a(m2400d);
             if (c2067a.m2405a(m2400d.getGroupId()) == null) {
                 this.f7146a.remove(m2400d.getGroupId());
@@ -176,7 +172,7 @@ public final class DownloadTaskFacade {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m2436a(TaskInfo taskInfo, Task.EnumC0579b enumC0579b) {
-        LogUtils.m8388a("DownloadTaskFacade", taskInfo.getSavePath() + " onError:" + enumC0579b.name());
+        LogUtils.debug("DownloadTaskFacade", taskInfo.getSavePath() + " onError:" + enumC0579b.name());
         DownloadTaskInfo downloadTaskInfo = (DownloadTaskInfo) taskInfo;
         downloadTaskInfo.setRespondTime(Long.valueOf(System.nanoTime() - downloadTaskInfo.getConnectTimeStamp().longValue()));
         downloadTaskInfo.setDownloadTime(Long.valueOf((downloadTaskInfo.getConnectTimeStamp() == null ? 0L : System.nanoTime() - downloadTaskInfo.getConnectTimeStamp().longValue()) + downloadTaskInfo.getDownloadTime().longValue()));
@@ -204,22 +200,10 @@ public final class DownloadTaskFacade {
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
-    public void m2422b(TaskInfo taskInfo, Task.EnumC0579b enumC0579b) {
-        DownloadTaskInfo downloadTaskInfo = (DownloadTaskInfo) taskInfo;
-        SSystemEvent sSystemEvent = new SSystemEvent("SYS_DOWNLOAD", "error");
-        sSystemEvent.append("uri", downloadTaskInfo.getSourceUrl()).append(DownloadManagerFragment.DOWNLOAD_TYPE, downloadTaskInfo.getType()).append("file_id", downloadTaskInfo.getFileId()).append("quality_type", downloadTaskInfo.getAudioQuality()).append("file_size", downloadTaskInfo.getFileLength()).append("position", downloadTaskInfo.getPosition()).append("cutoff", downloadTaskInfo.getCutOffTimes()).append("path", taskInfo.getSavePath()).append("error_code", enumC0579b);
-        if (downloadTaskInfo.getStatisticRequest()) {
-            sSystemEvent.append("response_code", Integer.valueOf(downloadTaskInfo.getResponseCode())).append("failed_ip", downloadTaskInfo.getStatisticConnectFailedIP()).append("ip", downloadTaskInfo.getConnectedIP());
-        }
-        sSystemEvent.post();
-    }
+   
 
     /* renamed from: a */
-    private void m2427a(String str, DownloadTaskInfo downloadTaskInfo) {
-        SSystemEvent sSystemEvent = new SSystemEvent("SYS_DOWNLOAD", str);
-        sSystemEvent.append("uri", downloadTaskInfo.getSourceUrl()).append(DownloadManagerFragment.DOWNLOAD_TYPE, downloadTaskInfo.getType()).append("file_id", downloadTaskInfo.getFileId()).append("quality_type", downloadTaskInfo.getAudioQuality()).append("position", downloadTaskInfo.getPosition()).append("file_size", downloadTaskInfo.getFileLength()).append("path", downloadTaskInfo.getSavePath());
-        this.f7148d.m2398a(sSystemEvent);
-    }
+ 
 
     /* renamed from: a */
     public void m2439a() {
@@ -262,7 +246,7 @@ public final class DownloadTaskFacade {
         m2426a(downloadTaskInfo == null, "taskInfo is null!");
         C2067a c2067a = this.f7146a.get(downloadTaskInfo.getGroupId());
         if (c2067a != null && c2067a.m2401c(downloadTaskInfo)) {
-            m2427a("cancel", downloadTaskInfo);
+            //m2427a("cancel", downloadTaskInfo);
             downloadTaskInfo.setDownloadTime(Long.valueOf((downloadTaskInfo.getConnectTimeStamp() == null ? 0L : System.nanoTime() - downloadTaskInfo.getConnectTimeStamp().longValue()) + downloadTaskInfo.getDownloadTime().longValue()));
             downloadTaskInfo.setState(3);
             c2067a.m2406a(downloadTaskInfo);
@@ -291,13 +275,13 @@ public final class DownloadTaskFacade {
 
     /* renamed from: a */
     public void m2435a(DownloadTaskInfo downloadTaskInfo) {
-        LogUtils.m8388a("DownloadTaskFacade", "addDownloadTask");
+        LogUtils.debug("DownloadTaskFacade", "addDownloadTask");
         C2067a c2067a = this.f7146a.get("download_normal");
         if (!c2067a.m2401c(downloadTaskInfo)) {
             if (!this.f7146a.containsKey(downloadTaskInfo.getGroupId())) {
                 this.f7146a.put(downloadTaskInfo.getGroupId(), c2067a);
             }
-            m2427a("start", downloadTaskInfo);
+            //m2427a("start", downloadTaskInfo);
             if (downloadTaskInfo.resumeBrokenTransferSupported()) {
                 if (this.f7147b.m3112b(new DownloadTaskInfo(downloadTaskInfo.getSavePath())).isEmpty()) {
                     this.f7147b.m3114a(downloadTaskInfo);
@@ -311,7 +295,7 @@ public final class DownloadTaskFacade {
 
     /* renamed from: b */
     public DownloadTaskInfo m2421b(DownloadTaskInfo downloadTaskInfo) {
-        LogUtils.m8388a("DownloadTaskFacade", "cancelDownloadTask");
+        LogUtils.debug("DownloadTaskFacade", "cancelDownloadTask");
         DownloadTaskInfo m2411f = m2411f(downloadTaskInfo);
         if (m2411f != null) {
             m2412e(m2411f);
@@ -321,7 +305,7 @@ public final class DownloadTaskFacade {
 
     /* renamed from: c */
     public DownloadTaskInfo m2415c(DownloadTaskInfo downloadTaskInfo) {
-        LogUtils.m8388a("DownloadTaskFacade", "removeDownloadTask");
+        LogUtils.debug("DownloadTaskFacade", "removeDownloadTask");
         m2426a(downloadTaskInfo == null, "remoteTaskInfo is null!");
         DownloadTaskInfo m2411f = m2411f(downloadTaskInfo);
         if (m2411f != null) {
@@ -333,7 +317,7 @@ public final class DownloadTaskFacade {
             this.f7147b.m3111c(new DownloadTaskInfo(downloadTaskInfo.getSavePath()));
             downloadTaskInfo2.setDownloadTime(Long.valueOf((downloadTaskInfo2.getConnectTimeStamp() == null ? 0L : System.nanoTime() - downloadTaskInfo2.getConnectTimeStamp().longValue()) + downloadTaskInfo2.getDownloadTime().longValue()));
             m2433a(downloadTaskInfo2, true);
-            m2427a("remove", downloadTaskInfo2);
+            //m2427a("remove", downloadTaskInfo2);
         }
         C2067a c2067a = this.f7146a.get(downloadTaskInfo.getGroupId());
         if (m3112b == null || m3112b.isEmpty() || c2067a == null || c2067a.m2400d(downloadTaskInfo) == null) {
@@ -354,7 +338,7 @@ public final class DownloadTaskFacade {
     /* renamed from: a */
     public void m2428a(String str) {
         Map<String, DownloadTaskInfo> m2405a;
-        LogUtils.m8388a("DownloadTaskFacade", "removeDownloadList.....");
+        LogUtils.debug("DownloadTaskFacade", "removeDownloadList.....");
         if (this.f7146a.containsKey(str) && (m2405a = this.f7146a.get(str).m2405a(str)) != null) {
             Object[] array = m2405a.values().toArray();
             for (int length = array.length - 1; length >= 0; length--) {
@@ -366,7 +350,7 @@ public final class DownloadTaskFacade {
     /* renamed from: b */
     public void m2418b(String str) {
         Map<String, DownloadTaskInfo> m2405a;
-        LogUtils.m8388a("DownloadTaskFacade", "cancelDownloadList.....");
+        LogUtils.debug("DownloadTaskFacade", "cancelDownloadList.....");
         if (this.f7146a.containsKey(str) && (m2405a = this.f7146a.get(str).m2405a(str)) != null) {
             Object[] array = m2405a.values().toArray();
             for (int length = array.length - 1; length >= 0; length--) {
@@ -387,7 +371,7 @@ public final class DownloadTaskFacade {
 
     /* renamed from: a */
     public List<DownloadTaskInfo> m2425a(int[] iArr) {
-        LogUtils.m8388a("DownloadTaskFacade", "getDownloadTaskListByTypes...");
+        LogUtils.debug("DownloadTaskFacade", "getDownloadTaskListByTypes...");
         ArrayList arrayList = new ArrayList();
         for (int i : iArr) {
             arrayList.addAll(m2438a(i));
@@ -544,31 +528,15 @@ public final class DownloadTaskFacade {
         } else if (DownloadTaskInfo.TYPE_PLUGIN.equals(Integer.valueOf(intValue))) {
             str2 = OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY;
         }
-        SessionStatisticEvent m4903b = StatisticUtils.m4903b("download", str2, downloadTaskInfo.getOrigin(), downloadTaskInfo.hashCode());
+        //SessionStatisticEvent m4903b = //StatisticUtils.m4903b("download", str2, downloadTaskInfo.getOrigin(), downloadTaskInfo.hashCode());
         if (z) {
             str = "deleted";
         } else {
             str = downloadTaskInfo.getState().intValue() == 4 ? "success" : "failed";
         }
-        m4903b.put("downstatus", str);
-        m4903b.put("fileid", String.valueOf(downloadTaskInfo.getFileId()));
-        m4903b.put("filename", downloadTaskInfo.getFileName());
-        m4903b.put("filesize", String.valueOf(downloadTaskInfo.getFileLength()));
-        m4903b.put("down_file_size", downloadTaskInfo.getDownloadLength());
-        m4903b.put("response_time", String.valueOf(TimeUnit.NANOSECONDS.toMillis(downloadTaskInfo.getRespondTime().longValue())));
-        m4903b.put("download_time", String.valueOf(TimeUnit.NANOSECONDS.toMillis(downloadTaskInfo.getDownloadTime().longValue())));
-        m4903b.put("cutoff_count", String.valueOf(downloadTaskInfo.getCutOffTimes()));
-        m4903b.put("url", downloadTaskInfo.getSourceUrl());
-        m4903b.put("position", String.valueOf(downloadTaskInfo.getPosition()));
-        m4903b.put("quality", String.valueOf(downloadTaskInfo.getSongType()));
-        if (downloadTaskInfo.getStatisticRequest()) {
-            m4903b.put("response_code", String.valueOf(downloadTaskInfo.getResponseCode()));
-            m4903b.put("ip", String.valueOf(downloadTaskInfo.getConnectedIP()));
-            m4903b.put("error_ip", String.valueOf(downloadTaskInfo.getStatisticConnectFailedIP()));
-        }
-        m4903b.complete();
-        LogUtils.m8386a("Statistic_DownloadTaskManager", "put Download info origin=%s downstatus=%s fileid=%s filename=%s filesize=%s down_file_size=%s response_time=%s download_time=%s cutoff_count=%s position=%s quality=%s", downloadTaskInfo.getOrigin(), str, downloadTaskInfo.getFileId(), downloadTaskInfo.getFileName(), downloadTaskInfo.getFileLength(), Integer.valueOf(downloadTaskInfo.getDownloadLength()), String.valueOf(TimeUnit.NANOSECONDS.toMillis(downloadTaskInfo.getRespondTime().longValue())), String.valueOf(TimeUnit.NANOSECONDS.toMillis(downloadTaskInfo.getDownloadTime().longValue())), String.valueOf(downloadTaskInfo.getCutOffTimes()), String.valueOf(String.valueOf(downloadTaskInfo.getPosition())), String.valueOf(downloadTaskInfo.getSongType()));
-        StatisticUtils.m4912a(m4903b);
+       
+        LogUtils.debug("Statistic_DownloadTaskManager", "put Download info origin=%s downstatus=%s fileid=%s filename=%s filesize=%s down_file_size=%s response_time=%s download_time=%s cutoff_count=%s position=%s quality=%s", downloadTaskInfo.getOrigin(), str, downloadTaskInfo.getFileId(), downloadTaskInfo.getFileName(), downloadTaskInfo.getFileLength(), Integer.valueOf(downloadTaskInfo.getDownloadLength()), String.valueOf(TimeUnit.NANOSECONDS.toMillis(downloadTaskInfo.getRespondTime().longValue())), String.valueOf(TimeUnit.NANOSECONDS.toMillis(downloadTaskInfo.getDownloadTime().longValue())), String.valueOf(downloadTaskInfo.getCutOffTimes()), String.valueOf(String.valueOf(downloadTaskInfo.getPosition())), String.valueOf(downloadTaskInfo.getSongType()));
+        //StatisticUtils.m4912a(m4903b);
         if (DownloadTaskInfo.TYPE_AUDIO.equals(Integer.valueOf(intValue)) || DownloadTaskInfo.TYPE_VIDEO.equals(Integer.valueOf(intValue))) {
             Object tag = downloadTaskInfo.getTag();
             if (tag instanceof MediaItem) {
@@ -577,7 +545,7 @@ public final class DownloadTaskFacade {
                 j = tag instanceof MVOnlineData ? ((MVOnlineData) tag).getId() : -1L;
             }
             if (j != -1) {
-                ListStatistic.m5208a(downloadTaskInfo.getListType(), downloadTaskInfo.getListId(), j, downloadTaskInfo.getPosition().intValue());
+               // //ListStatistic.m5208a(downloadTaskInfo.getListType(), downloadTaskInfo.getListId(), j, downloadTaskInfo.getPosition().intValue());
             }
         }
     }

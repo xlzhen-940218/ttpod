@@ -19,10 +19,8 @@ import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectCache
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.EqualizerPreset;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.audiofx.TTEqualizer;
@@ -154,10 +152,10 @@ public class EffectShareDialog extends BaseDialog {
             audioEffectCache.m4409a(this.f3897h);
             audioEffectCache.m4406b(System.currentTimeMillis());
             audioEffectCache.m4390g(this.f3893d.getLocalDataSource());
-            LogUtils.m8388a("EffectShareDialog", "saveToLocal " + audioEffectCache);
-            CommandCenter.m4607a().m4596b(new Command(CommandID.SAVE_EFFECT, this.f3893d, audioEffectCache, bool));
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_AJUST_SAVE_OK, SPage.PAGE_NONE, SPage.PAGE_NONE);
-            AudioEffectStatistic.m5250v();
+            LogUtils.debug("EffectShareDialog", "saveToLocal " + audioEffectCache);
+            CommandCenter.getInstance().m4596b(new Command(CommandID.SAVE_EFFECT, this.f3893d, audioEffectCache, bool));
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_AJUST_SAVE_OK, SPage.PAGE_NONE, SPage.PAGE_NONE);
+            //AudioEffectStatistic.m5250v();
         }
     }
 

@@ -81,7 +81,7 @@ public class FeedbackComposeFragment extends BaseFragment implements View.OnClic
                 } else {
                     this.mBtnSend.setClickable(false);
                     this.mBtnSend.setText(R.string.feedback_sending);
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.PROPOSAL_FEEDBACK, new FeedbackItem(trim, EnvironmentUtils.C0604c.m8473f().toString(), trim2)));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.PROPOSAL_FEEDBACK, new FeedbackItem(trim, EnvironmentUtils.C0604c.m8473f().toString(), trim2)));
                     return;
                 }
             default:

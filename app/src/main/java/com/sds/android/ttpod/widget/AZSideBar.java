@@ -492,7 +492,7 @@ public class AZSideBar extends View implements AbsListView.OnScrollListener, The
         int i = 0;
         int i2 = 0;
         String[] split = str.split("\\s+");
-        if (!StringUtils.m8346a(split[0]) && split.length > 1) {
+        if (!StringUtils.isEmpty(split[0]) && split.length > 1) {
             char charAt = split[0].charAt(0);
             String str2 = split[1];
             while (true) {

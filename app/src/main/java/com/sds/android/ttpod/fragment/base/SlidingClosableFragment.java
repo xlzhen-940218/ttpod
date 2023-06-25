@@ -79,7 +79,7 @@ public abstract class SlidingClosableFragment extends ActionBarFragment {
 
     public void updateBackground(Drawable drawable) {
         if (drawable == null) {
-            LogUtils.m8381c("SlidingClosableFragment", "SlidingClosableFragment.updateBackground background is null");
+            LogUtils.error("SlidingClosableFragment", "SlidingClosableFragment.updateBackground background is null");
         } else {
             ThemeManager.m3260b(getRootView(), drawable);
         }

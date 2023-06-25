@@ -15,7 +15,7 @@ public class AudioEffectParam implements Parcelable, Serializable {
         @Override // android.os.Parcelable.Creator
         /* renamed from: a */
         public AudioEffectParam createFromParcel(Parcel parcel) {
-            LogUtils.m8388a("Parcelable.AudioEffectParam.TAG", "createFromParcel");
+            LogUtils.debug("Parcelable.AudioEffectParam.TAG", "createFromParcel");
             AudioEffectParam audioEffectParam = new AudioEffectParam();
             audioEffectParam.f5816b = parcel.readInt();
             audioEffectParam.f5817c = parcel.readInt();
@@ -32,7 +32,7 @@ public class AudioEffectParam implements Parcelable, Serializable {
         @Override // android.os.Parcelable.Creator
         /* renamed from: a */
         public AudioEffectParam[] newArray(int i) {
-            LogUtils.m8388a("Parcelable.AudioEffectParam.TAG", "Person[] newArray(int size)");
+            LogUtils.debug("Parcelable.AudioEffectParam.TAG", "Person[] newArray(int size)");
             return new AudioEffectParam[i];
         }
     };

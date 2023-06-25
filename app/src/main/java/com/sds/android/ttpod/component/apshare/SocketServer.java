@@ -31,14 +31,14 @@ public class SocketServer {
         try {
             this.f3778a = new ServerSocket(i, 100);
             this.f3778a.setSoTimeout(360000);
-            LogUtils.m8388a("SocketServer", "start server at port: " + i);
+            LogUtils.debug("SocketServer", "start server at port: " + i);
         } catch (IOException e) {
-            LogUtils.m8383b("SocketServer", e.getMessage(), e);
+            LogUtils.error("SocketServer", e.getMessage(), e);
             if (this.f3778a != null && !this.f3778a.isClosed()) {
                 try {
                     this.f3778a.close();
                 } catch (Exception e2) {
-                    LogUtils.m8383b("SocketServer", e2.getMessage(), e);
+                    LogUtils.error("SocketServer", e2.getMessage(), e);
                 }
             }
         }
@@ -54,10 +54,10 @@ public class SocketServer {
             this.f3780c.m7055a();
             if (this.f3778a != null) {
                 this.f3778a.close();
-                LogUtils.m8388a("SocketServer", "server socket is closed");
+                LogUtils.debug("SocketServer", "server socket is closed");
             }
         } catch (IOException e) {
-            LogUtils.m8383b("SocketServer", e.getMessage(), e);
+            LogUtils.error("SocketServer", e.getMessage(), e);
         }
     }
 
@@ -80,19 +80,19 @@ public class SocketServer {
                 Socket socket = null;
                 try {
                     if (SocketServer.this.f3778a != null && !SocketServer.this.f3778a.isClosed()) {
-                        LogUtils.m8379d("SocketServer", "wait another client to connect...");
+                        LogUtils.info("SocketServer", "wait another client to connect...");
                         socket = SocketServer.this.f3778a.accept();
-                        LogUtils.m8379d("SocketServer", "accept a new connection, addr:" + socket.getInetAddress());
+                        LogUtils.info("SocketServer", "accept a new connection, addr:" + socket.getInetAddress());
                     }
                     if (socket != null && SocketServer.this.f3779b != null) {
                         socket.setKeepAlive(true);
                         SocketServer.this.f3779b.mo5777a(socket);
                     }
                 } catch (IOException e) {
-                    LogUtils.m8383b("SocketServer", e.getMessage(), e);
+                    LogUtils.error("SocketServer", e.getMessage(), e);
                 }
             }
-            LogUtils.m8388a("SocketServer", getClass().getSimpleName() + " is shutdown");
+            LogUtils.debug("SocketServer", getClass().getSimpleName() + " is shutdown");
         }
 
         /* renamed from: a */

@@ -23,7 +23,7 @@ public class SkinInfoLoader extends SkinReader implements Runnable {
 
     @Override // java.lang.Runnable
     public void run() {
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SKIN_INFO, this.f6657a, m3576a()), ModuleID.SKIN);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SKIN_INFO, this.f6657a, m3576a()), ModuleID.SKIN);
     }
 
     /* renamed from: a */
@@ -44,12 +44,12 @@ public class SkinInfoLoader extends SkinReader implements Runnable {
                     e2.printStackTrace();
                     sSkinInfo = null;
                 }
-                m3525j();
+                handleClose();
                 return sSkinInfo;
             }
         }
         sSkinInfo = null;
-        m3525j();
+        handleClose();
         return sSkinInfo;
     }
 }

@@ -42,7 +42,7 @@ public class SystemLockManager {
             if (f6117b.inKeyguardRestrictedInputMode()) {
                 f6118c = f6117b.newKeyguardLock(f6116a);
                 f6118c.disableKeyguard();
-                LogUtils.m8388a(f6116a, "--Keyguard disabled");
+                LogUtils.debug(f6116a, "--Keyguard disabled");
             } else {
                 f6118c = null;
             }
@@ -77,11 +77,11 @@ public class SystemLockManager {
                     public void onKeyguardExitResult(boolean z) {
                         SystemLockManager.m4072g();
                         if (z) {
-                            LogUtils.m8388a(SystemLockManager.f6116a, "--Keyguard exited success");
+                            LogUtils.debug(SystemLockManager.f6116a, "--Keyguard exited success");
                             interfaceC1899a.mo4071a();
                             return;
                         }
-                        LogUtils.m8388a(SystemLockManager.f6116a, "--Keyguard exited failed");
+                        LogUtils.debug(SystemLockManager.f6116a, "--Keyguard exited failed");
                     }
                 });
             } else {
@@ -94,7 +94,7 @@ public class SystemLockManager {
     /* renamed from: g */
     public static void m4072g() {
         if (!RomRecognizer.m4655a()) {
-            LogUtils.m8388a(f6116a, "reenable keyguard... ");
+            LogUtils.debug(f6116a, "reenable keyguard... ");
             m4077b();
         }
     }

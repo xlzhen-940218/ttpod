@@ -60,12 +60,12 @@ public class ShareHttpUtil {
             if (list != null) {
                 for (NameValuePair nameValuePair : list) {
                     multipartEntity.addPart(nameValuePair.getName(), new StringBody(nameValuePair.getValue(), Charset.forName("UTF-8")));
-                    LogUtils.m8388a("TEST", "name: " + nameValuePair.getName() + " value:" + nameValuePair.getValue());
+                    LogUtils.debug("TEST", "name: " + nameValuePair.getName() + " value:" + nameValuePair.getValue());
                 }
             }
             if (nameValuePairArr != null) {
                 for (NameValuePair nameValuePair2 : nameValuePairArr) {
-                    if (!StringUtils.m8346a(nameValuePair2.getValue())) {
+                    if (!StringUtils.isEmpty(nameValuePair2.getValue())) {
                         File file = new File(nameValuePair2.getValue());
                         if (file.exists()) {
                             multipartEntity.addPart(nameValuePair2.getName(), new FileBody(file));
@@ -90,7 +90,7 @@ public class ShareHttpUtil {
             HttpClient m1930a = m1930a();
             HttpPost httpPost = new HttpPost(str);
             for (NameValuePair nameValuePair : list) {
-                LogUtils.m8388a("TEST", "name2: " + nameValuePair.getName() + " value2:" + nameValuePair.getValue());
+                LogUtils.debug("TEST", "name2: " + nameValuePair.getName() + " value2:" + nameValuePair.getValue());
             }
             httpPost.setEntity(new UrlEncodedFormEntity(list, "UTF-8"));
             HttpResponse execute = m1930a.execute(httpPost);

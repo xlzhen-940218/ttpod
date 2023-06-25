@@ -12,8 +12,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.p107a.ActionPage;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,18 +67,18 @@ public class BackgroundManagementActivity extends ThemeManagementBaseActivity im
     protected void clickStatistic(int i) {
         switch (i) {
             case 0:
-                ThemeStatistic.m4871u();
+                //ThemeStatistic.m4871u();
                 break;
             case 1:
-                ThemeStatistic.m4872t();
+                //ThemeStatistic.m4872t();
                 break;
             case 2:
-                ThemeStatistic.m4870v();
+                //ThemeStatistic.m4870v();
                 break;
         }
         int i2 = this.mCurrentPage;
         this.mCurrentPage = i;
-        SUserUtils.m4953a("PAGE_CLICK", SLIST.get(this.mCurrentPage).m5275a(), SLIST.get(i2).m5274b(), SLIST.get(i).m5274b());
+        //SUserUtils.m4953a("PAGE_CLICK", SLIST.get(this.mCurrentPage).m5275a(), SLIST.get(i2).m5274b(), SLIST.get(i).m5274b());
     }
 
     @Override // com.sds.android.ttpod.activities.base.ThemeManagementBaseActivity

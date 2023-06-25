@@ -164,27 +164,31 @@ public class ThemeFramework {
         /* renamed from: b */
         protected static int m3301b(String str) {
             String substring;
-            String str2 = null;
             if (str != null) {
-                if (!str.startsWith("#")) {
-                    throw new NumberFormatException(String.format("Color value '%s' must start with #", str));
+                if (str.startsWith("#")) {
+                    String trim = str.trim();
+                    int indexOf = trim.indexOf(" ");
+                    int i = -1;
+                    if (indexOf > 0) {
+                        i = Integer.parseInt(trim.substring(indexOf).trim());
+                        substring = trim.substring(1, indexOf);
+                    } else {
+                        substring = trim.substring(1);
+                    }
+                    if (substring.length() != 6) {
+                        throw new NumberFormatException(String.format("Color value '%s' is incorrect. Format is either#RRGGBB Alpha", substring));
+                    }
+                    String str2 = "FF" + substring;
+                    if (i >= 0 && i <= 100) {
+                        str2 = String.format("%02X", Integer.valueOf((int) (((i * 255.0f) / 100.0f) + 0.5f))) + str2.substring(2);
+                    }
+                    return (int) Long.parseLong(str2, 16);
                 }
-                String trim = str.trim();
-                int indexOf = trim.indexOf(" ");
-                int i = -1;
-                if (indexOf > 0) {
-                    i = Integer.parseInt(trim.substring(indexOf).trim());
-                    substring = trim.substring(1, indexOf);
-                } else {
-                    substring = trim.substring(1);
-                }
-                if (substring.length() != 6) {
-                    throw new NumberFormatException(String.format("Color value '%s' is incorrect. Format is either#RRGGBB Alpha", substring));
-                }
-                return (int) Long.parseLong((i < 0 || i > 100) ? "FF" + substring : String.format("%02X", Integer.valueOf((int) (((i * 255.0f) / 100.0f) + 0.5f))) + str2.substring(2), 16);
+                throw new NumberFormatException(String.format("Color value '%s' must start with #", str));
             }
             throw new NumberFormatException();
         }
+
 
         /* renamed from: a */
         public void m3302a(XmlPullParser xmlPullParser) {
@@ -630,7 +634,7 @@ public class ThemeFramework {
             this.f6938a = null;
             this.f6942e.clear();
             this.f6942e = null;
-            this.f6941d.m3579i();
+            this.f6941d.clear();
             this.f6941d = null;
             System.gc();
         }

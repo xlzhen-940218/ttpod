@@ -20,7 +20,6 @@ import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
 import com.sds.android.ttpod.framework.modules.search.p127a.SearchTaskInfoUtils;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.support.search.task.PictureSearchTask;
 import com.sds.android.ttpod.framework.support.search.task.ResultData;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -74,7 +73,7 @@ public class PictureManagerAdapter extends BaseAdapter {
             PictureManagerAdapter.this.f3130h = true;
             final PictureDataItem pictureDataItem = (PictureDataItem) view.getTag();
             final C0952a.C0953a c0953a = (C0952a.C0953a) view.getTag(R.id.view_tag_view_holder);
-            LogUtils.m8386a("PictureManagerAdapter", "onClick item=%s", pictureDataItem.m2172d());
+            LogUtils.debug("PictureManagerAdapter", "onClick item=%s", pictureDataItem.m2172d());
             if (pictureDataItem.f3145g) {
                 pictureDataItem.f3145g = FileUtils.m8404h(pictureDataItem.m2172d()) ? false : true;
                 c0953a.m7665a(pictureDataItem);
@@ -212,7 +211,7 @@ public class PictureManagerAdapter extends BaseAdapter {
         this.f3131i.writeLock().lock();
         this.f3127e = mediaItem;
         this.f3131i.writeLock().unlock();
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             String artist = mediaItem.getArtist();
             if (TTTextUtils.isValidateMediaString(artist)) {
                 this.f3126d = FileUtils.m8397o(artist);
@@ -349,7 +348,7 @@ public class PictureManagerAdapter extends BaseAdapter {
                     if (PictureManagerAdapter.this.f3124b != null && PictureManagerAdapter.this.f3127e != null) {
                         PictureManagerAdapter.this.f3125c = null;
                         PictureManagerAdapter.this.f3129g.setLoadState(NetworkLoadView.EnumC2205a.FAILED);
-                        LogUtils.m8386a("PictureManagerAdapter", "onCancelled %s - %s", mediaItem.getArtist(), mediaItem.getTitle());
+                        LogUtils.debug("PictureManagerAdapter", "onCancelled %s - %s", mediaItem.getArtist(), mediaItem.getTitle());
                         PictureManagerAdapter.this.f3131i.readLock().unlock();
                         PictureManagerAdapter.this.notifyDataSetChanged();
                     }
@@ -366,7 +365,7 @@ public class PictureManagerAdapter extends BaseAdapter {
     /* renamed from: a */
     public void m7693a(final String str) {
         final String m7688b = m7688b(str);
-        if (!this.f3128f && !StringUtils.m8346a(m7688b)) {
+        if (!this.f3128f && !StringUtils.isEmpty(m7688b)) {
             this.f3130h = true;
             this.f3128f = true;
             this.f3125c = null;
@@ -383,7 +382,7 @@ public class PictureManagerAdapter extends BaseAdapter {
                     }
                     HttpRequest.C0586a m8708a = HttpRequest.m8708a(new HttpGet(m7688b), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
                     String m8347a = StringUtils.m8347a(m8708a != null ? m8708a.m8688e() : null);
-                    LogUtils.m8386a("PictureManagerAdapter", "requestList lookpic %s - %s resultContent=%s", PictureManagerAdapter.this.f3127e.getArtist(), PictureManagerAdapter.this.f3127e.getTitle(), m8347a);
+                    LogUtils.debug("PictureManagerAdapter", "requestList lookpic %s - %s resultContent=%s", PictureManagerAdapter.this.f3127e.getArtist(), PictureManagerAdapter.this.f3127e.getTitle(), m8347a);
                     if (m8347a != null) {
                         String trim = m8347a.trim();
                         try {
@@ -404,10 +403,10 @@ public class PictureManagerAdapter extends BaseAdapter {
                                 }
                                 return Integer.valueOf(size);
                             }
-                            LogUtils.m8382b("PictureManagerAdapter", "searchResult not xml: pic, %s - %s, result=%s", PictureManagerAdapter.this.f3127e.getArtist(), PictureManagerAdapter.this.f3127e.getTitle(), trim);
+                            LogUtils.error("PictureManagerAdapter", "searchResult not xml: pic, %s - %s, result=%s", PictureManagerAdapter.this.f3127e.getArtist(), PictureManagerAdapter.this.f3127e.getTitle(), trim);
                             return -1;
                         } catch (Exception e) {
-                            LogUtils.m8382b("PictureManagerAdapter", "searchResult found exception: pic, %s - %s, result=%s", PictureManagerAdapter.this.f3127e.getArtist(), PictureManagerAdapter.this.f3127e.getTitle(), trim);
+                            LogUtils.error("PictureManagerAdapter", "searchResult found exception: pic, %s - %s, result=%s", PictureManagerAdapter.this.f3127e.getArtist(), PictureManagerAdapter.this.f3127e.getTitle(), trim);
                             e.printStackTrace();
                         } finally {
                             PictureManagerAdapter.this.f3131i.readLock().unlock();
@@ -446,13 +445,13 @@ public class PictureManagerAdapter extends BaseAdapter {
     /* renamed from: a */
     public void m7692a(String str, String str2, int i, long j) {
         this.f3131i.readLock().lock();
-        StatisticUtils.m4907a("lyric_pic", str, "picture", i, j, str2, this.f3127e.getTitle());
+        //StatisticUtils.m4907a("lyric_pic", str, "picture", i, j, str2, this.f3127e.getTitle());
         this.f3131i.readLock().unlock();
     }
 
     /* renamed from: b */
     private String m7688b(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return null;
         }
         return PictureSearchTask.m2138a(SearchTaskInfoUtils.m3885b(this.f3127e, null, str));

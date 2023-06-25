@@ -21,7 +21,7 @@ public class VersionCompactModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.VERSION_COMPACT;
     }
 
@@ -33,7 +33,7 @@ public class VersionCompactModule extends BaseModule {
 
     public Boolean checkVersionCompact() {
         boolean z = true;
-        LogUtils.m8381c("MediaDBHelper", "checkVersionCompact");
+        LogUtils.error("MediaDBHelper", "checkVersionCompact");
         if (this.f6074a) {
             return true;
         }
@@ -42,7 +42,7 @@ public class VersionCompactModule extends BaseModule {
 
     public void doVersionCompact() {
         this.f6074a = true;
-        CommandCenter.m4607a().m4604a(new Command(CommandID.DO_VERSION_COMPACT_STARTED, new Object[0]), ModuleID.VERSION_COMPACT);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.DO_VERSION_COMPACT_STARTED, new Object[0]), ModuleID.VERSION_COMPACT);
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.g.b.1
             @Override // java.lang.Runnable
             public void run() {
@@ -53,7 +53,7 @@ public class VersionCompactModule extends BaseModule {
                     MediaLibraryVersionManager.instance().doCompact(VersionCompactModule.sContext);
                 }
                 VersionCompactModule.this.f6074a = false;
-                CommandCenter.m4607a().m4595b(new Command(CommandID.DO_VERSION_COMPACT_FINISHED, new Object[0]), ModuleID.VERSION_COMPACT);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.DO_VERSION_COMPACT_FINISHED, new Object[0]), ModuleID.VERSION_COMPACT);
             }
         });
     }

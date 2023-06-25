@@ -390,7 +390,7 @@ public class MiniLyric implements View.OnTouchListener {
     /* renamed from: a */
     public void m2322a(int i) {
         int m3030Z = Preferences.m3030Z();
-        LogUtils.m8388a("minilyric", "setDisplayMode fontSize=" + m3030Z);
+        LogUtils.debug("minilyric", "setDisplayMode fontSize=" + m3030Z);
         switch (i) {
             case 3:
                 this.f7218t.setLayoutParams(new FrameLayout.LayoutParams(-2, DisplayUtils.m7229a(40 - (28 - m3030Z))));
@@ -414,7 +414,7 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: e */
     public void m2296e() {
-        LogUtils.m8388a("minilyric", "show");
+        LogUtils.debug("minilyric", "show");
         if (this.f7218t != null) {
             this.f7218t.m3427i();
         }
@@ -426,7 +426,7 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: a */
     public void m2312a(boolean z) {
-        LogUtils.m8388a("minilyric", "hide");
+        LogUtils.debug("minilyric", "hide");
         this.f7221w.m2353c();
         this.f7219u.setVisibility(View.INVISIBLE);
         m2300c(true);
@@ -435,7 +435,7 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: f */
     public void m2293f() {
-        LogUtils.m8388a("minilyric", "destroy");
+        LogUtils.debug("minilyric", "destroy");
         this.f7201c = null;
         this.f7202d = null;
         this.f7203e = null;
@@ -631,7 +631,7 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: c */
     private void m2300c(boolean z) {
-        LogUtils.m8388a("minilyric", "hideSettingPanel immediate = " + z);
+        LogUtils.debug("minilyric", "hideSettingPanel immediate = " + z);
         if (View.GONE != this.f7217s.getVisibility()) {
             if (z) {
                 m2305b(false, false);
@@ -670,7 +670,7 @@ public class MiniLyric implements View.OnTouchListener {
         int m3030Z = Preferences.m3030Z();
         if (m3030Z > 14) {
             int i = m3030Z - 1;
-            LogUtils.m8388a("minilyric", "fontZoomOut fontSize=" + i);
+            LogUtils.debug("minilyric", "fontZoomOut fontSize=" + i);
             Preferences.m2891e(i);
             m2303c(i);
             this.f7218t.setTextSize(i);
@@ -682,7 +682,7 @@ public class MiniLyric implements View.OnTouchListener {
         int m3030Z = Preferences.m3030Z();
         if (m3030Z < 28) {
             int i = m3030Z + 1;
-            LogUtils.m8388a("minilyric", "fontZoomIn fontSize=" + i);
+            LogUtils.debug("minilyric", "fontZoomIn fontSize=" + i);
             Preferences.m2891e(i);
             m2303c(i);
             if (this.f7218t != null) {
@@ -747,7 +747,7 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: a */
     public void m2311a(boolean z, boolean z2) {
-        LogUtils.m8388a("minilyric", "lockStateNotification " + z);
+        LogUtils.debug("minilyric", "lockStateNotification " + z);
         m2297d(z);
         if (this.f7221w.m2366a()) {
             m2300c(false);
@@ -775,7 +775,7 @@ public class MiniLyric implements View.OnTouchListener {
         } else {
             string = BaseApplication.getApplication().getString(R.string.mini_lyric_click_lock);
             string2 = BaseApplication.getApplication().getString(R.string.mini_lyric_unlocked);
-            int i2 = SDKVersionUtils.m8371c() ? R.drawable.img_button_minilyric_unlock_ics : R.drawable.img_button_minilyric_unlocked;
+            int i2 = SDKVersionUtils.checkVersionThanAndroid11() ? R.drawable.img_button_minilyric_unlock_ics : R.drawable.img_button_minilyric_unlocked;
             intent.putExtra("is_locked", true);
             i = i2;
         }

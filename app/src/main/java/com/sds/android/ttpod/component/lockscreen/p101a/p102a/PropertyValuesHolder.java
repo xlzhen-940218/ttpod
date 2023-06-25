@@ -162,7 +162,7 @@ public class PropertyValuesHolder implements Cloneable {
                 }
             }
         }
-        LogUtils.m8381c("PropertyValuesHolder", "Couldn't find setter/getter for property " + this.f4671a + " with value type " + this.f4674d);
+        LogUtils.error("PropertyValuesHolder", "Couldn't find setter/getter for property " + this.f4671a + " with value type " + this.f4674d);
         return method2;
     }
 
@@ -215,7 +215,7 @@ public class PropertyValuesHolder implements Cloneable {
                 }
                 return;
             } catch (ClassCastException e) {
-                LogUtils.m8381c("PropertyValuesHolder", "No such property (" + this.f4672b.m5964a() + ") on target object " + obj + ". Trying reflection instead");
+                LogUtils.error("PropertyValuesHolder", "No such property (" + this.f4672b.m5964a() + ") on target object " + obj + ". Trying reflection instead");
                 this.f4672b = null;
             }
         }
@@ -233,9 +233,9 @@ public class PropertyValuesHolder implements Cloneable {
                 try {
                     next2.mo6071a(this.f4678h.invoke(obj, new Object[0]));
                 } catch (IllegalAccessException e2) {
-                    LogUtils.m8381c("PropertyValuesHolder", e2.toString());
+                    LogUtils.error("PropertyValuesHolder", e2.toString());
                 } catch (InvocationTargetException e3) {
-                    LogUtils.m8381c("PropertyValuesHolder", e3.toString());
+                    LogUtils.error("PropertyValuesHolder", e3.toString());
                 }
             }
         }
@@ -267,9 +267,9 @@ public class PropertyValuesHolder implements Cloneable {
                 this.f4677g[0] = mo6007d();
                 this.f4673c.invoke(obj, this.f4677g);
             } catch (IllegalAccessException e) {
-                LogUtils.m8381c("PropertyValuesHolder", e.toString());
+                LogUtils.error("PropertyValuesHolder", e.toString());
             } catch (InvocationTargetException e2) {
-                LogUtils.m8381c("PropertyValuesHolder", e2.toString());
+                LogUtils.error("PropertyValuesHolder", e2.toString());
             }
         }
     }
@@ -397,9 +397,9 @@ public class PropertyValuesHolder implements Cloneable {
                     this.f4677g[0] = Integer.valueOf(this.f4685i);
                     this.f4673c.invoke(obj, this.f4677g);
                 } catch (IllegalAccessException e) {
-                    LogUtils.m8381c("PropertyValuesHolder", e.toString());
+                    LogUtils.error("PropertyValuesHolder", e.toString());
                 } catch (InvocationTargetException e2) {
-                    LogUtils.m8381c("PropertyValuesHolder", e2.toString());
+                    LogUtils.error("PropertyValuesHolder", e2.toString());
                 }
             }
         }
@@ -481,9 +481,9 @@ public class PropertyValuesHolder implements Cloneable {
                     this.f4677g[0] = Float.valueOf(this.f4682i);
                     this.f4673c.invoke(obj, this.f4677g);
                 } catch (IllegalAccessException e) {
-                    LogUtils.m8381c("PropertyValuesHolder", e.toString());
+                    LogUtils.error("PropertyValuesHolder", e.toString());
                 } catch (InvocationTargetException e2) {
-                    LogUtils.m8381c("PropertyValuesHolder", e2.toString());
+                    LogUtils.error("PropertyValuesHolder", e2.toString());
                 }
             }
         }

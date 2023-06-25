@@ -36,10 +36,8 @@ import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectCache
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.Pager;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -256,9 +254,9 @@ public class RecommandAudioEffectFragment extends BaseFragment {
     }
 
     private void requestRecommendsEffect(Integer num, Integer num2) {
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_EFFECT, m3225N, num, num2));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT, m3225N, num, num2));
         } else {
             this.mStateView.setState(StateView.EnumC2248b.NO_DATA);
         }
@@ -290,9 +288,9 @@ public class RecommandAudioEffectFragment extends BaseFragment {
         this.mAdapter.notifyDataSetChanged();
         performPlayClick(headerViewsCount, true);
         performSaveClick(i);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, false));
-        AudioEffectStatistic.m5269c();
-        SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_APPLY, SPage.PAGE_AUDIO_CLOUD_EFFECT, SPage.PAGE_NONE);
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, false));
+        //AudioEffectStatistic.m5269c();
+        //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_APPLY, SPage.PAGE_AUDIO_CLOUD_EFFECT, SPage.PAGE_NONE);
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
@@ -370,7 +368,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
     private void performPlayClick(int i, boolean z) {
         int m8266a = ListViewUtils.m8266a(this.mListView.getHeaderViewsCount(), i, this.mAdapter.getCount());
         if (m8266a != -1) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.SET_CLOUD_AUDIO_EFFECT, this.mDatas.get(m8266a), Boolean.valueOf(z)));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.SET_CLOUD_AUDIO_EFFECT, this.mDatas.get(m8266a), Boolean.valueOf(z)));
         }
     }
 
@@ -388,18 +386,18 @@ public class RecommandAudioEffectFragment extends BaseFragment {
             EffectPickUtils.m8304a(audioEffectItem.getID());
             this.mPickedHashMap.put(audioEffectItem.getID(), true);
         }
-        AudioEffectStatistic.m5270b();
-        SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_LIKE, SPage.PAGE_AUDIO_CLOUD_EFFECT, SPage.PAGE_NONE);
+        //AudioEffectStatistic.m5270b();
+        //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_LIKE, SPage.PAGE_AUDIO_CLOUD_EFFECT, SPage.PAGE_NONE);
     }
 
     private Boolean isPickedEffect(String str) {
-        return (Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_PICKED_EFFECT, str), Boolean.class);
+        return (Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_PICKED_EFFECT, str), Boolean.class);
     }
 
     private void performSaveClick(int i) {
         AudioEffectItem audioEffectItem = this.mDatas.get(i);
         saveCloudAudioEffect(audioEffectItem);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.BIND_EFFECT, audioEffectItem.getID()));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.BIND_EFFECT, audioEffectItem.getID()));
         if (!Preferences.m2974ad()) {
             Preferences.m3079A(true);
         }
@@ -407,7 +405,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
     }
 
     private void saveCloudAudioEffect(AudioEffectItem audioEffectItem) {
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         String title = m3225N.getTitle();
         String artist = m3225N.getArtist();
         Long songID = m3225N.getSongID();
@@ -432,10 +430,10 @@ public class RecommandAudioEffectFragment extends BaseFragment {
         audioEffectCache.m4410a(audioEffectItem.getDataIsLimit());
         audioEffectCache.m4409a(audioEffectItem.getDataEqualizer());
         audioEffectCache.m4406b(System.currentTimeMillis());
-        if (!StringUtils.m8346a(m3225N.getLocalDataSource())) {
+        if (!StringUtils.isEmpty(m3225N.getLocalDataSource())) {
             audioEffectCache.m4390g(m3225N.getLocalDataSource());
         }
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SAVE_EFFECT_TO_LOCAL, m3225N, audioEffectCache));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SAVE_EFFECT_TO_LOCAL, m3225N, audioEffectCache));
     }
 
     private String getCurrentTime() {

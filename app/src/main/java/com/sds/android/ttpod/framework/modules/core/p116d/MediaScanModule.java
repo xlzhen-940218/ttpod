@@ -6,7 +6,6 @@ import com.sds.android.ttpod.framework.base.BaseModule;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
 import com.sds.android.ttpod.framework.modules.ModuleManager;
-import com.sds.android.ttpod.framework.modules.core.p116d.MediaScanner;
 import com.sds.android.ttpod.framework.modules.core.p116d.p118b.WifiTransmission;
 import com.sds.android.ttpod.media.mediastore.MediaStorage;
 import java.lang.reflect.Method;
@@ -15,17 +14,17 @@ import java.util.Map;
 
 /* renamed from: com.sds.android.ttpod.framework.modules.core.d.a */
 /* loaded from: classes.dex */
-public final class MediaScanModule extends BaseModule implements MediaScanner.InterfaceC1870a {
+public final class MediaScanModule extends BaseModule implements MediaScanner.ScanCallback {
 
     /* renamed from: a */
-    private MediaScanner f5965a = new MediaScanner();
+    private MediaScanner mediaScanner = new MediaScanner();
 
     /* renamed from: b */
-    private WifiTransmission f5966b;
+    private WifiTransmission wifiTransmission;
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.MEDIA_SCAN;
     }
 
@@ -42,7 +41,7 @@ public final class MediaScanModule extends BaseModule implements MediaScanner.In
     }
 
     public MediaScanModule() {
-        this.f5965a.m4239a(this);
+        this.mediaScanner.m4239a(this);
     }
 
     public void startScan(Collection<String> collection, String str) {
@@ -50,36 +49,36 @@ public final class MediaScanModule extends BaseModule implements MediaScanner.In
         if (!str.startsWith(MediaStorage.GROUP_ID_CUSTOM_PREFIX)) {
             throw new IllegalArgumentException("groupID " + str + " can not be scan into!");
         }
-        this.f5965a.m4235a(collection, str);
+        this.mediaScanner.m4235a(collection, str);
     }
 
     public void stopScan() {
-        this.f5965a.m4240a();
+        this.mediaScanner.m4240a();
     }
 
     public Integer progress() {
-        return this.f5965a.m4234b();
+        return this.mediaScanner.m4234b();
     }
 
     public Integer scannedFileCount() {
-        return this.f5965a.m4229d();
+        return this.mediaScanner.m4229d();
     }
 
     public String scanningFilePath() {
-        return this.f5965a.m4231c();
+        return this.mediaScanner.m4231c();
     }
 
     public void startWifiTransmission() {
         stopWifiTransmission();
-        this.f5966b = new WifiTransmission();
-        this.f5966b.m4179b();
+        this.wifiTransmission = new WifiTransmission();
+        this.wifiTransmission.m4179b();
     }
 
     public void stopWifiTransmission() {
         try {
-            if (this.f5966b != null) {
-                this.f5966b.m4178c();
-                this.f5966b = null;
+            if (this.wifiTransmission != null) {
+                this.wifiTransmission.m4178c();
+                this.wifiTransmission = null;
                 m4265a();
             }
         } catch (Exception e) {
@@ -89,14 +88,14 @@ public final class MediaScanModule extends BaseModule implements MediaScanner.In
 
     @Override // com.sds.android.ttpod.framework.modules.core.p116d.MediaScanner.InterfaceC1870a
     public void onScanFinished() {
-        this.f5965a = null;
+        this.mediaScanner = null;
         m4265a();
     }
 
     /* renamed from: a */
     private void m4265a() {
-        if (this.f5966b == null && this.f5965a == null) {
-            ModuleManager.m4117a().m4113a(mo3239id());
+        if (this.wifiTransmission == null && this.mediaScanner == null) {
+            ModuleManager.getInstance().m4113a(id());
         }
     }
 }

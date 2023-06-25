@@ -173,7 +173,7 @@ public final class SearchManager {
             objArr[3] = stringExtra4;
             objArr[4] = Boolean.valueOf(booleanExtra);
             objArr[5] = Boolean.valueOf(mediaItem != null);
-            LogUtils.m8380c("SearchManager", "handleIntent lookLyricPic command=%s type=%s artist=%s title=%s onlyLocal=%b mediaItemNotNull:%b", objArr);
+            LogUtils.info("SearchManager", "handleIntent lookLyricPic command=%s type=%s artist=%s title=%s onlyLocal=%b mediaItemNotNull:%b", objArr);
             if (stringExtra2 == null) {
                 m2227a(mediaItem);
                 return true;
@@ -202,7 +202,7 @@ public final class SearchManager {
             objArr2[0] = stringExtra;
             objArr2[1] = stringExtra2;
             objArr2[2] = Boolean.valueOf(mediaItem2 != null);
-            LogUtils.m8380c("SearchManager", "handleIntent lookLyricPic command=%s type=%s mediaItemNotNull:%b", objArr2);
+            LogUtils.info("SearchManager", "handleIntent lookLyricPic command=%s type=%s mediaItemNotNull:%b", objArr2);
             if (mediaItem2 != null) {
                 LyrPicBaseSearchTask.m2160a(stringExtra2, item, mediaItem2);
                 return true;
@@ -210,7 +210,7 @@ public final class SearchManager {
             return true;
         } else if ("batch_search_lyric_pic_command".equals(stringExtra)) {
             String stringExtra5 = intent.getStringExtra("type");
-            LogUtils.m8386a("SearchManager", "handleIntent BATCH_SEARCH_LYRIC_PIC_COMMAND type=%s", stringExtra5);
+            LogUtils.debug("SearchManager", "handleIntent BATCH_SEARCH_LYRIC_PIC_COMMAND type=%s", stringExtra5);
             if ("search".equals(stringExtra5)) {
                 m2217e();
                 return true;
@@ -321,7 +321,7 @@ public final class SearchManager {
     private void m2213i() {
         MediaItem queryMediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.m2858m(), Preferences.m2854n());
         if (queryMediaItem != null && !queryMediaItem.isNull()) {
-            LogUtils.m8380c("SearchManager", "searchLocalArtistPicture lookLyricPic create local pic search task, artist=%s title=%s", queryMediaItem.getArtist(), queryMediaItem.getTitle());
+            LogUtils.info("SearchManager", "searchLocalArtistPicture lookLyricPic create local pic search task, artist=%s title=%s", queryMediaItem.getArtist(), queryMediaItem.getTitle());
             PictureSearchTaskInfo m3886b = SearchTaskInfoUtils.m3886b(queryMediaItem);
             m3886b.m2201c(true);
             TaskScheduler.m8581a(new PictureSearchTask(m3886b));
@@ -335,7 +335,7 @@ public final class SearchManager {
         }
         if (mediaItem != null && !mediaItem.isNull()) {
             ImageSwitcherEngine.m4724d().m4726c();
-            LogUtils.m8380c("SearchManager", "searchLyricPicture lookLyricPic create lyric pic search task, artist=%s title=%s", mediaItem.getArtist(), mediaItem.getTitle());
+            LogUtils.info("SearchManager", "searchLyricPicture lookLyricPic create lyric pic search task, artist=%s title=%s", mediaItem.getArtist(), mediaItem.getTitle());
             m2225a(mediaItem, (String) null, (String) null);
             TaskScheduler.m8581a(new LyricSearchTask(SearchTaskInfoUtils.m3888a(mediaItem)));
             m2226a(mediaItem, (String) null);
@@ -355,7 +355,7 @@ public final class SearchManager {
             str2 = mediaItem.getTitle();
         }
         objArr[2] = str2;
-        LogUtils.m8386a("SearchManager", "logForSearchLyric lookLyricPic manual=%b artist=%s title=%s", objArr);
+        LogUtils.debug("SearchManager", "logForSearchLyric lookLyricPic manual=%b artist=%s title=%s", objArr);
     }
 
     /* renamed from: a */
@@ -367,7 +367,7 @@ public final class SearchManager {
         }
         objArr[1] = str;
         objArr[2] = mediaItem.getTitle();
-        LogUtils.m8386a("SearchManager", "logForSearchPicture lookLyricPic manual=%b artist=%s title=%s", objArr);
+        LogUtils.debug("SearchManager", "logForSearchPicture lookLyricPic manual=%b artist=%s title=%s", objArr);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -383,7 +383,7 @@ public final class SearchManager {
             ArrayList<String> stringArrayListExtra;
             if (intent != null) {
                 if (Action.PLAY_MEDIA_CHANGED.equals(intent.getAction())) {
-                    LogUtils.m8388a("SearchManager", "SearchManager LyricPicSearchMonitor PLAY_MEDIA_CHANGED lookLyricPic");
+                    LogUtils.debug("SearchManager", "SearchManager LyricPicSearchMonitor PLAY_MEDIA_CHANGED lookLyricPic");
                     SearchManager.m2232a().m2227a((MediaItem) null);
                 } else if (Action.LYRIC_PIC_OPERATE_RESULT.equals(intent.getAction())) {
                     String stringExtra = intent.getStringExtra("type");
@@ -433,7 +433,7 @@ public final class SearchManager {
         MediaItem queryMediaItem;
         if (this.f7258h != null && str != null && StringUtils.m8344a(str, this.f7264n)) {
             if (EnvironmentUtils.C0602a.m8503h() && (queryMediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), MediaStorage.GROUP_ID_ALL_LOCAL, str)) != null) {
-                LogUtils.m8386a("SearchManager", "dealBatchItemSearchState type=%s status=%s mediaId=%s artist=%s title=%s", str2, searchStatus, str, queryMediaItem.getArtist(), queryMediaItem.getTitle());
+                LogUtils.debug("SearchManager", "dealBatchItemSearchState type=%s status=%s mediaId=%s artist=%s title=%s", str2, searchStatus, str, queryMediaItem.getArtist(), queryMediaItem.getTitle());
             }
             if ("lyric_type".equals(str2)) {
                 this.f7265o = true;

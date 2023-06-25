@@ -57,7 +57,7 @@ public class NotificationUtils {
             if (bitmap2 == null && i != 0) {
                 bitmap2 = BitmapFactory.decodeResource(context.getResources(), i);
             }
-            if (!SDKVersionUtils.m8371c()) {
+            if (!SDKVersionUtils.checkVersionThanAndroid11()) {
                 notificationBuilder.m4702a(charSequence);
                 notificationBuilder.m4700b(charSequence2);
                 notificationBuilder.m4705a(bitmap2);
@@ -79,7 +79,7 @@ public class NotificationUtils {
         if (bitmap2 == null) {
             bitmap2 = BitmapFactory.decodeResource(context.getResources(), i);
         }
-        if (!SDKVersionUtils.m8371c()) {
+        if (!SDKVersionUtils.checkVersionThanAndroid11()) {
         }
         notificationBuilder.m4709a(i);
         notificationBuilder.m4707a(pendingIntent);

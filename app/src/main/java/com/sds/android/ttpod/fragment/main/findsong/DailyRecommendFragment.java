@@ -4,7 +4,7 @@ import android.os.Bundle;
 import com.sds.android.cloudapi.ttpod.data.IntroductionData;
 import com.sds.android.cloudapi.ttpod.data.User;
 import com.sds.android.cloudapi.ttpod.result.IntroductionResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.request.Extra;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.R;
@@ -90,7 +90,7 @@ public class DailyRecommendFragment extends SceneRecommendFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void requestDataList(int i) {
         super.requestDataList(i);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_DAILY_RECOMMEND, Integer.valueOf(i)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_DAILY_RECOMMEND, Integer.valueOf(i)));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
@@ -109,32 +109,15 @@ public class DailyRecommendFragment extends SceneRecommendFragment {
         super.onLoadFinished();
         updateDailyRecommendList(this.mResult);
         if (this.mIntroductionId != 0) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.GET_POPULAR_SONG_INTRODUCTION, Long.valueOf(this.mIntroductionId)));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_POPULAR_SONG_INTRODUCTION, Long.valueOf(this.mIntroductionId)));
         }
     }
 
-    @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
-    protected String onLoadStatisticModule() {
-        return null;
-    }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     protected String onLoadTitleText() {
         return this.mIntroductionData == null ? getString(R.string.daily_recommend_title) : this.mIntroductionData.getName();
     }
 
-    @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment.InterfaceC1667b
-    public void doStatistic(MediaItem mediaItem, int i) {
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_ITEM.getValue(), SPage.PAGE_ONLINE_DAILY_RECOMMEND.getValue(), 0).append("song_id", mediaItem.getSongID()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(this.mIntroductionId)).append("song_list_name", onLoadTitleText()).append("position", Integer.valueOf(i + 1)).post();
-    }
 
-    @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
-    protected void postForwardIntroductionStatistic() {
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_INTRODUCTION.getValue(), String.valueOf(SPage.PAGE_ONLINE_DAILY_RECOMMEND.getValue()), String.valueOf(SPage.PAGE_ONLINE_POST_DETAIL_INTRODUCTION.getValue())).append("song_list_name", onLoadTitleText()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(this.mIntroductionId)).post();
-    }
-
-    @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
-    protected void postButtonClickStatistic(SAction sAction) {
-        new SUserEvent("PAGE_CLICK", sAction.getValue(), String.valueOf(SPage.PAGE_ONLINE_DAILY_RECOMMEND.getValue()), String.valueOf(SPage.PAGE_NONE.getValue())).append("song_list_name", onLoadTitleText()).post();
-    }
 }

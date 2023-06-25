@@ -108,7 +108,7 @@ public class QQZoneApi extends BaseApi {
         bundle.putString("title", shareInfo.m1956f());
         bundle.putString("summary", shareInfo.m1958e());
         bundle.putString("site", "天天动听");
-        if (!StringUtils.m8346a(shareInfo.m1960d())) {
+        if (!StringUtils.isEmpty(shareInfo.m1960d())) {
             ArrayList<String> arrayList = new ArrayList<>();
             arrayList.add(shareInfo.m1960d());
             bundle.putStringArrayList("imageUrl", arrayList);

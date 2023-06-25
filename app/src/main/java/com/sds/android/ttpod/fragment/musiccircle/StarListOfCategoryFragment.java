@@ -15,7 +15,7 @@ import java.util.Map;
 public class StarListOfCategoryFragment extends StarListFragment {
     @Override // com.sds.android.ttpod.fragment.musiccircle.StarListFragment
     public void onRequestData(int i, int i2, int i3) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_STAR_USERS_BY_CATEGORY, Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i3), "star_user_by_category"));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_STAR_USERS_BY_CATEGORY, Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i3), "star_user_by_category"));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

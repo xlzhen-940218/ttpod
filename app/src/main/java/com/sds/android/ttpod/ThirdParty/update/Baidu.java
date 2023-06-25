@@ -9,12 +9,11 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
-import com.sds.android.sdk.core.statistic.HttpClientProxy;
+
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
-import com.sds.android.ttpod.ThirdParty.update.VersionUpdateData;
 import com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity;
 
 import java.io.File;
@@ -70,10 +69,10 @@ public class Baidu implements UpdateInterface {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.ThirdParty.update.Baidu.1
             @Override // java.lang.Runnable
             public void run() {
-                if (StringUtils.m8346a(Baidu.mRequestUrl)) {
+                if (StringUtils.isEmpty(Baidu.mRequestUrl)) {
                     String unused = Baidu.mRequestUrl = Baidu.this.getRequestUrl(HttpRequest.m8713a(str, (HashMap<String, Object>) null, (HashMap<String, Object>) null).m8688e());
                 }
-                if (!StringUtils.m8346a(Baidu.mRequestUrl)) {
+                if (!StringUtils.isEmpty(Baidu.mRequestUrl)) {
                     try {
                         Map unused2 = Baidu.mUpdateInfoMap = Baidu.this.toUpdateInfo(Baidu.this.requestHttp(Baidu.mRequestUrl + "&from=" + Baidu.FROM + "&token=ttpod&type=app&index=3", Baidu.this.getContextJson()));
                         if (Baidu.mUpdateInfoMap != null) {
@@ -81,7 +80,7 @@ public class Baidu implements UpdateInterface {
                             versionUpdateData.setSize(Baidu.this.getSize((String) Baidu.mUpdateInfoMap.get("size")));
                             versionUpdateData.setUpgradeType(VersionUpdateConst.UPDATE_BAIDU_TYPE);
                             String str2 = (String) Baidu.mUpdateInfoMap.get("patch_size");
-                            if (!StringUtils.m8346a(str2)) {
+                            if (!StringUtils.isEmpty(str2)) {
                                 versionUpdateData.setPatchSize(Baidu.this.getSize(Long.parseLong(str2)));
                             }
                             versionUpdateData.setToolName("百度手机助手");
@@ -123,7 +122,7 @@ public class Baidu implements UpdateInterface {
 
     /* JADX INFO: Access modifiers changed from: private */
     public double getSize(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return 0.0d;
         }
         return getSize(Integer.parseInt(mUpdateInfoMap.get("size")));
@@ -138,7 +137,7 @@ public class Baidu implements UpdateInterface {
         try {
             HttpPost httpPost = new HttpPost(str);
             StringEntity stringEntity = new StringEntity(str2, "UTF-8");
-            httpPost.setHeader(HttpClientProxy.HEADER_CONTENT_TYPE, "application/x-www-form-urlencoded");
+            httpPost.setHeader("Content-Type", "application/x-www-form-urlencoded");
             httpPost.setEntity(stringEntity);
             HttpResponse execute = new DefaultHttpClient().execute(httpPost);
             if (execute.getStatusLine().getStatusCode() == 200) {
@@ -195,7 +194,7 @@ public class Baidu implements UpdateInterface {
             bundle.putString("sname", str);
             bundle.putString("packagename", mUpdateInfoMap.get("package"));
             int parseInt = Integer.parseInt(mUpdateInfoMap.get("versioncode"));
-            LogUtils.m8388a(TAG, "update params:versionCode:" + parseInt);
+            LogUtils.debug(TAG, "update params:versionCode:" + parseInt);
             bundle.putInt("versioncode", parseInt);
             bundle.putString("downurl", mUpdateInfoMap.get("download_url"));
             String str2 = mUpdateInfoMap.get("signmd5");
@@ -208,11 +207,11 @@ public class Baidu implements UpdateInterface {
             bundle.putString("size", mUpdateInfoMap.get("size"));
             bundle.putString("changelog", mUpdateInfoMap.get("changelog"));
             String str3 = mUpdateInfoMap.get("patch");
-            if (!StringUtils.m8346a(str3)) {
+            if (!StringUtils.isEmpty(str3)) {
                 bundle.putString("patch_url", str3);
             }
             String str4 = mUpdateInfoMap.get("patch_size");
-            if (!StringUtils.m8346a(str4)) {
+            if (!StringUtils.isEmpty(str4)) {
                 bundle.putLong("patch_size", Integer.parseInt(str4));
             }
             intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);

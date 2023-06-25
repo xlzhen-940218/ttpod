@@ -73,10 +73,10 @@ public class MediaPickerActivity extends SlidingClosableActivity implements Them
                     }
                 }
                 if (MediaPickerActivity.this.mMediaItemsInGroup.size() > 0) {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM_LIST, MediaPickerActivity.this.mPickerObjectGroupId, MediaPickerActivity.this.mMediaItemsInGroup, false));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM_LIST, MediaPickerActivity.this.mPickerObjectGroupId, MediaPickerActivity.this.mMediaItemsInGroup, false));
                 }
                 if (selectedMediaItems.size() > 0) {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, MediaPickerActivity.this.mPickerObjectGroupId, selectedMediaItems));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, MediaPickerActivity.this.mPickerObjectGroupId, selectedMediaItems));
                 }
                 MediaPickerActivity.this.finish();
             }

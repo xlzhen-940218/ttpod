@@ -145,7 +145,7 @@ public class PlaylistResult extends DataListResult<PlaylistResult.PlaylistItem> 
         }
 
         public int getSongListSize() {
-            if (StringUtils.m8346a(this.mSongList)) {
+            if (StringUtils.isEmpty(this.mSongList)) {
                 return 0;
             }
             return this.mSongList.split(",").length;

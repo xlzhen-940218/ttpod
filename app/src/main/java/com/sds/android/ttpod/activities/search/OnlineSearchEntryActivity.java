@@ -23,7 +23,7 @@ public class OnlineSearchEntryActivity extends SlidingClosableActivity {
         String stringExtra = intent.getStringExtra(KEY_THIRD_ONLINE_SEARCH_KEYWORD);
         int intExtra = intent.getIntExtra(KEY_THIRD_APP_IDENTITY, 0);
         if (TextUtils.isEmpty(stringExtra)) {
-            LogUtils.m8384b(LOG_TAG, "keyword or appName is empty, will exit, keyword=" + stringExtra);
+            LogUtils.warning(LOG_TAG, "keyword or appName is empty, will exit, keyword=" + stringExtra);
             finish();
             return;
         }

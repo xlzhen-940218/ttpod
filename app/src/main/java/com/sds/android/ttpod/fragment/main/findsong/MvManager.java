@@ -9,9 +9,8 @@ import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.JSONUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.activities.unicomflow.OrderFlowDetailActivity;
-import com.sds.android.ttpod.activities.unicomflow.UnicomDialog;
-import com.sds.android.ttpod.activities.unicomflow.UnicomFlowManager;
+
+
 import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.component.p087d.p088a.MessageDialog;
@@ -22,8 +21,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.UnicomFlowStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -73,45 +70,7 @@ public class MvManager {
     private static void m5562a(final Context context, final MvPopupDialogCallBack mvPopupDialogCallBack) {
         if (!Preferences.m2916bm()) {
             mvPopupDialogCallBack.mo1219a();
-            return;
         }
-        String string = context.getString(R.string.mv_download_unicom_net_prompt);
-        String string2 = context.getString(R.string.prompt_title);
-        UnicomFlowStatistic.m4861C();
-        SUserUtils.m4957a(1126, SPage.PAGE_NONE);
-        UnicomFlowManager.m7757a(context, string, string2, (int) R.string.unicom_open_service, new BaseDialog.InterfaceC1064a<UnicomDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.a.2
-            @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
-            /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(UnicomDialog unicomDialog) {
-                boolean m7768b = unicomDialog.m7768b();
-                if (m7768b) {
-                    UnicomFlowStatistic.m4858F();
-                    SUserUtils.m4957a(1129, SPage.PAGE_NONE);
-                }
-                Preferences.m2971ae(!m7768b);
-                UnicomFlowStatistic.m4859E();
-                context.startActivity(new Intent(context, OrderFlowDetailActivity.class));
-                SUserUtils.m4957a(1127, SPage.PAGE_NONE);
-            }
-        }, (int) R.string.mv_download, new BaseDialog.InterfaceC1064a<UnicomDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.a.3
-            @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
-            /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(UnicomDialog unicomDialog) {
-                boolean m7768b = unicomDialog.m7768b();
-                if (m7768b) {
-                    UnicomFlowStatistic.m4858F();
-                    SUserUtils.m4957a(1129, SPage.PAGE_NONE);
-                }
-                Preferences.m2971ae(!m7768b);
-                UnicomFlowStatistic.m4860D();
-                SUserUtils.m4957a(1128, SPage.PAGE_NONE);
-                mvPopupDialogCallBack.mo1219a();
-            }
-        }, new CompoundButton.OnCheckedChangeListener() { // from class: com.sds.android.ttpod.fragment.main.findsong.a.4
-            @Override // android.widget.CompoundButton.OnCheckedChangeListener
-            public void onCheckedChanged(CompoundButton compoundButton, boolean z) {
-            }
-        });
     }
 
     /* renamed from: e */
@@ -120,50 +79,6 @@ public class MvManager {
             mvPopupDialogCallBack.mo1219a();
             return;
         }
-        UnicomFlowStatistic.m4802y();
-        SUserUtils.m4957a(1138, SPage.PAGE_NONE);
-        String string = context.getString(R.string.unicom_mv_message);
-        String string2 = context.getString(R.string.unicom_dialog_month_end_title);
-        UnicomDialog unicomDialog = new UnicomDialog(context, string, (int) R.string.unicom_mv_dialog, new BaseDialog.InterfaceC1064a<UnicomDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.a.5
-            @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
-            /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(UnicomDialog unicomDialog2) {
-                UnicomFlowStatistic.m4863A();
-                if (unicomDialog2.m7768b()) {
-                    UnicomFlowStatistic.m4801z();
-                    SUserUtils.m4957a(1142, SPage.PAGE_NONE);
-                }
-                SUserUtils.m4957a(1139, SPage.PAGE_NONE);
-                mvPopupDialogCallBack.mo1219a();
-                unicomDialog2.dismiss();
-            }
-        }, (int) R.string.mv_download, new BaseDialog.InterfaceC1064a<UnicomDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.a.6
-            @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
-            /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(UnicomDialog unicomDialog2) {
-                mvPopupDialogCallBack.mo1218b();
-                if (unicomDialog2.m7768b()) {
-                    UnicomFlowStatistic.m4801z();
-                    SUserUtils.m4957a(1142, SPage.PAGE_NONE);
-                }
-                SUserUtils.m4957a(1140, SPage.PAGE_NONE);
-                UnicomFlowStatistic.m4862B();
-                unicomDialog2.dismiss();
-            }
-        }, true, new CompoundButton.OnCheckedChangeListener() { // from class: com.sds.android.ttpod.fragment.main.findsong.a.7
-            @Override // android.widget.CompoundButton.OnCheckedChangeListener
-            public void onCheckedChanged(CompoundButton compoundButton, boolean z) {
-                if (i == 2) {
-                    Preferences.m2973ad(z ? false : true);
-                } else {
-                    Preferences.m2975ac(z ? false : true);
-                }
-            }
-        });
-        unicomDialog.setTitle(string2);
-        unicomDialog.m7246d(true);
-        unicomDialog.setCanceledOnTouchOutside(false);
-        unicomDialog.show();
     }
 
     /* renamed from: b */
@@ -191,9 +106,9 @@ public class MvManager {
     /* renamed from: a */
     public static void m5559a(MediaItem mediaItem) {
         String m5556b = m5556b(mediaItem);
-        DownloadTaskInfo m4760a = DownloadUtils.m4760a(m5556b, TTPodConfig.m5283y() + File.separator + (mediaItem.getArtist() + " - " + mediaItem.getTitle()) + ("." + FileUtils.m8399m(FileUtils.m8402j(m5556b))), 0L, mediaItem.getTitle(), DownloadTaskInfo.TYPE_VIDEO, true, "mv_channel");
+        DownloadTaskInfo m4760a = DownloadUtils.m4760a(m5556b, TTPodConfig.m5283y() + File.separator + (mediaItem.getArtist() + " - " + mediaItem.getTitle()) + ("." + FileUtils.getSuffix(FileUtils.getFilename(m5556b))), 0L, mediaItem.getTitle(), DownloadTaskInfo.TYPE_VIDEO, true, "mv_channel");
         m4760a.setTag(m5556b);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
     }
 
     /* renamed from: b */

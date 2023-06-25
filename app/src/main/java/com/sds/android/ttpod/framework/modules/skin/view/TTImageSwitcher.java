@@ -68,7 +68,7 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
             @Override // android.os.Handler
             public void handleMessage(Message message) {
                 int i = message.what;
-                LogUtils.m8386a("TTImageSwitcher", "handleMessage lookLyricPic what=%d", Integer.valueOf(i));
+                LogUtils.debug("TTImageSwitcher", "handleMessage lookLyricPic what=%d", Integer.valueOf(i));
                 if (i == 1) {
                     TTImageSwitcher.this.f6916c = true;
                     TTImageSwitcher.this.m3344b();
@@ -78,7 +78,7 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
                     TTImageSwitcher.this.m3341c();
                 } else if (i == 3) {
                     Bitmap bitmap = (Bitmap) message.obj;
-                    LogUtils.m8386a("TTImageSwitcher", "handleMessage lookLyricPic USE_SINGLE_BITMAP bitmap width=%d height=%d", Integer.valueOf(bitmap != null ? bitmap.getWidth() : -1), Integer.valueOf(bitmap != null ? bitmap.getHeight() : -1));
+                    LogUtils.debug("TTImageSwitcher", "handleMessage lookLyricPic USE_SINGLE_BITMAP bitmap width=%d height=%d", Integer.valueOf(bitmap != null ? bitmap.getWidth() : -1), Integer.valueOf(bitmap != null ? bitmap.getHeight() : -1));
                     View nextView = TTImageSwitcher.this.getNextView();
                     if (bitmap == null) {
                         nextView.setBackgroundDrawable(TTImageSwitcher.this.f6922i);
@@ -159,7 +159,7 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
     }
 
     public void setImageBitmap(Bitmap bitmap) {
-        LogUtils.m8386a("TTImageSwitcher", "setImageBitmap lookLyricPic bitmap width=%d height=%d", Integer.valueOf(bitmap != null ? bitmap.getWidth() : -1), Integer.valueOf(bitmap != null ? bitmap.getHeight() : -1));
+        LogUtils.debug("TTImageSwitcher", "setImageBitmap lookLyricPic bitmap width=%d height=%d", Integer.valueOf(bitmap != null ? bitmap.getWidth() : -1), Integer.valueOf(bitmap != null ? bitmap.getHeight() : -1));
         this.f6923j.removeCallbacksAndMessages(null);
         Message obtainMessage = this.f6923j.obtainMessage(3);
         obtainMessage.obj = bitmap;

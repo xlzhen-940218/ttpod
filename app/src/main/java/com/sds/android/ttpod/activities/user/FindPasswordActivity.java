@@ -73,7 +73,7 @@ public class FindPasswordActivity extends SlidingClosableActivity {
         Intent intent = getIntent();
         if (intent != null) {
             String stringExtra = intent.getStringExtra("key_username");
-            if (!StringUtils.m8346a(stringExtra)) {
+            if (!StringUtils.isEmpty(stringExtra)) {
                 this.mUserNameEditText.setText(stringExtra);
                 this.mUserNameEditText.requestFocus();
             }
@@ -88,7 +88,7 @@ public class FindPasswordActivity extends SlidingClosableActivity {
                 return;
             }
             PopupsUtils.m6748a(this, (int) R.string.find_password_waiting);
-            CommandCenter.m4607a().m4606a(new Command(CommandID.FIND_PASSWORD, str));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.FIND_PASSWORD, str));
         }
     }
 

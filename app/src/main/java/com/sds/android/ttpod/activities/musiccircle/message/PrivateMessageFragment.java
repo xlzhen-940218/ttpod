@@ -65,7 +65,7 @@ public class PrivateMessageFragment extends SlidingClosableFragment implements E
     /* JADX INFO: Access modifiers changed from: private */
     public void requestMoreMessage() {
         this.mIsRequestNewestMessage = false;
-        CommandCenter.m4607a().m4606a(new Command(CommandID.QUERY_PRIVATE_MESSAGES_CONTENT, Long.valueOf(this.mUserReplyTo.getUserId()), Long.valueOf(this.mPrivateMessageContents.isEmpty() ? 0L : this.mPrivateMessageContents.get(this.mPrivateMessageContents.size() - 1).getTimestamp()), 64, ""));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_PRIVATE_MESSAGES_CONTENT, Long.valueOf(this.mUserReplyTo.getUserId()), Long.valueOf(this.mPrivateMessageContents.isEmpty() ? 0L : this.mPrivateMessageContents.get(this.mPrivateMessageContents.size() - 1).getTimestamp()), 64, ""));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -79,7 +79,7 @@ public class PrivateMessageFragment extends SlidingClosableFragment implements E
     /* JADX INFO: Access modifiers changed from: private */
     public void requestNewestMessage() {
         this.mIsRequestNewestMessage = true;
-        CommandCenter.m4607a().m4606a(new Command(CommandID.QUERY_PRIVATE_MESSAGES_CONTENT, Long.valueOf(this.mUserReplyTo.getUserId()), 0L, 64, ""));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_PRIVATE_MESSAGES_CONTENT, Long.valueOf(this.mUserReplyTo.getUserId()), 0L, 64, ""));
     }
 
     public void updateSendPrivateMessage(BaseResult baseResult, String str) {
@@ -168,7 +168,7 @@ public class PrivateMessageFragment extends SlidingClosableFragment implements E
 
     @Override // com.sds.android.ttpod.component.emoticons.EmoticonsWithInputLayout.InterfaceC1207a
     public void onSend(String str) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.SEND_PRIVATE_MESSAGE, Long.valueOf(this.mUserReplyTo.getUserId()), str, ""));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.SEND_PRIVATE_MESSAGE, Long.valueOf(this.mUserReplyTo.getUserId()), str, ""));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment

@@ -238,7 +238,7 @@ public class AudioEffectLoader {
             m2750b();
             this.f7008a = 4;
         } else {
-            if (mediaItem.isOnline() && StringUtils.m8346a(mediaItem.getLocalDataSource())) {
+            if (mediaItem.isOnline() && StringUtils.isEmpty(mediaItem.getLocalDataSource())) {
                 Preferences.m3075C(false);
                 m2747b(mediaItem);
             } else {
@@ -335,7 +335,7 @@ public class AudioEffectLoader {
         this.f7012e = "";
         this.f7010c = new TTEqualizer.Settings(EqualizerPreset.m4334b(), (short) 10, EqualizerPreset.m4333b(EqualizerPreset.m4334b()));
         String m2968ag = Preferences.m2968ag();
-        if (!StringUtils.m8346a(m2968ag)) {
+        if (!StringUtils.isEmpty(m2968ag)) {
             this.f7010c = new TTEqualizer.Settings(m2968ag);
         }
         this.f7008a = 4;
@@ -428,7 +428,7 @@ public class AudioEffectLoader {
         TTEqualizer.Settings settings;
         try {
             String m2968ag = Preferences.m2968ag();
-            if (m2968ag != null && !StringUtils.m8346a(m2968ag)) {
+            if (m2968ag != null && !StringUtils.isEmpty(m2968ag)) {
                 settings = new TTEqualizer.Settings(m2968ag);
             } else {
                 settings = new TTEqualizer.Settings(EqualizerPreset.m4334b(), (short) 10, EqualizerPreset.m4333b(EqualizerPreset.m4334b()));

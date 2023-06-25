@@ -143,7 +143,7 @@ public class OldPreferenceCompact {
     /* renamed from: c */
     private static void m4141c() {
         String string = BaseApplication.getApplication().getSharedPreferences("mediascan", 4).getString("download_media_folder", "");
-        if (!StringUtils.m8346a(string)) {
+        if (!StringUtils.isEmpty(string)) {
             Preferences.m2880g(string);
         }
     }

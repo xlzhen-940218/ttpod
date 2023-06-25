@@ -55,7 +55,7 @@ public final class MonitorModule extends BaseModule {
         public void onCallStateChanged(int i, String str) {
             super.onCallStateChanged(i, str);
             if (i != this.f6090b) {
-                LogUtils.m8388a("MonitorModule", "onCallStateChanged");
+                LogUtils.debug("MonitorModule", "onCallStateChanged");
                 this.f6090b = i;
                 switch (i) {
                     case 1:
@@ -70,7 +70,7 @@ public final class MonitorModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.MONITOR;
     }
 

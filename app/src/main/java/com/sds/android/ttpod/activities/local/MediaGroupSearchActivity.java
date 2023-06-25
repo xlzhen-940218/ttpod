@@ -37,7 +37,7 @@ public class MediaGroupSearchActivity extends BaseSearchActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         onNewIntent(getIntent());
-        CommandCenter.m4607a().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, this.mGroupType));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, this.mGroupType));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -70,7 +70,7 @@ public class MediaGroupSearchActivity extends BaseSearchActivity {
         Object[] objArr = new Object[2];
         objArr[0] = groupType.name();
         objArr[1] = Integer.valueOf(list != null ? list.size() : -1);
-        LogUtils.m8386a(TAG, "updateGroupList groupType=%s, size=%d", objArr);
+        LogUtils.debug(TAG, "updateGroupList groupType=%s, size=%d", objArr);
         if (this.mGroupType.equals(groupType)) {
             this.mAdapter.m8078a(list);
             onLoadDataFinished();

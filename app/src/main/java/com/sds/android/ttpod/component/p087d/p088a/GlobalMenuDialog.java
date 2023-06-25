@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
@@ -32,7 +32,6 @@ import com.sds.android.ttpod.framework.modules.version.VersionUpdateModule;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.utils.EntryUtils;
@@ -115,7 +114,7 @@ public class GlobalMenuDialog extends Dialog {
     /* renamed from: f */
     public void m6864f() {
         if (this.f3918i != null) {
-            long longValue = ((Long) CommandCenter.m4607a().m4602a(new Command(CommandID.SLEEP_MODE_REMAIN_TIME, new Object[0]), Long.class)).longValue();
+            long longValue = ((Long) CommandCenter.getInstance().m4602a(new Command(CommandID.SLEEP_MODE_REMAIN_TIME, new Object[0]), Long.class)).longValue();
             long j = longValue / 60;
             this.f3918i.m6847a(getContext().getString(R.string.menu_remain_time, Integer.valueOf((int) j), Integer.valueOf((int) (longValue - (j * 60)))));
         }
@@ -143,7 +142,7 @@ public class GlobalMenuDialog extends Dialog {
     /* renamed from: b */
     public void m6876b() {
         if (this.f3918i != null) {
-            if (((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue()) {
+            if (((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue()) {
                 if (!this.f3924q.hasMessages(1)) {
                     this.f3924q.sendEmptyMessageDelayed(1, 1000L);
                 }
@@ -233,7 +232,7 @@ public class GlobalMenuDialog extends Dialog {
     /* renamed from: a */
     private void m6878a(List<GlobalMenuItem> list) {
         this.f3923p = new GlobalMenuItem(12, 0, R.string.unicom_flow_menu_name, ThemeElement.SETTING_TRAFFIC_IMAGE, R.string.icon_unicom_flow);
-        if (EnvironmentUtils.C0604c.m8481b().startsWith("46001") && Cache.m3218a().m3231H() && Cache.m3218a().m3230I()) {
+        if (EnvironmentUtils.C0604c.getSubscriberId().startsWith("46001") && Cache.getInstance().m3231H() && Cache.getInstance().m3230I()) {
             list.add(8, this.f3923p);
         }
     }
@@ -252,12 +251,12 @@ public class GlobalMenuDialog extends Dialog {
     @Override // android.app.Dialog
     public void show() {
         super.show();
-        if (((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue()) {
+        if (((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue()) {
             this.f3924q.sendEmptyMessage(1);
         }
         this.f3910a.setCurrentItem(0, false);
         this.f3916g.setThumbOffset(0.0f);
-        SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU, SPage.PAGE_NONE, SPage.PAGE_GLOBAL_MENU);
+        //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU, SPage.PAGE_NONE, SPage.PAGE_GLOBAL_MENU);
     }
 
     @Override // android.app.Dialog, android.view.KeyEvent.Callback
@@ -349,7 +348,7 @@ public class GlobalMenuDialog extends Dialog {
                         C1153c c1153c = (C1153c) view.getTag();
                         int m6986b = c1153c.f3940f.m6986b();
                         if (m6986b == 3) {
-                            new SUserEvent("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_PLAY_MODE.getValue(), SPage.PAGE_GLOBAL_MENU.getValue(), SPage.PAGE_NONE.getValue()).append("play_mode", Integer.valueOf(Preferences.m2862l().ordinal())).post();
+                            //new SUserEvent("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_PLAY_MODE.getValue(), SPage.PAGE_GLOBAL_MENU.getValue(), SPage.PAGE_NONE.getValue()).append("play_mode", Integer.valueOf(Preferences.m2862l().ordinal())).post();
                             EntryUtils.m8303a();
                             return;
                         }

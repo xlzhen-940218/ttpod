@@ -300,7 +300,7 @@ public class ApShareReceiveFragment extends ApShareBaseFragment {
     public void disconnectedDialog(String str) {
         this.mIsDialogShow = true;
         if (getActivity() == null) {
-            LogUtils.m8379d(TAG, "disconnectedDialog: getActivity() = true");
+            LogUtils.info(TAG, "disconnectedDialog: getActivity() = true");
             reset();
             return;
         }
@@ -339,9 +339,9 @@ public class ApShareReceiveFragment extends ApShareBaseFragment {
             this.mTvDeviceTop.setEnabled(false);
             this.mTvDeviceTop.setText(this.mShareDeviceList.get(this.mChooseIndex).SSID.replace("TTPODShare-", ""));
             this.mWifiApManager.m7052a(this.mShareDeviceList.get(this.mChooseIndex));
-            LogUtils.m8379d(TAG, "connect to ap: " + this.mShareDeviceList.get(this.mChooseIndex).SSID);
+            LogUtils.info(TAG, "connect to ap: " + this.mShareDeviceList.get(this.mChooseIndex).SSID);
             this.mState = 4;
-            LogUtils.m8379d(TAG, "add a mConnectWifiTimeoutTask");
+            LogUtils.info(TAG, "add a mConnectWifiTimeoutTask");
             this.mHandler.postDelayed(this.mConnectWifiTimeoutTask, 20000L);
         }
     }
@@ -416,7 +416,7 @@ public class ApShareReceiveFragment extends ApShareBaseFragment {
     public void wifiScanFinished(Message message) {
         this.mShareDeviceList = (List) message.obj;
         this.mScanCount++;
-        LogUtils.m8380c(TAG, "scan finished, size: %d, scan = %d", Integer.valueOf(this.mShareDeviceList.size()), Integer.valueOf(this.mScanCount));
+        LogUtils.info(TAG, "scan finished, size: %d, scan = %d", Integer.valueOf(this.mShareDeviceList.size()), Integer.valueOf(this.mScanCount));
         if (this.mShareDeviceList.size() == 0) {
             switchState(1);
         } else if (this.mShareDeviceList.size() == 1) {
@@ -425,12 +425,12 @@ public class ApShareReceiveFragment extends ApShareBaseFragment {
             switchState(3);
         }
         if (this.mScanCount >= 100) {
-            LogUtils.m8379d(TAG, "add mScanWifiTimeoutTask");
+            LogUtils.info(TAG, "add mScanWifiTimeoutTask");
             this.mHandler.post(this.mScanWifiTimeoutTask);
             this.mState = 0;
         }
         if ((this.mShareDeviceList.size() == 0 || this.mShareDeviceList.size() > 1) && this.mState != 0) {
-            LogUtils.m8380c(TAG, "rescan, state = %s, add mScanWifiTask", Integer.valueOf(this.mState));
+            LogUtils.info(TAG, "rescan, state = %s, add mScanWifiTask", Integer.valueOf(this.mState));
             this.mHandler.postDelayed(this.mScanWifiTask, 4000L);
         }
     }
@@ -472,7 +472,7 @@ public class ApShareReceiveFragment extends ApShareBaseFragment {
             public void mo5777a(Socket socket) {
                 try {
                     String readLine = new BufferedReader(new InputStreamReader(socket.getInputStream())).readLine();
-                    LogUtils.m8379d(ApShareReceiveFragment.TAG, "receive message: " + readLine);
+                    LogUtils.info(ApShareReceiveFragment.TAG, "receive message: " + readLine);
                     if (readLine.equals("finished")) {
                         ApShareReceiveFragment.this.mHandler.post(new Runnable() { // from class: com.sds.android.ttpod.fragment.apshare.ApShareReceiveFragment.5.1
                             @Override // java.lang.Runnable

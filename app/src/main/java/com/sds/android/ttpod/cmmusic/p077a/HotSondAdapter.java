@@ -232,7 +232,7 @@ public class HotSondAdapter extends BaseAdapter implements View.OnClickListener 
             @Override // java.lang.Runnable
             public void run() {
                 ArrayList arrayList = new ArrayList();
-                if (!StringUtils.m8346a(str)) {
+                if (!StringUtils.isEmpty(str)) {
                     arrayList.add(MediaItemUtils.m4711a(str, str2, str3, 0));
                     HotSondAdapter.this.m7373a(arrayList, 0);
                 }
@@ -249,8 +249,8 @@ public class HotSondAdapter extends BaseAdapter implements View.OnClickListener 
         if (i >= list.size()) {
             i = 0;
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
-        CommandCenter.m4607a().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(i)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(i)));
         return true;
     }
 

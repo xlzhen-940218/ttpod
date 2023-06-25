@@ -1,7 +1,6 @@
 package com.sds.android.sdk.lib.request;
 
 import com.sds.android.sdk.lib.p059a.HttpRequest;
-import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 
@@ -24,7 +23,7 @@ public class PostMethodRequestV2<R extends BaseResult> extends PostMethodRequest
         try {
             return HttpRequest.m8703b(str, hashMap, hashMap2);
         } catch (Exception e) {
-            LogUtils.m8382b("PostMethodRequestV2", "%s create arguments error, cause by %s", e.getMessage());
+            LogUtils.error("PostMethodRequestV2", "%s create arguments error, cause by %s", e.getMessage());
             return null;
         }
     }
@@ -35,7 +34,7 @@ public class PostMethodRequestV2<R extends BaseResult> extends PostMethodRequest
     public String mo8536c() {
         String b = m8554b();
         String c = super.mo8536c();
-        if (!StringUtils.m8346a(b)) {
+        if (!StringUtils.isEmpty(b)) {
             return StringUtils.m8342a("/", c, b);
         }
         return c;

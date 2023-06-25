@@ -58,6 +58,6 @@ public class EffectPickUtils {
 
     /* renamed from: a */
     public static void m8304a(String str) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.PICK_EFFECT, str));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.PICK_EFFECT, str));
     }
 }

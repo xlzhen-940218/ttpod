@@ -6,7 +6,7 @@ import android.view.View;
 import com.sds.android.cloudapi.ttpod.data.IntroductionData;
 import com.sds.android.cloudapi.ttpod.data.User;
 import com.sds.android.cloudapi.ttpod.result.IntroductionResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.request.Extra;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
@@ -21,7 +21,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.MediaItemListResult;
-import com.sds.android.ttpod.framework.p106a.p107a.FindSongNewStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -94,7 +93,7 @@ public class PopularSongFragment extends SceneRecommendFragment {
         super.onLoadFinished();
         updatePopularSongList(this.mResult);
         if (this.mModuleId != 0) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.GET_POPULAR_SONG_INTRODUCTION, Long.valueOf(this.mModuleId)));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_POPULAR_SONG_INTRODUCTION, Long.valueOf(this.mModuleId)));
         }
     }
 
@@ -151,7 +150,7 @@ public class PopularSongFragment extends SceneRecommendFragment {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void requestDataList(int i) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_POPULAR_SONG_LIST, Integer.valueOf(i), this.mVersion));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_POPULAR_SONG_LIST, Integer.valueOf(i), this.mVersion));
     }
 
     public void updateData(ArrayList<MediaItem> arrayList, Integer num, String str) {
@@ -173,26 +172,5 @@ public class PopularSongFragment extends SceneRecommendFragment {
             }
             PopupsUtils.m6760a((int) R.string.update_failed);
         }
-    }
-
-    @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment.InterfaceC1667b
-    public void doStatistic(MediaItem mediaItem, int i) {
-        FindSongNewStatistic.m5221d();
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_ITEM.getValue(), SPage.PAGE_ONLINE_POPULAR_SONG.getValue(), 0).append("song_id", mediaItem.getSongID()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(this.mModuleId)).append("song_list_name", onLoadTitleText()).append("position", Integer.valueOf(i + 1)).post();
-    }
-
-    @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
-    protected String onLoadStatisticModule() {
-        return FindSongNewStatistic.m5219e();
-    }
-
-    @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
-    protected void postForwardIntroductionStatistic() {
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_INTRODUCTION.getValue(), String.valueOf(SPage.PAGE_ONLINE_POPULAR_SONG.getValue()), String.valueOf(SPage.PAGE_ONLINE_POST_DETAIL_INTRODUCTION.getValue())).append("title", onLoadTitleText()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(this.mModuleId)).post();
-    }
-
-    @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
-    protected void postButtonClickStatistic(SAction sAction) {
-        new SUserEvent("PAGE_CLICK", sAction.getValue(), String.valueOf(SPage.PAGE_ONLINE_POPULAR_SONG.getValue()), String.valueOf(SPage.PAGE_NONE.getValue())).append("title", onLoadTitleText()).post();
     }
 }

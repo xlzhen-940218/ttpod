@@ -74,7 +74,7 @@ public class SLyricShow extends SText {
     /* renamed from: b */
     public View mo3771b(Context context, SkinCache skinCache) {
         LyricView lyricView = new LyricView(context);
-        Typeface m3593a = skinCache.m3593a(this.f6497c);
+        Typeface m3593a = skinCache.getTypeFace(this.f6497c);
         if (m3593a != null) {
             lyricView.setTypefaceHighlight(m3593a);
             lyricView.setTypefaceNormal(m3593a);

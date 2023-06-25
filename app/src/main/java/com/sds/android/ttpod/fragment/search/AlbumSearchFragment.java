@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.AlbumItem;
 import com.sds.android.cloudapi.ttpod.data.VIPPolicy;
 import com.sds.android.cloudapi.ttpod.result.AlbumItemsResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -29,7 +29,6 @@ import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.Pager;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SearchStatistic;
 import com.sds.android.ttpod.widget.StateView;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -44,8 +43,8 @@ public class AlbumSearchFragment extends BaseSearchFragment {
     @Override // com.sds.android.ttpod.fragment.search.BaseSearchFragment
     protected void search(String str, int i, int i2) {
         this.mWord = str;
-        LogUtils.m8388a(TAG, "search album, word: " + str + ",page: " + i + ",pageSize: " + i2 + ",mUserInput: " + this.mUserInput);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.START_SEARCH_ALBUM, str, Integer.valueOf(i), Integer.valueOf(i2), this.mUserInput));
+        LogUtils.debug(TAG, "search album, word: " + str + ",page: " + i + ",pageSize: " + i2 + ",mUserInput: " + this.mUserInput);
+        CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_ALBUM, str, Integer.valueOf(i), Integer.valueOf(i2), this.mUserInput));
     }
 
     @Override // com.sds.android.ttpod.fragment.search.BaseSearchFragment
@@ -120,11 +119,11 @@ public class AlbumSearchFragment extends BaseSearchFragment {
     }
 
     protected void statisticAlbum(int i) {
-        SearchStatistic.m4947a(Integer.valueOf(i));
+        //SearchStatistic.m4947a(Integer.valueOf(i));
     }
 
     public void searchAlbum(String str) {
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             this.mPager = new Pager();
             this.mPager.m4665b(VIPPolicy.Entry.MAX_LIMIT);
             this.mStateView.setState(StateView.EnumC2248b.LOADING);
@@ -139,7 +138,7 @@ public class AlbumSearchFragment extends BaseSearchFragment {
         bundle.putSerializable(SearchResultFragment.KEY_SEARCH_WORD, this.mAlbumItemList.get(i));
         albumDetailFragment.setArguments(bundle);
         launchFragment(albumDetailFragment);
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_ITEM.getValue(), SPage.PAGE_SEARCH_ALBUM.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue()).append("title", this.mAlbumItemList.get(i).getName()).append("song_album_id", Long.valueOf(this.mAlbumItemList.get(i).getId())).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).append("position", Integer.valueOf(i + 1)).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_ITEM.getValue(), SPage.PAGE_SEARCH_ALBUM.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue()).append("title", this.mAlbumItemList.get(i).getName()).append("song_album_id", Long.valueOf(this.mAlbumItemList.get(i).getId())).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).append("position", Integer.valueOf(i + 1)).post();
     }
 
     /* renamed from: com.sds.android.ttpod.fragment.search.AlbumSearchFragment$a */

@@ -27,7 +27,7 @@ public class AppVersionResult extends ExtraDataListResult<AppVersionResult.Updat
     }
 
     public boolean isUpdateMandatory() {
-        return (getExtra() == null || StringUtils.m8346a(getExtra().m8557a()) || Integer.parseInt(getExtra().m8557a()) == 0) ? false : true;
+        return (getExtra() == null || StringUtils.isEmpty(getExtra().m8557a()) || Integer.parseInt(getExtra().m8557a()) == 0) ? false : true;
     }
 
     public String getLatestVersion() {

@@ -76,7 +76,7 @@ public class MediaTag {
 
     public boolean openFile(String str, boolean z) {
         if ((z ? readOnlyOpen(str) : open(str)) == 0) {
-            this.mFileName = FileUtils.m8402j(str);
+            this.mFileName = FileUtils.getFilename(str);
             return true;
         }
         return false;
@@ -84,7 +84,7 @@ public class MediaTag {
 
     private String getTitleOrFileName() {
         String title = title();
-        if (StringUtils.m8346a(title)) {
+        if (StringUtils.isEmpty(title)) {
             return FileUtils.m8401k(this.mFileName);
         }
         return title;

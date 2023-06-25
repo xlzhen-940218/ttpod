@@ -141,19 +141,19 @@ public final class MediaDBHelper extends SQLiteOpenHelper {
         doInsertLocalCustomGroup(sQLiteDatabase, "fav_local", MediaStorage.GROUP_ID_FAV_LOCAL);
         doInsertLocalCustomGroup(sQLiteDatabase, "recently_add", MediaStorage.GROUP_ID_RECENTLY_ADD);
         doInsertLocalCustomGroup(sQLiteDatabase, "recently_play", MediaStorage.GROUP_ID_RECENTLY_PLAY);
-        LogUtils.m8381c("MediaDB", "onCreate");
+        LogUtils.error("MediaDB", "onCreate");
         notifyUpdateDbVersion(-1, 702);
     }
 
     @Override // android.database.sqlite.SQLiteOpenHelper
     public void onUpgrade(SQLiteDatabase sQLiteDatabase, int i, int i2) {
-        LogUtils.m8384b(TAG, "onUpgrade: From " + i + " to " + i2);
+        LogUtils.warning(TAG, "onUpgrade: From " + i + " to " + i2);
         notifyUpdateDbVersion(i, i2);
     }
 
     @Override // android.database.sqlite.SQLiteOpenHelper
     public void onDowngrade(SQLiteDatabase sQLiteDatabase, int i, int i2) {
-        LogUtils.m8384b(TAG, "onDowngrade: From " + i + " to " + i2);
+        LogUtils.warning(TAG, "onDowngrade: From " + i + " to " + i2);
         notifyUpdateDbVersion(i, i2);
     }
 
@@ -486,7 +486,7 @@ public final class MediaDBHelper extends SQLiteOpenHelper {
                                 rawQuery.close();
                                 String buildMediaItemSelectionFromGroupMapSelection = Builder.buildMediaItemSelectionFromGroupMapSelection(str, string, string2, Builder.getOnlineFavTable(sQLiteDatabase), str6, str3);
                                 Cursor rawQuery2 = sQLiteDatabase.rawQuery(buildMediaItemSelectionFromGroupMapSelection, null);
-                                if (StringUtils.m8346a(str6) && !StringUtils.m8344a(string3, str3)) {
+                                if (StringUtils.isEmpty(str6) && !StringUtils.m8344a(string3, str3)) {
                                     Cursor rawQuery3 = sQLiteDatabase.rawQuery("SELECT MAX(sort_order) FROM " + str, null);
                                     if (rawQuery3 != null) {
                                         j = rawQuery3.moveToNext() ? rawQuery3.getLong(0) : 0L;

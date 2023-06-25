@@ -11,7 +11,7 @@ import com.sds.android.cloudapi.ttpod.p055a.RankAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 import com.sds.android.cloudapi.ttpod.result.OperationZoneResult;
 import com.sds.android.cloudapi.ttpod.result.SingerListResult;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.DataListResult;
@@ -32,7 +32,6 @@ import com.sds.android.ttpod.framework.modules.ModuleID;
 import com.sds.android.ttpod.framework.modules.ModuleRequestHelper;
 import com.sds.android.ttpod.framework.modules.ResultConvert;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.media.mediastore.GroupItem;
 import com.sds.android.ttpod.media.mediastore.GroupType;
 import com.sds.android.ttpod.media.mediastore.MediaStorage;
@@ -53,7 +52,7 @@ import java.util.Map;
 public class FindSongModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.FIND_SONG;
     }
 
@@ -94,19 +93,19 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getIntroduction(Long l) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8906a(l.longValue()), CommandID.UPDATE_POPULAR_SONG_INTRODUCTION, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongAPI.m8906a(l.longValue()), CommandID.UPDATE_POPULAR_SONG_INTRODUCTION, id(), null);
     }
 
     public void getDailyRecommend(Integer num) {
-        LogUtils.m8381c("FindSongModule", "getDailyRecommend  not support");
+        LogUtils.error("FindSongModule", "getDailyRecommend  not support");
     }
 
     public void getMusicRanks(String str) {
-        ModuleRequestHelper.m4082a(RankAPI.m8833a(), CommandID.UPDATE_MUSIC_RANKS, mo3239id(), null, str);
+        ModuleRequestHelper.m4082a(RankAPI.m8833a(), CommandID.UPDATE_MUSIC_RANKS, id(), null, str);
     }
 
     public void getRankMusicList(Integer num, Integer num2, String str) {
-        ModuleRequestHelper.m4082a(RankAPI.m8832a(num.intValue(), num2.intValue()), CommandID.UPDATE_RANK_MUSIC_LIST, mo3239id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.1
+        ModuleRequestHelper.m4082a(RankAPI.m8832a(num.intValue(), num2.intValue()), CommandID.UPDATE_RANK_MUSIC_LIST, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.1
             @Override // com.sds.android.ttpod.framework.modules.ResultConvert
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -120,15 +119,15 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getSingerCategoryList(Integer num) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8909a(num.intValue()), CommandID.UPDATE_SINGER_CATEGORY_LIST, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongAPI.m8909a(num.intValue()), CommandID.UPDATE_SINGER_CATEGORY_LIST, id(), null);
     }
 
     public void getSingerCategoryDetail(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8902b(num.intValue(), num2.intValue()), CommandID.UPDATE_SINGER_CATEGORY_DETAIL, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongAPI.m8902b(num.intValue(), num2.intValue()), CommandID.UPDATE_SINGER_CATEGORY_DETAIL, id(), null);
     }
 
     public void getSingerSongList(String str, Integer num) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8904a(str, num.intValue()), CommandID.UPDATE_SINGER_SONG_LIST, mo3239id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.3
+        ModuleRequestHelper.m4083a(FindSongAPI.m8904a(str, num.intValue()), CommandID.UPDATE_SINGER_SONG_LIST, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.3
             @Override // com.sds.android.ttpod.framework.modules.ResultConvert
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -138,11 +137,11 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getSongCategoryInfo(String str) {
-        ModuleRequestHelper.m4082a(RadioAPI.m8837a(), CommandID.UPDATE_SONG_CATEGORY_INFO, mo3239id(), null, str);
+        ModuleRequestHelper.m4082a(RadioAPI.m8837a(), CommandID.UPDATE_SONG_CATEGORY_INFO, id(), null, str);
     }
 
     public void getSongCategoryDetail(Integer num, Integer num2, String str) {
-        ModuleRequestHelper.m4082a(RadioAPI.m8836a(num.intValue(), num2.intValue()), CommandID.UPDATE_SONG_CATEGORY_DETAIL, mo3239id(), new ResultConvert<OnlineMediaItemsResult, BaseResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.4
+        ModuleRequestHelper.m4082a(RadioAPI.m8836a(num.intValue(), num2.intValue()), CommandID.UPDATE_SONG_CATEGORY_DETAIL, id(), new ResultConvert<OnlineMediaItemsResult, BaseResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.4
             @Override // com.sds.android.ttpod.framework.modules.ResultConvert
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public BaseResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -152,8 +151,8 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getRadioCategoryList() {
-        LogUtils.m8388a("FindSongModule", "RadioModule.getRadioCategoryList----->");
-        ModuleRequestHelper.m4083a(RadioAPI.m8834b(), CommandID.UPDATE_RADIO_CATEGORY_LIST, mo3239id(), null);
+        LogUtils.debug("FindSongModule", "RadioModule.getRadioCategoryList----->");
+        ModuleRequestHelper.m4083a(RadioAPI.m8834b(), CommandID.UPDATE_RADIO_CATEGORY_LIST, id(), null);
     }
 
     public void getRadioChannelMusicList(String str, Integer num) {
@@ -161,7 +160,7 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getPopularSongList(Integer num, String str) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8907a(num.intValue(), str), CommandID.UPDATE_POPULAR_SONG_LIST, mo3239id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.5
+        ModuleRequestHelper.m4083a(FindSongAPI.m8907a(num.intValue(), str), CommandID.UPDATE_POPULAR_SONG_LIST, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.5
             @Override // com.sds.android.ttpod.framework.modules.ResultConvert
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -171,7 +170,7 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getMVList(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8901c(num.intValue(), num2.intValue()), CommandID.UPDATE_MV_LIST, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongAPI.m8901c(num.intValue(), num2.intValue()), CommandID.UPDATE_MV_LIST, id(), null);
     }
 
     /* JADX WARN: Type inference failed for: r0v0, types: [com.sds.android.ttpod.framework.modules.b.a$6] */
@@ -183,7 +182,7 @@ public class FindSongModule extends BaseModule {
                 if (decodeFile == null && SDKVersionUtils.m8373a()) {
                     decodeFile = ThumbnailUtils.createVideoThumbnail(str, 3);
                 }
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MV_THUMBNAIL, str, decodeFile), ModuleID.FIND_SONG);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MV_THUMBNAIL, str, decodeFile), ModuleID.FIND_SONG);
             }
         }.start();
     }
@@ -201,18 +200,18 @@ public class FindSongModule extends BaseModule {
             /* renamed from: b */
             public void onRequestFailure(DataListResult dataListResult) {
                 FindSongModule.this.m4510a(commandID, (DataListResult) null);
-                ErrorStatistic.m5236c(request.m8532e());
+                //ErrorStatistic.m5236c(request.m8532e());
             }
         });
     }
 
     /* renamed from: a */
     private void m4509a(CommandID commandID, Object... objArr) {
-        LogUtils.m8388a("FindSongModule", "FindSongModule.notifyDataCreated---> responseId: " + commandID + "  responseData: " + objArr);
+        LogUtils.debug("FindSongModule", "FindSongModule.notifyDataCreated---> responseId: " + commandID + "  responseData: " + objArr);
         if (objArr != null && m4504a(objArr[0])) {
             objArr[0] = m4502a((ArrayList) objArr[0]);
         }
-        CommandCenter.m4607a().m4595b(new Command(commandID, objArr), ModuleID.FIND_SONG);
+        CommandCenter.getInstance().m4595b(new Command(commandID, objArr), ModuleID.FIND_SONG);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -253,11 +252,11 @@ public class FindSongModule extends BaseModule {
             }
         }
         if (linkedList.size() > 0) {
-            new SSystemEvent("SYS_EXCEPTION", "not_url").append("origin", "song").append("song_id", linkedList.toString()).post();
+            //new //SSystemEvent("SYS_EXCEPTION", "not_url").append("origin", "song").append("song_id", linkedList.toString()).post();
             linkedList.clear();
         }
         if (linkedList2.size() > 0) {
-            new SSystemEvent("SYS_EXCEPTION", "not_url").append("origin", "download").append("song_id", linkedList2.toString()).post();
+            //new //SSystemEvent("SYS_EXCEPTION", "not_url").append("origin", "download").append("song_id", linkedList2.toString()).post();
             linkedList2.clear();
         }
         return arrayList2;
@@ -275,15 +274,15 @@ public class FindSongModule extends BaseModule {
     }
 
     public void findSongRecommendModule() {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8900a(), CommandID.UPDATE_FIND_SONG_RECOMMEND_MODULE, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8900a(), CommandID.UPDATE_FIND_SONG_RECOMMEND_MODULE, id(), null);
     }
 
     public void getFindSongHotSongs(String str, Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8898a(str, num.intValue(), num2.intValue()), CommandID.UPDATE_GET_FIND_SONG_HOT_SONGS, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8898a(str, num.intValue(), num2.intValue()), CommandID.UPDATE_GET_FIND_SONG_HOT_SONGS, id(), null);
     }
 
     public void getFindSongHotList(String str, Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8895b(str, num.intValue(), num2.intValue()), CommandID.UPDATE_GET_FIND_SONG_HOT_LIST, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8895b(str, num.intValue(), num2.intValue()), CommandID.UPDATE_GET_FIND_SONG_HOT_LIST, id(), null);
     }
 
     public void getFindSongHotSingers(final String str, final Integer num, final Integer num2, final Boolean bool) {
@@ -315,10 +314,10 @@ public class FindSongModule extends BaseModule {
                     }
                     sb.append("]");
                 }
-                LogUtils.m8388a("FindSongModule", "getFindSongHotSingers localSingerNames=" + arrayList2 + ",localSingerIds=" + arrayList);
+                LogUtils.debug("FindSongModule", "getFindSongHotSingers localSingerNames=" + arrayList2 + ",localSingerIds=" + arrayList);
                 SingerListResult m8531f = FindSongHotModuleAPI.m8897a(str, num.intValue(), num2.intValue(), sb.toString(), arrayList).m8531f();
-                LogUtils.m8388a("FindSongModule", "getFindSongHotSingers " + m8531f.getDataList());
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_GET_FIND_SONG_HOT_SINGERS, m8531f), ModuleID.FIND_SONG);
+                LogUtils.debug("FindSongModule", "getFindSongHotSingers " + m8531f.getDataList());
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_GET_FIND_SONG_HOT_SINGERS, m8531f), ModuleID.FIND_SONG);
             }
         });
     }
@@ -360,7 +359,7 @@ public class FindSongModule extends BaseModule {
     /* renamed from: a */
     private Long m4503a(String str) {
         Long l;
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return 0L;
         }
         OnlineMediaItemsResult m8531f = FindSongAPI.m8903a(str, 1, 1).m8531f();
@@ -370,12 +369,12 @@ public class FindSongModule extends BaseModule {
         } else {
             l = Long.valueOf(dataList.get(0).getArtistId());
         }
-        LogUtils.m8388a("FindSongModule", "getArtistIdBySingerName=" + str + ",artistId=" + l);
+        LogUtils.debug("FindSongModule", "getArtistIdBySingerName=" + str + ",artistId=" + l);
         return l;
     }
 
     public void getFindSongHandpick() {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8896b(), CommandID.UPDATE_GET_FIND_SONG_HANDPICK, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8896b(), CommandID.UPDATE_GET_FIND_SONG_HANDPICK, id(), null);
     }
 
     public void requestVoiceOfChinaResult() {
@@ -383,18 +382,18 @@ public class FindSongModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(OperationZoneResult operationZoneResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_OPERATION_ZONE_RESULT, operationZoneResult), ModuleID.FIND_SONG);
+                CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_OPERATION_ZONE_RESULT, operationZoneResult), ModuleID.FIND_SONG);
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(OperationZoneResult operationZoneResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_OPERATION_ZONE_RESULT, operationZoneResult), ModuleID.FIND_SONG);
+                CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_OPERATION_ZONE_RESULT, operationZoneResult), ModuleID.FIND_SONG);
             }
         });
     }
 
     public void getRecommendContent(Long l) {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8899a(l.longValue()), CommandID.UPDATE_RECOMMEND_CONTENT, mo3239id(), null);
+        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8899a(l.longValue()), CommandID.UPDATE_RECOMMEND_CONTENT, id(), null);
     }
 }

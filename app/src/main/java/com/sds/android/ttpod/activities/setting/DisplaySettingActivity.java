@@ -14,7 +14,6 @@ import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.component.p087d.p088a.OptionalDialog;
 import com.sds.android.ttpod.framework.modules.p123e.LockScreenModule;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 /* loaded from: classes.dex */
@@ -50,15 +49,15 @@ public class DisplaySettingActivity extends SlidingClosableActivity {
                     return;
                 case 4:
                     Preferences.m2883f(((Checkable) actionItem).isChecked());
-                    LocalStatistic.m5105b(((Checkable) actionItem).isChecked());
+                    //LocalStatistic.m5105b(((Checkable) actionItem).isChecked());
                     return;
                 case 5:
                     SettingUtils.m7779a(displaySettingActivity, NotificationSettingActivity.class, actionItem.m7006d());
-                    LocalStatistic.m5092n();
+                    //LocalStatistic.m5092n();
                     return;
                 case 6:
                     SettingUtils.m7779a(displaySettingActivity, BacklightSettingActivity.class, actionItem.m7006d());
-                    LocalStatistic.m5091o();
+                    //LocalStatistic.m5091o();
                     return;
                 default:
                     return;

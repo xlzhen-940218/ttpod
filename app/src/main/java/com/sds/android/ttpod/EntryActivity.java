@@ -40,7 +40,7 @@ public class EntryActivity extends BaseActivity {
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
             view.setBackgroundResource(!Preferences.m3028a() ? R.drawable.xml_background_button_splash_audio_disabled : R.drawable.xml_background_button_splash_audio_enabled);
-            CommandCenter m4607a = CommandCenter.m4607a();
+            CommandCenter m4607a = CommandCenter.getInstance();
             CommandID commandID = CommandID.SET_AUDIO_ENABLED;
             Object[] objArr = new Object[1];
             objArr[0] = Boolean.valueOf(!Preferences.m3028a());
@@ -76,10 +76,10 @@ public class EntryActivity extends BaseActivity {
     @Override // android.app.Activity, android.view.Window.Callback
     public void onWindowFocusChanged(boolean z) {
         super.onWindowFocusChanged(z);
-        LogUtils.m8381c("start", "EntryActivity onWindowFocusChanged splash loaded test");
+        LogUtils.error("start", "EntryActivity onWindowFocusChanged splash loaded test");
         if (z && !this.mSentLoadSplashCommand && !TTPodConfig.m5306b()) {
             this.mSentLoadSplashCommand = true;
-            CommandCenter.m4607a().m4596b(new Command(CommandID.LOAD_SPLASH, Integer.valueOf((int) R.drawable.img_splash), Integer.valueOf((int) R.string.readme)));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_SPLASH, Integer.valueOf((int) R.drawable.img_splash), Integer.valueOf((int) R.string.readme)));
         }
     }
 
@@ -91,7 +91,7 @@ public class EntryActivity extends BaseActivity {
     public void updateSplash(Bitmap bitmap, Bitmap bitmap2, String str, Boolean bool) {
         Object[] objArr = new Object[1];
         objArr[0] = Boolean.valueOf(bitmap2 != null);
-        LogUtils.m8382b("start", "splash loaded splashBitmap != null ? %b", objArr);
+        LogUtils.error("start", "splash loaded splashBitmap != null ? %b", objArr);
         if (bitmap != null) {
             ImageView imageView = (ImageView) findViewById(R.id.imageview_channel_logo);
             imageView.setVisibility(View.VISIBLE);
@@ -111,7 +111,7 @@ public class EntryActivity extends BaseActivity {
         if (FileUtils.m8414b(str)) {
             WebView webView = new WebView(this);
             webView.getSettings().setJavaScriptEnabled(true);
-            if (SDKVersionUtils.m8371c()) {
+            if (SDKVersionUtils.checkVersionThanAndroid11()) {
                 webView.setLayerType(1, null);
             }
             webView.setBackgroundColor(0);
@@ -127,20 +127,20 @@ public class EntryActivity extends BaseActivity {
 
     public void finishSplash() {
         TTPodConfig.m5305c();
-        LogUtils.m8381c("start", "finishSplash");
+        LogUtils.error("start", "finishSplash");
         startMainActivity();
     }
 
     private void startMainActivity() {
         if (Preferences.m3000aG()) {
             String m3038V = Preferences.m3038V();
-            if (!StringUtils.m8346a(m3038V) && "assets://".equals(SkinUtils.m4644b(m3038V)) && FileUtils.m8402j(m3038V).startsWith("1")) {
+            if (!StringUtils.isEmpty(m3038V) && "assets://".equals(SkinUtils.m4644b(m3038V)) && FileUtils.getFilename(m3038V).startsWith("1")) {
                 Preferences.m2876h("");
             }
             Preferences.m2844p(EnvironmentUtils.C0602a.m8506e());
-            Cache.m3218a().m3142v();
+            Cache.getInstance().m3142v();
         }
-        CommandCenter.m4607a().m4596b(new Command(CommandID.LOAD_BACKGROUND, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_BACKGROUND, new Object[0]));
         new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.EntryActivity.3
             @Override // java.lang.Runnable
             public void run() {

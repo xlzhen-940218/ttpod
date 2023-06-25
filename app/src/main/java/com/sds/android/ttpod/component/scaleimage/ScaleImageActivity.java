@@ -218,7 +218,7 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
         if (view.getId() == R.id.btn_download) {
             String m5312A = TTPodConfig.m5312A();
-            if (!FileUtils.m8409d(m5312A)) {
+            if (!FileUtils.isDir(m5312A)) {
                 FileUtils.m8406f(m5312A);
             }
             final String str = TTPodConfig.m5312A() + File.separator + FileUtils.m8401k(this.mPicList.get(this.mStartIndex)) + ".jpg";

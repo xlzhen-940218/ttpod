@@ -83,7 +83,7 @@ public class PlayOnlineMediaTask {
     /* renamed from: b */
     public void m7493b(Post post) {
         if (!this.f3320a.isEmpty()) {
-            OnlineMediaUtils.m4679a(Cache.m3218a().m3225N().getSongID().longValue(), this.f3320a, OnlinePlayingGroupUtils.m6916a(post));
+            OnlineMediaUtils.m4679a(Cache.getInstance().getCurrentPlayMediaItem().getSongID().longValue(), this.f3320a, OnlinePlayingGroupUtils.m6916a(post));
         }
     }
 

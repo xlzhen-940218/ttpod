@@ -1,7 +1,6 @@
 package com.sds.android.sdk.lib.request;
 
 import com.sds.android.sdk.lib.p059a.HttpRequest;
-import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 
@@ -28,11 +27,11 @@ public class GetMethodRequest<R extends BaseResult> extends MethodRequest<R> {
     @Override // com.sds.android.sdk.lib.request.Request
     /* renamed from: a */
     protected HttpRequest.C0586a mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
-        LogUtils.m8380c("GetMethodRequest", "doHttpRequest in lookNetProblem url=%s", str);
+        LogUtils.info("GetMethodRequest", "doHttpRequest in lookNetProblem url=%s", str);
         try {
             return HttpRequest.m8713a(str, hashMap, hashMap2);
         } catch (Exception e) {
-            LogUtils.m8380c("GetMethodRequest", "doHttpRequest exception lookNetProblem url=%s exception=%s", str, e.toString());
+            LogUtils.info("GetMethodRequest", "doHttpRequest exception lookNetProblem url=%s exception=%s", str, e.toString());
             e.printStackTrace();
             return null;
         }

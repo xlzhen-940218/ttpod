@@ -111,7 +111,7 @@ public class SkinUtils {
                     next.setPictureUrl(onlineSkinListResult.getMainUrl() + next.getRecommendPicUrl());
                     next.setSkinUrl("http://api.skin.ttpod.com/skin/apiSkin/download?id=" + next.getId());
                     SkinItem skinItem = new SkinItem(next);
-                    if (FileUtils.m8419a(skinItem.m3571b())) {
+                    if (FileUtils.m8419a(skinItem.getPath())) {
                         skinItem.m3574a(0);
                     }
                     arrayList.add(skinItem);

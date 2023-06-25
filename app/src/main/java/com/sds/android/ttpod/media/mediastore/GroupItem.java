@@ -54,8 +54,8 @@ public class GroupItem implements Parcelable, ISongListItem, Serializable {
         if (this.mNameIndexKey == 0) {
             this.mNameIndexKey = '#';
             if (this.mName != null && !StringUtils.m8344a(this.mName, "<unknown>")) {
-                String buildKey = PinyinUtils.buildKey(this.mGroupID.startsWith(MediaStorage.GROUP_ID_FOLDER_PREFIX) ? FileUtils.m8402j(this.mName) : this.mName);
-                if (!StringUtils.m8346a(buildKey) && (charAt = buildKey.charAt(0)) >= 'A' && charAt <= 'Z') {
+                String buildKey = PinyinUtils.buildKey(this.mGroupID.startsWith(MediaStorage.GROUP_ID_FOLDER_PREFIX) ? FileUtils.getFilename(this.mName) : this.mName);
+                if (!StringUtils.isEmpty(buildKey) && (charAt = buildKey.charAt(0)) >= 'A' && charAt <= 'Z') {
                     this.mNameIndexKey = charAt;
                 }
             }

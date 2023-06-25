@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.JSONUtils;
@@ -26,8 +26,6 @@ import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ListStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -89,7 +87,7 @@ public final class DownloadMenuHandler {
             if (EnvironmentUtils.C0602a.m8503h()) {
                 throw new IllegalArgumentException("mediaItem should not be null");
             }
-            LogUtils.m8381c(f3858a, "handleSongListDownload mediaItem should not be null");
+            LogUtils.error(f3858a, "handleSongListDownload mediaItem should not be null");
             return;
         }
         this.f3862e = list;
@@ -108,7 +106,7 @@ public final class DownloadMenuHandler {
             if (EnvironmentUtils.C0602a.m8503h()) {
                 throw new IllegalArgumentException("mediaItem should not be null");
             }
-            LogUtils.m8381c(f3858a, "handleSingleSongDownload mediaItem should not be null");
+            LogUtils.error(f3858a, "handleSingleSongDownload mediaItem should not be null");
             return;
         }
         this.f3862e = new ArrayList(1);
@@ -118,7 +116,7 @@ public final class DownloadMenuHandler {
         if (extra != null && !this.activity.isFinishing()) {
             OnlineMediaItem onlineMediaItem = JSONUtils.fromJson(extra,  OnlineMediaItem.class);
             if (onlineMediaItem == null) {
-                LogUtils.m8381c(f3858a, "cast to onlineMediaItem is null");
+                LogUtils.error(f3858a, "cast to onlineMediaItem is null");
                 return;
             }
             AudioQuality m3058L = Preferences.m3058L();
@@ -134,10 +132,7 @@ public final class DownloadMenuHandler {
 
     /* renamed from: a */
     private void m6928a(MediaItem mediaItem, SPage sPage) {
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_RIGHT_MENU_DOWNLOAD.getValue(), SPage.PAGE_NONE.getValue(), sPage.getValue());
-        sUserEvent.append("song_id", mediaItem.getSongID());
-        sUserEvent.setPageParameter(true);
-        sUserEvent.post();
+
     }
 
     /* renamed from: a */
@@ -148,12 +143,10 @@ public final class DownloadMenuHandler {
             public void mo5409a(ActionItem actionItem, int i) {
                 AudioQuality m6940a = DownloadMenuHandler.this.m6940a(actionItem.m7005e());
                 if (DownloadMenuHandler.this.f3864g != SAction.ACTION_NONE) {
-                    SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", DownloadMenuHandler.this.f3864g.getValue(), 0, 0);
-                    sUserEvent.setPageParameter(true);
-                    sUserEvent.append("quality_type", m6940a.name()).post();
+
                 }
                 List m6925a = DownloadMenuHandler.this.m6925a(DownloadMenuHandler.this.f3862e, m6940a);
-                CommandCenter.m4607a().m4606a(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, m6925a, false));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, m6925a, false));
                 PopupsUtils.m6721a(DownloadMenuHandler.this.activity.getString(R.string.toast_download_songs, new Object[]{Integer.valueOf(m6925a.size())}));
             }
         };
@@ -166,7 +159,7 @@ public final class DownloadMenuHandler {
         while (true) {
             int i2 = i;
             if (it.hasNext()) {
-                i = StringUtils.m8346a(it.next().getLocalDataSource()) ? i2 + 1 : i2;
+                i = StringUtils.isEmpty(it.next().getLocalDataSource()) ? i2 + 1 : i2;
             } else {
                 return i2;
             }
@@ -211,7 +204,7 @@ public final class DownloadMenuHandler {
 
     /* renamed from: b */
     private String m6923b(int i) {
-        return String.format(f3860c[i], Float.valueOf(((float) ((Long) CommandCenter.m4607a().m4602a(new Command(CommandID.GET_TOTAL_DOWNLOAD_FILE_SIZE, this.f3862e, m6940a(i)), Long.class)).longValue()) / 1048576.0f));
+        return String.format(f3860c[i], Float.valueOf(((float) ((Long) CommandCenter.getInstance().m4602a(new Command(CommandID.GET_TOTAL_DOWNLOAD_FILE_SIZE, this.f3862e, m6940a(i)), Long.class)).longValue()) / 1048576.0f));
     }
 
     /* renamed from: c */
@@ -239,7 +232,7 @@ public final class DownloadMenuHandler {
         ArrayList arrayList = new ArrayList(list);
         ArrayList arrayList2 = new ArrayList();
         for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (!StringUtils.m8346a(((MediaItem) arrayList.get(size)).getLocalDataSource())) {
+            if (!StringUtils.isEmpty(((MediaItem) arrayList.get(size)).getLocalDataSource())) {
                 arrayList.remove(size);
             } else {
                 DownloadTaskInfo m4761a = DownloadUtils.m4761a((MediaItem) arrayList.get(size), audioQuality);
@@ -278,11 +271,7 @@ public final class DownloadMenuHandler {
                 }
                 OnlineMediaUrlWrapper onlineMediaUrlWrapper = (OnlineMediaUrlWrapper) actionItem.m7004f();
                 OnlineMediaItem.Url m7013b = onlineMediaUrlWrapper.m7013b();
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_RIGHT_MENU_DOWNLOAD_SELECT.getValue(), SPage.PAGE_DIALOG_DOWNLOAD.getValue(), SPage.PAGE_NONE.getValue());
-                sUserEvent.setPageParameter(true);
-                sUserEvent.append("position", Integer.valueOf(i + 1))
-                        .append("song_id", mediaItem.getSongID())
-                        .append("uri", m7013b.getUrl()).post();
+
                 if (OnlineMediaUrlWrapper.EnumC1133a.MEDIA == onlineMediaUrlWrapper.m7014a()) {
                     DownloadMenuHandler.this.m6936a(onlineMediaItem, mediaItem, m7013b);
                 }
@@ -294,17 +283,15 @@ public final class DownloadMenuHandler {
     /* renamed from: a */
     public void m6936a(OnlineMediaItem onlineMediaItem, MediaItem mediaItem, OnlineMediaItem.Url url) {
         if (url == null) {
-            LogUtils.m8381c(f3858a, "downloadSingleSong url is null");
+            LogUtils.error(f3858a, "downloadSingleSong url is null");
             return;
         }
         DownloadTaskInfo m4759a = DownloadUtils.m4759a(mediaItem.getGroupID(), url.getUrl(), OnlineMediaItemUtils.m4688a(onlineMediaItem, url), Long.valueOf(onlineMediaItem.getSongId()), onlineMediaItem.getTitle(), DownloadTaskInfo.TYPE_AUDIO, true, this.f3863f);
         m4759a.setAudioQuality(AudioQuality.quality(url.getBitrate()).toString());
         m4759a.setTag(mediaItem);
-        m4759a.setPosition(OnlineMediaStatistic.m5029f());
-        m4759a.setListId(ListStatistic.m5203b());
-        m4759a.setListType(ListStatistic.m5212a());
+
         m4759a.setSongType(m6939a(url));
-        CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, m4759a));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, m4759a));
     }
 
     /* renamed from: a */
@@ -319,7 +306,7 @@ public final class DownloadMenuHandler {
             arrayList.addAll(lLUrls);
         }
         if (arrayList.isEmpty()) {
-            LogUtils.m8381c(f3858a, "mediaDownloadUrls is empty, the song may offline");
+            LogUtils.error(f3858a, "mediaDownloadUrls is empty, the song may offline");
             return null;
         }
         int[] bitrateRange = AudioQuality.bitrateRange(audioQuality);

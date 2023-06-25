@@ -10,7 +10,6 @@ import com.sds.android.ttpod.activities.mediascan.setting.MediaScanSettingActivi
 import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.utils.EntryUtils;
 
 /* loaded from: classes.dex */
@@ -25,21 +24,21 @@ public class MediaScanActivity extends SlidingClosableActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.button_mediascan_custom /* 2131230894 */:
-                    SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSIC_CUSTOM, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_CUSTOM);
+                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSIC_CUSTOM, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_CUSTOM);
                     Intent intent = new Intent(MediaScanActivity.this, FilePickerActivity.class);
                     intent.putExtra(FilePickerActivity.KEY_EXTRA_CONFIRMYPE, 2);
                     MediaScanActivity.this.startActivityForResult(intent, 0);
                     return;
                 case R.id.button_mediascan_wifi /* 2131230895 */:
-                    SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_WIFI, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_UPLOAD_WIFI);
+                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_WIFI, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_UPLOAD_WIFI);
                     EntryUtils.m8301a(MediaScanActivity.this, 2);
                     return;
                 case R.id.button_mediascan_setting /* 2131230896 */:
-                    SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_SETTING, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_SETTING);
+                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_SETTING, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_SETTING);
                     MediaScanActivity.this.startActivityForResult(new Intent(MediaScanActivity.this, MediaScanSettingActivity.class), 1);
                     return;
                 case R.id.button_mediascan_start /* 2131230897 */:
-                    SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_ONE_KEY, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_ONE_KEY);
+                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_ONE_KEY, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_ONE_KEY);
                     MediaScanActivity.this.startActivity(new Intent(MediaScanActivity.this, MediaScanAnimationActivity.class));
                     MediaScanActivity.this.finish();
                     return;
@@ -78,7 +77,7 @@ public class MediaScanActivity extends SlidingClosableActivity {
                 case 0:
                     String[] stringArrayExtra = intent.getStringArrayExtra(FilePickerActivity.KEY_EXTRA_SELECTED_FILES);
                     if (stringArrayExtra != null && stringArrayExtra.length > 0) {
-                        LogUtils.m8388a(TAG, "set custom scan folder: " + stringArrayExtra.toString());
+                        LogUtils.debug(TAG, "set custom scan folder: " + stringArrayExtra.toString());
                         Intent intent2 = new Intent(this, MediaScanAnimationActivity.class);
                         intent2.putExtra(MediaScanAnimationActivity.KEY_SCAN_FILES, stringArrayExtra);
                         startActivity(intent2);

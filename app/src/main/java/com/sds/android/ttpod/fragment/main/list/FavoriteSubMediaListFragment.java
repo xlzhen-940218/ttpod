@@ -25,10 +25,8 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.AsyncLoadMediaItemList;
@@ -53,7 +51,7 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
 
     @Override // com.sds.android.ttpod.fragment.main.list.SubMediaListFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment
     protected Collection<ActionItem> onCreateDropDownMenu() {
-        SUserUtils.m4956a(SAction.ACTION_OPEN_LOCAL_DROP_MENU, SPage.PAGE_NONE);
+        //SUserUtils.m4956a(SAction.ACTION_OPEN_LOCAL_DROP_MENU, SPage.PAGE_NONE);
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ActionItem(6, 0, (int) R.string.menu_sort_by_title).m7009a((Object) 7));
         arrayList.add(new ActionItem(6, 0, (int) R.string.menu_sort_by_add_time).m7009a((Object) 10));
@@ -65,7 +63,7 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
         super.onDropDownMenuClicked(i, actionItem);
         switch (i) {
             case 6:
-                LocalStatistic.m5122ak();
+                //LocalStatistic.m5122ak();
                 return;
             default:
                 return;
@@ -108,7 +106,7 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
         }
 
         public void updateDownloadState(DownloadTaskInfo downloadTaskInfo) {
-            LogUtils.m8381c(FavoriteSubMediaListFragment.TAG, "updateDownloadState = " + downloadTaskInfo.getState());
+            LogUtils.error(FavoriteSubMediaListFragment.TAG, "updateDownloadState = " + downloadTaskInfo.getState());
             if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType()) && (downloadTaskInfo.getTag() instanceof MediaItem) && Preferences.m2954aq() != null && getMediaItemList() != null && (getMediaItemList() instanceof AsyncLoadMediaItemList) && ((AsyncLoadMediaItemList) getMediaItemList()).isLoadFinished()) {
                 notifyDataSetChanged();
             }
@@ -116,7 +114,7 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
 
         @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
         public void updateFavoriteChanged() {
-            LogUtils.m8381c(FavoriteSubMediaListFragment.TAG, "updateFavoriteChanged");
+            LogUtils.error(FavoriteSubMediaListFragment.TAG, "updateFavoriteChanged");
             if (getGroupID().equals(MediaStorage.GROUP_ID_FAV)) {
                 onReloadData();
             } else {
@@ -127,19 +125,19 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
         public void updateMediaList(List<MediaItem> list) {
-            this.mDownloadMediaItemTaskInfoMap = (Map) CommandCenter.m4607a().m4602a(new Command(CommandID.QUERY_DOWNLOADING_INFO_BY_GROUP, getGroupID()), Map.class);
+            this.mDownloadMediaItemTaskInfoMap = (Map) CommandCenter.getInstance().m4602a(new Command(CommandID.QUERY_DOWNLOADING_INFO_BY_GROUP, getGroupID()), Map.class);
             super.updateMediaList(list);
         }
 
         public void updateDownloadTaskInfoList(List<DownloadTaskInfo> list) {
-            this.mDownloadMediaItemTaskInfoMap = (Map) CommandCenter.m4607a().m4602a(new Command(CommandID.QUERY_DOWNLOADING_INFO_BY_GROUP, getGroupID()), Map.class);
+            this.mDownloadMediaItemTaskInfoMap = (Map) CommandCenter.getInstance().m4602a(new Command(CommandID.QUERY_DOWNLOADING_INFO_BY_GROUP, getGroupID()), Map.class);
             notifyDataSetChanged();
         }
 
         public void updateFavoriteOnlineDownloadState(DownloadTaskInfo downloadTaskInfo) {
-            LogUtils.m8381c(FavoriteSubMediaListFragment.TAG, "updateFavoriteOnlineDownloadState");
+            LogUtils.error(FavoriteSubMediaListFragment.TAG, "updateFavoriteOnlineDownloadState");
             if (this.mListView != null && getMediaItemList() != null && downloadTaskInfo != null && downloadTaskInfo.getGroupId().equals(getGroupID())) {
-                this.mDownloadMediaItemTaskInfoMap = (Map) CommandCenter.m4607a().m4602a(new Command(CommandID.QUERY_DOWNLOADING_INFO_BY_GROUP, downloadTaskInfo.getGroupId()), Map.class);
+                this.mDownloadMediaItemTaskInfoMap = (Map) CommandCenter.getInstance().m4602a(new Command(CommandID.QUERY_DOWNLOADING_INFO_BY_GROUP, downloadTaskInfo.getGroupId()), Map.class);
                 if (downloadTaskInfo.getState() != null && 4 == downloadTaskInfo.getState().intValue() && (getMediaItemList() instanceof AsyncLoadMediaItemList) && ((AsyncLoadMediaItemList) getMediaItemList()).isLoadFinished()) {
                     int indexOf = getMediaItemList().indexOf(downloadTaskInfo.getTag());
                     if (indexOf >= 0) {
@@ -226,7 +224,7 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
                 } else if (!this.mIsRefreshing) {
                     this.mIsRefreshing = true;
                     this.mHasNotified = false;
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.SYNC_FAVORITE_ONLINE_MEDIA_LIST, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_FAVORITE_ONLINE_MEDIA_LIST, new Object[0]));
                     PopupsUtils.m6760a((int) R.string.sync_favorite_songs_start);
                     return;
                 } else {
@@ -260,7 +258,7 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
             int i;
             iconTextView.clearAnimation();
             iconTextView.setVisibility(View.VISIBLE);
-            if (!StringUtils.m8346a(mediaItem.getLocalDataSource())) {
+            if (!StringUtils.isEmpty(mediaItem.getLocalDataSource())) {
                 if (FileUtils.m8419a(mediaItem.getLocalDataSource())) {
                     flushDownloadStateView(iconTextView, R.string.icon_download_downloaded);
                     return;

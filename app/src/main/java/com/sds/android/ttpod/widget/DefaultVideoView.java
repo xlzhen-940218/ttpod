@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.widget.MediaController;
+
 import java.io.IOException;
 
 /* loaded from: classes.dex */
@@ -133,7 +133,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
         this.f7523A = new MediaPlayer.OnPreparedListener() { // from class: com.sds.android.ttpod.widget.DefaultVideoView.2
             @Override // android.media.MediaPlayer.OnPreparedListener
             public void onPrepared(MediaPlayer mediaPlayer) {
-                LogUtils.m8381c("DefaultVideoView", "onPrepared");
+                LogUtils.error("DefaultVideoView", "onPrepared");
                 DefaultVideoView.this.f7532d = 2;
                 DefaultVideoView.this.f7549u = true;
                 DefaultVideoView.this.f7550v = true;
@@ -152,7 +152,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
                 }
                 if (DefaultVideoView.this.f7536h == 0 || DefaultVideoView.this.f7537i == 0) {
                     if (DefaultVideoView.this.f7533e == 3) {
-                        LogUtils.m8381c("DefaultVideoView", "inner onPrepared call start 2");
+                        LogUtils.error("DefaultVideoView", "inner onPrepared call start 2");
                         DefaultVideoView.this.mo1689b();
                         return;
                     }
@@ -161,7 +161,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
                 DefaultVideoView.this.getHolder().setFixedSize(DefaultVideoView.this.f7536h, DefaultVideoView.this.f7537i);
                 if (DefaultVideoView.this.f7538j == DefaultVideoView.this.f7536h && DefaultVideoView.this.f7539k == DefaultVideoView.this.f7537i) {
                     if (DefaultVideoView.this.f7533e == 3) {
-                        LogUtils.m8381c("DefaultVideoView", "inner onPrepared call start 1");
+                        LogUtils.error("DefaultVideoView", "inner onPrepared call start 1");
                         DefaultVideoView.this.mo1689b();
                         if (DefaultVideoView.this.f7540l != null) {
                             DefaultVideoView.this.f7540l.m1710c();
@@ -232,7 +232,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
             @Override // android.view.SurfaceHolder.Callback
             public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i2, int i3) {
                 boolean z = true;
-                LogUtils.m8381c("DefaultVideoView", "surfaceChanged");
+                LogUtils.error("DefaultVideoView", "surfaceChanged");
                 DefaultVideoView.this.f7538j = i2;
                 DefaultVideoView.this.f7539k = i3;
                 boolean z2 = DefaultVideoView.this.f7533e == 3;
@@ -243,21 +243,21 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
                     if (DefaultVideoView.this.f7548t != 0) {
                         DefaultVideoView.this.mo1690a(DefaultVideoView.this.f7548t);
                     }
-                    LogUtils.m8381c("DefaultVideoView", "surfaceChanged call start");
+                    LogUtils.error("DefaultVideoView", "surfaceChanged call start");
                     DefaultVideoView.this.mo1689b();
                 }
             }
 
             @Override // android.view.SurfaceHolder.Callback
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
-                LogUtils.m8381c("DefaultVideoView", "surfaceCreated");
+                LogUtils.error("DefaultVideoView", "surfaceCreated");
                 DefaultVideoView.this.f7534f = surfaceHolder;
                 DefaultVideoView.this.m1847h();
             }
 
             @Override // android.view.SurfaceHolder.Callback
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-                LogUtils.m8381c("DefaultVideoView", "surfaceDestroyed");
+                LogUtils.error("DefaultVideoView", "surfaceDestroyed");
                 DefaultVideoView.this.f7534f = null;
                 if (DefaultVideoView.this.f7540l != null) {
                     DefaultVideoView.this.f7540l.m1706e();
@@ -294,7 +294,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
         this.f7523A = new MediaPlayer.OnPreparedListener() { // from class: com.sds.android.ttpod.widget.DefaultVideoView.2
             @Override // android.media.MediaPlayer.OnPreparedListener
             public void onPrepared(MediaPlayer mediaPlayer) {
-                LogUtils.m8381c("DefaultVideoView", "onPrepared");
+                LogUtils.error("DefaultVideoView", "onPrepared");
                 DefaultVideoView.this.f7532d = 2;
                 DefaultVideoView.this.f7549u = true;
                 DefaultVideoView.this.f7550v = true;
@@ -313,7 +313,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
                 }
                 if (DefaultVideoView.this.f7536h == 0 || DefaultVideoView.this.f7537i == 0) {
                     if (DefaultVideoView.this.f7533e == 3) {
-                        LogUtils.m8381c("DefaultVideoView", "inner onPrepared call start 2");
+                        LogUtils.error("DefaultVideoView", "inner onPrepared call start 2");
                         DefaultVideoView.this.mo1689b();
                         return;
                     }
@@ -322,7 +322,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
                 DefaultVideoView.this.getHolder().setFixedSize(DefaultVideoView.this.f7536h, DefaultVideoView.this.f7537i);
                 if (DefaultVideoView.this.f7538j == DefaultVideoView.this.f7536h && DefaultVideoView.this.f7539k == DefaultVideoView.this.f7537i) {
                     if (DefaultVideoView.this.f7533e == 3) {
-                        LogUtils.m8381c("DefaultVideoView", "inner onPrepared call start 1");
+                        LogUtils.error("DefaultVideoView", "inner onPrepared call start 1");
                         DefaultVideoView.this.mo1689b();
                         if (DefaultVideoView.this.f7540l != null) {
                             DefaultVideoView.this.f7540l.m1710c();
@@ -393,7 +393,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
             @Override // android.view.SurfaceHolder.Callback
             public void surfaceChanged(SurfaceHolder surfaceHolder, int i2, int i22, int i3) {
                 boolean z = true;
-                LogUtils.m8381c("DefaultVideoView", "surfaceChanged");
+                LogUtils.error("DefaultVideoView", "surfaceChanged");
                 DefaultVideoView.this.f7538j = i22;
                 DefaultVideoView.this.f7539k = i3;
                 boolean z2 = DefaultVideoView.this.f7533e == 3;
@@ -404,21 +404,21 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
                     if (DefaultVideoView.this.f7548t != 0) {
                         DefaultVideoView.this.mo1690a(DefaultVideoView.this.f7548t);
                     }
-                    LogUtils.m8381c("DefaultVideoView", "surfaceChanged call start");
+                    LogUtils.error("DefaultVideoView", "surfaceChanged call start");
                     DefaultVideoView.this.mo1689b();
                 }
             }
 
             @Override // android.view.SurfaceHolder.Callback
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
-                LogUtils.m8381c("DefaultVideoView", "surfaceCreated");
+                LogUtils.error("DefaultVideoView", "surfaceCreated");
                 DefaultVideoView.this.f7534f = surfaceHolder;
                 DefaultVideoView.this.m1847h();
             }
 
             @Override // android.view.SurfaceHolder.Callback
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-                LogUtils.m8381c("DefaultVideoView", "surfaceDestroyed");
+                LogUtils.error("DefaultVideoView", "surfaceDestroyed");
                 DefaultVideoView.this.f7534f = null;
                 if (DefaultVideoView.this.f7540l != null) {
                     DefaultVideoView.this.f7540l.m1706e();
@@ -524,12 +524,12 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
             } catch (IOException e) {
                 this.f7532d = -1;
                 this.f7533e = -1;
-                LogUtils.m8388a("DefaultVideoView", "View: onError: IOException");
+                LogUtils.debug("DefaultVideoView", "View: onError: IOException");
                 this.f7525C.onError(this.f7535g, 2, 0);
             } catch (IllegalArgumentException e2) {
                 this.f7532d = -1;
                 this.f7533e = -1;
-                LogUtils.m8388a("DefaultVideoView", "View: onError: IllegalArgumentException");
+                LogUtils.debug("DefaultVideoView", "View: onError: IllegalArgumentException");
                 this.f7525C.onError(this.f7535g, 2, 0);
             } catch (Exception e3) {
                 e3.printStackTrace();
@@ -674,9 +674,9 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
     @Override // com.sds.android.ttpod.widget.MediaController.InterfaceC2200b
     /* renamed from: b */
     public void mo1689b() {
-        LogUtils.m8381c("DefaultVideoView", "try start");
+        LogUtils.error("DefaultVideoView", "try start");
         if (m1841k() && !this.f7535g.isPlaying()) {
-            LogUtils.m8381c("DefaultVideoView", "real start");
+            LogUtils.error("DefaultVideoView", "real start");
             this.f7535g.start();
             this.f7532d = 3;
         }
@@ -695,7 +695,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
 
     /* renamed from: d */
     public void m1858d() {
-        LogUtils.m8381c("DefaultVideoView", "resume");
+        LogUtils.error("DefaultVideoView", "resume");
         m1847h();
     }
 
@@ -722,7 +722,7 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Int
     @Override // com.sds.android.ttpod.widget.MediaController.InterfaceC2200b
     /* renamed from: a */
     public void mo1690a(long j) {
-        LogUtils.m8381c("DefaultVideoView", "seekTo");
+        LogUtils.error("DefaultVideoView", "seekTo");
         if (m1841k()) {
             this.f7535g.seekTo((int) j);
             this.f7548t = 0L;

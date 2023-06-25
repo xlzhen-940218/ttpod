@@ -153,7 +153,7 @@ public class UserSystemAPI {
             objArr[0] = file != null ? file.getPath() : "null";
             objArr[1] = Boolean.valueOf(file != null && file.exists());
             objArr[2] = Long.valueOf(file != null ? file.length() : -1L);
-            LogUtils.m8380c("UserSystemAPI", "isValidFileForPost path=%s %b %d CropImageView", objArr);
+            LogUtils.info("UserSystemAPI", "isValidFileForPost path=%s %b %d CropImageView", objArr);
             return false;
         }
         return true;

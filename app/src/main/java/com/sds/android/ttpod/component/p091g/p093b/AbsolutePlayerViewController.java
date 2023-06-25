@@ -50,7 +50,7 @@ public class AbsolutePlayerViewController extends BasePlayerViewController {
             }
             m6560a((ViewGroup) skinAbsoluteLayout, false);
         }
-        skinCache.m3525j();
+        skinCache.handleClose();
     }
 
     /* renamed from: a */

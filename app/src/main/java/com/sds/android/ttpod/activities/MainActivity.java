@@ -20,7 +20,7 @@ import android.widget.FrameLayout;
 import androidx.fragment.app.Fragment;
 
 import com.sds.android.cloudapi.ttpod.data.User;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
@@ -33,13 +33,13 @@ import com.sds.android.ttpod.component.landscape.LandscapeFragment;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.component.p087d.p088a.GlobalMenuDialog;
 import com.sds.android.ttpod.component.p096h.Register;
-import com.sds.android.ttpod.component.video.StormPlayer;
 import com.sds.android.ttpod.fragment.OnClosePlayerPanelRequestListener;
 import com.sds.android.ttpod.fragment.PlayControlBarFragment;
 import com.sds.android.ttpod.fragment.ViewPagerGuideFragment;
 import com.sds.android.ttpod.fragment.downloadmanager.DownloadManagerFragment;
 import com.sds.android.ttpod.fragment.main.MainFragment;
 import com.sds.android.ttpod.fragment.main.PortraitPlayerFragment;
+import com.sds.android.ttpod.fragment.skinmanager.base.ThemeListObserver;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseActivity;
 import com.sds.android.ttpod.framework.base.BaseApplication;
@@ -50,15 +50,7 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.MVStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.StartupStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.UnicomFlowStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.mediastore.GroupType;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -75,7 +67,6 @@ import java.util.Map;
 /* loaded from: classes.dex */
 public class MainActivity extends ThemeActivity implements GlobalMenuDialog.InterfaceC1152b, OnClosePlayerPanelRequestListener, MainFragment.InterfaceC1462a, ThemeManager.InterfaceC2019b {
     private static final String LOG_TAG = "MainActivity";
-    private static final int MVSTATISTIC_DELAY_START = 30000;
     private static final long READY_BACKGROUND_TIMEOUT = 3500;
     private static final int TIME_DELAY_MILLISECOND = 30000;
     private GlobalMenuDialog mGlobalMenuDialog;
@@ -99,7 +90,8 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
-    @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
+    @Override
+    // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         this.mMainContentView = new FrameLayout(this);
@@ -112,7 +104,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
             this.mMainContentView.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.activities.MainActivity.1
                 @Override // java.lang.Runnable
                 public void run() {
-                    StatisticUtils.m4906a("local", "click", "fade-over-start", 0L, Preferences.m2985aV() + "_" + Preferences.m2984aW() + "_" + Preferences.m2982aY(), "");
+                    //StatisticUtils.m4906a("local", "click", "fade-over-start", 0L, Preferences.m2985aV() + "_" + Preferences.m2984aW() + "_" + Preferences.m2982aY(), "");
                 }
             }, 30000L);
         }
@@ -122,27 +114,28 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.activities.MainActivity.2
             @Override // java.lang.Runnable
             public void run() {
-                MVStatistic.m5073b(StormPlayer.m5787a(BaseApplication.getApplication()));
+                //MVStatistic.m5073b(StormPlayer.m5787a(BaseApplication.getApplication()));
             }
         }, 30000L);
         onNewIntent(getIntent());
         checkExternalStorageExisted();
         if (EnvironmentUtils.C0604c.m8474e()) {
             if (new Date().getTime() - Preferences.m2953ar().longValue() > 86400000) {
-                CommandCenter.m4607a().m4605a(new Command(CommandID.CHECK_UPGRADE, Boolean.TRUE), 30);
+                CommandCenter.getInstance().m4605a(new Command(CommandID.CHECK_UPGRADE, Boolean.TRUE), 30);
             }
             requestUpdateSkinList();
         }
         Preferences.m2877h(getResources().getStringArray(R.array.environment_title).length);
-        CommandCenter.m4607a().m4605a(new Command(CommandID.PRELOAD_ASYNCLOAD_MEDIA_ITEM_LIST, MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.m2860l(MediaStorage.GROUP_ID_ALL_LOCAL)), 1000);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_ALBUM));
-        CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_FOLDER));
-        CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_ARTIST));
+        CommandCenter.getInstance().m4605a(new Command(CommandID.PRELOAD_ASYNCLOAD_MEDIA_ITEM_LIST, MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.m2860l(MediaStorage.GROUP_ID_ALL_LOCAL)), 1000);
+        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_ALBUM));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_FOLDER));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_ARTIST));
         UnicomFlowUtil.m3954a(this);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
-    @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
+    @Override
+    // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
@@ -194,12 +187,13 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
             setOpenPlayerPanelEnable(true);
             Register.m6402a(this);
             tryToShowViewPagerGuide();
-            StartupStatistic.m4924a();
+            //StartupStatistic.m4924a();
         }
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
-    @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
+    @Override
+    // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onResume() {
         super.onResume();
         reloadRequestedOrientation();
@@ -207,7 +201,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         CheckerManager.m7949a().m7941c();
         if (this.mIsCheckMonthBeginPopupDialog) {
             this.mIsCheckMonthBeginPopupDialog = false;
-            CommandCenter.m4607a().m4606a(new Command(CommandID.CHECK_BEGIN_MONTH_POPUP_DIALOG, new Object[0]));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.CHECK_BEGIN_MONTH_POPUP_DIALOG, new Object[0]));
         }
         ThirdPartyManager.m8312c();
         GLSurfaceView gLSurfaceView = (GLSurfaceView) findViewById(R.id.surface_view_scene);
@@ -217,7 +211,8 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
-    @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
+    @Override
+    // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onPause() {
         super.onPause();
         GLSurfaceView gLSurfaceView = (GLSurfaceView) findViewById(R.id.surface_view_scene);
@@ -228,7 +223,8 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         PopupsUtils.m6761a();
     }
 
-    @Override // android.support.v4.app.FragmentActivity, android.app.Activity, android.content.ComponentCallbacks
+    @Override
+    // android.support.v4.app.FragmentActivity, android.app.Activity, android.content.ComponentCallbacks
     public void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
         if (this.mPanelPlayerLayout != null && this.mPanelPlayerLayout.m1494h() && configuration.orientation == 2) {
@@ -248,7 +244,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         if (this.mPanelPlayerLayout != null) {
             if (z) {
                 Rect playerPanelAttachRawRect = this.mPlayControlBarFragment.getPlayerPanelAttachRawRect();
-                LogUtils.m8388a(LOG_TAG, "playerPanel rect:" + playerPanelAttachRawRect.toString());
+                LogUtils.debug(LOG_TAG, "playerPanel rect:" + playerPanelAttachRawRect.toString());
                 this.mPanelPlayerLayout.m1530a(playerPanelAttachRawRect.left, playerPanelAttachRawRect.top, playerPanelAttachRawRect.right, playerPanelAttachRawRect.bottom);
             } else {
                 this.mPanelPlayerLayout.m1530a(0, 0, 0, 0);
@@ -269,7 +265,8 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         }
     }
 
-    @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
+    @Override
+    // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onBackPressed() {
         if (this.mLandscapeFragment == null) {
             if (this.mPanelPlayerLayout != null && (this.mPanelPlayerLayout.m1494h() || this.mPanelPlayerLayout.m1534a())) {
@@ -291,7 +288,8 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         }
     }
 
-    @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity, android.view.KeyEvent.Callback
+    @Override
+    // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity, android.view.KeyEvent.Callback
     public boolean onKeyDown(int i, KeyEvent keyEvent) {
         BaseFragment topFragment = getTopFragment();
         FragmentBackStackManager childFragmentBackStackManager = topFragment.getChildFragmentBackStackManager();
@@ -313,7 +311,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
     @Override // android.app.Activity, android.view.KeyEvent.Callback
     public boolean onKeyUp(int i, KeyEvent keyEvent) {
         if (i == 82) {
-            LocalStatistic.m5107az();
+            //LocalStatistic.m5107az();
             toggleMenu();
             return true;
         }
@@ -346,8 +344,10 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         setCurrentFragment(baseFragment);
     }
 
+    MainFragment mainFragment;
+
     private void loadPrimaryFragment() {
-        MainFragment mainFragment = new MainFragment();
+        mainFragment = new MainFragment();
         mainFragment.setOnCurrentFragmentChangeListener(this);
         setPrimaryFragment(mainFragment);
     }
@@ -376,7 +376,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
                     MainActivity.this.mPortraitPlayerFragment.getView().setVisibility(View.VISIBLE);
                     MainActivity.this.mPortraitPlayerFragment.onPreVisible();
                     MainActivity.this.reloadRequestedOrientation();
-                    LocalStatistic.m5094l();
+                    //LocalStatistic.m5094l();
                 }
             }
 
@@ -389,7 +389,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
                 MainActivity.this.mPlayControlBarFragment.getView().setVisibility(m1494h ? View.INVISIBLE : View.VISIBLE);
                 if (MainActivity.this.mPanelPlayerLayout.m1494h()) {
                     MainActivity.this.mPortraitPlayerFragment.resumeRefresh();
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_PLAYER.getValue(), SPage.PAGE_NONE.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue()).post();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_PLAYER.getValue(), SPage.PAGE_NONE.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue()).post();
                     MainActivity.this.mPortraitPlayerFragment.updatePage(SPage.PAGE_PORTRAIT_PLAYER);
                 } else {
                     BaseFragment topFragment = MainActivity.this.getTopFragment();
@@ -435,7 +435,8 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
-    @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
+    @Override
+    // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onDestroy() {
         super.onDestroy();
         CheckerManager.m7949a().m7938e();
@@ -443,8 +444,8 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
     }
 
     private void checkoutVersionCompact() {
-        if (!((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.CHECK_VERSION_COMPACT, new Object[0]), Boolean.class)).booleanValue()) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.DO_VERSION_COMPACT, new Object[0]));
+        if (!((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.CHECK_VERSION_COMPACT, new Object[0]), Boolean.class)).booleanValue()) {
+            CommandCenter.getInstance().m4596b(new Command(CommandID.DO_VERSION_COMPACT, new Object[0]));
         }
     }
 
@@ -460,7 +461,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
 
     public void doVersionCompactStarted() {
         if (status() == 2) {
-            PopupsUtils.m6744a((Context) this, (int) R.string.updating, false, false);
+            //PopupsUtils.m6744a((Context) this, (int) R.string.updating, false, false);
         }
     }
 
@@ -468,7 +469,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         if (status() == 2) {
             PopupsUtils.m6761a();
         }
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
     }
 
     public void updateRecommendSkinListFinished(Boolean bool) {
@@ -476,23 +477,23 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         if (bool.booleanValue()) {
             GlobalMenuDialog.m6873b(true);
         }
-        LogUtils.m8388a(LOG_TAG, "updateRecommendSkinListFinished----update: " + bool);
+        LogUtils.debug(LOG_TAG, "updateRecommendSkinListFinished----update: " + bool);
     }
 
     public void updateRecommendBackgroundListFinished(Boolean bool) {
         if (bool.booleanValue()) {
             GlobalMenuDialog.m6869c(true);
         }
-        LogUtils.m8388a(LOG_TAG, "updateRecommendBackgroundListFinished----update: " + bool);
+        LogUtils.debug(LOG_TAG, "updateRecommendBackgroundListFinished----update: " + bool);
     }
 
     private void requestUpdateSkinList() {
         if (!sHasCheckSkinListUpdate) {
-            CommandCenter.m4607a().m4605a(new Command(CommandID.REQUEST_UPDATE_RECOMMEND_SKIN_LIST, new Object[0]), 15000);
-            CommandCenter.m4607a().m4605a(new Command(CommandID.REQUEST_UPDATE_RECOMMEND_BACKGROUND_LIST, new Object[0]), 15000);
-            LogUtils.m8388a("MyFragment", "requestUpdateSkinList [skin]--->");
-            ThemeStatistic.m4889f();
-            ThemeStatistic.m4882j();
+            CommandCenter.getInstance().m4605a(new Command(CommandID.REQUEST_UPDATE_RECOMMEND_SKIN_LIST, new Object[0]), 15000);
+            CommandCenter.getInstance().m4605a(new Command(CommandID.REQUEST_UPDATE_RECOMMEND_BACKGROUND_LIST, new Object[0]), 15000);
+            LogUtils.debug("MyFragment", "requestUpdateSkinList [skin]--->");
+            //ThemeStatistic.m4889f();
+            //ThemeStatistic.m4882j();
         }
     }
 
@@ -501,19 +502,26 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         if (this.mGlobalMenuDialog != null) {
             this.mGlobalMenuDialog.m6872c();
         }
+        if (mainFragment != null) {
+            mainFragment.onThemeLoaded();
+        }
+        if (mPlayControlBarFragment != null) {
+            mPlayControlBarFragment.onThemeLoaded();
+        }
     }
 
-    @Override // android.support.v4.app.FragmentActivity, android.app.Activity, android.content.ComponentCallbacks
+    @Override
+    // android.support.v4.app.FragmentActivity, android.app.Activity, android.content.ComponentCallbacks
     public void onLowMemory() {
         super.onLowMemory();
-        LogUtils.m8381c(LOG_TAG, "onLowMemory");
+        LogUtils.error(LOG_TAG, "onLowMemory");
     }
 
     @Override // android.app.Activity, android.content.ComponentCallbacks2
     @TargetApi(14)
     public void onTrimMemory(int i) {
         super.onTrimMemory(i);
-        LogUtils.m8382b(LOG_TAG, "onTrimMemory level=%d", Integer.valueOf(i));
+        LogUtils.error(LOG_TAG, "onTrimMemory level=%d", Integer.valueOf(i));
     }
 
     public void updatePlayMode() {
@@ -554,56 +562,56 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         switch (i) {
             case 0:
                 EntryUtils.m8292c((Context) this);
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SETTING, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_SETTING_PAGE);
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SETTING, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_SETTING_PAGE);
                 return;
             case 1:
                 EntryUtils.m8287h(this);
-                LocalStatistic.m5171L();
+                //LocalStatistic.m5171L();
                 return;
             case 2:
                 EntryUtils.m8289f(this);
-                LocalStatistic.m5175H();
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SCAN, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_SCAN_MUSIC);
+                //LocalStatistic.m5175H();
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SCAN, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_SCAN_MUSIC);
                 return;
             case 3:
                 EntryUtils.m8303a();
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_PLAY_MODE, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_NONE);
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_PLAY_MODE, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_NONE);
                 return;
             case 4:
                 EntryUtils.m8290e(this);
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_THEME, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_THEME_BACKGROUND);
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_THEME, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_THEME_BACKGROUND);
                 return;
             case 5:
                 EntryUtils.m8286i(this);
                 return;
             case 6:
                 EntryUtils.m8302a((Activity) this);
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_AUDIO_EFFECT, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_AUDIO_BOOST);
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_AUDIO_EFFECT, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_AUDIO_BOOST);
                 return;
             case 7:
                 EntryUtils.m8299a(this, (String) null);
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_UPLOAD_SONG, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_UPLOAD_SONG);
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_UPLOAD_SONG, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_UPLOAD_SONG);
                 return;
             case 8:
                 EntryUtils.m8291d(this);
-                LocalStatistic.m5128ae();
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SOUND_RECOGNIZE, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_RECOGNIZE);
+                //LocalStatistic.m5128ae();
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SOUND_RECOGNIZE, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_RECOGNIZE);
                 return;
             case 9:
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_APP, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_MARKET_APP);
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_APP, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_MARKET_APP);
                 EntryUtils.m8298a((BaseActivity) this);
                 return;
             case 10:
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_EXIT, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_NONE);
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_EXIT, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_NONE);
                 EntryUtils.m8296b();
                 return;
             case 11:
                 EntryUtils.m8294b((Context) this);
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_KTV, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_KTV);
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_KTV, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_KTV);
                 return;
             case 12:
-                UnicomFlowStatistic.m4817j();
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_UNION_FLOW, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_UNICOM_SUBSCRIBE);
+                //UnicomFlowStatistic.m4817j();
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_UNION_FLOW, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_UNICOM_SUBSCRIBE);
                 EntryUtils.m8295b((Activity) this);
                 return;
             case 13:

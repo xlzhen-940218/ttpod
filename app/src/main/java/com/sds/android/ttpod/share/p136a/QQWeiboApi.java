@@ -33,13 +33,13 @@ public class QQWeiboApi extends BaseApi {
     public ShareResult mo2076b(ShareInfo shareInfo, ApiCallback apiCallback) {
         String m1928a;
         List<NameValuePair> m2104a = m2104a(shareInfo);
-        if (StringUtils.m8346a(shareInfo.m1964c())) {
+        if (StringUtils.isEmpty(shareInfo.m1964c())) {
             m1928a = ShareHttpUtil.m1929a("https://open.t.qq.com/api/t/add_pic", m2104a);
         } else {
             m1928a = ShareHttpUtil.m1928a("https://open.t.qq.com/api/t/add_pic", m2104a, (NameValuePair[]) m2103b(shareInfo).toArray(new NameValuePair[0]));
         }
         ShareResult shareResult = new ShareResult();
-        if (StringUtils.m8346a(m1928a)) {
+        if (StringUtils.isEmpty(m1928a)) {
             shareResult.m2090a("result is empty");
         } else {
             try {

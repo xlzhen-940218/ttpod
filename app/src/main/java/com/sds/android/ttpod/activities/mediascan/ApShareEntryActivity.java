@@ -31,12 +31,12 @@ public class ApShareEntryActivity extends BaseActivity {
             @Override // android.support.v4.app.FragmentManager.OnBackStackChangedListener
             public void onBackStackChanged() {
                 if (ApShareEntryActivity.this.getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                    if (!StringUtils.m8346a(ApShareEntryActivity.this.mMediaId)) {
+                    if (!StringUtils.isEmpty(ApShareEntryActivity.this.mMediaId)) {
                         ApShareEntryActivity.this.mMediaId = null;
                         return;
                     }
                     ApShareEntryActivity.this.finish();
-                    LogUtils.m8379d(ApShareEntryActivity.TAG, "main activity finish");
+                    LogUtils.info(ApShareEntryActivity.TAG, "main activity finish");
                 }
             }
         });
@@ -46,7 +46,7 @@ public class ApShareEntryActivity extends BaseActivity {
         if (intent != null) {
             this.mMediaId = intent.getStringExtra("key_media_id");
         }
-        if (StringUtils.m8346a(this.mMediaId)) {
+        if (StringUtils.isEmpty(this.mMediaId)) {
             baseFragment = new ApShareEntryFragment();
         } else {
             Bundle bundle2 = new Bundle();
@@ -59,7 +59,7 @@ public class ApShareEntryActivity extends BaseActivity {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onResume() {
-        LogUtils.m8379d(TAG, "onResume");
+        LogUtils.info(TAG, "onResume");
         this.mWifiApManager.m7033f();
         super.onResume();
     }
@@ -67,7 +67,7 @@ public class ApShareEntryActivity extends BaseActivity {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onDestroy() {
-        LogUtils.m8379d(TAG, "onDestroy");
+        LogUtils.info(TAG, "onDestroy");
         this.mWifiApManager.m7040b("TTPODShare-");
         this.mWifiApManager.m7033f();
         super.onDestroy();

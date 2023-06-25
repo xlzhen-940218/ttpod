@@ -71,7 +71,7 @@ public class ShareContentUtil {
         if (shareType == ShareType.SINA_WEIBO && shareInfo.m1952h().longValue() <= 0) {
             m1932b = URLEncoder.encode(m1932b);
         }
-        if (!StringUtils.m8346a(m1932b)) {
+        if (!StringUtils.isEmpty(m1932b)) {
             stringBuffer.append(BaseApplication.getApplication().getString(R.string.share_audition) + m1932b);
         }
         if (shareType == ShareType.SINA_WEIBO) {
@@ -87,7 +87,7 @@ public class ShareContentUtil {
     /* renamed from: a */
     public static String m1933a(String str, String str2, ShareInfo shareInfo, ShareType shareType) {
         StringBuilder sb = new StringBuilder();
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             sb.append(str);
             sb.append(" //");
         }

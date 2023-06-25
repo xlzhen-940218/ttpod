@@ -15,8 +15,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.p107a.ActionPage;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +43,7 @@ public class ThemeManagementActivity extends ThemeManagementBaseActivity impleme
     public void onResume() {
         super.onResume();
         if (Preferences.m2909bt() + 43200000 < System.currentTimeMillis()) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.REQUEST_BACKGROUND_MORE, new Object[0]));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_BACKGROUND_MORE, new Object[0]));
         }
     }
 
@@ -62,7 +60,7 @@ public class ThemeManagementActivity extends ThemeManagementBaseActivity impleme
         if (editModeToggle != null) {
             this.mInEditMode = !this.mInEditMode;
             if (editModeToggle instanceof MyThemeFragment) {
-                ThemeStatistic.m4898b();
+                //ThemeStatistic.m4898b();
             }
             showEditActionItem();
             editModeToggle.toggleEditMode();
@@ -73,17 +71,17 @@ public class ThemeManagementActivity extends ThemeManagementBaseActivity impleme
     protected void clickStatistic(int i) {
         int i2 = this.mCurrentPage;
         this.mCurrentPage = i;
-        SUserUtils.m4953a("PAGE_CLICK", SLIST.get(this.mCurrentPage).m5275a(), SLIST.get(i2).m5274b(), SLIST.get(i).m5274b());
+        //SUserUtils.m4953a("PAGE_CLICK", SLIST.get(this.mCurrentPage).m5275a(), SLIST.get(i2).m5274b(), SLIST.get(i).m5274b());
         switch (i) {
             case 0:
-                ThemeStatistic.m4873s();
-                ThemeStatistic.m4874r();
+                //ThemeStatistic.m4873s();
+                //ThemeStatistic.m4874r();
                 return;
             case 1:
-                ThemeStatistic.m4891e();
+                //ThemeStatistic.m4891e();
                 return;
             default:
-                ThemeStatistic.m4893d();
+                //ThemeStatistic.m4893d();
                 return;
         }
     }

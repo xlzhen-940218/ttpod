@@ -22,20 +22,20 @@ import java.util.Set;
 public final class CommandCenter {
 
     /* renamed from: a */
-    private static CommandCenter f5711a = new CommandCenter();
+    private static CommandCenter instance = new CommandCenter();
 
     /* renamed from: b */
-    private Handler f5712b = new Handler(Looper.getMainLooper());
+    private Handler handler = new Handler(Looper.getMainLooper());
 
     /* renamed from: c */
     private Map<Object, Map<CommandID, C1803a>> f5713c = new HashMap();
 
     /* renamed from: d */
-    private Map<ModuleID, Map<CommandID, Set<Object>>> f5714d = new EnumMap(ModuleID.class);
+    private Map<ModuleID, Map<CommandID, Set<Object>>> moduleIDMapMap = new EnumMap(ModuleID.class);
 
     /* renamed from: a */
-    public static CommandCenter m4607a() {
-        return f5711a;
+    public static CommandCenter getInstance() {
+        return instance;
     }
 
     private CommandCenter() {
@@ -69,7 +69,7 @@ public final class CommandCenter {
 
     /* renamed from: a */
     private void m4598a(Object obj, CommandID commandID) {
-        Map<CommandID, Set<Object>> map = this.f5714d.get(commandID.getModuleID());
+        Map<CommandID, Set<Object>> map = this.moduleIDMapMap.get(commandID.getModuleID());
         EnumMap enumMap = map == null ? new EnumMap(CommandID.class) : (EnumMap) map;
         Set<Object> set = (Set<Object>) enumMap.get(commandID);
         if (set == null) {
@@ -77,7 +77,7 @@ public final class CommandCenter {
         }
         set.add(obj);
         enumMap.put(commandID, set);
-        this.f5714d.put(commandID.getModuleID(), enumMap);
+        this.moduleIDMapMap.put(commandID.getModuleID(), enumMap);
     }
 
     /* renamed from: a */
@@ -101,9 +101,9 @@ public final class CommandCenter {
 
     /* renamed from: c */
     private void m4590c(Object obj) {
-        Iterator<ModuleID> it = this.f5714d.keySet().iterator();
+        Iterator<ModuleID> it = this.moduleIDMapMap.keySet().iterator();
         while (it.hasNext()) {
-            Map<CommandID, Set<Object>> map = this.f5714d.get(it.next());
+            Map<CommandID, Set<Object>> map = this.moduleIDMapMap.get(it.next());
             Iterator<CommandID> it2 = map.keySet().iterator();
             while (it2.hasNext()) {
                 Set<Object> set = map.get(it2.next());
@@ -140,7 +140,7 @@ public final class CommandCenter {
     /* renamed from: a */
     public <Result> Result m4602a(Command command, Class<Result> cls) {
         m4591c(command, null);
-        if (!command.m4610a().getCommandType().equals(CommandType.TO_MODULE)) {
+        if (!command.getCommandId().getCommandType().equals(CommandType.TO_MODULE)) {
             throw new IllegalArgumentException("id of Command with result must be CommandType.TO_MODULE");
         }
         return (Result) m4594b(command, cls);
@@ -154,7 +154,7 @@ public final class CommandCenter {
     /* renamed from: a */
     public void m4605a(final Command command, int i) {
         m4591c(command, null);
-        this.f5712b.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.a.b.1
+        this.handler.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.a.b.1
             @Override // java.lang.Runnable
             public void run() {
                 CommandCenter.this.m4594b(command, null);
@@ -171,7 +171,7 @@ public final class CommandCenter {
     public void m4603a(final Command command, ModuleID moduleID, int i) {
         m4600a(moduleID);
         m4591c(command, moduleID);
-        this.f5712b.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.a.b.2
+        this.handler.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.a.b.2
             @Override // java.lang.Runnable
             public void run() {
                 CommandCenter.this.m4594b(command, null);
@@ -183,35 +183,35 @@ public final class CommandCenter {
     /* renamed from: b */
     public <Result> Result m4594b(Command command, Class<Result> cls) {
         DebugUtils.m8427a();
-        CommandID m4610a = command.m4610a();
+        CommandID m4610a = command.getCommandId();
         ModuleID moduleID = m4610a.getModuleID();
-        ModuleManager.m4117a().m4115a(m4610a);
-        ModuleManager.m4117a().m4110b(moduleID);
-        Map<CommandID, Set<Object>> map = this.f5714d.get(moduleID);
+        ModuleManager.getInstance().m4115a(m4610a);
+        ModuleManager.getInstance().m4110b(moduleID);
+        Map<CommandID, Set<Object>> map = this.moduleIDMapMap.get(moduleID);
         if (map == null || map.isEmpty()) {
             if (EnvironmentUtils.C0602a.m8502i() && cls != null) {
-                throw new IllegalArgumentException("exeCommand(CommandID." + command.m4610a().name() + ") with a result must have one target!");
+                throw new IllegalArgumentException("exeCommand(CommandID." + command.getCommandId().name() + ") with a result must have one target!");
             }
-            this.f5714d.remove(moduleID);
+            this.moduleIDMapMap.remove(moduleID);
             return null;
         }
         Set<Object> set = map.get(m4610a);
         if (set == null || set.isEmpty()) {
             if (EnvironmentUtils.C0602a.m8502i() && cls != null) {
-                throw new IllegalArgumentException("exeCommand(CommandID." + command.m4610a().name() + ") with a result must have one target!");
+                throw new IllegalArgumentException("exeCommand(CommandID." + command.getCommandId().name() + ") with a result must have one target!");
             }
             map.remove(m4610a);
             if (!map.isEmpty()) {
                 return null;
             }
-            this.f5714d.remove(moduleID);
+            this.moduleIDMapMap.remove(moduleID);
             return null;
         } else if (EnvironmentUtils.C0602a.m8502i() && cls != null && set.size() != 1) {
-            throw new IllegalArgumentException("exeCommand(CommandID." + command.m4610a().name() + ") with a result must only have one target!");
+            throw new IllegalArgumentException("exeCommand(CommandID." + command.getCommandId().name() + ") with a result must only have one target!");
         } else {
             Object obj = null;
             for (Object obj2 : set) {
-                obj = this.f5713c.get(obj2).get(m4610a).m4586a(obj2, command, cls);
+                obj = this.f5713c.get(obj2).get(m4610a).invoke(obj2, command, cls);
             }
             return (Result) obj;
         }
@@ -230,12 +230,12 @@ public final class CommandCenter {
             throw new IllegalArgumentException("command can not be null!");
         }
         if (EnvironmentUtils.C0602a.m8502i()) {
-            if (command.m4610a().getCommandType().equals(CommandType.FROM_MODULE)) {
+            if (command.getCommandId().getCommandType().equals(CommandType.FROM_MODULE)) {
                 if (moduleID == null) {
                     throw new IllegalArgumentException("Command with CommandType.FROM_MODULE should assign fromModuleID");
                 }
-                if (!command.m4610a().getModuleID().equals(moduleID)) {
-                    throw new IllegalArgumentException("command(CommandID." + command.m4610a().name() + ") can not send from module(ModuleID." + moduleID.name() + ")");
+                if (!command.getCommandId().getModuleID().equals(moduleID)) {
+                    throw new IllegalArgumentException("command(CommandID." + command.getCommandId().name() + ") can not send from module(ModuleID." + moduleID.name() + ")");
                 }
             } else if (moduleID != null) {
                 throw new IllegalArgumentException("Command with CommandType.TO_MODULE should not assign fromModuleID");
@@ -250,7 +250,7 @@ public final class CommandCenter {
     public static final class C1803a {
 
         /* renamed from: a */
-        private Method f5719a;
+        private Method method;
 
         /* renamed from: b */
         private Class[] f5720b;
@@ -259,19 +259,19 @@ public final class CommandCenter {
         private Class f5721c;
 
         private C1803a(Method method, Class[] clsArr, Class cls) {
-            this.f5719a = method;
+            this.method = method;
             this.f5720b = clsArr;
             this.f5721c = cls;
         }
 
         /* JADX INFO: Access modifiers changed from: private */
         /* renamed from: a */
-        public <Result> Result m4586a(Object obj, Command command, Class<Result> cls) {
+        public <Result> Result invoke(Object obj, Command command, Class<Result> cls) {
             Result result;
             m4589a(command, cls);
             if (EnvironmentUtils.C0602a.m8502i() || EnvironmentUtils.C0602a.m8503h()) {
                 try {
-                    result = (Result) this.f5719a.invoke(obj, command.m4608b());
+                    result = (Result) this.method.invoke(obj, command.getObjects());
                 } catch (IllegalArgumentException e) {
                     throw e;
                 } catch (InvocationTargetException e2) {
@@ -282,7 +282,7 @@ public final class CommandCenter {
                 }
             } else {
                 try {
-                    result = (Result) this.f5719a.invoke(obj, command.m4608b());
+                    result = (Result) this.method.invoke(obj, command.getObjects());
                 } catch (Throwable th) {
                     th.printStackTrace();
                     result = null;
@@ -297,15 +297,15 @@ public final class CommandCenter {
         /* renamed from: a */
         private <Result> void m4589a(Command command, Class<Result> cls) {
             if (EnvironmentUtils.C0602a.m8502i()) {
-                Object[] m4608b = command.m4608b();
+                Object[] m4608b = command.getObjects();
                 for (int i = 0; i < m4608b.length; i++) {
                     Class<?> cls2 = m4608b[i] == null ? null : m4608b[i].getClass();
                     if (!m4587a(this.f5720b[i], cls2)) {
-                        throw new IllegalArgumentException("Command(CommandID." + command.m4610a().name() + ") param " + i + " Type not match, " + this.f5720b[i].getName() + " while expected to be " + cls2.getName());
+                        throw new IllegalArgumentException("Command(CommandID." + command.getCommandId().name() + ") param " + i + " Type not match, " + this.f5720b[i].getName() + " while expected to be " + cls2.getName());
                     }
                 }
                 if (cls != null && !m4587a(cls, this.f5721c)) {
-                    throw new IllegalArgumentException("Command(CommandID." + command.m4610a().name() + ") Return Type not match, " + cls.getName() + " while expected to be " + this.f5721c.getName());
+                    throw new IllegalArgumentException("Command(CommandID." + command.getCommandId().name() + ") Return Type not match, " + cls.getName() + " while expected to be " + this.f5721c.getName());
                 }
             }
         }

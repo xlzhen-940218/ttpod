@@ -18,9 +18,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ListStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -35,12 +32,12 @@ import java.util.Map;
 import java.util.UUID;
 
 /* loaded from: classes.dex */
-public abstract class ImageHeaderMusicListFragment extends BaseFragment implements OnlineMediaListFragment.InterfaceC1667b {
+public abstract class ImageHeaderMusicListFragment extends BaseFragment {
     protected static final int HOME_PAGE = 1;
     private static final String TAG = "ImageHeaderMusicListFragment";
     private InterfaceC1588a mOnSetTitleListener;
     protected OnlineMediaListFragment mOnlineMediaListFragment;
-    protected String mOrigin;
+
     private String mPlayingGroupName = "";
     private long mPlayingSongId;
     protected View mRootView;
@@ -53,7 +50,6 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment implemen
         void mo5547a(String str);
     }
 
-    protected abstract String onLoadStatisticModule();
 
     protected abstract String onLoadTitleText();
 
@@ -93,7 +89,7 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment implemen
 
     public void updatePlayStatus(PlayStatus playStatus) {
         MediaItem m3225N;
-        if (isViewAccessAble() && (m3225N = Cache.m3218a().m3225N()) != null) {
+        if (isViewAccessAble() && (m3225N = Cache.getInstance().getCurrentPlayMediaItem()) != null) {
             Long songID = m3225N.getSongID();
             this.mPlayingSongId = songID == null ? 0L : songID.longValue();
         }
@@ -172,11 +168,7 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment implemen
                     ImageHeaderMusicListFragment.this.requestDataList(1);
                 }
             });
-            this.mOnlineMediaListFragment.setOnMediaItemClickListener(this);
         }
-        this.mOrigin = OnlineMediaStatistic.m5043b();
-        this.mOnlineMediaListFragment.setModule(onLoadStatisticModule());
-        this.mOnlineMediaListFragment.setOrigin(this.mOrigin);
         getChildFragmentManager().beginTransaction().replace(R.id.content_online_media_list, this.mOnlineMediaListFragment).commitAllowingStateLoss();
     }
 
@@ -225,9 +217,9 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment implemen
         public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
             View onCreateView = super.onCreateView(layoutInflater, viewGroup, bundle);
             ImageHeaderMusicListFragment.this.setupListHeader();
-            ListStatistic.m5211a(1);
-            ListStatistic.m5205a(ImageHeaderMusicListFragment.this.onLoadTitleText());
-            ListStatistic.m5202b(UUID.randomUUID().toString());
+            //ListStatistic.m5211a(1);
+            //ListStatistic.m5205a(ImageHeaderMusicListFragment.this.onLoadTitleText());
+            //ListStatistic.m5202b(UUID.randomUUID().toString());
             return onCreateView;
         }
 
@@ -246,7 +238,7 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment implemen
         @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
         public void onFavoriteChanged(MediaItem mediaItem, boolean z) {
             ImageHeaderMusicListFragment.this.doStatiticFavorite(mediaItem, z);
-            ListStatistic.m5206a(mediaItem.getSongID().longValue(), OnlineMediaStatistic.m5029f(), z);
+            //ListStatistic.m5206a(mediaItem.getSongID().longValue(), //OnlineMediaStatistic.m5029f(), z);
         }
 
         @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
@@ -271,11 +263,11 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment implemen
     }
 
     protected void doStatiticFavorite(MediaItem mediaItem, boolean z) {
-        MusicLibraryStatistic.m5065a(z);
+        //MusicLibraryStatistic.m5065a(z);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void doStatisticMediaClick(MediaItem mediaItem) {
-        MusicLibraryStatistic.m5061c();
+        //MusicLibraryStatistic.m5061c();
     }
 }

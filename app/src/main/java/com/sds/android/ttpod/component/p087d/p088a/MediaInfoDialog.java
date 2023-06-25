@@ -5,13 +5,12 @@ import android.content.DialogInterface;
 import android.text.format.Formatter;
 import android.view.View;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.framework.modules.skin.p130c.DateTimeUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -33,11 +32,7 @@ public class MediaInfoDialog extends ScrollableDialog {
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public void mo2038a(MediaInfoDialog mediaInfoDialog) {
-                LocalStatistic.m5136aR();
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_RIGHT_MENU_MUSIC_INFO_EDIT.getValue(), SPage.PAGE_DIALOG_MORE.getValue(), SPage.PAGE_DIALOG_MORE_MUSIC_INFO_EDIT.getValue());
-                sUserEvent.append("song_id", mediaItem.getLocalDataSource());
-                sUserEvent.setPageParameter(true);
-                sUserEvent.post();
+
                 PopupsUtils.m6712b(MediaInfoDialog.this.getContext(), mediaItem, onDismissListener);
             }
         }, R.string.cancel, (BaseDialog.InterfaceC1064a) null);
@@ -52,7 +47,7 @@ public class MediaInfoDialog extends ScrollableDialog {
         m6837a(this.f3946a, R.id.genre, R.string.media_info_label_genre, TTTextUtils.validateString(context, mediaItem.getGenre()));
         m6837a(this.f3946a, R.id.time, R.string.media_info_label_time, DateTimeUtils.m3748a(mediaItem.getDuration().intValue()));
         m6837a(this.f3946a, R.id.size, R.string.media_info_label_size, Formatter.formatFileSize(context, FileUtils.m8405g(mediaItem.getLocalDataSource())));
-        m6837a(this.f3946a, R.id.format, R.string.media_info_label_format, FileUtils.m8399m(mediaItem.getLocalDataSource()));
+        m6837a(this.f3946a, R.id.format, R.string.media_info_label_format, FileUtils.getSuffix(mediaItem.getLocalDataSource()));
         m6837a(this.f3946a, R.id.year, R.string.media_info_label_year, String.valueOf(mediaItem.getYear()));
         m6837a(this.f3946a, R.id.bitrate, R.string.media_info_label_bitrate, context.getString(R.string.media_info_content_bitrate, mediaItem.getBitRate()));
         m6837a(this.f3946a, R.id.track, R.string.media_info_label_track, String.valueOf(mediaItem.getTrack()));

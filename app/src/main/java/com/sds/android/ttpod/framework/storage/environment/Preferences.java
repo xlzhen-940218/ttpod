@@ -109,7 +109,7 @@ public class Preferences {
     /* renamed from: g */
     public static Set<String> m2882g() {
         Set<String> m3091a = AccessHelper.m3091a(f6989a, PreferencesID.MEDIA_SCAN_EXCLUDE_FOLDER_SET.name(), (Set<String>) null);
-        String m8467b = EnvironmentUtils.C0605d.m8467b();
+        String m8467b = EnvironmentUtils.C0605d.getSdcardPath();
         if (m3091a == null) {
             m3091a = new HashSet<>();
             m3091a.add("/system");
@@ -169,7 +169,7 @@ public class Preferences {
     }
 
     /* renamed from: h */
-    public static boolean m2878h() {
+    public static boolean durationLessThan60() {
         return AccessHelper.m3096a(f6989a, PreferencesID.MEDIA_SCAN_EXCLUDE_DURATION_LESS_THAN_60.name(), (Boolean) true);
     }
 
@@ -179,7 +179,7 @@ public class Preferences {
     }
 
     /* renamed from: i */
-    public static boolean m2874i() {
+    public static boolean excludeAmrMid() {
         return AccessHelper.m3096a(f6989a, PreferencesID.MEDIA_SCAN_EXCLUDE_AMR_MID.name(), (Boolean) true);
     }
 
@@ -189,7 +189,7 @@ public class Preferences {
     }
 
     /* renamed from: j */
-    public static boolean m2870j() {
+    public static boolean excludeHiddenFolder() {
         return AccessHelper.m3096a(f6989a, PreferencesID.MEDIA_SCAN_EXCLUDE_HIDDEN_FOLDER.name(), (Boolean) true);
     }
 
@@ -604,8 +604,8 @@ public class Preferences {
     }
 
     /* renamed from: W */
-    public static String m3036W() {
-        return "assets://" + AllLocalSkinListLoader.m3872a().m3571b();
+    public static String getFirstSkinItemPath() {
+        return "assets://" + AllLocalSkinListLoader.getFirstSkinItem().getPath();
     }
 
     /* renamed from: i */
@@ -833,7 +833,7 @@ public class Preferences {
     /* renamed from: aq */
     public static TTPodUser m2954aq() {
         String m3092a = AccessHelper.m3092a(f6989a, PreferencesID.USER_INFO.name(), (String) null);
-        if (StringUtils.m8346a(m3092a)) {
+        if (StringUtils.isEmpty(m3092a)) {
             return null;
         }
         return (TTPodUser) JSONUtils.fromJson(m3092a, TTPodUser.class);

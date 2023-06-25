@@ -11,7 +11,7 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.ThirdParty.ThirdPartyApp;
 import com.sds.android.ttpod.ThirdParty.update.VersionUpdateData;
 import com.sds.android.ttpod.activities.setting.AboutActivity;
-import com.sds.android.ttpod.activities.unicomflow.UnicomFlowManager;
+
 import com.sds.android.ttpod.activities.version.VersionUpgradeActivity;
 import com.sds.android.ttpod.activities.version.VersionUpgradeProgressActivity;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
@@ -27,7 +27,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowDialogType;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ApkUtils;
@@ -83,7 +82,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     private String buildDownloadToastText(DownloadTaskInfo downloadTaskInfo, String str, String str2) {
-        String m8402j = FileUtils.m8402j(downloadTaskInfo.getSavePath());
+        String m8402j = FileUtils.getFilename(downloadTaskInfo.getSavePath());
         if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType())) {
             m8402j = FileUtils.m8401k(downloadTaskInfo.getSavePath());
             List<String> m8335c = StringUtils.m8335c(m8402j, "-");
@@ -93,10 +92,10 @@ public class ThemeActivity extends BaseActivity {
                 m8402j = m8335c.get(0).trim();
             }
         }
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             m8402j = str + "-" + m8402j;
         }
-        if (!StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str2)) {
             return m8402j + "\n" + str2;
         }
         return m8402j;
@@ -113,7 +112,7 @@ public class ThemeActivity extends BaseActivity {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(MessageDialog messageDialog2) {
                     FileUtils.m8404h(downloadTaskInfo.getSavePath());
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
                 }
             }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
             messageDialog.setTitle(R.string.download);
@@ -127,7 +126,7 @@ public class ThemeActivity extends BaseActivity {
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(MessageDialog messageDialog2) {
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, list, Boolean.TRUE));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, list, Boolean.TRUE));
                 }
             }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
             messageDialog.setTitle(R.string.download);
@@ -137,7 +136,7 @@ public class ThemeActivity extends BaseActivity {
 
     public void unicomFlowPopupDialog(UnicomFlowDialogType unicomFlowDialogType) {
         if (ActivityManager.m4618a().m4611e(this)) {
-            UnicomFlowManager.m7751d(this, unicomFlowDialogType);
+            //UnicomFlowManager.m7751d(this, unicomFlowDialogType);
         }
     }
 
@@ -190,7 +189,7 @@ public class ThemeActivity extends BaseActivity {
             if (tag instanceof ThirdPartyApp) {
                 ThirdPartyApp thirdPartyApp = (ThirdPartyApp) tag;
                 if (thirdPartyApp.m8320g()) {
-                    StatisticUtils.m4908a(thirdPartyApp.m8325b(), thirdPartyApp.m8324c(), thirdPartyApp.m8323d(), 0L, thirdPartyApp.m8319h());
+                    //StatisticUtils.m4908a(thirdPartyApp.m8325b(), thirdPartyApp.m8324c(), thirdPartyApp.m8323d(), 0L, thirdPartyApp.m8319h());
                     thirdPartyApp.m8322e();
                     Preferences.m2840q(JSONUtils.toJson(thirdPartyApp));
                 }
@@ -205,7 +204,7 @@ public class ThemeActivity extends BaseActivity {
             boolean z = this instanceof AboutActivity;
             VersionUpdateData versionUpdateData = (VersionUpdateData) commonResult.m4582d();
             if (num.intValue() == 0) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.START_COMMON_UPGRADE, versionUpdateData.getUpdateUrl()));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.START_COMMON_UPGRADE, versionUpdateData.getUpdateUrl()));
                 startActivity(new Intent(this, VersionUpgradeProgressActivity.class));
             } else if (num.intValue() == 1) {
                 startVersionUpdateActivity(versionUpdateData, false);

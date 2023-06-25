@@ -4,14 +4,13 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import com.sds.android.sdk.core.p058b.ExceptionReporter;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p087d.p088a.MessageDialog;
 import com.sds.android.ttpod.framework.base.BaseActivity;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 
@@ -24,9 +23,10 @@ public class ExceptionSendActivity extends BaseActivity {
         super.onCreate(bundle);
         String obj = getIntent().getCharSequenceExtra("android.intent.extra.SUBJECT").toString();
         String obj2 = getIntent().getCharSequenceExtra("android.intent.extra.TEXT").toString();
-        String m8478c = StringUtils.m8346a(EnvironmentUtils.C0604c.m8485a()) ? EnvironmentUtils.C0604c.m8478c() : EnvironmentUtils.C0604c.m8485a();
+        String m8478c = StringUtils.isEmpty(EnvironmentUtils.C0604c.getDeviceId()) ? EnvironmentUtils.C0604c.getMacAddress() : EnvironmentUtils.C0604c.getDeviceId();
         StringBuilder sb = new StringBuilder();
-        sb.append("clientId:").append(Preferences.m2945az()).append("\r\n").append("imei:").append(m8478c).append("\r\n").append(StatisticPageUtils.m6635a()).append(obj2);
+        sb.append("clientId:").append(Preferences.m2945az()).append("\r\n").append("imei:")
+                .append(m8478c).append("\r\n").append(obj2);
         ExceptionReporter.m8748a(obj, sb.toString(), new ExceptionReporter.InterfaceC0575a() { // from class: com.sds.android.ttpod.component.exception.ExceptionSendActivity.1
             @Override // com.sds.android.sdk.core.p058b.ExceptionReporter.InterfaceC0575a
             /* renamed from: a */
@@ -60,8 +60,8 @@ public class ExceptionSendActivity extends BaseActivity {
                 }
             });
             messageDialog.show();
-            ErrorStatistic.m5245a();
-            new SSystemEvent("SYS_EXCEPTION", "crash").append("origin", "error").post();
+            //ErrorStatistic.m5245a();
+            //new //SSystemEvent("SYS_EXCEPTION", "crash").append("origin", "error").post();
         } catch (Exception e) {
             e.printStackTrace();
             finish();

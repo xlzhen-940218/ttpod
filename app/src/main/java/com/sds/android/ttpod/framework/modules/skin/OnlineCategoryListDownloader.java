@@ -22,6 +22,6 @@ public class OnlineCategoryListDownloader extends OnlineListDownloader {
             FileUtils.m8404h(this.f6539a);
         }
         FileUtils.m8410c(str, this.f6539a);
-        CommandCenter.m4607a().m4595b(new Command(this.f6541c, new Object[0]), ModuleID.SKIN);
+        CommandCenter.getInstance().m4595b(new Command(this.f6541c, new Object[0]), ModuleID.SKIN);
     }
 }

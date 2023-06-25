@@ -100,7 +100,7 @@ public class NotificationBuilder {
 
     public NotificationBuilder(Context context) {
         this.f5655d = context;
-        if (SDKVersionUtils.m8371c()) {
+        if (SDKVersionUtils.checkVersionThanAndroid11()) {
             this.f5654A = new Notification.Builder(context);
         } else {
             this.f5654A = null;

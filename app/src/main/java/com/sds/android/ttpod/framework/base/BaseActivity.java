@@ -10,8 +10,8 @@ import android.view.MotionEvent;
 
 
 
-import com.sds.android.sdk.core.statistic.SEngine;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.ttpod.common.p083b.AutoDelloc;
 import com.sds.android.ttpod.framework.base.p108a.Command;
@@ -19,8 +19,7 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.SmartBarUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.StartupStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.UmengStatisticUtils;
+
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.framework.support.monitor.MediaButtonReceiver;
@@ -56,8 +55,8 @@ public abstract class BaseActivity extends FragmentActivity {
             Preferences.m3033X(booleanValue);
             if (booleanValue) {
                 SupportFactory.m2397a(BaseApplication.getApplication()).m2460p();
-                CommandCenter.m4607a().m4606a(new Command(CommandID.SAVE_UNICOM_TOTAL_FLOW, new Object[0]));
-                StartupStatistic.m4922b();
+                CommandCenter.getInstance().m4606a(new Command(CommandID.SAVE_UNICOM_TOTAL_FLOW, new Object[0]));
+                //StartupStatistic.m4922b();
                 return;
             }
             SupportFactory.m2397a(BaseApplication.getApplication()).m2459q();
@@ -76,7 +75,7 @@ public abstract class BaseActivity extends FragmentActivity {
         ActivityManager.m4618a().m4617a(this);
         Map<CommandID, Method> requestCommandMap = requestCommandMap();
         assertCommandMap(requestCommandMap);
-        CommandCenter.m4607a().m4597a(this, requestCommandMap);
+        CommandCenter.getInstance().m4597a(this, requestCommandMap);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -111,10 +110,10 @@ public abstract class BaseActivity extends FragmentActivity {
         this.mStatus = 2;
         ActivityManager.m4618a().m4613c(this);
         setBackgroundState(false);
-        UmengStatisticUtils.m4868a(this);
+        //UmengStatisticUtils.m4868a(this);
         MediaButtonReceiver.m2252b();
         if (!"none".equals(this.mSPage)) {
-            SEngine.Page.enter(this.mSPage);
+
         }
     }
 
@@ -125,7 +124,7 @@ public abstract class BaseActivity extends FragmentActivity {
         this.mStatus = 3;
         ActivityManager.m4618a().m4612d(this);
         setBackgroundState(true);
-        UmengStatisticUtils.m4865b(this);
+        //UmengStatisticUtils.m4865b(this);
     }
 
     @Override // android.app.Activity, android.view.Window.Callback
@@ -183,13 +182,13 @@ public abstract class BaseActivity extends FragmentActivity {
         if (this.mFragmentBackStackManager != null) {
             this.mFragmentBackStackManager.m4578b();
         }
-        CommandCenter.m4607a().m4599a(this);
+        CommandCenter.getInstance().m4599a(this);
         super.onDestroy();
     }
 
     @Override // android.support.v4.app.FragmentActivity, android.app.Activity
     public void onBackPressed() {
-        new SSystemEvent("SYS_BACK", "back").post();
+
         if (this.mFragmentBackStackManager == null) {
             super.onBackPressed();
         } else if (this.mCurrentFragment != null && !this.mCurrentFragment.isChildFragmentBackStackEmpty()) {
@@ -204,7 +203,7 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override // android.app.Activity
     public void finish() {
         if (!isFinishing()) {
-            CommandCenter.m4607a().m4599a(this);
+            CommandCenter.getInstance().m4599a(this);
             super.finish();
         }
     }
@@ -317,14 +316,14 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override // android.support.v4.app.FragmentActivity, android.app.Activity, android.view.KeyEvent.Callback
     public boolean onKeyDown(int i, KeyEvent keyEvent) {
         if (keyEvent.getRepeatCount() == 0) {
-            new SSystemEvent("SYS_KEY", String.valueOf(i)).post();
+
         }
         return super.onKeyDown(i, keyEvent);
     }
 
     public void updatePage(String str) {
         setPage(str);
-        SEngine.Page.enter(str);
+
     }
 
     public void setPage(SPage sPage) {

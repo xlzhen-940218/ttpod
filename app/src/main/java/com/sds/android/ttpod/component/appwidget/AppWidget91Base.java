@@ -77,7 +77,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
             @Override // com.sds.android.ttpod.framework.storage.environment.Preferences.InterfaceC2031a
             /* renamed from: a */
             public void mo2553a(PreferencesID preferencesID) {
-                LogUtils.m8388a(AppWidget91Base.TAG, "onPreferencesChanged " + preferencesID + " mSupport=" + AppWidget91Base.this.mSupport);
+                LogUtils.debug(AppWidget91Base.TAG, "onPreferencesChanged " + preferencesID + " mSupport=" + AppWidget91Base.this.mSupport);
                 if (PreferencesID.CURRENT_ARTIST_BITMAP_PATH == preferencesID) {
                     if (AppWidget91Base.this.mSupport != null) {
                         AppWidget91Base.this.onAlbumCoverChanged(Preferences.m3014a(AppWidget91Base.this.mSupport.m2454v()));
@@ -96,7 +96,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
             /* renamed from: a */
             public void mo2448a() {
                 super.mo2448a();
-                LogUtils.m8388a(AppWidget91Base.TAG, "onSupportServiceConnected");
+                LogUtils.debug(AppWidget91Base.TAG, "onSupportServiceConnected");
                 try {
                     MediaItem m2454v = AppWidget91Base.this.mSupport.m2454v();
                     if (m2454v != null && !m2454v.isNull()) {
@@ -114,7 +114,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
             /* renamed from: a */
             public void mo2446a(MediaItem mediaItem) {
                 super.mo2446a(mediaItem);
-                LogUtils.m8388a(AppWidget91Base.TAG, "onPlayMediaChanged");
+                LogUtils.debug(AppWidget91Base.TAG, "onPlayMediaChanged");
                 if (mediaItem != null) {
                     try {
                         if (!mediaItem.isNull()) {
@@ -167,7 +167,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
     }
 
     public void onLoad(int i) {
-        LogUtils.m8388a(TAG, "onLoad");
+        LogUtils.debug(TAG, "onLoad");
         initSupport();
         loadMonitor();
         initAppWidget(this.mSupport);
@@ -180,20 +180,20 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
     }
 
     private synchronized void initSupport() {
-        LogUtils.m8388a(TAG, "initSupport");
+        LogUtils.debug(TAG, "initSupport");
         this.mSupport = SupportFactory.m2397a(getContext());
         this.mSupport.mo2497a(this.mSupportCallback);
     }
 
     private synchronized void unInitSupport() {
-        LogUtils.m8388a(TAG, "unInitSupport");
+        LogUtils.debug(TAG, "unInitSupport");
         if (this.mSupport != null) {
             this.mSupport.m2482b(this.mSupportCallback);
         }
     }
 
     private void loadMonitor() {
-        LogUtils.m8388a(TAG, "loadMonitor");
+        LogUtils.debug(TAG, "loadMonitor");
         this.mRefreshWidgetMonitor = new C1077a();
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("com.nd.android.pandahome.THEME_INFO");
@@ -204,7 +204,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
     }
 
     private void unLoadMonitor() {
-        LogUtils.m8388a(TAG, "unLoadMonitor");
+        LogUtils.debug(TAG, "unLoadMonitor");
         if (this.mRefreshWidgetMonitor != null) {
             getContext().unregisterReceiver(this.mRefreshWidgetMonitor);
             this.mRefreshWidgetMonitor = null;
@@ -212,7 +212,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
     }
 
     private void initAppWidget(Support support) {
-        LogUtils.m8388a(TAG, "initAppWidget");
+        LogUtils.debug(TAG, "initAppWidget");
         if (support != null && support.m2452x()) {
             setPlayStateBackground(this.mSupport.m2463m());
             setPlayModeBackground(Preferences.m2862l());
@@ -274,7 +274,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
         public void onReceive(Context context, Intent intent) {
             if (intent != null && intent.getAction() != null) {
                 String action = intent.getAction();
-                LogUtils.m8388a(AppWidget91Base.TAG, action);
+                LogUtils.debug(AppWidget91Base.TAG, action);
                 if ("com.nd.android.pandahome.THEME_INFO".equals(action)) {
                     String stringExtra = intent.getStringExtra(AppWidget91Base.KEY_PACKAGENAME);
                     if (stringExtra == null || stringExtra.equals(AppWidget91Base.this.getContext().getPackageName())) {
@@ -290,7 +290,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
                     AppWidget91Base.this.registerPreferenceListener();
                 } else if (Action.EXIT.equals(action)) {
                     AppWidget91Base.this.setPlayStateBackground(PlayStatus.STATUS_PAUSED);
-                    LogUtils.m8388a(AppWidget91Base.TAG, "EXIT");
+                    LogUtils.debug(AppWidget91Base.TAG, "EXIT");
                     AppWidget91Base.this.unRegisterPreferenceListener();
                     if (AppWidget91Base.this.mSupport != null && AppWidget91Base.this.mSupport.m2452x()) {
                         AppWidget91Base.this.mSupport.m2482b(AppWidget91Base.this.mSupportCallback);

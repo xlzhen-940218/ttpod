@@ -637,9 +637,9 @@ public class ViewController {
         m6534b(mediaItem.getDuration().intValue());
         mo6443a(mediaItem.getFav());
         if (z && this.f4198J != null) {
-            String m3193b = Cache.m3218a().m3193b(mediaItem);
+            String m3193b = Cache.getInstance().m3193b(mediaItem);
             boolean m3453b = this.f4198J.m3453b(m3193b);
-            LogUtils.m8386a("ViewController", "looklyricloading updateView %s want setState equalLyricFile=%b cachePath=%s", getClass().getSimpleName(), Boolean.valueOf(m3453b), m3193b);
+            LogUtils.debug("ViewController", "looklyricloading updateView %s want setState equalLyricFile=%b cachePath=%s", getClass().getSimpleName(), Boolean.valueOf(m3453b), m3193b);
             if (!m3453b) {
                 this.f4198J.setState(1);
             }
@@ -800,7 +800,7 @@ public class ViewController {
             Object[] objArr = new Object[2];
             objArr[0] = Boolean.valueOf(bitmap != null);
             objArr[1] = getClass().getSimpleName();
-            LogUtils.m8386a("ViewController", "loadArtistPicture artistPic bitmap!=null_%b page=%s", objArr);
+            LogUtils.debug("ViewController", "loadArtistPicture artistPic bitmap!=null_%b page=%s", objArr);
         }
         m6530c(bitmap);
     }

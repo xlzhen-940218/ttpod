@@ -5,7 +5,6 @@ import android.view.View;
 import com.sds.android.cloudapi.ttpod.data.StarCategory;
 import com.sds.android.ttpod.activities.musiccircle.MusicCircleStatistic;
 import com.sds.android.ttpod.adapter.p073e.StarCategoryAdapter;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.widget.StateView;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +59,6 @@ public class StarRankFragment extends BaseStarCategoryFragment {
     public void onItemClickEvent(StarCategory starCategory) {
         super.onItemClickEvent(starCategory);
         MusicCircleStatistic.m7983a(starCategory.getName());
-        OnlineMediaStatistic.m5045a("music-circle");
+        //OnlineMediaStatistic.m5045a("music-circle");
     }
 }

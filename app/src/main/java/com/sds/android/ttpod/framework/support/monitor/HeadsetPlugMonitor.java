@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import com.sds.android.cloudapi.ttpod.data.VIPPolicy;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
 
 /* loaded from: classes.dex */
 public class HeadsetPlugMonitor extends BroadcastReceiver {
@@ -63,6 +63,6 @@ public class HeadsetPlugMonitor extends BroadcastReceiver {
 
     /* renamed from: a */
     private void m2259a(String str) {
-        new SSystemEvent("SYS_HEADSET", str).post();
+        //new //SSystemEvent("SYS_HEADSET", str).post();
     }
 }

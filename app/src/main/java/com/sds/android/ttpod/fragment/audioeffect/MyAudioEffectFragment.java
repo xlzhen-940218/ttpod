@@ -44,10 +44,8 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.PrivateEffectItem;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -130,7 +128,7 @@ public class MyAudioEffectFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadFinished() {
         super.onLoadFinished();
-        CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -158,7 +156,7 @@ public class MyAudioEffectFragment extends BaseFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void getCurrentMediaItemAndEffect() {
-        this.mCurrentMediaItem = Cache.m3218a().m3225N();
+        this.mCurrentMediaItem = Cache.getInstance().getCurrentPlayMediaItem();
         if (SupportFactory.m2397a(BaseApplication.getApplication()).m2457s() != null) {
             this.mUsedEffect = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s().m4420h();
         }
@@ -198,7 +196,7 @@ public class MyAudioEffectFragment extends BaseFragment {
     }
 
     private void loadMonitor() {
-        LogUtils.m8388a(TAG, "loadMonitor");
+        LogUtils.debug(TAG, "loadMonitor");
         this.mPlayStatusMonitor = new PlayStatusMonitor();
         BaseApplication.getApplication().registerReceiver(this.mPlayStatusMonitor, this.mPlayStatusMonitor.m5739a());
     }
@@ -230,7 +228,7 @@ public class MyAudioEffectFragment extends BaseFragment {
     public void setUserVisibleHint(boolean z) {
         super.setUserVisibleHint(z);
         if (z && this.mNeedUpdate) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_PRIVATE_EFFECT, new Object[0]));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_PRIVATE_EFFECT, new Object[0]));
             this.mNeedUpdate = false;
         }
     }
@@ -285,7 +283,7 @@ public class MyAudioEffectFragment extends BaseFragment {
     }
 
     public void updateDeletePrivateEffectList() {
-        CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_PRIVATE_EFFECT, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_PRIVATE_EFFECT, new Object[0]));
     }
 
     private void initMyAudioEffectViews() {
@@ -326,7 +324,7 @@ public class MyAudioEffectFragment extends BaseFragment {
         if (m2954aq != null && visitNetWifi()) {
             this.mLayoutEffectDetail.setVisibility(View.VISIBLE);
             if (getUserVisibleHint()) {
-                CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
             }
             setUserinfo(m2954aq, m2954aq.getAvatarUrl());
             setControlsVisible(0, 4);
@@ -420,11 +418,11 @@ public class MyAudioEffectFragment extends BaseFragment {
         private void play(int i, boolean z) {
             if (!MyAudioEffectFragment.this.mIsStatisticed) {
                 MyAudioEffectFragment.this.mIsStatisticed = true;
-                AudioEffectStatistic.m5248x();
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_MY_EFFECT_PLAY, SPage.PAGE_NONE, SPage.PAGE_AUDIO_MY_CLOUD_EFFECT);
+                //AudioEffectStatistic.m5248x();
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_MY_EFFECT_PLAY, SPage.PAGE_NONE, SPage.PAGE_AUDIO_MY_CLOUD_EFFECT);
             }
             if (!MyAudioEffectFragment.this.mNetTemporaryGroupSynced) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, MyAudioEffectFragment.this.mMediaItemList));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, MyAudioEffectFragment.this.mMediaItemList));
                 MyAudioEffectFragment.this.mNetTemporaryGroupSynced = true;
             }
             MediaItem m4325f = this.mMyEffectItemList.get(i).m4325f();
@@ -435,11 +433,11 @@ public class MyAudioEffectFragment extends BaseFragment {
             }
             PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
             if (m2463m == PlayStatus.STATUS_PAUSED) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
             } else if (m2463m == PlayStatus.STATUS_PLAYING) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
             } else {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.START, new Object[0]));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
             }
         }
 
@@ -462,7 +460,7 @@ public class MyAudioEffectFragment extends BaseFragment {
 
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4596b(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, MyAudioEffectFragment.this.mSelectedMediaItem));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, MyAudioEffectFragment.this.mSelectedMediaItem));
             }
         }
     }

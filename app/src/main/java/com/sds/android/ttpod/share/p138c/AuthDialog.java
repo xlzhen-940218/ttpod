@@ -47,7 +47,7 @@ public class AuthDialog extends Dialog {
     public AuthDialog(Context context, String str, AuthCallback authCallback) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
         this.f7376e = (Activity) context;
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             throw new IllegalArgumentException("authUrl can not be null.");
         }
         this.f7374c = str;

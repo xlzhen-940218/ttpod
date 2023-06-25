@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
@@ -20,20 +20,14 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ListStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.AsyncLoadMediaItemList;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.media.player.PlayStatus;
 import java.util.List;
-import java.util.UUID;
 
 /* renamed from: com.sds.android.ttpod.adapter.f.c */
 /* loaded from: classes.dex */
@@ -62,6 +56,11 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
 
     /* renamed from: h */
     private InterfaceC1003a f3404h;
+
+    @Override
+    public void mo6973a(MediaItem mediaItem, boolean z) {
+        
+    }
 
     /* compiled from: SongListAdapter.java */
     /* renamed from: com.sds.android.ttpod.adapter.f.c$a */
@@ -147,13 +146,13 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
         }
         MediaItem mediaItem = this.f3397a.get(i);
         MediaItemViewHolder mediaItemViewHolder = (MediaItemViewHolder) view.getTag();
-        MediaItemMenuHolder mediaItemMenuHolder = (MediaItemMenuHolder) mediaItemViewHolder.m6957h().getTag();
+        MediaItemMenuHolder mediaItemMenuHolder = (MediaItemMenuHolder) mediaItemViewHolder.getExpandable().getTag();
         mediaItemMenuHolder.m6979a(this);
         m7403a(mediaItemMenuHolder, mediaItem, i);
-        if (StringUtils.m8346a(this.f3402f)) {
+        if (StringUtils.isEmpty(this.f3402f)) {
             this.f3402f = Preferences.m2858m();
         }
-        if (StringUtils.m8346a(this.f3403g)) {
+        if (StringUtils.isEmpty(this.f3403g)) {
             this.f3403g = Preferences.m2854n();
         }
         boolean z = StringUtils.m8344a(this.f3399c, this.f3402f) && StringUtils.m8344a(this.f3403g, mediaItem.getID());
@@ -169,7 +168,7 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
         mediaItemMenuHolder.m6980a(new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.f.c.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                SUserUtils.m4958a(i);
+                //SUserUtils.m4958a(i);
                 SongListAdapter.this.m7400a(mediaItem, view, mediaItemMenuHolder, i);
                 switch (view.getId()) {
                     case R.id.media_menu_download /* 2131230747 */:
@@ -197,11 +196,9 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
                                 MvManager.m5559a(mediaItem);
                             }
                         }, 0);
-                        SongListAdapter.this.m7402a(SAction.ACTION_RIGHT_MENU_MV, mediaItem);
                         return;
                     case R.id.media_menu_share /* 2131230753 */:
                         PopupsUtils.m6756a(SongListAdapter.this.f3398b, mediaItem);
-                        SongListAdapter.this.m7402a(SAction.ACTION_RIGHT_MENU_SHARE, mediaItem);
                         return;
                 }
             }
@@ -209,13 +206,7 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    /* renamed from: a */
-    public void m7402a(SAction sAction, MediaItem mediaItem) {
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", sAction.getValue(), SPage.PAGE_NONE.getValue(), SPage.PAGE_NONE.getValue());
-        sUserEvent.append("song_id", mediaItem.getSongID());
-        sUserEvent.setPageParameter(true);
-        sUserEvent.post();
-    }
+ 
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
@@ -225,55 +216,49 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
         }
     }
 
-    @Override // com.sds.android.ttpod.component.p085b.MediaItemMenuHolder.InterfaceC1136a
-    /* renamed from: a */
-    public void mo6973a(MediaItem mediaItem, boolean z) {
-        MusicLibraryStatistic.m5065a(z);
-        ListStatistic.m5206a(mediaItem.getSongID().longValue(), OnlineMediaStatistic.m5029f(), z);
-    }
 
     /* renamed from: a */
     public void m7401a(MediaItem mediaItem) {
         if (this.f3400d != null && this.f3401e != null) {
-            StatisticUtils.m4907a(this.f3401e, "menu", this.f3400d, 0L, OnlineMediaStatistic.m5029f(), mediaItem.getTitle(), UUID.randomUUID().toString());
+            //StatisticUtils.m4907a(this.f3401e, "menu", this.f3400d, 0L, //OnlineMediaStatistic.m5029f(), mediaItem.getTitle(), UUID.randomUUID().toString());
         }
         new DownloadMenuHandler(this.f3398b).m6927a(mediaItem, this.f3400d);
     }
 
     /* renamed from: a */
     public void m7408a(int i, boolean z) {
-        OnlineMediaStatistic.m5053a(i + 1);
+        //OnlineMediaStatistic.m5053a(i + 1);
         MediaItem item = getItem(i);
         if (item != null) {
-            LogUtils.m8388a("ListStatistic", "onMediaItemClicked=" + item.getSongID() + "," + item.getTitle());
+            LogUtils.debug("ListStatistic", "onMediaItemClicked=" + item.getSongID() + "," + item.getTitle());
             if (z) {
-                OnlineMediaStatistic.m5047a(Integer.valueOf(ListStatistic.m5212a()));
-                OnlineMediaStatistic.m5038b(ListStatistic.m5203b());
-                OnlineMediaStatistic.m5046a(item.getSongID());
-                OnlineMediaStatistic.m5034c(ListStatistic.m5201c());
+                //OnlineMediaStatistic.m5047a(Integer.valueOf(//ListStatistic.m5212a()));
+                //OnlineMediaStatistic.m5038b(//ListStatistic.m5203b());
+                //OnlineMediaStatistic.m5046a(item.getSongID());
+                //OnlineMediaStatistic.m5034c(//ListStatistic.m5201c());
             } else {
-                OnlineMediaStatistic.m5047a((Integer) (-1));
-                OnlineMediaStatistic.m5038b((String) null);
-                OnlineMediaStatistic.m5046a((Long) (-1L));
-                OnlineMediaStatistic.m5034c(null);
+                //OnlineMediaStatistic.m5047a((Integer) (-1));
+                //OnlineMediaStatistic.m5038b((String) null);
+                //OnlineMediaStatistic.m5046a((Long) (-1L));
+                //OnlineMediaStatistic.m5034c(null);
             }
-            OnlineMediaStatistic.m5045a(this.f3400d);
-            OnlineMediaStatistic.m5054a();
+            //OnlineMediaStatistic.m5045a(this.f3400d);
+            //OnlineMediaStatistic.m5054a();
             if (StringUtils.m8344a(this.f3399c, Preferences.m2858m()) && StringUtils.m8344a(item.getID(), Preferences.m2854n())) {
                 PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
                 if (m2463m == PlayStatus.STATUS_PAUSED) {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
                     return;
                 } else if (m2463m == PlayStatus.STATUS_PLAYING) {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
                     return;
                 } else {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.START, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
                     return;
                 }
             }
-            CommandCenter.m4607a().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, m7397b()));
-            CommandCenter.m4607a().m4606a(new Command(CommandID.PLAY_GROUP, this.f3399c, item));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, m7397b()));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, this.f3399c, item));
         }
     }
 

@@ -6,7 +6,6 @@ import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.JSONUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.framework.modules.skin.p130c.DateTimeUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.MediaTag;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -36,9 +35,9 @@ public class MediaItemUtils {
             i2 = bitrate2;
         }
         if (onlineMediaItem.getAuditionUrls() == null || onlineMediaItem.getAuditionUrls().size() == 0) {
-            ErrorStatistic.m5243a(onlineMediaItem.getSongId());
+            //ErrorStatistic.m5243a(onlineMediaItem.getSongId());
         } else if (onlineMediaItem.getDownloadUrls() == null || onlineMediaItem.getDownloadUrls().size() == 0) {
-            ErrorStatistic.m5238b(onlineMediaItem.getSongId());
+            //ErrorStatistic.m5238b(onlineMediaItem.getSongId());
         }
         long currentTimeMillis = System.currentTimeMillis();
         MediaItem mediaItem = new MediaItem(null, Long.valueOf(onlineMediaItem.getSongId()), null, null, onlineMediaItem.getTitle(), onlineMediaItem.getArtist(), onlineMediaItem.getAlbum(), null, null, onlineMediaItem.getMVUrls().size() > 0 ? MediaItem.MIMETYPE_MV : null, 0, Integer.valueOf(i), 0, 0, 0, Integer.valueOf(i2), 0, 0, null, 0, Integer.valueOf(onlineMediaItem.getPickCount()), Long.valueOf(currentTimeMillis), Long.valueOf(currentTimeMillis), null, false, JSONUtils.toJson(onlineMediaItem), MediaStorage.GROUP_ID_ONLINE_TEMPORARY);
@@ -57,7 +56,7 @@ public class MediaItemUtils {
         long currentTimeMillis = System.currentTimeMillis();
         String str4 = null;
         String str5 = null;
-        if (StringUtils.m8346a(str) || !FileUtils.m8419a(str)) {
+        if (StringUtils.isEmpty(str) || !FileUtils.m8419a(str)) {
             str5 = str;
         } else {
             str4 = str;
@@ -70,9 +69,9 @@ public class MediaItemUtils {
         DebugUtils.m8426a(str, "mediaSource");
         String m8396p = FileUtils.m8396p(str);
         if (FileUtils.m8414b(m8396p)) {
-            String m8399m = FileUtils.m8399m(m8396p);
+            String m8399m = FileUtils.getSuffix(m8396p);
             if (m8399m.equalsIgnoreCase("mid") || m8399m.equalsIgnoreCase("midi") || m8399m.equalsIgnoreCase("amr")) {
-                return new MediaItem(null, null, m8396p, FileUtils.m8400l(m8396p), FileUtils.m8401k(m8396p), "", "", "", null, FileUtils.m8399m(m8396p), 0, 0, 0, 0, 0, 0, 0, 0, null, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null);
+                return new MediaItem(null, null, m8396p, FileUtils.m8400l(m8396p), FileUtils.m8401k(m8396p), "", "", "", null, FileUtils.getSuffix(m8396p), 0, 0, 0, 0, 0, 0, 0, 0, null, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null);
             }
             MediaTag mediaTag = new MediaTag();
             long currentTimeMillis = System.currentTimeMillis();
@@ -89,7 +88,7 @@ public class MediaItemUtils {
         mediaItem.setLocalDataSource(str);
         if (FileUtils.m8414b(mediaItem.getLocalDataSource())) {
             MediaTag mediaTag = new MediaTag();
-            String m8399m = FileUtils.m8399m(mediaItem.getLocalDataSource());
+            String m8399m = FileUtils.getSuffix(mediaItem.getLocalDataSource());
             if (mediaTag.openFile(mediaItem.getLocalDataSource(), true)) {
                 mediaItem.setBitRate(Integer.valueOf(mediaTag.bitRate()));
                 mediaItem.setDuration(Integer.valueOf(mediaTag.duration()));
@@ -122,9 +121,9 @@ public class MediaItemUtils {
     public static boolean m4715a(MediaItem mediaItem) {
         DebugUtils.m8426a(mediaItem, "mediaItem");
         if (mediaItem.isOnline()) {
-            return Cache.m3218a().m3224O().contains(mediaItem.getID());
+            return Cache.getInstance().m3224O().contains(mediaItem.getID());
         }
-        if (Cache.m3218a().m3220S().contains(mediaItem.getID())) {
+        if (Cache.getInstance().m3220S().contains(mediaItem.getID())) {
             return true;
         }
         return m4713a(mediaItem.getSongID());
@@ -132,6 +131,6 @@ public class MediaItemUtils {
 
     /* renamed from: a */
     public static boolean m4713a(Long l) {
-        return (l == null || l.longValue() == 0 || !Cache.m3218a().m3224O().contains(MediaItem.genIDWithSongID(l))) ? false : true;
+        return (l == null || l.longValue() == 0 || !Cache.getInstance().m3224O().contains(MediaItem.genIDWithSongID(l))) ? false : true;
     }
 }

@@ -107,7 +107,7 @@ public class RoundedDrawable extends Drawable {
             if (m1237b != null) {
                 return new RoundedDrawable(m1237b);
             }
-            LogUtils.m8384b("RoundedDrawable", "Failed to create bitmap from drawable!");
+            LogUtils.warning("RoundedDrawable", "Failed to create bitmap from drawable!");
             return drawable;
         }
         return drawable;

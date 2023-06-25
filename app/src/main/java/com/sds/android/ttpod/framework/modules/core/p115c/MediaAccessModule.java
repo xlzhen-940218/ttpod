@@ -67,7 +67,7 @@ public class MediaAccessModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.MEDIA_ACCESS;
     }
 
@@ -128,19 +128,19 @@ public class MediaAccessModule extends BaseModule {
         if (4 == downloadTaskInfo.getState().intValue()) {
             if ((DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType()) || DownloadTaskInfo.TYPE_FAVORITE_SONG.equals(downloadTaskInfo.getType()) || DownloadTaskInfo.TYPE_FAVORITE_SONG_LIST.equals(downloadTaskInfo.getType())) && MediaStorage.queryMediaItemBySongID(sContext, MediaStorage.GROUP_ID_ALL_LOCAL, downloadTaskInfo.getFileId()) != null) {
                 m4269f();
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, MediaStorage.GROUP_ID_ALL_LOCAL), ModuleID.MEDIA_ACCESS);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, MediaStorage.GROUP_ID_ALL_LOCAL), ModuleID.MEDIA_ACCESS);
             }
         }
     }
 
     public void queryGroupItemList(GroupType groupType) {
-        CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_GROUP_LIST, groupType, m4285a(groupType)), ModuleID.MEDIA_ACCESS);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_GROUP_LIST, groupType, m4285a(groupType)), ModuleID.MEDIA_ACCESS);
     }
 
     public void queryGroupItemList() {
         List<GroupItem> m4285a = m4285a(GroupType.CUSTOM_LOCAL);
         m4285a.addAll(m4285a(GroupType.CUSTOM_ONLINE));
-        CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_LOCAL_AND_ONLINE_GROUP_LIST, m4285a), ModuleID.MEDIA_ACCESS);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_LOCAL_AND_ONLINE_GROUP_LIST, m4285a), ModuleID.MEDIA_ACCESS);
     }
 
     public void queryGroupItemListByAmountOrder(GroupType groupType) {
@@ -152,7 +152,7 @@ public class MediaAccessModule extends BaseModule {
                 return groupItem2.getCount().intValue() - groupItem.getCount().intValue();
             }
         });
-        CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_GROUP_LIST, groupType, m4285a), ModuleID.MEDIA_ACCESS);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_GROUP_LIST, groupType, m4285a), ModuleID.MEDIA_ACCESS);
     }
 
     /* renamed from: a */
@@ -170,7 +170,7 @@ public class MediaAccessModule extends BaseModule {
                         }
                     }
                 }
-                Cache.m3218a().m3187b(queryGroupItems);
+                Cache.getInstance().m3187b(queryGroupItems);
             } else if (groupType == GroupType.CUSTOM_ONLINE) {
                 Iterator<GroupItem> it2 = queryGroupItems.iterator();
                 String buildMusicCircleFavGroupIDPrefix = MediaStorage.buildMusicCircleFavGroupIDPrefix();
@@ -200,7 +200,7 @@ public class MediaAccessModule extends BaseModule {
 
     /* renamed from: a */
     private List<GroupItem> m4284a(GroupType groupType, List<GroupItem> list) {
-        List<String> m3211a = Cache.m3218a().m3211a(groupType);
+        List<String> m3211a = Cache.getInstance().m3211a(groupType);
         if (m3211a != null) {
             ArrayList arrayList = new ArrayList();
             for (String str : m3211a) {
@@ -220,7 +220,7 @@ public class MediaAccessModule extends BaseModule {
         for (GroupItem groupItem2 : list) {
             arrayList2.add(groupItem2.getGroupID());
         }
-        Cache.m3218a().m3210a(groupType, arrayList2);
+        Cache.getInstance().m3210a(groupType, arrayList2);
         return list;
     }
 
@@ -242,7 +242,7 @@ public class MediaAccessModule extends BaseModule {
         this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.4
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MEDIA_LIST, str, MediaStorage.queryMediaItemList(MediaAccessModule.sContext, str, str2)), ModuleID.MEDIA_ACCESS);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIST, str, MediaStorage.queryMediaItemList(MediaAccessModule.sContext, str, str2)), ModuleID.MEDIA_ACCESS);
                 if (!str2.equals(Preferences.m2860l(str))) {
                     Preferences.m3010a(str, str2);
                     MediaAccessModule.this.m4276b(str);
@@ -264,7 +264,7 @@ public class MediaAccessModule extends BaseModule {
     }
 
     public void queryAsyncLoadMediaItemList(String str, String str2) {
-        CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_ASYNCLOAD_MEDIA_ITEM_LIST, str, m4281a(str, str2)), ModuleID.MEDIA_ACCESS);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_ASYNCLOAD_MEDIA_ITEM_LIST, str, m4281a(str, str2)), ModuleID.MEDIA_ACCESS);
     }
 
     /* renamed from: a */
@@ -336,7 +336,7 @@ public class MediaAccessModule extends BaseModule {
     public void addMediaItem(String str, MediaItem mediaItem) {
         MediaStorage.insertMediaItem(sContext, str, mediaItem);
         m4276b(str);
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(str)), ModuleID.MEDIA_ACCESS);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(str)), ModuleID.MEDIA_ACCESS);
         m4269f();
     }
 
@@ -357,7 +357,7 @@ public class MediaAccessModule extends BaseModule {
                 List<String> queryMediaIDs = MediaStorage.queryMediaIDs(MediaAccessModule.sContext, str, Preferences.m2860l(str));
                 for (MediaItem mediaItem : arrayList) {
                     if (!queryMediaIDs.contains(mediaItem.getID())) {
-                        LogUtils.m8381c("Favorite", "title" + mediaItem.getTitle());
+                        LogUtils.error("Favorite", "title" + mediaItem.getTitle());
                         arrayList2.add(mediaItem);
                     }
                 }
@@ -365,7 +365,7 @@ public class MediaAccessModule extends BaseModule {
                     MediaStorage.insertMediaItems(MediaAccessModule.sContext, str, arrayList2);
                 }
                 MediaAccessModule.this.m4269f();
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, str), ModuleID.MEDIA_ACCESS);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, str), ModuleID.MEDIA_ACCESS);
                 MediaAccessModule.this.m4276b(str);
             }
         });
@@ -402,7 +402,7 @@ public class MediaAccessModule extends BaseModule {
 
     public void addGroupItemExchangeOrderEvent(GroupType groupType, String str, String str2) {
         if (this.f5932a == null) {
-            this.f5932a = Cache.m3218a().m3211a(groupType);
+            this.f5932a = Cache.getInstance().m3211a(groupType);
         }
         int indexOf = this.f5932a.indexOf(str);
         int indexOf2 = this.f5932a.indexOf(str2);
@@ -414,7 +414,7 @@ public class MediaAccessModule extends BaseModule {
 
     public void commitGroupItemExchangeOrder(GroupType groupType) {
         if (this.f5932a != null && this.f5932a.size() > 0) {
-            Cache.m3218a().m3210a(groupType, this.f5932a);
+            Cache.getInstance().m3210a(groupType, this.f5932a);
             this.f5932a = null;
         }
     }
@@ -427,12 +427,12 @@ public class MediaAccessModule extends BaseModule {
     public void updateMediaItem(final MediaItem mediaItem) {
         m4269f();
         MediaStorage.updateMediaItem(sContext, mediaItem);
-        final boolean equals = mediaItem.equals(Cache.m3218a().m3225N());
+        final boolean equals = mediaItem.equals(Cache.getInstance().getCurrentPlayMediaItem());
         final PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
         if (equals) {
-            Cache.m3218a().m3182c(mediaItem);
-            CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MEDIA_ITEM_STARTED, mediaItem), ModuleID.MEDIA_ACCESS);
-            CommandCenter.m4607a().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+            Cache.getInstance().m3182c(mediaItem);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_ITEM_STARTED, mediaItem), ModuleID.MEDIA_ACCESS);
+            CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
             Preferences.m2884f(Preferences.m2854n() + File.pathSeparator + SupportFactory.m2397a(sContext).m2465k());
         }
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.8
@@ -449,14 +449,14 @@ public class MediaAccessModule extends BaseModule {
                     createMediaTag.setYear(mediaItem.getYear().intValue());
                     createMediaTag.save();
                     createMediaTag.close();
-                    CommandCenter.m4607a().m4603a(new Command(CommandID.UPDATE_MEDIA_ITEM_FINISHED, mediaItem), ModuleID.MEDIA_ACCESS, 500);
-                    CommandCenter.m4607a().m4603a(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, mediaItem.getGroupID()), ModuleID.MEDIA_ACCESS, 500);
+                    CommandCenter.getInstance().m4603a(new Command(CommandID.UPDATE_MEDIA_ITEM_FINISHED, mediaItem), ModuleID.MEDIA_ACCESS, 500);
+                    CommandCenter.getInstance().m4603a(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, mediaItem.getGroupID()), ModuleID.MEDIA_ACCESS, 500);
                     if (equals && m2463m == PlayStatus.STATUS_PLAYING) {
-                        CommandCenter.m4607a().m4605a(new Command(CommandID.START, new Object[0]), 1000);
+                        CommandCenter.getInstance().m4605a(new Command(CommandID.START, new Object[0]), 1000);
                     }
                 }
                 if (equals) {
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.SYNC_CUR_MEDIA_INFO, new Object[0]));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_CUR_MEDIA_INFO, new Object[0]));
                 }
             }
         });
@@ -518,11 +518,11 @@ public class MediaAccessModule extends BaseModule {
         this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.9
             @Override // java.lang.Runnable
             public void run() {
-                MediaItem m3225N = Cache.m3218a().m3225N();
+                MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
                 for (MediaItem mediaItem : collection) {
                     if (m3225N.equals(mediaItem)) {
-                        Cache.m3218a().m3167f();
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_PICTURE_DELETED, mediaItem), ModuleID.MEDIA_ACCESS);
+                        Cache.getInstance().m3167f();
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_PICTURE_DELETED, mediaItem), ModuleID.MEDIA_ACCESS);
                     }
                     MediaAccessModule.this.m4283a(mediaItem, "picture_type");
                 }
@@ -534,14 +534,14 @@ public class MediaAccessModule extends BaseModule {
         this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.10
             @Override // java.lang.Runnable
             public void run() {
-                MediaItem m3225N = Cache.m3218a().m3225N();
+                MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
                 for (MediaItem mediaItem : collection) {
                     if (!m3225N.equals(mediaItem)) {
                         MediaAccessModule.this.m4283a(mediaItem, "lyric_type");
                     } else {
-                        FileUtils.m8404h(Cache.m3218a().m3159i());
-                        Cache.m3218a().m3161h();
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_LYRIC_DELETED, mediaItem), ModuleID.MEDIA_ACCESS);
+                        FileUtils.m8404h(Cache.getInstance().m3159i());
+                        Cache.getInstance().m3161h();
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_LYRIC_DELETED, mediaItem), ModuleID.MEDIA_ACCESS);
                     }
                 }
             }
@@ -563,7 +563,7 @@ public class MediaAccessModule extends BaseModule {
     /* renamed from: b */
     public void m4276b(String str) {
         if (StringUtils.m8344a(m4272c(str), Preferences.m2858m())) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
         }
     }
 
@@ -596,7 +596,7 @@ public class MediaAccessModule extends BaseModule {
                             break;
                         }
                     } else {
-                        CommandCenter.m4607a().m4596b(new Command(CommandID.STOP, new Object[0]));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
                         break;
                     }
                 }
@@ -606,19 +606,19 @@ public class MediaAccessModule extends BaseModule {
         if (str2 != null) {
             MediaItem queryMediaItem = MediaStorage.queryMediaItem(sContext, m2858m, str2);
             if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
-                CommandCenter.m4607a().m4596b(new Command(CommandID.PLAY_GROUP, m2858m, queryMediaItem));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.PLAY_GROUP, m2858m, queryMediaItem));
             } else {
-                CommandCenter.m4607a().m4596b(new Command(CommandID.STOP, new Object[0]));
-                CommandCenter.m4607a().m4596b(new Command(CommandID.SYNC_GROUP, m2858m, queryMediaItem));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_GROUP, m2858m, queryMediaItem));
             }
         }
         m4276b(str);
-        CommandCenter.m4607a().m4595b(new Command(CommandID.DELETE_MEDIA_ITEMS_FINISHED, str), ModuleID.MEDIA_ACCESS);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.DELETE_MEDIA_ITEMS_FINISHED, str), ModuleID.MEDIA_ACCESS);
         m4269f();
         if (bool.booleanValue() || !str.startsWith(MediaStorage.GROUP_ID_CUSTOM_PREFIX)) {
-            CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(str)), ModuleID.MEDIA_ACCESS);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(str)), ModuleID.MEDIA_ACCESS);
         } else {
-            CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(str)), ModuleID.MEDIA_ACCESS);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(str)), ModuleID.MEDIA_ACCESS);
         }
         this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.2
             @Override // java.lang.Runnable
@@ -637,19 +637,19 @@ public class MediaAccessModule extends BaseModule {
 
     /* renamed from: g */
     private void m4268g() {
-        CommandCenter.m4607a().m4596b(new Command(CommandID.STOP, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
         Preferences.m2894d(MediaStorage.GROUP_ID_ALL_LOCAL);
         Preferences.m2888e("");
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
     }
 
     public void logoutFinished() {
         m4276b(MediaStorage.GROUP_ID_FAV);
-        if (StringUtils.m8344a(Preferences.m2858m(), MediaStorage.GROUP_ID_FAV) && Cache.m3218a().m3225N().isOnline()) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.NEXT, new Object[0]));
+        if (StringUtils.m8344a(Preferences.m2858m(), MediaStorage.GROUP_ID_FAV) && Cache.getInstance().getCurrentPlayMediaItem().isOnline()) {
+            CommandCenter.getInstance().m4596b(new Command(CommandID.NEXT, new Object[0]));
         }
         m4269f();
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(MediaStorage.GROUP_ID_FAV)), ModuleID.MEDIA_ACCESS);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(MediaStorage.GROUP_ID_FAV)), ModuleID.MEDIA_ACCESS);
     }
 
     public void loginFinished(CommonResult commonResult) {
@@ -664,12 +664,12 @@ public class MediaAccessModule extends BaseModule {
 
     public void scanFinished(Integer num) {
         m4269f();
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(MediaStorage.GROUP_ID_ALL_LOCAL)), ModuleID.MEDIA_ACCESS);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(MediaStorage.GROUP_ID_ALL_LOCAL)), ModuleID.MEDIA_ACCESS);
     }
 
     /* renamed from: c */
     private String m4272c(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return str;
         }
         if (StringUtils.m8344a(MediaStorage.GROUP_ID_FAV_LOCAL, str) || str.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {

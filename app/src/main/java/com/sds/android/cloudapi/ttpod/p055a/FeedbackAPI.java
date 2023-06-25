@@ -2,7 +2,7 @@ package com.sds.android.cloudapi.ttpod.p055a;
 
 
 import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
-import com.sds.android.sdk.core.statistic.HttpClientProxy;
+
 import com.sds.android.sdk.lib.p060b.BaseResultRest;
 import com.sds.android.sdk.lib.p060b.GetRequestRest;
 import com.sds.android.sdk.lib.p060b.PostRequestRest;
@@ -39,11 +39,11 @@ public class FeedbackAPI {
         HashMap hashMap = new HashMap(2);
         hashMap.put("ip", str2);
         hashMap.put("proposalContent", str);
-        if (!StringUtils.m8346a(str3)) {
+        if (!StringUtils.isEmpty(str3)) {
             hashMap.put("contactWay", str3);
         }
         PostRequestRest postRequestRest = new PostRequestRest(f2264b, m8914a(hashMap));
-        postRequestRest.m8666b(HttpClientProxy.HEADER_CONTENT_TYPE, HttpClientProxy.CONTENT_TYPE_JSON);
+        postRequestRest.m8666b("Content-Type", "application/json");
         return postRequestRest;
     }
 
@@ -53,7 +53,7 @@ public class FeedbackAPI {
         if (l != null) {
             getRequestRest.m8670a("after", new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(new Date(l.longValue())));
         }
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             getRequestRest.m8670a("status", str);
         }
         return getRequestRest;
@@ -82,7 +82,7 @@ public class FeedbackAPI {
         if (l != null) {
             getRequestRest.m8670a("after", new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(new Date(l.longValue())));
         }
-        if (!StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str2)) {
             getRequestRest.m8670a("isRead", str2);
         }
         return getRequestRest;
@@ -98,7 +98,7 @@ public class FeedbackAPI {
             e.printStackTrace();
         }
         PostRequestRest postRequestRest = new PostRequestRest(m8912b(str), jSONObject.toString());
-        postRequestRest.m8666b(HttpClientProxy.HEADER_CONTENT_TYPE, HttpClientProxy.CONTENT_TYPE_JSON);
+        postRequestRest.m8666b("Content-Type", "application/json");
         return postRequestRest;
     }
 
@@ -138,7 +138,7 @@ public class FeedbackAPI {
     /* renamed from: b */
     private static String m8913b() {
         String m8499a = EnvironmentUtils.C0603b.m8499a();
-        if (StringUtils.m8346a(m8499a)) {
+        if (StringUtils.isEmpty(m8499a)) {
             return null;
         }
         try {

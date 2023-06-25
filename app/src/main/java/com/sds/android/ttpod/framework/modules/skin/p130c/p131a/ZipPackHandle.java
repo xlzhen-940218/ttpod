@@ -64,13 +64,13 @@ public class ZipPackHandle extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: a */
-    public boolean mo3757a() {
+    public boolean streamNotNull() {
         return this.f6523c != null;
     }
 
     /* renamed from: b */
     private void m3754b() {
-        if (mo3757a()) {
+        if (streamNotNull()) {
             this.f6524d.clear();
             Enumeration<? extends ZipEntry> entries = this.f6523c.entries();
             while (entries.hasMoreElements()) {

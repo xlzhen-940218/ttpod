@@ -52,18 +52,18 @@ public class MediaScanWifiActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onStart() {
         super.onStart();
-        CommandCenter.m4607a().m4606a(new Command(CommandID.START_WIFI_TRANSMISSION, new Object[0]));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.START_WIFI_TRANSMISSION, new Object[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.activities.base.ActionBarActivity, com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onStop() {
         super.onStop();
-        CommandCenter.m4607a().m4606a(new Command(CommandID.STOP_WIFI_TRANSMISSION, new Object[0]));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.STOP_WIFI_TRANSMISSION, new Object[0]));
     }
 
     public void updateWifiTransmissionState(CommonResult commonResult) {
-        LogUtils.m8381c(TAG, "updateWifiTransmissionState: " + commonResult.toString());
+        LogUtils.error(TAG, "updateWifiTransmissionState: " + commonResult.toString());
         ErrCode m4585a = commonResult.m4585a();
         if (ErrCode.ErrNone == m4585a) {
             this.mTitleTextView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, getResources().getDrawable(R.drawable.img_textview_mediascan_wifi_on), (Drawable) null, (Drawable) null);

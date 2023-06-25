@@ -9,7 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.sds.android.sdk.core.statistic.StatisticHelper;
+
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
@@ -35,12 +35,8 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.GroupType;
@@ -125,7 +121,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
                         KtvActivity.this.mKtvMediaListFragment.addMedia(KtvActivity.hasLocalMedia());
                     }
                     if (GroupItemUtils.m8267b(string)) {
-                        LocalStatistic.m5120am();
+                        //LocalStatistic.m5120am();
                         return;
                     }
                     return;
@@ -140,7 +136,6 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
         beginTransaction.replace(R.id.layout_fragment, this.mFragment);
         beginTransaction.commit();
         KtvSongControl.m8118a().m8114a((KtvConnectCallback) this);
-        StatisticUtils.m4910a("ktv", "click", "entry");
         bindView();
     }
 
@@ -210,14 +205,11 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
 
     @Override // com.sds.android.ttpod.activities.ktv.KtvConnectCallback
     public void success() {
-        StatisticUtils.m4909a("ktv", "click", "connect", 1L);
-        StatisticUtils.m4917a((int) KEY_CLICK_KTV_CONNECT_SUCCESS, (int) StatisticHelper.DELAY_SEND, 1L);
         updateView();
     }
 
     @Override // com.sds.android.ttpod.activities.ktv.KtvConnectCallback
     public void fail() {
-        StatisticUtils.m4909a("ktv", "click", "connect", -1L);
         updateView();
     }
 
@@ -225,10 +217,10 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
     @Override // android.support.v4.app.FragmentActivity, android.app.Activity
     public void onActivityResult(int i, int i2, Intent intent) {
         super.onActivityResult(i, i2, intent);
-        LogUtils.m8388a(LOG_TAG, "onActivityResult requestCode=" + i + " resultCode=" + i2 + " " + intent);
+        LogUtils.debug(LOG_TAG, "onActivityResult requestCode=" + i + " resultCode=" + i2 + " " + intent);
         if (i == 8 && i2 == 2) {
             String stringExtra = intent.getStringExtra("code");
-            LogUtils.m8388a(LOG_TAG, "onActivityResult code=" + stringExtra);
+            LogUtils.debug(LOG_TAG, "onActivityResult code=" + stringExtra);
             KtvSongControl.m8118a().m8116a(this, stringExtra);
         }
     }
@@ -250,8 +242,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
                 if (EnvironmentUtils.C0604c.m8474e()) {
                     KtvActivity.this.startDownload();
                     KtvActivity.this.startDownloadDialog();
-                    StatisticUtils.m4917a((int) KtvActivity.KEY_CLICK_KTV_DOWNLOAD, (int) StatisticHelper.DELAY_SEND, 1L);
-                    SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_KTV_DOWNLOAD_PLUGIN, SPage.PAGE_KTV, SPage.PAGE_NONE);
+                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_KTV_DOWNLOAD_PLUGIN, SPage.PAGE_KTV, SPage.PAGE_NONE);
                     return;
                 }
                 PopupsUtils.m6760a((int) R.string.network_unavailable);
@@ -272,7 +263,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
                         return;
                     }
                     if (KtvActivity.this.mDownloadTaskInfo != null) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo, Boolean.TRUE));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo, Boolean.TRUE));
                     }
                     KtvActivity.this.mDownloadDialog.dismiss();
                 }
@@ -310,8 +301,8 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
         if (m8393a != null) {
             mApkUrl = getApkUrl(m8393a);
         } else {
-            ErrorStatistic.m5235d(format);
-            ErrorStatistic.m5239a("ad_sdk", format);
+            //ErrorStatistic.m5235d(format);
+            //ErrorStatistic.m5239a("ad_sdk", format);
         }
         return false;
     }
@@ -329,18 +320,16 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
     public void onClick(View view) {
         if (view == this.mViewKtvSelectSong) {
             this.mKtvMediaListFragment.addMedia(hasLocalMedia());
-            StatisticUtils.m4910a("ktv", "click", "add-media");
-            SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_KTV_SELECT_MUSIC, SPage.PAGE_KTV, SPage.PAGE_KTV_CHOOSE_MEDIA);
+            //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_KTV_SELECT_MUSIC, SPage.PAGE_KTV, SPage.PAGE_KTV_CHOOSE_MEDIA);
         } else if (view == this.mViewKtvConnect) {
-            StatisticUtils.m4917a((int) KEY_CLICK_KTV_PLAY, (int) StatisticHelper.DELAY_SEND, 1L);
             if (!KtvSongControl.m8108b(this)) {
                 showDownloadDialog();
                 return;
             }
             KtvSongControl.m8118a();
             KtvSongControl.m8117a((Context) this);
-            StatisticUtils.m4917a(167, (int) StatisticHelper.DELAY_SEND, 1L);
-            SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_KTV_CONNECTION, SPage.PAGE_KTV, SPage.PAGE_KTV_CONNECTION);
+            //StatisticUtils.m4917a(167, (int) 65537, 1L);
+            //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_KTV_CONNECTION, SPage.PAGE_KTV, SPage.PAGE_KTV_CONNECTION);
         } else if (view == this.mViewPlayAllSong) {
             playAllKtvSong();
         }
@@ -371,17 +360,17 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
 
     /* JADX INFO: Access modifiers changed from: private */
     public void downLoadApk(String str, String str2) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             PopupsUtils.m6721a("无法获取插件下载地址！");
             return;
         }
-        StatisticUtils.m4910a("ktv", "click", "download");
+        //StatisticUtils.m4910a("ktv", "click", "download");
         String savePath = getSavePath(str, str2);
-        LogUtils.m8388a(LOG_TAG, "downLoadApk savePath=" + savePath + " url=" + str);
-        DownloadTaskInfo m4760a = DownloadUtils.m4760a(str, savePath, 0L, FileUtils.m8402j(savePath), DownloadTaskInfo.TYPE_PLUGIN, true, "connect");
+        LogUtils.debug(LOG_TAG, "downLoadApk savePath=" + savePath + " url=" + str);
+        DownloadTaskInfo m4760a = DownloadUtils.m4760a(str, savePath, 0L, FileUtils.getFilename(savePath), DownloadTaskInfo.TYPE_PLUGIN, true, "connect");
         m4760a.setTag(str);
         this.mDownloadTaskInfo = m4760a;
-        CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_SHOW_DOWNLOAD_PROGRESS, Boolean.FALSE), ModuleID.VERSION);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_SHOW_DOWNLOAD_PROGRESS, Boolean.FALSE), ModuleID.VERSION);
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.6
             /* JADX WARN: Can't wrap try/catch for region: R(9:9|(5:36|37|38|40|27)(1:15)|16|(2:31|(1:35))|22|23|24|26|27) */
             /* JADX WARN: Code restructure failed: missing block: B:37:0x010d, code lost:
@@ -400,7 +389,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
                 if (FileUtils.m8419a(KtvActivity.this.mDownloadTaskInfo.getSavePath())) {
                     FileUtils.m8404h(KtvActivity.this.mDownloadTaskInfo.getSavePath());
                 }
-                CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo));
                 while (!KtvActivity.this.mIsStopDownloading) {
                     if (KtvActivity.this.mDownloadTaskInfo == null) {
                         KtvActivity.this.mIsStopDownloading = true;
@@ -414,7 +403,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
                             KtvActivity.this.mIsStopDownloading = true;
                         }
                     }
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_ALL_UPGRADE_PROGRESS_INFO, KtvActivity.this.mDownloadTaskInfo), ModuleID.VERSION);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_ALL_UPGRADE_PROGRESS_INFO, KtvActivity.this.mDownloadTaskInfo), ModuleID.VERSION);
                     if (5 == KtvActivity.this.mDownloadTaskInfo.getState().intValue() || 3 == KtvActivity.this.mDownloadTaskInfo.getState().intValue() || 4 == KtvActivity.this.mDownloadTaskInfo.getState().intValue()) {
                         KtvActivity.this.mIsStopDownloading = true;
                         if (4 == KtvActivity.this.mDownloadTaskInfo.getState().intValue() && !KtvSongControl.m8108b(KtvActivity.this)) {

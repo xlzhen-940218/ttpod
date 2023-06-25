@@ -1,11 +1,8 @@
 package com.sds.android.ttpod.framework.support;
 
 import android.os.RemoteException;
-import com.sds.android.sdk.core.statistic.StatisticEvent;
-import com.sds.android.sdk.core.statistic.StatisticManager;
+
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
-import com.sds.android.ttpod.framework.support.ISupportService;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import java.lang.ref.SoftReference;
@@ -134,12 +131,7 @@ public class SupportServiceStub extends ISupportService.AbstractBinderC2061a {
         return this.f7157a.get().m2774m();
     }
 
-    @Override // com.sds.android.ttpod.framework.support.ISupportService
-    /* renamed from: a */
-    public void mo2392a(StatisticEvent statisticEvent) {
-        LogUtils.m8388a("SupportServiceStub", "addStatisticEvent event=" + statisticEvent.toString());
-        //StatisticManager.getInstance().addEvent(statisticEvent);
-    }
+
 
     @Override // com.sds.android.ttpod.framework.support.ISupportService
     /* renamed from: a */
@@ -162,8 +154,8 @@ public class SupportServiceStub extends ISupportService.AbstractBinderC2061a {
     @Override // com.sds.android.ttpod.framework.support.ISupportService
     /* renamed from: a */
     public void mo2387a(Map map) {
-        LogUtils.m8388a("SupportServiceStub", "setOnlineMediaOrigin origin = " + map.get("origin"));
-        OnlineMediaStatistic.m5044a(map);
+        LogUtils.debug("SupportServiceStub", "setOnlineMediaOrigin origin = " + map.get("origin"));
+        //OnlineMediaStatistic.m5044a(map);
     }
 
     @Override // com.sds.android.ttpod.framework.support.ISupportService

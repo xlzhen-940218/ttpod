@@ -51,7 +51,7 @@ public abstract class FriendsFragment extends UserListFragment<TTPodUser> {
     @Override // com.sds.android.ttpod.fragment.musiccircle.UserListFragment
     protected void onRequestData(int i, int i2) {
         if (this.mUserId > 0) {
-            CommandCenter.m4607a().m4606a(new Command(onLoadRequestDataCommandID(), Long.valueOf(this.mUserId), Integer.valueOf(i), Integer.valueOf(i2), Long.valueOf(this.mCurrentTimeStamp), ""));
+            CommandCenter.getInstance().m4606a(new Command(onLoadRequestDataCommandID(), Long.valueOf(this.mUserId), Integer.valueOf(i), Integer.valueOf(i2), Long.valueOf(this.mCurrentTimeStamp), ""));
         }
     }
 

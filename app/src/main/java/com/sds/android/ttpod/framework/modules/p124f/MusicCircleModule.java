@@ -36,13 +36,10 @@ import com.sds.android.ttpod.framework.modules.MediaItemListResult;
 import com.sds.android.ttpod.framework.modules.ModuleID;
 import com.sds.android.ttpod.framework.modules.ModuleRequestHelper;
 import com.sds.android.ttpod.framework.modules.ResultConvert;
-import com.sds.android.ttpod.framework.modules.p124f.FavoritePostManager;
-import com.sds.android.ttpod.framework.modules.p124f.FollowManager;
 import com.sds.android.ttpod.framework.p106a.C1791q;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaUtils;
 import com.sds.android.ttpod.framework.p106a.Pager;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.environment.PreferencesID;
 import com.sds.android.ttpod.media.mediastore.GroupType;
@@ -65,7 +62,7 @@ public final class MusicCircleModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.MUSIC_CIRCLE;
     }
 
@@ -149,20 +146,20 @@ public final class MusicCircleModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
     public static <Result extends BaseResult> Result m4056a(Request<Result> request) {
-        LogUtils.m8380c("MusicCircleModule", "request begin lookNetProblem %s", request.m8532e());
+        LogUtils.info("MusicCircleModule", "request begin lookNetProblem %s", request.m8532e());
         Result m8531f = request.m8531f();
         Object[] objArr = new Object[2];
         objArr[0] = Boolean.valueOf(m8531f != null);
         objArr[1] = Integer.valueOf(m8531f != null ? m8531f.getCode() : 0);
-        LogUtils.m8380c("MusicCircleModule", "request end lookNetProblem result not null=%b code=%d", objArr);
+        LogUtils.info("MusicCircleModule", "request end lookNetProblem result not null=%b code=%d", objArr);
         if (!m8531f.isSuccess()) {
-            ErrorStatistic.m5232g(request.m8532e());
+            //ErrorStatistic.m5232g(request.m8532e());
         }
         return m8531f;
     }
 
     public void requestRecommendPostPosts(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8879a(num.intValue(), num2.intValue()), CommandID.UPDATE_PRIVATE_CUSTOM_POSTS, mo3239id(), null);
+        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8879a(num.intValue(), num2.intValue()), CommandID.UPDATE_PRIVATE_CUSTOM_POSTS, id(), null);
     }
 
     public void requestMusicPosterList() {
@@ -173,21 +170,21 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.12
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_NEW_SONG_PUBLISH_LIST, ((CircleFirstPublishListResult) MusicCircleModule.m4056a(MusicCircleRecommendAPI.m8878b())).getDataList()), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_NEW_SONG_PUBLISH_LIST, ((CircleFirstPublishListResult) MusicCircleModule.m4056a(MusicCircleRecommendAPI.m8878b())).getDataList()), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
 
     public void requestMoreNewSongPublishList(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8877b(num.intValue(), num2.intValue()), CommandID.UPDATE_MORE_NEW_SONG_PUBLISH_LIST, mo3239id(), null);
+        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8877b(num.intValue(), num2.intValue()), CommandID.UPDATE_MORE_NEW_SONG_PUBLISH_LIST, id(), null);
     }
 
     public void requestNewSongCategoryPublishList() {
-        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8876c(), CommandID.UPDATE_NEW_SONG_CATEGORY_PUBLISH_LIST, mo3239id(), null);
+        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8876c(), CommandID.UPDATE_NEW_SONG_CATEGORY_PUBLISH_LIST, id(), null);
     }
 
     public void requestNewAlbumPublishList(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8875c(num.intValue(), num2.intValue()), CommandID.UPDATE_NEW_ALBUM_PUBLISH_LIST, mo3239id(), null);
+        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8875c(num.intValue(), num2.intValue()), CommandID.UPDATE_NEW_ALBUM_PUBLISH_LIST, id(), null);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -200,7 +197,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.23
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SHAKE_RESULT, MusicCircleModule.m4056a(ShakeAPI.m8831a(MusicCircleModule.this.m4045f(), f.floatValue(), f2.floatValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SHAKE_RESULT, MusicCircleModule.m4056a(ShakeAPI.m8831a(MusicCircleModule.this.m4045f(), f.floatValue(), f2.floatValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -209,7 +206,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.34
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_ALIKE_USER_LIST, MusicCircleModule.m4056a(UserSystemAPI.m8940e(MusicCircleModule.this.m4045f())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_ALIKE_USER_LIST, MusicCircleModule.m4056a(UserSystemAPI.m8940e(MusicCircleModule.this.m4045f())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -218,7 +215,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.42
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_STAR_USER_LIST_BY_RANK, MusicCircleModule.m4056a(CelebriteAPI.m8931b(num.intValue(), num2.intValue(), num3.intValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_STAR_USER_LIST_BY_RANK, MusicCircleModule.m4056a(CelebriteAPI.m8931b(num.intValue(), num2.intValue(), num3.intValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -227,7 +224,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.43
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_STAR_CATEGORIES_LIST, MusicCircleModule.m4056a(CelebriteAPI.m8933a()), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_STAR_CATEGORIES_LIST, MusicCircleModule.m4056a(CelebriteAPI.m8933a()), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -236,7 +233,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.44
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_STAR_USER_lIST_BY_CATEGORY, MusicCircleModule.m4056a(CelebriteAPI.m8932a(num.intValue(), num2.intValue(), num3.intValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_STAR_USER_lIST_BY_CATEGORY, MusicCircleModule.m4056a(CelebriteAPI.m8932a(num.intValue(), num2.intValue(), num3.intValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -245,7 +242,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.45
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEARCH_RESULT, MusicCircleModule.m4056a(UserSystemAPI.m8947b(MusicCircleModule.this.m4045f(), str)), str2), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_RESULT, MusicCircleModule.m4056a(UserSystemAPI.m8947b(MusicCircleModule.this.m4045f(), str)), str2), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -254,7 +251,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.46
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_FOLLOW_FRIEND, FollowManager.m4064a().m4063a(l.longValue()), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_FOLLOW_FRIEND, FollowManager.m4064a().m4063a(l.longValue()), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -263,7 +260,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.2
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_UNFOLLOW_FRIEND, FollowManager.m4064a().m4061b(l.longValue()), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_UNFOLLOW_FRIEND, FollowManager.m4064a().m4061b(l.longValue()), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -279,7 +276,7 @@ public final class MusicCircleModule extends BaseModule {
                     @Override // com.sds.android.ttpod.framework.modules.p124f.FollowManager.InterfaceC1901a
                     /* renamed from: a */
                     public void mo4041a() {
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SYNC_FOLLOWING_FINISHED, new Object[0]), ModuleID.MUSIC_CIRCLE);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SYNC_FOLLOWING_FINISHED, new Object[0]), ModuleID.MUSIC_CIRCLE);
                     }
                 });
             }
@@ -291,7 +288,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.4
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_FOLLOWING_FRIEND_ID_LIST, MusicCircleModule.m4056a(FriendsAPI.m8893a(l.longValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_FOLLOWING_FRIEND_ID_LIST, MusicCircleModule.m4056a(FriendsAPI.m8893a(l.longValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -300,7 +297,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.5
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_FOLLOWING_FRIEND_LIST, MusicCircleModule.m4056a(FriendsAPI.m8892a(l.longValue(), num.intValue(), num2.intValue(), l2.longValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_FOLLOWING_FRIEND_LIST, MusicCircleModule.m4056a(FriendsAPI.m8892a(l.longValue(), num.intValue(), num2.intValue(), l2.longValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -309,7 +306,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.6
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_FOLLOWER_FRIENDS, MusicCircleModule.m4056a(FriendsAPI.m8889b(l.longValue(), num.intValue(), num2.intValue(), l2.longValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_FOLLOWER_FRIENDS, MusicCircleModule.m4056a(FriendsAPI.m8889b(l.longValue(), num.intValue(), num2.intValue(), l2.longValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -318,7 +315,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.7
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_FOLLOWER_FRIEND_LIST_BY_IDS, MusicCircleModule.m4056a(FriendsAPI.m8890a(collection)), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_FOLLOWER_FRIEND_LIST_BY_IDS, MusicCircleModule.m4056a(FriendsAPI.m8890a(collection)), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -327,7 +324,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.8
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SYSTEM_NOTICE_LIST, MusicCircleModule.m4056a(NoticeAPI.m8871a(MusicCircleModule.this.m4045f(), l.longValue(), num.intValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SYSTEM_NOTICE_LIST, MusicCircleModule.m4056a(NoticeAPI.m8871a(MusicCircleModule.this.m4045f(), l.longValue(), num.intValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -347,10 +344,10 @@ public final class MusicCircleModule extends BaseModule {
             public void run() {
                 switch (noticeType) {
                     case COMMENT:
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_COMMENT_NOTICE_LIST, MusicCircleModule.m4056a(NoticeAPI.m8872a(MusicCircleModule.this.m4045f(), NoticeType.COMMENT.value(), num.intValue(), num2.intValue())), str), ModuleID.MUSIC_CIRCLE);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_COMMENT_NOTICE_LIST, MusicCircleModule.m4056a(NoticeAPI.m8872a(MusicCircleModule.this.m4045f(), NoticeType.COMMENT.value(), num.intValue(), num2.intValue())), str), ModuleID.MUSIC_CIRCLE);
                         return;
                     case REPOST:
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_REPOST_NOTICE_LIST, MusicCircleModule.m4056a(NoticeAPI.m8872a(MusicCircleModule.this.m4045f(), NoticeType.REPOST.value(), num.intValue(), num2.intValue())), str), ModuleID.MUSIC_CIRCLE);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_REPOST_NOTICE_LIST, MusicCircleModule.m4056a(NoticeAPI.m8872a(MusicCircleModule.this.m4045f(), NoticeType.REPOST.value(), num.intValue(), num2.intValue())), str), ModuleID.MUSIC_CIRCLE);
                         return;
                     default:
                         return;
@@ -363,7 +360,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.10
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_NEW_FOLLOWER_NOTICE_LIST, MusicCircleModule.m4056a(NoticeAPI.m8869b(MusicCircleModule.this.m4045f())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_NEW_FOLLOWER_NOTICE_LIST, MusicCircleModule.m4056a(NoticeAPI.m8869b(MusicCircleModule.this.m4045f())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -372,7 +369,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.11
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_PRIVATE_MESSAGE_LIST, MusicCircleModule.m4056a(PrivateMessageAPI.m8841a(MusicCircleModule.this.m4045f(), l.longValue(), num.intValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_PRIVATE_MESSAGE_LIST, MusicCircleModule.m4056a(PrivateMessageAPI.m8841a(MusicCircleModule.this.m4045f(), l.longValue(), num.intValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -381,7 +378,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.13
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_PRIVATE_MESSAGE_CONTEXT_LIST, MusicCircleModule.m4056a(PrivateMessageAPI.m8840a(MusicCircleModule.this.m4045f(), l.longValue(), l2.longValue(), num.intValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_PRIVATE_MESSAGE_CONTEXT_LIST, MusicCircleModule.m4056a(PrivateMessageAPI.m8840a(MusicCircleModule.this.m4045f(), l.longValue(), l2.longValue(), num.intValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -390,7 +387,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.14
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_DELETE_PRIVATE_MESSAGE, MusicCircleModule.m4056a(PrivateMessageAPI.m8838a(MusicCircleModule.this.m4045f(), str)), str2), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_DELETE_PRIVATE_MESSAGE, MusicCircleModule.m4056a(PrivateMessageAPI.m8838a(MusicCircleModule.this.m4045f(), str)), str2), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -399,7 +396,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.15
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEND_PRIVATE_MESSAGE, MusicCircleModule.m4056a(PrivateMessageAPI.m8839a(MusicCircleModule.this.m4045f(), l.longValue(), str)), str2), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEND_PRIVATE_MESSAGE, MusicCircleModule.m4056a(PrivateMessageAPI.m8839a(MusicCircleModule.this.m4045f(), l.longValue(), str)), str2), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -408,7 +405,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.16
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_DELETE_PRIVATE_MESSAGE_LIST, MusicCircleModule.m4056a(PrivateMessageAPI.m8842a(MusicCircleModule.this.m4045f(), l.longValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_DELETE_PRIVATE_MESSAGE_LIST, MusicCircleModule.m4056a(PrivateMessageAPI.m8842a(MusicCircleModule.this.m4045f(), l.longValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -424,7 +421,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.17
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_COMMENT_POSTED, MusicCircleModule.m4056a(PostAPI.m8849a(MusicCircleModule.this.m4045f(), l.longValue(), str, l2.longValue(), l3.longValue())), str2), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_COMMENT_POSTED, MusicCircleModule.m4056a(PostAPI.m8849a(MusicCircleModule.this.m4045f(), l.longValue(), str, l2.longValue(), l3.longValue())), str2), ModuleID.MUSIC_CIRCLE);
             }
         });
         return new CommonResult(ErrCode.ErrNone, "Success");
@@ -434,7 +431,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.18
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_COMMENT_DELETED, MusicCircleModule.m4056a(PostAPI.m8851a(MusicCircleModule.this.m4045f(), l.longValue(), comment.getId())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_COMMENT_DELETED, MusicCircleModule.m4056a(PostAPI.m8851a(MusicCircleModule.this.m4045f(), l.longValue(), comment.getId())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -443,7 +440,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.19
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_RE_POSTED, MusicCircleModule.m4056a(PostAPI.m8850a(MusicCircleModule.this.m4045f(), l.longValue(), l2.longValue(), str)), str2), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_RE_POSTED, MusicCircleModule.m4056a(PostAPI.m8850a(MusicCircleModule.this.m4045f(), l.longValue(), l2.longValue(), str)), str2), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -452,7 +449,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.20
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_USER_POST_ID_LIST, MusicCircleModule.m4056a(PostAPI.m8843b(MusicCircleModule.this.m4045f(), l.longValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_USER_POST_ID_LIST, MusicCircleModule.m4056a(PostAPI.m8843b(MusicCircleModule.this.m4045f(), l.longValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -461,7 +458,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.21
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_TIMELINE_USER_POST_IDS, MusicCircleModule.m4056a(PostAPI.m8844b(MusicCircleModule.this.m4045f())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_TIMELINE_USER_POST_IDS, MusicCircleModule.m4056a(PostAPI.m8844b(MusicCircleModule.this.m4045f())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -470,7 +467,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.22
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_COMMENT_ID_LIST_BY_POST_ID, MusicCircleModule.m4056a(PostAPI.m8852a("", l.longValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_COMMENT_ID_LIST_BY_POST_ID, MusicCircleModule.m4056a(PostAPI.m8852a("", l.longValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -479,14 +476,14 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.24
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_COMMENT_INFO_LIST_BY_ID_LIST, MusicCircleModule.m4056a(PostAPI.m8848a(MusicCircleModule.this.m4045f(), collection)), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_COMMENT_INFO_LIST_BY_ID_LIST, MusicCircleModule.m4056a(PostAPI.m8848a(MusicCircleModule.this.m4045f(), collection)), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
 
     public void requestPostSongByIds(List<Long> list, String str) {
         if (Preferences.m2997aJ()) {
-            ModuleRequestHelper.m4082a(OnlineMediaItemAPI.m8864b(list), CommandID.UPDATE_POST_SONG_BY_IDS, mo3239id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.f.c.25
+            ModuleRequestHelper.m4082a(OnlineMediaItemAPI.m8864b(list), CommandID.UPDATE_POST_SONG_BY_IDS, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.f.c.25
                 @Override // com.sds.android.ttpod.framework.modules.ResultConvert
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -494,7 +491,7 @@ public final class MusicCircleModule extends BaseModule {
                 }
             }, str);
         } else {
-            ModuleRequestHelper.m4082a(OnlineMediaItemAPI.m8867a(list), CommandID.UPDATE_POST_SONG_BY_IDS, mo3239id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.f.c.26
+            ModuleRequestHelper.m4082a(OnlineMediaItemAPI.m8867a(list), CommandID.UPDATE_POST_SONG_BY_IDS, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.f.c.26
                 @Override // com.sds.android.ttpod.framework.modules.ResultConvert
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -529,27 +526,27 @@ public final class MusicCircleModule extends BaseModule {
     }
 
     public void requestPostDetailById(Collection collection, String str) {
-        ModuleRequestHelper.m4082a(PostAPI.m8847a(collection), CommandID.UPDATE_POST_DETAIL_BY_ID, mo3239id(), null, str);
+        ModuleRequestHelper.m4082a(PostAPI.m8847a(collection), CommandID.UPDATE_POST_DETAIL_BY_ID, id(), null, str);
     }
 
     public void requestPostInfosById(final Collection collection, final String str) {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.27
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_POST_INFO_LIST_BY_ID, (PostResult) MusicCircleModule.m4056a(PostAPI.m8847a(collection)), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_POST_INFO_LIST_BY_ID, (PostResult) MusicCircleModule.m4056a(PostAPI.m8847a(collection)), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
 
     public void requestCelebrityPosts(Long l) {
-        ModuleRequestHelper.m4083a(PostAPI.m8855a(l.longValue()), CommandID.UPDATE_DISCOVERY_POST_INFO_LIST_BY_ID, mo3239id(), null);
+        ModuleRequestHelper.m4083a(PostAPI.m8855a(l.longValue()), CommandID.UPDATE_DISCOVERY_POST_INFO_LIST_BY_ID, id(), null);
     }
 
     public void requestRecommendCelebratePostIds(final String str) {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.28
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_RECOMMEND_CELEBRATE_POST_ID_LIST, MusicCircleModule.m4056a(PostAPI.m8856a()), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_RECOMMEND_CELEBRATE_POST_ID_LIST, MusicCircleModule.m4056a(PostAPI.m8856a()), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -558,7 +555,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.29
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_FIRST_PUBLISH_CELEBRATE_POST_ID_LIST, MusicCircleModule.m4056a(PostAPI.m8846b()), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_FIRST_PUBLISH_CELEBRATE_POST_ID_LIST, MusicCircleModule.m4056a(PostAPI.m8846b()), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -567,7 +564,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.30
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_NOTICE_DELETED, MusicCircleModule.m4056a(NoticeAPI.m8870a(MusicCircleModule.this.m4045f(), notice.getNoticeId())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_NOTICE_DELETED, MusicCircleModule.m4056a(NoticeAPI.m8870a(MusicCircleModule.this.m4045f(), notice.getNoticeId())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -577,7 +574,7 @@ public final class MusicCircleModule extends BaseModule {
             TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.31
                 @Override // java.lang.Runnable
                 public void run() {
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_ADD_FAVORITE_POSTS, FavoritePostManager.m4070a().m4067a(list, MusicCircleModule.this.f6134a.getAccessToken()), str), ModuleID.MUSIC_CIRCLE);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_ADD_FAVORITE_POSTS, FavoritePostManager.m4070a().m4067a(list, MusicCircleModule.this.f6134a.getAccessToken()), str), ModuleID.MUSIC_CIRCLE);
                     PostResult postResult = (PostResult) MusicCircleModule.m4056a(PostAPI.m8847a(list));
                     if (postResult.getDataList().size() > 0) {
                         Iterator<Post> it = postResult.getDataList().iterator();
@@ -595,13 +592,13 @@ public final class MusicCircleModule extends BaseModule {
             TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.32
                 @Override // java.lang.Runnable
                 public void run() {
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_REMOVE_FAVORITE_POSTS, FavoritePostManager.m4070a().m4065b(list, MusicCircleModule.this.f6134a.getAccessToken()), str), ModuleID.MUSIC_CIRCLE);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_REMOVE_FAVORITE_POSTS, FavoritePostManager.m4070a().m4065b(list, MusicCircleModule.this.f6134a.getAccessToken()), str), ModuleID.MUSIC_CIRCLE);
                     String buildMusicCircleFavGroupIDPrefix = MediaStorage.buildMusicCircleFavGroupIDPrefix();
                     Iterator it = list.iterator();
                     while (it.hasNext()) {
                         String str2 = buildMusicCircleFavGroupIDPrefix + ((Long) it.next()).longValue();
                         if (MediaStorage.isGroupExisted(MusicCircleModule.sContext, str2)) {
-                            CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_GROUP, str2));
+                            CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_GROUP, str2));
                         }
                     }
                 }
@@ -620,7 +617,7 @@ public final class MusicCircleModule extends BaseModule {
                     @Override // com.sds.android.ttpod.framework.modules.p124f.FavoritePostManager.InterfaceC1900a
                     /* renamed from: a */
                     public void mo4040a() {
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SYNC_FAVORITE_POST_FINISHED, new Object[0]), ModuleID.MUSIC_CIRCLE);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SYNC_FAVORITE_POST_FINISHED, new Object[0]), ModuleID.MUSIC_CIRCLE);
                     }
                 }, MusicCircleModule.this.f6134a.getAccessToken());
             }
@@ -653,7 +650,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.36
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_FAVORITE_COLLECT_LIST, MusicCircleModule.m4056a(MessageCollectAPI.m8883a(MusicCircleModule.this.m4045f())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_FAVORITE_COLLECT_LIST, MusicCircleModule.m4056a(MessageCollectAPI.m8883a(MusicCircleModule.this.m4045f())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -663,7 +660,7 @@ public final class MusicCircleModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.37
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_POSTS_BY_CATEGORY_ID, MusicCircleModule.m4056a(PostAPI.m8854a(l.longValue(), num.intValue())), str), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_POSTS_BY_CATEGORY_ID, MusicCircleModule.m4056a(PostAPI.m8854a(l.longValue(), num.intValue())), str), ModuleID.MUSIC_CIRCLE);
             }
         });
     }
@@ -674,11 +671,11 @@ public final class MusicCircleModule extends BaseModule {
     }
 
     public void changePostReplyCount(Post post) {
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_POST_REPLY_COUNT, post), ModuleID.MUSIC_CIRCLE);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_POST_REPLY_COUNT, post), ModuleID.MUSIC_CIRCLE);
     }
 
     public void changePostRepostCount(Post post) {
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_POST_REPOST_COUNT, post), ModuleID.MUSIC_CIRCLE);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_POST_REPOST_COUNT, post), ModuleID.MUSIC_CIRCLE);
     }
 
     public void addPostToMediaGroup(final Post post) {
@@ -690,7 +687,7 @@ public final class MusicCircleModule extends BaseModule {
                 if (!list.isEmpty()) {
                     MediaStorage.insertGroup(MusicCircleModule.sContext, post.getSongListName(), buildMusicCircleFavGroupID, GroupType.CUSTOM_ONLINE);
                     MediaStorage.insertMediaItems(MusicCircleModule.sContext, buildMusicCircleFavGroupID, list);
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.ADD_POST_TO_MEDIA_GROUP_FINISHED, buildMusicCircleFavGroupID), ModuleID.MUSIC_CIRCLE);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.ADD_POST_TO_MEDIA_GROUP_FINISHED, buildMusicCircleFavGroupID), ModuleID.MUSIC_CIRCLE);
                 }
             }
         });
@@ -717,7 +714,7 @@ public final class MusicCircleModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a */
             public void postExecute(Boolean bool) {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.ADD_POSTS_TO_MEDIA_GROUP_FINISHED, new Object[0]), ModuleID.MUSIC_CIRCLE);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.ADD_POSTS_TO_MEDIA_GROUP_FINISHED, new Object[0]), ModuleID.MUSIC_CIRCLE);
             }
 
             /* renamed from: b */

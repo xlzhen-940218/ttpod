@@ -29,10 +29,8 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.EqualizerPreset;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.audiofx.TTEqualizer;
@@ -83,20 +81,20 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
             switch (view.getId()) {
                 case R.id.textview_effect_custom_default /* 2131231137 */:
                     CustomEqualizerFragment.this.startActivity(new Intent(CustomEqualizerFragment.this.getActivity().getApplicationContext(), EqualizerFragmentActivity.class));
-                    AudioEffectStatistic.m5267e();
-                    SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_DEFAULT, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
+                    //AudioEffectStatistic.m5267e();
+                    //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_DEFAULT, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
                     return;
                 case R.id.textview_effect_custom_save /* 2131231138 */:
                     m5756a();
-                    AudioEffectStatistic.m5262j();
-                    SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_NEW, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
+                    //AudioEffectStatistic.m5262j();
+                    //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_NEW, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
                     return;
                 case R.id.textview_effect_custom_reset /* 2131231139 */:
                     CustomEqualizerFragment.this.resetEqualizer();
                     CustomEqualizerFragment.this.updateView();
                     CustomEqualizerFragment.this.mScrollView.scrollTo(0, 0);
-                    AudioEffectStatistic.m5260l();
-                    SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_RESET, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
+                    //AudioEffectStatistic.m5260l();
+                    //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_RESET, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
                     return;
                 default:
                     return;
@@ -114,7 +112,7 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
                     if (editTextDialog != null && (m6902c = editTextDialog.m6902c(1)) != null) {
                         str = m6902c.m6896d().toString();
                     }
-                    if (!StringUtils.m8346a(str)) {
+                    if (!StringUtils.isEmpty(str)) {
                         String validateFileName = CustomEqualizerFragment.validateFileName(str);
                         if (!validateFileName.equals(str)) {
                             f4953b.m7242f(false);
@@ -124,10 +122,10 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
                         f4953b.m7242f(true);
                         TTEqualizer.Settings settings = new TTEqualizer.Settings(validateFileName, (short) CustomEqualizerFragment.this.mCustomData.length, CustomEqualizerFragment.this.mCustomData);
                         CustomEqualizerFragment.this.mCustomEqualizerMap.put(str, settings);
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.SAVE_CUSTOM_EQUALIZER, settings));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.SAVE_CUSTOM_EQUALIZER, settings));
                         PopupsUtils.m6760a((int) R.string.save_successfully);
-                        AudioEffectStatistic.m5261k();
-                        SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_NEW_OK, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
+                        //AudioEffectStatistic.m5261k();
+                        //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_NEW_OK, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
                         return;
                     }
                    f4953b.m7242f(false);
@@ -222,7 +220,7 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
             this.mCustomData = settings.getBandLevels();
             this.mEqualizerStyeName = settings.getName();
             this.mEqualizerStyeTextView.setText(this.mEqualizerStyeName);
-            CommandCenter.m4607a().m4606a(new Command(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, new Object[0]));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, new Object[0]));
             initContentViews();
             updateView();
         }
@@ -387,7 +385,7 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
 
     /* JADX INFO: Access modifiers changed from: private */
     public void setEqualizer(String str) {
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SET_EQUALIZER, new TTEqualizer.Settings(str, (short) this.mCustomData.length, this.mCustomData)));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_EQUALIZER, new TTEqualizer.Settings(str, (short) this.mCustomData.length, this.mCustomData)));
         this.mEqualizerStyeTextView.setText(str);
     }
 

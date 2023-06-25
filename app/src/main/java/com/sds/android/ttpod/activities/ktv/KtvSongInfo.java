@@ -30,7 +30,7 @@ public class KtvSongInfo {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("musicName", this.musicname);
         jsonObject.addProperty("singerName", this.singername);
-        if (!StringUtils.m8346a(this.musicno)) {
+        if (!StringUtils.isEmpty(this.musicno)) {
             jsonObject.addProperty("musicno", this.musicno);
         }
         return jsonObject.toString();

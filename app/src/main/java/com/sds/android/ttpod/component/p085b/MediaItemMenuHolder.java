@@ -3,12 +3,11 @@ package com.sds.android.ttpod.component.p085b;
 import android.graphics.Color;
 import android.view.View;
 
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.widget.IconTextView;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -58,7 +57,7 @@ public class MediaItemMenuHolder {
     public void m6977a(MediaItem mediaItem) {
         boolean z = true;
         boolean hasOutList = mediaItem.hasOutList();
-        boolean z2 = !StringUtils.m8346a(mediaItem.getLocalDataSource());
+        boolean z2 = !StringUtils.isEmpty(mediaItem.getLocalDataSource());
         this.f3836b.m1230a(R.id.media_menu_favor, !hasOutList);
         if (this.f3836b != null && this.f3836b.getVisibility() == View.VISIBLE) {
             this.f3836b.m1230a(R.id.media_menu_share, !hasOutList);
@@ -74,7 +73,7 @@ public class MediaItemMenuHolder {
     /* renamed from: b */
     public void m6974b(MediaItem mediaItem) {
         boolean z = true;
-        boolean z2 = !StringUtils.m8346a(mediaItem.getLocalDataSource());
+        boolean z2 = !StringUtils.isEmpty(mediaItem.getLocalDataSource());
         if (this.f3836b != null && this.f3836b.getVisibility() == View.VISIBLE) {
             this.f3836b.m1230a(R.id.media_menu_delete, z2);
             this.f3836b.m1230a(R.id.media_menu_add, z2);
@@ -107,7 +106,7 @@ public class MediaItemMenuHolder {
             if (mediaItem.isOnline() && Preferences.m2954aq() == null) {
                 m6975a(false);
                 EntryUtils.m8297a(true);
-                m6978a(SPage.PAGE_CIRCLE_LOGIN, mediaItem, false);
+                //m6978a(SPage.PAGE_CIRCLE_LOGIN, mediaItem, false);
                 return;
             }
             mediaItem.setFav(!fav);
@@ -116,12 +115,12 @@ public class MediaItemMenuHolder {
             } else {
                 FavoriteUtils.m8282b(mediaItem, false);
             }
-            OnlineMediaStatistic.m5053a(i + 1);
+            //OnlineMediaStatistic.m5053a(i + 1);
             if (this.f3835a != null) {
                 this.f3835a.mo6973a(mediaItem, !fav);
             }
             m6975a(mediaItem.getFav());
-            m6978a(SPage.PAGE_NONE, mediaItem, fav ? false : true);
+            //m6978a(SPage.PAGE_NONE, mediaItem, fav ? false : true);
             return;
         }
         m6975a(false);
@@ -129,12 +128,7 @@ public class MediaItemMenuHolder {
     }
 
     /* renamed from: a */
-    private void m6978a(SPage sPage, MediaItem mediaItem, boolean z) {
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_RIGHT_MENU_FAVORITE.getValue(), SPage.PAGE_NONE.getValue(), sPage.getValue());
-        sUserEvent.append("song_id", mediaItem.getSongID()).append("status", Integer.valueOf(z ? 1 : 0));
-        sUserEvent.setPageParameter(true);
-        sUserEvent.post();
-    }
+
 
     /* renamed from: a */
     public void m6979a(InterfaceC1136a interfaceC1136a) {

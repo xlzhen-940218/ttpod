@@ -77,7 +77,7 @@ public abstract class BaseCategoryFragment extends BaseFragment implements Adapt
     }
 
     private void loadData() {
-        CommandCenter.m4607a().m4606a(getLoadDataCommand());
+        CommandCenter.getInstance().m4606a(getLoadDataCommand());
     }
 
     public void onDataListDownloaded() {
@@ -116,7 +116,7 @@ public abstract class BaseCategoryFragment extends BaseFragment implements Adapt
 
     private void checkUpdateDataList(Long l) {
         if (l.longValue() + TIME_DELTA < System.currentTimeMillis()) {
-            CommandCenter.m4607a().m4606a(new Command(getRequestDataCommandID(), new Object[0]));
+            CommandCenter.getInstance().m4606a(new Command(getRequestDataCommandID(), new Object[0]));
         }
     }
 

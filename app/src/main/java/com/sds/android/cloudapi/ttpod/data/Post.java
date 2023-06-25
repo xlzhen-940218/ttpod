@@ -98,7 +98,7 @@ public class Post implements BaseId, ISongListItem, Serializable {
 
     @Override // com.sds.android.cloudapi.ttpod.data.ISongListItem
     public CharSequence getTitleName() {
-        return StringUtils.m8346a(this.mSongListName) ? this.mMediaItem != null ? this.mMediaItem.getTitle() + " - " + this.mMediaItem.getArtist() : "" : this.mSongListName;
+        return StringUtils.isEmpty(this.mSongListName) ? this.mMediaItem != null ? this.mMediaItem.getTitle() + " - " + this.mMediaItem.getArtist() : "" : this.mSongListName;
     }
 
     @Override // com.sds.android.cloudapi.ttpod.data.ISongListItem

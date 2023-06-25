@@ -54,7 +54,7 @@ public final class ImageCacheUtils {
     public static final void m4751a(ImageView imageView, String str, int i, int i2, int i3, final int i4) {
         final WeakReference weakReference = new WeakReference(imageView);
         String m8811a = ImageCache.m8811a(str, i, i2, imageView.getScaleType());
-        if (!StringUtils.m8346a(m8811a)) {
+        if (!StringUtils.isEmpty(m8811a)) {
             Bitmap m4746a = m4746a(m8811a, i, i2, (String) null);
             ImageView imageView2 = (ImageView) weakReference.get();
             if (imageView2 != null) {
@@ -111,7 +111,7 @@ public final class ImageCacheUtils {
 
     /* renamed from: a */
     public static final void m4750a(ImageView imageView, String str, int i, int i2, String str2) {
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             final WeakReference weakReference = new WeakReference(imageView);
             Bitmap m4746a = m4746a(str, i, i2, str2);
             if (m4746a != null) {
@@ -193,7 +193,7 @@ public final class ImageCacheUtils {
 
     /* renamed from: b */
     public static final void m4740b(ImageView imageView, String str, int i, int i2, int i3, final int i4) {
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             Bitmap m4746a = m4746a(str, i, i2, (String) null);
             final WeakReference weakReference = new WeakReference(imageView);
             ImageView imageView2 = (ImageView) weakReference.get();
@@ -265,7 +265,7 @@ public final class ImageCacheUtils {
 
     /* renamed from: a */
     public static final void m4749a(IconTextView iconTextView, String str, int i, int i2, String str2, final InterfaceC1786a interfaceC1786a) {
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             final WeakReference weakReference = new WeakReference(iconTextView);
             Bitmap m4746a = m4746a(str, i, i2, str2);
             if (m4746a != null) {

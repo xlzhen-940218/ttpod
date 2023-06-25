@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Checkable;
 import android.widget.LinearLayout;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.ttpod.R;
@@ -38,10 +38,8 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.p113b.p114a.ShakeSensitivityType;
 import com.sds.android.ttpod.framework.modules.p123e.LockScreenModule;
 import com.sds.android.ttpod.framework.modules.version.VersionUpdateModule;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import java.util.HashMap;
 
@@ -82,53 +80,53 @@ public class SettingEntryFragment extends BaseFragment {
             switch (actionItem.m7005e()) {
                 case 0:
                     SettingUtils.m7779a(activity, DesktopLyricSettingActivity.class, m7006d);
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_MENU_DESK_LYRIC, SPage.PAGE_DESKTOP_LYRIC);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_MENU_DESK_LYRIC, SPage.PAGE_DESKTOP_LYRIC);
                     return;
                 case 1:
                     SettingEntryFragment.this.showLockScreenLyricSetting(actionItem, i);
-                    SUserUtils.m4956a(SAction.ACTION_OPEN_MENU_OF_LOCK_LYRIC, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_OPEN_MENU_OF_LOCK_LYRIC, SPage.PAGE_NONE);
                     return;
                 case 2:
                     SettingEntryFragment.this.showSensitivitySetting(actionItem, i);
-                    SUserUtils.m4956a(SAction.ACTION_OPEN_MENU_OF_SHAKE_CHANGE_SONG, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_OPEN_MENU_OF_SHAKE_CHANGE_SONG, SPage.PAGE_NONE);
                     return;
                 case 3:
                     SettingUtils.m7779a(activity, HeadsetControlActivity.class, m7006d);
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_HEADSET_CONTROL, SPage.PAGE_HEADSET_CONTROL);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_HEADSET_CONTROL, SPage.PAGE_HEADSET_CONTROL);
                     return;
                 case 4:
                     SettingUtils.m7779a(activity, MoreSettingActivity.class, m7006d);
-                    LocalStatistic.m5088r();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_MORE, SPage.PAGE_SETTING_MORE);
+                    //LocalStatistic.m5088r();
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_MORE, SPage.PAGE_SETTING_MORE);
                     return;
                 case 5:
                     Preferences.m2814x(z);
-                    LocalStatistic.m5154a(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_ONLY_WIFI, z);
+                    //LocalStatistic.m5154a(z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_ONLY_WIFI, z);
                     return;
                 case 6:
                     SettingUtils.m7779a(activity, AuditionAndDownloadQualityActivity.class, m7006d);
-                    LocalStatistic.m5088r();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_PLAY_DOWNLOAD_QUILITY, SPage.PAGE_AUDITION_AND_DOWNLOAD_QUALITY);
+                    //LocalStatistic.m5088r();
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_PLAY_DOWNLOAD_QUILITY, SPage.PAGE_AUDITION_AND_DOWNLOAD_QUALITY);
                     return;
                 case 7:
                     SettingUtils.m7779a(activity, DownloadLocationActivity.class, "歌曲存储位置设置");
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_MUSIC_SAVE_PATH, SPage.PAGE_DOWNLOAD_LOCATION);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_MUSIC_SAVE_PATH, SPage.PAGE_DOWNLOAD_LOCATION);
                     return;
                 case 8:
                     SettingUtils.m7779a(activity, LyricPictureSettingActivity.class, m7006d);
-                    LocalStatistic.m5088r();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_MUSIC_PIC, SPage.PAGE_LYRIC_AND_PICTURE);
+                    //LocalStatistic.m5088r();
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_MUSIC_PIC, SPage.PAGE_LYRIC_AND_PICTURE);
                     return;
                 case 9:
                     SettingEntryFragment.this.cleanCache();
-                    LocalStatistic.m5090p();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_CLEAR_CACHE, SPage.PAGE_NONE);
+                    //LocalStatistic.m5090p();
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_CLEAR_CACHE, SPage.PAGE_NONE);
                     return;
                 case 10:
                     SettingUtils.m7779a(activity, AboutActivity.class, m7006d);
-                    LocalStatistic.m5088r();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_ABOUT, SPage.PAGE_ABOUT_TTPOD);
+                    //LocalStatistic.m5088r();
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_ABOUT, SPage.PAGE_ABOUT_TTPOD);
                     return;
                 default:
                     return;
@@ -203,9 +201,7 @@ public class SettingEntryFragment extends BaseFragment {
                         Preferences.m2819v(true);
                     }
                 }
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_SETTING_LOCK_LYRIC_SELECT.getValue(), 0, 0);
-                sUserEvent.setPageParameter(true);
-                sUserEvent.append("type", Integer.valueOf(i2)).post();
+
             }
         }, new BaseDialog.InterfaceC1064a<SingleChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.settings.SettingEntryFragment.3
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
@@ -245,18 +241,18 @@ public class SettingEntryFragment extends BaseFragment {
                     actionItem.m7010a(actionItem2.m7006d());
                     SettingEntryFragment.this.mBaseSettingCard.m7799a((SettingItem) actionItem, i);
                     Preferences.m2851n(false);
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, false));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, false));
                 } else {
                     if (!Preferences.m2818w()) {
                         Preferences.m2851n(true);
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, true));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, true));
                     }
                     ShakeSensitivityType shakeSensitivityType = ShakeSensitivityType.values()[actionItem2.m7005e() - 1];
                     actionItem.m7008b(((Integer) SettingEntryFragment.this.mSensitivityTextResIdMap.get(shakeSensitivityType)).intValue());
                     SettingEntryFragment.this.mBaseSettingCard.m7799a((SettingItem) actionItem, i);
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.SET_SHAKE_SWITCH_SONG_SENSITIVITY, shakeSensitivityType));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SHAKE_SWITCH_SONG_SENSITIVITY, shakeSensitivityType));
                 }
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_OPEN_MENU_OF_SHAKE_CHANGE_SONG_SELECT.getValue(), SPage.PAGE_SETTING_PAGE.getValue(), 0).append("type", Integer.valueOf(i2)).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_OPEN_MENU_OF_SHAKE_CHANGE_SONG_SELECT.getValue(), SPage.PAGE_SETTING_PAGE.getValue(), 0).append("type", Integer.valueOf(i2)).post();
             }
         }, new BaseDialog.InterfaceC1064a<SingleChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.settings.SettingEntryFragment.5
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a

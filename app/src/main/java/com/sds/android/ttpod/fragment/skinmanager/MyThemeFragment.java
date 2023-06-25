@@ -1,5 +1,6 @@
 package com.sds.android.ttpod.fragment.skinmanager;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import androidx.fragment.app.FragmentActivity;
@@ -19,7 +20,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.SkinItem;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import java.lang.reflect.Method;
@@ -67,7 +67,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
     public void onPause() {
         super.onPause();
-        Cache.m3218a().m3180c(getThemeDataList());
+        Cache.getInstance().m3180c(getThemeDataList());
     }
 
     @Override // android.support.v4.app.Fragment
@@ -80,7 +80,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment
     protected ArrayList<SkinItem> loadDataFromCache() {
-        return Cache.m3218a().m3143u();
+        return Cache.getInstance().m3143u();
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment
@@ -137,7 +137,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
     }
 
     private void showConfirmDeleteDialog() {
-        MessageDialog messageDialog = new MessageDialog(getActivity(), getString(R.string.confirm_delete_skin, Integer.valueOf(this.mSelectItemHashMap.size())), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.skinmanager.MyThemeFragment.1
+        @SuppressLint("StringFormatMatches") MessageDialog messageDialog = new MessageDialog(getActivity(), getString(R.string.confirm_delete_skin, this.mSelectItemHashMap.size()), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.skinmanager.MyThemeFragment.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public void mo2038a(MessageDialog messageDialog2) {
@@ -148,7 +148,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
                         MyThemeFragment.this.deleteItem((SkinItem) MyThemeFragment.this.mSelectItemHashMap.get(it.next()));
                         it.remove();
                     }
-                    ThemeStatistic.m4900a(selectedCount);
+                    //ThemeStatistic.m4900a(selectedCount);
                 }
                 MyThemeFragment.this.tryNotifyStopEditRequested();
             }
@@ -159,7 +159,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
 
     /* JADX INFO: Access modifiers changed from: private */
     public void deleteItem(SkinItem skinItem) {
-        if (deleteSkin(skinItem.m3571b(), skinItem.m3575a()).booleanValue()) {
+        if (deleteSkin(skinItem.getPath(), skinItem.m3575a()).booleanValue()) {
             this.mThemeAdapter.m5331c(skinItem);
             performSkinItemStateChange(skinItem.m3565g(), 4);
         }
@@ -167,7 +167,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
     }
 
     private Boolean deleteSkin(String str, int i) {
-        return (Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.DELETE_SKIN, str, Integer.valueOf(i)), Boolean.class);
+        return (Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.DELETE_SKIN, str, Integer.valueOf(i)), Boolean.class);
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment
@@ -283,7 +283,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
         @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment.C1761a
         /* renamed from: a */
         protected void mo5325a(SkinItem skinItem, ImageView imageView) {
-            Bitmap m4748a = ImageCacheUtils.m4748a(skinItem.m3571b(), this.f5552b, this.f5553c);
+            Bitmap m4748a = ImageCacheUtils.m4748a(skinItem.getPath(), this.f5552b, this.f5553c);
             if (m4748a != null) {
                 imageView.setImageBitmap(m4748a);
                 return;
@@ -294,15 +294,16 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
 
         /* renamed from: d */
         private void m5393d(SkinItem skinItem) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.DECODE_SKIN_THUMBNAIL, skinItem));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.DECODE_SKIN_THUMBNAIL, skinItem));
         }
 
+        @SuppressLint("WrongConstant")
         @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment.C1761a
         /* renamed from: b */
         protected void mo5336b(SkinItem skinItem, ImageView imageView) {
             int i = 0;
             if (imageView != null && skinItem != null) {
-                if (!this.f5555e.equals(skinItem.m3571b())) {
+                if (!this.f5555e.equals(skinItem.getPath())) {
                     if (!MyThemeFragment.this.mInEditMode) {
                         i = 4;
                     } else if (MyThemeFragment.this.mSelectItemHashMap.get(Integer.valueOf(skinItem.hashCode())) == null) {

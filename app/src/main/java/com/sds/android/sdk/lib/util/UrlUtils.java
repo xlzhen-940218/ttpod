@@ -26,7 +26,7 @@ public class UrlUtils {
 
     /* renamed from: a */
     public static String m8334a(String str) {
-        if (!StringUtils.m8346a(str) && str.indexOf(63) > 0) {
+        if (!StringUtils.isEmpty(str) && str.indexOf(63) > 0) {
             return str.substring(0, str.indexOf(63));
         }
         return str;

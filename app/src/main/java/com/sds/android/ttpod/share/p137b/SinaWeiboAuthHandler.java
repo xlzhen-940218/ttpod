@@ -94,7 +94,7 @@ public class SinaWeiboAuthHandler extends AuthHandler {
                     return;
                 }
                 Bundle extras = intent.getExtras();
-                if (extras == null || StringUtils.m8346a(extras.getString("access_token"))) {
+                if (extras == null || StringUtils.isEmpty(extras.getString("access_token"))) {
                     m2070a(this.f7366b, "Sina SSO授权失败");
                     return;
                 } else {
@@ -196,7 +196,7 @@ public class SinaWeiboAuthHandler extends AuthHandler {
                 }
                 return new String(cArr);
             } catch (Exception e) {
-                LogUtils.m8388a("SinaWeiboAuthHandler", "Exception:" + e.toString());
+                LogUtils.debug("SinaWeiboAuthHandler", "Exception:" + e.toString());
                 return null;
             }
         }

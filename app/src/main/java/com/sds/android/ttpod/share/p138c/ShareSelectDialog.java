@@ -18,8 +18,8 @@ import android.widget.Toast;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaItemAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
-import com.sds.android.sdk.core.statistic.StatisticHelper;
+
+
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.request.RequestCallback;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
@@ -33,7 +33,6 @@ import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.common.p082a.ShareWaitingDialog;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.share.IShareAction;
 import com.sds.android.ttpod.share.ShareApiFactory;
 import com.sds.android.ttpod.share.ShareInfo;
@@ -173,10 +172,10 @@ public class ShareSelectDialog extends BaseDialog {
             /* renamed from: a */
             public void mo1987a(ShareResult shareResult) {
                 if (shareResult.m2092a()) {
-                    LogUtils.m8388a("ShareSelectDialog", "share success: " + shareResult.m2089b());
+                    LogUtils.debug("ShareSelectDialog", "share success: " + shareResult.m2089b());
                     ShareSelectDialog.this.m2021a((Integer) ShareSelectDialog.f7396o.get(ShareSelectDialog.this.f7407k));
                 } else {
-                    LogUtils.m8388a("ShareSelectDialog", "share failed: " + shareResult.m2089b());
+                    LogUtils.debug("ShareSelectDialog", "share failed: " + shareResult.m2089b());
                     if (!ShareSelectDialog.this.m2000l()) {
                         ShareSelectDialog.this.m2021a((Integer) ShareSelectDialog.f7397p.get(ShareSelectDialog.this.f7407k));
                     }
@@ -204,11 +203,11 @@ public class ShareSelectDialog extends BaseDialog {
             public void handleMessage(Message message) {
                 switch (message.what) {
                     case 0:
-                        LogUtils.m8388a("ShareSelectDialog", "auth success");
+                        LogUtils.debug("ShareSelectDialog", "auth success");
                         ShareSelectDialog.this.m2033a((Bundle) message.obj);
                         return;
                     case 1:
-                        LogUtils.m8388a("ShareSelectDialog", "auth failed");
+                        LogUtils.debug("ShareSelectDialog", "auth failed");
                         ShareSelectDialog.this.m2021a((Integer) ShareSelectDialog.f7395n.get(ShareSelectDialog.this.f7407k));
                         return;
                     case 2:
@@ -382,7 +381,7 @@ public class ShareSelectDialog extends BaseDialog {
     /* renamed from: a */
     protected void mo2022a(ShareType shareType) {
         if (this.f7408l != null && shareType != null) {
-            new SUserEvent("PAGE_CLICK", m2017b(shareType), SPage.PAGE_SHARE_DIALOG.getValue(), SPage.PAGE_NONE.getValue()).append("song_id", this.f7408l.m1952h()).post();
+            //new SUserEvent("PAGE_CLICK", m2017b(shareType), SPage.PAGE_SHARE_DIALOG.getValue(), SPage.PAGE_NONE.getValue()).append("song_id", this.f7408l.m1952h()).post();
         }
     }
 
@@ -392,7 +391,7 @@ public class ShareSelectDialog extends BaseDialog {
         Integer num = this.f7398a.get(shareType);
         SAction sAction = this.f7399b.get(shareType);
         if (num != null && num.intValue() > 0) {
-            StatisticUtils.m4917a(num.intValue(), (int) StatisticHelper.DELAY_SEND, 1L);
+            //StatisticUtils.m4917a(num.intValue(), (int) 65537, 1L);
         }
         return sAction != null ? sAction.getValue() : SAction.ACTION_NONE.getValue();
     }
@@ -407,7 +406,7 @@ public class ShareSelectDialog extends BaseDialog {
     private boolean m1998n() {
         String m1960d="";
         final String str = m1991u() + m1960d.hashCode() + ".jpg";
-        if (!StringUtils.m8346a(this.f7408l.m1960d())) {
+        if (!StringUtils.isEmpty(this.f7408l.m1960d())) {
             if (FileUtils.m8419a(str)) {
                 this.f7408l.m1966b(str);
                 m2011d(this.f7408l.m1956f());
@@ -417,7 +416,7 @@ public class ShareSelectDialog extends BaseDialog {
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo1924a(String str2) {
                         ShareSelectDialog.this.m1989w();
-                        if (!StringUtils.m8346a(str2)) {
+                        if (!StringUtils.isEmpty(str2)) {
                             ShareSelectDialog.this.f7408l.m1966b(str);
                         }
                         ShareSelectDialog.this.m2011d(ShareSelectDialog.this.f7408l.m1956f());
@@ -495,7 +494,7 @@ public class ShareSelectDialog extends BaseDialog {
 
     /* renamed from: a */
     public void m2025a(ShareInfo shareInfo) {
-        if (StringUtils.m8346a(shareInfo.m1960d())) {
+        if (StringUtils.isEmpty(shareInfo.m1960d())) {
             this.f7408l.m1962c(ShareContentUtil.m1938a(shareInfo.m1950i()));
         }
     }
@@ -613,7 +612,7 @@ public class ShareSelectDialog extends BaseDialog {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: c */
     public void m2013c(String str) {
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             final String str2 = m1991u() + str.hashCode() + ".jpg";
             if (new File(str2).exists()) {
                 this.f7408l.m1966b(str2);
@@ -625,7 +624,7 @@ public class ShareSelectDialog extends BaseDialog {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo1924a(String str3) {
                     ShareSelectDialog.this.m1989w();
-                    if (!StringUtils.m8346a(str3)) {
+                    if (!StringUtils.isEmpty(str3)) {
                         ShareSelectDialog.this.f7408l.m1966b(str2);
                     }
                     ShareSelectDialog.this.m1993s();

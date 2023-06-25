@@ -48,7 +48,7 @@ public class IconTextView extends View {
     private RectF f3590g;
 
     /* renamed from: h */
-    private Drawable f3591h;
+    private Drawable drawable;
 
     /* renamed from: i */
     private Drawable f3592i;
@@ -192,7 +192,7 @@ public class IconTextView extends View {
 
     public void setText(String str) {
         this.f3596m = str;
-        this.f3591h = null;
+        this.drawable = null;
         this.f3592i = null;
         requestLayout();
         invalidate();
@@ -206,7 +206,7 @@ public class IconTextView extends View {
     public void m7209a(String str, String str2) {
         this.f3596m = str;
         this.f3598o = str2;
-        this.f3591h = null;
+        this.drawable = null;
         this.f3592i = null;
         requestLayout();
         invalidate();
@@ -258,7 +258,7 @@ public class IconTextView extends View {
     }
 
     public void setImageDrawable(Drawable drawable) {
-        if (this.f3591h != drawable) {
+        if (this.drawable != drawable) {
             int i = this.f3584a;
             int i2 = this.f3585b;
             m7213a(drawable);
@@ -272,11 +272,11 @@ public class IconTextView extends View {
 
     /* renamed from: a */
     private void m7213a(Drawable drawable) {
-        if (this.f3591h != null) {
-            this.f3591h.setCallback(null);
-            unscheduleDrawable(this.f3591h);
+        if (this.drawable != null) {
+            this.drawable.setCallback(null);
+            unscheduleDrawable(this.drawable);
         }
-        this.f3591h = drawable;
+        this.drawable = drawable;
         if (drawable != null) {
             drawable.setCallback(this);
             if (drawable.isStateful()) {
@@ -303,7 +303,7 @@ public class IconTextView extends View {
 
     /* renamed from: a */
     private boolean m7218a() {
-        return StringUtils.m8346a(this.f3596m) && StringUtils.m8346a(this.f3598o);
+        return StringUtils.isEmpty(this.f3596m) && StringUtils.isEmpty(this.f3598o);
     }
 
     /* renamed from: a */
@@ -315,7 +315,7 @@ public class IconTextView extends View {
             canvas.save();
             canvas.clipRect(paddingLeft, getPaddingTop(), paddingLeft + width, height);
         }
-        if (!StringUtils.m8346a(this.bkgText)) {
+        if (!StringUtils.isEmpty(this.bkgText)) {
             this.f3593j.setColor(this.bkgTextColor);
             canvas.drawText(this.bkgText, (width >> 1) + paddingLeft, height - this.f3595l, this.f3593j);
         }
@@ -333,7 +333,7 @@ public class IconTextView extends View {
 
     /* renamed from: b */
     private void m7205b(Canvas canvas) {
-        Drawable drawable = (this.f3603t && this.f3604u) ? this.f3592i : this.f3591h;
+        Drawable drawable = (this.f3603t && this.f3604u) ? this.f3592i : this.drawable;
         if (drawable != null && this.f3584a != 0 && this.f3585b != 0) {
             int paddingTop = getPaddingTop();
             int paddingLeft = getPaddingLeft();
@@ -395,7 +395,7 @@ public class IconTextView extends View {
     private void m7206b(int i, int i2) {
         int i3;
         int i4 = 0;
-        if (this.f3591h == null) {
+        if (this.drawable == null) {
             this.f3584a = -1;
             this.f3585b = -1;
             i3 = 0;
@@ -421,7 +421,7 @@ public class IconTextView extends View {
         float f;
         float f2;
         float f3 = 0.0f;
-        if (this.f3591h != null) {
+        if (this.drawable != null) {
             int i = this.f3584a;
             int i2 = this.f3585b;
             int paddingTop = getPaddingTop();
@@ -429,11 +429,11 @@ public class IconTextView extends View {
             int height = (getHeight() - paddingTop) - getPaddingBottom();
             boolean z = (i < 0 || width == i) && (i2 < 0 || height == i2);
             if (i <= 0 || i2 <= 0 || ImageView.ScaleType.FIT_XY == this.f3588e) {
-                this.f3591h.setBounds(0, 0, width, height);
+                this.drawable.setBounds(0, 0, width, height);
                 this.f3586c = null;
                 return;
             }
-            this.f3591h.setBounds(0, 0, i, i2);
+            this.drawable.setBounds(0, 0, i, i2);
             if (ImageView.ScaleType.MATRIX == this.f3588e) {
                 if (this.f3587d.isIdentity()) {
                     this.f3586c = null;
@@ -505,8 +505,8 @@ public class IconTextView extends View {
     protected void drawableStateChanged() {
         super.drawableStateChanged();
         if (m7218a()) {
-            if (this.f3591h != null && this.f3591h.isStateful()) {
-                this.f3591h.setState(getDrawableState());
+            if (this.drawable != null && this.drawable.isStateful()) {
+                this.drawable.setState(getDrawableState());
                 invalidate();
             }
             if (this.f3603t && this.f3604u && this.f3592i != null && this.f3592i.isStateful()) {

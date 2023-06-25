@@ -3,7 +3,6 @@ package com.sds.android.ttpod.activities.musiccircle.p068a;
 import android.os.Handler;
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.activities.musiccircle.p068a.Checker;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -54,14 +53,14 @@ public final class CheckerManager implements Checker.InterfaceC0796a, Runnable {
     /* renamed from: b */
     public void m7943b() {
         m7938e();
-        LogUtils.m8388a("CheckerManager", "pauseCheckMessage");
+        LogUtils.debug("CheckerManager", "pauseCheckMessage");
     }
 
     /* renamed from: c */
     public void m7941c() {
         m7938e();
         long max = Math.max(1000L, (300000 - TimeUnit.NANOSECONDS.toMillis(System.nanoTime())) + this.f2772g);
-        LogUtils.m8388a("CheckerManager", "resumeCheckMessage " + max);
+        LogUtils.debug("CheckerManager", "resumeCheckMessage " + max);
         m7948a(max);
     }
 
@@ -147,13 +146,13 @@ public final class CheckerManager implements Checker.InterfaceC0796a, Runnable {
             this.f2771f = i;
             if (i < this.f2769d.size()) {
                 Checker checker = this.f2769d.get(this.f2771f);
-                LogUtils.m8386a("CheckerManager", "will check %d task %s", Integer.valueOf(this.f2771f), checker.getClass().getSimpleName());
+                LogUtils.debug("CheckerManager", "will check %d task %s", Integer.valueOf(this.f2771f), checker.getClass().getSimpleName());
                 checker.m7950d();
                 this.f2772g = TimeUnit.NANOSECONDS.toMillis(System.nanoTime());
             }
         }
         this.f2771f = -1;
-        LogUtils.m8388a("CheckerManager", "check complete, wait for next check.");
+        LogUtils.debug("CheckerManager", "check complete, wait for next check.");
         m7948a(300000L);
         this.f2772g = TimeUnit.NANOSECONDS.toMillis(System.nanoTime());
     }

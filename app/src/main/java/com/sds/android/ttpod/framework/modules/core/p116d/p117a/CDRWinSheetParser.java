@@ -77,7 +77,7 @@ public class CDRWinSheetParser implements Iterator<CDRWinSheetEntry> {
                         this.f5978d = str2 + m4245b(this.f5977c);
                         File file = new File(this.f5978d);
                         if (!file.isFile() || !file.exists()) {
-                            this.f5978d = str2 + FileUtils.m8401k(str) + '.' + FileUtils.m8399m(m4245b);
+                            this.f5978d = str2 + FileUtils.m8401k(str) + '.' + FileUtils.getSuffix(m4245b);
                             file = new File(this.f5978d);
                         }
                         if (!file.isFile() || !file.exists()) {

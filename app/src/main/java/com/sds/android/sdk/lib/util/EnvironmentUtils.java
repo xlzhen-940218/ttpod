@@ -59,19 +59,19 @@ import org.json.JSONObject;
 public class EnvironmentUtils {
 
     /* renamed from: a */
-    private static String f2432a;
+    private static String packageName;
 
     /* renamed from: b */
-    private static String f2433b;
+    private static String sdcardPath;
 
     /* renamed from: c */
     private static String f2434c;
 
     /* renamed from: d */
-    private static String f2435d;
+    private static String externalPath;
 
     /* renamed from: e */
-    private static final String f2436e = File.separator + ".";
+    private static final String spearator = File.separator + ".";
 
     static {
         String absolutePath;
@@ -94,22 +94,22 @@ public class EnvironmentUtils {
         } catch (Exception e) {
             absolutePath = file.getAbsolutePath();
         }
-        f2433b = absolutePath;
+        sdcardPath = absolutePath;
     }
 
     /* renamed from: a */
     public static void m8525a(Context context) {
         C0602a.m8515a(context);
-        C0604c.m8484a(context);
+        C0604c.initConfig(context);
         C0603b.m8497a(context);
-        f2432a = context.getPackageName();
+        packageName = context.getPackageName();
         m8517g();
     }
 
     @TargetApi(11)
     /* renamed from: g */
     private static void m8517g() {
-        if (SDKVersionUtils.m8371c()) {
+        if (SDKVersionUtils.checkVersionThanAndroid11()) {
             try {
                 Method method = AsyncTask.class.getMethod("setDefaultExecutor", Executor.class);
                 @SuppressLint("SoonBlockedPrivateApi") Field declaredField = ThreadPoolExecutor.class.getDeclaredField("defaultHandler");
@@ -124,7 +124,7 @@ public class EnvironmentUtils {
 
     /* renamed from: a */
     public static String m8526a() {
-        return f2432a;
+        return packageName;
     }
 
     /* renamed from: com.sds.android.sdk.lib.util.EnvironmentUtils$d */
@@ -169,8 +169,8 @@ public class EnvironmentUtils {
         }
 
         /* renamed from: b */
-        public static String m8467b() {
-            return EnvironmentUtils.f2433b;
+        public static String getSdcardPath() {
+            return EnvironmentUtils.sdcardPath;
         }
 
         /* renamed from: b */
@@ -203,11 +203,11 @@ public class EnvironmentUtils {
         /* renamed from: c */
         public static String m8462c(Context context) {
             String m8460d = m8460d(context);
-            if (StringUtils.m8346a(m8460d) || !FileUtils.m8419a(m8460d)) {
-                return EnvironmentUtils.f2433b + File.separator + MediaStoreOld.AUTHORITY;
+            if (StringUtils.isEmpty(m8460d) || !FileUtils.m8419a(m8460d)) {
+                return EnvironmentUtils.sdcardPath + File.separator + MediaStoreOld.AUTHORITY;
             }
             if (SDKVersionUtils.m8365i()) {
-                return EnvironmentUtils.f2435d;
+                return EnvironmentUtils.externalPath;
             }
             return m8460d + File.separator + MediaStoreOld.AUTHORITY;
         }
@@ -224,7 +224,7 @@ public class EnvironmentUtils {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (!StringUtils.m8346a(EnvironmentUtils.f2434c)) {
+            if (!StringUtils.isEmpty(EnvironmentUtils.f2434c)) {
                 str = EnvironmentUtils.f2434c;
             } else {
                 try {
@@ -232,11 +232,11 @@ public class EnvironmentUtils {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                if (!StringUtils.m8346a(EnvironmentUtils.f2434c)) {
+                if (!StringUtils.isEmpty(EnvironmentUtils.f2434c)) {
                     str = EnvironmentUtils.f2434c;
                 } else {
                     String unused3 = EnvironmentUtils.f2434c = m8463c();
-                    if (!StringUtils.m8346a(EnvironmentUtils.f2434c)) {
+                    if (!StringUtils.isEmpty(EnvironmentUtils.f2434c)) {
                         str = EnvironmentUtils.f2434c;
                     }
                     str = EnvironmentUtils.f2434c;
@@ -249,11 +249,11 @@ public class EnvironmentUtils {
         public static String m8470a(Context context, EnumC0607a enumC0607a) {
             String str = null;
             if (EnumC0607a.FIRST_SD_CARD == enumC0607a) {
-                str = m8467b();
+                str = getSdcardPath();
             } else if (EnumC0607a.SECOND_SD_CARD == enumC0607a) {
                 str = m8460d(context);
             }
-            if (StringUtils.m8346a(str)) {
+            if (StringUtils.isEmpty(str)) {
                 str = "";
             }
             return new StringBuffer(str).append(File.separator).append("Android").append(File.separator).append("data").append(File.separator).append(EnvironmentUtils.m8526a()).toString();
@@ -261,10 +261,10 @@ public class EnvironmentUtils {
 
         /* renamed from: e */
         private static String m8459e(Context context) {
-            if (EnvironmentUtils.f2435d == null) {
-                m8458f(context);
+            if (EnvironmentUtils.externalPath == null) {
+                getExternalFilePath(context);
             }
-            if (StringUtils.m8346a(EnvironmentUtils.f2435d)) {
+            if (StringUtils.isEmpty(EnvironmentUtils.externalPath)) {
                 return "";
             }
             StringBuffer stringBuffer = new StringBuffer(File.separator);
@@ -272,50 +272,50 @@ public class EnvironmentUtils {
             stringBuffer.append(File.separator);
             stringBuffer.append("data");
             stringBuffer.append(File.separator);
-            stringBuffer.append(EnvironmentUtils.f2432a);
-            return EnvironmentUtils.f2435d.replaceAll(stringBuffer.toString(), "");
+            stringBuffer.append(EnvironmentUtils.packageName);
+            return EnvironmentUtils.externalPath.replaceAll(stringBuffer.toString(), "");
         }
 
         /* renamed from: f */
-        private static String m8458f(Context context) {
-            if (EnvironmentUtils.f2435d != null) {
-                return EnvironmentUtils.f2435d;
+        private static String getExternalFilePath(Context context) {
+            if (EnvironmentUtils.externalPath != null) {
+                return EnvironmentUtils.externalPath;
             }
             File[] externalFilesDirs = ContextCompat.getExternalFilesDirs(context, null);
             if (externalFilesDirs == null || externalFilesDirs.length < 2 || externalFilesDirs[1] == null) {
-                String unused = EnvironmentUtils.f2435d = "";
+                String unused = EnvironmentUtils.externalPath = "";
             } else {
                 try {
                     try {
-                        String unused2 = EnvironmentUtils.f2435d = externalFilesDirs[1].getCanonicalPath().replaceAll(File.separator + "files", "");
-                        if (EnvironmentUtils.f2435d == null) {
-                            String unused3 = EnvironmentUtils.f2435d = "";
+                        String unused2 = EnvironmentUtils.externalPath = externalFilesDirs[1].getCanonicalPath().replaceAll(File.separator + "files", "");
+                        if (EnvironmentUtils.externalPath == null) {
+                            String unused3 = EnvironmentUtils.externalPath = "";
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
-                        if (EnvironmentUtils.f2435d == null) {
-                            String unused4 = EnvironmentUtils.f2435d = "";
+                        if (EnvironmentUtils.externalPath == null) {
+                            String unused4 = EnvironmentUtils.externalPath = "";
                         }
                     }
                 } catch (Throwable th) {
-                    if (EnvironmentUtils.f2435d == null) {
-                        String unused5 = EnvironmentUtils.f2435d = "";
+                    if (EnvironmentUtils.externalPath == null) {
+                        String unused5 = EnvironmentUtils.externalPath = "";
                     }
                     throw th;
                 }
             }
-            return EnvironmentUtils.f2435d;
+            return EnvironmentUtils.externalPath;
         }
 
         /* renamed from: g */
         private static String m8457g(Context context) throws Exception {
             String[] strArr;
-            if (SDKVersionUtils.m8371c()) {
+            if (SDKVersionUtils.checkVersionThanAndroid11()) {
                 StorageManager storageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
                 for (String str : (String[]) storageManager.getClass().getMethod("getVolumePaths", null)
                         .invoke(storageManager, null)) {
                     File file = new File(str);
-                    if (file.canWrite() && !FileUtils.m8408d(str, EnvironmentUtils.f2433b)) {
+                    if (file.canWrite() && !FileUtils.m8408d(str, EnvironmentUtils.sdcardPath)) {
                         return file.getCanonicalPath();
                     }
                 }
@@ -329,7 +329,12 @@ public class EnvironmentUtils {
             if (!f2463a.isEmpty()) {
                 return f2463a.get(0);
             }
-            for (File file : File.listRoots()[0].listFiles(new FileFilter() { // from class: com.sds.android.sdk.lib.util.EnvironmentUtils.d.1
+            File[] files = File.listRoots();
+            File[] subFiles = files[0].listFiles();
+            if(subFiles == null){
+                return "";
+            }
+            for (File file : files[0].listFiles(new FileFilter() { // from class: com.sds.android.sdk.lib.util.EnvironmentUtils.d.1
                 @Override // java.io.FileFilter
                 public boolean accept(File file2) {
                     return !file2.getName().contains("dev");
@@ -362,7 +367,7 @@ public class EnvironmentUtils {
         /* renamed from: b */
         private static void m8464b(String str) {
             boolean z;
-            if (!m8461c(str) && !FileUtils.m8408d(str, EnvironmentUtils.f2433b)) {
+            if (!m8461c(str) && !FileUtils.m8408d(str, EnvironmentUtils.sdcardPath)) {
                 if (f2463a.isEmpty()) {
                     f2463a.add(str);
                     return;
@@ -385,7 +390,7 @@ public class EnvironmentUtils {
 
         /* renamed from: c */
         private static boolean m8461c(String str) {
-            return str.contains(EnvironmentUtils.f2436e);
+            return str.contains(EnvironmentUtils.spearator);
         }
     }
 
@@ -414,72 +419,82 @@ public class EnvironmentUtils {
         private static final int[] f2456a = {0, 0, 0, 3, 0, 3, 3, 0, 3, 3, 3, 0, 3, 3, 3, 3};
 
         /* renamed from: b */
-        private static String f2457b = "";
+        private static String deviceId = "";
 
         /* renamed from: c */
-        private static String f2458c = "";
+        private static String subscriberId = "";
 
         /* renamed from: d */
-        private static String f2459d = "";
+        private static String macAddress = "";
 
         /* renamed from: e */
-        private static NetworkInfo f2460e;
+        private static NetworkInfo activeNetworkInfo;
 
         /* renamed from: f */
         private static int f2461f;
 
         /* renamed from: g */
-        private static ConnectivityManager f2462g;
+        private static ConnectivityManager connectivityManager;
 
         /* renamed from: a */
-        public static void m8484a(Context context) {
+        @SuppressLint("HardwareIds")
+        public static void initConfig(Context context) {
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            f2457b = telephonyManager.getDeviceId();
-            if (f2457b == null) {
-                f2457b = "";
+            try {
+                deviceId = telephonyManager.getDeviceId();
+            } catch (SecurityException ex) {
+                ex.printStackTrace();
             }
-            f2458c = telephonyManager.getSubscriberId();
-            if (f2458c == null) {
-                f2458c = "";
+
+            if (deviceId == null) {
+                deviceId = "";
             }
-            f2459d = ((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getConnectionInfo().getMacAddress();
-            if (f2459d == null) {
-                f2459d = "";
+            try {
+                subscriberId = telephonyManager.getSubscriberId();
+            } catch (SecurityException ex) {
+                ex.printStackTrace();
             }
-            f2461f = f2456a[m8480b(context)];
-            f2462g = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            f2460e = f2462g.getActiveNetworkInfo();
+            if (subscriberId == null) {
+                subscriberId = "";
+            }
+            macAddress = ((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getConnectionInfo().getMacAddress();
+            if (macAddress == null) {
+                macAddress = "";
+            }
+            f2461f = f2456a[getNetworkType(context)];
+            connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         }
 
         /* renamed from: a */
-        public static String m8485a() {
-            return f2457b;
+        public static String getDeviceId() {
+            return deviceId;
         }
 
         /* renamed from: b */
-        public static String m8481b() {
-            return f2458c;
+        public static String getSubscriberId() {
+            return subscriberId;
         }
 
         /* renamed from: c */
-        public static String m8478c() {
-            return f2459d;
+        public static String getMacAddress() {
+            return macAddress;
         }
 
         /* renamed from: d */
         public static int m8476d() {
             int i = f2461f;
-            if (f2462g == null) {
+            if (connectivityManager == null) {
                 return 1;
             }
-            f2460e = f2462g.getActiveNetworkInfo();
-            if (!m8483a(f2460e)) {
+            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            if (!m8483a(activeNetworkInfo)) {
                 return -1;
             }
-            if (m8475d(f2460e)) {
+            if (m8475d(activeNetworkInfo)) {
                 return 2;
             }
-            if (m8477c(f2460e)) {
+            if (m8477c(activeNetworkInfo)) {
                 return 1;
             }
             return i;
@@ -487,7 +502,7 @@ public class EnvironmentUtils {
 
         /* renamed from: e */
         public static boolean m8474e() {
-            return m8483a(f2462g.getActiveNetworkInfo());
+            return m8483a(connectivityManager.getActiveNetworkInfo());
         }
 
         /* renamed from: f */
@@ -518,7 +533,7 @@ public class EnvironmentUtils {
         }
 
         /* renamed from: b */
-        private static int m8480b(Context context) {
+        private static int getNetworkType(Context context) {
 
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -543,7 +558,7 @@ public class EnvironmentUtils {
 
         /* renamed from: c */
         private static boolean m8477c(NetworkInfo networkInfo) {
-            return m8479b(networkInfo) && !StringUtils.m8346a(Proxy.getDefaultHost());
+            return m8479b(networkInfo) && !StringUtils.isEmpty(Proxy.getDefaultHost());
         }
 
         /* renamed from: d */
@@ -666,17 +681,17 @@ public class EnvironmentUtils {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            LogUtils.m8379d("Config", "Build:" + f2447k);
-            LogUtils.m8379d("Config", "AppVersion:" + f2437a);
-            LogUtils.m8379d("Config", "VerificationEnable:" + f2439c);
-            LogUtils.m8379d("Config", "VersionName:" + f2438b);
-            LogUtils.m8379d("Config", "UrlPrintEnable:" + f2440d);
-            LogUtils.m8379d("Config", "TestMode:" + f2441e);
-            LogUtils.m8379d("Config", "AppCheckUpdateEnable:" + f2442f);
-            LogUtils.m8379d("Config", "LogEnable:" + f2443g);
-            LogUtils.m8379d("Config", "AdSdkEnable:" + f2444h);
-            LogUtils.m8379d("Config", "UpdateCategory:" + f2448l);
-            LogUtils.m8379d("Config", "360UnionEnable:" + f2451o);
+            LogUtils.info("Config", "Build:" + f2447k);
+            LogUtils.info("Config", "AppVersion:" + f2437a);
+            LogUtils.info("Config", "VerificationEnable:" + f2439c);
+            LogUtils.info("Config", "VersionName:" + f2438b);
+            LogUtils.info("Config", "UrlPrintEnable:" + f2440d);
+            LogUtils.info("Config", "TestMode:" + f2441e);
+            LogUtils.info("Config", "AppCheckUpdateEnable:" + f2442f);
+            LogUtils.info("Config", "LogEnable:" + f2443g);
+            LogUtils.info("Config", "AdSdkEnable:" + f2444h);
+            LogUtils.info("Config", "UpdateCategory:" + f2448l);
+            LogUtils.info("Config", "360UnionEnable:" + f2451o);
         }
 
         /* JADX WARN: Removed duplicated region for block: B:41:0x004d A[EXC_TOP_SPLITTER, SYNTHETIC] */
@@ -904,16 +919,16 @@ public class EnvironmentUtils {
             try {
                 OpenUDIDManager.m8571a(context);
                 f2454b.put("openudid", OpenUDIDManager.m8572a());
-                String replaceAll = C0604c.m8478c().replaceAll("[-:]", "");
+                String replaceAll = C0604c.getMacAddress().replaceAll("[-:]", "");
                 f2454b.put("hid", SecurityUtils.C0612d.m8352a(replaceAll));
-                String m8485a = C0604c.m8485a();
+                String m8485a = C0604c.getDeviceId();
                 HashMap<String, Object> hashMap = f2454b;
-                if (!StringUtils.m8346a(m8485a)) {
+                if (!StringUtils.isEmpty(m8485a)) {
                     replaceAll = m8485a;
                 }
                 hashMap.put("uid", replaceAll);
                 f2454b.put("mid", URLEncoder.encode(Build.MODEL, "UTF-8"));
-                f2454b.put("imsi", URLEncoder.encode(C0604c.m8481b(), "UTF-8"));
+                f2454b.put("imsi", URLEncoder.encode(C0604c.getSubscriberId(), "UTF-8"));
                 f2454b.put("s", "s200");
                 f2454b.put("splus", URLEncoder.encode(Build.VERSION.RELEASE + "/" + Build.VERSION.SDK_INT, "UTF-8"));
                 f2454b.put("rom", URLEncoder.encode(Build.FINGERPRINT, "UTF-8"));

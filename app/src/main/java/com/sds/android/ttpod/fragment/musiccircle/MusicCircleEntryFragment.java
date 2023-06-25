@@ -11,7 +11,7 @@ import com.sds.android.cloudapi.ttpod.data.NewNoticeCount;
 import com.sds.android.cloudapi.ttpod.data.Post;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
 import com.sds.android.cloudapi.ttpod.result.NewNoticeCountResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.IdListResult;
@@ -36,7 +36,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -82,7 +81,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
             public void onClick(View view2) {
                 if (MusicCircleEntryFragment.this.isMe()) {
                     MusicCircleEntryFragment.this.launchFragment(WrapUserPostListFragment.createUserPostListFragmentByUser(Preferences.m2954aq(), "music-circle"));
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_MY_HEADER.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_MY_HEADER.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
                 }
             }
         };
@@ -113,7 +112,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
             CheckerManager.m7949a().m7941c();
             CheckerManager.m7949a().m7947a(this);
         }
-        OnlineMediaStatistic.m5045a("music-circle");
+        //OnlineMediaStatistic.m5045a("music-circle");
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
@@ -126,7 +125,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onBackPressed() {
         super.onBackPressed();
-        CommandCenter.m4607a().m4599a(this);
+        CommandCenter.getInstance().m4599a(this);
     }
 
     @Override // com.sds.android.ttpod.fragment.musiccircle.HeaderPostListFragment, com.sds.android.ttpod.fragment.musiccircle.PostListFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
@@ -206,7 +205,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
                 Preferences.m3059K(false);
                 MusicCircleEntryFragment.this.setFindFriendGuideStubVisible(false);
                 MusicCircleEntryFragment.this.launchFragment(new FindFriendsFragment());
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_FIND_FRIENDS.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_FIND_FRIENDS.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
             }
         });
     }
@@ -227,11 +226,11 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
         switch (i) {
             case 25:
                 EntryUtils.m8288g(getActivity());
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MY_PROFILE.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MY_PROFILE.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
                 return;
             case 26:
                 launchFragment(new FavoritePostsFragment());
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MY_FAVORITE.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MY_FAVORITE.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
                 return;
             case 27:
                 MessageEntryFragment messageEntryFragment = new MessageEntryFragment();
@@ -241,10 +240,10 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
                 messageEntryFragment.setArguments(bundle);
                 messageEntryFragment.setOriginFragment(this);
                 launchFragment(messageEntryFragment);
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
                 return;
             case 28:
-                CommandCenter.m4607a().m4606a(new Command(CommandID.LOGOUT, new Object[0]));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.LOGOUT, new Object[0]));
                 finish();
                 return;
             default:
@@ -314,7 +313,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
                 @Override // java.lang.Runnable
                 public void run() {
                     if (MusicCircleEntryFragment.this.mUser != null) {
-                        final List<Post> m3216a = Cache.m3218a().m3216a(MusicCircleEntryFragment.this.mUser.getUserId());
+                        final List<Post> m3216a = Cache.getInstance().m3216a(MusicCircleEntryFragment.this.mUser.getUserId());
                         if (MusicCircleEntryFragment.this.mHandler != null) {
                             MusicCircleEntryFragment.this.mHandler.post(new Runnable() { // from class: com.sds.android.ttpod.fragment.musiccircle.MusicCircleEntryFragment.4.1
                                 @Override // java.lang.Runnable
@@ -337,7 +336,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
     public void onRequestPostIds() {
         super.onRequestPostIds();
         if (getUser() != null) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_TIMELINE_USER_POST_IDS, onLoadOrigin()));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_TIMELINE_USER_POST_IDS, onLoadOrigin()));
         }
         CheckerManager m7949a = CheckerManager.m7949a();
         m7949a.m7944a(MusicCircleChecker.class);
@@ -382,7 +381,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
             TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.fragment.musiccircle.MusicCircleEntryFragment.5
                 @Override // java.lang.Runnable
                 public void run() {
-                    Cache.m3218a().m3215a(userId, arrayList);
+                    Cache.getInstance().m3215a(userId, arrayList);
                 }
             });
         }
@@ -393,7 +392,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
     public void onPlayEvent(Post post) {
         super.onPlayEvent(post);
         MusicCircleStatistic.m7984a(post.getPostId(), post.getUser().getNickName());
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_PLAY_POST.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_PLAY_POST.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).post();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -401,7 +400,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
     public void onEntryDetail(Post post) {
         super.onEntryDetail(post);
         MusicCircleStatistic.m7979b(post.getPostId(), post.getUser().getNickName());
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_POST.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_POST.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).post();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -409,27 +408,27 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
     public void onFavoriteEvent(Post post, boolean z) {
         super.onFavoriteEvent(post, z);
         MusicCircleStatistic.m7976c(post.getPostId(), post.getUser().getNickName());
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_POST_FAVOR.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).append("status", Integer.valueOf(z ? 1 : 0)).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_POST_FAVOR.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).append("status", Integer.valueOf(z ? 1 : 0)).post();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListFragment
     public void onBindReplyClick(Post post) {
         super.onBindReplyClick(post);
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_POST_REPLY.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_POST_REPLY.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).post();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListFragment
     public void onBindRepostClick(Post post) {
         super.onBindRepostClick(post);
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_POST_FORWARD.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_POST_FORWARD.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(post.getPostId())).append("song_list_name", post.getTitleName()).post();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListFragment
     public void onUserAvatarClick() {
         super.onUserAvatarClick();
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_USER_HEADER.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_CLICK_USER_HEADER.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
     }
 }

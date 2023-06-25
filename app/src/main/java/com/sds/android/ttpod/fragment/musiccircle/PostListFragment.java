@@ -25,7 +25,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p124f.PostUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.player.PlayStatus;
@@ -59,7 +58,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
         super.onCreate(bundle);
         TTPodUser m2954aq = Preferences.m2954aq();
         if (m2954aq != null) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
         }
     }
 
@@ -104,7 +103,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
         super.onViewCreated(view, bundle);
         TTPodUser m2954aq = Preferences.m2954aq();
         if (m2954aq != null) {
-            CommandCenter.m4607a().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(m2954aq.getUserId())), Boolean.class);
+            CommandCenter.getInstance().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(m2954aq.getUserId())), Boolean.class);
         }
     }
 
@@ -172,7 +171,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void onPlayEvent(Post post) {
-        OnlineMediaStatistic.m5054a();
+        //OnlineMediaStatistic.m5054a();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -299,7 +298,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
     public void onLoginFinished(CommonResult commonResult) {
         TTPodUser m2954aq = Preferences.m2954aq();
         if (m2954aq != null) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
         }
     }
 
@@ -316,7 +315,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
     }
 
     public void playMediaChanged() {
-        this.mAdapter.m7468a(Cache.m3218a().m3225N().getSongID());
+        this.mAdapter.m7468a(Cache.getInstance().getCurrentPlayMediaItem().getSongID());
     }
 
     public void updatePlayStatus(PlayStatus playStatus) {

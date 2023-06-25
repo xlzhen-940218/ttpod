@@ -24,8 +24,8 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.activities.unicomflow.UnicomFlowManager;
-import com.sds.android.ttpod.activities.unicomflow.WebViewProxy;
+
+
 import com.sds.android.ttpod.activities.web.JsCallback;
 import com.sds.android.ttpod.activities.web.WebJsInterface;
 import com.sds.android.ttpod.framework.TTPodConfig;
@@ -68,7 +68,7 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
         public void onDownloadStart(String str, String str2, String str3, String str4, long j) {
             DownloadTaskInfo generateDownloadTaskInfo = WebFragment.this.generateDownloadTaskInfo(str);
             if (generateDownloadTaskInfo != null) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, generateDownloadTaskInfo));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, generateDownloadTaskInfo));
             }
         }
     };
@@ -105,7 +105,7 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
         this.mTTWebViewClient = new TTWebViewClient(getActivity(), this, viewGroup2.findViewById(R.id.error_Page_layout)) { // from class: com.sds.android.ttpod.fragment.WebFragment.2
             @Override // com.sds.android.ttpod.widget.TTWebViewClient, android.webkit.WebViewClient
             public void onReceivedHttpAuthRequest(WebView webView, HttpAuthHandler httpAuthHandler, String str, String str2) {
-                if (WebViewProxy.m7740a() && HttpRequest.m8704b()) {
+                if (HttpRequest.m8704b()) {
                     httpAuthHandler.proceed(UnicomFlowModule.USERNAME, UnicomFlowModule.PASSWORD);
                 } else {
                     super.onReceivedHttpAuthRequest(webView, httpAuthHandler, str, str2);
@@ -119,14 +119,14 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
         Bundle arguments = getArguments();
         String string = arguments.getString(EXTRA_URL);
         boolean z = arguments.getBoolean(EXTRA_IS_SHOW_PLAY_CONTROL_BAR, false);
-        if (!StringUtils.m8346a(string)) {
+        if (!StringUtils.isEmpty(string)) {
             this.mWebView.loadUrl(string);
             if (z) {
                 ((FrameLayout.LayoutParams) this.mWebView.getLayoutParams()).bottomMargin = (int) getResources().getDimension(R.dimen.playcontrol_bar_height);
             }
             ((TextView) viewGroup2.findViewById(R.id.hint_2)).setText(getString(R.string.online_search_hint_source, string));
             viewGroup2.findViewById(R.id.hint_banner).setVisibility(arguments.getBoolean(EXTRA_HINT_BANNER_SHOW, false) ? View.VISIBLE : View.GONE);
-            UnicomFlowManager.m7760a((Context) getActivity());
+            //UnicomFlowManager.m7760a((Context) getActivity());
             UnicomFlowUtil.m3950b(getActivity());
             return viewGroup2;
         }
@@ -144,7 +144,7 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
     }
 
     public void updateFlowStatus(Boolean bool) {
-        UnicomFlowManager.m7760a((Context) getActivity());
+        //UnicomFlowManager.m7760a((Context) getActivity());
     }
 
     public void playMediaChanged() {
@@ -156,7 +156,7 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
     }
 
     private void callJsPlayStatusChange(String str) {
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
             this.mWebView.loadUrl("javascript:window.playStateChanged(" + m3225N.getSongID() + ", '" + str + "')");
         }
@@ -175,19 +175,19 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
     public DownloadTaskInfo generateDownloadTaskInfo(String str) {
         String mimeTypeFromExtension;
         String str2;
-        if (StringUtils.m8346a(str)) {
-            LogUtils.m8388a(TAG, "url非法 url=" + str);
+        if (StringUtils.isEmpty(str)) {
+            LogUtils.debug(TAG, "url非法 url=" + str);
             return null;
         }
-        String m8402j = FileUtils.m8402j(str);
-        String m8399m = FileUtils.m8399m(m8402j);
+        String m8402j = FileUtils.getFilename(str);
+        String m8399m = FileUtils.getSuffix(m8402j);
         if (m8399m.equals("tsk")) {
             mimeTypeFromExtension = "tsk/";
         } else {
             mimeTypeFromExtension = MimeTypeMap.getSingleton().getMimeTypeFromExtension(m8399m);
         }
         if (mimeTypeFromExtension == null) {
-            LogUtils.m8388a(TAG, "不支持的类型 url=" + str);
+            LogUtils.debug(TAG, "不支持的类型 url=" + str);
             return null;
         }
         Integer num = -1;
@@ -206,8 +206,8 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
         } else {
             str2 = null;
         }
-        LogUtils.m8388a(TAG, "download url=" + str + ",savePath=" + str2 + ",downloadType=" + num);
-        if (StringUtils.m8346a(str2) || num.intValue() < 0) {
+        LogUtils.debug(TAG, "download url=" + str + ",savePath=" + str2 + ",downloadType=" + num);
+        if (StringUtils.isEmpty(str2) || num.intValue() < 0) {
             return null;
         }
         return DownloadUtils.m4760a(str, str2, 0L, m8402j, num, true, "skin");
@@ -257,7 +257,7 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
 
     private boolean handleIntent(String str) {
         try {
-            Intent parseUri = Intent.parseUri(str, 1);
+            Intent parseUri = Intent.parseUri(str, Intent.URI_INTENT_SCHEME);
             parseUri.addCategory("android.intent.category.BROWSABLE");
             parseUri.setComponent(null);
             parseUri.putExtra("com.android.browser.application_id", getActivity().getPackageName());

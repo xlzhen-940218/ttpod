@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.component.p085b.ActionItem;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 
 /* loaded from: classes.dex */
 public class SubFolderGroupFragment extends SubGroupListFragment {
@@ -19,7 +18,7 @@ public class SubFolderGroupFragment extends SubGroupListFragment {
         super.onDropDownMenuClicked(i, actionItem);
         switch (i) {
             case 4:
-                LocalStatistic.m5114as();
+                //LocalStatistic.m5114as();
                 return;
             default:
                 return;

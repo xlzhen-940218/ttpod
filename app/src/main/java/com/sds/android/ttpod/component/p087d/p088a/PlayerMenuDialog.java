@@ -13,13 +13,12 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.common.widget.IconTextView;
 import com.sds.android.ttpod.component.p085b.ActionItem;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
@@ -97,35 +96,35 @@ public class PlayerMenuDialog extends Dialog {
                 switch (((ActionItem) view.getTag()).m7005e()) {
                     case 0:
                         PlayerMenuDialog.this.f3980b.onPictureOptionSelected();
-                        LocalStatistic.m5085u();
-                        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_SEARCH_PIC.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_NONE.getValue()).post();
+                        //LocalStatistic.m5085u();
+                        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_SEARCH_PIC.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_NONE.getValue()).post();
                         return;
                     case 1:
                         PlayerMenuDialog.this.f3980b.onLyricOptionSelected();
-                        LocalStatistic.m5084v();
-                        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_SEARCH_LYRIC.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_NONE.getValue()).post();
+                        //LocalStatistic.m5084v();
+                        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_SEARCH_LYRIC.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_NONE.getValue()).post();
                         return;
                     case 2:
                         PlayerMenuDialog.this.f3980b.onAdjustOptionSelected();
-                        LocalStatistic.m5083w();
-                        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_CONFIG_LYRIC.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_PLAYER_CONFIG_LYRIC.getValue()).post();
+                        //LocalStatistic.m5083w();
+                        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_CONFIG_LYRIC.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_PLAYER_CONFIG_LYRIC.getValue()).post();
                         return;
                     case 3:
                         PlayerMenuDialog.this.f3980b.onSetRingtoneSelected();
-                        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_SET_RING.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_DIALOG_RING.getValue()).post();
+                        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_SET_RING.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_DIALOG_RING.getValue()).post();
                         return;
                     case 4:
                         PlayerMenuDialog.this.f3980b.onMoreOptionSelected();
-                        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue()).post();
+                        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue()).post();
                         return;
                     case 5:
                         PlayerMenuDialog.this.f3980b.onDownloadSelected();
-                        LocalStatistic.m5080z();
-                        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYER_MENU_DOWNLOAD.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_DIALOG_DOWNLOAD.getValue()).post();
+                        //LocalStatistic.m5080z();
+                        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYER_MENU_DOWNLOAD.getValue(), SPage.PAGE_PLAYER_MENU.getValue(), SPage.PAGE_DIALOG_DOWNLOAD.getValue()).post();
                         return;
                     case 6:
                         PlayerMenuDialog.this.f3980b.onShareOptionSelected();
-                        LocalStatistic.m5082x();
+                        //LocalStatistic.m5082x();
                         return;
                     default:
                         return;
@@ -141,7 +140,7 @@ public class PlayerMenuDialog extends Dialog {
         attributes.width = DisplayUtils.m7225c();
         window.setAttributes(attributes);
         window.setWindowAnimations(R.style.Dialog_Window_Anim);
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         this.f3984f = new ArrayList<>();
         boolean z = (m3225N.isNull() || FileUtils.m8419a(m3225N.getLocalDataSource()) || !m3225N.isOnline()) ? false : true;
         this.f3984f.add(new ActionItem(0, 0, (int) R.string.menu_search_artist_pic, (int) R.string.icon_search_pic));
@@ -191,7 +190,7 @@ public class PlayerMenuDialog extends Dialog {
 
             @Override // android.widget.SeekBar.OnSeekBarChangeListener
             public void onStopTrackingTouch(SeekBar seekBar) {
-                LocalStatistic.m5081y();
+                //LocalStatistic.m5081y();
             }
         });
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.layout_function);

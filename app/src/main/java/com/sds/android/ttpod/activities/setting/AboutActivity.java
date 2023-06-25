@@ -16,10 +16,8 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.version.VersionUpdateModule;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 
 /* loaded from: classes.dex */
 public class AboutActivity extends SlidingClosableActivity {
@@ -37,25 +35,25 @@ public class AboutActivity extends SlidingClosableActivity {
                     if (EnvironmentUtils.C0602a.m8516a()) {
                         if (EnvironmentUtils.C0604c.m8474e()) {
                             PopupsUtils.m6760a((int) R.string.version_upgrade_check_toast);
-                            CommandCenter.m4607a().m4606a(new Command(CommandID.CHECK_UPGRADE, false));
+                            CommandCenter.getInstance().m4606a(new Command(CommandID.CHECK_UPGRADE, false));
                         } else {
                             PopupsUtils.m6760a((int) R.string.version_update_network_bad);
                         }
                     }
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_CHECK_UPDATE, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_CHECK_UPDATE, SPage.PAGE_NONE);
                     return;
                 case 2:
                     SettingUtils.m7779a(AboutActivity.this, HelpFeedbackActivity.class, m7006d);
-                    LocalStatistic.m5087s();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_HELP_REPLAY, SPage.PAGE_SETTING_QUESTION);
+                    //LocalStatistic.m5087s();
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_HELP_REPLAY, SPage.PAGE_SETTING_QUESTION);
                     return;
                 case 3:
                     AboutActivity.this.ratingTTPod();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_SCORE, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_SCORE, SPage.PAGE_NONE);
                     return;
                 case 4:
                     SettingUtils.m7779a(AboutActivity.this, ContactUsActivity.class, actionItem.m7006d());
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_CONTACT, SPage.PAGE_CONTACT_US);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_CONTACT, SPage.PAGE_CONTACT_US);
                     return;
                 default:
                     return;

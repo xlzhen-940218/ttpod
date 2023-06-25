@@ -22,10 +22,8 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.NotificationUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.MediaStorage;
@@ -55,7 +53,7 @@ public class DownloadManagerFragment extends SlidingClosableFragment {
 
         @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
         public void onPageSelected(int i) {
-            SUserUtils.m4956a(i == 0 ? SAction.ACTION_MY_DOWNLOAD_TO_DOWNLOADED : SAction.ACTION_MY_DOWNLOAD_TO_DOWNLOADING, i == 0 ? SPage.PAGE_MY_DOWNLOAD_DOWNLOADED : SPage.PAGE_MY_DOWNLOAD_DOWNLOADING);
+            //SUserUtils.m4956a(i == 0 ? SAction.ACTION_MY_DOWNLOAD_TO_DOWNLOADED : SAction.ACTION_MY_DOWNLOAD_TO_DOWNLOADING, i == 0 ? SPage.PAGE_MY_DOWNLOAD_DOWNLOADED : SPage.PAGE_MY_DOWNLOAD_DOWNLOADING);
             DownloadManagerFragment.this.mCurrentItem = i;
             DownloadManagerFragment.this.setCurrentPosition(i);
         }
@@ -117,7 +115,7 @@ public class DownloadManagerFragment extends SlidingClosableFragment {
                 } else if (1 == DownloadManagerFragment.this.mCurrentItem) {
                     ((DownloadTaskListFragment) DownloadManagerFragment.this.mPagerAdapter.getItem(DownloadManagerFragment.this.mCurrentItem)).onDropDownMenuClicked(9);
                 }
-                SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL, SPage.PAGE_NONE);
+                //SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL, SPage.PAGE_NONE);
             }
         });
         this.mTabHost = (SlidingTabHost) inflate.findViewById(R.id.slidingtabhost_localmusic);
@@ -137,9 +135,9 @@ public class DownloadManagerFragment extends SlidingClosableFragment {
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public void mo2038a(OptionalDialog optionalDialog) {
-                SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL_SURE, SPage.PAGE_NONE);
-                LocalStatistic.m5152aB();
-                CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_ALL_FINISHED_DOWNLOAD_TASK, DownloadManagerFragment.this.mDownloadType, Boolean.valueOf(optionalDialog.m6808b())));
+                //SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL_SURE, SPage.PAGE_NONE);
+                //LocalStatistic.m5152aB();
+                CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_ALL_FINISHED_DOWNLOAD_TASK, DownloadManagerFragment.this.mDownloadType, Boolean.valueOf(optionalDialog.m6808b())));
             }
         }, (BaseDialog.InterfaceC1064a<OptionalDialog>) null);
     }
@@ -179,7 +177,7 @@ public class DownloadManagerFragment extends SlidingClosableFragment {
     }
 
     private void cancelCompletedAndErrorNotification() {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.CLEAR_COMPLETE_TASK_COUNT, new Object[0]));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.CLEAR_COMPLETE_TASK_COUNT, new Object[0]));
         NotificationUtils.m4696a(15121730);
         NotificationUtils.m4696a(15121740);
     }
@@ -197,14 +195,12 @@ public class DownloadManagerFragment extends SlidingClosableFragment {
             bundle.putString(AbsMediaListFragment.KEY_GROUP_ID, MediaStorage.GROUP_ID_DOWNLOAD);
             MediaListFragment mediaListFragment = (MediaListFragment) Fragment.instantiate(getActivity(), MediaListFragment.class.getName(), bundle);
             mediaListFragment.setPage(SPage.PAGE_MY_DOWNLOAD_DOWNLOADED);
-            mediaListFragment.setPageProperties(DOWNLOAD_TYPE, this.mDownloadType);
             mediaListFragment.setNoDataViewMessage(R.string.icon_male, R.string.no_song_go_recommend);
             return mediaListFragment;
         }
         bundle.putInt(DOWNLOAD_TYPE, this.mDownloadType.intValue());
         DownloadTaskListFragment downloadTaskListFragment = (DownloadTaskListFragment) Fragment.instantiate(getActivity(), CompletedDownloadFragment.class.getName(), bundle);
         downloadTaskListFragment.setPage(SPage.PAGE_MY_DOWNLOAD_DOWNLOADED);
-        downloadTaskListFragment.setPageProperties(DOWNLOAD_TYPE, this.mDownloadType);
         downloadTaskListFragment.setOnTaskCountChangeListener(new DownloadTaskListFragment.InterfaceC1436b() { // from class: com.sds.android.ttpod.fragment.downloadmanager.DownloadManagerFragment.4
             @Override // com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment.InterfaceC1436b
             /* renamed from: a */

@@ -17,10 +17,8 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.utils.EntryUtils;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,13 +48,13 @@ public class SubGroupListFragment extends SlidingClosableFragment {
         view.findViewById(R.id.tv_create_playlist).setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.list.SubGroupListFragment.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view2) {
-                SUserUtils.m4956a(SAction.ACTION_MY_SONGLIST_CREATE, SPage.PAGE_NONE);
-                LocalStatistic.m5162U();
+                //SUserUtils.m4956a(SAction.ACTION_MY_SONGLIST_CREATE, SPage.PAGE_NONE);
+                //LocalStatistic.m5162U();
                 PopupsUtils.m6710b(SubGroupListFragment.this.getActivity(), DateUtils.m8432a(0), new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubGroupListFragment.1.1
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo2038a(EditTextDialog editTextDialog) {
-                        CommandCenter.m4607a().m4602a(new Command(CommandID.ADD_GROUP, editTextDialog.m6902c(0).m6896d().toString()), String.class);
+                        CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, editTextDialog.m6902c(0).m6896d().toString()), String.class);
                     }
                 });
             }
@@ -96,7 +94,7 @@ public class SubGroupListFragment extends SlidingClosableFragment {
 
     @Override // com.sds.android.ttpod.fragment.base.ActionBarFragment
     protected Collection<ActionItem> onCreateDropDownMenu() {
-        SUserUtils.m4956a(SAction.ACTION_OPEN_LOCAL_DROP_MENU, SPage.PAGE_NONE);
+        //SUserUtils.m4956a(SAction.ACTION_OPEN_LOCAL_DROP_MENU, SPage.PAGE_NONE);
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ActionItem(4, 0, (int) R.string.menu_scan_media));
         return arrayList;
@@ -107,7 +105,7 @@ public class SubGroupListFragment extends SlidingClosableFragment {
         super.onDropDownMenuClicked(i, actionItem);
         switch (i) {
             case 4:
-                SUserUtils.m4956a(SAction.ACTION_MENU_SCAN_MUSIC, SPage.PAGE_SCAN_MUSIC);
+                //SUserUtils.m4956a(SAction.ACTION_MENU_SCAN_MUSIC, SPage.PAGE_SCAN_MUSIC);
                 EntryUtils.m8289f(getActivity());
                 return;
             default:
@@ -119,7 +117,7 @@ public class SubGroupListFragment extends SlidingClosableFragment {
     protected void onSearchActionClicked() {
         if (this.mGroupListFragment != null) {
             this.mGroupListFragment.search();
-            LocalStatistic.m5127af();
+            //LocalStatistic.m5127af();
         }
     }
 }

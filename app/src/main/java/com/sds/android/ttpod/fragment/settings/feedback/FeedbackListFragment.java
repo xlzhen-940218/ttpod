@@ -116,7 +116,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
                 hashMap.put(feedbackItem.getId(), feedbackItem);
             }
         }
-        Cache.m3218a().m3198a((Map<String, FeedbackItem>) hashMap);
+        Cache.getInstance().m3198a((Map<String, FeedbackItem>) hashMap);
         super.onDestroyView();
     }
 
@@ -189,16 +189,16 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
     /* JADX INFO: Access modifiers changed from: private */
     public void requestFeedbackList() {
         this.mRequestState = RequestState.REQUESTING;
-        CommandCenter m4607a = CommandCenter.m4607a();
+        CommandCenter m4607a = CommandCenter.getInstance();
         CommandID commandID = CommandID.REQUEST_FEEDBACK_LIST;
         Object[] objArr = new Object[2];
-        objArr[0] = Long.valueOf(Cache.m3218a().m3147q() == null ? 0L : Preferences.m2908bu());
+        objArr[0] = Long.valueOf(Cache.getInstance().m3147q() == null ? 0L : Preferences.m2908bu());
         objArr[1] = null;
         m4607a.m4596b(new Command(commandID, objArr));
     }
 
     private void loadFeedbackCache() {
-        Map<String, FeedbackItem> m3147q = Cache.m3218a().m3147q();
+        Map<String, FeedbackItem> m3147q = Cache.getInstance().m3147q();
         if (m3147q != null && m3147q.size() != 0) {
             this.mTvHint.setText(R.string.feedback_history_hint);
             ArrayList arrayList = new ArrayList(m3147q.values());

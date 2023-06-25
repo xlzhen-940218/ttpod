@@ -1,7 +1,7 @@
 package com.sds.android.ttpod.framework.modules.p125g;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import com.sds.android.cloudapi.ttpod.data.SplashItem;
 import com.sds.android.cloudapi.ttpod.p055a.SplashAPI;
 import com.sds.android.cloudapi.ttpod.result.SplashDataResult;
@@ -22,7 +22,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
-import com.sds.android.ttpod.framework.p106a.p107a.StartupStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 
@@ -45,7 +44,7 @@ public final class SplashModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.SPLASH;
     }
 
@@ -76,7 +75,7 @@ public final class SplashModule extends BaseModule {
                 long j;
                 long j2 = 1500;
                 SplashModule.this.m4004a(num2);
-                SplashDataResult m3185c = Cache.m3218a().m3185c();
+                SplashDataResult m3185c = Cache.getInstance().m3185c();
                 if (m3185c == null) {
                     bitmap = null;
                     i = 0;
@@ -88,7 +87,7 @@ public final class SplashModule extends BaseModule {
                     SplashItem m4013b = m4014a.m4013b();
                     if (m4013b != null) {
                         String m3991c = SplashModule.this.m3991c(m4013b.getSuitFile(DisplayUtils.m7220h()));
-                        if (!FileUtils.m8409d(m3991c)) {
+                        if (!FileUtils.isDir(m3991c)) {
                             m4015a = 0;
                         }
                         String str2 = m3991c + File.separator + "background.jpg";
@@ -120,13 +119,13 @@ public final class SplashModule extends BaseModule {
                 if (bitmap == null) {
                     bitmap = SplashModule.this.m4010a(num.intValue());
                 }
-                Bitmap m4000b = SplashModule.this.m4000b();
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SPLASH, m4000b, bitmap, str, false), ModuleID.SPLASH);
+                Bitmap m4000b = SplashModule.this.loadChannelsBitmap();
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SPLASH, m4000b, bitmap, str, false), ModuleID.SPLASH);
                 if (bitmap == null) {
                     j = m4000b != null ? 200L : 0L;
                 }
-                CommandCenter.m4607a().m4603a(new Command(CommandID.FINISH_SPLASH, new Object[0]), ModuleID.SPLASH, (int) j);
-                StartupStatistic.m4919d();
+                CommandCenter.getInstance().m4603a(new Command(CommandID.FINISH_SPLASH, new Object[0]), ModuleID.SPLASH, (int) j);
+                //StartupStatistic.m4919d();
                 try {
                     Thread.sleep(20000L);
                     SplashModule.this.m3999b(i);
@@ -151,7 +150,7 @@ public final class SplashModule extends BaseModule {
         if (EnvironmentUtils.C0604c.m8476d() == 2 && (m8531f = SplashAPI.m8824a(i).m8531f()) != null && 1 == m8531f.getCode()) {
             List<SplashItem> m4012c = SplashInfoParser.m4014a(m8531f).m4012c();
             if (m4001a(m4012c)) {
-                Cache.m3218a().m3214a(m8531f);
+                Cache.getInstance().m3214a(m8531f);
                 m3994b(m4012c);
             }
         }
@@ -192,7 +191,7 @@ public final class SplashModule extends BaseModule {
                     e = e3;
                     fileInputStream = fileInputStream2;
                     try {
-                        LogUtils.m8382b("SplashModule", "downloadNewSplashInfo doUnZipFolder exception=%s", e.toString());
+                        LogUtils.error("SplashModule", "downloadNewSplashInfo doUnZipFolder exception=%s", e.toString());
                         FileUtils.m8404h(m3995b);
                         try {
                             fileInputStream.close();
@@ -237,7 +236,7 @@ public final class SplashModule extends BaseModule {
 
     /* renamed from: a */
     private boolean m4002a(String str, String str2) {
-        if (!StringUtils.m8346a(str) && !StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str) && !StringUtils.isEmpty(str2)) {
             String str3 = str2 + ".tmp";
             HttpRequest.C0586a m8708a = HttpRequest.m8708a(new HttpGet(str), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
             if (m8708a != null && 200 == m8708a.m8690c()) {
@@ -270,7 +269,7 @@ public final class SplashModule extends BaseModule {
                 String lowerCase = str3.toLowerCase();
                 if (!hashSet.contains(lowerCase)) {
                     String str4 = str + lowerCase;
-                    if (!lowerCase.startsWith(SplashConstant.f6284a[0]) || FileUtils.m8409d(str4)) {
+                    if (!lowerCase.startsWith(SplashConstant.f6284a[0]) || FileUtils.isDir(str4)) {
                         FileUtils.m8404h(str4);
                     }
                 }
@@ -287,9 +286,9 @@ public final class SplashModule extends BaseModule {
             public void mo3988a() {
                 long currentTimeMillis = System.currentTimeMillis() - SplashModule.this.f6286a;
                 if (currentTimeMillis < 1500) {
-                    CommandCenter.m4607a().m4603a(new Command(CommandID.FINISH_SPLASH, new Object[0]), ModuleID.SPLASH, (int) (1500 - currentTimeMillis));
+                    CommandCenter.getInstance().m4603a(new Command(CommandID.FINISH_SPLASH, new Object[0]), ModuleID.SPLASH, (int) (1500 - currentTimeMillis));
                 } else {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.FINISH_SPLASH, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.FINISH_SPLASH, new Object[0]));
                 }
             }
         });
@@ -312,8 +311,8 @@ public final class SplashModule extends BaseModule {
 
     /* renamed from: b */
     private String m3995b(String str) {
-        String m8402j = FileUtils.m8402j(str);
-        if (StringUtils.m8346a(m8402j)) {
+        String m8402j = FileUtils.getFilename(str);
+        if (StringUtils.isEmpty(m8402j)) {
             return null;
         }
         return TTPodConfig.m5297k() + File.separator + m8402j;
@@ -328,7 +327,7 @@ public final class SplashModule extends BaseModule {
     /* renamed from: d */
     private String m3990d(String str) {
         String m8401k = FileUtils.m8401k(str);
-        if (StringUtils.m8346a(m8401k)) {
+        if (StringUtils.isEmpty(m8401k)) {
             return null;
         }
         return m8401k + "dir";
@@ -358,12 +357,13 @@ public final class SplashModule extends BaseModule {
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
-    public Bitmap m4000b() {
-        try {
+    public Bitmap loadChannelsBitmap() {
+        return null;
+        /*try {
             return BitmapFactory.decodeStream(BaseApplication.getApplication().getResources().getAssets().open("channel_logo.png"));
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
+        }*/
     }
 }

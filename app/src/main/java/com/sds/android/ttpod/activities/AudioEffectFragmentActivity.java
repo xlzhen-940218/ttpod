@@ -32,10 +32,8 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.p107a.ActionPage;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import java.lang.reflect.Method;
@@ -82,7 +80,7 @@ public class AudioEffectFragmentActivity extends SlidingPagerActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         this.mPagerContent.setOffscreenPageLimit(this.mPagerAdapter.getCount() - 1);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
         this.mPagerTitle.setShouldExpand(true);
         setTitle(getString(R.string.audio_effect));
         this.mPagerTitle.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#222222")));
@@ -149,13 +147,13 @@ public class AudioEffectFragmentActivity extends SlidingPagerActivity {
         if (i >= 0) {
             this.mCurrentPage = i;
             if (i == 0) {
-                AudioEffectStatistic.m5257o();
+                //AudioEffectStatistic.m5257o();
             } else if (i == 1) {
-                AudioEffectStatistic.m5268d();
+                //AudioEffectStatistic.m5268d();
             } else if (i == 2) {
-                AudioEffectStatistic.m5259m();
+                //AudioEffectStatistic.m5259m();
             }
-            SUserUtils.m4956a(SLIST.get(i).m5275a(), SLIST.get(i).m5274b());
+            //SUserUtils.m4956a(SLIST.get(i).m5275a(), SLIST.get(i).m5274b());
         }
     }
 
@@ -201,23 +199,23 @@ public class AudioEffectFragmentActivity extends SlidingPagerActivity {
 
     private void launcherCloudAudioEffect() {
         startActivity(new Intent(this, CloudAudioEffectActivity.class));
-        SUserUtils.m4956a(SAction.ACTION_EFFECT_CLOUD_AUDIO_RELATIVE, SPage.PAGE_AUDIO_CLOUD_EFFECT);
+        //SUserUtils.m4956a(SAction.ACTION_EFFECT_CLOUD_AUDIO_RELATIVE, SPage.PAGE_AUDIO_CLOUD_EFFECT);
     }
 
     private void handleRestAllAudioEffect() {
-        AudioEffectStatistic.m5252t();
-        SUserUtils.m4956a(SAction.ACTION_EFFECT_AJUST_RESET, SPage.PAGE_NONE);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SET_AUDIO_EFFECT_RESET, new Object[0]));
+        //AudioEffectStatistic.m5252t();
+        //SUserUtils.m4956a(SAction.ACTION_EFFECT_AJUST_RESET, SPage.PAGE_NONE);
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_AUDIO_EFFECT_RESET, new Object[0]));
     }
 
     private void handleSaveToCloud() {
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (m3225N.isNull()) {
             PopupsUtils.m6760a((int) R.string.can_not_save_effect_no_play);
             return;
         }
-        AudioEffectStatistic.m5251u();
-        SUserUtils.m4956a(SAction.ACTION_EFFECT_AJUST_SAVE, SPage.PAGE_NONE);
+        //AudioEffectStatistic.m5251u();
+        //SUserUtils.m4956a(SAction.ACTION_EFFECT_AJUST_SAVE, SPage.PAGE_NONE);
         AudioManager audioManager = (AudioManager) getSystemService("audio");
         if (audioManager != null) {
             new EffectShareDialog(this, m3225N, this.mAudioEffectUser, audioManager.isWiredHeadsetOn()).show();

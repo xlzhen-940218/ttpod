@@ -201,7 +201,7 @@ public abstract class ListLoadingFragment<D> extends SlidingClosableFragment imp
 
     protected void requestDataList(int i) {
         if (!this.mDataLoading && this.mRequestId != null) {
-            CommandCenter.m4607a().m4606a(new Command(this.mRequestId, Integer.valueOf(i)));
+            CommandCenter.getInstance().m4606a(new Command(this.mRequestId, Integer.valueOf(i)));
             this.mDataLoading = true;
         }
     }

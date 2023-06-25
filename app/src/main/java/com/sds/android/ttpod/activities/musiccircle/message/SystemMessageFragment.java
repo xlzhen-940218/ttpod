@@ -85,7 +85,7 @@ public class SystemMessageFragment extends SlidingClosableFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void requestSystemMessage() {
         this.mStateView.setState(StateView.EnumC2248b.LOADING);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_SYSTEM_NOTICES, 0L, 20, "system_message"));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_SYSTEM_NOTICES, 0L, 20, "system_message"));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

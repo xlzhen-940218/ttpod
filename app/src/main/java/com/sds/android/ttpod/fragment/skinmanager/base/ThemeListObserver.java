@@ -9,26 +9,26 @@ import java.util.Iterator;
 public class ThemeListObserver {
 
     /* renamed from: a */
-    private static ThemeListObserver f5558a;
+    private static ThemeListObserver instance;
 
     /* renamed from: b */
-    private static ArrayList<SkinOperateListener> f5559b = new ArrayList<>();
+    private static ArrayList<SkinOperateListener> skinOperateListeners = new ArrayList<>();
 
     /* renamed from: a */
-    public static synchronized ThemeListObserver m5322a() {
+    public static synchronized ThemeListObserver getInstance() {
         ThemeListObserver themeListObserver;
         synchronized (ThemeListObserver.class) {
-            if (f5558a == null) {
-                f5558a = new ThemeListObserver();
+            if (instance == null) {
+                instance = new ThemeListObserver();
             }
-            themeListObserver = f5558a;
+            themeListObserver = instance;
         }
         return themeListObserver;
     }
 
     /* renamed from: a */
     public void m5320a(SkinItem skinItem) {
-        Iterator<SkinOperateListener> it = f5559b.iterator();
+        Iterator<SkinOperateListener> it = skinOperateListeners.iterator();
         while (it.hasNext()) {
             SkinOperateListener next = it.next();
             if (next != null) {
@@ -39,7 +39,7 @@ public class ThemeListObserver {
 
     /* renamed from: b */
     public void m5315b(SkinItem skinItem) {
-        Iterator<SkinOperateListener> it = f5559b.iterator();
+        Iterator<SkinOperateListener> it = skinOperateListeners.iterator();
         while (it.hasNext()) {
             SkinOperateListener next = it.next();
             if (next != null) {
@@ -50,7 +50,7 @@ public class ThemeListObserver {
 
     /* renamed from: c */
     public void m5314c(SkinItem skinItem) {
-        Iterator<SkinOperateListener> it = f5559b.iterator();
+        Iterator<SkinOperateListener> it = skinOperateListeners.iterator();
         while (it.hasNext()) {
             SkinOperateListener next = it.next();
             if (next != null) {
@@ -61,7 +61,7 @@ public class ThemeListObserver {
 
     /* renamed from: d */
     public void m5313d(SkinItem skinItem) {
-        Iterator<SkinOperateListener> it = f5559b.iterator();
+        Iterator<SkinOperateListener> it = skinOperateListeners.iterator();
         while (it.hasNext()) {
             SkinOperateListener next = it.next();
             if (next != null) {
@@ -72,7 +72,7 @@ public class ThemeListObserver {
 
     /* renamed from: a */
     public void m5319a(String str) {
-        Iterator<SkinOperateListener> it = f5559b.iterator();
+        Iterator<SkinOperateListener> it = skinOperateListeners.iterator();
         while (it.hasNext()) {
             SkinOperateListener next = it.next();
             if (next != null) {
@@ -83,7 +83,7 @@ public class ThemeListObserver {
 
     /* renamed from: b */
     public void m5317b() {
-        Iterator<SkinOperateListener> it = f5559b.iterator();
+        Iterator<SkinOperateListener> it = skinOperateListeners.iterator();
         while (it.hasNext()) {
             SkinOperateListener next = it.next();
             if (next != null) {
@@ -94,7 +94,7 @@ public class ThemeListObserver {
 
     /* renamed from: a */
     public void m5318a(String str, int i) {
-        Iterator<SkinOperateListener> it = f5559b.iterator();
+        Iterator<SkinOperateListener> it = skinOperateListeners.iterator();
         while (it.hasNext()) {
             SkinOperateListener next = it.next();
             if (next != null) {
@@ -105,13 +105,13 @@ public class ThemeListObserver {
 
     /* renamed from: a */
     public void m5321a(SkinOperateListener skinOperateListener) {
-        if (!f5559b.contains(skinOperateListener)) {
-            f5559b.add(skinOperateListener);
+        if (!skinOperateListeners.contains(skinOperateListener)) {
+            skinOperateListeners.add(skinOperateListener);
         }
     }
 
     /* renamed from: b */
     public void m5316b(SkinOperateListener skinOperateListener) {
-        f5559b.remove(skinOperateListener);
+        skinOperateListeners.remove(skinOperateListener);
     }
 }

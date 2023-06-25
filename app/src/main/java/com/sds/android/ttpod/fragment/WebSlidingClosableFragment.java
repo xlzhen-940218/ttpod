@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.component.ActionBarController;
@@ -40,7 +40,7 @@ public class WebSlidingClosableFragment extends SlidingClosableFragment {
         final String string = arguments.getString(WebFragment.EXTRA_TITLE);
         final String string2 = arguments.getString(WebFragment.EXTRA_URL);
         final String string3 = arguments.getString(EXTRA_PIC_URL);
-        getActionBarController().m7193a((CharSequence) (StringUtils.m8346a(string) ? "" : string));
+        getActionBarController().m7193a((CharSequence) (StringUtils.isEmpty(string) ? "" : string));
         this.mWebFragment = (WebFragment) Fragment.instantiate(getActivity(), WebFragment.class.getName(), arguments);
         ActionBarController.C1070a m7199a = getActionBarController().m7199a((Drawable) null);
         ThemeUtils.m8170a(m7199a, (int) R.string.icon_share_action_bar, ThemeElement.TOP_BAR_TEXT);
@@ -48,8 +48,7 @@ public class WebSlidingClosableFragment extends SlidingClosableFragment {
             @Override // com.sds.android.ttpod.component.ActionBarController.InterfaceC1072b
             /* renamed from: a */
             public void mo5433a(ActionBarController.C1070a c1070a) {
-                if (!StringUtils.m8346a(string3)) {
-                    WebSlidingClosableFragment.this.doStatisticShare(string3);
+                if (!StringUtils.isEmpty(string3)) {
                     PopupsUtils.m6753a((Activity) WebSlidingClosableFragment.this.getActivity(), WebSlidingClosableFragment.this.buildShareInfo(string, string2, string3));
                     return;
                 }
@@ -61,12 +60,7 @@ public class WebSlidingClosableFragment extends SlidingClosableFragment {
     }
 
     /* JADX INFO: Access modifiers changed from: private */
-    public void doStatisticShare(String str) {
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ACTION_BAR_SHARE.getValue(), 0, SPage.PAGE_SHARE_DIALOG.getValue());
-        sUserEvent.append("url", str);
-        sUserEvent.setPageParameter(true);
-        sUserEvent.post();
-    }
+
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.base.BaseFragment

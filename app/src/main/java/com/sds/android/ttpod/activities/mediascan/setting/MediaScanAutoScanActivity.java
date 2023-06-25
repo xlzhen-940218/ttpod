@@ -76,7 +76,7 @@ public class MediaScanAutoScanActivity extends SlidingClosableActivity {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onPause() {
-        LogUtils.m8388a(TAG, "onPause");
+        LogUtils.debug(TAG, "onPause");
         super.onPause();
         Preferences.m2930b(this.mAutoScanFolderSet);
     }
@@ -119,7 +119,7 @@ public class MediaScanAutoScanActivity extends SlidingClosableActivity {
                         this.f2717b.add(strArr[i]);
                     }
                 }
-                LogUtils.m8388a(MediaScanAutoScanActivity.TAG, "setPaths=" + this.f2717b);
+                LogUtils.debug(MediaScanAutoScanActivity.TAG, "setPaths=" + this.f2717b);
                 notifyDataSetChanged();
             }
         }
@@ -160,7 +160,7 @@ public class MediaScanAutoScanActivity extends SlidingClosableActivity {
                 }
             });
             String item = getItem(i);
-            c0762b.f2720a.setText(FileUtils.m8402j(item));
+            c0762b.f2720a.setText(FileUtils.getFilename(item));
             c0762b.f2721b.setText(FileUtils.m8400l(item));
             return view;
         }

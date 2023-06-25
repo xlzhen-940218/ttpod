@@ -193,7 +193,7 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
         if (this.mCommentsIds.isEmpty()) {
             this.mCenterLoadingViewForFirstPage.setState(StateView.EnumC2248b.LOADING);
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_COMMENT_IDS_BY_POST_ID, Long.valueOf(getPostId()), origin()));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_COMMENT_IDS_BY_POST_ID, Long.valueOf(getPostId()), origin()));
     }
 
     public void updateCommentIdList(IdListResult idListResult, String str) {
@@ -215,7 +215,7 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
     private void requestCommentsDetailsByPage(int i) {
         this.mCanRequestWhenScroll = false;
         int i2 = (i - 1) * 20;
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_COMMENT_INFOS_BY_IDS, this.mCommentsIds.subList(i2, Math.min(i2 + 20, this.mCommentsIds.size())), origin()));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_COMMENT_INFOS_BY_IDS, this.mCommentsIds.subList(i2, Math.min(i2 + 20, this.mCommentsIds.size())), origin()));
     }
 
     public void updateCommentsDetailsByPage(CommentListResult commentListResult, String str) {
@@ -303,7 +303,7 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
     }
 
     private long getReplyCommentId() {
-        if (StringUtils.m8346a(this.mEmoticonsWithInputLayout.getReplyTo()) || this.mCommentWantToReply == null) {
+        if (StringUtils.isEmpty(this.mEmoticonsWithInputLayout.getReplyTo()) || this.mCommentWantToReply == null) {
             return 0L;
         }
         return this.mCommentWantToReply.getId();

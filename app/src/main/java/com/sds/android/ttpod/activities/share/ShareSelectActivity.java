@@ -10,7 +10,6 @@ import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p087d.p088a.MessageDialog;
 import com.sds.android.ttpod.framework.base.BaseActivity;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.share.IShareAction;
 import com.sds.android.ttpod.share.ShareInfo;
@@ -58,7 +57,7 @@ public class ShareSelectActivity extends BaseActivity {
     }
 
     private void showShareDialogStatistic(ShareInfo shareInfo) {
-        StatisticUtils.m4907a("share", "share", "showDialog", 0L, shareInfo.m1942p() ? 1 : 0, shareInfo.m1956f(), shareInfo.m1942p() ? shareInfo.m1958e() : shareInfo.m1954g());
+        //StatisticUtils.m4907a("share", "share", "showDialog", 0L, shareInfo.m1942p() ? 1 : 0, shareInfo.m1956f(), shareInfo.m1942p() ? shareInfo.m1958e() : shareInfo.m1954g());
     }
 
     public static void setShareAction(IShareAction iShareAction) {

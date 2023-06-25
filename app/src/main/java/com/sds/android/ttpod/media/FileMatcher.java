@@ -32,11 +32,11 @@ public class FileMatcher {
 
     public FileMatcher(CallBack callBack) {
         this.mCallBack = callBack;
-        LogUtils.m8381c("ss", "mNativeRef:" + this.mNativeRef);
+        LogUtils.error("ss", "mNativeRef:" + this.mNativeRef);
     }
 
     public void start(String str, String str2, boolean z, String str3) {
-        LogUtils.m8381c("ss", "mNativeRef2:" + this.mNativeRef);
+        LogUtils.error("ss", "mNativeRef2:" + this.mNativeRef);
         nativeStart(str, str2, z, str3, this.mNativeRef);
     }
 

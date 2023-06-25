@@ -61,40 +61,46 @@ public final class MediaItem implements Parcelable, Serializable {
         }
     };
 
-    public MediaItem(String str, Long l, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, Integer num, Integer num2, Integer num3, Integer num4, Integer num5, Integer num6, Integer num7, Integer num8, String str10, Integer num9, Integer num10, Long l2, Long l3, Long l4, boolean z, String str11, String str12) {
-        this.mID = str;
-        this.mSongID = l;
-        this.mLocalDataSource = str2;
-        this.mFolder = str3;
-        this.mTitle = str4;
-        this.mArtist = str5;
-        this.mAlbum = str6;
-        this.mGenre = str7;
-        this.mComment = str10;
-        this.mComposer = str8;
-        this.mMimeType = str9;
-        this.mDateModifiedInMills = l3;
-        this.mDateAddedInMills = l2;
-        this.mDateLastAccessInMills = l4;
-        this.mGrade = num5;
-        this.mBitRate = num6;
-        this.mSampleRate = num7;
-        this.mChannels = num8;
-        this.mTrack = num3;
-        this.mYear = num4;
-        this.mStartTime = num;
-        this.mDuration = num2;
-        this.mUseCount = num10;
-        this.mErrorStatus = num9;
-        this.mFav = z;
-        this.mExtra = str11;
-        this.mGroupID = str12;
+    public MediaItem(String ID, Long songId, String localDataSource, String folder, String title
+            , String artist, String album, String genre, String composer, String mimetype
+            , Integer startTime, Integer duration, Integer track, Integer year, Integer grade
+            , Integer bitrate, Integer sample_rate, Integer channels, String comment, Integer errorStatus
+            , Integer useCount
+            , Long dateAddedInMills, Long dateModifiedInMills, Long dateLastAccessInMills, boolean fav
+            , String extra, String groupId) {
+        this.mID = ID;
+        this.mSongID = songId;
+        this.mLocalDataSource = localDataSource;
+        this.mFolder = folder;
+        this.mTitle = title;
+        this.mArtist = artist;
+        this.mAlbum = album;
+        this.mGenre = genre;
+        this.mComment = comment;
+        this.mComposer = composer;
+        this.mMimeType = mimetype;
+        this.mDateModifiedInMills = dateModifiedInMills;
+        this.mDateAddedInMills = dateAddedInMills;
+        this.mDateLastAccessInMills = dateLastAccessInMills;
+        this.mGrade = grade;
+        this.mBitRate = bitrate;
+        this.mSampleRate = sample_rate;
+        this.mChannels = channels;
+        this.mTrack = track;
+        this.mYear = year;
+        this.mStartTime = startTime;
+        this.mDuration = duration;
+        this.mUseCount = useCount;
+        this.mErrorStatus = errorStatus;
+        this.mFav = fav;
+        this.mExtra = extra;
+        this.mGroupID = groupId;
         if (this.mID == null) {
-            if (this.mLocalDataSource == null && this.mSongID == null && str11 == null) {
+            if (this.mLocalDataSource == null && this.mSongID == null && extra == null) {
                 throw new IllegalArgumentException("invalid mediaItem, DataSource and SongId are null!");
             }
-            if (this.mLocalDataSource == null && this.mSongID == null && str11 != null) {
-                this.mID = genIDWithExtra(str11);
+            if (this.mLocalDataSource == null && this.mSongID == null && extra != null) {
+                this.mID = genIDWithExtra(extra);
             } else {
                 this.mID = this.mLocalDataSource == null ? genIDWithSongID(this.mSongID) : genIDWithMediaSourceAndStartTime(this.mLocalDataSource, this.mStartTime);
             }
@@ -343,7 +349,7 @@ public final class MediaItem implements Parcelable, Serializable {
     }
 
     public boolean isOnline() {
-        if (this.mSongID != null && StringUtils.m8346a(this.mSongIdGenById)) {
+        if (this.mSongID != null && StringUtils.isEmpty(this.mSongIdGenById)) {
             this.mSongIdGenById = genIDWithSongID(this.mSongID);
         }
         return this.mID.equals(this.mSongIdGenById);

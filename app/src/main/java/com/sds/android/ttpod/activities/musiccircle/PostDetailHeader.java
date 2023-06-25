@@ -135,7 +135,7 @@ public class PostDetailHeader {
     /* renamed from: a */
     public void m7929a(Post post) {
         ImageCacheUtils.m4752a(this.f2796t, PostUtils.m4023d(post), this.f2796t.getWidth(), this.f2796t.getHeight(), (int) R.drawable.img_musiccircle_post_pic_default);
-        if (!StringUtils.m8346a(post.getTweet())) {
+        if (!StringUtils.isEmpty(post.getTweet())) {
             this.f2789m.setText(post.getTweet());
         }
         this.f2788l.setText(post.getUser().getNickName());
@@ -143,7 +143,7 @@ public class PostDetailHeader {
             this.f2787k.setText(post.getCommentCount() + "");
         }
         ImageCacheUtils.m4752a(this.f2791o, post.getUser().getAvatarUrl(), this.f2791o.getWidth(), this.f2791o.getHeight(), (int) R.drawable.img_avatar_default);
-        m7927a(((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_FAVORITE_POST, Long.valueOf(post.getId())), Boolean.class)).booleanValue(), post.getFavoriteCount());
+        m7927a(((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_FAVORITE_POST, Long.valueOf(post.getId())), Boolean.class)).booleanValue(), post.getFavoriteCount());
     }
 
     /* renamed from: a */

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.base.SlidingClosableActivity;
 import com.sds.android.ttpod.component.p085b.ActionItem;
@@ -122,10 +122,7 @@ public class AuditionAndDownloadQualityActivity extends SlidingClosableActivity 
         ((SettingItem) actionItem).m7782a(getResources().getDrawable(R.drawable.img_setting_single_choice_checked));
         this.mAuditionSettingCard.m7796c();
         Preferences.m2901c(getQualityById(actionItem.m7005e()));
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_SETTING_PLAY_QUILITY_SELECT.getValue(), 0, 0);
-        sUserEvent.setPageParameter(true);
-        sUserEvent.append("type", Integer.valueOf(actionItem.m7005e()));
-        sUserEvent.post();
+
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -134,10 +131,7 @@ public class AuditionAndDownloadQualityActivity extends SlidingClosableActivity 
         ((SettingItem) actionItem).m7782a(getResources().getDrawable(R.drawable.img_setting_single_choice_checked));
         this.mDownloadSettingCard.m7796c();
         Preferences.m2895d(getQualityById(actionItem.m7005e()));
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_SETTING_DOWNLOAD_QUILITY_SELECT.getValue(), 0, 0);
-        sUserEvent.setPageParameter(true);
-        sUserEvent.append("type", Integer.valueOf(actionItem.m7005e()));
-        sUserEvent.post();
+
     }
 
     private void cleanSettingItemActionIcon(SettingCard settingCard) {

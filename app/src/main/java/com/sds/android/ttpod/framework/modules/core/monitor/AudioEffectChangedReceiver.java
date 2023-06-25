@@ -15,7 +15,7 @@ public class AudioEffectChangedReceiver extends BroadcastReceiver {
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
         if (Action.AUDIOEFFECT_CHANGED.equals(intent.getAction())) {
-            CommandCenter.m4607a().m4604a(new Command(CommandID.AUDIOEFFECT_CHANGED, new Object[0]), ModuleID.MONITOR);
+            CommandCenter.getInstance().m4604a(new Command(CommandID.AUDIOEFFECT_CHANGED, new Object[0]), ModuleID.MONITOR);
         }
     }
 

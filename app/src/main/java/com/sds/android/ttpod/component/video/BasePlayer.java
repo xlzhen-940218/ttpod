@@ -30,8 +30,8 @@ public abstract class BasePlayer implements VideoPlayerInterface {
     @Override // com.sds.android.ttpod.component.video.VideoPlayerInterface
     /* renamed from: a */
     public void mo5783a() {
-        if (!StringUtils.m8346a(f4888a)) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, DownloadUtils.m4760a(f4888a, TTPodConfig.m5285w() + File.separator + FileUtils.m8402j(f4888a), 0L, mo5788b(), DownloadTaskInfo.TYPE_APP, true, "stormvideo")));
+        if (!StringUtils.isEmpty(f4888a)) {
+            CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, DownloadUtils.m4760a(f4888a, TTPodConfig.m5285w() + File.separator + FileUtils.getFilename(f4888a), 0L, mo5788b(), DownloadTaskInfo.TYPE_APP, true, "stormvideo")));
         }
     }
 }

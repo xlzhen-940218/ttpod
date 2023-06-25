@@ -52,7 +52,7 @@ public class IntroductionFragment extends SlidingClosableFragment {
         this.mTweetTextView = (TextView) this.mContent.findViewById(R.id.tv_post_introduction_tweet);
         this.mIntroTitleView = this.mContent.findViewById(R.id.tv_title_intro);
         this.mTweetLayout = this.mContent.findViewById(R.id.layout_introduction);
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             this.mTweetTextView.setText(getString(R.string.post_no_description));
         } else {
             this.mTweetTextView.setText(str);
@@ -64,7 +64,7 @@ public class IntroductionFragment extends SlidingClosableFragment {
         this.mHotWordLayout = this.mContent.findViewById(R.id.layout_tags);
         this.mTagTitleView = this.mContent.findViewById(R.id.tv_title_tags);
         TextView textView = (TextView) this.mContent.findViewById(R.id.tv_no_tag);
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             this.mHotwordView.setVisibility(View.GONE);
             textView.setVisibility(View.VISIBLE);
             textView.setText(R.string.post_no_tag);

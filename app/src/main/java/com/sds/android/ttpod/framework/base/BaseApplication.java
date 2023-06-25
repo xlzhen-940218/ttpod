@@ -1,32 +1,29 @@
 package com.sds.android.ttpod.framework.base;
 
-import android.annotation.TargetApi;
 import android.app.ActivityManager;
-import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Process;
+import android.provider.Settings;
 
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
 import com.sds.android.sdk.core.p058b.ExceptionReporter;
-import com.sds.android.sdk.core.statistic.SEngine;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
-import com.sds.android.sdk.core.statistic.StatisticCommitter;
+
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
+import com.sds.android.ttpod.BuildConfig;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.modules.ModuleManager;
 import com.sds.android.ttpod.framework.modules.core.p113b.GlobalModule;
-import com.sds.android.ttpod.framework.p106a.p107a.AppRuntimeStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.StartupStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.UTAnalyticsUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.UmengStatisticUtils;
 import com.sds.android.ttpod.framework.storage.database.SearchSqliteDb;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.audiofx.EffectDetect;
@@ -42,9 +39,23 @@ public class BaseApplication extends MultiDexApplication {
     private static String f5694b;
 
     @Override // android.app.Application
-    @TargetApi(9)
     public final void onCreate() {
         super.onCreate();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            if(!Environment.isExternalStorageManager()) {
+                try {
+                    Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                } catch (Exception ex) {
+                    Intent intent = new Intent();
+                    intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            }
+        }
         Preferences.m3024a(this);
         BaseModule.setContext(this);
         DisplayUtils.m7228a(this);
@@ -52,11 +63,11 @@ public class BaseApplication extends MultiDexApplication {
         application = this;
         f5694b = m4625m();
         EnvironmentUtils.m8525a(this);
-        LogUtils.m8385a(EnvironmentUtils.C0602a.m8503h());
+        LogUtils.setEnableLog(EnvironmentUtils.C0602a.m8503h());
         EffectDetect.detectAudioPlus(this);
         ExceptionReporter.m8750a(this, Action.EXCEPTION_REPORT);
-        UmengStatisticUtils.m4867a(this, EnvironmentUtils.C0602a.m8512b());
-        UTAnalyticsUtils.m4869a(this);
+        //UmengStatisticUtils.m4867a(this, EnvironmentUtils.C0602a.m8512b());
+        //UTAnalyticsUtils.m4869a(this);
         if (m4631g()) {
             mo4637a();
         } else if (m4630h()) {
@@ -79,15 +90,15 @@ public class BaseApplication extends MultiDexApplication {
         try {
             m4622p();
             Preferences.m3033X(true);
-            ModuleManager.m4117a().m4116a(this);
+            ModuleManager.getInstance().m4116a(this);
             m4626l();
-            StartupStatistic.m4923a(f5694b);
-            AppRuntimeStatistic.m5273a();
-            StartupStatistic.m4920c();
-            AppRuntimeStatistic.m5272a(AppRuntimeStatistic.EnumC1767a.STARTUP_STATE);
-            StartupStatistic.m4921b("com.sds.android.ttpod.main");
-            AudioEffectStatistic.m5271a();
-            new SSystemEvent("SYS_SETTING", "audio_effect").append("status", Boolean.valueOf(Preferences.m2974ad())).post();
+            //StartupStatistic.m4923a(f5694b);
+            //AppRuntimeStatistic.m5273a();
+            //StartupStatistic.m4920c();
+            //AppRuntimeStatistic.m5272a(//AppRuntimeStatistic.EnumC1767a.STARTUP_STATE);
+            //StartupStatistic.m4921b("com.sds.android.ttpod.main");
+            //AudioEffectStatistic.m5271a();
+            //new //SSystemEvent("SYS_SETTING", "audio_effect").append("status", Boolean.valueOf(Preferences.m2974ad())).post();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -102,27 +113,27 @@ public class BaseApplication extends MultiDexApplication {
     /* renamed from: l */
     private void m4626l() {
         if (EnvironmentUtils.C0602a.m8503h()) {
-            SEngine.instance();
-            SEngine.setURL(StatisticCommitter.TEST_URL_MAIN);
+            //SEngine.instance();
+            //SEngine.setURL(StatisticCommitter.TEST_URL_MAIN);
         } else {
-            SEngine.instance();
-            SEngine.setURL("http://collect.log.ttpod.com/ttpod_client_v2");
+            //SEngine.instance();
+            //SEngine.setURL("http://collect.log.ttpod.com/ttpod_client_v2");
         }
-        SEngine.instance();
-        SEngine.setGeneralParameter(EnvironmentUtils.C0603b.m8488e());
-        SEngine.instance();
-        SEngine.bindToService(this);
+        //SEngine.instance();
+        //SEngine.setGeneralParameter(EnvironmentUtils.C0603b.m8488e());
+        //SEngine.instance();
+        //SEngine.bindToService(this);
     }
 
     /* renamed from: d */
     protected void m4634d() {
         m4622p();
         SearchSqliteDb.m3133a(this);
-        AppRuntimeStatistic.m5273a();
-        AppRuntimeStatistic.m5272a(AppRuntimeStatistic.EnumC1767a.STARTUP_STATE);
-        StartupStatistic.m4921b("com.sds.android.ttpod.support");
+        //AppRuntimeStatistic.m5273a();
+        //AppRuntimeStatistic.m5272a(//AppRuntimeStatistic.EnumC1767a.STARTUP_STATE);
+        //StartupStatistic.m4921b("com.sds.android.ttpod.support");
         m4626l();
-        StartupStatistic.m4923a(f5694b);
+        //StartupStatistic.m4923a(f5694b);
         new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.BaseApplication.1
             @Override // java.lang.Runnable
             public void run() {
@@ -149,15 +160,15 @@ public class BaseApplication extends MultiDexApplication {
     /* renamed from: b */
     public void mo4636b() {
         if (m4631g()) {
-            ModuleManager.m4117a().m4111b();
+            ModuleManager.getInstance().m4111b();
             com.sds.android.ttpod.framework.base.ActivityManager.m4618a().m4616b();
-            SEngine.instance();
-            SEngine.unbindFromService(this);
+            //SEngine.instance();
+            //SEngine.unbindFromService(this);
             new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.BaseApplication.2
                 @Override // java.lang.Runnable
                 public void run() {
-                    ModuleManager.m4117a().m4108c();
-                    UmengStatisticUtils.m4864c(BaseApplication.getApplication());
+                    ModuleManager.getInstance().m4108c();
+                    //UmengStatisticUtils.m4864c(BaseApplication.getApplication());
                     Process.killProcess(Process.myPid());
                 }
             }, 500L);

@@ -23,7 +23,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SearchStatistic;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.widget.SimpleGridView;
 import com.sds.android.ttpod.widget.StateView;
@@ -107,7 +106,7 @@ public class SearchFragment extends SlidingClosableFragment {
                 }
             });
             initHotwordGridView();
-            if (!StringUtils.m8346a(this.mSearchWord)) {
+            if (!StringUtils.isEmpty(this.mSearchWord)) {
                 startSearch(this.mSearchWord);
             }
         }
@@ -129,7 +128,7 @@ public class SearchFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void setUserVisibleHint(boolean z) {
         super.setUserVisibleHint(z);
-        LogUtils.m8381c(TAG, "setUserVisibleHint:" + z);
+        LogUtils.error(TAG, "setUserVisibleHint:" + z);
     }
 
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
@@ -161,7 +160,7 @@ public class SearchFragment extends SlidingClosableFragment {
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 String str = (String) view.getTag();
-                if (!StringUtils.m8346a(str)) {
+                if (!StringUtils.isEmpty(str)) {
                     SearchFragment.this.startSearch(str);
                 }
             }
@@ -180,7 +179,7 @@ public class SearchFragment extends SlidingClosableFragment {
         generateHotWordItemView2.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.SearchFragment.4
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                SearchStatistic.m4928k();
+                //SearchStatistic.m4928k();
                 imageView.startAnimation(SearchFragment.this.mRotateAnimation);
                 SearchFragment.this.refreshDisplayHotWord();
             }
@@ -214,7 +213,7 @@ public class SearchFragment extends SlidingClosableFragment {
                 }
                 this.mHotwords = list;
                 this.mHotwordStateView.setState(StateView.EnumC2248b.SUCCESS);
-                Cache.m3218a().m3199a(list);
+                Cache.getInstance().m3199a(list);
             } else if (this.mHotwords.size() < 8) {
                 this.mHotwordStateView.setState(StateView.EnumC2248b.FAILED);
             }
@@ -244,8 +243,8 @@ public class SearchFragment extends SlidingClosableFragment {
             this.mHotwordStateView.setState(StateView.EnumC2248b.SUCCESS);
             return;
         }
-        LogUtils.m8388a(TAG, "request hotwords");
-        List<HotWords> m3157j = Cache.m3218a().m3157j();
+        LogUtils.debug(TAG, "request hotwords");
+        List<HotWords> m3157j = Cache.getInstance().m3157j();
         if (m3157j.size() >= 8) {
             this.mHotwords = m3157j;
             refreshDisplayHotWord();
@@ -253,11 +252,11 @@ public class SearchFragment extends SlidingClosableFragment {
         } else {
             this.mHotwordStateView.setState(StateView.EnumC2248b.LOADING);
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.START_SEARCH_HOT_WORDS, new Object[0]));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_HOT_WORDS, new Object[0]));
     }
 
     public void startSearch(String str) {
-        LogUtils.m8388a(TAG, "startSearch word=" + str);
+        LogUtils.debug(TAG, "startSearch word=" + str);
         String replace = str.trim().replace("_", "");
         if (this.mSearchResultFragment != null) {
             this.mSearchResultFragment.finish();

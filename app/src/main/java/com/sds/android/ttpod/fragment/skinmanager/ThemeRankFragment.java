@@ -32,7 +32,7 @@ public class ThemeRankFragment extends ActionBarThemeListFragment {
 
     public void updateSkinRankResult(Boolean bool) {
         this.mCacheMode = false;
-        CommandCenter.m4607a().m4596b(new Command(CommandID.REQUEST_SKIN_RANK_LIST, 0));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_SKIN_RANK_LIST, 0));
     }
 
     public void updateDataListForAdapter(ArrayList<SkinItem> arrayList) {
@@ -61,12 +61,12 @@ public class ThemeRankFragment extends ActionBarThemeListFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
     public void onPause() {
         super.onPause();
-        Cache.m3218a().m3190b(getThemeDataList());
+        Cache.getInstance().m3190b(getThemeDataList());
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment
     protected ArrayList<SkinItem> loadDataFromCache() {
-        return Cache.m3218a().m3144t();
+        return Cache.getInstance().m3144t();
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment

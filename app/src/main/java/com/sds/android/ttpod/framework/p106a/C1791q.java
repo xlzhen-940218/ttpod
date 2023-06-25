@@ -45,7 +45,7 @@ public final class C1791q {
 
     /* renamed from: a */
     public boolean m4652a(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return false;
         }
         for (String str2 : this.f5689c) {

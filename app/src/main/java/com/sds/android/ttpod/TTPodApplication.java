@@ -22,7 +22,7 @@ public class TTPodApplication extends BaseApplication {
     private BroadcastReceiver f2484a = new BroadcastReceiver() { // from class: com.sds.android.ttpod.TTPodApplication.1
         @Override // android.content.BroadcastReceiver
         public void onReceive(Context context, Intent intent) {
-            LogUtils.m8381c("MediaDBHelper", "onReceive");
+            LogUtils.error("MediaDBHelper", "onReceive");
             if (intent != null && StringUtils.m8344a(MediaDBHelper.ACTION_UPDATE_DB_VERSION, intent.getAction())) {
                 MediaLibraryVersionManager.instance().setVersion(intent.getIntExtra(MediaDBHelper.KEY_DB_VERSION_OLD, 0), intent.getIntExtra(MediaDBHelper.KEY_DB_VERSION_NEW, 0));
             }
@@ -48,7 +48,7 @@ public class TTPodApplication extends BaseApplication {
         super.onLowMemory();
         if (m4631g()) {
             ImageCacheUtils.m4743b().m8804b();
-            Cache.m3218a().m3196b();
+            Cache.getInstance().m3196b();
         }
     }
 

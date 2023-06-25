@@ -123,7 +123,7 @@ public abstract class SingerTabFragment extends SlidingClosableFragment implemen
 
     private void initSlidingTabHost(SimpleSlidingTabHost simpleSlidingTabHost) {
         simpleSlidingTabHost.setTabLayoutAverageSpace(true);
-        LogUtils.m8388a(TAG, "initSlidingTabHost slidingTabHost=" + simpleSlidingTabHost + ",mOnPageChangeListener=" + this.mOnPageChangeListener);
+        LogUtils.debug(TAG, "initSlidingTabHost slidingTabHost=" + simpleSlidingTabHost + ",mOnPageChangeListener=" + this.mOnPageChangeListener);
         simpleSlidingTabHost.setOnPageChangeListener(this.mOnPageChangeListener);
         List<TabPagerAdapter.C1004a> onBuildTabBinders = onBuildTabBinders();
         simpleSlidingTabHost.setPagerAdapter(new TabPagerAdapter(onBuildTabBinders));
@@ -200,7 +200,7 @@ public abstract class SingerTabFragment extends SlidingClosableFragment implemen
 
     /* JADX INFO: Access modifiers changed from: private */
     public void pageSelected(int i) {
-        LogUtils.m8388a(TAG, "pageSelected tab=" + i + ",mTab=" + this.mTab);
+        LogUtils.debug(TAG, "pageSelected tab=" + i + ",mTab=" + this.mTab);
         if (this.mTab != i) {
             this.mTab = i;
             onPageSelected(i);
@@ -324,11 +324,11 @@ public abstract class SingerTabFragment extends SlidingClosableFragment implemen
 
     @Override // android.widget.AbsListView.OnScrollListener
     public void onScroll(AbsListView absListView, int i, int i2, int i3) {
-        LogUtils.m8388a(TAG, "performOnScroll firstVisibleItem=" + i + ",visibleItemCount=" + i2 + ",totalItemCount=" + i3);
+        LogUtils.debug(TAG, "performOnScroll firstVisibleItem=" + i + ",visibleItemCount=" + i2 + ",totalItemCount=" + i3);
         if (ListViewUtils.m8262b(i, i2, i3) && !this.mLoadingStateArray.get(this.mTab) && this.mStateView.getVisibility() != View.VISIBLE) {
-            LogUtils.m8388a(TAG, "onScroll mTab=" + this.mTab + ",mLoadingStateArray.get(mTab)=" + this.mLoadingStateArray.get(this.mTab));
+            LogUtils.debug(TAG, "onScroll mTab=" + this.mTab + ",mLoadingStateArray.get(mTab)=" + this.mLoadingStateArray.get(this.mTab));
             Pager pager = getPager(this.mTab);
-            LogUtils.m8388a(TAG, "onScroll mPager.getCurrent()=" + pager.m4669a() + ",mPager.end()=" + pager.m4658g());
+            LogUtils.debug(TAG, "onScroll mPager.getCurrent()=" + pager.m4669a() + ",mPager.end()=" + pager.m4658g());
             if (pager.m4669a() == pager.m4658g()) {
                 showLastPageFooterText();
             } else {
@@ -344,7 +344,7 @@ public abstract class SingerTabFragment extends SlidingClosableFragment implemen
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void showLastPageFooterText() {
-        LogUtils.m8388a(TAG, "showLastPageFooterText");
+        LogUtils.debug(TAG, "showLastPageFooterText");
         if (this.mFooterView != null) {
             this.mFooterView.m1875a(getString(R.string.count_of_media, Integer.valueOf(this.mAdapter.getCount())));
             this.mFooterView.setOnClickListener(null);
@@ -352,7 +352,7 @@ public abstract class SingerTabFragment extends SlidingClosableFragment implemen
     }
 
     protected void showNotFirstPageError() {
-        LogUtils.m8388a(TAG, "showNotFirstPageError");
+        LogUtils.debug(TAG, "showNotFirstPageError");
         if (this.mFooterView != null) {
             this.mFooterView.m1874b();
             this.mFooterView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.findsong.singer.SingerTabFragment.5
@@ -367,7 +367,7 @@ public abstract class SingerTabFragment extends SlidingClosableFragment implemen
     /* JADX INFO: Access modifiers changed from: private */
     public void requestData(int i) {
         if (!this.mLoadingStateArray.get(this.mTab)) {
-            LogUtils.m8388a(TAG, "requestData, page=" + i + ",mTab=" + this.mTab);
+            LogUtils.debug(TAG, "requestData, page=" + i + ",mTab=" + this.mTab);
             this.mLoadingStateArray.put(this.mTab, true);
             this.mListView.removeFooterView(this.mFooterView);
             if (i > 1) {
@@ -391,7 +391,7 @@ public abstract class SingerTabFragment extends SlidingClosableFragment implemen
     /* JADX INFO: Access modifiers changed from: protected */
     public void updateStateView(int i, int i2, ArrayList arrayList, int i3) {
         if (isViewAccessAble()) {
-            LogUtils.m8388a(TAG, "updateStateView tab=" + i + ",resultCode=" + i2 + ",data=" + (arrayList == null ? 0 : arrayList.size()) + ",totalPage=" + i3);
+            LogUtils.debug(TAG, "updateStateView tab=" + i + ",resultCode=" + i2 + ",data=" + (arrayList == null ? 0 : arrayList.size()) + ",totalPage=" + i3);
             this.mLoadingStateArray.put(i, false);
             StateView.EnumC2248b state = getState(i2, arrayList);
             Pager pager = getPager(i);

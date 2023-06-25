@@ -12,7 +12,7 @@ import android.os.Message;
 
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -59,13 +59,13 @@ public class MediaButtonReceiver extends BroadcastReceiver {
         KeyEvent keyEvent;
         String str;
         if (intent != null) {
-            LogUtils.m8388a("MediaButtonReceiver", "onReceive: " + intent.toString());
+            LogUtils.debug("MediaButtonReceiver", "onReceive: " + intent.toString());
         }
         if (Preferences.m2826u() && "android.intent.action.MEDIA_BUTTON".equals(intent.getAction()) && (keyEvent = (KeyEvent) intent.getParcelableExtra("android.intent.extra.KEY_EVENT")) != null) {
             int keyCode = keyEvent.getKeyCode();
             int action = keyEvent.getAction();
             long eventTime = keyEvent.getEventTime();
-            LogUtils.m8388a("Receiver", "keyCode: " + keyCode + " action: " + action + " eventTime: " + eventTime);
+            LogUtils.debug("Receiver", "keyCode: " + keyCode + " action: " + action + " eventTime: " + eventTime);
             switch (keyCode) {
                 case 79:
                     int callState = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getCallState();
@@ -137,40 +137,40 @@ public class MediaButtonReceiver extends BroadcastReceiver {
     /* renamed from: a */
     private void m2253a(int i) {
         if (i == 86 || i == 79 || i == 87 || i == 88 || i == 126 || i == 127 || i == 85) {
-            new SSystemEvent("SYS_HEADSET", String.valueOf(i)).post();
+            //new //SSystemEvent("SYS_HEADSET", String.valueOf(i)).post();
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: g */
     public static void m2247g() {
-        LogUtils.m8381c("MediaButtonReceiver", "performSingleClick");
+        LogUtils.error("MediaButtonReceiver", "performSingleClick");
         BaseApplication.getApplication().startService(new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", "play_pause_command"));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: h */
     public static void m2246h() {
-        LogUtils.m8381c("MediaButtonReceiver", "performDoubleClick");
+        LogUtils.error("MediaButtonReceiver", "performDoubleClick");
         BaseApplication.getApplication().startService(new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", Preferences.m2822v() ? "previous_command" : "next_command"));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: i */
     public static void m2245i() {
-        LogUtils.m8381c("MediaButtonReceiver", "performLongPress");
+        LogUtils.error("MediaButtonReceiver", "performLongPress");
         BaseApplication.getApplication().startService(new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", Preferences.m2822v() ? "next_command" : "previous_command"));
     }
 
     /* renamed from: j */
     private static void m2244j() {
-        LogUtils.m8381c("MediaButtonReceiver", "performThreeClick");
+        LogUtils.error("MediaButtonReceiver", "performThreeClick");
         BaseApplication.getApplication().startService(new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", Preferences.m2822v() ? "next_command" : "previous_command"));
     }
 
     /* renamed from: a */
     public static void m2254a() {
-        LogUtils.m8388a("MediaButtonReceiver", "reloadMediaButtonMonitorDelay");
+        LogUtils.debug("MediaButtonReceiver", "reloadMediaButtonMonitorDelay");
         new Handler(Looper.getMainLooper()).postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.support.monitor.MediaButtonReceiver.2
             @Override // java.lang.Runnable
             public void run() {
@@ -181,7 +181,7 @@ public class MediaButtonReceiver extends BroadcastReceiver {
 
     /* renamed from: b */
     public static void m2252b() {
-        LogUtils.m8388a("MediaButtonReceiver", "registerMediaButtonEvent");
+        LogUtils.debug("MediaButtonReceiver", "registerMediaButtonEvent");
         try {
             BaseApplication m4635c = BaseApplication.getApplication();
             AudioManager audioManager = (AudioManager) m4635c.getSystemService(Context.AUDIO_SERVICE);
@@ -191,10 +191,10 @@ public class MediaButtonReceiver extends BroadcastReceiver {
             boolean m2826u = Preferences.m2826u();
             if (m2826u) {
                 audioManager.registerMediaButtonEventReceiver(componentName);
-                LogUtils.m8388a("MediaButtonReceiver", "registerMediaButtonEvent...");
+                LogUtils.debug("MediaButtonReceiver", "registerMediaButtonEvent...");
             } else {
                 audioManager.unregisterMediaButtonEventReceiver(componentName);
-                LogUtils.m8388a("MediaButtonReceiver", "unregisterMediaButtonEvent...");
+                LogUtils.debug("MediaButtonReceiver", "unregisterMediaButtonEvent...");
             }
             BaseApplication.getApplication().getPackageManager().setComponentEnabledSetting(componentName
                     , m2826u ? PackageManager.COMPONENT_ENABLED_STATE_ENABLED : PackageManager.COMPONENT_ENABLED_STATE_DISABLED

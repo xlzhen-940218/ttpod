@@ -15,7 +15,7 @@ public abstract class PackHandle implements Closeable, Iterable<String> {
     public abstract void mo3755a(String str) throws IOException;
 
     /* renamed from: a */
-    public abstract boolean mo3757a();
+    public abstract boolean streamNotNull();
 
     /* renamed from: b */
     public abstract byte[] mo3753b(String str) throws IOException;

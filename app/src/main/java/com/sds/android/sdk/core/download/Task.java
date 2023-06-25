@@ -3,7 +3,7 @@ package com.sds.android.sdk.core.download;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import com.sds.android.sdk.core.statistic.HttpClientProxy;
+
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
@@ -191,7 +191,7 @@ public final class Task implements Runnable {
                 } else if (length != 0) {
                     FileUtils.m8404h(this.f2317c.buildTmpPath());
                     m8407e = FileUtils.m8407e(this.f2317c.buildTmpPath());
-                    LogUtils.m8384b("com.sds.android.sdk.core.download.Task", "ResumeBrokenTransfer supported and TotalFileLen unknown, recreate File");
+                    LogUtils.warning("com.sds.android.sdk.core.download.Task", "ResumeBrokenTransfer supported and TotalFileLen unknown, recreate File");
                 }
             } else if (length != 0) {
                 this.f2315a = 0;
@@ -378,7 +378,7 @@ public final class Task implements Runnable {
 
     /* renamed from: a */
     private void m8735a(long j, HashMap<String, Object> hashMap) {
-        hashMap.put(HttpClientProxy.HEADER_RANGE, "bytes=" + j + "-");
+        hashMap.put("Range", "bytes=" + j + "-");
     }
 
     /* renamed from: a */

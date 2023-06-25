@@ -74,7 +74,7 @@ public class FavoriteUtils {
             m8284a();
         }
         PopupsUtils.m6721a(BaseApplication.getApplication().getString(R.string.collect_favorite));
-        CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_FAVORITE_MEDIA_ITEM, mediaItem));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_FAVORITE_MEDIA_ITEM, mediaItem));
     }
 
     /* renamed from: b */
@@ -83,6 +83,6 @@ public class FavoriteUtils {
             f2495a.cancel();
         }
         PopupsUtils.m6721a(BaseApplication.getApplication().getString(R.string.favorite_canceled));
-        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM, mediaItem, Boolean.FALSE));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM, mediaItem, Boolean.FALSE));
     }
 }

@@ -31,7 +31,6 @@ import android.view.ViewConfiguration;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric;
 import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
 import com.sds.android.ttpod.framework.modules.skin.p132d.LyricInfo;
@@ -535,7 +534,7 @@ public class LyricView extends View implements OnMeasureTextListener {
                             new AsyncTaskC1997b(LyricView.this.f6801h, LyricView.m3456b(LyricView.this)).execute(new Void[0]);
                             return;
                         } catch (NoClassDefFoundError e) {
-                            LogUtils.m8388a("LyricView", "lyric format error: no class def found, reason:" + e.toString());
+                            LogUtils.debug("LyricView", "lyric format error: no class def found, reason:" + e.toString());
                             return;
                         }
                     case 3:
@@ -673,7 +672,7 @@ public class LyricView extends View implements OnMeasureTextListener {
                             new AsyncTaskC1997b(LyricView.this.f6801h, LyricView.m3456b(LyricView.this)).execute(new Void[0]);
                             return;
                         } catch (NoClassDefFoundError e) {
-                            LogUtils.m8388a("LyricView", "lyric format error: no class def found, reason:" + e.toString());
+                            LogUtils.debug("LyricView", "lyric format error: no class def found, reason:" + e.toString());
                             return;
                         }
                     case 3:
@@ -1966,7 +1965,7 @@ public class LyricView extends View implements OnMeasureTextListener {
 
     /* renamed from: b */
     public boolean m3453b(String str) {
-        if (StringUtils.m8346a(str) || this.f6801h == null) {
+        if (StringUtils.isEmpty(str) || this.f6801h == null) {
             return false;
         }
         LyricInfo mo3668g = this.f6801h.mo3668g();

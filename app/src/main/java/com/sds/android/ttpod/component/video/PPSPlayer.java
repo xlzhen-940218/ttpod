@@ -43,7 +43,7 @@ public class PPSPlayer extends BasePlayer {
             e2.printStackTrace();
         }
         Uri parse = Uri.parse(String.format("ppsplay://video?source=ttpod_app&detail_name=%s&isexit=1&third_url=ttpod://&his_time=0&play_url=%s", str2, str));
-        LogUtils.m8381c("PPSPlayer", "playVideoWithPPS uri=" + parse);
+        LogUtils.error("PPSPlayer", "playVideoWithPPS uri=" + parse);
         context.startActivity(new Intent("android.intent.action.VIEW", parse));
     }
 }

@@ -89,7 +89,7 @@ class HttpSession implements Runnable {
                     }
                     return;
                 }
-                LogUtils.m8388a("HttpSession", "header read:" + read + "bytes");
+                LogUtils.debug("HttpSession", "header read:" + read + "bytes");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new ByteArrayInputStream(bArr, 0, read)));
                 Properties properties = new Properties();
                 Properties properties2 = new Properties();
@@ -488,7 +488,7 @@ class HttpSession implements Runnable {
                     th.printStackTrace();
                 }
             } catch (IOException e) {
-                LogUtils.m8388a("HttpSession", "Message:" + e.getMessage());
+                LogUtils.debug("HttpSession", "Message:" + e.getMessage());
             }
         } finally {
             try {

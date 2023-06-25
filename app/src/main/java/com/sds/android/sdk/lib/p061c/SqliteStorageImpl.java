@@ -297,7 +297,7 @@ public class SqliteStorageImpl extends SqliteStorage {
                     SqliteStorageImpl.this.f2384e.mo3116a(i, i2);
                 }
             } catch (Exception e) {
-                LogUtils.m8381c("SqliteStorageImpl", "Upgrade Database error! drop and reCreate!");
+                LogUtils.error("SqliteStorageImpl", "Upgrade Database error! drop and reCreate!");
                 m8584a(sQLiteDatabase);
                 e.printStackTrace();
             }

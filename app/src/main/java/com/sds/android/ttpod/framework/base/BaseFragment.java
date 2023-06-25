@@ -9,8 +9,8 @@ import android.view.animation.AnimationUtils;
 
 import androidx.fragment.app.Fragment;
 
-import com.sds.android.sdk.core.statistic.SEngine;
-import com.sds.android.sdk.core.statistic.SPageProperties;
+
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.common.p083b.AutoDelloc;
@@ -35,7 +35,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
     private BaseFragment mCurrentChildFragment;
     private IFragmentHandler mFragmentHandler;
     private boolean mIsPage;
-    private SPageProperties mSPageProperties;
+
     private boolean mViewAccessAble = false;
     private boolean mOfflineModeConfirmed = false;
     private EnumC1800a mLoadState = EnumC1800a.NONE;
@@ -62,13 +62,13 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
         super.onCreate(bundle);
         Map<CommandID, Method> requestCommandMap = requestCommandMap();
         assertCommandMap(requestCommandMap);
-        CommandCenter.m4607a().m4597a(this, requestCommandMap);
+        CommandCenter.getInstance().m4597a(this, requestCommandMap);
         Bundle arguments = getArguments();
         if (arguments != null && arguments.getString(KEY_PAGE) != null) {
             setPage(arguments.getString(KEY_PAGE));
         }
         if (arguments != null && arguments.getString(KEY_SONG_LIST_ID) != null) {
-            setPageProperties(KEY_SONG_LIST_ID, arguments.getString(KEY_SONG_LIST_ID));
+
         }
     }
 
@@ -131,7 +131,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
             checkLoadFinished();
         }
         if (isPage()) {
-            updatePageProperties();
+
         }
     }
 
@@ -191,7 +191,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
 
     @Override // android.support.v4.app.Fragment
     public void onDestroy() {
-        CommandCenter.m4607a().m4599a(this);
+        CommandCenter.getInstance().m4599a(this);
         if (this.mChildFragmentBackStackManager != null) {
             this.mChildFragmentBackStackManager.m4578b();
         }
@@ -291,7 +291,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
         if (getFragmentHandler() != null) {
             getFragmentHandler().mo4566e(this);
         }
-        CommandCenter.m4607a().m4599a(this);
+        CommandCenter.getInstance().m4599a(this);
     }
 
     protected void switchSubFragment(BaseFragment baseFragment) {
@@ -376,24 +376,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
     }
 
     public void pageBack() {
-        updatePageProperties();
-    }
 
-    public final void setPageProperties(String str, Object obj) {
-        if (this.mSPageProperties == null) {
-            this.mSPageProperties = new SPageProperties();
-        }
-        this.mSPageProperties.append(str, obj);
-    }
-
-    public final void setPageProperties(SPageProperties sPageProperties) {
-        if (sPageProperties != null) {
-            this.mSPageProperties = sPageProperties;
-        }
-    }
-
-    public final SPageProperties getPageProperties() {
-        return this.mSPageProperties;
     }
 
     public void initBundle(String str, String str2) {
@@ -410,23 +393,6 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
 
     public void initBundle(SPage sPage, String str) {
         initBundle(String.valueOf(sPage.getValue()), str);
-    }
-
-    public final void updatePageProperties(String str, Object obj) {
-        initPageProperties();
-        if (str != null && obj != null) {
-            this.mSPageProperties.append(str, obj);
-            SEngine.Page.updatePageProperties(this.mSPageProperties);
-        }
-    }
-
-    public final void updatePageProperties() {
-        if (!"none".equals(this.mSPage)) {
-            SEngine.Page.enter(this.mSPage);
-        }
-        if (this.mSPageProperties != null) {
-            SEngine.Page.updatePageProperties(this.mSPageProperties);
-        }
     }
 
     public void setPage(SPage sPage) {
@@ -451,14 +417,10 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
 
     public void updatePage(String str) {
         setPage(str);
-        SEngine.Page.enter(str);
+
     }
 
-    private void initPageProperties() {
-        if (this.mSPageProperties == null) {
-            this.mSPageProperties = new SPageProperties();
-        }
-    }
+
 
     protected String getDescription() {
         return "";

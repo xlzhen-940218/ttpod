@@ -4,11 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 import com.sds.android.cloudapi.ttpod.data.RecommendPost;
 import com.sds.android.cloudapi.ttpod.result.RecommendPostResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment;
 import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
@@ -29,7 +28,7 @@ public class PrivateCustomFragment extends RecommendPostListFragment {
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         String string = getArguments().getString("name");
-        if (StringUtils.m8346a(string)) {
+        if (StringUtils.isEmpty(string)) {
             string = getString(R.string.private_custom);
         }
         getActionBarController().m7193a((CharSequence) string);
@@ -44,12 +43,12 @@ public class PrivateCustomFragment extends RecommendPostListFragment {
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment
     public void startPostDetailStatistic(long j, int i) {
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_LIKE_POST.getValue(), SPage.PAGE_ONLINE_PERSONALIZED_RECOMMEND.getValue(), SPage.PAGE_ONLINE_POST_DETAIL.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(j)).append("position", Integer.valueOf(i + 1)).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_LIKE_POST.getValue(), SPage.PAGE_ONLINE_PERSONALIZED_RECOMMEND.getValue(), SPage.PAGE_ONLINE_POST_DETAIL.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(j)).append("position", Integer.valueOf(i + 1)).post();
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment
     public void playMediaItemStatistic(long j, int i) {
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_LIKE_PLAY.getValue(), SPage.PAGE_ONLINE_PERSONALIZED_RECOMMEND.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(j)).append("position", Integer.valueOf(i + 1)).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_LIKE_PLAY.getValue(), SPage.PAGE_ONLINE_PERSONALIZED_RECOMMEND.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(j)).append("position", Integer.valueOf(i + 1)).post();
     }
 
     private void requestPostListResultStatistic(List<RecommendPost> list) {
@@ -68,7 +67,7 @@ public class PrivateCustomFragment extends RecommendPostListFragment {
                     }
                     i = i2 + 1;
                 } else {
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_RESULT_LIKE_POST.getValue(), SPage.PAGE_ONLINE_PERSONALIZED_RECOMMEND.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, stringBuffer.toString());
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_RESULT_LIKE_POST.getValue(), SPage.PAGE_ONLINE_PERSONALIZED_RECOMMEND.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, stringBuffer.toString());
                     return;
                 }
             }
@@ -89,6 +88,6 @@ public class PrivateCustomFragment extends RecommendPostListFragment {
         } else {
             this.mCurrentPage = 1;
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_PRIVATE_CUSTOM_POSTS, Integer.valueOf(this.mCurrentPage), 10));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_PRIVATE_CUSTOM_POSTS, Integer.valueOf(this.mCurrentPage), 10));
     }
 }

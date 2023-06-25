@@ -97,7 +97,7 @@ public class SkinCategoryDetailFragment extends ActionBarThemeListFragment {
     }
 
     private void loadDataList(int i, int i2) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_PAGED_SKIN_LIST, Integer.valueOf(this.mId), Integer.valueOf(i), Integer.valueOf(i2)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_PAGED_SKIN_LIST, Integer.valueOf(this.mId), Integer.valueOf(i), Integer.valueOf(i2)));
     }
 
     public void updateDataListForAdapter(OnlinePagedSkinListResult onlinePagedSkinListResult) {
@@ -114,7 +114,7 @@ public class SkinCategoryDetailFragment extends ActionBarThemeListFragment {
                         next.setPictureUrl(mainUrl + next.getRecommendPicUrl());
                         next.setSkinUrl("http://api.skin.ttpod.com/skin/apiSkin/download?id=" + next.getId());
                         SkinItem skinItem = new SkinItem(next);
-                        if (FileUtils.m8419a(skinItem.m3571b())) {
+                        if (FileUtils.m8419a(skinItem.getPath())) {
                             skinItem.m3574a(0);
                         }
                         arrayList.add(skinItem);

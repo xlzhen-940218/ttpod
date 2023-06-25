@@ -8,8 +8,6 @@ import com.sds.android.sdk.lib.util.JSONUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.ThirdParty.ThirdPartyApp;
 import com.sds.android.ttpod.ThirdParty.update.VersionUpdateConst;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.UpdateStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 /* loaded from: classes.dex */
@@ -20,13 +18,13 @@ public class AppInstallMonitor extends BroadcastReceiver {
             String schemeSpecificPart = intent.getData().getSchemeSpecificPart();
             if (!m2263a(schemeSpecificPart)) {
                 if (VersionUpdateConst.PACKAGENAME_360.equals(schemeSpecificPart)) {
-                    UpdateStatistic.m4796d();
+                   // UpdateStatistic.m4796d();
                 } else if (VersionUpdateConst.PACKAGENAME_WANDOUJIA.equals(schemeSpecificPart)) {
-                    UpdateStatistic.m4794f();
+                   // UpdateStatistic.m4794f();
                 } else if (VersionUpdateConst.PACKAGENAME_BAIDU.equals(schemeSpecificPart)) {
-                    UpdateStatistic.m4795e();
+                   // UpdateStatistic.m4795e();
                 } else if (VersionUpdateConst.PACKAGENAME_HIAPK.equals(schemeSpecificPart)) {
-                    UpdateStatistic.m4793g();
+                   // UpdateStatistic.m4793g();
                 }
             }
         }
@@ -35,12 +33,12 @@ public class AppInstallMonitor extends BroadcastReceiver {
     /* renamed from: a */
     private boolean m2263a(String str) {
         String m2999aH = Preferences.m2999aH();
-        if (StringUtils.m8346a(m2999aH)) {
+        if (StringUtils.isEmpty(m2999aH)) {
             return false;
         }
         ThirdPartyApp thirdPartyApp = (ThirdPartyApp) JSONUtils.fromJson(m2999aH, ThirdPartyApp.class);
         if (thirdPartyApp != null && m2262a(thirdPartyApp.m8326a(), str) && m2264a(thirdPartyApp.m8321f()) && thirdPartyApp.m8320g()) {
-            StatisticUtils.m4908a(thirdPartyApp.m8325b(), thirdPartyApp.m8324c(), thirdPartyApp.m8323d(), 1L, thirdPartyApp.m8319h());
+            //StatisticUtils.m4908a(thirdPartyApp.m8325b(), thirdPartyApp.m8324c(), thirdPartyApp.m8323d(), 1L, thirdPartyApp.m8319h());
             return true;
         }
         return false;
@@ -48,7 +46,7 @@ public class AppInstallMonitor extends BroadcastReceiver {
 
     /* renamed from: a */
     public boolean m2262a(String str, String str2) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return false;
         }
         for (String str3 : str.split(",")) {

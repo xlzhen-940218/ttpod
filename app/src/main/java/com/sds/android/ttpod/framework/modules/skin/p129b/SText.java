@@ -113,8 +113,8 @@ public abstract class SText<T extends View> extends SComponent<T> {
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
     public void m3770a(TextView textView, SkinCache skinCache) {
-        if (skinCache.m3593a(this.f6497c) != null) {
-            textView.setTypeface(skinCache.m3593a(this.f6497c));
+        if (skinCache.getTypeFace(this.f6497c) != null) {
+            textView.setTypeface(skinCache.getTypeFace(this.f6497c));
         }
         if (this.f6499e == this.f6500j && this.f6499e == this.f6501k && this.f6499e == this.f6503m && this.f6499e == this.f6502l) {
             textView.setTextColor(this.f6499e);

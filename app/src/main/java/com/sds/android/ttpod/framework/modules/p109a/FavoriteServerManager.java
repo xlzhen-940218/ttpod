@@ -194,7 +194,7 @@ class FavoriteServerManager {
 
     /* renamed from: a */
     private void m4543a(int i) {
-        LogUtils.m8381c("FavoriteServerManager", "doPush");
+        LogUtils.error("FavoriteServerManager", "doPush");
         String accessToken = Preferences.m2954aq().getAccessToken();
         BaseResult m8531f = i == 1 ? FavoritesAPI.m8922a(accessToken, this.f5755i).m8531f() : FavoritesAPI.m8921b(accessToken, this.f5755i).m8531f();
         if (m8531f.isSuccess()) {
@@ -220,15 +220,15 @@ class FavoriteServerManager {
     /* renamed from: f */
     public void m4526f() {
         if (m4524h()) {
-            Cache.m3218a().m3200a(this.f5753g);
-            Cache.m3218a().m3188b(this.f5754h);
+            Cache.getInstance().m3200a(this.f5753g);
+            Cache.getInstance().m3188b(this.f5754h);
         }
     }
 
     /* renamed from: g */
     public void m4525g() {
-        this.f5753g = Cache.m3218a().m3176d();
-        this.f5754h = Cache.m3218a().m3171e();
+        this.f5753g = Cache.getInstance().m3176d();
+        this.f5754h = Cache.getInstance().m3171e();
     }
 
     /* renamed from: b */
@@ -337,7 +337,7 @@ class FavoriteServerManager {
             MediaItemUtils.m4714a(m4716a, OnlineMediaItemUtils.m4690a(next));
             arrayList.add(m4716a);
             String localDataSource = m4716a.getLocalDataSource();
-            if (!StringUtils.m8346a(localDataSource)) {
+            if (!StringUtils.isEmpty(localDataSource)) {
                 MediaItem m4712a = MediaItemUtils.m4712a(localDataSource);
                 m4712a.setGroupID(MediaStorage.GROUP_ID_ALL_LOCAL);
                 m4712a.setSongID(Long.valueOf(next.getSongId()));

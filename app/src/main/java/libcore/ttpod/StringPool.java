@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package libcore.internal;
+package libcore.ttpod;
 /**
  * A pool of string instances. Unlike the {@link String#intern() VM's
  * interned strings}, this pool provides no guarantee of reference equality.

@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.FirstPublishAlbumData;
 import com.sds.android.cloudapi.ttpod.result.FirstPublishNewAlbumResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.musiccircle.MusiccircleFooter;
@@ -136,7 +136,7 @@ public class NewAlbumFragment extends SlidingClosableFragment {
         if (i != 1) {
             this.mFooter.m7932a(false, 0, getString(R.string.loading));
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_NEW_ALBUM_PUBLISH_LIST, Integer.valueOf(i), 10));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_NEW_ALBUM_PUBLISH_LIST, Integer.valueOf(i), 10));
     }
 
     public void updateAlbumResult(FirstPublishNewAlbumResult firstPublishNewAlbumResult) {
@@ -263,10 +263,7 @@ public class NewAlbumFragment extends SlidingClosableFragment {
             public void onClick(View view) {
                 FirstPublishAlbumData firstPublishAlbumData = (FirstPublishAlbumData) view.getTag(R.id.view_bind_data);
                 NewAlbumFragment.this.launchFragment(SubPostDetailFragment.createById(firstPublishAlbumData.getMsgId(), "first-publish"));
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_ONLINE_NEW_ALBUM_ITEM.getValue(), SPage.PAGE_ONLINE_NEW_ALBUM.getValue(), SPage.PAGE_ONLINE_POST_DETAIL.getValue());
-                sUserEvent.append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(firstPublishAlbumData.getMsgId()));
-                sUserEvent.append("song_list_name", firstPublishAlbumData.getTitle());
-                sUserEvent.post();
+
             }
         };
 

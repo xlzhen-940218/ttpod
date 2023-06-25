@@ -17,10 +17,8 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import java.lang.reflect.Method;
@@ -87,11 +85,11 @@ public class ReverbFragment extends BaseFragment {
         this.mAdapter.m7611a(m6997c);
         int parseInt = Integer.parseInt(m6997c);
         Preferences.m3075C(true);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.SET_REVERB, Integer.valueOf(parseInt)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_REVERB, Integer.valueOf(parseInt)));
         if (!this.mIsSelectd) {
             this.mIsSelectd = true;
-            AudioEffectStatistic.m5258n();
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_REVERB_SELECTED, SPage.PAGE_AUDIO_REVERB, SPage.PAGE_NONE);
+            //AudioEffectStatistic.m5258n();
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_REVERB_SELECTED, SPage.PAGE_AUDIO_REVERB, SPage.PAGE_NONE);
         }
     }
 }

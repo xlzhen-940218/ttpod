@@ -95,7 +95,7 @@ public final class DownloadManagerModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.DOWNLOAD_MANAGER;
     }
 
@@ -127,7 +127,7 @@ public final class DownloadManagerModule extends BaseModule {
     }
 
     public void netWorkTypeChanged() {
-        LogUtils.m8381c("DownloadManagerModule", "netWorkTypeChanged");
+        LogUtils.error("DownloadManagerModule", "netWorkTypeChanged");
         m4458d();
     }
 
@@ -135,7 +135,7 @@ public final class DownloadManagerModule extends BaseModule {
     /* renamed from: d */
     public void m4458d() {
         final int m8476d = EnvironmentUtils.C0604c.m8476d();
-        LogUtils.m8381c("DownloadManagerModule", "handleNetWorkState = " + m8476d);
+        LogUtils.error("DownloadManagerModule", "handleNetWorkState = " + m8476d);
         if (f5791f != m8476d) {
             f5791f = m8476d;
             TaskScheduler.m8580a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.3
@@ -156,7 +156,7 @@ public final class DownloadManagerModule extends BaseModule {
             }, new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.4
                 @Override // java.lang.Runnable
                 public void run() {
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_DOWNLOAD_TASK_LIST_RELOADED, new Object[0]), ModuleID.DOWNLOAD_MANAGER);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_DOWNLOAD_TASK_LIST_RELOADED, new Object[0]), ModuleID.DOWNLOAD_MANAGER);
                 }
             });
         }
@@ -194,7 +194,7 @@ public final class DownloadManagerModule extends BaseModule {
         if (AudioQuality.LOSSLESS == audioQuality) {
             return 31457280L;
         }
-        LogUtils.m8388a("DownloadManagerModule", "audioQuality is not available!");
+        LogUtils.debug("DownloadManagerModule", "audioQuality is not available!");
         return 0L;
     }
 
@@ -203,12 +203,12 @@ public final class DownloadManagerModule extends BaseModule {
         long j = 0;
         if (1 == list.size()) {
             MediaItem mediaItem = list.get(0);
-            if (!StringUtils.m8346a(mediaItem.getLocalDataSource())) {
+            if (!StringUtils.isEmpty(mediaItem.getLocalDataSource())) {
                 return mediaItem.getSize();
             }
         } else {
             for (MediaItem mediaItem2 : list) {
-                if (!StringUtils.m8346a(mediaItem2.getLocalDataSource())) {
+                if (!StringUtils.isEmpty(mediaItem2.getLocalDataSource())) {
                     j += m4473a(audioQuality);
                 }
             }
@@ -219,12 +219,12 @@ public final class DownloadManagerModule extends BaseModule {
     public void addDownloadTask(DownloadTaskInfo downloadTaskInfo) {
         m4472a(downloadTaskInfo.getType());
         if (FileUtils.m8414b(downloadTaskInfo.getSavePath())) {
-            CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_ADD_DOWNLOAD_TASK_ERROR, downloadTaskInfo), ModuleID.DOWNLOAD_MANAGER);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_ADD_DOWNLOAD_TASK_ERROR, downloadTaskInfo), ModuleID.DOWNLOAD_MANAGER);
             return;
         }
         m4463b(downloadTaskInfo);
         if (m4475a(downloadTaskInfo)) {
-            CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_ADD_DOWNLOAD_TASK_DATABASE, downloadTaskInfo), ModuleID.DOWNLOAD_MANAGER);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_ADD_DOWNLOAD_TASK_DATABASE, downloadTaskInfo), ModuleID.DOWNLOAD_MANAGER);
         }
     }
 
@@ -250,7 +250,7 @@ public final class DownloadManagerModule extends BaseModule {
                 }
             }
             SupportFactory.m2397a(sContext).m2496a(downloadTaskInfo);
-            LogUtils.m8381c("DownloadManagerModule", "addTask");
+            LogUtils.error("DownloadManagerModule", "addTask");
             m4455e(downloadTaskInfo);
         }
         f5790d.unlock();
@@ -287,7 +287,7 @@ public final class DownloadManagerModule extends BaseModule {
                 z2 = z;
             }
             if (!bool.booleanValue() && z2) {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_ADD_DOWNLOAD_TASK_LIST_ERROR, list), ModuleID.DOWNLOAD_MANAGER);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_ADD_DOWNLOAD_TASK_LIST_ERROR, list), ModuleID.DOWNLOAD_MANAGER);
                 return;
             }
             ArrayList arrayList = new ArrayList();
@@ -299,7 +299,7 @@ public final class DownloadManagerModule extends BaseModule {
                 }
             }
             if (!arrayList.isEmpty()) {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_ADD_DOWNLOAD_TASK_LIST_DATABASE, arrayList), ModuleID.DOWNLOAD_MANAGER);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_ADD_DOWNLOAD_TASK_LIST_DATABASE, arrayList), ModuleID.DOWNLOAD_MANAGER);
             }
         }
     }
@@ -323,7 +323,7 @@ public final class DownloadManagerModule extends BaseModule {
     public void cancelDownloadTask(DownloadTaskInfo downloadTaskInfo) {
         MediaItem mediaItem;
         f5790d.lock();
-        LogUtils.m8381c("DownloadManagerModule", "cancelDownloadTask");
+        LogUtils.error("DownloadManagerModule", "cancelDownloadTask");
         this.f5792a.remove(downloadTaskInfo);
         if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType()) && (mediaItem = (MediaItem) downloadTaskInfo.getTag()) != null && this.f5793b.containsKey(mediaItem.getGroupID())) {
             this.f5793b.get(mediaItem.getGroupID()).remove(mediaItem);
@@ -342,7 +342,7 @@ public final class DownloadManagerModule extends BaseModule {
             SupportFactory.m2397a(sContext).m2475c(downloadTaskInfo);
         }
         f5790d.lock();
-        LogUtils.m8381c("DownloadManagerModule", "cancelDownloadTask");
+        LogUtils.error("DownloadManagerModule", "cancelDownloadTask");
         this.f5792a.remove(downloadTaskInfo);
         if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType()) && (mediaItem = (MediaItem) downloadTaskInfo.getTag()) != null && this.f5793b.containsKey(mediaItem.getGroupID())) {
             this.f5793b.get(mediaItem.getGroupID()).remove(mediaItem);
@@ -388,13 +388,13 @@ public final class DownloadManagerModule extends BaseModule {
 
     public void deleteAllFinishedTask(final Integer num, final Boolean bool) {
         if (DownloadTaskInfo.TYPE_AUDIO.equals(num)) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_GROUP, MediaStorage.GROUP_ID_DOWNLOAD));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_GROUP, MediaStorage.GROUP_ID_DOWNLOAD));
         }
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.8
             @Override // java.lang.Runnable
             public void run() {
                 if (DownloadTaskInfo.TYPE_AUDIO.equals(num)) {
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_ASYNCLOAD_MEDIA_ITEM_LIST, MediaStorage.GROUP_ID_DOWNLOAD, Preferences.m2860l(MediaStorage.GROUP_ID_DOWNLOAD)));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_ASYNCLOAD_MEDIA_ITEM_LIST, MediaStorage.GROUP_ID_DOWNLOAD, Preferences.m2860l(MediaStorage.GROUP_ID_DOWNLOAD)));
                 }
                 for (DownloadTaskInfo downloadTaskInfo : DownloadManagerModule.this.m4471a(num, 0)) {
                     SqliteDb.m3119b(DownloadManagerModule.sContext, downloadTaskInfo.getSavePath());
@@ -426,7 +426,7 @@ public final class DownloadManagerModule extends BaseModule {
                     this.f5793b.get(m4470a.getGroupId()).remove(m4470a.getTag());
                 }
             } else if (m4470a.getState().intValue() == 5 && enumC0579b != null) {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.DOWNLOAD_TASK_FAILED, m4470a, enumC0579b), ModuleID.DOWNLOAD_MANAGER);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.DOWNLOAD_TASK_FAILED, m4470a, enumC0579b), ModuleID.DOWNLOAD_MANAGER);
                 this.f5792a.remove(m4470a);
                 if (m4470a.getTag() != null && DownloadTaskInfo.TYPE_AUDIO == m4470a.getType()) {
                     this.f5793b.get(m4470a.getGroupId()).remove(m4470a.getTag());
@@ -519,13 +519,13 @@ public final class DownloadManagerModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(OnlineMediaItemsResult onlineMediaItemsResult) {
-                if (!StringUtils.m8346a(downloadTaskInfo.getAudioQuality()) && onlineMediaItemsResult.getDataList().size() > 0) {
+                if (!StringUtils.isEmpty(downloadTaskInfo.getAudioQuality()) && onlineMediaItemsResult.getDataList().size() > 0) {
                     OnlineMediaItem.Url m4682b = OnlineMediaItemUtils.m4682b(onlineMediaItemsResult.getDataList().get(0), AudioQuality.valueOf(downloadTaskInfo.getAudioQuality()));
                     if (m4682b != null && !m4682b.getUrl().equals(downloadTaskInfo.getSourceUrl())) {
                         downloadTaskInfo.setSourceUrl(m4682b.getUrl());
                     }
                 } else {
-                    LogUtils.m8381c("DownloadManagerModule", "DownloadTaskInfo audioQuality is null");
+                    LogUtils.error("DownloadManagerModule", "DownloadTaskInfo audioQuality is null");
                 }
                 DownloadManagerModule.this.addDownloadTask(downloadTaskInfo);
             }
@@ -544,13 +544,13 @@ public final class DownloadManagerModule extends BaseModule {
         MediaItem queryMediaItem;
         MediaItem m4712a = MediaItemUtils.m4712a(downloadTaskInfo.getSavePath());
         if (m4712a != null && (queryMediaItem = MediaStorage.queryMediaItem(sContext, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a.getID())) != null) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, queryMediaItem, Boolean.FALSE));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, queryMediaItem, Boolean.FALSE));
         }
     }
 
     /* renamed from: e */
     private void m4455e(DownloadTaskInfo downloadTaskInfo) {
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_DOWNLOAD_TASK_STATE, downloadTaskInfo), ModuleID.DOWNLOAD_MANAGER);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_DOWNLOAD_TASK_STATE, downloadTaskInfo), ModuleID.DOWNLOAD_MANAGER);
         if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType())) {
             m4482a((TaskInfo) downloadTaskInfo);
         }
@@ -595,7 +595,7 @@ public final class DownloadManagerModule extends BaseModule {
         int m4453g = m4453g();
         if (m4453g == 0) {
             NotificationUtils.m4696a(15121750);
-            CommandCenter.m4607a().m4595b(new Command(CommandID.DOWNLOADING_TASK_CLEAR, new Object[0]), ModuleID.DOWNLOAD_MANAGER);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.DOWNLOADING_TASK_CLEAR, new Object[0]), ModuleID.DOWNLOAD_MANAGER);
             return;
         }
         Notification m4469a = m4469a(sContext.getString(R.string.notification_task_downloading, Integer.valueOf(m4453g)), sContext.getString(R.string.notification_download_click_hint), 1);
@@ -628,7 +628,7 @@ public final class DownloadManagerModule extends BaseModule {
 
     /* renamed from: a */
     private Notification m4468a(String str, String str2, long j, int i) {
-        PendingIntent activity = PendingIntent.getActivity(sContext, 0, new Intent(Action.NOTIFICATION_START_DOWNLOAD_MANAGER).putExtra("fragment_page_index", i), 134217728);
+        PendingIntent activity = PendingIntent.getActivity(sContext, 0, new Intent(Action.NOTIFICATION_START_DOWNLOAD_MANAGER).putExtra("fragment_page_index", i), PendingIntent.FLAG_IMMUTABLE);
         Bitmap bitmap = null;
         try {
             bitmap = ((BitmapDrawable) sContext.getResources().getDrawable(R.drawable.img_notification_artist_default)).getBitmap();

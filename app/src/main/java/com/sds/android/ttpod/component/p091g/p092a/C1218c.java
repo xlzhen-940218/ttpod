@@ -1,6 +1,6 @@
 package com.sds.android.ttpod.component.p091g.p092a;
 
-import com.sds.android.sdk.core.statistic.StatisticHelper;
+
 import com.sds.android.ttpod.component.p091g.p092a.Directives;
 import com.sds.android.ttpod.framework.modules.skin.p129b.SMotion;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ValueParser;
@@ -115,7 +115,7 @@ public class C1218c {
                             if (z) {
                                 this.f4162b.m6582a(m6580b, i5);
                                 switch (m6580b.m6572d()) {
-                                    case StatisticHelper.DELAY_SEND /* 65537 */:
+                                    case 65537 /* 65537 */:
                                         if (m6580b.m6578a()) {
                                             this.f4163c.mo6519a(this.f4161a, ValueParser.m3704a(this.f4166f + m6580b.m6574b(), i), ValueParser.m3704a((m6580b.m6578a() ? m6580b.m6574b() : 0) + this.f4167g, i2), animationCommand);
                                             i3 = 1;

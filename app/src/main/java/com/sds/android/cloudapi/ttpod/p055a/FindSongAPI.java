@@ -8,7 +8,7 @@ import com.sds.android.cloudapi.ttpod.result.OnlineMusicCategoryResult;
 import com.sds.android.cloudapi.ttpod.result.OnlineMusicSubCategoryResult;
 import com.sds.android.cloudapi.ttpod.result.SingerCategoryResult;
 import com.sds.android.cloudapi.ttpod.result.SingerListResult;
-import com.sds.android.sdk.core.statistic.SEvent;
+
 import com.sds.android.sdk.lib.request.GetMethodRequest;
 import com.sds.android.sdk.lib.request.Request;
 
@@ -23,12 +23,12 @@ public class FindSongAPI {
 
     /* renamed from: a */
     public static Request<OnlineMusicCategoryResult> m8908a(int i, int i2) {
-        return new GetMethodRequest(OnlineMusicCategoryResult.class, UrlList.f2261b).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(OnlineMusicCategoryResult.class, UrlList.f2261b).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
     public static Request<OnlineMusicSubCategoryResult> m8905a(long j, int i, int i2) {
-        return new GetMethodRequest(OnlineMusicSubCategoryResult.class, UrlList.f2262c).m8537b("id", Long.valueOf(j)).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(OnlineMusicSubCategoryResult.class, UrlList.f2262c).m8537b("id", Long.valueOf(j)).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
@@ -38,7 +38,7 @@ public class FindSongAPI {
 
     /* renamed from: b */
     public static Request<SingerListResult> m8902b(int i, int i2) {
-        return new GetMethodRequest(SingerListResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").m8537b("id", Integer.valueOf(i)).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i2)).m8537b("size", 1000);
+        return new GetMethodRequest(SingerListResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").m8537b("id", Integer.valueOf(i)).m8537b("page", Integer.valueOf(i2)).m8537b("size", 1000);
     }
 
     /* renamed from: a */
@@ -48,7 +48,7 @@ public class FindSongAPI {
 
     /* renamed from: a */
     public static Request<OnlineMediaItemsResult> m8903a(String str, int i, int i2) {
-        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/v2/songs/singersearch").m8537b("q", str).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/v2/songs/singersearch").m8537b("q", str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
@@ -69,6 +69,6 @@ public class FindSongAPI {
 
     /* renamed from: c */
     public static Request<MVListResult> m8901c(int i, int i2) {
-        return new GetMethodRequest(MVListResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").m8537b("id", Integer.valueOf(i)).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i2)).m8537b("size", 50);
+        return new GetMethodRequest(MVListResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").m8537b("id", Integer.valueOf(i)).m8537b("page", Integer.valueOf(i2)).m8537b("size", 50);
     }
 }

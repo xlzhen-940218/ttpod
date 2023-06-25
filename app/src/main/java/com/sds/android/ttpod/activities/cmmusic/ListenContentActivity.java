@@ -6,14 +6,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 
 import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
-import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.base.SlidingClosableActivity;
 import com.sds.android.ttpod.cmmusic.fragment.DjListenFragment;
@@ -121,7 +119,7 @@ public class ListenContentActivity extends SlidingClosableActivity implements Vi
                 try {
                     Thread.sleep(10000L);
                     if (UserSelectListenQuery.m7315b()) {
-                        Preferences.m2820v(EnvironmentUtils.C0604c.m8481b());
+                        Preferences.m2820v(EnvironmentUtils.C0604c.getSubscriberId());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

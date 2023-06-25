@@ -68,7 +68,7 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
 
     /* renamed from: b */
     public void m8802b(String str, String str2, int i, int i2) {
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             this.f2272a.remove(m8800c(str, str2, i, i2));
             FileUtils.m8404h(this.f2273b.getAbsolutePath() + File.separator + m8808a(str, str2));
         }
@@ -89,7 +89,7 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
         if (interfaceC0565a == null) {
             throw new IllegalArgumentException("Callback must not be null");
         }
-        if (!this.f2274d.m8790a() && !StringUtils.m8346a(str)) {
+        if (!this.f2274d.m8790a() && !StringUtils.isEmpty(str)) {
             this.f2274d.m8789a(new ImageLoadTask(new ImageRequestInfo(str, this.f2273b.getAbsolutePath(), str2, i, i2, scaleType, interfaceC0565a), this));
         }
     }
@@ -178,7 +178,7 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
                     options.inPreferredConfig = Bitmap.Config.RGB_565;
                 }
                 Bitmap decodeFile = BitmapFactory.decodeFile(str2, options);
-                LogUtils.m8381c("ImageCache", "scaleType:" + scaleType);
+                LogUtils.error("ImageCache", "scaleType:" + scaleType);
                 if (scaleType == null || i <= 0 || i2 <= 0) {
                     return decodeFile;
                 }
@@ -214,17 +214,17 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
 
     /* renamed from: a */
     private static String m8808a(String str, String str2) {
-        return StringUtils.m8346a(str2) ? SecurityUtils.C0610b.m8359b(str) : str2;
+        return StringUtils.isEmpty(str2) ? SecurityUtils.C0610b.m8359b(str) : str2;
     }
 
     /* renamed from: a */
     public static String m8811a(String str, int i, int i2, ImageView.ScaleType scaleType) {
-        if (!StringUtils.m8346a(str) && str.startsWith("http://3p.pic.ttdtweb.com") && i > 0 && i2 > 0 && i <= 4096 && i2 <= 4096) {
+        if (!StringUtils.isEmpty(str) && str.startsWith("http://3p.pic.ttdtweb.com") && i > 0 && i2 > 0 && i <= 4096 && i2 <= 4096) {
             String m8334a = UrlUtils.m8334a(str);
             String substring = str.substring(m8334a.length());
             int m8803b = m8803b(i);
             int m8803b2 = m8803b(i2);
-            String str2 = "1x." + FileUtils.m8399m(str).toLowerCase();
+            String str2 = "1x." + FileUtils.getSuffix(str).toLowerCase();
             String str3 = "";
             switch (C05642.f2276a[scaleType.ordinal()]) {
                 case 1:
@@ -239,12 +239,12 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
                     str3 = "" + m8803b + "w_" + m8803b2 + "h_1c_1i_";
                     break;
             }
-            if (!StringUtils.m8346a(str3)) {
+            if (!StringUtils.isEmpty(str3)) {
                 str = m8334a + "@" + str3 + str2;
             }
             str = str + substring;
         }
-        LogUtils.m8388a("ImageCache", "buildCropUrl url = " + str);
+        LogUtils.debug("ImageCache", "buildCropUrl url = " + str);
         return str;
     }
 

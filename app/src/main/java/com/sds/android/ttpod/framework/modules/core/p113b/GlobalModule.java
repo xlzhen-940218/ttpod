@@ -6,8 +6,8 @@ import android.os.SystemClock;
 import com.sds.android.cloudapi.ttpod.p055a.GlobalAPI;
 import com.sds.android.cloudapi.ttpod.result.GlobalResult;
 import com.sds.android.cloudapi.ttpod.result.OperatorPageResult;
-import com.sds.android.sdk.core.statistic.SPostStrategy;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
+
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
@@ -52,7 +52,7 @@ public class GlobalModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.GLOBAL;
     }
 
@@ -88,15 +88,15 @@ public class GlobalModule extends BaseModule {
     public void m4295b() {
         GlobalResult m8531f = GlobalAPI.m8887a().m8531f();
         if (m8531f != null) {
-            LogUtils.m8386a(f5925a, "Global Api finish, IPSupport: %b, version: %s, isSearchRestricted: %b, is360GuideEnabled: %b, isShow360Union: %b", Boolean.valueOf(m8531f.isIPSupported()), m8531f.getVersion(), Boolean.valueOf(m8531f.isSearchRestricted()), Boolean.valueOf(m8531f.is360GuideEnabled()), Boolean.valueOf(m8531f.is360UnoinEnabled()));
+            LogUtils.debug(f5925a, "Global Api finish, IPSupport: %b, version: %s, isSearchRestricted: %b, is360GuideEnabled: %b, isShow360Union: %b", Boolean.valueOf(m8531f.isIPSupported()), m8531f.getVersion(), Boolean.valueOf(m8531f.isSearchRestricted()), Boolean.valueOf(m8531f.is360GuideEnabled()), Boolean.valueOf(m8531f.is360UnoinEnabled()));
             Preferences.m3055M(m8531f.isIPSupported());
             Preferences.m3051O(m8531f.is360GuideEnabled());
             Preferences.m3049P(m8531f.is360UnoinEnabled());
             Preferences.m3053N(m8531f.isSearchRestricted());
         }
-        SSystemEvent sSystemEvent = new SSystemEvent("SYS_GLOBAL", "start");
-        sSystemEvent.setPostStrategy(SPostStrategy.IMMEDIATELAY_POST);
-        sSystemEvent.post();
+        //SSystemEvent //SSystemEvent = //new //SSystemEvent("SYS_GLOBAL", "start");
+        //SSystemEvent.setPostStrategy(SPostStrategy.IMMEDIATELAY_POST);
+        //SSystemEvent.post();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -105,7 +105,7 @@ public class GlobalModule extends BaseModule {
         OperatorPageResult m8531f = GlobalAPI.m8886a("f" + EnvironmentUtils.C0602a.m8512b(), "v" + EnvironmentUtils.C0602a.m8506e()).m8531f();
         if (m8531f != null && m8531f.getData() != null) {
             boolean z = m8531f.getData().getRecommend() != 0;
-            LogUtils.m8386a(f5925a, "Market Global Api recommand enable: %s ", Boolean.valueOf(z));
+            LogUtils.debug(f5925a, "Market Global Api recommand enable: %s ", Boolean.valueOf(z));
             Preferences.m2965ah(z);
         }
     }
@@ -176,16 +176,16 @@ public class GlobalModule extends BaseModule {
     }
 
     public ErrCode startSleepMode(Integer num) {
-        LogUtils.m8381c(f5925a, "startSleepMode delay time = " + num);
+        LogUtils.error(f5925a, "startSleepMode delay time = " + num);
         if (!m4297a(num.intValue() * 60000)) {
-            LogUtils.m8381c(f5925a, "startSleepMode errArgument");
+            LogUtils.error(f5925a, "startSleepMode errArgument");
             return ErrCode.ErrArgument;
         }
         this.f5926b = true;
         SupportFactory.m2397a(sContext).m2484b(num.intValue() * 60000);
         this.f5928d = SystemClock.elapsedRealtime() + (num.intValue() * 60000);
         Preferences.m3026a(num.intValue());
-        CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_SLEEP_MODE, new Object[0]), ModuleID.GLOBAL);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_SLEEP_MODE, new Object[0]), ModuleID.GLOBAL);
         return ErrCode.ErrNone;
     }
 
@@ -195,12 +195,12 @@ public class GlobalModule extends BaseModule {
     }
 
     public void stopSleepMode() {
-        LogUtils.m8381c(f5925a, "stopSleepMode");
+        LogUtils.error(f5925a, "stopSleepMode");
         this.f5926b = false;
         this.f5928d = 0L;
-        LogUtils.m8381c(f5925a, "stopSleepMode");
+        LogUtils.error(f5925a, "stopSleepMode");
         SupportFactory.m2397a(sContext).m2451y();
-        CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_SLEEP_MODE, new Object[0]), ModuleID.GLOBAL);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_SLEEP_MODE, new Object[0]), ModuleID.GLOBAL);
     }
 
     public Long sleepModeRemainTime() {

@@ -53,7 +53,7 @@ public class ImageSwitcherEngine {
         /* renamed from: a */
         public void mo2553a(PreferencesID preferencesID) {
             boolean m3003aD = Preferences.m3003aD();
-            LogUtils.m8386a("ImageSwitcherEngine", "onPreferencesChanged artistPic artistPicPlay=%b", Boolean.valueOf(m3003aD));
+            LogUtils.debug("ImageSwitcherEngine", "onPreferencesChanged artistPic artistPicPlay=%b", Boolean.valueOf(m3003aD));
             if (m3003aD) {
                 ImageSwitcherEngine.this.m4719h();
             } else {

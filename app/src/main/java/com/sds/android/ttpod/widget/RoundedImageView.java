@@ -252,7 +252,7 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
             try {
                 drawable = resources.getDrawable(this.imageResourceId);
             } catch (Exception e) {
-                LogUtils.m8387a("RoundedImageView", "Unable to find resource: " + this.imageResourceId, e);
+                LogUtils.warning("RoundedImageView", "Unable to find resource: " + this.imageResourceId, e);
                 this.imageResourceId = 0;
             }
         }

@@ -10,7 +10,6 @@ import com.sds.android.sdk.lib.request.Request;
 import com.sds.android.sdk.lib.request.RequestCallback;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.framework.modules.p124f.PostUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 /* loaded from: classes.dex */
@@ -46,7 +45,7 @@ public class CommentInputActivity extends BaseInputActivity {
                 public void onRequestFailure(CommentResult commentResult) {
                     CommentInputActivity.this.onSendFail();
                     PopupsUtils.m6721a("评论失败");
-                    ErrorStatistic.m5232g(m8849a.m8532e());
+                    //ErrorStatistic.m5232g(m8849a.m8532e());
                 }
             });
         }

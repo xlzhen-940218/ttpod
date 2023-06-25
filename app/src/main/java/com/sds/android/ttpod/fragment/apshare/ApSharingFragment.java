@@ -190,7 +190,7 @@ public class ApSharingFragment extends ApShareBaseFragment implements ApSharingA
                     });
                     ApSharingFragment.this.mClients.remove(clientModel.m7126a());
                     ApSharingFragment.this.mClientBlackList.add(clientModel.m7126a());
-                    LogUtils.m8379d(ApSharingFragment.TAG, "size of clients = " + ApSharingFragment.this.mClients.size() + ", black list size = " + ApSharingFragment.this.mClientBlackList.size());
+                    LogUtils.info(ApSharingFragment.TAG, "size of clients = " + ApSharingFragment.this.mClients.size() + ", black list size = " + ApSharingFragment.this.mClientBlackList.size());
                     ApSharingFragment.this.mUIHandler.post(new Runnable() { // from class: com.sds.android.ttpod.fragment.apshare.ApSharingFragment.4.2
                         @Override // java.lang.Runnable
                         public void run() {
@@ -211,7 +211,7 @@ public class ApSharingFragment extends ApShareBaseFragment implements ApSharingA
     public void onConnected(ClientModel clientModel) {
         if (getActivity() != null) {
             this.mClients.put(clientModel.m7126a(), clientModel.m7125b());
-            LogUtils.m8379d(TAG, "add a client: " + clientModel.m7125b() + ", " + clientModel.m7126a() + ", size=" + this.mClients.size());
+            LogUtils.info(TAG, "add a client: " + clientModel.m7125b() + ", " + clientModel.m7126a() + ", size=" + this.mClients.size());
             PopupsUtils.m6721a(getString(R.string.share_add_a_client, clientModel.m7125b()));
             this.mDownloadCount.put(clientModel.m7126a(), 0);
             this.mTvConnected.setText(getString(R.string.share_connected_device, Integer.valueOf(this.mClients.size())));
@@ -223,7 +223,7 @@ public class ApSharingFragment extends ApShareBaseFragment implements ApSharingA
         if (getActivity() != null) {
             this.mClients.remove(clientModel.m7126a());
             this.mTvConnected.setText(getString(R.string.share_connected_device, Integer.valueOf(this.mClients.size())));
-            LogUtils.m8379d(TAG, clientModel.m7125b() + " is leave , ip = " + clientModel.m7126a() + ", size =" + this.mClients.size());
+            LogUtils.info(TAG, clientModel.m7125b() + " is leave , ip = " + clientModel.m7126a() + ", size =" + this.mClients.size());
         }
     }
 

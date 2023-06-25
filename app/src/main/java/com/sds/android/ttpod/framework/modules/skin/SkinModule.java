@@ -46,15 +46,15 @@ public final class SkinModule extends BaseModule {
     public void onCreate() {
         super.onCreate();
         String m3038V = Preferences.m3038V();
-        if (StringUtils.m8346a(m3038V)) {
-            m3038V = Preferences.m3036W();
+        if (StringUtils.isEmpty(m3038V)) {
+            m3038V = Preferences.getFirstSkinItemPath();
         }
         this.f6680b = m3038V;
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.SKIN;
     }
 
@@ -91,10 +91,10 @@ public final class SkinModule extends BaseModule {
 
     public void setSkin(String str, Integer num) {
         setSkinProtocolPath(SkinUtils.m4646a(str, num.intValue()));
-        Cache.m3218a().m3153l();
+        Cache.getInstance().m3153l();
         ThemeManager.m3261b();
-        CommandCenter.m4607a().m4604a(new Command(CommandID.SKIN_CHANGED, new Object[0]), ModuleID.SKIN);
-        CommandCenter.m4607a().m4604a(new Command(CommandID.APP_THEME_CHANGED, new Object[0]), ModuleID.THEME);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.SKIN_CHANGED, new Object[0]), ModuleID.SKIN);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.APP_THEME_CHANGED, new Object[0]), ModuleID.THEME);
     }
 
     public String getSkinProtocolPath() {
@@ -133,7 +133,7 @@ public final class SkinModule extends BaseModule {
     }
 
     public void loadSkin() {
-        this.f6679a.m8576a((Runnable) new SkinCacheCreator(this.f6680b, Preferences.m3036W(), CommandID.LOAD_SKIN_FINISHED));
+        this.f6679a.m8576a((Runnable) new SkinCacheCreator(this.f6680b, Preferences.getFirstSkinItemPath(), CommandID.LOAD_SKIN_FINISHED));
     }
 
     public void loadSkinWithPath(String str) {
@@ -154,14 +154,14 @@ public final class SkinModule extends BaseModule {
                 if (SkinModule.this.m3543a(data, m4645a)) {
                     SkinModule.this.f6679a.m8576a((Runnable) new OnlineListDownloader(data, "http://api.skin.ttpod.com/skin/recommend_skin/list_", m4645a, CommandID.FINISH_UPDATE_RECOMMEND_SKIN_LIST));
                 } else {
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.FINISH_UPDATE_RECOMMEND_SKIN_LIST, false), ModuleID.SKIN);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.FINISH_UPDATE_RECOMMEND_SKIN_LIST, false), ModuleID.SKIN);
                 }
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(SkinListCheckResult skinListCheckResult) {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.FINISH_UPDATE_RECOMMEND_SKIN_LIST, false), ModuleID.SKIN);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.FINISH_UPDATE_RECOMMEND_SKIN_LIST, false), ModuleID.SKIN);
             }
         });
     }
@@ -176,14 +176,14 @@ public final class SkinModule extends BaseModule {
                 if (SkinModule.this.m3543a(data, m4645a)) {
                     SkinModule.this.f6679a.m8576a((Runnable) new OnlineSkinRankListDownloader(data, "http://api.skin.ttpod.com/skin/hot_skin/list_", m4645a, CommandID.FINISH_UPDATE_SKIN_RANK_LIST));
                 } else {
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.FINISH_UPDATE_SKIN_RANK_LIST, false), ModuleID.SKIN);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.FINISH_UPDATE_SKIN_RANK_LIST, false), ModuleID.SKIN);
                 }
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(SkinListCheckResult skinListCheckResult) {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.FINISH_UPDATE_SKIN_RANK_LIST, false), ModuleID.SKIN);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.FINISH_UPDATE_SKIN_RANK_LIST, false), ModuleID.SKIN);
             }
         });
     }
@@ -206,24 +206,24 @@ public final class SkinModule extends BaseModule {
                 if (SkinModule.this.m3543a(data, m4645a)) {
                     SkinModule.this.f6679a.m8576a((Runnable) new OnlineBackgroundListDownloader(data, "http://api.skin.ttpod.com/skin/recommend_background/list_", m4645a, CommandID.FINISH_UPDATE_RECOMMEND_BACKGROUND_LIST));
                 } else {
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.FINISH_UPDATE_RECOMMEND_BACKGROUND_LIST, false), ModuleID.SKIN);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.FINISH_UPDATE_RECOMMEND_BACKGROUND_LIST, false), ModuleID.SKIN);
                 }
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(BackgroundCheckResult backgroundCheckResult) {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.FINISH_UPDATE_RECOMMEND_BACKGROUND_LIST, false), ModuleID.SKIN);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.FINISH_UPDATE_RECOMMEND_BACKGROUND_LIST, false), ModuleID.SKIN);
             }
         });
     }
 
     public static void logE(String str) {
-        LogUtils.m8381c(TAG, str);
+        LogUtils.error(TAG, str);
     }
 
     public static void logD(String str) {
-        LogUtils.m8388a(TAG, str);
+        LogUtils.debug(TAG, str);
     }
 
     /* renamed from: a */
@@ -252,7 +252,7 @@ public final class SkinModule extends BaseModule {
             return true;
         }
         String substring = m8401k.substring(5);
-        LogUtils.m8388a(TAG, getClass() + ".isNeedUpdateFile timeText: " + substring + " localFile: " + m8401k);
+        LogUtils.debug(TAG, getClass() + ".isNeedUpdateFile timeText: " + substring + " localFile: " + m8401k);
         return l.longValue() > Long.valueOf(Long.parseLong(substring)).longValue();
     }
 
@@ -276,7 +276,7 @@ public final class SkinModule extends BaseModule {
         this.f6679a.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.skin.o.4
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.REQUEST_PAGED_SKIN_LIST_FINISHED, SkinAPI.m8829a(num.intValue(), num2.intValue(), num3.intValue()).m8531f()), ModuleID.SKIN);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.REQUEST_PAGED_SKIN_LIST_FINISHED, SkinAPI.m8829a(num.intValue(), num2.intValue(), num3.intValue()).m8531f()), ModuleID.SKIN);
             }
         });
     }
@@ -289,12 +289,12 @@ public final class SkinModule extends BaseModule {
         this.f6679a.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.skin.o.5
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.REQUEST_PAGED_BKG_LIST_FINISHED, SkinAPI.m8827b(num.intValue(), num2.intValue(), num3.intValue()).m8531f()), ModuleID.SKIN);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.REQUEST_PAGED_BKG_LIST_FINISHED, SkinAPI.m8827b(num.intValue(), num2.intValue(), num3.intValue()).m8531f()), ModuleID.SKIN);
             }
         });
     }
 
     public void notifyPlayingPanelOnShow() {
-        CommandCenter.m4607a().m4604a(new Command(CommandID.ON_PLAYING_PANEL_SHOW, new Object[0]), ModuleID.SKIN);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.ON_PLAYING_PANEL_SHOW, new Object[0]), ModuleID.SKIN);
     }
 }

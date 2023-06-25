@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import com.sds.android.cloudapi.ttpod.data.Post;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
@@ -49,7 +49,7 @@ public class SharePostSelectDialog extends ShareSelectDialog {
     /* renamed from: a */
     protected void mo2022a(ShareType shareType) {
         if (this.f2798c != null) {
-            new SUserEvent("PAGE_CLICK", m2017b(shareType), SPage.PAGE_SHARE_DIALOG.getValue(), SPage.PAGE_NONE.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(this.f2798c.getSonglistId())).post();
+            //new SUserEvent("PAGE_CLICK", m2017b(shareType), SPage.PAGE_SHARE_DIALOG.getValue(), SPage.PAGE_NONE.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(this.f2798c.getSonglistId())).post();
         }
     }
 

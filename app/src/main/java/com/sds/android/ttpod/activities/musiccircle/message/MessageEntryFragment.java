@@ -18,7 +18,7 @@ import com.sds.android.cloudapi.ttpod.p055a.NoticeAPI;
 import com.sds.android.cloudapi.ttpod.p055a.PrivateMessageAPI;
 import com.sds.android.cloudapi.ttpod.result.NewNoticeCountResult;
 import com.sds.android.cloudapi.ttpod.result.PrivateMessageOverViewListResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.Request;
 import com.sds.android.sdk.lib.request.RequestCallback;
@@ -34,7 +34,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p124f.NoticeType;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -83,7 +82,7 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
                     noticeFragment.setArguments(bundle);
                     noticeFragment.setOriginFragment(MessageEntryFragment.this);
                     MessageEntryFragment.this.launchFragment(noticeFragment);
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_NOTIFICATION.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_NOTIFICATION.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
                     return;
                 case R.id.comment_notice /* 2131231839 */:
                     MyCommentsFragment myCommentsFragment = new MyCommentsFragment();
@@ -91,11 +90,11 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
                     myCommentsFragment.setArguments(bundle);
                     myCommentsFragment.setOriginFragment(MessageEntryFragment.this);
                     MessageEntryFragment.this.launchFragment(myCommentsFragment);
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_COMMENT.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_COMMENT.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
                     return;
                 case R.id.system_notice /* 2131231840 */:
                     MessageEntryFragment.this.launchFragment(new SystemMessageFragment());
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_SYS_INFORM.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_SYS_INFORM.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
                     return;
                 default:
                     return;
@@ -185,7 +184,7 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
                     if (MessageEntryFragment.this.isViewAccessAble()) {
                         MessageEntryFragment.this.mNewNoticeCount = null;
                         MessageEntryFragment.this.mListView.m1336b();
-                        ErrorStatistic.m5232g(m8874a.m8532e());
+                        //ErrorStatistic.m5232g(m8874a.m8532e());
                     }
                 }
             });
@@ -278,7 +277,7 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
                             @Override // com.sds.android.sdk.lib.request.RequestCallback
                             public void onRequestFailure(BaseResult baseResult) {
                                 PopupsUtils.m6721a("删除失败");
-                                ErrorStatistic.m5232g(m8842a.m8532e());
+                                //ErrorStatistic.m5232g(m8842a.m8532e());
                             }
                         });
                     }
@@ -354,7 +353,7 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
     public void requestPrivateMessages(long j) {
         this.mIsRefreshing = j <= 0;
         this.mRequestState = RequestState.REQUESTING;
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_PRIVATE_MESSAGES, Long.valueOf(j), 20, "private_message"));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_PRIVATE_MESSAGES, Long.valueOf(j), 20, "private_message"));
     }
 
     public void setOriginFragment(SlidingClosableFragment slidingClosableFragment) {

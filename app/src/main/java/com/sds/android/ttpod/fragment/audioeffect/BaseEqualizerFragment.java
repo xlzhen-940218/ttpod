@@ -69,8 +69,8 @@ public abstract class BaseEqualizerFragment extends BaseFragment {
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void setEqualizer(TTEqualizer.Settings settings) {
-        LogUtils.m8388a(TAG, "setEqualizer " + settings);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.SET_EQUALIZER, settings));
+        LogUtils.debug(TAG, "setEqualizer " + settings);
+        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_EQUALIZER, settings));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

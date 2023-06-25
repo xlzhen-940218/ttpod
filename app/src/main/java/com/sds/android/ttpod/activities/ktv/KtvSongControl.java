@@ -2,8 +2,8 @@ package com.sds.android.ttpod.activities.ktv;
 
 import android.content.Context;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.sdk.core.statistic.HttpClientProxy;
-import com.sds.android.sdk.core.statistic.StatisticHelper;
+
+
 import com.sds.android.sdk.lib.request.PostContentRequest;
 import com.sds.android.sdk.lib.request.RequestCallback;
 import com.sds.android.sdk.lib.util.JSONUtils;
@@ -11,7 +11,6 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.component.p087d.p088a.WaitingDialog;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.utils.MD5Tools;
 
@@ -70,7 +69,7 @@ public class KtvSongControl {
             public void onRequestSuccess(KtvResult ktvResult) {
                 KtvSongControl.this.f2645c = ktvResult.m8119c();
                 KtvSongControl.this.f2644b = ktvResult.m8120b();
-                LogUtils.m8388a("KtvSongControl", "mRoomInfo: " + KtvSongControl.this.f2645c + " mUrlDomain:" + KtvSongControl.this.f2644b);
+                LogUtils.debug("KtvSongControl", "mRoomInfo: " + KtvSongControl.this.f2645c + " mUrlDomain:" + KtvSongControl.this.f2644b);
                 Preferences.m2900c(KtvSongControl.this.f2645c);
                 Preferences.m3012a(KtvSongControl.this.f2644b);
                 KtvSongControl.this.m8101d();
@@ -108,7 +107,7 @@ public class KtvSongControl {
             /* renamed from: a */
             public void onRequestSuccess(KtvResult ktvResult) {
                 KtvSongControl.this.f2646d = ktvResult.m8121a();
-                LogUtils.m8388a("KtvSongControl", "mCheckCode: " + KtvSongControl.this.f2646d);
+                LogUtils.debug("KtvSongControl", "mCheckCode: " + KtvSongControl.this.f2646d);
                 Preferences.m2933b(KtvSongControl.this.f2646d);
                 Preferences.m3025a(KtvSongControl.this.f2647e);
                 if (KtvSongControl.this.f2648f != null) {
@@ -122,7 +121,7 @@ public class KtvSongControl {
             /* renamed from: b */
             public void onRequestFailure(KtvResult ktvResult) {
                 KtvSongControl.this.m8092i();
-                LogUtils.m8388a("KtvSongControl", "bindKtvRoom fail: " + ktvResult.getCode());
+                LogUtils.debug("KtvSongControl", "bindKtvRoom fail: " + ktvResult.getCode());
                 KtvSongControl.this.m8109b();
                 if (KtvSongControl.this.f2648f != null) {
                     KtvSongControl.this.f2648f.fail();
@@ -136,7 +135,7 @@ public class KtvSongControl {
     public void m8115a(Context context, final List<KtvSongInfo> list) {
         if (list != null) {
             if (m8104c()) {
-                StatisticUtils.m4917a(169, (int) StatisticHelper.DELAY_SEND, 1L);
+                //StatisticUtils.m4917a(169, (int) 65537, 1L);
                 m8107b(context, "正在点歌,请等待...");
                 String str = this.f2644b + "/song/vod";
                 int m8093h = m8093h();
@@ -147,8 +146,8 @@ public class KtvSongControl {
                     public void onRequestSuccess(KtvSongListResult ktvSongListResult) {
                         StringBuffer stringBuffer;
                         KtvSongControl.this.m8092i();
-                        StatisticUtils.m4909a("ktv", "click", "play-song", 1L);
-                        StatisticUtils.m4917a(170, (int) StatisticHelper.DELAY_SEND, 1L);
+                        //StatisticUtils.m4909a("ktv", "click", "play-song", 1L);
+                        //StatisticUtils.m4917a(170, (int) 65537, 1L);
                         if (list.size() == 1 && list.size() == ktvSongListResult.m8085a().size()) {
                             stringBuffer = new StringBuffer("歌曲不能匹配");
                         } else {
@@ -164,7 +163,7 @@ public class KtvSongControl {
                     /* renamed from: b */
                     public void onRequestFailure(KtvSongListResult ktvSongListResult) {
                         KtvSongControl.this.m8092i();
-                        StatisticUtils.m4909a("ktv", "click", "play-song", -1L);
+                        //StatisticUtils.m4909a("ktv", "click", "play-song", -1L);
                         if (ktvSongListResult.getCode() == 6 || ktvSongListResult.getCode() == 3) {
                             KtvSongControl.this.m8109b();
                             if (KtvSongControl.this.f2648f != null) {
@@ -193,7 +192,7 @@ public class KtvSongControl {
         this.f2644b = Preferences.m2944b();
         this.f2645c = Preferences.m2898d();
         this.f2646d = Preferences.m2904c();
-        return (StringUtils.m8346a(this.f2644b) || StringUtils.m8346a(this.f2645c) || StringUtils.m8346a(this.f2646d)) ? false : true;
+        return (StringUtils.isEmpty(this.f2644b) || StringUtils.isEmpty(this.f2645c) || StringUtils.isEmpty(this.f2646d)) ? false : true;
     }
 
     /* renamed from: e */
@@ -232,12 +231,12 @@ public class KtvSongControl {
             i = m8093h();
         }
         StringBuffer stringBuffer = new StringBuffer("32433A3F98F34716A5D663B4D5AFF7D5");
-        if (!StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str2)) {
             stringBuffer.append(str2);
         }
         stringBuffer.append(str);
         stringBuffer.append(i);
-        LogUtils.m8388a("KtvSongControl", "sing:" + stringBuffer.toString());
+        LogUtils.debug("KtvSongControl", "sing:" + stringBuffer.toString());
         return MD5Tools.toMD5(stringBuffer.toString()).toLowerCase();
     }
 
@@ -246,7 +245,7 @@ public class KtvSongControl {
         try {
             if (this.f2643a == null) {
                 this.f2643a = new WaitingDialog(context);
-                if (!StringUtils.m8346a(str)) {
+                if (!StringUtils.isEmpty(str)) {
                     this.f2643a.m6775a((CharSequence) str);
                 }
             }
@@ -281,8 +280,8 @@ public class KtvSongControl {
             e.printStackTrace();
         }
         PostContentRequest<KtvSongListResult> postContentRequest = new PostContentRequest<>(KtvSongListResult.class, str, jSONObject.toString());
-        postContentRequest.m8533d(HttpClientProxy.HEADER_CONTENT_TYPE, HttpClientProxy.CONTENT_TYPE_JSON);
-        postContentRequest.m8533d(HttpClientProxy.HEADER_ACCEPT_GZIP, HttpClientProxy.CONTENT_NOT_ENCODING_GZIP);
+        postContentRequest.m8533d("Content-Type", "application/json");
+        postContentRequest.m8533d("Accept-Gzip", "not-gzip");
         return postContentRequest;
     }
 
@@ -295,7 +294,7 @@ public class KtvSongControl {
             }
             return;
         }
-        StatisticUtils.m4910a("ktv", "click", "camera");
+        //StatisticUtils.m4910a("ktv", "click", "camera");
         FragmentLoaderActivity.startFragmentLoaderActivity(context, 8);
     }
 

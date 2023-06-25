@@ -107,7 +107,7 @@ public abstract class DoubleItemGridSectionListFragment<D> extends SlidingClosab
 
     protected void requestDataList() {
         if (!this.mDataLoading) {
-            CommandCenter.m4607a().m4606a(new Command(this.mRequestId, new Object[0]));
+            CommandCenter.getInstance().m4606a(new Command(this.mRequestId, new Object[0]));
             this.mDataLoading = true;
         }
     }

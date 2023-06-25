@@ -85,7 +85,7 @@ public class EmoticonsWithInputLayout extends LinearLayout {
 
             @Override // android.text.TextWatcher
             public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-                if (!StringUtils.m8346a(EmoticonsWithInputLayout.this.f4106m) && charSequence.toString().contains(EmoticonsWithInputLayout.this.f4106m) && i < EmoticonsWithInputLayout.this.f4106m.length()) {
+                if (!StringUtils.isEmpty(EmoticonsWithInputLayout.this.f4106m) && charSequence.toString().contains(EmoticonsWithInputLayout.this.f4106m) && i < EmoticonsWithInputLayout.this.f4106m.length()) {
                     if (i + i2 < EmoticonsWithInputLayout.this.f4106m.length()) {
                         this.f4114b = (EmoticonsWithInputLayout.this.f4106m.length() - i2) + i3;
                     } else {
@@ -140,7 +140,7 @@ public class EmoticonsWithInputLayout extends LinearLayout {
                 if (Preferences.m2954aq() == null) {
                     EmoticonsWithInputLayout.this.m6663b();
                 }
-                String substring = (StringUtils.m8346a(EmoticonsWithInputLayout.this.getReplyTo()) || StringUtils.m8346a(trim)) ? trim : trim.substring(EmoticonsWithInputLayout.this.getReplyTo().length());
+                String substring = (StringUtils.isEmpty(EmoticonsWithInputLayout.this.getReplyTo()) || StringUtils.isEmpty(trim)) ? trim : trim.substring(EmoticonsWithInputLayout.this.getReplyTo().length());
                 int length = substring != null ? substring.length() : 0;
                 if (length == 0) {
                     PopupsUtils.m6721a("请输入有效评论");

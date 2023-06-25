@@ -116,7 +116,7 @@ public final class ShareItemViewHolder {
         this.f3183j = transmittableMediaItem;
         MediaItem m5772a = transmittableMediaItem.m5772a();
         String localDataSource = m5772a.getLocalDataSource();
-        this.f3176c.setText(FileUtils.m8402j(localDataSource));
+        this.f3176c.setText(FileUtils.getFilename(localDataSource));
         long size = m5772a.getSize();
         if (size <= 0) {
             size = FileUtils.m8405g(localDataSource);

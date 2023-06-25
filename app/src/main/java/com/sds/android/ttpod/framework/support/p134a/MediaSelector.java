@@ -54,7 +54,7 @@ public class MediaSelector {
         }
         this.f7075a = MediaStorage.queryMediaIDs(this.f7080f, this.f7076b, Preferences.m2860l(this.f7076b));
         String m2854n = Preferences.m2854n();
-        if (!StringUtils.m8346a(m2854n)) {
+        if (!StringUtils.isEmpty(m2854n)) {
             this.f7077c = MediaStorage.queryMediaItem(this.f7080f, this.f7076b, m2854n);
         }
         Preferences.m3019a(PreferencesID.PLAY_MODE, this.f7079e);

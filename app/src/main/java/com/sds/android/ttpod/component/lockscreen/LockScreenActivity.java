@@ -41,7 +41,6 @@ import com.sds.android.ttpod.framework.modules.skin.view.AnimTransView;
 import com.sds.android.ttpod.framework.modules.skin.view.LyricView;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -141,7 +140,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         } catch (OutOfMemoryError e) {
             e.printStackTrace();
             ImageCacheUtils.m4743b().m8804b();
-            Cache.m3218a().m3196b();
+            Cache.getInstance().m3196b();
             finish();
         }
     }
@@ -158,8 +157,8 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         showCachedLyricAndPic();
         ((AnimationDrawable) this.mImgViewSlidingUnlock.getBackground()).start();
         if (!this.mIgnoreResume && this.mPowerManager.isScreenOn()) {
-            LogUtils.m8379d(TAG, "onResume looklockscreen statistic");
-            LocalStatistic.m5156a();
+            LogUtils.info(TAG, "onResume looklockscreen statistic");
+            //LocalStatistic.m5156a();
         }
         this.mIgnoreResume = false;
     }
@@ -205,7 +204,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
     }
 
     public void updatePlayMeta() {
-        this.mPlayingMediaItem = Cache.m3218a().m3225N();
+        this.mPlayingMediaItem = Cache.getInstance().getCurrentPlayMediaItem();
         setSongInfoTextView();
         setLyric(null);
         this.mSongImageView.setImageBitmapDelay(null);
@@ -260,21 +259,21 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         acquireFastClickSupport();
         switch (view.getId()) {
             case R.id.imageview_pre /* 2131230870 */:
-                CommandCenter.m4607a().m4606a(new Command(CommandID.PREVIOUS, new Object[0]));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.PREVIOUS, new Object[0]));
                 return;
             case R.id.imageview_play /* 2131230871 */:
                 if (PlayStatus.STATUS_PAUSED == SupportFactory.m2397a(BaseApplication.getApplication()).m2463m()) {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
                     return;
                 } else {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.START, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
                     return;
                 }
             case R.id.imageview_pause /* 2131230872 */:
-                CommandCenter.m4607a().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             case R.id.imageview_next /* 2131230873 */:
-                CommandCenter.m4607a().m4606a(new Command(CommandID.NEXT, new Object[0]));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.NEXT, new Object[0]));
                 return;
             default:
                 return;
@@ -321,7 +320,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
             this.mAMPMTextView.setText(getAMPMText());
             this.mTimeTextDateFormat = new SimpleDateFormat("hh:mm");
         }
-        this.mPlayingMediaItem = Cache.m3218a().m3225N();
+        this.mPlayingMediaItem = Cache.getInstance().getCurrentPlayMediaItem();
         setSongInfoTextView();
         this.mImgViewPre.setOnClickListener(this);
         this.mImgViewPause.setOnClickListener(this);
@@ -344,13 +343,13 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
 
     private void showCachedLyricAndPic() {
         if (this.mLyricView.getLyric() == null) {
-            String m3159i = Cache.m3218a().m3159i();
+            String m3159i = Cache.getInstance().m3159i();
             setLyric(m3159i == null ? null : LyricParser.m3647b(m3159i));
         } else {
             this.mRefreshHandler.sendEmptyMessage(0);
         }
         if (this.mSongImageView.getDrawable() == null) {
-            String m3164g = Cache.m3218a().m3164g();
+            String m3164g = Cache.getInstance().m3164g();
             this.mSongImageView.setImageBitmap(m3164g != null ? BitmapUtils.m8435b(m3164g, DisplayUtils.m7225c(), DisplayUtils.m7224d()) : null);
         }
     }

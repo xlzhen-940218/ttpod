@@ -22,8 +22,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.UpdateStatistic;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ApkUtils;
 
@@ -57,7 +55,7 @@ public class VersionUpgradeActivity extends BaseActivity {
     public void onResume() {
         super.onResume();
         if (this.mVersionUpdateData != null) {
-            UpdateStatistic.m4799a(getStatisticType(this.mVersionUpdateData.getUpgradeType()));
+           // UpdateStatistic.m4799a(getStatisticType(this.mVersionUpdateData.getUpgradeType()));
         }
     }
 
@@ -105,9 +103,9 @@ public class VersionUpgradeActivity extends BaseActivity {
             this.mSmartButton.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.version.VersionUpgradeActivity.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
-                    StatisticUtils.m4910a("update", VersionUpgradeActivity.this.getStatisticType(versionUpdateData.getUpgradeType()), "smart");
+                    //StatisticUtils.m4910a("update", VersionUpgradeActivity.this.getStatisticType(versionUpdateData.getUpgradeType()), "smart");
                     if (VersionUpdateData.UpdateState.NEED == versionUpdateData.getUpdateState()) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.START_SMART_UPGRADE, versionUpdateData.getAppstoreInstalled()));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.START_SMART_UPGRADE, versionUpdateData.getAppstoreInstalled()));
                     } else if (VersionUpdateData.UpdateState.NO_NEED == versionUpdateData.getUpdateState()) {
                         PopupsUtils.m6721a("没有发现新的版本");
                         VersionUpgradeActivity.this.finish();
@@ -125,8 +123,8 @@ public class VersionUpgradeActivity extends BaseActivity {
             this.mNormalButton.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.version.VersionUpgradeActivity.2
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
-                    UpdateStatistic.m4798b();
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.START_COMMON_UPGRADE, versionUpdateData.getUpdateUrl()));
+                   // UpdateStatistic.m4798b();
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.START_COMMON_UPGRADE, versionUpdateData.getUpdateUrl()));
                     VersionUpgradeActivity.this.startActivity(new Intent(VersionUpgradeActivity.this, VersionUpgradeProgressActivity.class));
                     VersionUpgradeActivity.this.finish();
                 }
@@ -151,12 +149,12 @@ public class VersionUpgradeActivity extends BaseActivity {
     private void updateContent(VersionUpdateData versionUpdateData) {
         String updateDescription = versionUpdateData.getUpdateDescription();
         this.mNameView.setText(versionUpdateData.getLatestVersion());
-        this.mDescriptionView.setText(StringUtils.m8346a(updateDescription) ? "" : updateDescription.trim());
+        this.mDescriptionView.setText(StringUtils.isEmpty(updateDescription) ? "" : updateDescription.trim());
         this.mCancelButton.setText(versionUpdateData.isUpdateMandatory() ? R.string.version_upgrade_hint_next_time : R.string.cancel);
         this.mCancelButton.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.version.VersionUpgradeActivity.3
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                UpdateStatistic.m4797c();
+               // UpdateStatistic.m4797c();
                 VersionUpgradeActivity.this.finish();
             }
         });
@@ -203,8 +201,8 @@ public class VersionUpgradeActivity extends BaseActivity {
 
     private void downloadApp(String str, String str2) {
         if (!ApkUtils.m8311a(BaseApplication.getApplication(), str2)) {
-            DownloadUtils.m4760a(str, str2, 0L, FileUtils.m8402j(str2), DownloadTaskInfo.TYPE_APP, true, "update").setTag(str);
-            CommandCenter.m4607a().m4606a(new Command(CommandID.START_SMART_UPGRADE, false));
+            DownloadUtils.m4760a(str, str2, 0L, FileUtils.getFilename(str2), DownloadTaskInfo.TYPE_APP, true, "update").setTag(str);
+            CommandCenter.getInstance().m4606a(new Command(CommandID.START_SMART_UPGRADE, false));
             startActivity(new Intent(this, VersionUpgradeProgressActivity.class));
         }
     }

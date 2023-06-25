@@ -25,12 +25,12 @@ public class SystemMediaScanStartedReceiver extends BroadcastReceiver {
 
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
-        LogUtils.m8381c("SystemMediaScanStartedReceiver", "receive:" + intent.getAction());
+        LogUtils.error("SystemMediaScanStartedReceiver", "receive:" + intent.getAction());
         if ("android.intent.action.MEDIA_SCANNER_STARTED".equals(intent.getAction())) {
             try {
                 Set<String> m2866k = Preferences.m2866k();
                 if (m2866k != null && m2866k.size() > 0) {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.START_SCAN, m2866k, MediaStorage.GROUP_ID_ALL_LOCAL));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.START_SCAN, m2866k, MediaStorage.GROUP_ID_ALL_LOCAL));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

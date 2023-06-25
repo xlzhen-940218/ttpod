@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
@@ -23,12 +23,8 @@ import com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.ListStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SearchStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 
 import java.lang.reflect.Method;
@@ -61,7 +57,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         setModule("search");
-        ListStatistic.m5211a(0);
+        //ListStatistic.m5211a(0);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -96,8 +92,8 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     }
 
     public void requestSongList(String str, int i) {
-        LogUtils.m8388a(TAG, "requestSongList word: " + str + ",page: " + i + ",mUserInput:" + this.mUserInput);
-        if (!this.mIsSearching && !StringUtils.m8346a(str)) {
+        LogUtils.debug(TAG, "requestSongList word: " + str + ",page: " + i + ",mUserInput:" + this.mUserInput);
+        if (!this.mIsSearching && !StringUtils.isEmpty(str)) {
             String trim = str.trim();
             this.mIsSearching = true;
             this.mWord = trim;
@@ -106,8 +102,8 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
                 show();
                 updateStateViews(null);
             }
-            CommandCenter.m4607a().m4606a(new Command(CommandID.START_SEARCH_SONG, this.mWord, Integer.valueOf(i), 50, this.mUserInput));
-            LogUtils.m8388a(TAG, "requestSongList " + trim + "cost " + (System.currentTimeMillis() - currentTimeMillis));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_SONG, this.mWord, Integer.valueOf(i), 50, this.mUserInput));
+            LogUtils.debug(TAG, "requestSongList " + trim + "cost " + (System.currentTimeMillis() - currentTimeMillis));
         }
     }
 
@@ -117,7 +113,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     }
 
     public void updateSongSearchFinished(Integer num, Integer num2, List list, String str) {
-        LogUtils.m8388a(TAG, "loadPictureAfterSearchFinished " + list.size() + ", searchWord: " + str);
+        LogUtils.debug(TAG, "loadPictureAfterSearchFinished " + list.size() + ", searchWord: " + str);
         if (isAdded() && StringUtils.m8344a(this.mWord, str)) {
             updateMediaList(num, num2, list);
             if (this.mIsNewSearch) {
@@ -128,7 +124,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
             if (list.size() == 0 && EnvironmentUtils.C0604c.m8474e()) {
                 thirdSearch();
             }
-            SearchStatistic.m4945a(num, getOrigin(), this.mWord);
+            //SearchStatistic.m4945a(num, getOrigin(), this.mWord);
         }
     }
 
@@ -142,7 +138,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     @Override // com.sds.android.ttpod.fragment.main.SearchResultFragment.InterfaceC1501a
     public void onFragmentSelected(String str, String str2) {
         this.mUserInput = str2;
-        if (!StringUtils.m8346a(str) && !StringUtils.m8344a(str, this.mWord)) {
+        if (!StringUtils.isEmpty(str) && !StringUtils.m8344a(str, this.mWord)) {
             requestSongList(str);
         }
     }
@@ -151,14 +147,14 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     public void onMediaItemClicked(MediaItem mediaItem, int i) {
         super.onMediaItemClicked(mediaItem, i);
-        StatisticUtils.m4907a("search", "listen", getOrigin(), 0L, OnlineMediaStatistic.m5029f(), this.mWord, SearchStatistic.m4950a());
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_SONG_ITEM.getValue(), SPage.PAGE_SEARCH_SINGLE_SONG.getValue(), 0).append("song_id", mediaItem.getSongID()).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).append("position", Integer.valueOf(OnlineMediaStatistic.m5029f())).post();
+        //StatisticUtils.m4907a("search", "listen", getOrigin(), 0L, //OnlineMediaStatistic.m5029f(), this.mWord, //SearchStatistic.m4950a());
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_SONG_ITEM.getValue(), SPage.PAGE_SEARCH_SINGLE_SONG.getValue(), 0).append("song_id", mediaItem.getSongID()).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).append("position", Integer.valueOf(//OnlineMediaStatistic.m5029f())).post();
     }
 
     @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     protected void showRightContextMenu(MediaItem mediaItem) {
         if (getOrigin() != null) {
-            StatisticUtils.m4907a(getModule(), "menu", getOrigin(), 0L, OnlineMediaStatistic.m5029f(), SearchStatistic.m4938c(), SearchStatistic.m4950a());
+            //StatisticUtils.m4907a(getModule(), "menu", getOrigin(), 0L, //OnlineMediaStatistic.m5029f(), //SearchStatistic.m4938c(), //SearchStatistic.m4950a());
         }
         new DownloadMenuHandler(getActivity()).m6927a(mediaItem, getDownloadOrigin());
     }
@@ -167,8 +163,8 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     public void onFavoriteChanged(MediaItem mediaItem, boolean z) {
         super.onFavoriteChanged(mediaItem, z);
-        SearchStatistic.m4943a(z);
-        ListStatistic.m5206a(mediaItem.getSongID().longValue(), OnlineMediaStatistic.m5029f(), z);
+        //SearchStatistic.m4943a(z);
+        //ListStatistic.m5206a(mediaItem.getSongID().longValue(), //OnlineMediaStatistic.m5029f(), z);
     }
 
     @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment
@@ -179,12 +175,12 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment
     public String getListenOrigin() {
         String listenOrigin = super.getListenOrigin();
-        return StringUtils.m8346a(this.mWord) ? listenOrigin : listenOrigin + "_" + this.mWord + "_" + SearchStatistic.m4950a();
+        return StringUtils.isEmpty(this.mWord) ? listenOrigin : listenOrigin + "_" + this.mWord;
     }
 
     @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment
     public String getDownloadOrigin() {
         String origin = getOrigin();
-        return StringUtils.m8346a(this.mWord) ? origin : origin + "_" + this.mWord + "_" + SearchStatistic.m4950a() + "_" + OnlineMediaStatistic.m5029f();
+        return StringUtils.isEmpty(this.mWord) ? origin : origin + "_" + this.mWord;
     }
 }

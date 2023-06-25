@@ -70,7 +70,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
             this.mPlayModeView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.PlayingListActivity.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.SWITCH_PLAY_MODE, new Object[0]));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.SWITCH_PLAY_MODE, new Object[0]));
                 }
             });
         }
@@ -84,7 +84,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
     }
 
     private void initViewController() {
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (this.mViewController != null) {
             if (!m3225N.isNull()) {
                 this.mViewController.mo6447a(m3225N, (Bitmap) null, (Lyric) null);
@@ -108,8 +108,8 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
             }
         };
         SkinAbsoluteLayout skinAbsoluteLayout = null;
-        SkinCache m3151m = Cache.m3218a().m3151m();
-        if (m3151m != null && m3151m.m3585d() && (m3842b = m3151m.m3590b().m3842b(0)) != null) {
+        SkinCache m3151m = Cache.getInstance().m3151m();
+        if (m3151m != null && m3151m.serializableSkinNotNull() && (m3842b = m3151m.getSerializableSkin().m3842b(0)) != null) {
             SkinAbsoluteLayout skinAbsoluteLayout2 = new SkinAbsoluteLayout(this);
             this.mViewController = new AbsolutePlayerViewController(this, m3151m, m3842b) { // from class: com.sds.android.ttpod.activities.PlayingListActivity.3
                 @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
@@ -202,8 +202,8 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
     public void finish() {
         SPlaylistView m3842b;
         super.finish();
-        SkinCache m3151m = Cache.m3218a().m3151m();
-        if (m3151m != null && m3151m.m3585d() && (m3842b = m3151m.m3590b().m3842b(0)) != null) {
+        SkinCache m3151m = Cache.getInstance().m3151m();
+        if (m3151m != null && m3151m.serializableSkinNotNull() && (m3842b = m3151m.getSerializableSkin().m3842b(0)) != null) {
             overrideActivityOutAnimation(this, m3842b.m3785e());
         }
     }
@@ -262,13 +262,13 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
 
     public void updateSleepMode() {
         if (this.mViewController != null) {
-            this.mViewController.m6525d(((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue());
+            this.mViewController.m6525d(((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue());
         }
     }
 
     public void updatePlayMediaInfo() {
         if (this.mViewController != null) {
-            this.mViewController.mo6448a(Cache.m3218a().m3225N());
+            this.mViewController.mo6448a(Cache.getInstance().getCurrentPlayMediaItem());
             this.mViewController.mo6459a(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue(), SupportFactory.m2397a(BaseApplication.getApplication()).m2464l());
         }
     }

@@ -11,8 +11,8 @@ import android.media.MediaPlayer;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.p055a.GuideAPI;
 import com.sds.android.cloudapi.ttpod.result.GuideResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
-import com.sds.android.sdk.core.statistic.StatisticHelper;
+
+
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.request.RequestCallback;
@@ -28,11 +28,7 @@ import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.MVStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.UmengStatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -81,12 +77,12 @@ public class VideoPlayManager {
             if (intent.getAction().equals("android.intent.action.PACKAGE_ADDED")) {
                 String schemeSpecificPart = intent.getData().getSchemeSpecificPart();
                 VideoPlayManager.m5794i();
-                if (!StringUtils.m8346a(schemeSpecificPart)) {
+                if (!StringUtils.isEmpty(schemeSpecificPart)) {
                     if ("com.storm.smart".equals(schemeSpecificPart)) {
-                        MVStatistic.m5071c(true);
+                        //MVStatistic.m5071c(true);
                     }
-                    if (StringUtils.m8344a(Cache.m3218a().m3146r(), "waiting_intall")) {
-                        Cache.m3218a().m3181c(schemeSpecificPart);
+                    if (StringUtils.m8344a(Cache.getInstance().m3146r(), "waiting_intall")) {
+                        Cache.getInstance().m3181c(schemeSpecificPart);
                     }
                 }
             }
@@ -135,17 +131,7 @@ public class VideoPlayManager {
 
     /* renamed from: a */
     public static MessageDialog m5818a(final Context context, int i, final String str, final String str2, final boolean z, final DialogInterface.OnClickListener onClickListener) {
-        MVStatistic.m5077a();
-        if (f4861c instanceof StormPlayer) {
-            UmengStatisticUtils.m4866a(context, "storm", "recommend_count");
-            StatisticUtils.m4917a(217, (int) StatisticHelper.DELAY_SEND, 1L);
-            SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_MV_SHOW_DOWNLOAD_PLUGIN.getValue(), 0, 0);
-            sUserEvent.setPageParameter(true);
-            sUserEvent.append("type", f4861c.mo5781c());
-            sUserEvent.post();
-        } else {
-            StatisticUtils.m4917a(213, (int) StatisticHelper.DELAY_SEND, 1L);
-        }
+        //MVStatistic.m5077a();
         MessageDialog messageDialog = new MessageDialog(context, i, (BaseDialog.InterfaceC1064a<MessageDialog>) null, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
         messageDialog.m7261a(R.string.download_experience, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
@@ -156,21 +142,15 @@ public class VideoPlayManager {
                     onClickListener.onClick(messageDialog2, -1);
                 }
                 if (VideoPlayManager.f4861c != null) {
-                    Cache.m3218a().m3181c("waiting_intall");
+                    Cache.getInstance().m3181c("waiting_intall");
                     WeakReference unused = VideoPlayManager.f4863e = new WeakReference(context);
                     VideoPlayManager.m5806b(context);
                     VideoPlayManager.f4861c.mo5783a();
                     if (VideoPlayManager.f4861c instanceof StormPlayer) {
-                        UmengStatisticUtils.m4866a(context, "storm", "install_count");
-                        StatisticUtils.m4917a(218, (int) StatisticHelper.DELAY_SEND, 1L);
-                        MVStatistic.m5075a(true);
-                        SUserEvent sUserEvent2 = new SUserEvent("PAGE_CLICK", SAction.ACTION_MV_SHOW_DOWNLOAD_PLUGIN.getValue(), 0, 0);
-                        sUserEvent2.setPageParameter(true);
-                        sUserEvent2.append("type", VideoPlayManager.f4861c.mo5781c());
-                        sUserEvent2.post();
+
+                        //MVStatistic.m5075a(true);
                         return;
                     }
-                    StatisticUtils.m4917a(214, (int) StatisticHelper.DELAY_SEND, 1L);
                 }
             }
         }, R.string.cancel, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.2
@@ -182,14 +162,14 @@ public class VideoPlayManager {
                     onClickListener.onClick(messageDialog2, -2);
                 }
                 if (VideoPlayManager.f4861c instanceof StormPlayer) {
-                    UmengStatisticUtils.m4866a(context, "storm", "uninstall_count");
-                    StatisticUtils.m4917a(219, (int) StatisticHelper.DELAY_SEND, 1L);
+                    //UmengStatisticUtils.m4866a(context, "storm", "uninstall_count");
+                    //StatisticUtils.m4917a(219, (int) 65537, 1L);
                 }
                 if (z) {
-                    MVStatistic.m5075a(false);
+                    //MVStatistic.m5075a(false);
                     VideoPlayerInterface unused = VideoPlayManager.f4861c = new SystemVideoPlayer();
                     VideoPlayManager.f4861c.mo5782a(context, str, str2);
-                    StatisticUtils.m4917a(215, (int) StatisticHelper.DELAY_SEND, 1L);
+                    //StatisticUtils.m4917a(215, (int) 65537, 1L);
                 }
             }
         });
@@ -201,15 +181,15 @@ public class VideoPlayManager {
     /* renamed from: a */
     public static void m5816a(Context context, MediaItem mediaItem) {
         List<OnlineMediaItem.Url> mVUrls;
-        if (context != null && mediaItem != null && !StringUtils.m8346a(mediaItem.getExtra()) && (mVUrls = ((OnlineMediaItem) JSONUtils.fromJson(mediaItem.getExtra(), OnlineMediaItem.class)).getMVUrls()) != null && mVUrls.size() > 0) {
+        if (context != null && mediaItem != null && !StringUtils.isEmpty(mediaItem.getExtra()) && (mVUrls = ((OnlineMediaItem) JSONUtils.fromJson(mediaItem.getExtra(), OnlineMediaItem.class)).getMVUrls()) != null && mVUrls.size() > 0) {
             m5814a(context, mVUrls.get(0).getUrl(), mediaItem.getTitle());
         }
     }
 
     /* renamed from: a */
     public static void m5814a(Context context, String str, String str2) {
-        LogUtils.m8386a("VideoPlayManager", "tryToPlayVideo url=%s title=%s", str, str2);
-        if (StringUtils.m8346a(str)) {
+        LogUtils.debug("VideoPlayManager", "tryToPlayVideo url=%s title=%s", str, str2);
+        if (StringUtils.isEmpty(str)) {
             PopupsUtils.m6760a((int) R.string.mv_url_illegal);
         } else if (f4861c != null) {
             m5800d(context, str, str2);
@@ -220,14 +200,14 @@ public class VideoPlayManager {
 
     /* renamed from: c */
     private static void m5802c(Context context, String str, String str2) {
-        if (!StringUtils.m8346a(str)) {
-            if (StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str)) {
+            if (StringUtils.isEmpty(str2)) {
                 str2 = "";
             }
             f4861c = new SystemVideoPlayer();
             f4861c.mo5782a(context, str, str2);
             m5796g();
-            MVStatistic.m5074b();
+            //MVStatistic.m5074b();
         }
     }
 
@@ -237,11 +217,11 @@ public class VideoPlayManager {
         if (f4861c != null && ((f4861c instanceof SystemVideoPlayer) || m5815a(context, f4861c.mo5781c()))) {
             f4861c.mo5782a(context, str, str2);
             m5796g();
-            MVStatistic.m5074b();
+            //MVStatistic.m5074b();
         } else if (f4866h) {
             f4866h = false;
             m5798e(context, str, str2);
-        } else if (StringUtils.m8344a(Cache.m3218a().m3146r(), "tv.pps.mobile") || StringUtils.m8344a(Cache.m3218a().m3146r(), "com.pplive.androidphone") || StringUtils.m8344a(Cache.m3218a().m3146r(), "com.storm.smart")) {
+        } else if (StringUtils.m8344a(Cache.getInstance().m3146r(), "tv.pps.mobile") || StringUtils.m8344a(Cache.getInstance().m3146r(), "com.pplive.androidphone") || StringUtils.m8344a(Cache.getInstance().m3146r(), "com.storm.smart")) {
             m5802c(context, str, str2);
         } else {
             m5798e(context, str, str2);
@@ -264,7 +244,7 @@ public class VideoPlayManager {
         @Override // android.content.BroadcastReceiver
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            LogUtils.m8379d("VideoPlayManager", action);
+            LogUtils.info("VideoPlayManager", action);
             if (action.equals("com.storm.smart.action.TTPOD_VIDEO_FINISH") || action.equals("com.sds.android.ttpod.video_finished")) {
                 VideoPlayManager.m5795h();
             }
@@ -273,7 +253,7 @@ public class VideoPlayManager {
 
     /* renamed from: a */
     public static void m5813a(final Context context, final String str, final String str2, final boolean z) {
-        String m3146r = Cache.m3218a().m3146r();
+        String m3146r = Cache.getInstance().m3146r();
         if ("tv.pps.mobile".equals(m3146r)) {
             f4861c = m5815a(context, m3146r) ? new PPSPlayer() : new SystemVideoPlayer();
         } else if ("com.pplive.androidphone".equals(m3146r)) {
@@ -287,7 +267,7 @@ public class VideoPlayManager {
                 public void mo5789a(final boolean z2) {
                     if (z2 && !z) {
                         VideoPlayerInterface unused = VideoPlayManager.f4861c = new SystemVideoPlayer();
-                        if (!StringUtils.m8346a(str)) {
+                        if (!StringUtils.isEmpty(str)) {
                             VideoPlayManager.m5800d(context, str, str2);
                             return;
                         }
@@ -308,14 +288,14 @@ public class VideoPlayManager {
                                 JSONObject unused2 = VideoPlayManager.f4862d = m8393a;
                                 return;
                             }
-                            ErrorStatistic.m5235d(format);
-                            ErrorStatistic.m5239a("ad_sdk", format);
+                            //ErrorStatistic.m5235d(format);
+                            //ErrorStatistic.m5239a("ad_sdk", format);
                         }
                     }, new Runnable() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.4.2
                         @Override // java.lang.Runnable
                         public void run() {
                             VideoPlayerInterface unused2 = VideoPlayManager.f4861c = VideoPlayManager.m5804b(context, VideoPlayManager.f4862d, z2);
-                            if (!StringUtils.m8346a(str)) {
+                            if (!StringUtils.isEmpty(str)) {
                                 VideoPlayManager.m5800d(context, str, str2);
                             }
                         }
@@ -326,25 +306,12 @@ public class VideoPlayManager {
     }
 
     /* renamed from: a */
-    private static void m5810a(MVStatistic.EnumC1771a enumC1771a) {
-        GuideAPI.m8885a(f4860b, EnvironmentUtils.C0602a.m8512b(), EnvironmentUtils.C0602a.m8506e(), enumC1771a.ordinal()).m8544a(new RequestCallback<GuideResult>() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.5
-            @Override // com.sds.android.sdk.lib.request.RequestCallback
-            /* renamed from: a */
-            public void onRequestSuccess(GuideResult guideResult) {
-            }
 
-            @Override // com.sds.android.sdk.lib.request.RequestCallback
-            /* renamed from: b */
-            public void onRequestFailure(GuideResult guideResult) {
-            }
-        });
-    }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public static VideoPlayerInterface m5804b(Context context, JSONObject jSONObject, boolean z) {
         if (jSONObject == null) {
-            m5810a(MVStatistic.EnumC1771a.DATA_NULL);
             return new SystemVideoPlayer();
         }
         try {
@@ -360,25 +327,25 @@ public class VideoPlayManager {
                         int i3 = jSONObject2.getInt("local_paly");
                         boolean m5815a = m5815a(context, string);
                         if (!z) {
-                            m5810a(m5815a ? MVStatistic.EnumC1771a.ALL_INSTALL : MVStatistic.EnumC1771a.REQUEST_SUCCESS);
+                            //m5810a(m5815a ? //MVStatistic.EnumC1771a.ALL_INSTALL : //MVStatistic.EnumC1771a.REQUEST_SUCCESS);
                             return new StormPlayer(string2);
-                        } else if (i3 != i && !StringUtils.m8346a(string2) && !StringUtils.m8346a(string) && !m5815a) {
+                        } else if (i3 != i && !StringUtils.isEmpty(string2) && !StringUtils.isEmpty(string) && !m5815a) {
                             if (StringUtils.m8344a(string, "tv.pps.mobile")) {
-                                m5810a(MVStatistic.EnumC1771a.REQUEST_SUCCESS);
+                                //m5810a(//MVStatistic.EnumC1771a.REQUEST_SUCCESS);
                                 return new PPSPlayer(string2);
                             } else if (StringUtils.m8344a(string, "com.pplive.androidphone")) {
-                                m5810a(MVStatistic.EnumC1771a.REQUEST_SUCCESS);
+                                //m5810a(//MVStatistic.EnumC1771a.REQUEST_SUCCESS);
                                 return new PPTVPlayer(string2);
                             } else if (StringUtils.m8344a(string, "com.storm.smart")) {
-                                m5810a(MVStatistic.EnumC1771a.REQUEST_SUCCESS);
+                               // m5810a(//MVStatistic.EnumC1771a.REQUEST_SUCCESS);
                                 return new StormPlayer(string2);
                             }
                         }
                     }
                 }
-                m5810a(MVStatistic.EnumC1771a.ALL_INSTALL);
+               // m5810a(//MVStatistic.EnumC1771a.ALL_INSTALL);
             } else {
-                m5810a(MVStatistic.EnumC1771a.DATA_NULL);
+               // m5810a(//MVStatistic.EnumC1771a.DATA_NULL);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -439,7 +406,7 @@ public class VideoPlayManager {
     private static void m5796g() {
         f4859a = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING;
         if (f4859a) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
         }
     }
 
@@ -447,7 +414,7 @@ public class VideoPlayManager {
     /* renamed from: h */
     public static void m5795h() {
         if (f4859a) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.RESUME, new Object[0]));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
         }
     }
 
@@ -457,7 +424,7 @@ public class VideoPlayManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             return false;
         }
         for (ApplicationInfo applicationInfo : context.getPackageManager().getInstalledApplications(8192)) {

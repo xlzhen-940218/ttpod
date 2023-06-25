@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.PlaylistResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.R;
@@ -25,7 +25,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SearchStatistic;
 import com.sds.android.ttpod.widget.StateView;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -71,8 +70,8 @@ public class PlaylistSearchFragment extends BaseSearchFragment {
     @Override // com.sds.android.ttpod.fragment.search.BaseSearchFragment
     protected void search(String str, int i, int i2) {
         this.mWord = str;
-        LogUtils.m8388a(TAG, "search playlist, word: " + str + ",page: " + i + ",pageSize: " + i2 + ",mUserInput: " + this.mUserInput);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.START_SEARCH_PLAY_LIST, str, Integer.valueOf(i), Integer.valueOf(i2), this.mUserInput));
+        LogUtils.debug(TAG, "search playlist, word: " + str + ",page: " + i + ",pageSize: " + i2 + ",mUserInput: " + this.mUserInput);
+        CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_PLAY_LIST, str, Integer.valueOf(i), Integer.valueOf(i2), this.mUserInput));
     }
 
     public void updatePlaylistResult(PlaylistResult playlistResult) {
@@ -110,7 +109,7 @@ public class PlaylistSearchFragment extends BaseSearchFragment {
     }
 
     protected void statisticPlaylist(int i) {
-        SearchStatistic.m4947a(Integer.valueOf(i));
+        //SearchStatistic.m4947a(Integer.valueOf(i));
     }
 
     @Override // com.sds.android.ttpod.fragment.search.BaseSearchFragment
@@ -118,7 +117,7 @@ public class PlaylistSearchFragment extends BaseSearchFragment {
         PlaylistResult.PlaylistItem playlistItem = this.mPlaylist.get(i);
         if (playlistItem.getQuanId() != 0) {
             launchFragment(SubPostDetailFragment.createById(playlistItem.getQuanId(), "search-playlist"));
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_SONG_LIST_ITEM.getValue(), SPage.PAGE_SEARCH_SONG_LIST.getValue(), SPage.PAGE_SEARCH_SONG_LIST_DETAIL.getValue()).append("title", playlistItem.getTitle()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(playlistItem.getQuanId())).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).append("position", Integer.valueOf(i + 1)).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_SONG_LIST_ITEM.getValue(), SPage.PAGE_SEARCH_SONG_LIST.getValue(), SPage.PAGE_SEARCH_SONG_LIST_DETAIL.getValue()).append("title", playlistItem.getTitle()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(playlistItem.getQuanId())).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).append("position", Integer.valueOf(i + 1)).post();
         }
     }
 

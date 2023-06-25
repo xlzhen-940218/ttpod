@@ -6,7 +6,7 @@ import com.sds.android.cloudapi.ttpod.data.User;
 import com.sds.android.sdk.core.download.Manager;
 import com.sds.android.sdk.core.download.Task;
 import com.sds.android.sdk.core.download.TaskInfo;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
 import com.sds.android.sdk.lib.util.DebugUtils;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
@@ -18,8 +18,6 @@ import com.sds.android.ttpod.framework.modules.core.p113b.AutoDownloadNetworkTyp
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
 import com.sds.android.ttpod.framework.modules.search.p127a.SearchTaskInfoUtils;
 import com.sds.android.ttpod.framework.p106a.ImageSwitcherEngine;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.LyricPicStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.search.SearchManager;
 import com.sds.android.ttpod.framework.support.search.SearchStatus;
@@ -74,7 +72,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         this.f7298b.clear();
         try {
             LyrPicSearchTaskBaseInfo mo2131b = mo2131b();
-            LogUtils.m8380c("LyrPicBaseSearchTask", "in run lookLyricPic begin task search title=%s", mo2131b.m2193j());
+            LogUtils.info("LyrPicBaseSearchTask", "in run lookLyricPic begin task search title=%s", mo2131b.m2193j());
             if (!m2168a(mo2131b)) {
                 throw new IllegalArgumentException("search no invalid args");
             }
@@ -116,7 +114,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
             objArr[0] = mo2131b2 instanceof LyricSearchTaskInfo ? "lyric" : User.KEY_AVATAR;
             objArr[1] = m2194i2 != null ? m2194i2.getTitle() : null;
             objArr[2] = e.toString();
-            LogUtils.m8382b("LyrPicBaseSearchTask", "in run searchTask lookLyricPic type=%s title=%s exception=%s", objArr);
+            LogUtils.error("LyrPicBaseSearchTask", "in run searchTask lookLyricPic type=%s title=%s exception=%s", objArr);
             m2155b(mo2131b2, SearchStatus.SEARCH_DOWNLOAD_FAILURE);
             m2164a(SearchManager.f7252b);
         }
@@ -127,7 +125,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         Iterator<String> it = arrayList.iterator();
         while (it.hasNext()) {
             String next = it.next();
-            LogUtils.m8386a("LyrPicBaseSearchTask", "removeResult %s", next);
+            LogUtils.debug("LyrPicBaseSearchTask", "removeResult %s", next);
             FileUtils.m8404h(next);
         }
         if (z) {
@@ -157,7 +155,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
             objArr[1] = searchStatus.name();
             objArr[2] = lyrPicSearchTaskBaseInfo.m2194i().getTitle();
             objArr[3] = Integer.valueOf(arrayList2 != null ? arrayList2.size() : 0);
-            LogUtils.m8386a("LyrPicBaseSearchTask", "notifySearchTaskStatusChanged lookLyricPic looklyric type=%s SearchStatus=%s title=%s dAmount=%d", objArr);
+            LogUtils.debug("LyrPicBaseSearchTask", "notifySearchTaskStatusChanged lookLyricPic looklyric type=%s SearchStatus=%s title=%s dAmount=%d", objArr);
             MediaItem m2194i = lyrPicSearchTaskBaseInfo.m2194i();
             if (lyrPicSearchTaskBaseInfo instanceof LyricSearchTaskInfo) {
                 m2166a(lyrPicSearchTaskBaseInfo, searchStatus, "lyric", i);
@@ -192,16 +190,16 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         switch (searchStatus) {
             case SEARCH_ONLINE_NET_EXCEPTION:
             case SEARCH_ONLINE_FAILURE:
-                LyricPicStatistic.m5078a(str, m2194i.getSongID(), lyrPicSearchTaskBaseInfo.m2192k(), lyrPicSearchTaskBaseInfo.m2193j(), (Integer) 2);
+               // LyricPicStatistic.m5078a(str, m2194i.getSongID(), lyrPicSearchTaskBaseInfo.m2192k(), lyrPicSearchTaskBaseInfo.m2193j(), (Integer) 2);
                 return;
             case SEARCH_ONLINE_FINISHED:
-                LyricPicStatistic.m5078a(str, m2194i.getSongID(), lyrPicSearchTaskBaseInfo.m2192k(), lyrPicSearchTaskBaseInfo.m2193j(), (Integer) 1);
+               // LyricPicStatistic.m5078a(str, m2194i.getSongID(), lyrPicSearchTaskBaseInfo.m2192k(), lyrPicSearchTaskBaseInfo.m2193j(), (Integer) 1);
                 return;
             case SEARCH_DOWNLOAD_FAILURE:
-                LyricPicStatistic.m5079a(str, i, lyrPicSearchTaskBaseInfo.m2192k(), lyrPicSearchTaskBaseInfo.m2193j(), (Integer) 2);
+               // LyricPicStatistic.m5079a(str, i, lyrPicSearchTaskBaseInfo.m2192k(), lyrPicSearchTaskBaseInfo.m2193j(), (Integer) 2);
                 return;
             case SEARCH_DOWNLOAD_FINISHED:
-                LyricPicStatistic.m5079a(str, i, lyrPicSearchTaskBaseInfo.m2192k(), lyrPicSearchTaskBaseInfo.m2193j(), (Integer) 1);
+               // LyricPicStatistic.m5079a(str, i, lyrPicSearchTaskBaseInfo.m2192k(), lyrPicSearchTaskBaseInfo.m2193j(), (Integer) 1);
                 return;
             default:
                 return;
@@ -218,27 +216,27 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         m2155b(lyrPicSearchTaskBaseInfo, SearchStatus.SEARCH_ONLINE_STARTED);
         String mo2142a = mo2142a();
         if (m2153c() || !m2152d()) {
-            LogUtils.m8388a("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic no permission url = " + mo2142a);
+            LogUtils.debug("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic no permission url = " + mo2142a);
             m2155b(lyrPicSearchTaskBaseInfo, SearchStatus.SEARCH_ONLINE_SETTING_EXCEPTION);
             m2164a(SearchManager.f7253c);
             return;
         }
-        LogUtils.m8388a("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic list url = " + mo2142a);
+        LogUtils.debug("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic list url = " + mo2142a);
         ArrayList<ResultData> m2161a = m2161a(mo2142a);
         if (m2161a == null) {
-            LogUtils.m8386a("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic getResultDataList url = %s, net exception", mo2142a);
+            LogUtils.debug("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic getResultDataList url = %s, net exception", mo2142a);
             m2155b(lyrPicSearchTaskBaseInfo, SearchStatus.SEARCH_ONLINE_NET_EXCEPTION);
             m2164a(SearchManager.f7252b);
         } else if (m2161a.isEmpty()) {
-            LogUtils.m8386a("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic getResultDataList url = %s, server no result", mo2142a);
+            LogUtils.debug("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic getResultDataList url = %s, server no result", mo2142a);
             m2155b(lyrPicSearchTaskBaseInfo, SearchStatus.SEARCH_ONLINE_FAILURE);
             m2164a(SearchManager.f7253c);
         } else if (z) {
-            LogUtils.m8386a("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic getResultDataList url = %s, manual result_group=%d", mo2142a, Integer.valueOf(m2161a.size()));
+            LogUtils.debug("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic getResultDataList url = %s, manual result_group=%d", mo2142a, Integer.valueOf(m2161a.size()));
             m2154b(lyrPicSearchTaskBaseInfo, SearchStatus.SEARCH_ONLINE_FINISHED, m2161a, null, 0);
             m2164a(SearchManager.f7253c);
         } else {
-            LogUtils.m8386a("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic getResultDataList url = %s, auto result_group=%d", mo2142a, Integer.valueOf(m2161a.size()));
+            LogUtils.debug("LyrPicBaseSearchTask", "searchTaskFromNetwork lookLyricPic getResultDataList url = %s, auto result_group=%d", mo2142a, Integer.valueOf(m2161a.size()));
             m2155b(lyrPicSearchTaskBaseInfo, SearchStatus.SEARCH_ONLINE_FINISHED);
             mo2132a(m2161a);
         }
@@ -331,13 +329,13 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
     /* renamed from: a */
     public void m2163a(final ResultData.Item item, final boolean z) {
         DebugUtils.m8426a(item, "resultDataItem");
-        LogUtils.m8388a("LyrPicBaseSearchTask", "doDownload add for execute lookLyricPic url = " + item.m2173c());
+        LogUtils.debug("LyrPicBaseSearchTask", "doDownload add for execute lookLyricPic url = " + item.m2173c());
         Manager.m8744a().m8740a("lyrics_picture_file_download", new TaskInfo(item.m2173c(), item.m2172d(), false), new Task.AbstractC0578a() { // from class: com.sds.android.ttpod.framework.support.search.task.a.1
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: b */
             public void mo2149b(TaskInfo taskInfo) {
                 super.mo2149b(taskInfo);
-                LogUtils.m8386a("LyrPicBaseSearchTask", "down lookLyricPic start %s", taskInfo.getSavePath());
+                LogUtils.debug("LyrPicBaseSearchTask", "down lookLyricPic start %s", taskInfo.getSavePath());
                 LyrPicBaseSearchTask.m2155b(LyrPicBaseSearchTask.this.mo2131b(), SearchStatus.SEARCH_DOWNLOAD_STARTED);
             }
 
@@ -345,7 +343,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
             /* renamed from: c */
             public void mo2148c(TaskInfo taskInfo) {
                 super.mo2148c(taskInfo);
-                LogUtils.m8386a("LyrPicBaseSearchTask", "down finish lookLyricPic %s", taskInfo.getSavePath());
+                LogUtils.debug("LyrPicBaseSearchTask", "down finish lookLyricPic %s", taskInfo.getSavePath());
                 synchronized (LyrPicBaseSearchTask.this.f7298b) {
                     LyrPicBaseSearchTask.this.f7298b.add(taskInfo.getSavePath());
                     LyrPicBaseSearchTask.m2154b(LyrPicBaseSearchTask.this.mo2131b(), SearchStatus.SEARCH_DOWNLOAD_FINISHED, null, LyrPicBaseSearchTask.this.f7298b, item.m2176a());
@@ -358,16 +356,16 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: a */
             public void mo2150a(TaskInfo taskInfo, Task.EnumC0579b enumC0579b) {
-                LogUtils.m8386a("LyrPicBaseSearchTask", "down error lookLyricPic %s msg=%s", taskInfo.getSavePath(), enumC0579b.name());
+                LogUtils.debug("LyrPicBaseSearchTask", "down error lookLyricPic %s msg=%s", taskInfo.getSavePath(), enumC0579b.name());
                 LyrPicBaseSearchTask.m2154b(LyrPicBaseSearchTask.this.mo2131b(), SearchStatus.SEARCH_DOWNLOAD_FAILURE, null, null, item.m2176a());
                 LyrPicSearchTaskBaseInfo mo2131b = LyrPicBaseSearchTask.this.mo2131b();
                 String sourceUrl = taskInfo.getSourceUrl();
                 if (mo2131b instanceof LyricSearchTaskInfo) {
                     LyrPicBaseSearchTask.m2156b(taskInfo, "error", enumC0579b, "lyric_type");
-                    ErrorStatistic.m5242a(sourceUrl);
+                    //ErrorStatistic.m5242a(sourceUrl);
                 } else if (mo2131b instanceof PictureSearchTaskInfo) {
                     LyrPicBaseSearchTask.m2156b(taskInfo, "error", enumC0579b, "picture_type");
-                    ErrorStatistic.m5237b(sourceUrl);
+                    //ErrorStatistic.m5237b(sourceUrl);
                 }
                 if (z) {
                     LyrPicBaseSearchTask.this.m2164a(SearchManager.f7252b);
@@ -388,7 +386,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
             artist = "";
         }
         ArrayList<String> mo2135a = mo2135a(title, artist);
-        LogUtils.m8380c("LyrPicBaseSearchTask", "searchTaskFromLocal lookLyricPic title=%s firstPath=%s", title, (mo2135a == null || mo2135a.isEmpty()) ? null : mo2135a.get(0));
+        LogUtils.info("LyrPicBaseSearchTask", "searchTaskFromLocal lookLyricPic title=%s firstPath=%s", title, (mo2135a == null || mo2135a.isEmpty()) ? null : mo2135a.get(0));
         return mo2135a;
     }
 
@@ -412,14 +410,14 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
             /* renamed from: b */
             public void mo2149b(TaskInfo taskInfo2) {
                 super.mo2149b(taskInfo2);
-                LogUtils.m8380c("LyrPicBaseSearchTask", "doDownloadResultItem lookLyricPic onStarted down type=%s url=%s", str, item.m2173c());
+                LogUtils.info("LyrPicBaseSearchTask", "doDownloadResultItem lookLyricPic onStarted down type=%s url=%s", str, item.m2173c());
             }
 
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: c */
             public void mo2148c(TaskInfo taskInfo2) {
                 super.mo2148c(taskInfo2);
-                LogUtils.m8380c("LyrPicBaseSearchTask", "doDownloadResultItem lookLyricPic onFinished down type=%s url=%s", str, item.m2173c());
+                LogUtils.info("LyrPicBaseSearchTask", "doDownloadResultItem lookLyricPic onFinished down type=%s url=%s", str, item.m2173c());
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(item.m2172d());
                 LyrPicBaseSearchTask.m2154b(m3886b, SearchStatus.SEARCH_DOWNLOAD_FINISHED, null, arrayList, item.m2176a());
@@ -429,18 +427,18 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
             /* renamed from: a */
             public void mo2150a(TaskInfo taskInfo2, Task.EnumC0579b enumC0579b) {
                 String sourceUrl = taskInfo2.getSourceUrl();
-                LogUtils.m8380c("LyrPicBaseSearchTask", "doDownloadResultItem lookLyricPic onError down type=%s url=%s", str, sourceUrl);
+                LogUtils.info("LyrPicBaseSearchTask", "doDownloadResultItem lookLyricPic onError down type=%s url=%s", str, sourceUrl);
                 LyrPicBaseSearchTask.m2154b(m3886b, SearchStatus.SEARCH_DOWNLOAD_FAILURE, null, null, item.m2176a());
                 if ("lyric_type".equals(str)) {
-                    ErrorStatistic.m5242a(sourceUrl);
+                    //ErrorStatistic.m5242a(sourceUrl);
                     LyrPicBaseSearchTask.m2156b(taskInfo2, "error", enumC0579b, str);
                     return;
                 }
-                ErrorStatistic.m5237b(sourceUrl);
+                //ErrorStatistic.m5237b(sourceUrl);
                 LyrPicBaseSearchTask.m2156b(taskInfo2, "error", enumC0579b, str);
             }
         };
-        LogUtils.m8380c("LyrPicBaseSearchTask", "doDownloadResultItem lookLyricPic will execute down type=%s url=%s", str, item.m2173c());
+        LogUtils.info("LyrPicBaseSearchTask", "doDownloadResultItem lookLyricPic will execute down type=%s url=%s", str, item.m2173c());
         Manager.m8744a().m8740a("lyrics_picture_file_download", taskInfo, abstractC0578a);
         m2155b(m3886b, SearchStatus.SEARCH_DOWNLOAD_STARTED);
     }
@@ -448,11 +446,11 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public static void m2156b(TaskInfo taskInfo, String str, Task.EnumC0579b enumC0579b, String str2) {
-        SSystemEvent sSystemEvent = new SSystemEvent("SYS_DOWNLOAD", str);
-        sSystemEvent.append("uri", taskInfo.getSourceUrl()).append(DownloadManagerFragment.DOWNLOAD_TYPE, str2).append("path", taskInfo.getSavePath());
+        //SSystemEvent //SSystemEvent = //new //SSystemEvent("SYS_DOWNLOAD", str);
+        //SSystemEvent.append("uri", taskInfo.getSourceUrl()).append(DownloadManagerFragment.DOWNLOAD_TYPE, str2).append("path", taskInfo.getSavePath());
         if (enumC0579b != null) {
-            sSystemEvent.append("error_code", enumC0579b);
+            //SSystemEvent.append("error_code", enumC0579b);
         }
-        sSystemEvent.post();
+        //SSystemEvent.post();
     }
 }

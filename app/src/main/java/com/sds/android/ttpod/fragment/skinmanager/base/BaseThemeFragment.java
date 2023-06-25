@@ -36,7 +36,6 @@ import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.SkinUtils;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.OfflineModeUtils;
@@ -80,8 +79,8 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
                 case 1:
                     if ((BaseThemeFragment.sDownloadingTask == null || BaseThemeFragment.sDownloadingTask.getState() == null || BaseThemeFragment.sDownloadingTask.getState().intValue() == 4) && (downloadTaskInfo = (DownloadTaskInfo) BaseThemeFragment.sDownloadingSkinQueue.poll()) != null) {
                         DownloadTaskInfo unused = BaseThemeFragment.sDownloadingTask = downloadTaskInfo;
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, Boolean.FALSE));
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, Boolean.FALSE));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
                         return;
                     }
                     return;
@@ -148,7 +147,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
             if (m3565g != null && m3569c != null) {
                 String skinInfoMapKey = BaseThemeFragment.this.getSkinInfoMapKey(m3565g);
                 if (!BaseThemeFragment.sDownloadingSkinMap.containsKey(m3565g)) {
-                    ThemeStatistic.m4888f(m3565g);
+                    //ThemeStatistic.m4888f(m3565g);
                     BaseThemeFragment.this.tryDownloadSkin(BaseThemeFragment.sOnlineSkinInfoMap.get(skinInfoMapKey), true);
                 }
             }
@@ -186,40 +185,40 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
     }
 
     protected static void saveSkinToSystem(String str, int i) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.SET_SKIN, str, Integer.valueOf(i)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SKIN, str, Integer.valueOf(i)));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void performSkinDownloaded(SkinItem skinItem) {
-        ThemeListObserver.m5322a().m5320a(skinItem);
+        ThemeListObserver.getInstance().m5320a(skinItem);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void performSkinDownloadError(SkinItem skinItem) {
-        ThemeListObserver.m5322a().m5315b(skinItem);
+        ThemeListObserver.getInstance().m5315b(skinItem);
     }
 
     private void performSkinDownloading(SkinItem skinItem) {
-        ThemeListObserver.m5322a().m5314c(skinItem);
+        ThemeListObserver.getInstance().m5314c(skinItem);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void performSkinDeleted(SkinItem skinItem) {
-        ThemeListObserver.m5322a().m5313d(skinItem);
+        ThemeListObserver.getInstance().m5313d(skinItem);
     }
 
     private void performCurrentSkinChanged(String str) {
-        ThemeListObserver.m5322a().m5319a(str);
+        ThemeListObserver.getInstance().m5319a(str);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void performSkinInfoLoaded() {
-        ThemeListObserver.m5322a().m5317b();
+        ThemeListObserver.getInstance().m5317b();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void performSkinItemStateChange(String str, int i) {
-        ThemeListObserver.m5322a().m5318a(str, i);
+        ThemeListObserver.getInstance().m5318a(str, i);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -244,14 +243,14 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         initThemeAdapter();
-        ThemeListObserver.m5322a().m5321a(this);
+        ThemeListObserver.getInstance().m5321a(this);
         this.mLoadDataCommandID = getLoadDataCommandID();
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
     public void onDestroy() {
         super.onDestroy();
-        ThemeListObserver.m5322a().m5316b(this);
+        ThemeListObserver.getInstance().m5316b(this);
         this.mRefreshHandler.removeCallbacksAndMessages(null);
     }
 
@@ -339,7 +338,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
             setAdapterDataSource(this.mCachedSkinItems);
             refreshEditButton();
         }
-        CommandCenter.m4607a().m4606a(new Command(this.mLoadDataCommandID, new Object[0]));
+        CommandCenter.getInstance().m4606a(new Command(this.mLoadDataCommandID, new Object[0]));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
@@ -373,12 +372,12 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
     /* JADX INFO: Access modifiers changed from: protected */
     public void checkSkinItem(SkinItem skinItem) {
         if (!this.mLoadingTheme && skinItem != null && this.mThemeAdapter.m5337b(skinItem)) {
-            ThemeStatistic.m4901a();
+            //ThemeStatistic.m4901a();
             this.mLoadingTheme = true;
             refreshEditButton();
-            saveSkinToSystem(skinItem.m3571b(), skinItem.m3575a());
+            saveSkinToSystem(skinItem.getPath(), skinItem.m3575a());
             Preferences.m2872i("follow_skin");
-            performCurrentSkinChanged(skinItem.m3571b());
+            performCurrentSkinChanged(skinItem.getPath());
         }
     }
 
@@ -463,7 +462,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
     public void tryDownloadSkin(SkinItem skinItem, boolean z) {
         if (!EnvironmentUtils.C0604c.m8474e()) {
             PopupsUtils.m6760a((int) R.string.shake_error_hint);
-        } else if (FileUtils.m8414b(skinItem.m3571b()) && !z) {
+        } else if (FileUtils.m8414b(skinItem.getPath()) && !z) {
             PopupsUtils.m6760a((int) R.string.skin_file_already_existed);
         } else {
             String m3565g = skinItem.m3565g();
@@ -632,7 +631,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
 
         /* renamed from: a */
         public boolean m5344a(SkinItem skinItem) {
-            return this.f5555e.equals(skinItem.m3571b());
+            return this.f5555e.equals(skinItem.getPath());
         }
 
         /* renamed from: a */
@@ -689,14 +688,14 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
 
         /* renamed from: b */
         public boolean m5337b(SkinItem skinItem) {
-            String m3571b = skinItem.m3571b();
+            String m3571b = skinItem.getPath();
             if ((3 == skinItem.m3575a()) || m3571b == null || m3571b.equals(this.f5555e)) {
                 return false;
             }
             this.f5554d = skinItem;
-            this.f5555e = skinItem.m3571b();
+            this.f5555e = skinItem.getPath();
             notifyDataSetChanged();
-            ThemeStatistic.m4887g();
+            //ThemeStatistic.m4887g();
             return true;
         }
 
@@ -708,7 +707,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
         /* renamed from: c */
         public void m5331c(SkinItem skinItem) {
             BaseThemeFragment.this.mThemeData.remove(skinItem);
-            ImageCacheUtils.m4739b(skinItem.m3571b(), this.f5552b, this.f5553c);
+            ImageCacheUtils.m4739b(skinItem.getPath(), this.f5552b, this.f5553c);
             notifyDataSetChanged();
         }
 
@@ -805,7 +804,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
         protected void mo5336b(SkinItem skinItem, ImageView imageView) {
             if (imageView != null) {
                 int i = 4;
-                if (this.f5555e.equals(skinItem.m3571b())) {
+                if (this.f5555e.equals(skinItem.getPath())) {
                     this.f5554d = skinItem;
                     i = 0;
                 }
@@ -829,7 +828,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
             View m5385f = themeViewHolder.m5385f();
             if (3 == skinItem.m3575a()) {
                 if (skinItem.m3564h().equals(BaseThemeFragment.sDownloadingTask != null ? BaseThemeFragment.sDownloadingTask.getFileName() : null)) {
-                    BaseThemeFragment.sDownloadingTask.setDownloadLength(((Integer) CommandCenter.m4607a().m4602a(new Command(CommandID.GET_TASK_DOWNLOADED_LENGTH, BaseThemeFragment.sDownloadingTask), Integer.class)).intValue());
+                    BaseThemeFragment.sDownloadingTask.setDownloadLength(((Integer) CommandCenter.getInstance().m4602a(new Command(CommandID.GET_TASK_DOWNLOADED_LENGTH, BaseThemeFragment.sDownloadingTask), Integer.class)).intValue());
                     if (BaseThemeFragment.this.mEnableRefreshProgressbar) {
                         m5388c.setProgress(BaseThemeFragment.sDownloadingTask.getDownloadProgress().intValue());
                     }

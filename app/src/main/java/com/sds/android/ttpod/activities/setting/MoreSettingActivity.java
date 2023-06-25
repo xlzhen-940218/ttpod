@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.Checkable;
 
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.SDKVersionUtils;
 import com.sds.android.ttpod.EntryActivity;
 import com.sds.android.ttpod.R;
@@ -16,11 +16,8 @@ import com.sds.android.ttpod.component.p085b.Card;
 import com.sds.android.ttpod.component.p085b.CheckableActionItem;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.component.p087d.p088a.MultiChoiceListDialog;
-import com.sds.android.ttpod.framework.base.BaseApplication;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.utils.LogcatUtils;
 import com.sds.android.ttpod.utils.ShortcutUtil;
@@ -52,36 +49,36 @@ public class MoreSettingActivity extends SlidingClosableActivity {
             switch (actionItem.m7005e()) {
                 case 1:
                     Preferences.m2883f(z);
-                    LocalStatistic.m5105b(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_LANDSCAPE, z);
+                    //LocalStatistic.m5105b(z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_LANDSCAPE, z);
                     return;
                 case 2:
                     SettingUtils.m7779a(MoreSettingActivity.this, NotificationSettingActivity.class, actionItem.m7006d());
-                    LocalStatistic.m5092n();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_NOTIFICATION, SPage.PAGE_SETTING_NOTIFICATION);
+                    //LocalStatistic.m5092n();
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_NOTIFICATION, SPage.PAGE_SETTING_NOTIFICATION);
                     return;
                 case 3:
                     SettingUtils.m7779a(MoreSettingActivity.this, BacklightSettingActivity.class, actionItem.m7006d());
-                    LocalStatistic.m5091o();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_BACKLIGHT, SPage.PAGE_SETTING_BACKLIGHT);
+                    //LocalStatistic.m5091o();
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_BACKLIGHT, SPage.PAGE_SETTING_BACKLIGHT);
                     return;
                 case 4:
                     Preferences.m2831s(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_APPLICATION_AUTO_PLAY, z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_APPLICATION_AUTO_PLAY, z);
                     return;
                 case 5:
                     Preferences.m2827t(z);
                     return;
                 case 6:
                     Preferences.m2816w(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_RECEIVE_PUSH_MESSAGE, z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_RECEIVE_PUSH_MESSAGE, z);
                     try {
                         if (z) {
                             //PushManager.getInstance().initialize(BaseApplication.m4635c());
                         } else {
                             //PushManager.getInstance().stopService(BaseApplication.m4635c());
                         }
-                        LocalStatistic.m5103c(z);
+                        //LocalStatistic.m5103c(z);
                         return;
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -89,21 +86,21 @@ public class MoreSettingActivity extends SlidingClosableActivity {
                     }
                 case 7:
                     Preferences.m2967ag(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_APP_RECOMMAND, z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_APP_RECOMMAND, z);
                     return;
                 case 8:
                     MoreSettingActivity.this.showCreateDesktopShortcutDialog();
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_CREATE_DESKTOP_ICON, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_CREATE_DESKTOP_ICON, SPage.PAGE_NONE);
                     return;
                 case 9:
                     LogcatUtils.m8261a();
                     PopupsUtils.m6721a(MoreSettingActivity.this.getResources().getString(R.string.setting_logcat_msg) + LogcatUtils.m8260b());
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_SAVE_LOG, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_SAVE_LOG, SPage.PAGE_NONE);
                     return;
                 case 10:
                     LogcatUtils.m8259c();
                     PopupsUtils.m6721a(MoreSettingActivity.this.getResources().getString(R.string.setting_log_clear));
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_DELETE_LOG, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_DELETE_LOG, SPage.PAGE_NONE);
                     return;
                 default:
                     return;
@@ -171,10 +168,7 @@ public class MoreSettingActivity extends SlidingClosableActivity {
                     sb.append(',');
                 }
                 sb.append("]");
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_SETTING_CREATE_DESKTOP_ICON_OK.getValue(), 0, 0);
-                sUserEvent.setPageParameter(true);
-                sUserEvent.append("type", sb.toString());
-                sUserEvent.post();
+
             }
         }, (BaseDialog.InterfaceC1064a<MultiChoiceListDialog>) null);
         multiChoiceListDialog.setTitle(getString(R.string.select_create_icon));

@@ -15,7 +15,7 @@ import com.sds.android.cloudapi.ttpod.data.Post;
 import com.sds.android.cloudapi.ttpod.data.RecommendData;
 import com.sds.android.cloudapi.ttpod.result.PostResult;
 import com.sds.android.cloudapi.ttpod.result.StyleDataListResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
@@ -44,7 +44,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.FindSongNewStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -139,7 +138,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
 
     private void preLoadSongListDataInWIFI() {
         if (EnvironmentUtils.C0604c.m8476d() == 2) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, getNeedPreLoadSongListIds(), getRequestIdForCommandParallel()));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, getNeedPreLoadSongListIds(), getRequestIdForCommandParallel()));
         }
     }
 
@@ -187,8 +186,8 @@ public class FindSongBaseViewFragment extends BaseFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void forward(Integer num) {
-        FindSongNewStatistic.m5230a(348, getModuleId());
-        if (TYPES_NEED_VALUE.contains(Integer.valueOf(getForwardType(num.intValue()))) && StringUtils.m8346a(getForwardValue(num.intValue()))) {
+       // FindSongNewStatistic.m5230a(348, getModuleId());
+        if (TYPES_NEED_VALUE.contains(Integer.valueOf(getForwardType(num.intValue()))) && StringUtils.isEmpty(getForwardValue(num.intValue()))) {
             showSorry();
             return;
         }
@@ -205,7 +204,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
     }
 
     private void forwardAbnormal(Integer num) {
-        LogUtils.m8381c(TAG, "forwardAbnormal");
+        LogUtils.error(TAG, "forwardAbnormal");
         showSorry();
     }
 
@@ -310,7 +309,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
     }
 
     private void forwardPrivateCustom(Integer num) {
-        String moduleName = StringUtils.m8346a(getItemName(num.intValue())) ? getModuleName() : getItemName(num.intValue());
+        String moduleName = StringUtils.isEmpty(getItemName(num.intValue())) ? getModuleName() : getItemName(num.intValue());
         PrivateCustomFragment privateCustomFragment = new PrivateCustomFragment();
         Bundle bundle = new Bundle();
         bundle.putString("name", moduleName);
@@ -355,7 +354,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 FindSongBaseViewFragment.this.doFindSongStatistic(-1, SAction.ACTION_CLICK_ONLINE_FIND_SONG_MODULE_MORE);
-                FindSongNewStatistic.m5230a(322, FindSongBaseViewFragment.this.getModuleData().getId());
+               // FindSongNewStatistic.m5230a(322, FindSongBaseViewFragment.this.getModuleData().getId());
                 FindSongBaseViewFragment.this.forward(-1);
             }
         });
@@ -370,7 +369,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 FindSongBaseViewFragment.this.doFindSongStatistic(i, SAction.ACTION_CLICK_ONLINE_FIND_SONG_ITEM);
-                FindSongNewStatistic.m5230a(323, FindSongBaseViewFragment.this.getItemData(i).getId());
+               // FindSongNewStatistic.m5230a(323, FindSongBaseViewFragment.this.getItemData(i).getId());
                 FindSongBaseViewFragment.this.forward(Integer.valueOf(i));
             }
         };
@@ -432,7 +431,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void doFindSongStatistic(int i, SAction sAction) {
-        new SUserEvent("PAGE_CLICK", sAction.getValue(), SPage.PAGE_ONLINE_FIND_SONG.getValue(), TYPE_STO.get(getForwardType(i))).append("forward_type", Integer.valueOf(getForwardType(i))).append("forward_value", getForwardValue(i)).append("module_id", Long.valueOf(getModuleId())).append("module_name", getModuleName()).append("item_id", Long.valueOf(getItemData(i).getId())).append("item_name", getItemName(i)).append("position", Integer.valueOf(i + 1)).post();
+        //new SUserEvent("PAGE_CLICK", sAction.getValue(), SPage.PAGE_ONLINE_FIND_SONG.getValue(), TYPE_STO.get(getForwardType(i))).append("forward_type", Integer.valueOf(getForwardType(i))).append("forward_value", getForwardValue(i)).append("module_id", Long.valueOf(getModuleId())).append("module_name", getModuleName()).append("item_id", Long.valueOf(getItemData(i).getId())).append("item_name", getItemName(i)).append("position", Integer.valueOf(i + 1)).post();
     }
 
     /* JADX INFO: Access modifiers changed from: private */

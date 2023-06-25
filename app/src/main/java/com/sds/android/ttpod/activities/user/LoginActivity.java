@@ -85,10 +85,10 @@ public class LoginActivity extends SlidingClosableActivity {
             String string = bundle.getString("access_token");
             String string2 = bundle.getString("expires_in");
             String string3 = bundle.getString("openid");
-            LogUtils.m8388a(LoginActivity.TAG, "mQQAuthCallback onAuthSuccess token=" + string + ",expiresIn=" + string2 + ",openId=" + string3);
-            if (!StringUtils.m8346a(string) && !StringUtils.m8346a(string2) && !StringUtils.m8346a(string3)) {
+            LogUtils.debug(LoginActivity.TAG, "mQQAuthCallback onAuthSuccess token=" + string + ",expiresIn=" + string2 + ",openId=" + string3);
+            if (!StringUtils.isEmpty(string) && !StringUtils.isEmpty(string2) && !StringUtils.isEmpty(string3)) {
                 AccessTokenUtil.m1940a(LoginActivity.this, "TENTCANT_TTPOD_TOKEN", bundle);
-                CommandCenter.m4607a().m4606a(new Command(CommandID.QQ_LOGIN, string, string3, string2));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.QQ_LOGIN, string, string3, string2));
             }
         }
 
@@ -181,10 +181,10 @@ public class LoginActivity extends SlidingClosableActivity {
                 String string = bundle.getString("access_token");
                 String string2 = bundle.getString("expires_in");
                 String string3 = bundle.getString("uid");
-                LogUtils.m8388a(LoginActivity.TAG, "mQQAuthCallback onAuthSuccess token=" + string + ",expiresIn=" + string2 + ",openId=" + string3);
-                if (!StringUtils.m8346a(string) && !StringUtils.m8346a(string2) && !StringUtils.m8346a(string3)) {
+                LogUtils.debug(LoginActivity.TAG, "mQQAuthCallback onAuthSuccess token=" + string + ",expiresIn=" + string2 + ",openId=" + string3);
+                if (!StringUtils.isEmpty(string) && !StringUtils.isEmpty(string2) && !StringUtils.isEmpty(string3)) {
                     AccessTokenUtil.m1940a(LoginActivity.this, "SINA_TTPOD_TOKEN", bundle);
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.SINA_LOGIN, string, string3, string2));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.SINA_LOGIN, string, string3, string2));
                 }
             }
 
@@ -209,7 +209,7 @@ public class LoginActivity extends SlidingClosableActivity {
                 return;
             }
             PopupsUtils.m6748a(this, (int) R.string.login_wait_message);
-            CommandCenter.m4607a().m4606a(new Command(CommandID.LOGIN, obj, obj2));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.LOGIN, obj, obj2));
         }
     }
 

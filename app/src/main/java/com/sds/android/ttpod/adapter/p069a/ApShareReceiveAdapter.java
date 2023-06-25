@@ -7,7 +7,6 @@ import android.os.SystemClock;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.adapter.p069a.ShareItemViewHolder;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.apshare.ApShareUtils;
 import com.sds.android.ttpod.component.apshare.DataTransferListener;
@@ -63,7 +62,7 @@ public class ApShareReceiveAdapter extends ApShareBaseAdapter implements ShareIt
     @Override // com.sds.android.ttpod.adapter.p069a.ApShareBaseAdapter, com.sds.android.ttpod.adapter.p069a.ShareItemViewHolder.InterfaceC0961a
     /* renamed from: a */
     public void mo7630a(final TransmittableMediaItem transmittableMediaItem) {
-        LogUtils.m8380c("ApShareReceiveAdapter", "onActionClicked size=%d title=%s state=%s", Integer.valueOf(this.f3166d.size()), transmittableMediaItem.m5772a().getTitle(), transmittableMediaItem.m5757h().toString());
+        LogUtils.info("ApShareReceiveAdapter", "onActionClicked size=%d title=%s state=%s", Integer.valueOf(this.f3166d.size()), transmittableMediaItem.m5772a().getTitle(), transmittableMediaItem.m5757h().toString());
         switch (transmittableMediaItem.m5757h()) {
             case TRANSMIT_IDLE:
                 this.f3166d.add(transmittableMediaItem);
@@ -80,14 +79,14 @@ public class ApShareReceiveAdapter extends ApShareBaseAdapter implements ShareIt
                 FileUtils.m8404h(transmittableMediaItem.m5772a().getLocalDataSource());
                 break;
             case TRANSMIT_FINISHED:
-                MessageDialog messageDialog = new MessageDialog(m7660a(), m7660a().getString(R.string.remove_confirm, FileUtils.m8402j(transmittableMediaItem.m5772a().getLocalDataSource())), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.adapter.a.c.1
+                MessageDialog messageDialog = new MessageDialog(m7660a(), m7660a().getString(R.string.remove_confirm, FileUtils.getFilename(transmittableMediaItem.m5772a().getLocalDataSource())), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.adapter.a.c.1
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo2038a(MessageDialog messageDialog2) {
                         transmittableMediaItem.m5768a(TransmittableMediaItem.EnumC1381a.TRANSMIT_IDLE);
                         FileUtils.m8404h(transmittableMediaItem.m5772a().getLocalDataSource());
-                        CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, transmittableMediaItem.m5772a(), true));
-                        CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, transmittableMediaItem.m5772a(), true));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, transmittableMediaItem.m5772a(), true));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, transmittableMediaItem.m5772a(), true));
                         transmittableMediaItem.m5771a(0);
                         ApShareReceiveAdapter.this.notifyDataSetChanged();
                     }
@@ -111,7 +110,7 @@ public class ApShareReceiveAdapter extends ApShareBaseAdapter implements ShareIt
 
     /* renamed from: e */
     private void m7646e() {
-        LogUtils.m8379d("ApShareReceiveAdapter", "state = " + this.f3165c + ", size =" + this.f3166d.size());
+        LogUtils.info("ApShareReceiveAdapter", "state = " + this.f3165c + ", size =" + this.f3166d.size());
         if (this.f3164b != null && this.f3165c == TransmittableMediaItem.EnumC1381a.TRANSMIT_IDLE && this.f3166d.size() > 0) {
             this.f3167e = this.f3166d.remove(0);
             this.f3164b.sendMessage(m7649a(100, this.f3167e));

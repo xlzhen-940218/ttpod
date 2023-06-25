@@ -10,8 +10,8 @@ import android.os.IBinder;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import com.sds.android.cloudapi.ttpod.data.AudioEffectItem;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
-import com.sds.android.sdk.core.statistic.StatisticEvent;
+
+
 import com.sds.android.sdk.lib.util.DebugUtils;
 import com.sds.android.sdk.lib.util.JSONUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
@@ -88,7 +88,7 @@ public class Support {
                 it.next().m2442c();
             }
             Support.this.f7135c.unbindService(Support.this.f7142j);
-            LogUtils.m8379d("Support", "音效:onServiceDisconnected");
+            LogUtils.info("Support", "音效:onServiceDisconnected");
         }
     };
 
@@ -101,7 +101,7 @@ public class Support {
     public void m2499a(UnicomProxyData unicomProxyData, boolean z) {
         f7133a = unicomProxyData;
         f7134b = z;
-        LogUtils.m8388a("Support", "support bindProxy is mSupportService:" + this.f7137e);
+        LogUtils.debug("Support", "support bindProxy is mSupportService:" + this.f7137e);
         if (this.f7137e != null && unicomProxyData != null) {
             try {
                 this.f7137e.mo2389a(unicomProxyData.m3933a(), unicomProxyData.m3927c(), unicomProxyData.m3930b(), unicomProxyData.m3925d(), unicomProxyData.m3924e(), z);
@@ -210,13 +210,13 @@ public class Support {
 
     /* renamed from: b */
     public void mo2485b() {
-        new SSystemEvent("SYS_PLAY", "previous").append("type", "user").post();
+        //new //SSystemEvent("SYS_PLAY", "previous").append("type", "user").post();
         m2477c(m2490a("previous_command"));
     }
 
     /* renamed from: c */
     public void mo2478c() {
-        new SSystemEvent("SYS_PLAY", "next").append("type", "user").post();
+        //new //SSystemEvent("SYS_PLAY", "next").append("type", "user").post();
         m2477c(m2490a("next_command"));
     }
 
@@ -246,7 +246,7 @@ public class Support {
     private Integer m2507B() {
         String m2850o = Preferences.m2850o();
         String str = Preferences.m2854n() + File.pathSeparator;
-        if (!StringUtils.m8346a(m2850o) && m2850o.startsWith(str)) {
+        if (!StringUtils.isEmpty(m2850o) && m2850o.startsWith(str)) {
             try {
                 return Integer.valueOf(m2850o.substring(str.length()));
             } catch (Exception e) {
@@ -353,17 +353,7 @@ public class Support {
     }
 
     /* renamed from: a */
-    public void m2500a(StatisticEvent statisticEvent) {
-        try {
-            if (this.f7137e == null) {
-                this.f7140h.add(statisticEvent);
-            } else {
-                this.f7137e.mo2392a(statisticEvent);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
     /* renamed from: a */
     public void m2488a(Map map) {
@@ -383,10 +373,7 @@ public class Support {
     public void m2506C() {
         Iterator<Object> it = this.f7140h.iterator();
         while (it.hasNext()) {
-            Object next = it.next();
-            if (next instanceof StatisticEvent) {
-                m2500a((StatisticEvent) next);
-            } else if (next instanceof Map) {
+            Object next = it.next();if (next instanceof Map) {
                 m2488a((Map) next);
             }
         }

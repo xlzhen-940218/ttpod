@@ -44,7 +44,7 @@ public class PictureManagerActivity extends BaseActivity implements View.OnClick
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (m3225N.isNull()) {
             PopupsUtils.m6721a("没有播放的歌曲信息");
             finish();
@@ -77,7 +77,7 @@ public class PictureManagerActivity extends BaseActivity implements View.OnClick
         this.mListView.setAdapter((ListAdapter) this.mAdapter);
         String artist = m3225N.getArtist();
         SearchMediaLinkInfo m3135a = SearchSqliteDb.m3135a(getContentResolver(), m3225N.getID());
-        if (m3135a != null && !StringUtils.m8346a(m3135a.getArtist())) {
+        if (m3135a != null && !StringUtils.isEmpty(m3135a.getArtist())) {
             artist = m3135a.getArtist();
         }
         String m8397o = FileUtils.m8397o(artist);
@@ -133,7 +133,7 @@ public class PictureManagerActivity extends BaseActivity implements View.OnClick
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onDestroy() {
-        if (this.mAdapter != null && this.mAdapter.m7701a() && StringUtils.m8344a(this.mAdapter.m7691b().getID(), Cache.m3218a().m3225N().getID())) {
+        if (this.mAdapter != null && this.mAdapter.m7701a() && StringUtils.m8344a(this.mAdapter.m7691b().getID(), Cache.getInstance().getCurrentPlayMediaItem().getID())) {
             localSearchArtist();
         }
         super.onDestroy();
@@ -158,7 +158,7 @@ public class PictureManagerActivity extends BaseActivity implements View.OnClick
     /* JADX INFO: Access modifiers changed from: private */
     public void doSearchArtistPicture() {
         final String obj = this.mArtistEditText.getText().toString();
-        if (StringUtils.m8346a(obj)) {
+        if (StringUtils.isEmpty(obj)) {
             PopupsUtils.m6721a("歌手名不能为空");
             return;
         }

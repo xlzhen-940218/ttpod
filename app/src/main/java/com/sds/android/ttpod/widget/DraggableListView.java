@@ -503,7 +503,7 @@ public class DraggableListView extends ListView {
             return i2;
         }
         int dividerHeight = getDividerHeight();
-        LogUtils.m8378e("testitemheight", "item: " + this.f7605s);
+        LogUtils.verbose("testitemheight", "item: " + this.f7605s);
         int i3 = this.f7606t - this.f7605s;
         int m1818b = m1818b(i);
         int m1833a = m1833a(i);

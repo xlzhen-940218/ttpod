@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import com.sds.android.cloudapi.ttpod.data.AlbumItem;
 import com.sds.android.cloudapi.ttpod.data.SingerData;
 import com.sds.android.cloudapi.ttpod.result.AlbumItemsResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -25,8 +25,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.MediaItemListResult;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -58,8 +56,6 @@ public class SingerDetailFragmentNew extends SingerTabFragment implements Abstra
     public SingerDetailFragmentNew(String str) {
         this.mSingerName = str;
         setGroupID(MediaStorage.GROUP_ID_ONLINE_TEMPORARY);
-        setModule(MusicLibraryStatistic.m5057e());
-        setOrigin(OnlineMediaStatistic.m5043b());
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SingerTabFragment, com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
@@ -76,7 +72,6 @@ public class SingerDetailFragmentNew extends SingerTabFragment implements Abstra
         this.mAlbumAdapter = new AlbumListAdapter(getActivity());
         if (this.mSingerData != null) {
             setPage(this.mSingerData.getName());
-            setPageProperties(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mSingerData.getId()));
         }
         this.mSongAdapter.m7407a(new SongListAdapter.InterfaceC1003a() { // from class: com.sds.android.ttpod.fragment.main.findsong.singer.SingerDetailFragmentNew.1
             @Override // com.sds.android.ttpod.adapter.p075f.SongListAdapter.InterfaceC1003a
@@ -107,9 +102,9 @@ public class SingerDetailFragmentNew extends SingerTabFragment implements Abstra
 
     private void updateMediaItemView(MediaItemViewHolder mediaItemViewHolder, int i, boolean z) {
         if (z && i < this.mSongAdapter.getCount()) {
-            ((MediaItemMenuHolder) mediaItemViewHolder.m6957h().getTag()).m6977a(this.mSongAdapter.getItem(i));
+            ((MediaItemMenuHolder) mediaItemViewHolder.getExpandable().getTag()).m6977a(this.mSongAdapter.getItem(i));
         }
-        mediaItemViewHolder.m6961d().setText(z ? R.string.icon_arrow_top : R.string.icon_arrow_down);
+        mediaItemViewHolder.getMenuView().setText(z ? R.string.icon_arrow_top : R.string.icon_arrow_down);
     }
 
     @Override // com.sds.android.ttpod.widget.expandablelist.AbstractExpandableListAdapter.InterfaceC2279a
@@ -144,8 +139,8 @@ public class SingerDetailFragmentNew extends SingerTabFragment implements Abstra
             if (getState(mediaItemListResult.getCode(), m4517a) == StateView.EnumC2248b.SUCCESS) {
                 if (getPager(0).m4669a() > 1) {
                     this.mSongAdapter.m7397b().addAll(m4517a);
-                    LogUtils.m8388a(TAG, "updateMediaList SYNC_NET_TEMPORARY_GROUP " + this.mSongAdapter.m7397b());
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, m4517a));
+                    LogUtils.debug(TAG, "updateMediaList SYNC_NET_TEMPORARY_GROUP " + this.mSongAdapter.m7397b());
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, m4517a));
                 } else {
                     this.mSongAdapter.m7398a(m4517a);
                 }
@@ -224,13 +219,13 @@ public class SingerDetailFragmentNew extends SingerTabFragment implements Abstra
     }
 
     private void requestSongs(int i) {
-        LogUtils.m8388a(TAG, "requestDataList mSingerName=" + this.mSingerName + ", page=" + i);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_SINGER_SONG_LIST, this.mSingerName, Integer.valueOf(i)));
+        LogUtils.debug(TAG, "requestDataList mSingerName=" + this.mSingerName + ", page=" + i);
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SINGER_SONG_LIST, this.mSingerName, Integer.valueOf(i)));
     }
 
     private void requestAlbums(String str, int i, int i2) {
-        LogUtils.m8388a(TAG, "search album, word: " + str + ",page: " + i + ",pageSize: " + i2);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.START_SEARCH_ALBUM, str, Integer.valueOf(i), Integer.valueOf(i2), ""));
+        LogUtils.debug(TAG, "search album, word: " + str + ",page: " + i + ",pageSize: " + i2);
+        CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_ALBUM, str, Integer.valueOf(i), Integer.valueOf(i2), ""));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SingerTabFragment
@@ -248,8 +243,8 @@ public class SingerDetailFragmentNew extends SingerTabFragment implements Abstra
         Preferences.m2828t(OnlinePlayingGroupUtils.m6914a(this.mSingerData));
         MediaItem item = this.mSongAdapter.getItem(i);
         if (this.mSingerData != null && item != null) {
-            MusicLibraryStatistic.m5068a(this.mSingerData.getId(), this.mSingerData.getName());
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_ITEM.getValue(), this.mSingerData.getName(), String.valueOf(SPage.PAGE_NONE.getValue())).append("song_id", item.getSongID()).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mSingerData.getId())).append("position", Integer.valueOf(i + 1)).post();
+            //MusicLibraryStatistic.m5068a(this.mSingerData.getId(), this.mSingerData.getName());
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_ITEM.getValue(), this.mSingerData.getName(), String.valueOf(SPage.PAGE_NONE.getValue())).append("song_id", item.getSongID()).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mSingerData.getId())).append("position", Integer.valueOf(i + 1)).post();
         }
     }
 
@@ -264,7 +259,7 @@ public class SingerDetailFragmentNew extends SingerTabFragment implements Abstra
             singerAlbumDetailFragmentNew.setArguments(getArguments());
             launchFragment(singerAlbumDetailFragmentNew);
             if (this.mSingerData != null) {
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGER_NAME_ALBUM.getValue(), this.mSingerData.getName(), item.getName()).append("song_album_id", Long.valueOf(item.getId())).append("position", Integer.valueOf(i + 1)).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGER_NAME_ALBUM.getValue(), this.mSingerData.getName(), item.getName()).append("song_album_id", Long.valueOf(item.getId())).append("position", Integer.valueOf(i + 1)).post();
             }
         }
     }
@@ -279,7 +274,7 @@ public class SingerDetailFragmentNew extends SingerTabFragment implements Abstra
     }
 
     private void onSongItemLongClick(AdapterView<?> adapterView, View view, int i, long j) {
-        OnlineMediaStatistic.m5053a(i + 1);
+        //OnlineMediaStatistic.m5053a(i + 1);
         this.mSongAdapter.m7401a(this.mSongAdapter.getItem(i));
     }
 

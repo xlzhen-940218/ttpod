@@ -21,7 +21,6 @@ import com.sds.android.ttpod.component.p087d.p088a.OptionalDialog;
 import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.widget.CheckImageView;
 import java.io.File;
@@ -55,7 +54,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         });
         SettingUtils.m7778a(this);
         initSDCardPath();
-        if (!StringUtils.m8346a(this.mExtensionCardPath)) {
+        if (!StringUtils.isEmpty(this.mExtensionCardPath)) {
             findViewById(R.id.extension_sdcard).setVisibility(View.VISIBLE);
             initStandardSDCard(this.mStandardCardPath);
             initExtensionSDCard(this.mExtensionCardPath);
@@ -67,19 +66,19 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
     }
 
     private void initSDCardPath() {
-        String m8467b = EnvironmentUtils.C0605d.m8467b();
+        String m8467b = EnvironmentUtils.C0605d.getSdcardPath();
         String m8460d = EnvironmentUtils.C0605d.m8460d(this);
         this.mStandardCardPath = m8467b;
         this.mExtensionCardPath = m8460d;
         try {
-            if (StringUtils.m8346a(m8460d) || m8467b.equals(m8460d) || !checkSDCardPath(m8467b) || !checkSDCardPath(m8460d)) {
+            if (StringUtils.isEmpty(m8460d) || m8467b.equals(m8460d) || !checkSDCardPath(m8467b) || !checkSDCardPath(m8460d)) {
                 this.mExtensionCardPath = "";
-            } else if (SDKVersionUtils.m8372b() && Environment.isExternalStorageRemovable() && FileUtils.m8408d(EnvironmentUtils.C0605d.m8467b(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
+            } else if (SDKVersionUtils.m8372b() && Environment.isExternalStorageRemovable() && FileUtils.m8408d(EnvironmentUtils.C0605d.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
                 this.mStandardCardPath = EnvironmentUtils.C0605d.m8460d(this);
-                this.mExtensionCardPath = EnvironmentUtils.C0605d.m8467b();
+                this.mExtensionCardPath = EnvironmentUtils.C0605d.getSdcardPath();
             }
         } catch (Exception e) {
-            this.mStandardCardPath = EnvironmentUtils.C0605d.m8467b();
+            this.mStandardCardPath = EnvironmentUtils.C0605d.getSdcardPath();
             this.mExtensionCardPath = "";
             e.printStackTrace();
         }
@@ -94,7 +93,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         progressBar.setMax((int) totalSizeInGB);
         progressBar.setProgress((int) (totalSizeInGB - availableSizeInGB));
         final String str2 = getWritableBasePath(str) + File.separator + "song";
-        if (!FileUtils.m8409d(str2)) {
+        if (!FileUtils.isDir(str2)) {
             FileUtils.m8406f(str2);
         }
         this.mStandardSDCardCheckView = (CheckImageView) findViewById(R.id.standard_sdcard_checkView);
@@ -106,7 +105,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
                     DownloadLocationActivity.this.setCheckViewById(R.id.standard_sdcard_checkView);
                     Preferences.m2880g(str2);
                     DownloadLocationActivity.this.mDownloadPathInfoTextView.setText(String.format(DownloadLocationActivity.this.getResources().getString(R.string.download_path_info), str2));
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_MUSIC_SAVE_STANDARD_SD, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_MUSIC_SAVE_STANDARD_SD, SPage.PAGE_NONE);
                 }
             }
         });
@@ -126,7 +125,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         this.mExtensionSDCardCheckView = (CheckImageView) findViewById(R.id.extension_sdcard_checkView);
         this.mExtensionSDCardCheckView.m1899a(R.drawable.img_checkbox_multiselect_unchecked, R.drawable.img_checkbox_multiselect_checked);
         final String str2 = getWritableBasePath(str) + File.separator + "song";
-        if (!FileUtils.m8409d(str2)) {
+        if (!FileUtils.isDir(str2)) {
             FileUtils.m8406f(str2);
         }
         this.mExtensionSDCardCheckView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.setting.DownloadLocationActivity.3
@@ -149,7 +148,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
                             }
                         });
                     }
-                    SUserUtils.m4956a(SAction.ACTION_SETTING_MUSIC_SAVE_EXTERN_SD, SPage.PAGE_NONE);
+                    //SUserUtils.m4956a(SAction.ACTION_SETTING_MUSIC_SAVE_EXTERN_SD, SPage.PAGE_NONE);
                 }
             }
         });
@@ -160,10 +159,10 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
 
     private String getWritableBasePath(String str) {
         String str2 = str + File.separator + "ttpod";
-        if (SDKVersionUtils.m8365i() && this.mExtensionCardPath.equals(str) && !this.mExtensionCardPath.equals(EnvironmentUtils.C0605d.m8467b())) {
+        if (SDKVersionUtils.m8365i() && this.mExtensionCardPath.equals(str) && !this.mExtensionCardPath.equals(EnvironmentUtils.C0605d.getSdcardPath())) {
             str2 = EnvironmentUtils.C0605d.m8470a(this, EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
         }
-        if (!FileUtils.m8409d(str2)) {
+        if (!FileUtils.isDir(str2)) {
             FileUtils.m8406f(str2);
         }
         return str2;
@@ -241,9 +240,9 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         String str2 = getWritableBasePath(this.mStandardCardPath) + File.separator + "song";
         String str3 = getWritableBasePath(this.mExtensionCardPath) + File.separator + "song";
         FileUtils.m8406f(str);
-        if (!StringUtils.m8346a(str) && str.equals(str2)) {
+        if (!StringUtils.isEmpty(str) && str.equals(str2)) {
             setCheckViewById(R.id.standard_sdcard_checkView);
-        } else if (!StringUtils.m8346a(str) && str.equals(str3)) {
+        } else if (!StringUtils.isEmpty(str) && str.equals(str3)) {
             setCheckViewById(R.id.extension_sdcard_checkView);
         } else {
             setCheckViewById(-1);

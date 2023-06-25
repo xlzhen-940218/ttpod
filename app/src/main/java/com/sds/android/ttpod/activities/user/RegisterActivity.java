@@ -79,7 +79,7 @@ public class RegisterActivity extends SlidingClosableActivity {
         Intent intent = getIntent();
         if (intent != null) {
             String stringExtra = intent.getStringExtra("key_username");
-            if (!StringUtils.m8346a(stringExtra)) {
+            if (!StringUtils.isEmpty(stringExtra)) {
                 this.mUserNameEditText.setText(stringExtra);
                 this.mUserNameEditText.requestFocus();
             }
@@ -94,7 +94,7 @@ public class RegisterActivity extends SlidingClosableActivity {
                 return;
             }
             PopupsUtils.m6748a(this, (int) R.string.begin_register);
-            CommandCenter.m4607a().m4606a(new Command(CommandID.RESISTER, str, str3, str2));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.RESISTER, str, str3, str2));
         }
     }
 

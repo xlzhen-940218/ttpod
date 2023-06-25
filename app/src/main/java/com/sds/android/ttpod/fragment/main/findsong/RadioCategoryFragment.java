@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import com.sds.android.cloudapi.ttpod.data.RadioCategory;
 import com.sds.android.cloudapi.ttpod.data.RadioCategoryChannel;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.BitmapUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
@@ -27,8 +27,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.view.Animation;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -84,14 +82,14 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
             this.mRadioCategoryChannel = (RadioCategoryChannel) arguments.getSerializable("data");
         }
         this.mActiveChannelTitle = Preferences.m2926bc();
-        if (!StringUtils.m8346a(this.mActiveChannelTitle) && OnlinePlayingGroupUtils.m6909b(this.mActiveChannelTitle) && SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+        if (!StringUtils.isEmpty(this.mActiveChannelTitle) && OnlinePlayingGroupUtils.m6909b(this.mActiveChannelTitle) && SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
             this.mCurrentChannelState = 2;
         }
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (m3225N != null && !m3225N.isNull()) {
             String m3014a = Preferences.m3014a(m3225N);
-            LogUtils.m8388a(TAG, "getCurrentArtistBitmapPath = " + m3014a);
-            if (!StringUtils.m8346a(m3014a)) {
+            LogUtils.debug(TAG, "getCurrentArtistBitmapPath = " + m3014a);
+            if (!StringUtils.isEmpty(m3014a)) {
                 this.mArtistBitmap = new BitmapUtils().m8446a(m3014a);
             }
         }
@@ -122,7 +120,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
     }
 
     public void updateSearchPictureState(SearchStatus searchStatus, List<ResultData> list, String str, Bitmap bitmap) {
-        if (StringUtils.m8344a(Cache.m3218a().m3225N().getID(), str)) {
+        if (StringUtils.m8344a(Cache.getInstance().getCurrentPlayMediaItem().getID(), str)) {
             switch (searchStatus) {
                 case SEARCH_LOCAL_FINISHED:
                 case SEARCH_DOWNLOAD_FINISHED:
@@ -159,8 +157,8 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
     }
 
     protected void requestRadioMusicList(int i) {
-        LogUtils.m8388a(TAG, "RadioCategoryFragment.requestRadioMusicList---id: " + i);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.GET_RADIO_CHANNEL_MUSIC_LIST, "111", Integer.valueOf(i)));
+        LogUtils.debug(TAG, "RadioCategoryFragment.requestRadioMusicList---id: " + i);
+        CommandCenter.getInstance().m4596b(new Command(CommandID.GET_RADIO_CHANNEL_MUSIC_LIST, "111", Integer.valueOf(i)));
     }
 
     public void updateRadioChannelMusicList(ArrayList<MediaItem> arrayList) {
@@ -169,20 +167,20 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
                 PopupsUtils.m6760a((int) R.string.network_unavailable);
                 return;
             }
-            LogUtils.m8388a(TAG, "RadioCategoryFragment.updateRadioChannelMusicList---musicList.size: " + arrayList.size() + " mNetMusicListNeedSynced: " + this.mNetMusicListNeedSynced);
+            LogUtils.debug(TAG, "RadioCategoryFragment.updateRadioChannelMusicList---musicList.size: " + arrayList.size() + " mNetMusicListNeedSynced: " + this.mNetMusicListNeedSynced);
             this.mPlayingListLastMediaItem = arrayList.get(arrayList.size() - 1);
             if (this.mNetMusicListNeedSynced) {
-                CommandCenter.m4607a().m4596b(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, arrayList, this.mActiveChannelTitle));
-                CommandCenter.m4607a().m4596b(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, arrayList.get(0)));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, arrayList, this.mActiveChannelTitle));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, arrayList.get(0)));
                 this.mNetMusicListNeedSynced = false;
                 return;
             }
-            CommandCenter.m4607a().m4596b(new Command(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, arrayList));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, arrayList));
         }
     }
 
     public void updatePlayStatus(PlayStatus playStatus) {
-        LogUtils.m8388a(TAG, "RadioCategoryFragment.updatePlayStatus---status: " + playStatus);
+        LogUtils.debug(TAG, "RadioCategoryFragment.updatePlayStatus---status: " + playStatus);
         if (isViewAccessAble()) {
             switch (playStatus) {
                 case STATUS_PLAYING:
@@ -208,7 +206,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
     }
 
     public void updatePlayMediaItemInfo() {
-        if (isViewAccessAble() && Cache.m3218a().m3225N().equals(this.mPlayingListLastMediaItem)) {
+        if (isViewAccessAble() && Cache.getInstance().getCurrentPlayMediaItem().equals(this.mPlayingListLastMediaItem)) {
             requestRadioMusicList(this.mActiveChannelId);
         }
     }
@@ -228,10 +226,10 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
                 this.mAdapter.notifyDataSetChanged();
             }
             transferToState(this.mCurrentChannelState);
-            MusicLibraryStatistic.m5058d(categoryChannelId, categoryChannelName);
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_NONE.getValue(), this.mTitle, String.valueOf(SPage.PAGE_NONE.getValue())).append("channel_id", Integer.valueOf(categoryChannelId)).append("channel_name", categoryChannelName).append(SubMediaListFragment.KEY_GROUP_NAME, groupName).post();
-            OnlineMediaStatistic.m5045a("library-music-radio_" + categoryChannelName + "_" + MusicLibraryStatistic.m5069a());
-            OnlineMediaStatistic.m5054a();
+            //MusicLibraryStatistic.m5058d(categoryChannelId, categoryChannelName);
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_NONE.getValue(), this.mTitle, String.valueOf(SPage.PAGE_NONE.getValue())).append("channel_id", Integer.valueOf(categoryChannelId)).append("channel_name", categoryChannelName).append(SubMediaListFragment.KEY_GROUP_NAME, groupName).post();
+            //OnlineMediaStatistic.m5045a("library-music-radio_" + categoryChannelName + "_" + //MusicLibraryStatistic.m5069a());
+            //OnlineMediaStatistic.m5054a();
         }
     }
 
@@ -240,7 +238,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
     }
 
     public void updateDataList(ArrayList arrayList) {
-        LogUtils.m8388a(TAG, "RadioCategoryFragment.updateDataList---> ");
+        LogUtils.debug(TAG, "RadioCategoryFragment.updateDataList---> ");
         if (arrayList != null) {
             ArrayList arrayList2 = new ArrayList();
             Iterator it = arrayList.iterator();
@@ -254,7 +252,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
     }
 
     private void transferToState(int i) {
-        LogUtils.m8388a(TAG, "RadioCategoryFragment.transferToState--->state: " + i);
+        LogUtils.debug(TAG, "RadioCategoryFragment.transferToState--->state: " + i);
         switch (i) {
             case 1:
             case 4:
@@ -262,10 +260,10 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
                 this.mNetMusicListNeedSynced = true;
                 return;
             case 2:
-                CommandCenter.m4607a().m4596b(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             case 3:
-                CommandCenter.m4607a().m4596b(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
+                CommandCenter.getInstance().m4596b(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
                 return;
             default:
                 return;

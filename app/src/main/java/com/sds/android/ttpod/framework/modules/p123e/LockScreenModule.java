@@ -11,7 +11,6 @@ import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.base.BaseModule;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.player.PlayStatus;
@@ -30,7 +29,7 @@ public class LockScreenModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.LOCK_SCREEN;
     }
 
@@ -55,8 +54,8 @@ public class LockScreenModule extends BaseModule {
         if (this.f6114b) {
             stopSystemLock();
             this.f6114b = false;
-            LogUtils.m8379d(f6113a, "stopLockScreen looklockscreen statistic");
-            LocalStatistic.m5106b();
+            LogUtils.info(f6113a, "stopLockScreen looklockscreen statistic");
+            //LocalStatistic.m5106b();
         }
     }
 
@@ -68,21 +67,21 @@ public class LockScreenModule extends BaseModule {
                     @Override // com.sds.android.ttpod.framework.modules.p123e.SystemLockManager.InterfaceC1899a
                     /* renamed from: a */
                     public void mo4071a() {
-                        LogUtils.m8381c(LockScreenModule.f6113a, "onReceive unlock success!");
+                        LogUtils.error(LockScreenModule.f6113a, "onReceive unlock success!");
                     }
                 });
             }
         } catch (Throwable th) {
-            LogUtils.m8381c(f6113a, "onReceive Throwable = " + th.toString());
+            LogUtils.error(f6113a, "onReceive Throwable = " + th.toString());
         }
     }
 
     public static boolean isAllowDefaultLockScreen() {
         String m8501j = EnvironmentUtils.C0602a.m8501j();
-        if (!StringUtils.m8346a(m8501j)) {
+        if (!StringUtils.isEmpty(m8501j)) {
             String[] split = m8501j.split("_");
             String m8512b = EnvironmentUtils.C0602a.m8512b();
-            if (split != null && !StringUtils.m8346a(m8512b)) {
+            if (split != null && !StringUtils.isEmpty(m8512b)) {
                 for (String str : split) {
                     if (str.equals(m8512b)) {
                         return false;

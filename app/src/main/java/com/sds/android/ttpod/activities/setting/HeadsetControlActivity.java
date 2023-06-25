@@ -12,7 +12,6 @@ import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.component.p085b.Card;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 /* loaded from: classes.dex */
@@ -32,19 +31,19 @@ public class HeadsetControlActivity extends SlidingClosableActivity {
             switch (actionItem.m7005e()) {
                 case 1:
                     Preferences.m2867j(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_HEADSET_PAUSE, z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_HEADSET_PAUSE, z);
                     return;
                 case 2:
                     Preferences.m2863k(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_HEADSET_PALY, z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_HEADSET_PALY, z);
                     return;
                 case 3:
                     Preferences.m2859l(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_ALLOW_LINE_CONTROL, z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_ALLOW_LINE_CONTROL, z);
                     return;
                 case 4:
                     Preferences.m2855m(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_ALLOW_UP_DOWN, z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_ALLOW_UP_DOWN, z);
                     return;
                 default:
                     return;

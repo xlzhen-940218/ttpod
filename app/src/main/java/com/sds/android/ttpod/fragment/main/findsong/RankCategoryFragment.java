@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.MusicRank;
 import com.sds.android.cloudapi.ttpod.result.MusicRanksResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -35,8 +35,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.RankStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -102,7 +100,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
         super.onCreate(bundle);
         setPage(SPage.PAGE_ONLINE_RANK);
         this.mActiveChannelTitle = Preferences.m2926bc();
-        if (!StringUtils.m8346a(this.mActiveChannelTitle) && OnlinePlayingGroupUtils.m6912a(this.mActiveChannelTitle) && SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+        if (!StringUtils.isEmpty(this.mActiveChannelTitle) && OnlinePlayingGroupUtils.m6912a(this.mActiveChannelTitle) && SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
             this.mCurrentChannelState = 2;
         }
     }
@@ -170,7 +168,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestMusicRankList() {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_MUSIC_RANKS, toString()));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_MUSIC_RANKS, toString()));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
@@ -204,19 +202,19 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
                 this.mCurrentChannelState = 4;
                 this.mAdapter.notifyDataSetChanged();
             }
-            OnlineMediaStatistic.m5045a("song-rank_" + musicRank.getTitle() + "_" + RankStatistic.m4968a());
-            OnlineMediaStatistic.m5054a();
+            //OnlineMediaStatistic.m5045a("song-rank_" + musicRank.getTitle() + "_" +// RankStatistic.m4968a());
+            //OnlineMediaStatistic.m5054a();
             updateState(this.mCurrentChannelState);
             int indexOf = this.mMusicRankList.indexOf(musicRank);
             if (indexOf > -1) {
-                RankStatistic.m4966a(musicRank.getId(), musicRank.getTitle(), indexOf + 1);
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RANK_PLAY_ALL.getValue(), SPage.PAGE_RANK_CATEGORY.getValue(), 0).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(musicRank.getId())).append("title", musicRank.getTitle()).append("position", Integer.valueOf(indexOf + 1)).post();
+               // RankStatistic.m4966a(musicRank.getId(), musicRank.getTitle(), indexOf + 1);
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RANK_PLAY_ALL.getValue(), SPage.PAGE_RANK_CATEGORY.getValue(), 0).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(musicRank.getId())).append("title", musicRank.getTitle()).append("position", Integer.valueOf(indexOf + 1)).post();
             }
         }
     }
 
     private void updateState(int i) {
-        LogUtils.m8388a(TAG, "RankCategoryFragment.transferToState--->state: " + i);
+        LogUtils.debug(TAG, "RankCategoryFragment.transferToState--->state: " + i);
         switch (i) {
             case 1:
             case 4:
@@ -224,10 +222,10 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
                 this.mNetMusicListNeedSynced = true;
                 return;
             case 2:
-                CommandCenter.m4607a().m4596b(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             case 3:
-                CommandCenter.m4607a().m4606a(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
+                CommandCenter.getInstance().m4606a(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
                 return;
             default:
                 return;
@@ -239,14 +237,14 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
             PopupsUtils.m6760a((int) R.string.network_unavailable);
         } else if (isVisible()) {
             ArrayList<MediaItem> m4517a = mediaItemListResult.m4517a();
-            LogUtils.m8388a(TAG, "RankCategoryFragment.updateRankMusicList---musicList.size: " + m4517a.size() + " mNetMusicListNeedSynced: " + this.mNetMusicListNeedSynced);
+            LogUtils.debug(TAG, "RankCategoryFragment.updateRankMusicList---musicList.size: " + m4517a.size() + " mNetMusicListNeedSynced: " + this.mNetMusicListNeedSynced);
             if (m4517a.size() > 0 && this.mCurrentChannelState == 4) {
                 if (this.mNetMusicListNeedSynced) {
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, m4517a, this.mActiveChannelTitle));
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, m4517a.get(0)));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, m4517a, this.mActiveChannelTitle));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, m4517a.get(0)));
                     this.mNetMusicListNeedSynced = false;
                 } else {
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, m4517a));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, m4517a));
                 }
                 this.mPlayingListLastMediaItem = m4517a.get(m4517a.size() - 1);
             }
@@ -284,14 +282,14 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
     }
 
     public void updatePlayMediaItemInfo() {
-        if (isViewAccessAble() && Cache.m3218a().m3225N().equals(this.mPlayingListLastMediaItem)) {
+        if (isViewAccessAble() && Cache.getInstance().getCurrentPlayMediaItem().equals(this.mPlayingListLastMediaItem)) {
             requestMusicList(this.mActiveChannelId);
         }
     }
 
     private void requestMusicList(int i) {
-        LogUtils.m8388a(TAG, "RankCategoryFragment.requestMusicList---id: " + i);
-        CommandCenter.m4607a().m4596b(new Command(CommandID.GET_RANK_MUSIC_LIST, Integer.valueOf(i), 1, toString()));
+        LogUtils.debug(TAG, "RankCategoryFragment.requestMusicList---id: " + i);
+        CommandCenter.getInstance().m4596b(new Command(CommandID.GET_RANK_MUSIC_LIST, Integer.valueOf(i), 1, toString()));
     }
 
     public void updateMusicRanks(MusicRanksResult musicRanksResult, String str) {
@@ -341,12 +339,12 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
         MusicRank musicRank = (MusicRank) view.getTag(R.id.view_bind_data);
         if (musicRank != null) {
-            OnlineMediaStatistic.m5045a("song-rank_" + musicRank.getTitle() + "_" + RankStatistic.m4968a());
-            OnlineMediaStatistic.m5054a();
+            //OnlineMediaStatistic.m5045a("song-rank_" + musicRank.getTitle() + "_" +// RankStatistic.m4968a());
+            //OnlineMediaStatistic.m5054a();
             launchFragment(new SubRankDetailFragment(musicRank));
             this.mActiveChannelId = musicRank.getId();
-            RankStatistic.m4961b(musicRank.getId(), musicRank.getTitle(), i);
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RANK_TO_DETAIL.getValue(), SPage.PAGE_RANK_CATEGORY.getValue(), SPage.PAGE_RANK_DETAIL.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(musicRank.getId())).append("title", musicRank.getTitle()).append("position", Integer.valueOf(i)).post();
+           // RankStatistic.m4961b(musicRank.getId(), musicRank.getTitle(), i);
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RANK_TO_DETAIL.getValue(), SPage.PAGE_RANK_CATEGORY.getValue(), SPage.PAGE_RANK_DETAIL.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(musicRank.getId())).append("title", musicRank.getTitle()).append("position", Integer.valueOf(i)).post();
         }
     }
 
@@ -411,7 +409,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
                 int m7229a = DisplayUtils.m7229a((int) RankCategoryFragment.WIDTH);
                 ImageCacheUtils.m4752a(c1557b.f5221d, musicRank2.getPicUrl(), m7229a, m7229a, (int) R.drawable.img_music_default_icon);
                 c1557b.m3250a(ThemeUtils.m8163b());
-                LogUtils.m8379d(RankCategoryFragment.TAG, "time: " + (SystemClock.uptimeMillis() - uptimeMillis));
+                LogUtils.info(RankCategoryFragment.TAG, "time: " + (SystemClock.uptimeMillis() - uptimeMillis));
             }
         }
 

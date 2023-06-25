@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
@@ -37,13 +37,8 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.UnicomFlowStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.environment.PreferencesID;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
@@ -104,9 +99,9 @@ public class MyFragment extends BaseFragment {
                         if (view != MyFragment.this.mUnicomText) {
                             if (view == MyFragment.this.mUnicomCloseButton) {
                                 MyFragment.this.mUnicomLayout.setVisibility(View.GONE);
-                                UnicomFlowStatistic.m4815l();
-                                new SUserEvent("PAGE_CLICK", 1121, 0).post();
-                                Cache.m3218a().m3162g(false);
+                                //UnicomFlowStatistic.m4815l();
+                                //new SUserEvent("PAGE_CLICK", 1121, 0).post();
+                                Cache.getInstance().m3162g(false);
                                 return;
                             }
                             Object tag = view.getTag();
@@ -116,25 +111,25 @@ public class MyFragment extends BaseFragment {
                             }
                             return;
                         }
-                        UnicomFlowStatistic.m4816k();
-                        new SUserEvent("PAGE_CLICK", 1122, 0).post();
+                        //UnicomFlowStatistic.m4816k();
+                        //new SUserEvent("PAGE_CLICK", 1122, 0).post();
                         EntryUtils.m8295b((Activity) MyFragment.this.getActivity());
                         return;
                     }
-                    LocalStatistic.m5131ab();
+                    //LocalStatistic.m5131ab();
                     MyFragment.this.popupDropdownMenu(view);
                     return;
                 }
-                SUserUtils.m4956a(SAction.ACTION_LOCAL_MUSIC, SPage.PAGE_LOCAL_SONG);
+                //SUserUtils.m4956a(SAction.ACTION_LOCAL_MUSIC, SPage.PAGE_LOCAL_SONG);
                 MyFragment.this.launchFragment((BaseFragment) Fragment.instantiate(MyFragment.this.getActivity(), LocalMediaEntryFragment.class.getName()));
-                LocalStatistic.m5178E();
-                LocalStatistic.m5166Q();
-                OnlineMediaStatistic.m5045a("local");
+                //LocalStatistic.m5178E();
+                //LocalStatistic.m5166Q();
+                //OnlineMediaStatistic.m5045a("local");
                 return;
             }
-            LocalStatistic.m5132aa();
+            //LocalStatistic.m5132aa();
             MyFragment.this.tryRandomPlay(view, valueOf.booleanValue());
-            SUserUtils.m4956a(SAction.ACTION_RANDOM_PLAY, SPage.PAGE_NONE);
+            //SUserUtils.m4956a(SAction.ACTION_RANDOM_PLAY, SPage.PAGE_NONE);
         }
     };
     private Preferences.InterfaceC2031a mPreferencesChangeListener = new Preferences.InterfaceC2031a() { // from class: com.sds.android.ttpod.fragment.main.MyFragment.2
@@ -153,14 +148,14 @@ public class MyFragment extends BaseFragment {
             switch (i) {
                 case 7:
                     EntryUtils.m8289f(MyFragment.this.getActivity());
-                    LocalStatistic.m5130ac();
-                    SUserUtils.m4956a(SAction.ACTION_MY_DROP_MENU_SCAN_MUSIC, SPage.PAGE_SCAN_MUSIC);
+                    //LocalStatistic.m5130ac();
+                    //SUserUtils.m4956a(SAction.ACTION_MY_DROP_MENU_SCAN_MUSIC, SPage.PAGE_SCAN_MUSIC);
                     return;
                 case 8:
-                    StatisticUtils.m4910a("local", "click", "local-customized_homepage");
+                    //StatisticUtils.m4910a("local", "click", "local-customized_homepage");
                     MyFragment.this.displayCustomizedHomepage();
-                    LocalStatistic.m5129ad();
-                    SUserUtils.m4956a(SAction.ACTION_MY_DROP_MENU_CUSTOM_MY, SPage.PAGE_NONE);
+                    //LocalStatistic.m5129ad();
+                    //SUserUtils.m4956a(SAction.ACTION_MY_DROP_MENU_CUSTOM_MY, SPage.PAGE_NONE);
                     return;
                 default:
                     MyFragment.this.doClickActionItem(actionItem, true);
@@ -172,7 +167,7 @@ public class MyFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void popupDropdownMenu(View view) {
         CheckableActionItem[] checkableActionItemArr;
-        SUserUtils.m4956a(SAction.ACTION_MY_DROP_MENU, SPage.PAGE_NONE);
+        //SUserUtils.m4956a(SAction.ACTION_MY_DROP_MENU, SPage.PAGE_NONE);
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ActionItem(7, (int) R.drawable.img_actionitem_add_media, (int) R.string.menu_scan_media));
         for (CheckableActionItem checkableActionItem : this.mItems) {
@@ -209,7 +204,7 @@ public class MyFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void loadCustomizedHomepage() {
         String m2922bg = Preferences.m2922bg();
-        if (StringUtils.m8346a(m2922bg)) {
+        if (StringUtils.isEmpty(m2922bg)) {
             initHomepageSetting();
             return;
         }
@@ -220,16 +215,14 @@ public class MyFragment extends BaseFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void saveCustomizedHomepage() {
-        SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_MY_DROP_MENU_CUSTOM_MY_OK.getValue(), 0, 0);
-        sUserEvent.setPageParameter(true);
+
         StringBuilder sb = new StringBuilder(PreferencesID.HOMEPAGE_ELEMENT_SETTING.name());
         for (int i = 0; i < this.mItems.length; i++) {
             if (this.mItems[i].isChecked()) {
                 sb.append(HOME_ELEMENT_ID[i]);
             }
         }
-        sUserEvent.append(PreferencesID.HOMEPAGE_ELEMENT_SETTING.name(), sb.toString());
-        sUserEvent.post();
+
         Preferences.m2824u(sb.toString());
     }
 
@@ -335,14 +328,14 @@ public class MyFragment extends BaseFragment {
     }
 
     private boolean isShowUnicomLayout() {
-        return UnicomFlowUtil.m3951b() && Cache.m3218a().m3226M();
+        return UnicomFlowUtil.m3951b() && Cache.getInstance().m3226M();
     }
 
     private void initHomeUnicomLayout() {
         if (isShowUnicomLayout()) {
             this.mUnicomLayout.setVisibility(View.VISIBLE);
-            UnicomFlowStatistic.m4814m();
-            new SUserEvent("PAGE_CLICK", 1120, 0).post();
+            //UnicomFlowStatistic.m4814m();
+            //new SUserEvent("PAGE_CLICK", 1120, 0).post();
             return;
         }
         this.mUnicomLayout.setVisibility(View.GONE);
@@ -420,11 +413,11 @@ public class MyFragment extends BaseFragment {
                     @Override // java.lang.Runnable
                     public void run() {
                         String string;
-                        if (!(z ? ((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.PLAY_LOCAL_RANDOM, new Object[0]), Boolean.class)).booleanValue() : false)) {
+                        if (!(z ? ((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.PLAY_LOCAL_RANDOM, new Object[0]), Boolean.class)).booleanValue() : false)) {
                             PopupsUtils.m6721a("没有歌曲，臣妾做不到啊");
                             return;
                         }
-                        MediaItem mediaItem = (MediaItem) CommandCenter.m4607a().m4602a(new Command(CommandID.QUERY_MEDIA_ITEM, Preferences.m2858m(), Preferences.m2854n()), MediaItem.class);
+                        MediaItem mediaItem = (MediaItem) CommandCenter.getInstance().m4602a(new Command(CommandID.QUERY_MEDIA_ITEM, Preferences.m2858m(), Preferences.m2854n()), MediaItem.class);
                         if (mediaItem != null && TTTextUtils.isValidateMediaString(mediaItem.getArtist())) {
                             string = MyFragment.this.getString(R.string.random_song_info, mediaItem.getArtist());
                         } else {
@@ -456,16 +449,13 @@ public class MyFragment extends BaseFragment {
             launchSubMediaListFragment(MediaStorage.GROUP_ID_FAV, getString(R.string.mine_my_favorite));
             Preferences.m3035W(false);
             this.mMyEntryManager.m5684a(this.mItems);
-            LocalStatistic.m5177F();
-            SUserUtils.m4956a(SAction.ACTION_MY_FAVORITE, SPage.PAGE_MY_FAVORITE);
-            OnlineMediaStatistic.m5045a("favorite");
+            //LocalStatistic.m5177F();
+            //SUserUtils.m4956a(SAction.ACTION_MY_FAVORITE, SPage.PAGE_MY_FAVORITE);
+            //OnlineMediaStatistic.m5045a("favorite");
         } else if (1 == m7005e) {
             launchFragment((BaseFragment) Fragment.instantiate(activity, DownloadManagerFragment.class.getName()));
-            LocalStatistic.m5170M();
-            SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_MY_DOWNLOAD.getValue(), 0, SPage.PAGE_MY_DOWNLOAD_DOWNLOADED.getValue());
-            sUserEvent.append(DownloadManagerFragment.DOWNLOAD_TYPE, DownloadTaskInfo.TYPE_AUDIO);
-            sUserEvent.setPageParameter(true);
-            sUserEvent.post();
+            //LocalStatistic.m5170M();
+
         } else if (2 == m7005e) {
             Bundle bundle = new Bundle();
             bundle.putString(GroupListFragment.KEY_GROUP_TYPE, GroupType.CUSTOM_LOCAL.name());
@@ -475,22 +465,22 @@ public class MyFragment extends BaseFragment {
             BaseFragment baseFragment = (BaseFragment) Fragment.instantiate(activity, SubCustomGroupListFragment.class.getName(), bundle);
             baseFragment.setPage(SPage.PAGE_MY_SONGLIST);
             launchFragment(baseFragment);
-            LocalStatistic.m5176G();
-            SUserUtils.m4956a(SAction.ACTION_MY_SONGLIST, SPage.PAGE_MY_SONGLIST);
+            //LocalStatistic.m5176G();
+            //SUserUtils.m4956a(SAction.ACTION_MY_SONGLIST, SPage.PAGE_MY_SONGLIST);
         } else if (3 == m7005e) {
             launchSubMediaListFragment(MediaStorage.GROUP_ID_RECENTLY_PLAY, getString(R.string.mine_recent_play));
-            LocalStatistic.m5158Y();
-            SUserUtils.m4956a(SAction.ACTION_RECENT_PLAY, SPage.PAGE_RECENT_PLAY);
+            //LocalStatistic.m5158Y();
+            //SUserUtils.m4956a(SAction.ACTION_RECENT_PLAY, SPage.PAGE_RECENT_PLAY);
         } else if (4 == m7005e) {
             launchSubMediaListFragment(MediaStorage.GROUP_ID_RECENTLY_ADD, getString(R.string.local_music_recent_add));
-            LocalStatistic.m5157Z();
-            SUserUtils.m4956a(SAction.ACTION_RECENT_ADDED, SPage.PAGE_RECENT_ADDED);
+            //LocalStatistic.m5157Z();
+            //SUserUtils.m4956a(SAction.ACTION_RECENT_ADDED, SPage.PAGE_RECENT_ADDED);
         } else if (6 == m7005e) {
             PopupsUtils.m6710b(getActivity(), (String) null, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.MyFragment.7
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(EditTextDialog editTextDialog) {
-                    CommandCenter.m4607a().m4602a(new Command(CommandID.ADD_GROUP, editTextDialog.m6902c(0).m6896d().toString()), String.class);
+                    CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, editTextDialog.m6902c(0).m6896d().toString()), String.class);
                 }
             });
         }
@@ -514,7 +504,7 @@ public class MyFragment extends BaseFragment {
     }
 
     public static int getMediaCount(String str) {
-        return ((Integer) CommandCenter.m4607a().m4602a(new Command(CommandID.QUERY_MEDIA_COUNT, str), Integer.class)).intValue();
+        return ((Integer) CommandCenter.getInstance().m4602a(new Command(CommandID.QUERY_MEDIA_COUNT, str), Integer.class)).intValue();
     }
 
     /* JADX INFO: Access modifiers changed from: private */

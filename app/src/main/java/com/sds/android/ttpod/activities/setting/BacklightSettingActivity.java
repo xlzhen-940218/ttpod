@@ -8,7 +8,6 @@ import com.sds.android.ttpod.activities.base.SlidingClosableActivity;
 import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 /* loaded from: classes.dex */
@@ -28,19 +27,19 @@ public class BacklightSettingActivity extends SlidingClosableActivity {
             switch (actionItem.m7005e()) {
                 case 1:
                     Preferences.m2847o(isChecked);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_LIST_LIGHT, isChecked);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_LIST_LIGHT, isChecked);
                     return;
                 case 2:
                     Preferences.m2843p(isChecked);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_PLAY_LIGHT, isChecked);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_PLAY_LIGHT, isChecked);
                     return;
                 case 3:
                     Preferences.m2839q(isChecked);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_LOCK_LIGHT, isChecked);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_LOCK_LIGHT, isChecked);
                     return;
                 case 4:
                     Preferences.m2835r(isChecked);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_LANDSCAPE_LIGHT, isChecked);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_LANDSCAPE_LIGHT, isChecked);
                     return;
                 default:
                     throw new IllegalArgumentException("illegal ID");

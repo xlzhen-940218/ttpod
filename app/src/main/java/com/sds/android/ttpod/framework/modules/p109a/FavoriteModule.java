@@ -36,22 +36,22 @@ public class FavoriteModule extends BaseModule {
         @Override // com.sds.android.ttpod.framework.modules.p109a.FavoriteServerManager.InterfaceC1815a
         /* renamed from: a */
         public void mo4520a() {
-            LogUtils.m8381c("FavoriteModule", "PUSH_COMPLETE");
-            CommandCenter.m4607a().m4595b(new Command(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, new Object[0]), ModuleID.FAVORITE);
+            LogUtils.error("FavoriteModule", "PUSH_COMPLETE");
+            CommandCenter.getInstance().m4595b(new Command(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, new Object[0]), ModuleID.FAVORITE);
         }
 
         @Override // com.sds.android.ttpod.framework.modules.p109a.FavoriteServerManager.InterfaceC1815a
         /* renamed from: b */
         public void mo4519b() {
-            LogUtils.m8381c("FavoriteModule", "PUSH_ERROR");
-            CommandCenter.m4607a().m4595b(new Command(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_ERROR, new Object[0]), ModuleID.FAVORITE);
+            LogUtils.error("FavoriteModule", "PUSH_ERROR");
+            CommandCenter.getInstance().m4595b(new Command(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_ERROR, new Object[0]), ModuleID.FAVORITE);
         }
 
         @Override // com.sds.android.ttpod.framework.modules.p109a.FavoriteServerManager.InterfaceC1815a
         /* renamed from: c */
         public void mo4518c() {
-            LogUtils.m8381c("FavoriteModule", "PUSH_INVALID");
-            CommandCenter.m4607a().m4595b(new Command(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_INVALID, new Object[0]), ModuleID.FAVORITE);
+            LogUtils.error("FavoriteModule", "PUSH_INVALID");
+            CommandCenter.getInstance().m4595b(new Command(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_INVALID, new Object[0]), ModuleID.FAVORITE);
         }
     };
 
@@ -60,37 +60,37 @@ public class FavoriteModule extends BaseModule {
         @Override // com.sds.android.ttpod.framework.modules.p109a.FavoriteServerManager.InterfaceC1815a
         /* renamed from: a */
         public void mo4520a() {
-            LogUtils.m8381c("FavoriteModule", "PULL_COMPLETE");
+            LogUtils.error("FavoriteModule", "PULL_COMPLETE");
             List<MediaItem> queryMediaItemList = MediaStorage.queryMediaItemList(FavoriteModule.sContext, MediaStorage.buildOnlineFavGroupID(), Preferences.m2860l(MediaStorage.buildOnlineFavGroupID()));
-            List<String> m3224O = Cache.m3218a().m3224O();
+            List<String> m3224O = Cache.getInstance().m3224O();
             for (MediaItem mediaItem : queryMediaItemList) {
                 if (!m3224O.contains(mediaItem.getID())) {
                     m3224O.add(mediaItem.getID());
                 }
             }
-            Cache.m3218a().m3169e(m3224O);
+            Cache.getInstance().m3169e(m3224O);
             FavoriteModule.this.m4549f();
-            CommandCenter.m4607a().m4595b(new Command(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, new Object[0]), ModuleID.FAVORITE);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, new Object[0]), ModuleID.FAVORITE);
         }
 
         @Override // com.sds.android.ttpod.framework.modules.p109a.FavoriteServerManager.InterfaceC1815a
         /* renamed from: b */
         public void mo4519b() {
-            LogUtils.m8381c("FavoriteModule", "PULL_ERROR");
-            CommandCenter.m4607a().m4595b(new Command(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_ERROR, new Object[0]), ModuleID.FAVORITE);
+            LogUtils.error("FavoriteModule", "PULL_ERROR");
+            CommandCenter.getInstance().m4595b(new Command(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_ERROR, new Object[0]), ModuleID.FAVORITE);
         }
 
         @Override // com.sds.android.ttpod.framework.modules.p109a.FavoriteServerManager.InterfaceC1815a
         /* renamed from: c */
         public void mo4518c() {
-            LogUtils.m8381c("FavoriteModule", "PULL_INVALID");
-            CommandCenter.m4607a().m4595b(new Command(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, new Object[0]), ModuleID.FAVORITE);
+            LogUtils.error("FavoriteModule", "PULL_INVALID");
+            CommandCenter.getInstance().m4595b(new Command(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, new Object[0]), ModuleID.FAVORITE);
         }
     };
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.FAVORITE;
     }
 
@@ -123,13 +123,13 @@ public class FavoriteModule extends BaseModule {
     }
 
     public void logoutFinished() {
-        LogUtils.m8381c("FavoriteModule", "logoutFinished");
+        LogUtils.error("FavoriteModule", "logoutFinished");
         m4550e();
         m4546i();
     }
 
     public void loginFinished(CommonResult commonResult) {
-        LogUtils.m8381c("FavoriteModule", "loginFinished");
+        LogUtils.error("FavoriteModule", "loginFinished");
         m4551d();
         syncFavoriteOnlineMediaList();
         m4548g();
@@ -137,7 +137,7 @@ public class FavoriteModule extends BaseModule {
 
     /* renamed from: d */
     private void m4551d() {
-        LogUtils.m8381c("FavoriteModule", "initOnlineFavorite");
+        LogUtils.error("FavoriteModule", "initOnlineFavorite");
         FavoriteServerManager.m4544a().m4529d();
         FavoriteServerManager.m4544a().m4530c(this.f5736b);
         FavoriteServerManager.m4544a().m4541a(this.f5735a);
@@ -145,18 +145,18 @@ public class FavoriteModule extends BaseModule {
 
     /* renamed from: e */
     private void m4550e() {
-        LogUtils.m8381c("FavoriteModule", "unInitOnlineFavorite");
+        LogUtils.error("FavoriteModule", "unInitOnlineFavorite");
         FavoriteServerManager.m4544a().m4534b(this.f5735a);
         FavoriteServerManager.m4544a().m4528d(this.f5736b);
         FavoriteServerManager.m4544a().m4527e();
-        Cache.m3218a().m3221R();
+        Cache.getInstance().m3221R();
         m4549f();
     }
 
     /* renamed from: a */
     protected void m4560a() {
         for (MediaItem mediaItem : MediaStorage.queryMediaItemList(sContext, MediaStorage.buildOnlineFavGroupID(), Preferences.m2860l(MediaStorage.buildOnlineFavGroupID()))) {
-            if (!StringUtils.m8346a(mediaItem.getLocalDataSource()) && !FileUtils.m8419a(mediaItem.getLocalDataSource())) {
+            if (!StringUtils.isEmpty(mediaItem.getLocalDataSource()) && !FileUtils.m8419a(mediaItem.getLocalDataSource())) {
                 MediaItemUtils.m4714a(mediaItem, mediaItem.getLocalDataSource());
                 MediaStorage.updateMediaItem(sContext, mediaItem);
             }
@@ -179,23 +179,23 @@ public class FavoriteModule extends BaseModule {
     }
 
     public void addFavoriteMediaItem(MediaItem mediaItem) {
-        LogUtils.m8381c("FavoriteModule", "addFavoriteMediaItem");
+        LogUtils.error("FavoriteModule", "addFavoriteMediaItem");
         DebugUtils.m8426a(mediaItem, "mediaItem");
         if (mediaItem.isOnline()) {
             DebugUtils.m8426a(Preferences.m2954aq(), "UserInfo");
-            CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.buildOnlineFavGroupID(), mediaItem));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.buildOnlineFavGroupID(), mediaItem));
             FavoriteServerManager.m4544a().m4542a(mediaItem.getSongID().longValue());
             m4558a(MediaStorage.queryMediaItem(sContext, MediaStorage.buildOnlineFavGroupID(), mediaItem.getID()));
-            List<String> m3224O = Cache.m3218a().m3224O();
+            List<String> m3224O = Cache.getInstance().m3224O();
             m3224O.add(mediaItem.getID());
-            Cache.m3218a().m3169e(m3224O);
+            Cache.getInstance().m3169e(m3224O);
         } else {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_FAV_LOCAL, mediaItem));
-            List<String> m3220S = Cache.m3218a().m3220S();
+            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_FAV_LOCAL, mediaItem));
+            List<String> m3220S = Cache.getInstance().m3220S();
             m3220S.add(mediaItem.getID());
-            Cache.m3218a().m3173d(m3220S);
+            Cache.getInstance().m3173d(m3220S);
         }
-        CommandCenter.m4607a().m4604a(new Command(CommandID.USER_ADDED_FAVORITE_MEDIA, mediaItem), ModuleID.FAVORITE);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.USER_ADDED_FAVORITE_MEDIA, mediaItem), ModuleID.FAVORITE);
         m4549f();
     }
 
@@ -203,7 +203,7 @@ public class FavoriteModule extends BaseModule {
     private void m4558a(MediaItem mediaItem) {
         if (mediaItem != null) {
             String m4690a = OnlineMediaItemUtils.m4690a((OnlineMediaItem) JSONUtils.fromJson(mediaItem.getExtra(), OnlineMediaItem.class));
-            if (!StringUtils.m8346a(m4690a)) {
+            if (!StringUtils.isEmpty(m4690a)) {
                 MediaItemUtils.m4714a(mediaItem, m4690a);
                 MediaStorage.updateMediaItem(sContext, mediaItem);
             }
@@ -211,7 +211,7 @@ public class FavoriteModule extends BaseModule {
     }
 
     public void deleteFavoriteMediaItem(MediaItem mediaItem, Boolean bool) {
-        LogUtils.m8381c("FavoriteModule", "deleteFavoriteMediaItem");
+        LogUtils.error("FavoriteModule", "deleteFavoriteMediaItem");
         DebugUtils.m8426a(mediaItem, "mediaItem");
         if (mediaItem.getSongID() != null && mediaItem.getSongID().longValue() != 0) {
             if (!mediaItem.isOnline()) {
@@ -236,18 +236,18 @@ public class FavoriteModule extends BaseModule {
     /* renamed from: a */
     private void m4557a(final MediaItem mediaItem, final Boolean bool) {
         DebugUtils.m8426a(Preferences.m2954aq(), "UserInfo");
-        CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.buildOnlineFavGroupID(), mediaItem, false));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.buildOnlineFavGroupID(), mediaItem, false));
         FavoriteServerManager.m4544a().m4535b(mediaItem.getSongID().longValue());
-        List<String> m3224O = Cache.m3218a().m3224O();
+        List<String> m3224O = Cache.getInstance().m3224O();
         m3224O.remove(mediaItem.getID());
-        Cache.m3218a().m3169e(m3224O);
+        Cache.getInstance().m3169e(m3224O);
         if (bool.booleanValue()) {
             TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.4
                 @Override // java.lang.Runnable
                 public void run() {
                     MediaItem m4712a = MediaItemUtils.m4712a(mediaItem.getLocalDataSource());
                     if (m4712a != null) {
-                        CommandCenter.m4607a().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, MediaStorage.queryMediaItem(FavoriteModule.sContext, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a.getID()), bool));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, MediaStorage.queryMediaItem(FavoriteModule.sContext, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a.getID()), bool));
                     }
                 }
             });
@@ -256,10 +256,10 @@ public class FavoriteModule extends BaseModule {
 
     /* renamed from: b */
     private void m4554b(MediaItem mediaItem, Boolean bool) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_FAV_LOCAL, mediaItem, bool));
-        List<String> m3220S = Cache.m3218a().m3220S();
+        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_FAV_LOCAL, mediaItem, bool));
+        List<String> m3220S = Cache.getInstance().m3220S();
         m3220S.remove(mediaItem.getID());
-        Cache.m3218a().m3173d(m3220S);
+        Cache.getInstance().m3173d(m3220S);
     }
 
     public void deleteFavoriteMediaItemList(Collection<MediaItem> collection, Boolean bool) {
@@ -269,14 +269,14 @@ public class FavoriteModule extends BaseModule {
     }
 
     public void pushFavoriteOnlineMediaList() {
-        LogUtils.m8381c("FavoriteModule", "pushFavoriteOnlineMediaList");
+        LogUtils.error("FavoriteModule", "pushFavoriteOnlineMediaList");
         if (Preferences.m2954aq() != null) {
             FavoriteServerManager.m4544a().m4531c();
         }
     }
 
     public void syncFavoriteOnlineMediaList() {
-        LogUtils.m8381c("FavoriteModule", "syncFavoriteOnlineMediaList");
+        LogUtils.error("FavoriteModule", "syncFavoriteOnlineMediaList");
         if (Preferences.m2954aq() != null) {
             FavoriteServerManager.m4544a().m4531c();
             FavoriteServerManager.m4544a().m4537b();
@@ -291,12 +291,12 @@ public class FavoriteModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: f */
     public void m4549f() {
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_FAVORITE_CHANGED, new Object[0]), ModuleID.FAVORITE);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_FAVORITE_CHANGED, new Object[0]), ModuleID.FAVORITE);
     }
 
     /* renamed from: g */
     private void m4548g() {
-        LogUtils.m8381c("FavoriteModule", "asynReloadOnlineFavMediaIDs");
+        LogUtils.error("FavoriteModule", "asynReloadOnlineFavMediaIDs");
         TaskScheduler.m8580a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.5
             @Override // java.lang.Runnable
             public void run() {
@@ -316,7 +316,7 @@ public class FavoriteModule extends BaseModule {
         try {
             if (Preferences.m2954aq() != null) {
                 String buildOnlineFavGroupID = MediaStorage.buildOnlineFavGroupID();
-                Cache.m3218a().m3169e(MediaStorage.queryMediaIDs(sContext, buildOnlineFavGroupID, Preferences.m2860l(buildOnlineFavGroupID)));
+                Cache.getInstance().m3169e(MediaStorage.queryMediaIDs(sContext, buildOnlineFavGroupID, Preferences.m2860l(buildOnlineFavGroupID)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -341,6 +341,6 @@ public class FavoriteModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: j */
     public void m4545j() {
-        Cache.m3218a().m3173d(MediaStorage.queryMediaIDs(sContext, MediaStorage.GROUP_ID_FAV_LOCAL, Preferences.m2860l(MediaStorage.GROUP_ID_FAV_LOCAL)));
+        Cache.getInstance().m3173d(MediaStorage.queryMediaIDs(sContext, MediaStorage.GROUP_ID_FAV_LOCAL, Preferences.m2860l(MediaStorage.GROUP_ID_FAV_LOCAL)));
     }
 }

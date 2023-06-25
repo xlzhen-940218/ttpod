@@ -6,7 +6,7 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
@@ -40,7 +40,7 @@ public class NoCopyrightDialog extends ListDialog<ActionItem> {
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
             public void mo2038a(Object obj) {
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_CANCEL_COPYRIGHT_DIALOG.getValue(), SPage.PAGE_DIALOG_COPYRIGHT.getValue()).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_CANCEL_COPYRIGHT_DIALOG.getValue(), SPage.PAGE_DIALOG_COPYRIGHT.getValue()).post();
             }
         });
     }

@@ -47,7 +47,7 @@ import java.util.Map;
 public class SearchModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.SEARCH;
     }
 
@@ -87,7 +87,7 @@ public class SearchModule extends BaseModule {
                 if (m2945az == null) {
                     m2945az = "";
                 }
-                LogUtils.m8388a("SearchModule", "search song searchWord=" + str + ",page=" + num + ",size=" + num2 + ",clientId=" + m2945az + ",sugg=" + str2);
+                LogUtils.debug("SearchModule", "search song searchWord=" + str + ",page=" + num + ",size=" + num2 + ",clientId=" + m2945az + ",sugg=" + str2);
                 OnlineMediaItemsResult m8531f = OnlineMediaSearchAPI.m8860a(str, num.intValue(), num2.intValue(), m2945az).m8531f();
                 int pages = m8531f.getPages();
                 if (m8531f.isSuccess()) {
@@ -96,7 +96,7 @@ public class SearchModule extends BaseModule {
                     for (OnlineMediaItem onlineMediaItem : dataList) {
                         arrayList.add(MediaItemUtils.m4716a(onlineMediaItem));
                     }
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEARCH_SONG_FINISHED, Integer.valueOf(m8531f.getCode()), Integer.valueOf(pages), arrayList, str), ModuleID.SEARCH);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_SONG_FINISHED, Integer.valueOf(m8531f.getCode()), Integer.valueOf(pages), arrayList, str), ModuleID.SEARCH);
                 }
             }
         });
@@ -107,12 +107,12 @@ public class SearchModule extends BaseModule {
             @Override // java.lang.Runnable
             public void run() {
                 Request<AlbumItemsResult> m8858b;
-                if (StringUtils.m8346a(str2)) {
+                if (StringUtils.isEmpty(str2)) {
                     m8858b = OnlineMediaSearchAPI.m8859b(str, num.intValue(), num2.intValue());
                 } else {
                     m8858b = OnlineMediaSearchAPI.m8858b(str, num.intValue(), num2.intValue(), str2);
                 }
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEARCH_ALBUM_FINISHED, m8858b.m8531f()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_ALBUM_FINISHED, m8858b.m8531f()), ModuleID.SEARCH);
             }
         });
     }
@@ -121,7 +121,7 @@ public class SearchModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.4
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEARCH_PLAY_LIST_RESULT, OnlineMediaSearchAPI.m8857c(str, num.intValue(), num2.intValue(), str2 == null ? "" : str2).m8531f()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_PLAY_LIST_RESULT, OnlineMediaSearchAPI.m8857c(str, num.intValue(), num2.intValue(), str2 == null ? "" : str2).m8531f()), ModuleID.SEARCH);
             }
         });
     }
@@ -130,7 +130,7 @@ public class SearchModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.5
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEARCH_HOT_WORDS_FINISHED, HotWordsAPI.m8884a().m8531f().getDataList()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_HOT_WORDS_FINISHED, HotWordsAPI.m8884a().m8531f().getDataList()), ModuleID.SEARCH);
             }
         });
     }
@@ -139,7 +139,7 @@ public class SearchModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.6
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEARCH_ASSOCIATE_FINISHED, AssociateWordsAPI.m8935a(str).m8531f().getDataList()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_ASSOCIATE_FINISHED, AssociateWordsAPI.m8935a(str).m8531f().getDataList()), ModuleID.SEARCH);
             }
         });
     }
@@ -148,7 +148,7 @@ public class SearchModule extends BaseModule {
         TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.7
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEARCH_BILLBOARD_FINISHED, BillboardAPI.m8934a(num.intValue()).m8531f().getDataList()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_BILLBOARD_FINISHED, BillboardAPI.m8934a(num.intValue()).m8531f().getDataList()), ModuleID.SEARCH);
             }
         });
     }
@@ -158,7 +158,7 @@ public class SearchModule extends BaseModule {
             @Override // java.lang.Runnable
             public void run() {
                 BaseResult m8531f = OnlineMediaSearchAPI.m8862a(str).m8531f();
-                CommandCenter m4607a = CommandCenter.m4607a();
+                CommandCenter m4607a = CommandCenter.getInstance();
                 CommandID commandID = CommandID.UPDATE_REPORT_SONG_FINISHED;
                 Object[] objArr = new Object[1];
                 objArr[0] = Boolean.valueOf(m8531f.getCode() == 1);
@@ -186,7 +186,7 @@ public class SearchModule extends BaseModule {
     public void onReceive(Intent intent) {
         Object[] objArr = new Object[1];
         objArr[0] = intent != null ? intent.getAction() : "intent=null";
-        LogUtils.m8386a("SearchModule", "onReceive artistPic lookLyricPic action=%s", objArr);
+        LogUtils.debug("SearchModule", "onReceive artistPic lookLyricPic action=%s", objArr);
         String action = intent.getAction();
         if (Action.LYRIC_PIC_OPERATE_RESULT.equals(action)) {
             m3923a(intent, intent.getStringExtra("media_id"));
@@ -214,7 +214,7 @@ public class SearchModule extends BaseModule {
             /* renamed from: a */
             public void postExecute(Bitmap bitmap) {
                 if (bitmap != null) {
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.SWITCH_ARTIST_PICTURE, str, str2, bitmap), ModuleID.SEARCH);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.SWITCH_ARTIST_PICTURE, str, str2, bitmap), ModuleID.SEARCH);
                 }
             }
         });
@@ -236,32 +236,32 @@ public class SearchModule extends BaseModule {
                     return;
                 }
             }
-            LogUtils.m8382b("SearchModule", "handleLyricPictureIntent lookLyricPic and %s but no result, should not appear.", searchStatus.name());
+            LogUtils.error("SearchModule", "handleLyricPictureIntent lookLyricPic and %s but no result, should not appear.", searchStatus.name());
             return;
         }
-        CommandCenter.m4607a().m4595b(new Command("lyric_type".equals(stringExtra) ? CommandID.UPDATE_SEARCH_LYRIC_STATE : CommandID.UPDATE_SEARCH_PICTURE_STATE, searchStatus, parcelableArrayListExtra, str, null), ModuleID.SEARCH);
+        CommandCenter.getInstance().m4595b(new Command("lyric_type".equals(stringExtra) ? CommandID.UPDATE_SEARCH_LYRIC_STATE : CommandID.UPDATE_SEARCH_PICTURE_STATE, searchStatus, parcelableArrayListExtra, str, null), ModuleID.SEARCH);
     }
 
     /* renamed from: a */
     private void m3920a(final SearchStatus searchStatus, final String str, ArrayList<String> arrayList) {
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         String str2 = (arrayList == null || arrayList.isEmpty()) ? null : arrayList.get(0);
         if (StringUtils.m8344a(m3225N.getID(), str)) {
-            Cache m3218a = Cache.m3218a();
+            Cache m3218a = Cache.getInstance();
             if (!StringUtils.m8344a(m3218a.m3164g(), str2)) {
                 m3218a.m3205a(str2, m3225N);
             } else {
                 return;
             }
         }
-        LogUtils.m8386a("SearchModule", "asyncLoadPicture artistPic lookLyricPic will begin path=%s", str2);
+        LogUtils.debug("SearchModule", "asyncLoadPicture artistPic lookLyricPic will begin path=%s", str2);
         final String str3 = str2;
         TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<String, Bitmap>(str2) { // from class: com.sds.android.ttpod.framework.modules.search.a.10
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public Bitmap mo1981a(String str4) {
-                LogUtils.m8386a("SearchModule", "asyncLoadPicture artistPic lookLyricPic now begin path=%s", str4);
+                LogUtils.debug("SearchModule", "asyncLoadPicture artistPic lookLyricPic now begin path=%s", str4);
                 return SearchModule.this.m3919a(str4);
             }
 
@@ -272,13 +272,13 @@ public class SearchModule extends BaseModule {
                 Object[] objArr = new Object[2];
                 objArr[0] = str3;
                 objArr[1] = Boolean.valueOf(bitmap != null);
-                LogUtils.m8386a("SearchModule", "asyncLoadPicture artistPic lookLyricPic end path=%s, result!=null:%b", objArr);
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEARCH_PICTURE_STATE, searchStatus, null, str, bitmap), ModuleID.SEARCH);
+                LogUtils.debug("SearchModule", "asyncLoadPicture artistPic lookLyricPic end path=%s, result!=null:%b", objArr);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_PICTURE_STATE, searchStatus, null, str, bitmap), ModuleID.SEARCH);
             }
 
             @Override // android.os.AsyncTask
             protected void onCancelled() {
-                LogUtils.m8386a("SearchModule", "asyncLoadPicture lartistPic ookLyricPic onCancelled path=%s", str3);
+                LogUtils.debug("SearchModule", "asyncLoadPicture lartistPic ookLyricPic onCancelled path=%s", str3);
             }
         });
     }
@@ -286,17 +286,17 @@ public class SearchModule extends BaseModule {
     /* renamed from: b */
     private void m3917b(final SearchStatus searchStatus, final String str, ArrayList<String> arrayList) {
         final String str2 = arrayList.get(0);
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (StringUtils.m8344a(m3225N.getID(), str)) {
-            Cache.m3218a().m3191b(str2, m3225N);
+            Cache.getInstance().m3191b(str2, m3225N);
         }
-        LogUtils.m8386a("SearchModule", "asyncLoadLyric lookLyricPic will begin path=%s", str2);
+        LogUtils.debug("SearchModule", "asyncLoadLyric lookLyricPic will begin path=%s", str2);
         TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Void, Lyric>(null) { // from class: com.sds.android.ttpod.framework.modules.search.a.2
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public Lyric mo1981a(Void r6) {
-                LogUtils.m8386a("SearchModule", "asyncLoadLyric lookLyricPic now begin path=%s", str2);
+                LogUtils.debug("SearchModule", "asyncLoadLyric lookLyricPic now begin path=%s", str2);
                 return LyricParser.m3647b(str2);
             }
 
@@ -307,13 +307,13 @@ public class SearchModule extends BaseModule {
                 Object[] objArr = new Object[2];
                 objArr[0] = str2;
                 objArr[1] = Boolean.valueOf(lyric != null);
-                LogUtils.m8386a("SearchModule", "asyncLoadLyric lookLyricPic end path=%s, result!=null:%b", objArr);
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SEARCH_LYRIC_STATE, searchStatus, null, str, lyric), ModuleID.SEARCH);
+                LogUtils.debug("SearchModule", "asyncLoadLyric lookLyricPic end path=%s, result!=null:%b", objArr);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_LYRIC_STATE, searchStatus, null, str, lyric), ModuleID.SEARCH);
             }
 
             @Override // android.os.AsyncTask
             protected void onCancelled() {
-                LogUtils.m8386a("SearchModule", "asyncLoadLyric lookLyricPic onCancelled path=%s", str2);
+                LogUtils.debug("SearchModule", "asyncLoadLyric lookLyricPic onCancelled path=%s", str2);
             }
         });
     }
@@ -330,12 +330,12 @@ public class SearchModule extends BaseModule {
     }
 
     public void playMediaChanged() {
-        Cache.m3218a().m3167f();
-        Cache.m3218a().m3161h();
+        Cache.getInstance().m3167f();
+        Cache.getInstance().m3161h();
     }
 
     public void getSearchTypes() {
-        ModuleRequestHelper.m4083a(OnlineMediaSearchAPI.m8863a(), CommandID.UPDATE_SEARCH_TYPES, mo3239id(), null);
+        ModuleRequestHelper.m4083a(OnlineMediaSearchAPI.m8863a(), CommandID.UPDATE_SEARCH_TYPES, id(), null);
     }
 
     public void downloadPicture(String str, String str2, MediaItem mediaItem) {

@@ -82,7 +82,7 @@ public class SecurityUtils {
 
         /* renamed from: a */
         public static String m8352a(String str) {
-            if (StringUtils.m8346a(str)) {
+            if (StringUtils.isEmpty(str)) {
                 return "";
             }
             int[] iArr = new int[2];

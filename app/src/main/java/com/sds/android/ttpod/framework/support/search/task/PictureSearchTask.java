@@ -116,7 +116,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         String mo2137a = mo2137a(i3);
         if (mo2137a != null) {
             String m8403i = FileUtils.m8403i(mo2137a);
-            Object m8346a = StringUtils.m8346a(m8403i);
+            Object m8346a = StringUtils.isEmpty(m8403i);
             try {
                 if (!((boolean) m8346a)) {
                     try {
@@ -315,13 +315,13 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
     /* renamed from: a */
     protected String mo2137a(MediaItem mediaItem) {
         String m2124d = m2124d(mediaItem.getID());
-        if (StringUtils.m8346a(m2124d)) {
+        if (StringUtils.isEmpty(m2124d)) {
             m2124d = FileUtils.m8397o(mediaItem.getArtist());
         }
         if (!TTTextUtils.isValidateMediaString(m2124d)) {
             m2124d = null;
         }
-        if (StringUtils.m8346a(m2124d)) {
+        if (StringUtils.isEmpty(m2124d)) {
             return null;
         }
         return TTPodConfig.m5289s() + File.separator + m2124d + File.separator + "result.xml";
@@ -332,7 +332,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
     protected ArrayList<ResultData> mo2140a(KXmlParser kXmlParser) throws Exception {
         MediaItem i = mo2131b().m2194i();
         ArrayList<ResultData> m2139a = m2139a(kXmlParser, i, mo2131b().m2185l(), this.f7309b);
-        if (StringUtils.m8346a(this.f7309b) && m2139a != null && !m2139a.isEmpty() && !TTTextUtils.isValidateMediaString(i.getArtist())) {
+        if (StringUtils.isEmpty(this.f7309b) && m2139a != null && !m2139a.isEmpty() && !TTTextUtils.isValidateMediaString(i.getArtist())) {
             this.f7309b = m2139a.get(0).m2181b();
             m2127b(i.getID(), this.f7309b);
         }
@@ -568,7 +568,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
     /* renamed from: d */
     private String m2124d(String str) {
         SearchMediaLinkInfo m3135a;
-        if (StringUtils.m8346a(this.f7309b) && (m3135a = SearchSqliteDb.m3135a(BaseApplication.getApplication().getContentResolver(), str)) != null && !StringUtils.m8346a(m3135a.getArtist())) {
+        if (StringUtils.isEmpty(this.f7309b) && (m3135a = SearchSqliteDb.m3135a(BaseApplication.getApplication().getContentResolver(), str)) != null && !StringUtils.isEmpty(m3135a.getArtist())) {
             this.f7309b = m3135a.getArtist();
         }
         return this.f7309b;
@@ -580,7 +580,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         ArrayList<String> arrayList;
         MediaItem i = mo2131b().m2194i();
         String m2124d = m2124d(i.getID());
-        if (StringUtils.m8346a(m2124d)) {
+        if (StringUtils.isEmpty(m2124d)) {
             m2124d = FileUtils.m8397o(i.getArtist());
             if (!TTTextUtils.isValidateMediaString(m2124d)) {
                 return null;
@@ -593,7 +593,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                 if (PictureSearchTask.f7307c.contains(lowerCase)) {
                     return false;
                 }
-                String m8399m = FileUtils.m8399m(lowerCase);
+                String m8399m = FileUtils.getSuffix(lowerCase);
                 return ("thumb".equals(m8399m) || "tmp".equals(m8399m)) ? false : true;
             }
         });
@@ -633,7 +633,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         FileOutputStream fileOutputStream;
         Throwable th;
         String localDataSource = mediaItem.getLocalDataSource();
-        if (StringUtils.m8346a(localDataSource)) {
+        if (StringUtils.isEmpty(localDataSource)) {
             return null;
         }
         String str = TTPodConfig.m5288t() + File.separator + LyrPicFileNameUtils.m3889a(localDataSource);
@@ -702,7 +702,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
 
     /* renamed from: c */
     protected boolean m2125c(String str) {
-        boolean z = !StringUtils.m8346a(str);
+        boolean z = !StringUtils.isEmpty(str);
         if (z) {
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inJustDecodeBounds = true;

@@ -77,7 +77,7 @@ public class AudioEffectModule extends BaseModule {
     private Runnable f5862e = new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.1
         @Override // java.lang.Runnable
         public void run() {
-            CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, Boolean.TRUE), ModuleID.AUDIO_EFFECT);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, Boolean.TRUE), ModuleID.AUDIO_EFFECT);
         }
     };
 
@@ -102,7 +102,7 @@ public class AudioEffectModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.AUDIO_EFFECT;
     }
 
@@ -110,7 +110,7 @@ public class AudioEffectModule extends BaseModule {
     public void onCreate() {
         super.onCreate();
         m4357f();
-        this.f5861d = Cache.m3218a().m3148p();
+        this.f5861d = Cache.getInstance().m3148p();
     }
 
     /* renamed from: f */
@@ -137,7 +137,7 @@ public class AudioEffectModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     public void onDestroy() {
         super.onDestroy();
-        Cache.m3218a().m3201a(this.f5861d);
+        Cache.getInstance().m3201a(this.f5861d);
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
@@ -205,7 +205,7 @@ public class AudioEffectModule extends BaseModule {
 
     /* renamed from: g */
     private void m4356g() {
-        CommandCenter.m4607a().m4603a(new Command(CommandID.UPDATE_MANUAL_SETTING_EFFECT, new Object[0]), ModuleID.AUDIO_EFFECT, 500);
+        CommandCenter.getInstance().m4603a(new Command(CommandID.UPDATE_MANUAL_SETTING_EFFECT, new Object[0]), ModuleID.AUDIO_EFFECT, 500);
     }
 
     /* renamed from: a */
@@ -270,7 +270,7 @@ public class AudioEffectModule extends BaseModule {
         String m4369a = m4369a(settings.getName());
         FileUtils.m8404h(m4369a);
         FileUtils.m8416a(settings.toString(), m4369a);
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SAVE_CUSTOM_EQUALIZER, settings), ModuleID.AUDIO_EFFECT);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_CUSTOM_EQUALIZER, settings), ModuleID.AUDIO_EFFECT);
     }
 
     public void deleteCustomEqualizer(String str) {
@@ -338,7 +338,7 @@ public class AudioEffectModule extends BaseModule {
                         }
                     }
                 }
-                CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_CUSTOM_EQUALIZER_LIST, arrayList), ModuleID.AUDIO_EFFECT);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_CUSTOM_EQUALIZER_LIST, arrayList), ModuleID.AUDIO_EFFECT);
             }
         });
     }
@@ -357,13 +357,13 @@ public class AudioEffectModule extends BaseModule {
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 /* renamed from: a */
                 public void onRequestSuccess(AudioEffectUserResult audioEffectUserResult) {
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_QUERY_EFFECT_USERINFO, audioEffectUserResult), ModuleID.AUDIO_EFFECT);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_QUERY_EFFECT_USERINFO, audioEffectUserResult), ModuleID.AUDIO_EFFECT);
                 }
 
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 /* renamed from: b */
                 public void onRequestFailure(AudioEffectUserResult audioEffectUserResult) {
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_QUERY_EFFECT_USERINFO, audioEffectUserResult), ModuleID.AUDIO_EFFECT);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_QUERY_EFFECT_USERINFO, audioEffectUserResult), ModuleID.AUDIO_EFFECT);
                 }
             });
         }
@@ -380,13 +380,13 @@ public class AudioEffectModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(AudioEffectItemResult audioEffectItemResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_QUERY_EFFECT, audioEffectItemResult), ModuleID.AUDIO_EFFECT);
+                CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_QUERY_EFFECT, audioEffectItemResult), ModuleID.AUDIO_EFFECT);
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(AudioEffectItemResult audioEffectItemResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_QUERY_EFFECT, audioEffectItemResult), ModuleID.AUDIO_EFFECT);
+                CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_QUERY_EFFECT, audioEffectItemResult), ModuleID.AUDIO_EFFECT);
             }
         });
     }
@@ -399,14 +399,14 @@ public class AudioEffectModule extends BaseModule {
                 /* renamed from: a */
                 public void onRequestSuccess(AudioEffectCommResult audioEffectCommResult) {
                     AudioEffectModule.this.f5861d.put(str, Boolean.TRUE);
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_PICK_EFFECT, audioEffectCommResult, str), ModuleID.AUDIO_EFFECT);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_PICK_EFFECT, audioEffectCommResult, str), ModuleID.AUDIO_EFFECT);
                 }
 
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 /* renamed from: b */
                 public void onRequestFailure(AudioEffectCommResult audioEffectCommResult) {
                     AudioEffectModule.this.f5861d.put(str, Boolean.TRUE);
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_PICK_EFFECT, audioEffectCommResult, str), ModuleID.AUDIO_EFFECT);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_PICK_EFFECT, audioEffectCommResult, str), ModuleID.AUDIO_EFFECT);
                 }
             });
         }
@@ -443,7 +443,7 @@ public class AudioEffectModule extends BaseModule {
         }
         File[] listFiles = file.listFiles();
         if (listFiles == null) {
-            CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_QUERY_PRIVATE_EFFECT, new ArrayList(), new ArrayList()), ModuleID.AUDIO_EFFECT);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_QUERY_PRIVATE_EFFECT, new ArrayList(), new ArrayList()), ModuleID.AUDIO_EFFECT);
             return;
         }
         ArrayList<PrivateEffectItem> arrayList = new ArrayList();
@@ -453,9 +453,9 @@ public class AudioEffectModule extends BaseModule {
             PrivateEffectItem m4360d = m4360d(file2.getAbsolutePath());
             if (m4360d != null) {
                 long m4326e = m4360d.m4326e();
-                if (m4326e == 0 && !StringUtils.m8346a(m4360d.m4327d())) {
+                if (m4326e == 0 && !StringUtils.isEmpty(m4360d.m4327d())) {
                     MediaItem m4712a = MediaItemUtils.m4712a(m4360d.m4327d());
-                    LogUtils.m8388a("AudioEffectModule", "buildMediaItem from " + m4360d.m4327d() + ", mediaitem=" + m4712a);
+                    LogUtils.debug("AudioEffectModule", "buildMediaItem from " + m4360d.m4327d() + ", mediaitem=" + m4712a);
                     if (m4712a != null) {
                         m4712a.setSongID(Long.valueOf(m4326e));
                         m4360d.m4330a(m4712a);
@@ -492,7 +492,7 @@ public class AudioEffectModule extends BaseModule {
                             MediaItem m4716a = MediaItemUtils.m4716a(onlineMediaItem);
                             m4716a.setLocalDataSource(privateEffectItem.m4327d());
                             privateEffectItem.m4330a(m4716a);
-                            LogUtils.m8388a("AudioEffectModule", "insert MediaItem GROUP_ID_EFFECT_ONLINE " + m4716a.getTitle() + "-" + m4716a.getArtist());
+                            LogUtils.debug("AudioEffectModule", "insert MediaItem GROUP_ID_EFFECT_ONLINE " + m4716a.getTitle() + "-" + m4716a.getArtist());
                             MediaStorage.insertMediaItem(sContext, MediaStorage.GROUP_ID_EFFECT_ONLINE, m4716a);
                             f5858a.lock();
                             if (!this.f5860c.contains(m4716a.getID())) {
@@ -523,7 +523,7 @@ public class AudioEffectModule extends BaseModule {
         for (PrivateEffectItem privateEffectItem2 : arrayList) {
             arrayList4.add(privateEffectItem2.m4325f());
         }
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_QUERY_PRIVATE_EFFECT, arrayList, arrayList4), ModuleID.AUDIO_EFFECT);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_QUERY_PRIVATE_EFFECT, arrayList, arrayList4), ModuleID.AUDIO_EFFECT);
     }
 
     /* renamed from: a */
@@ -573,7 +573,7 @@ public class AudioEffectModule extends BaseModule {
                         for (Object privateEffectItem : list) {
                             FileUtils.m8404h(((PrivateEffectItem)privateEffectItem).m4328c());
                         }
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_DELETE_PRIVATE_EFFECT_LIST, new Object[0]), ModuleID.AUDIO_EFFECT);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_DELETE_PRIVATE_EFFECT_LIST, new Object[0]), ModuleID.AUDIO_EFFECT);
                     }
                 });
             } else if (list.get(0).getClass().equals(MediaItem.class)) {
@@ -615,13 +615,13 @@ public class AudioEffectModule extends BaseModule {
                                         i2 = i;
                                     }
                                     FileUtils.m8404h(AudioEffectUtils.m4340a(mediaItem.getSongID(), mediaItem.getTitle(), mediaItem.getArtist()));
-                                    if (Cache.m3218a().m3225N().equals(mediaItem)) {
-                                        CommandCenter.m4607a().m4596b(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, true));
-                                        CommandCenter.m4607a().m4603a(new Command(CommandID.UPDATE_AUDIO_EFFECT_INFO, new Object[0]), ModuleID.AUDIO_EFFECT, 500);
+                                    if (Cache.getInstance().getCurrentPlayMediaItem().equals(mediaItem)) {
+                                        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, true));
+                                        CommandCenter.getInstance().m4603a(new Command(CommandID.UPDATE_AUDIO_EFFECT_INFO, new Object[0]), ModuleID.AUDIO_EFFECT, 500);
                                     }
                                 }
                                 if (i2 > 0) {
-                                    CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_DELETE_PRIVATE_EFFECT_LIST, new Object[0]), ModuleID.AUDIO_EFFECT);
+                                    CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_DELETE_PRIVATE_EFFECT_LIST, new Object[0]), ModuleID.AUDIO_EFFECT);
                                 }
                             }
                         }
@@ -665,13 +665,13 @@ public class AudioEffectModule extends BaseModule {
             this.f5863f.postDelayed(this.f5862e, 160L);
         } catch (Exception e2) {
             e = e2;
-            LogUtils.m8383b("AudioEffectModule", "saveEffect error", e);
+            LogUtils.error("AudioEffectModule", "saveEffect error", e);
             try {
                 bufferedWriter.close();
             } catch (Exception e3) {
                 e3.printStackTrace();
             }
-            CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, Boolean.FALSE), ModuleID.AUDIO_EFFECT);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, Boolean.FALSE), ModuleID.AUDIO_EFFECT);
         }
     }
 
@@ -705,21 +705,21 @@ public class AudioEffectModule extends BaseModule {
                         bufferedWriter.flush();
                         bufferedWriter.close();
                         AudioEffectModule.this.m4371a(mediaItem);
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, Boolean.TRUE), ModuleID.AUDIO_EFFECT);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, Boolean.TRUE), ModuleID.AUDIO_EFFECT);
                         if (!bool.booleanValue()) {
-                            CommandCenter.m4607a().m4595b(new Command(CommandID.EFFECT_SAVE_RESULT, Boolean.TRUE), ModuleID.AUDIO_EFFECT);
+                            CommandCenter.getInstance().m4595b(new Command(CommandID.EFFECT_SAVE_RESULT, Boolean.TRUE), ModuleID.AUDIO_EFFECT);
                         }
                     } catch (Exception e1) {
                         e = e1;
-                        LogUtils.m8383b("AudioEffectModule", "saveEffect error", e);
+                        LogUtils.error("AudioEffectModule", "saveEffect error", e);
                         try {
                             bufferedWriter.close();
                         } catch (Exception e2) {
                             e2.printStackTrace();
                         }
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, Boolean.FALSE), ModuleID.AUDIO_EFFECT);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, Boolean.FALSE), ModuleID.AUDIO_EFFECT);
                         if (!bool.booleanValue()) {
-                            CommandCenter.m4607a().m4595b(new Command(CommandID.EFFECT_SAVE_RESULT, Boolean.FALSE), ModuleID.AUDIO_EFFECT);
+                            CommandCenter.getInstance().m4595b(new Command(CommandID.EFFECT_SAVE_RESULT, Boolean.FALSE), ModuleID.AUDIO_EFFECT);
                         }
                         if (!bool.booleanValue()) {
                         }
@@ -743,7 +743,7 @@ public class AudioEffectModule extends BaseModule {
                         } else {
                             m8925a = CloudAudioEffectAPI.m8926a(m2954aq.getAccessToken(), m4379a, valueOf.intValue(), songID.longValue(), title, artist, valueOf2.intValue(), str, audioEffectItemData);
                         }
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, m8925a.m8531f()), ModuleID.AUDIO_EFFECT);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, m8925a.m8531f()), ModuleID.AUDIO_EFFECT);
                     }
                 }
             }
@@ -760,14 +760,14 @@ public class AudioEffectModule extends BaseModule {
             } else {
                 this.f5860c.add(mediaItem.getID());
             }
-            CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_EFFECT_ONLINE, mediaItem));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_EFFECT_ONLINE, mediaItem));
         } else {
             if (this.f5859b.contains(mediaItem.getID())) {
                 MediaStorage.deleteMediaItem(sContext, MediaStorage.GROUP_ID_EFFECT_LOCAL, mediaItem.getID());
             } else {
                 this.f5859b.add(mediaItem.getID());
             }
-            CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_EFFECT_LOCAL, mediaItem));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_EFFECT_LOCAL, mediaItem));
         }
         f5858a.unlock();
     }
@@ -790,20 +790,20 @@ public class AudioEffectModule extends BaseModule {
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 /* renamed from: a */
                 public void onRequestSuccess(AudioEffectAddResult audioEffectAddResult) {
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, audioEffectAddResult), ModuleID.AUDIO_EFFECT);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, audioEffectAddResult), ModuleID.AUDIO_EFFECT);
                 }
 
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 /* renamed from: b */
                 public void onRequestFailure(AudioEffectAddResult audioEffectAddResult) {
-                    CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, audioEffectAddResult), ModuleID.AUDIO_EFFECT);
+                    CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, audioEffectAddResult), ModuleID.AUDIO_EFFECT);
                 }
             });
         }
     }
 
     public void audioeffectChanged() {
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_AUDIO_EFFECT_INFO, new Object[0]), ModuleID.AUDIO_EFFECT);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_AUDIO_EFFECT_INFO, new Object[0]), ModuleID.AUDIO_EFFECT);
     }
 
     /* JADX INFO: Access modifiers changed from: private */

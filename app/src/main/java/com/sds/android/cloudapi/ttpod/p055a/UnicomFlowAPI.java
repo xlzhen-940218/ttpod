@@ -26,10 +26,10 @@ public class UnicomFlowAPI {
         GetMethodRequest getMethodRequest = new GetMethodRequest(UnicomFlowResult.class, "http://api.busdh.com/market-api/unicom/flow/open");
         getMethodRequest.m8537b("phone", str);
         getMethodRequest.m8537b("imsi", str4);
-        if (!StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str2)) {
             getMethodRequest.m8537b("verify_code", str2);
         }
-        if (!StringUtils.m8346a(str3)) {
+        if (!StringUtils.isEmpty(str3)) {
             getMethodRequest.m8537b("token", str3);
         }
         return getMethodRequest;
@@ -65,7 +65,7 @@ public class UnicomFlowAPI {
     public static Request<UnicomFlowResult> m8817c(String str, String str2) {
         GetMethodRequest getMethodRequest = new GetMethodRequest(UnicomFlowResult.class, "http://api.busdh.com/market-api/unicom/flow/auth/token");
         getMethodRequest.m8537b("unikey", str);
-        if (!StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str2)) {
             getMethodRequest.m8537b("imsi", str2);
         }
         return getMethodRequest;

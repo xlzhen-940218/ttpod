@@ -4,7 +4,7 @@ import com.sds.android.cloudapi.ttpod.data.PlaylistResult;
 import com.sds.android.cloudapi.ttpod.result.AlbumItemsResult;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 import com.sds.android.cloudapi.ttpod.result.SearchTypeResult;
-import com.sds.android.sdk.core.statistic.SEvent;
+
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.GetMethodRequest;
 import com.sds.android.sdk.lib.request.Request;
@@ -22,17 +22,17 @@ public class OnlineMediaSearchAPI {
 
     /* renamed from: a */
     public static Request<OnlineMediaItemsResult> m8861a(String str, int i, int i2) {
-        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/v2", "songs/search").m8537b("q", str).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2)).m8540a((Map<String, Object>) EnvironmentUtils.C0603b.m8488e());
+        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/v2", "songs/search").m8537b("q", str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2)).m8540a((Map<String, Object>) EnvironmentUtils.C0603b.m8488e());
     }
 
     /* renamed from: a */
     public static Request<OnlineMediaItemsResult> m8860a(String str, int i, int i2, String str2) {
-        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/s/song_with_out").m8537b("q", str).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2)).m8537b("client_id", str2).m8540a((Map<String, Object>) EnvironmentUtils.C0603b.m8488e());
+        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/s/song_with_out").m8537b("q", str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2)).m8537b("client_id", str2).m8540a((Map<String, Object>) EnvironmentUtils.C0603b.m8488e());
     }
 
     /* renamed from: b */
     public static Request<AlbumItemsResult> m8859b(String str, int i, int i2) {
-        return new GetMethodRequest(AlbumItemsResult.class, "http://so.ard.iyyin.com/albums", "search").m8537b("q", str).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2)).m8540a((Map<String, Object>) EnvironmentUtils.C0603b.m8488e());
+        return new GetMethodRequest(AlbumItemsResult.class, "http://so.ard.iyyin.com/albums", "search").m8537b("q", str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2)).m8540a((Map<String, Object>) EnvironmentUtils.C0603b.m8488e());
     }
 
     /* renamed from: b */
@@ -42,7 +42,7 @@ public class OnlineMediaSearchAPI {
 
     /* renamed from: c */
     public static Request<PlaylistResult> m8857c(String str, int i, int i2, String str2) {
-        return new GetMethodRequest(PlaylistResult.class, "http://so.ard.iyyin.com/s/playlist").m8537b("q", str).m8537b(SEvent.FIELD_PAGE, Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2)).m8537b("sugg", str2).m8540a((Map<String, Object>) EnvironmentUtils.C0603b.m8488e());
+        return new GetMethodRequest(PlaylistResult.class, "http://so.ard.iyyin.com/s/playlist").m8537b("q", str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2)).m8537b("sugg", str2).m8540a((Map<String, Object>) EnvironmentUtils.C0603b.m8488e());
     }
 
     /* renamed from: a */

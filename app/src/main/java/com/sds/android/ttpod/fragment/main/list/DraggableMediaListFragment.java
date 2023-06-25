@@ -14,7 +14,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.media.mediastore.ExchangeOrderEntity;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.utils.GroupItemUtils;
@@ -34,7 +33,7 @@ public class DraggableMediaListFragment extends MediaListFragment {
             return;
         }
         if (GroupItemUtils.m8267b(getArguments().getString(AbsMediaListFragment.KEY_GROUP_ID))) {
-            LocalStatistic.m5117ap();
+            //LocalStatistic.m5117ap();
         }
         startActivityForResult(new Intent(getActivity(), FilePickerActivity.class).putExtra(AbsMediaListFragment.KEY_GROUP_ID, getGroupID()), 1);
     }
@@ -93,7 +92,7 @@ public class DraggableMediaListFragment extends MediaListFragment {
                     mediaItemList.set(iArr[0], mediaItem2);
                     mediaItemList.set(iArr[1], mediaItem);
                 }
-                CommandCenter.m4607a().m4606a(new Command(CommandID.COMMIT_EXCHANGE_ORDER, DraggableMediaListFragment.this.getGroupID(), arrayList));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.COMMIT_EXCHANGE_ORDER, DraggableMediaListFragment.this.getGroupID(), arrayList));
                 DraggableMediaListFragment.this.mExchangeOrderList.clear();
                 DraggableMediaListFragment.this.notifyDataSetChanged();
             }

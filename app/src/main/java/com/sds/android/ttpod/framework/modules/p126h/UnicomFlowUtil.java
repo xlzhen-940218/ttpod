@@ -36,23 +36,23 @@ public class UnicomFlowUtil {
 
     /* renamed from: a */
     public static boolean m3957a() {
-        boolean m3231H = Cache.m3218a().m3231H();
-        boolean m3230I = Cache.m3218a().m3230I();
+        boolean m3231H = Cache.getInstance().m3231H();
+        boolean m3230I = Cache.getInstance().m3230I();
         boolean m3946f = m3946f();
-        LogUtils.m8388a(f6301a, "unicom flow isUnicomFlowEnable enable:" + m3231H + "  usable:" + m3230I + "  is unicom sdcard:" + m3946f);
+        LogUtils.debug(f6301a, "unicom flow isUnicomFlowEnable enable:" + m3231H + "  usable:" + m3230I + "  is unicom sdcard:" + m3946f);
         return m3231H && m3230I && m3946f;
     }
 
     /* renamed from: b */
     public static boolean m3951b() {
-        return Cache.m3218a().m3138z() != UnicomFlowStatus.OPEN.ordinal() && m3957a();
+        return Cache.getInstance().m3138z() != UnicomFlowStatus.OPEN.ordinal() && m3957a();
     }
 
     /* renamed from: c */
     public static boolean m3949c() {
-        int m3138z = Cache.m3218a().m3138z();
-        int m3139y = Cache.m3218a().m3139y();
-        LogUtils.m8388a(f6301a, "is need use proxy open status:" + m3138z + "  trial status:" + m3139y);
+        int m3138z = Cache.getInstance().m3138z();
+        int m3139y = Cache.getInstance().m3139y();
+        LogUtils.debug(f6301a, "is need use proxy open status:" + m3138z + "  trial status:" + m3139y);
         return m3138z == UnicomFlowStatus.OPEN.ordinal() || m3138z == UnicomFlowStatus.UNSUBSCRIBE.ordinal() || m3139y == FlowTrialStatus.TRIAL.ordinal();
     }
 
@@ -91,13 +91,13 @@ public class UnicomFlowUtil {
 
     /* renamed from: f */
     public static boolean m3946f() {
-        LogUtils.m8388a(f6301a, "imsi" + EnvironmentUtils.C0604c.m8481b());
-        return EnvironmentUtils.C0604c.m8481b().startsWith("46001") || EnvironmentUtils.C0604c.m8481b().startsWith("46006");
+        LogUtils.debug(f6301a, "imsi" + EnvironmentUtils.C0604c.getSubscriberId());
+        return EnvironmentUtils.C0604c.getSubscriberId().startsWith("46001") || EnvironmentUtils.C0604c.getSubscriberId().startsWith("46006");
     }
 
     /* renamed from: g */
     public static boolean m3945g() {
-        LogUtils.m8388a(f6301a, "is use gprs network type:" + EnvironmentUtils.C0604c.m8476d());
+        LogUtils.debug(f6301a, "is use gprs network type:" + EnvironmentUtils.C0604c.m8476d());
         return EnvironmentUtils.C0604c.m8476d() == 0 || 3 == EnvironmentUtils.C0604c.m8476d() || 1 == EnvironmentUtils.C0604c.m8476d();
     }
 
@@ -124,8 +124,8 @@ public class UnicomFlowUtil {
 
     /* renamed from: l */
     public static String m3940l() {
-        String m3238A = Cache.m3218a().m3238A();
-        if (StringUtils.m8346a(m3238A)) {
+        String m3238A = Cache.getInstance().m3238A();
+        if (StringUtils.isEmpty(m3238A)) {
             return m3939m();
         }
         return m3238A;
@@ -146,11 +146,11 @@ public class UnicomFlowUtil {
                 return "";
             }
             str = telephonyManager.getLine1Number();
-            if (!StringUtils.m8346a(str) && str.length() > 11) {
+            if (!StringUtils.isEmpty(str) && str.length() > 11) {
                 str = str.substring(str.length() - 11);
             }
         }
-        return StringUtils.m8346a(str) ? "" : str;
+        return StringUtils.isEmpty(str) ? "" : str;
     }
 
     /* renamed from: a */
@@ -206,12 +206,12 @@ public class UnicomFlowUtil {
 
     /* renamed from: p */
     public static void m3936p() {
-        Cache.m3218a().m3202a(m3934r());
+        Cache.getInstance().m3202a(m3934r());
     }
 
     /* renamed from: q */
     public static void m3935q() {
-        Cache.m3218a().m3179c(m3934r());
+        Cache.getInstance().m3179c(m3934r());
     }
 
     /* renamed from: r */

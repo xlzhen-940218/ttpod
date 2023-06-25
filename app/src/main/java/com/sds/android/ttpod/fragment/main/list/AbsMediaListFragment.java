@@ -25,8 +25,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.AsyncLoadMediaItemList;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -66,7 +64,7 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
     protected View mListHeaderView;
     protected ActionExpandableListView mListView;
     protected List<MediaItem> mMediaItemList;
-    protected C1626a mMediaListAdapter;
+    protected MediaListAdapter mMediaListAdapter;
     protected PlayStatus mPlayStatus;
     protected StateView mStateView;
 
@@ -92,9 +90,9 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
         Bundle arguments = getArguments();
         if (arguments != null) {
             this.mGroupID = arguments.getString(KEY_GROUP_ID);
-            LogUtils.m8386a(TAG, "onCreate lookStatisticId groupid=%s", this.mGroupID);
+            LogUtils.debug(TAG, "onCreate lookStatisticId groupid=%s", this.mGroupID);
         }
-        this.mMediaListAdapter = new C1626a();
+        this.mMediaListAdapter = new MediaListAdapter();
         this.mPlayStatus = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
     }
 
@@ -162,7 +160,7 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
             public void onItemClick(AdapterView<?> adapterView, View view2, int i, long j) {
                 int m8266a;
                 if (AbsMediaListFragment.this.mMediaListAdapter != null && AbsMediaListFragment.this.mListView != null && (m8266a = ListViewUtils.m8266a(AbsMediaListFragment.this.mListView.getHeaderViewsCount(), i, AbsMediaListFragment.this.mMediaListAdapter.getCount())) > -1) {
-                    OnlineMediaStatistic.m5053a(m8266a + 1);
+                    //OnlineMediaStatistic.m5053a(m8266a + 1);
                     AbsMediaListFragment.this.onMediaItemClicked(AbsMediaListFragment.this.mMediaItemList.get(m8266a), m8266a);
                 }
             }
@@ -172,7 +170,7 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
             public boolean onItemLongClick(AdapterView<?> adapterView, View view2, int i, long j) {
                 int m8266a = ListViewUtils.m8266a(AbsMediaListFragment.this.mListView.getHeaderViewsCount(), i, AbsMediaListFragment.this.mMediaListAdapter.getCount());
                 if (m8266a > -1) {
-                    OnlineMediaStatistic.m5053a(m8266a + 1);
+                    //OnlineMediaStatistic.m5053a(m8266a + 1);
                     AbsMediaListFragment.this.onMediaItemLongClicked(AbsMediaListFragment.this.mMediaItemList.get(m8266a));
                     return true;
                 }
@@ -319,9 +317,9 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
 
     private void updateMediaItemView(MediaItemViewHolder mediaItemViewHolder, int i, boolean z) {
         if (z && i < this.mMediaItemList.size()) {
-            mediaItemViewHolder.m6965b(this.mMediaItemList.get(i));
+            mediaItemViewHolder.updateExpandable(this.mMediaItemList.get(i));
         }
-        mediaItemViewHolder.m6961d().setText(z ? R.string.icon_arrow_top : R.string.icon_arrow_down);
+        mediaItemViewHolder.getMenuView().setText(z ? R.string.icon_arrow_top : R.string.icon_arrow_down);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -369,7 +367,7 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
                 }
             }
         });
-        LocalStatistic.m5145aI();
+        //LocalStatistic.m5145aI();
     }
 
     protected boolean isShowFavoriteCount() {
@@ -393,7 +391,7 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
         while (true) {
             int i2 = i;
             if (it.hasNext()) {
-                i = StringUtils.m8346a(it.next().getLocalDataSource()) ? i2 + 1 : i2;
+                i = StringUtils.isEmpty(it.next().getLocalDataSource()) ? i2 + 1 : i2;
             } else {
                 return i2;
             }
@@ -457,7 +455,7 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
     public void updateAZKeys(List<String> list) {
         DebugUtils.m8426a((Object) list, "AZKeys");
         if (isViewAccessAble()) {
-            LogUtils.m8386a(TAG, "lookLoadData updateAZKeys groupId=%s", this.mGroupID);
+            LogUtils.debug(TAG, "lookLoadData updateAZKeys groupId=%s", this.mGroupID);
             this.mAZSideBar.m1909a(list);
         }
         updateAZSideBar();
@@ -473,8 +471,8 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment$a */
     /* loaded from: classes.dex */
-    public class C1626a extends BaseAdapter {
-        private C1626a() {
+    public class MediaListAdapter extends BaseAdapter {
+        private MediaListAdapter() {
         }
 
         @Override // android.widget.Adapter

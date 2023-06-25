@@ -19,10 +19,8 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.widget.audioeffect.RadialProgressWidget;
@@ -64,11 +62,11 @@ public class BoostFragment extends BaseFragment {
             BoostFragment.this.mImageLimit.toggle();
             BoostFragment.this.judgeEffectIsEdit();
             BoostFragment.this.mLimit = BoostFragment.this.mImageLimit.isChecked();
-            CommandCenter.m4607a().m4596b(new Command(CommandID.SET_BOOSTLIMIT_ENABLED, Boolean.valueOf(BoostFragment.this.mLimit)));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.SET_BOOSTLIMIT_ENABLED, Boolean.valueOf(BoostFragment.this.mLimit)));
             if (!BoostFragment.this.mBoostAjust) {
                 BoostFragment.this.mBoostAjust = true;
-                SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_CHANNEL_LIMIT, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
-                AudioEffectStatistic.m5254r();
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_CHANNEL_LIMIT, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
+                //AudioEffectStatistic.m5254r();
             }
         }
     };
@@ -94,7 +92,7 @@ public class BoostFragment extends BaseFragment {
             BoostFragment.this.judgeEffectIsEdit();
             if (f != BoostFragment.this.mBalance) {
                 BoostFragment.this.mBalance = f;
-                CommandCenter.m4607a().m4605a(new Command(CommandID.SET_CHANNELBALANCE, Float.valueOf(f)), 10);
+                CommandCenter.getInstance().m4605a(new Command(CommandID.SET_CHANNELBALANCE, Float.valueOf(f)), 10);
                 BoostFragment.this.judgeClickEffectBoostChanBalance();
             }
         }
@@ -126,7 +124,7 @@ public class BoostFragment extends BaseFragment {
 
         @Override // java.lang.Runnable
         public void run() {
-            CommandCenter.m4607a().m4596b(new Command(this.f4944a, Integer.valueOf(RadialProgressWidget.m1402c(this.f4945b))));
+            CommandCenter.getInstance().m4596b(new Command(this.f4944a, Integer.valueOf(RadialProgressWidget.m1402c(this.f4945b))));
             if (this.f4944a == CommandID.SET_BASSBOOST) {
                 int unused = BoostFragment.mBass = this.f4945b;
                 BoostFragment.mBassQueue.remove(this);
@@ -247,8 +245,8 @@ public class BoostFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void setVirtualizerValue(int i) {
         if (!this.mBoostAjust) {
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_VIRTUALIZER, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
-            AudioEffectStatistic.m5255q();
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_VIRTUALIZER, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
+            //AudioEffectStatistic.m5255q();
             this.mBoostAjust = true;
         }
         if (mVirtualizerQueue.size() > 0) {
@@ -262,8 +260,8 @@ public class BoostFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void setTrebleValue(int i) {
         if (!this.mBoostAjust) {
-            AudioEffectStatistic.m5256p();
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_TREBLE, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
+            //AudioEffectStatistic.m5256p();
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_TREBLE, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
             this.mBoostAjust = true;
         }
         if (mTrebleQueue.size() > 0) {
@@ -277,8 +275,8 @@ public class BoostFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void setBassValue(int i) {
         if (!this.mBoostAjust) {
-            AudioEffectStatistic.m5253s();
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_BASS, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
+            //AudioEffectStatistic.m5253s();
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_BASS, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
             this.mBoostAjust = true;
         }
         if (mBassQueue.size() > 0) {
@@ -300,7 +298,7 @@ public class BoostFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void judgeClickEffectBoostChanBalance() {
         if (!this.mBoostAjust) {
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_CHANNEL_BALANCE, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_CHANNEL_BALANCE, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
             this.mBoostAjust = true;
         }
     }

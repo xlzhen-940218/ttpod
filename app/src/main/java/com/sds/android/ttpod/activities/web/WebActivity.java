@@ -29,7 +29,7 @@ public class WebActivity extends SlidingClosableActivity {
             bundle2.putAll(intent.getExtras());
             String string = bundle2.getString(WebFragment.EXTRA_TITLE);
             ActionBarController actionBarController = getActionBarController();
-            if (StringUtils.m8346a(string)) {
+            if (StringUtils.isEmpty(string)) {
                 string = "";
             }
             actionBarController.m7193a((CharSequence) string);

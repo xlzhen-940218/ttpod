@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:id="@+id/media_list_item_layout" android:background="@drawable/xml_background_media_group_list_item_transparent_glass" android:layout_width="match_parent" android:layout_height="@dimen/list_item_height">
-    <include layout="@layout/media_list_item_common"/>
-    <com.sds.android.ttpod.widget.mediamenu.LocalMediaMenuLayout android:orientation="horizontal" android:id="@+id/expandable" android:background="@color/bg_expandable_menu" android:visibility="gone" android:layout_width="match_parent" android:layout_height="@dimen/expandable_view_image_height"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/media_list_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
+    android:background="@drawable/xml_background_media_group_list_item_transparent_glass"
+    android:orientation="vertical">
+
+    <include layout="@layout/media_list_item_common" />
+
+    <com.sds.android.ttpod.widget.mediamenu.LocalMediaMenuLayout
+        android:id="@+id/expandable"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/expandable_view_image_height"
+        android:background="@color/bg_expandable_menu"
+        android:orientation="horizontal"
+        android:visibility="gone" />
 </LinearLayout>

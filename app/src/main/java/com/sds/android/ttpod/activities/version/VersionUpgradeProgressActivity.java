@@ -58,13 +58,13 @@ public class VersionUpgradeProgressActivity extends BaseActivity {
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */
     public void updateProgressInfo(DownloadTaskInfo downloadTaskInfo) {
         if (!this.mIsShowThirdpartyProgress) {
-            LogUtils.m8381c(TAG, "updateProgressInfo state = " + downloadTaskInfo.getState());
+            LogUtils.error(TAG, "updateProgressInfo state = " + downloadTaskInfo.getState());
             switch (downloadTaskInfo.getState().intValue()) {
                 case 0:
                 case 1:
                 case 2:
                     this.mTotalFileSize = downloadTaskInfo.getFileLength().intValue();
-                    downloadTaskInfo.setDownloadLength(((Integer) CommandCenter.m4607a().m4602a(new Command(CommandID.GET_TASK_DOWNLOADED_LENGTH, downloadTaskInfo), Integer.class)).intValue());
+                    downloadTaskInfo.setDownloadLength(((Integer) CommandCenter.getInstance().m4602a(new Command(CommandID.GET_TASK_DOWNLOADED_LENGTH, downloadTaskInfo), Integer.class)).intValue());
                     this.mDownloadedSize = downloadTaskInfo.getDownloadLength();
                     this.mDownloadingProgress.setText(String.format(this.mDownloadInfo, TTTextUtils.readableByte(this.mDownloadedSize), TTTextUtils.readableByte(this.mTotalFileSize)));
                     this.mProgressBar.setProgress(downloadTaskInfo.getDownloadProgress().intValue());
@@ -79,7 +79,7 @@ public class VersionUpgradeProgressActivity extends BaseActivity {
 
     public void updateProgressChange(Long l, Long l2) {
         if (this.mIsShowThirdpartyProgress) {
-            LogUtils.m8381c(TAG, "updateProgressInfo thiraparty state receiveDataLen:" + l + "  totalDataLen:" + l2);
+            LogUtils.error(TAG, "updateProgressInfo thiraparty state receiveDataLen:" + l + "  totalDataLen:" + l2);
             this.mTotalFileSize = l2.longValue();
             this.mDownloadedSize = l.longValue();
             this.mDownloadingProgress.setText(String.format(this.mDownloadInfo, TTTextUtils.readableByte(this.mDownloadedSize), TTTextUtils.readableByte(this.mTotalFileSize)));
@@ -114,7 +114,7 @@ public class VersionUpgradeProgressActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.version.VersionUpgradeProgressActivity.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.CANCEL_UPGRADE, new Object[0]));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.CANCEL_UPGRADE, new Object[0]));
                 VersionUpgradeProgressActivity.this.finish();
             }
         });

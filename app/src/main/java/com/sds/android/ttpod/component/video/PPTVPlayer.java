@@ -31,7 +31,7 @@ public class PPTVPlayer extends BasePlayer {
     @Override // com.sds.android.ttpod.component.video.VideoPlayerInterface
     /* renamed from: a */
     public void mo5782a(Context context, String str, String str2) {
-        LogUtils.m8381c("PPTVPlayer", "playVideo url=" + str);
+        LogUtils.error("PPTVPlayer", "playVideo url=" + str);
         Intent intent = new Intent("android.intent.action.VIEW");
         intent.setData(Uri.parse(str));
         intent.setComponent(new ComponentName("com.pplive.androidphone", "com.pplive.androidphone.ui.VideoPlayerFragmentActivity"));

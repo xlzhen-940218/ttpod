@@ -150,7 +150,7 @@ public class MainScene extends Scene implements ActionInstant.InterfaceC1253a, N
         this.f4464g = new Background();
         Bitmap m4789a = c1780b.m4789a(this.f4461b.getResources(), R.raw.background, m7225c, m7224d);
         if (m4789a != null) {
-            LogUtils.m8388a("MainScene", "initChildren background bmpWidth=" + m4789a.getWidth() + " bmpHeight=" + m4789a.getHeight());
+            LogUtils.debug("MainScene", "initChildren background bmpWidth=" + m4789a.getWidth() + " bmpHeight=" + m4789a.getHeight());
         }
         this.f4464g.m6324a(m4789a);
         m6276a(this.f4464g, 0);

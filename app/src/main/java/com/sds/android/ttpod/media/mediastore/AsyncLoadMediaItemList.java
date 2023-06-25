@@ -7,7 +7,7 @@ import android.os.Message;
 import com.sds.android.sdk.lib.util.DebugUtils;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.media.mediastore.MediaStorageImp;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -417,7 +417,7 @@ public class AsyncLoadMediaItemList implements List<MediaItem> {
         extractCursor();
         while (!this.mLoadFinished) {
             if (EnvironmentUtils.C0602a.m8502i()) {
-                LogUtils.m8381c(TAG, "WARNING AsyncLoadMediaItemList Sync Loading...");
+                LogUtils.error(TAG, "WARNING AsyncLoadMediaItemList Sync Loading...");
             }
             try {
                 Thread.sleep(100L);
@@ -463,13 +463,12 @@ public class AsyncLoadMediaItemList implements List<MediaItem> {
     }
 
     private synchronized int map2CursorIndex(int i) {
-        int intValue;
+        int intValue = -1;
         if (i >= 0) {
             if (i < this.mMediaItemIndexArray.size()) {
                 intValue = this.mMediaItemIndexArray.get(i).intValue();
             }
         }
-        intValue = -1;
         return intValue;
     }
 

@@ -88,7 +88,7 @@ public class CommentAdapter extends BaseListAdapter<Notice> {
         Comment originComment = notice.getOriginComment();
         EmoticonConversionUtil m6639b = EmoticonConversionUtil.m6639b();
         String tweet = (comment == null || comment.getUser() == null) ? null : comment.getTweet();
-        if (!StringUtils.m8346a(tweet)) {
+        if (!StringUtils.isEmpty(tweet)) {
             CharSequence m6641a = m6639b.m6641a(m7664a(), tweet);
             if (m6641a == null) {
                 m6641a = "";

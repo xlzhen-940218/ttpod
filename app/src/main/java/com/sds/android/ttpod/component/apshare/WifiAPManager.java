@@ -191,7 +191,7 @@ public final class WifiAPManager {
             f3798p = (String) WifiManager.class.getField("EXTRA_WIFI_AP_STATE").get(WifiManager.class);
             f3799q = (String) WifiManager.class.getField("EXTRA_PREVIOUS_WIFI_AP_STATE").get(WifiManager.class);
         } catch (Exception e) {
-            LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+            LogUtils.error("WifiAPManager", e.getMessage(), e);
         }
         f3784b = f3792j;
         f3785c = f3793k;
@@ -250,7 +250,7 @@ public final class WifiAPManager {
         try {
             return ((Boolean) this.f3802s.getClass().getMethod("getMobileDataEnabled", new Class[0]).invoke(this.f3802s, new Object[0])).booleanValue();
         } catch (Exception e) {
-            LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+            LogUtils.error("WifiAPManager", e.getMessage(), e);
             return false;
         }
     }
@@ -262,7 +262,7 @@ public final class WifiAPManager {
                 this.f3802s.getClass().getMethod("setMobileDataEnabled", Boolean.TYPE).invoke(this.f3802s, Boolean.valueOf(z));
             }
         } catch (Exception e) {
-            LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+            LogUtils.error("WifiAPManager", e.getMessage(), e);
         }
     }
 
@@ -272,11 +272,11 @@ public final class WifiAPManager {
             try {
                 this.f3801r.setWifiEnabled(false);
             } catch (Exception e) {
-                LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+                LogUtils.error("WifiAPManager", e.getMessage(), e);
                 return false;
             }
         }
-        LogUtils.m8379d("WifiAPManager", "set wifi ap configuration: " + m7042b(wifiConfiguration));
+        LogUtils.info("WifiAPManager", "set wifi ap configuration: " + m7042b(wifiConfiguration));
         try {
             return ((Boolean) this.f3801r.getClass().getMethod("setWifiApEnabled", WifiConfiguration.class, Boolean.TYPE).invoke(this.f3801r, wifiConfiguration, Boolean.valueOf(z))).booleanValue();
         } catch (IllegalAccessException e) {
@@ -293,7 +293,7 @@ public final class WifiAPManager {
         try {
             return (WifiConfiguration) this.f3801r.getClass().getMethod("getWifiApConfiguration", new Class[0]).invoke(this.f3801r, new Object[0]);
         } catch (Exception e) {
-            LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+            LogUtils.error("WifiAPManager", e.getMessage(), e);
             return null;
         }
     }
@@ -303,7 +303,7 @@ public final class WifiAPManager {
         try {
             return ((Boolean) this.f3801r.getClass().getMethod("setWifiApConfiguration", WifiConfiguration.class).invoke(this.f3801r, wifiConfiguration)).booleanValue();
         } catch (Exception e) {
-            LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+            LogUtils.error("WifiAPManager", e.getMessage(), e);
             return false;
         }
     }
@@ -313,7 +313,7 @@ public final class WifiAPManager {
         try {
             return ((Boolean) this.f3801r.getClass().getMethod("isWifiApEnabled", new Class[0]).invoke(this.f3801r, new Object[0])).booleanValue();
         } catch (Exception e) {
-            LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+            LogUtils.error("WifiAPManager", e.getMessage(), e);
             return false;
         }
     }
@@ -438,7 +438,7 @@ public final class WifiAPManager {
             Field field = wifiConfiguration2.getClass().getField("ipAssignment");
             field.set(wifiConfiguration2, Enum.valueOf( (Class<Enum>)field.getType().asSubclass(Enum.class), "DHCP"));
         } catch (Exception e) {
-            LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+            LogUtils.error("WifiAPManager", e.getMessage(), e);
         }
         boolean enableNetwork = this.f3801r.enableNetwork(this.f3801r.addNetwork(wifiConfiguration2), true);
         this.f3801r.saveConfiguration();
@@ -457,7 +457,7 @@ public final class WifiAPManager {
             return;
         }
         List<WifiConfiguration> configuredNetworks = this.f3801r.getConfiguredNetworks();
-        if (!StringUtils.m8346a(str) && configuredNetworks != null) {
+        if (!StringUtils.isEmpty(str) && configuredNetworks != null) {
             String str2 = "\"" + str + "\"";
             for (WifiConfiguration wifiConfiguration : configuredNetworks) {
                 if (wifiConfiguration != null && wifiConfiguration.SSID.equals(str2)) {
@@ -522,7 +522,7 @@ public final class WifiAPManager {
                     declaredField6.setAccessible(false);
                 }
             } catch (Exception e) {
-                LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+                LogUtils.error("WifiAPManager", e.getMessage(), e);
             }
         }
     }
@@ -553,7 +553,7 @@ public final class WifiAPManager {
                         declaredField3.setAccessible(false);
                     }
                 } catch (Exception e) {
-                    LogUtils.m8383b("WifiAPManager", e.getMessage(), e);
+                    LogUtils.error("WifiAPManager", e.getMessage(), e);
                 }
             }
         }
@@ -578,7 +578,7 @@ public final class WifiAPManager {
         if (configuredNetworks != null && str != null) {
             for (WifiConfiguration wifiConfiguration : configuredNetworks) {
                 if (wifiConfiguration != null && wifiConfiguration.SSID != null && wifiConfiguration.SSID.contains(str)) {
-                    LogUtils.m8379d("WifiAPManager", "disable: " + wifiConfiguration.SSID);
+                    LogUtils.info("WifiAPManager", "disable: " + wifiConfiguration.SSID);
                     this.f3801r.disableNetwork(wifiConfiguration.networkId);
                     this.f3801r.removeNetwork(wifiConfiguration.networkId);
                 }

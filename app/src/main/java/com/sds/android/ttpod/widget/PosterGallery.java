@@ -9,14 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.sds.android.cloudapi.ttpod.data.RecommendData;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.FindSongNewStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.utils.FindSongConfig;
@@ -67,12 +66,12 @@ public class PosterGallery extends RelativeLayout implements ThemeManager.Interf
             public void mo1554a(View view, int i2) {
                 PosterGallery.this.f7851b.m1725a(i2);
                 if (PosterGallery.this.f7853d != null && i2 < PosterGallery.this.f7853d.size()) {
-                    FindSongNewStatistic.m5229a(((RecommendData) PosterGallery.this.f7853d.get(i2)).getId(), i2 + 1);
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_POST_GALLERY_SCROLL.getValue(), SPage.PAGE_ONLINE_FIND_SONG.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(((RecommendData) PosterGallery.this.f7853d.get(i2)).getId())).append("song_list_name", ((RecommendData) PosterGallery.this.f7853d.get(i2)).getName()).post();
+                   // FindSongNewStatistic.m5229a(((RecommendData) PosterGallery.this.f7853d.get(i2)).getId(), i2 + 1);
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_POST_GALLERY_SCROLL.getValue(), SPage.PAGE_ONLINE_FIND_SONG.getValue()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(((RecommendData) PosterGallery.this.f7853d.get(i2)).getId())).append("song_list_name", ((RecommendData) PosterGallery.this.f7853d.get(i2)).getName()).post();
                 }
             }
         });
-        ViewCompat.setLayerType(this, 1, null);
+        ViewCompat.setLayerType(this, View.LAYER_TYPE_SOFTWARE, null);
     }
 
     /* renamed from: a */
@@ -109,7 +108,7 @@ public class PosterGallery extends RelativeLayout implements ThemeManager.Interf
         roundedImageView.setTag(R.id.view_bind_data, recommendData);
         int m7225c = DisplayUtils.m7225c();
         int m7225c2 = (int) (DisplayUtils.m7225c() * 0.469d);
-        LogUtils.m8388a("PosterGallery", "poster url: " + picUrl + ", size: " + m7225c + "*" + m7225c2);
+        LogUtils.debug("PosterGallery", "poster url: " + picUrl + ", size: " + m7225c + "*" + m7225c2);
         ImageCacheUtils.m4752a(roundedImageView, picUrl, m7225c, m7225c2, (int) R.drawable.img_background_publish_poster_gallery);
         return roundedImageView;
     }

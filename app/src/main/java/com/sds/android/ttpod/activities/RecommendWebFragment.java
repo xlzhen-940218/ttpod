@@ -14,7 +14,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
@@ -22,8 +22,8 @@ import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity;
-import com.sds.android.ttpod.activities.unicomflow.UnicomFlowManager;
-import com.sds.android.ttpod.activities.unicomflow.WebViewProxy;
+
+
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.component.ActionBarController;
 import com.sds.android.ttpod.fragment.base.SlidingClosableFragment;
@@ -69,7 +69,7 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
         public void onDownloadStart(String str, String str2, String str3, String str4, long j) {
             DownloadTaskInfo generateDownloadTaskInfo = RecommendWebFragment.this.generateDownloadTaskInfo(str);
             if (generateDownloadTaskInfo != null) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, generateDownloadTaskInfo));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, generateDownloadTaskInfo));
             }
         }
     };
@@ -114,7 +114,7 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
         this.mWebView.setWebViewClient(new TTWebViewClient(getActivity(), this, this.mErrorPageView) { // from class: com.sds.android.ttpod.activities.RecommendWebFragment.2
             @Override // com.sds.android.ttpod.widget.TTWebViewClient, android.webkit.WebViewClient
             public void onReceivedHttpAuthRequest(WebView webView, HttpAuthHandler httpAuthHandler, String str, String str2) {
-                if (WebViewProxy.m7740a() && HttpRequest.m8704b()) {
+                if ( HttpRequest.m8704b()) {
                     httpAuthHandler.proceed(UnicomFlowModule.USERNAME, UnicomFlowModule.PASSWORD);
                 } else {
                     super.onReceivedHttpAuthRequest(webView, httpAuthHandler, str, str2);
@@ -133,14 +133,11 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
                 downloadManagerFragment.setArguments(bundle);
                 RecommendWebFragment.this.launchFragment(downloadManagerFragment);
                 Preferences.m3039U(false);
-                RecommendWebFragment.this.mDownloadAction.m7153d(R.drawable.img_download_normal);
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_MY_DOWNLOAD.getValue(), 0, SPage.PAGE_MY_DOWNLOAD_DOWNLOADED.getValue());
-                sUserEvent.append(DownloadManagerFragment.DOWNLOAD_TYPE, DownloadTaskInfo.TYPE_APP);
-                sUserEvent.setPageParameter(true);
-                sUserEvent.post();
+                RecommendWebFragment.this.mDownloadAction.setImageResource(R.drawable.img_download_normal);
+
             }
         });
-        UnicomFlowManager.m7760a((Context) getActivity());
+        //UnicomFlowManager.m7760a((Context) getActivity());
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -175,7 +172,7 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
     }
 
     public void updateUnicomFlowStatus(Boolean bool) {
-        UnicomFlowManager.m7760a((Context) getActivity());
+        //UnicomFlowManager.m7760a((Context) getActivity());
     }
 
     public void updateDownloadTaskState(DownloadTaskInfo downloadTaskInfo) {
@@ -184,12 +181,12 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
                 ApkUtils.m8311a(getActivity(), downloadTaskInfo.getSavePath());
             } else if (!mTasks.contains(downloadTaskInfo)) {
                 mTasks.add(downloadTaskInfo);
-                this.mDownloadAction.m7153d(R.drawable.img_download_highlight);
+                this.mDownloadAction.setImageResource(R.drawable.img_download_highlight);
                 Preferences.m3039U(true);
             } else if (mTasks.contains(downloadTaskInfo)) {
                 mTasks.remove(downloadTaskInfo);
                 if (mTasks.size() == 0) {
-                    this.mDownloadAction.m7153d(R.drawable.img_download_normal);
+                    this.mDownloadAction.setImageResource(R.drawable.img_download_normal);
                     Preferences.m3039U(false);
                 }
             }
@@ -202,27 +199,27 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
 
     /* JADX INFO: Access modifiers changed from: private */
     public DownloadTaskInfo generateDownloadTaskInfo(String str) {
-        if (StringUtils.m8346a(str) || MimeTypeMap.getSingleton().getMimeTypeFromExtension("apk") == null) {
+        if (StringUtils.isEmpty(str) || MimeTypeMap.getSingleton().getMimeTypeFromExtension("apk") == null) {
             return null;
         }
         String queryParameter = Uri.parse(str).getQueryParameter("appName");
-        if (!StringUtils.m8346a(queryParameter)) {
+        if (!StringUtils.isEmpty(queryParameter)) {
             if (queryParameter.indexOf(".apk") < 0) {
                 queryParameter = queryParameter + ".apk";
             }
         } else {
-            queryParameter = FileUtils.m8402j(str);
+            queryParameter = FileUtils.getFilename(str);
         }
         String str2 = TTPodConfig.m5285w() + File.separator + queryParameter;
         int intValue = DownloadTaskInfo.TYPE_APP.intValue();
-        if (StringUtils.m8346a(str2) || intValue < 0) {
+        if (StringUtils.isEmpty(str2) || intValue < 0) {
             return null;
         }
         return DownloadUtils.m4760a(str, str2, 0L, queryParameter, Integer.valueOf(intValue), true, OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY);
     }
 
     private boolean isTaobaoProtocol(String str) {
-        return !StringUtils.m8346a(str) && str.startsWith(PROTOCOL_TAOBAO);
+        return !StringUtils.isEmpty(str) && str.startsWith(PROTOCOL_TAOBAO);
     }
 
     private String getUrlByAppName(String str, String str2) {
@@ -238,7 +235,7 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
 
     private String appendAppNameUrl(String str, String str2) {
         StringBuilder sb = new StringBuilder(str);
-        if (!StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str2)) {
             sb.append("&");
             sb.append("appName");
             sb.append("=");
@@ -254,7 +251,7 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
         }
         this.mProgressBar.setVisibility(View.VISIBLE);
         String urlByAppName = getUrlByAppName(str, "gbk");
-        if (StringUtils.m8346a(urlByAppName)) {
+        if (StringUtils.isEmpty(urlByAppName)) {
             this.mWebView.loadUrl(appendAppNameUrl(str, this.mAppName));
             return true;
         }

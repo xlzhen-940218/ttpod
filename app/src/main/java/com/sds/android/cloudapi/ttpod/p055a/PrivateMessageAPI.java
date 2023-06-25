@@ -2,7 +2,7 @@ package com.sds.android.cloudapi.ttpod.p055a;
 
 import com.sds.android.cloudapi.ttpod.result.PrivateMessageContentListResult;
 import com.sds.android.cloudapi.ttpod.result.PrivateMessageOverViewListResult;
-import com.sds.android.sdk.core.statistic.SEvent;
+
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.GetMethodRequest;
 import com.sds.android.sdk.lib.request.PostMethodRequestV2;
@@ -23,7 +23,7 @@ public class PrivateMessageAPI {
 
     /* renamed from: a */
     public static Request<PrivateMessageContentListResult> m8840a(String str, long j, long j2, int i) {
-        Request<PrivateMessageContentListResult> m8537b = new GetMethodRequest(PrivateMessageContentListResult.class, "http://v1.ard.q.itlily.com/privatemsg", "get_pm").m8543a(PrivateMessageAPI.class).m8537b("access_token", str).m8537b(SEvent.FIELD_TO, Long.valueOf(j)).m8537b("size", Integer.valueOf(i));
+        Request<PrivateMessageContentListResult> m8537b = new GetMethodRequest(PrivateMessageContentListResult.class, "http://v1.ard.q.itlily.com/privatemsg", "get_pm").m8543a(PrivateMessageAPI.class).m8537b("access_token", str).m8537b("to", Long.valueOf(j)).m8537b("size", Integer.valueOf(i));
         if (j2 > 0) {
             m8537b.m8537b("last_modified", Long.valueOf(j2));
         }
@@ -32,7 +32,7 @@ public class PrivateMessageAPI {
 
     /* renamed from: a */
     public static Request<BaseResult> m8839a(String str, long j, String str2) {
-        return new PostMethodRequestV2(BaseResult.class, "http://v1.ard.q.itlily.com/privatemsg", "send").m8537b("access_token", str).m8537b(SEvent.FIELD_TO, Long.valueOf(j)).m8537b("message", str2);
+        return new PostMethodRequestV2(BaseResult.class, "http://v1.ard.q.itlily.com/privatemsg", "send").m8537b("access_token", str).m8537b("to", Long.valueOf(j)).m8537b("message", str2);
     }
 
     /* renamed from: a */
@@ -42,6 +42,6 @@ public class PrivateMessageAPI {
 
     /* renamed from: a */
     public static Request<BaseResult> m8842a(String str, long j) {
-        return new PostMethodRequestV2(BaseResult.class, "http://v1.ard.q.itlily.com/privatemsg", "delete_list").m8537b("access_token", str).m8537b(SEvent.FIELD_TO, Long.valueOf(j));
+        return new PostMethodRequestV2(BaseResult.class, "http://v1.ard.q.itlily.com/privatemsg", "delete_list").m8537b("access_token", str).m8537b("to", Long.valueOf(j));
     }
 }

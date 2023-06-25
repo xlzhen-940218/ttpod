@@ -82,7 +82,7 @@ public class SkinInfoActivity extends ActionBarActivity {
 
     protected void loadSkin() {
         this.mSrcSkinPath = parseSkinPath();
-        CommandCenter.m4607a().m4606a(new Command(CommandID.LOAD_SKIN_WITH_PATH, SkinUtils.m4646a(this.mSrcSkinPath, 0)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.LOAD_SKIN_WITH_PATH, SkinUtils.m4646a(this.mSrcSkinPath, 0)));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -151,7 +151,7 @@ public class SkinInfoActivity extends ActionBarActivity {
         int i = 0;
         String m8400l = FileUtils.m8400l(str);
         String m8401k = FileUtils.m8401k(str);
-        String m8399m = FileUtils.m8399m(str);
+        String m8399m = FileUtils.getSuffix(str);
         File file = new File(str);
         while (file.exists()) {
             i++;
@@ -170,7 +170,7 @@ public class SkinInfoActivity extends ActionBarActivity {
     }
 
     private void savePreference() {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.SET_SKIN, this.mDesSkinPath, 0));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SKIN, this.mDesSkinPath, 0));
     }
 
     private String parseSkinPath() {
@@ -184,7 +184,7 @@ public class SkinInfoActivity extends ActionBarActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void applySkinFileAsTTpodSkin() {
-        String m8402j = FileUtils.m8402j(this.mSrcSkinPath);
+        String m8402j = FileUtils.getFilename(this.mSrcSkinPath);
         String m8400l = FileUtils.m8400l(this.mSrcSkinPath);
         String m5294n = TTPodConfig.m5294n();
         final String str = m5294n + File.separator + m8402j;

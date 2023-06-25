@@ -1,7 +1,6 @@
 package com.sds.android.sdk.lib.request;
 
 import com.sds.android.sdk.lib.p059a.HttpRequest;
-import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.util.LogUtils;
 import java.io.File;
 import java.nio.charset.Charset;
@@ -50,8 +49,8 @@ public class PostMethodRequest<R extends BaseResult> extends MethodRequest<R> {
     protected HttpRequest.C0586a mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
         try {
             String m8551a = m8551a(hashMap2, hashMap3);
-            LogUtils.m8386a("MethodRequest", "post url: %s", str);
-            LogUtils.m8386a("MethodRequest", "post argument: %s", m8551a);
+            LogUtils.debug("MethodRequest", "post url: %s", str);
+            LogUtils.debug("MethodRequest", "post argument: %s", m8551a);
             if (this.f2419a.size() > 0) {
                 Charset forName = Charset.forName("UTF-8");
                 MultipartEntity multipartEntity = new MultipartEntity();
@@ -68,7 +67,7 @@ public class PostMethodRequest<R extends BaseResult> extends MethodRequest<R> {
             }
             return HttpRequest.m8714a(str, hashMap, m8551a);
         } catch (Exception e) {
-            LogUtils.m8382b("MethodRequest", "%s create arguments error, cause by %s", e.getMessage());
+            LogUtils.error("MethodRequest", "%s create arguments error, cause by %s", e.getMessage());
             return null;
         }
     }

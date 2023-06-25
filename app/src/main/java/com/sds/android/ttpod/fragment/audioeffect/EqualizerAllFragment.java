@@ -23,10 +23,8 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.EqualizerPreset;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.audiofx.TTEqualizer;
@@ -92,7 +90,7 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(EditTextDialog editTextDialog2) {
                     String obj = editTextDialog2.m6902c(1).m6896d().toString();
-                    if (!StringUtils.m8346a(obj)) {
+                    if (!StringUtils.isEmpty(obj)) {
                         TTEqualizer.Settings settings = (TTEqualizer.Settings) EqualizerAllFragment.this.mCustomEqualizerMap.get(str);
                         m5742d(str);
                         TTEqualizer.Settings settings2 = new TTEqualizer.Settings(obj, settings.getNumberOfBands(), settings.getBandLevels());
@@ -132,13 +130,13 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
         public void m5742d(String str) {
             EqualizerAllFragment.this.mCustomEqualizerMap.remove(str);
             EqualizerAllFragment.this.mEqualizerAllList.remove(str);
-            CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_CUSTOM_EQUALIZER, str));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_CUSTOM_EQUALIZER, str));
         }
 
         /* JADX INFO: Access modifiers changed from: private */
         /* renamed from: a */
         public void m5748a(TTEqualizer.Settings settings) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.SAVE_CUSTOM_EQUALIZER, settings));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.SAVE_CUSTOM_EQUALIZER, settings));
         }
     };
 
@@ -146,7 +144,7 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         if (this.mRootView == null) {
             this.mRootView = layoutInflater.inflate(R.layout.fragment_equalizer_all, (ViewGroup) null);
-            CommandCenter.m4607a().m4596b(new Command(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, new Object[0]));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, new Object[0]));
             AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
             initAllData(m2457s != null ? m2457s.m4421g() : "");
             initListView();
@@ -163,7 +161,7 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
     }
 
     public void updateCustomEqualizerList(List<TTEqualizer.Settings> list) {
-        LogUtils.m8388a(TAG, " updateCustomEqualizerList " + list);
+        LogUtils.debug(TAG, " updateCustomEqualizerList " + list);
         if (isAdded() && list != null) {
             int size = list.size();
             this.mEqualizerAllList.clear();
@@ -216,8 +214,8 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
         this.mEqualizerAllAdapter.m7619a(str);
         if (!this.mIsSelected) {
             this.mIsSelected = true;
-            AudioEffectStatistic.m5263i();
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_ALL_SELECTED, SPage.PAGE_NONE, SPage.PAGE_NONE);
+            //AudioEffectStatistic.m5263i();
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_ALL_SELECTED, SPage.PAGE_NONE, SPage.PAGE_NONE);
         }
     }
 

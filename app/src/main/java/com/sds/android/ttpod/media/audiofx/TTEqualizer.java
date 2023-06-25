@@ -99,7 +99,7 @@ public class TTEqualizer extends TTAudioEffect {
         }
 
         public String toString() {
-            String str = "Equalizer;mName=" + (StringUtils.m8346a(this.mName) ? "自定义/custom" : this.mName) + ";mNumBands=" + Short.toString(this.mNumBands);
+            String str = "Equalizer;mName=" + (StringUtils.isEmpty(this.mName) ? "自定义/custom" : this.mName) + ";mNumBands=" + Short.toString(this.mNumBands);
             for (int i = 0; i < this.mNumBands; i++) {
                 str = str.concat(";band" + (i + 1) + "Level=" + Short.toString(this.mBandLevels[i]));
             }

@@ -31,7 +31,6 @@ import com.sds.android.ttpod.framework.modules.skin.view.Icon;
 import com.sds.android.ttpod.framework.modules.skin.view.LyricView;
 import com.sds.android.ttpod.framework.modules.skin.view.MultiScreenLayout;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.p134a.PlayMode;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -131,13 +130,13 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* renamed from: a */
     private void m6458a(Context context, SkinCache skinCache) {
         ViewEventController mainPanelViewController;
-        if (skinCache == null || skinCache.m3590b() == null) {
+        if (skinCache == null || skinCache.getSerializableSkin() == null) {
             throw new IllegalArgumentException("illegal SkinCache");
         }
         skinCache.m3581g();
-        SPlayerView m3852a = skinCache.m3590b().m3852a(0);
+        SPlayerView m3852a = skinCache.getSerializableSkin().m3852a(0);
         long currentTimeMillis = System.currentTimeMillis();
-        LogUtils.m8388a("PlayerPortraitViewController", "create player views.");
+        LogUtils.debug("PlayerPortraitViewController", "create player views.");
         if (m3852a != null) {
             MultiScreenLayout multiScreenLayout = (MultiScreenLayout) m3852a.m3811c(context, skinCache);
             multiScreenLayout.setDrawingCacheBackgroundColor(ViewCompat.MEASURED_STATE_MASK);
@@ -193,10 +192,10 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
                     }
                 }
                 m6450a(multiScreenLayout, false);
-                LogUtils.m8388a("PlayerPortraitViewController", "player views created. cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
+                LogUtils.debug("PlayerPortraitViewController", "player views created. cost : " + (System.currentTimeMillis() - currentTimeMillis) + " ms");
             }
         }
-        skinCache.m3525j();
+        skinCache.handleClose();
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
@@ -366,9 +365,9 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     private void m6463N() {
         String E = this.f4294aa == null ? null : this.f4294aa.m6548E();
         if ("Visual".equals(E)) {
-            LocalStatistic.m5134aT();
+            //LocalStatistic.m5134aT();
         } else if ("Lyric".equals(E)) {
-            LocalStatistic.m5133aU();
+            //LocalStatistic.m5133aU();
         }
     }
 

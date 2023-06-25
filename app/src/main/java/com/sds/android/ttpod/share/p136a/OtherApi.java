@@ -33,7 +33,7 @@ public class OtherApi extends BaseApi {
     public void m2108a(Context context, String str, String str2, String str3, String str4) {
         Intent type = new Intent("android.intent.action.SEND").setType(str);
         String string = this.f7322a.getString(R.string.share);
-        if (!StringUtils.m8346a(str3)) {
+        if (!StringUtils.isEmpty(str3)) {
             type.putExtra("android.intent.extra.STREAM", Uri.fromFile(new File(str3)));
         }
         type.putExtra("sms_body", str2);

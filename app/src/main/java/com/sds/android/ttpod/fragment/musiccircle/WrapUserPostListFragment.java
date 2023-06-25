@@ -64,7 +64,7 @@ public class WrapUserPostListFragment extends SlidingClosableFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestUserInfo(long j) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_USER_INFO_BY_ID, Preferences.m2954aq().getAccessToken(), Long.valueOf(j)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_USER_INFO_BY_ID, Preferences.m2954aq().getAccessToken(), Long.valueOf(j)));
     }
 
     private void onGetUserInfo(TTPodUser tTPodUser, String str, String str2) {

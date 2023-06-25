@@ -133,7 +133,7 @@ public class FindSongListViewFragment extends FindSongBaseViewFragment implement
 
         /* renamed from: b */
         private void m5646b() {
-            if (SDKVersionUtils.m8371c()) {
+            if (SDKVersionUtils.checkVersionThanAndroid11()) {
                 FindSongListViewFragment.this.mListView.setDivider(m5649a(ThemeManager.m3265a(ThemeElement.COMMON_SEPARATOR), DisplayUtils.m7229a(85), 0));
                 FindSongListViewFragment.this.mListView.setDividerHeight(1);
                 FindSongListViewFragment.this.mListView.setHeaderDividersEnabled(true);

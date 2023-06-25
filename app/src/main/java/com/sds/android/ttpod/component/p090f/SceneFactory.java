@@ -28,12 +28,12 @@ public class SceneFactory {
                 if ("Snow".equals(kXmlParser.getAttributeValue(null, "Name"))) {
                     snowSceneRenderer = m6631a(context, skinCache, kXmlParser);
                 } else {
-                    skinCache.m3525j();
+                    skinCache.handleClose();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
-                skinCache.m3525j();
+                skinCache.handleClose();
             }
         }
         return snowSceneRenderer;

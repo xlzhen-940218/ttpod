@@ -8,10 +8,8 @@ import com.sds.android.ttpod.fragment.skinmanager.SkinCategoryDetailFragment;
 import com.sds.android.ttpod.fragment.skinmanager.ThemeRankFragment;
 import com.sds.android.ttpod.fragment.skinmanager.ThemeRecommendFragment;
 import com.sds.android.ttpod.fragment.skinmanager.ThemeViewHolder;
-import com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment;
 import com.sds.android.ttpod.framework.modules.skin.SkinItem;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 
 /* loaded from: classes.dex */
 public abstract class OnlineThemeFragment extends BaseThemeFragment {
@@ -33,11 +31,11 @@ public abstract class OnlineThemeFragment extends BaseThemeFragment {
 
     private void doStatistic(String str) {
         if (this instanceof ThemeRecommendFragment) {
-            ThemeStatistic.m4899a(str);
+            //ThemeStatistic.m4899a(str);
         } else if (this instanceof ThemeRankFragment) {
-            ThemeStatistic.m4896b(str);
+            //ThemeStatistic.m4896b(str);
         } else if (this instanceof SkinCategoryDetailFragment) {
-            ThemeStatistic.m4894c(str);
+            //ThemeStatistic.m4894c(str);
         }
     }
 
@@ -59,7 +57,7 @@ public abstract class OnlineThemeFragment extends BaseThemeFragment {
             String pictureUrl = skinItem.m3566f().getPictureUrl();
             Bitmap bitmap = null;
             if (!OnlineThemeFragment.this.checkUpdateForSkin(skinItem)) {
-                bitmap = ImageCacheUtils.m4748a(skinItem.m3571b(), this.f5552b, this.f5553c);
+                bitmap = ImageCacheUtils.m4748a(skinItem.getPath(), this.f5552b, this.f5553c);
             }
             if (bitmap != null) {
                 imageView.setImageBitmap(bitmap);
@@ -80,13 +78,13 @@ public abstract class OnlineThemeFragment extends BaseThemeFragment {
         private void m5323d(SkinItem skinItem) {
             switch (skinItem.m3575a()) {
                 case 0:
-                    if (!FileUtils.m8414b(skinItem.m3571b())) {
+                    if (!FileUtils.m8414b(skinItem.getPath())) {
                         skinItem.m3574a(4);
                         return;
                     }
                     return;
                 case 4:
-                    if (FileUtils.m8414b(skinItem.m3571b())) {
+                    if (FileUtils.m8414b(skinItem.getPath())) {
                         skinItem.m3574a(0);
                         return;
                     }

@@ -33,7 +33,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SearchStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.AudioQuality;
@@ -96,7 +95,7 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
         Integer state = downloadTaskInfo.getState();
         if (type == DownloadTaskInfo.TYPE_AUDIO || type == DownloadTaskInfo.TYPE_VIDEO) {
             if (state.intValue() == 4 || state.intValue() == 1) {
-                LogUtils.m8388a(TAG, "updateTaskState " + downloadTaskInfo.getSavePath() + ",state=" + state);
+                LogUtils.debug(TAG, "updateTaskState " + downloadTaskInfo.getSavePath() + ",state=" + state);
                 notifyDataSetChanged();
             }
         }
@@ -107,7 +106,7 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
         if (getSelectItems().size() > 0) {
             showAlbumQualityDialog(this).show();
         }
-        SearchStatistic.m4932g();
+        //SearchStatistic.m4932g();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -120,7 +119,7 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
             this.mCheckBoxAll.setTag(null);
         }
         updateAction();
-        SearchStatistic.m4931h();
+        //SearchStatistic.m4931h();
     }
 
     private void initDatas() {
@@ -211,7 +210,7 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
             /* renamed from: a */
             public void mo5409a(ActionItem actionItem, int i) {
                 AlbumDownloadSelectActivity.this.mSelectedQuality = AudioQuality.values()[actionItem.m7005e()];
-                SearchStatistic.m4949a(AlbumDownloadSelectActivity.this.mSelectedQuality);
+                //SearchStatistic.m4949a(AlbumDownloadSelectActivity.this.mSelectedQuality);
             }
         });
         singleChoiceListDialog.m7261a(R.string.confirm, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity.4
@@ -221,15 +220,15 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
                 if (!AlbumDownloadSelectActivity.this.mOriginQuality.equals(AlbumDownloadSelectActivity.this.mSelectedQuality)) {
                     Preferences.m2889e(AlbumDownloadSelectActivity.this.mSelectedQuality);
                 }
-                CommandCenter.m4607a().m4605a(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, DownloadUtils.m4758a(AlbumDownloadSelectActivity.this.getSelectItems(), Preferences.m3056M()), Boolean.FALSE), 10);
-                SearchStatistic.m4929j();
+                CommandCenter.getInstance().m4605a(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, DownloadUtils.m4758a(AlbumDownloadSelectActivity.this.getSelectItems(), Preferences.m3056M()), Boolean.FALSE), 10);
+                //SearchStatistic.m4929j();
             }
         }, R.string.cancel, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity.5
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
             public void mo2038a(Object obj) {
                 Preferences.m2889e(AlbumDownloadSelectActivity.this.mOriginQuality);
-                SearchStatistic.m4930i();
+                //SearchStatistic.m4930i();
             }
         });
         return singleChoiceListDialog;

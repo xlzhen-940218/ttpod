@@ -11,7 +11,6 @@ import com.sds.android.ttpod.activities.base.SlidingClosableActivity;
 import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 /* loaded from: classes.dex */
@@ -29,11 +28,11 @@ public class DesktopLyricSettingActivity extends SlidingClosableActivity {
             switch (actionItem.m7005e()) {
                 case 0:
                     Preferences.m2879g(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_DESTOP_LYRIC, z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_SHOW_DESTOP_LYRIC, z);
                     return;
                 case 1:
                     Preferences.m2810z(z);
-                    SUserUtils.m4955a(SAction.ACTION_SETTING_DESTOP_LYRIC_LOCK_SELECT, z);
+                    //SUserUtils.m4955a(SAction.ACTION_SETTING_DESTOP_LYRIC_LOCK_SELECT, z);
                     return;
                 default:
                     return;

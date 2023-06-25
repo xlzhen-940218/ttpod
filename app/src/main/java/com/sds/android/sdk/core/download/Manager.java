@@ -1,6 +1,5 @@
 package com.sds.android.sdk.core.download;
 
-import com.sds.android.sdk.core.download.Task;
 import com.sds.android.sdk.lib.p065e.ThreadPool;
 import com.sds.android.sdk.lib.util.StringUtils;
 import java.util.ArrayList;
@@ -36,7 +35,7 @@ public final class Manager {
 
     /* renamed from: a */
     public void m8742a(String str, int i) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             throw new IllegalStateException(str + " is empty!");
         }
         if (m8738c(str) != null) {
@@ -47,7 +46,7 @@ public final class Manager {
 
     /* renamed from: a */
     public boolean m8743a(String str) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             throw new IllegalStateException(str + " is empty!");
         }
         return m8738c(str) != null;

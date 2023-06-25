@@ -3,6 +3,9 @@ package com.sds.android.ttpod.fragment.skinmanager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
+
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.ThemeRankActivity;
@@ -11,10 +14,11 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.SkinItem;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.utils.EntryUtils;
 import com.sds.android.ttpod.widget.StateView;
+import com.voicedragon.musicclient.util.DensityUtil;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Map;
@@ -24,6 +28,7 @@ public class ThemeRecommendFragment extends OnlineThemeFragment {
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment
     protected void initListViewHeader() {
         View inflate = View.inflate(getActivity(), R.layout.fragment_theme_header_layout, null);
+        inflate.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, DensityUtil.dip2px(getActivity(),120)));
         this.mThemeListView.addHeaderView(inflate);
         setHeadToggle(inflate.findViewById(R.id.button_toggle_background_manager), R.drawable.img_beautiful_background, new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.skinmanager.ThemeRecommendFragment.1
             @Override // android.view.View.OnClickListener
@@ -34,7 +39,7 @@ public class ThemeRecommendFragment extends OnlineThemeFragment {
         setHeadToggle(inflate.findViewById(R.id.button_toggle_theme_rank), R.drawable.img_theme_rank, new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.skinmanager.ThemeRecommendFragment.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                ThemeStatistic.m4895c();
+                //ThemeStatistic.m4895c();
                 ThemeRecommendFragment.this.getActivity().startActivity(new Intent(ThemeRecommendFragment.this.getActivity(), ThemeRankActivity.class));
             }
         });
@@ -64,7 +69,7 @@ public class ThemeRecommendFragment extends OnlineThemeFragment {
             if (checkIfReloadData(arrayList)) {
                 setAdapterDataSource(arrayList);
             }
-            CommandCenter.m4607a().m4596b(new Command(CommandID.REQUEST_DOWNLOADED_SKIN_LIST, new Object[0]));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_DOWNLOADED_SKIN_LIST, new Object[0]));
             return;
         }
         this.mStateView.setState(StateView.EnumC2248b.FAILED);
@@ -89,12 +94,12 @@ public class ThemeRecommendFragment extends OnlineThemeFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
     public void onPause() {
         super.onPause();
-        Cache.m3218a().m3203a(getThemeDataList());
+        Cache.getInstance().m3203a(getThemeDataList());
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment
     protected ArrayList<SkinItem> loadDataFromCache() {
-        return Cache.m3218a().m3145s();
+        return Cache.getInstance().m3145s();
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment

@@ -25,7 +25,7 @@ import com.sds.android.cloudapi.ttpod.data.SearchType;
 import com.sds.android.cloudapi.ttpod.data.VIPPolicy;
 import com.sds.android.cloudapi.ttpod.result.AlbumItemsResult;
 import com.sds.android.cloudapi.ttpod.result.SearchTypeResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -51,11 +51,8 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.Pager;
-import com.sds.android.ttpod.framework.p106a.p107a.ListStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SearchStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -123,7 +120,8 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
                     SearchResultFragment.this.mClearImageView.setVisibility(View.GONE);
                     return;
                 case R.id.menu_view /* 2131231121 */:
-                    new DownloadMenuHandler(SearchResultFragment.this.getActivity()).m6927a((MediaItem) view.getTag(), OnlineMediaStatistic.m5043b());
+                    new DownloadMenuHandler(SearchResultFragment.this.getActivity()).m6927a((MediaItem) view.getTag()
+                            ,null);
                     return;
                 case R.id.button_search_clear_history /* 2131232071 */:
                     SearchResultFragment.this.mSearchHistory.m4100a();
@@ -141,7 +139,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
 
         @Override // android.text.TextWatcher
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            if (StringUtils.m8346a(charSequence.toString())) {
+            if (StringUtils.isEmpty(charSequence.toString())) {
                 SearchResultFragment.this.mClearImageView.setVisibility(View.GONE);
                 if (SearchResultFragment.this.mAssociateView != null) {
                     SearchResultFragment.this.mAssociateView.m1431c();
@@ -165,7 +163,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
         public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
             if (i == 3 || i == 2 || i == 0 || i == 4) {
                 SearchResultFragment.this.searchKeyword();
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_BUTTON.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_BUTTON.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
                 return true;
             }
             return false;
@@ -202,7 +200,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
         updateSongListOriginPrefix("search-hotword");
         this.mUserInput = null;
         requestSongList(str);
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_HOT_SEARCH_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_HOT_SEARCH_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).post();
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
@@ -210,13 +208,13 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
         super.onCreate(bundle);
         if (getArguments() != null) {
             this.mWord = getArguments().getString(KEY_SEARCH_WORD);
-            SearchStatistic.m4937c(this.mWord);
+            //SearchStatistic.m4937c(this.mWord);
         }
         String uuid = UUID.randomUUID().toString();
-        SearchStatistic.m4944a(uuid);
-        ListStatistic.m5202b(uuid);
-        ListStatistic.m5205a(this.mWord);
-        ListStatistic.m5211a(0);
+        //SearchStatistic.m4944a(uuid);
+        //ListStatistic.m5202b(uuid);
+        //ListStatistic.m5205a(this.mWord);
+        //ListStatistic.m5211a(0);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -247,9 +245,9 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onDestroy() {
         super.onDestroy();
-        ListStatistic.m5202b(null);
-        ListStatistic.m5205a((String) null);
-        ListStatistic.m5211a(-1);
+        //ListStatistic.m5202b(null);
+        //ListStatistic.m5205a((String) null);
+        //ListStatistic.m5211a(-1);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -262,7 +260,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
             /* renamed from: a */
             public void mo5433a(ActionBarController.C1070a c1070a) {
                 SearchResultFragment.this.searchKeyword();
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_BUTTON.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_BUTTON.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
             }
         });
         this.mSearchInputLayout = actionBarController.m7201a();
@@ -308,14 +306,14 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
                 SearchResultFragment.this.updateSongListOriginPrefix("search-associativeWord");
                 SearchResultFragment.this.requestSongList(str);
                 SearchResultFragment.this.mAssociateView.m1431c();
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RELATED_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RELATED_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
             }
         });
         return this.mRootView;
     }
 
     private void flushHotwordView() {
-        List<Billboards> m3140x = Cache.m3218a().m3140x();
+        List<Billboards> m3140x = Cache.getInstance().m3140x();
         this.mTvHotwordHint.setVisibility((m3140x == null || m3140x.isEmpty()) ? View.GONE : View.VISIBLE);
         this.mHotwordView.setRows(2);
         this.mHotwordView.setContent(m3140x);
@@ -349,7 +347,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
                     SearchResultFragment.this.updateSongListOriginPrefix("search-historyWord");
                     SearchResultFragment.this.mUserInput = null;
                     SearchResultFragment.this.requestSongList(SearchResultFragment.this.mHistoryListAdapter.getItem(m8266a));
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_HISTORY_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_HISTORY_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
                 }
             }
         });
@@ -366,15 +364,15 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
                 SearchResultFragment.this.getSongFragment().requestSongList(SearchResultFragment.this.mWord, i);
             }
         });
-        if (StringUtils.m8346a(this.mWord)) {
+        if (StringUtils.isEmpty(this.mWord)) {
             showSearchResult(false);
             showHistory();
         }
         if (!sGotBillboard) {
             sGotBillboard = true;
-            CommandCenter.m4607a().m4606a(new Command(CommandID.START_SEARCH_BILLBOARD, 20));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_BILLBOARD, 20));
         }
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_ACCESS_SEARCH_PAGE.getValue(), 0, SPage.PAGE_SEARCH_HOME.getValue()).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_ACCESS_SEARCH_PAGE.getValue(), 0, SPage.PAGE_SEARCH_HOME.getValue()).post();
     }
 
     private void flushHistoryHintView() {
@@ -417,7 +415,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadFinished() {
         super.onLoadFinished();
-        if (StringUtils.m8346a(this.mWord)) {
+        if (StringUtils.isEmpty(this.mWord)) {
             this.mInputEditText.setText(this.mWord);
         } else {
             this.mSearchHistory.m4095a( this.mWord);
@@ -436,7 +434,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     }
 
     public void updateSongSearchFinished(Integer num, Integer num2, List list, String str) {
-        LogUtils.m8388a(TAG, "loadPictureAfterSearchFinished " + list.size());
+        LogUtils.debug(TAG, "loadPictureAfterSearchFinished " + list.size());
         if (isAdded()) {
             this.mIsSearching = false;
         }
@@ -463,12 +461,12 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
 
     /* JADX INFO: Access modifiers changed from: private */
     public void updateAlbumOriginPrefix(String str) {
-        SearchStatistic.m4939b(str);
+        //SearchStatistic.m4939b(str);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void updateSongListOriginPrefix(String str) {
-        SearchStatistic.m4939b(str);
+        //SearchStatistic.m4939b(str);
     }
 
     public void updateAssociateSearchFinished(List list) {
@@ -479,7 +477,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
 
     public void updateBillboardSearchFinished(List list) {
         if (list != null && !list.isEmpty()) {
-            Cache.m3218a().m3178c(list);
+            Cache.getInstance().m3178c(list);
             flushHotwordView();
             return;
         }
@@ -528,19 +526,19 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     public void searchAssociate(String str) {
         if (!this.mIsSearching) {
             this.mUserInput = str;
-            LogUtils.m8388a(TAG, "set mUserInput=" + str);
+            LogUtils.debug(TAG, "set mUserInput=" + str);
             this.mIsShowAssociate = true;
-            CommandCenter.m4607a().m4606a(new Command(CommandID.START_SEARCH_ASSOCIATE, str));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_ASSOCIATE, str));
         }
     }
 
     private void showAssociate(List<String> list) {
-        if (!this.mIsSearching && this.mIsShowAssociate && !StringUtils.m8346a(this.mInputEditText.getText().toString())) {
+        if (!this.mIsSearching && this.mIsShowAssociate && !StringUtils.isEmpty(this.mInputEditText.getText().toString())) {
             boolean z = (list == null || list.isEmpty()) ? false : true;
             Object[] objArr = new Object[2];
             objArr[0] = Boolean.valueOf(z);
             objArr[1] = Integer.valueOf(list != null ? list.size() : 0);
-            LogUtils.m8386a(TAG, "showAssociate isEmpty=%b %d", objArr);
+            LogUtils.debug(TAG, "showAssociate isEmpty=%b %d", objArr);
             if (z) {
                 this.mAssociateView.m1434a(list, false);
                 if (!this.mAssociateView.isShowing()) {
@@ -554,16 +552,16 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     }
 
     private void requestSongList(String str, int i) {
-        LogUtils.m8388a(TAG, "requestSongList word: " + str + ",page: " + i);
+        LogUtils.debug(TAG, "requestSongList word: " + str + ",page: " + i);
         String trim = str.trim();
-        if (!this.mIsSearching && !StringUtils.m8346a(trim)) {
+        if (!this.mIsSearching && !StringUtils.isEmpty(trim)) {
             this.mIsSearching = true;
             this.mIsShowAssociate = false;
             this.mWord = trim;
-            SearchStatistic.m4937c(trim);
+            //SearchStatistic.m4937c(trim);
             String uuid = UUID.randomUUID().toString();
-            SearchStatistic.m4944a(uuid);
-            ListStatistic.m5202b(uuid);
+            //SearchStatistic.m4944a(uuid);
+            //ListStatistic.m5202b(uuid);
             this.mPager.m4663c(i);
             this.mInputEditText.setText(trim);
             this.mInputEditText.setSelection(trim.length());
@@ -572,7 +570,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
             this.mSearchHistory.m4095a(this.mWord);
             this.mHistoryListAdapter.notifyDataSetChanged();
             hideSoftInputFromWindow();
-            CommandCenter.m4607a().m4606a(new Command(CommandID.GET_SEARCH_TYPES, new Object[0]));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SEARCH_TYPES, new Object[0]));
         }
     }
 
@@ -631,8 +629,8 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     public void onResume() {
         super.onResume();
         getView().setKeepScreenOn(Preferences.m2813y());
-        OnlineMediaStatistic.m5045a(getOrigin());
-        OnlineMediaStatistic.m5054a();
+        //OnlineMediaStatistic.m5045a(getOrigin());
+        //OnlineMediaStatistic.m5054a();
     }
 
     @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
@@ -698,8 +696,8 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     }
 
     private void tabFragmentSearch(String str) {
-        SearchStatistic.m4937c(str);
-        ListStatistic.m5205a(str);
+        //SearchStatistic.m4937c(str);
+        //ListStatistic.m5205a(str);
         Fragment currentFragment = currentFragment();
         if (currentFragment instanceof SearchFragment.InterfaceC1490a) {
             ((SearchFragment.InterfaceC1490a) currentFragment).search(str, this.mUserInput);

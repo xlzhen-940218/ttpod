@@ -80,7 +80,7 @@ public class ReceiveSongClient {
         try {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
             int parseInt = Integer.parseInt(bufferedReader.readLine());
-            LogUtils.m8379d("ReceiveSongClient", "count = " + parseInt);
+            LogUtils.info("ReceiveSongClient", "count = " + parseInt);
             Message obtainMessage = this.f3721c.obtainMessage();
             obtainMessage.what = ApShareReceiveFragment.WHAT_GET_SHARED_LIST_COMPLETE;
             obtainMessage.obj = Integer.valueOf(parseInt);
@@ -99,7 +99,7 @@ public class ReceiveSongClient {
                 }
             }
         } catch (Exception e) {
-            LogUtils.m8383b("ReceiveSongClient", e.getMessage(), e);
+            LogUtils.error("ReceiveSongClient", e.getMessage(), e);
         }
     }
 
@@ -156,7 +156,7 @@ public class ReceiveSongClient {
                         fileOutputStream = fileOutputStream3;
                         file = file2;
                         try {
-                            LogUtils.m8383b("ReceiveSongClient", e.getMessage(), e);
+                            LogUtils.error("ReceiveSongClient", e.getMessage(), e);
                             if (this.f3720b != null && j == m7119a.getSize()) {
                                 this.f3721c.post(new Runnable() { // from class: com.sds.android.ttpod.component.apshare.e.3
                                     @Override // java.lang.Runnable
@@ -165,10 +165,10 @@ public class ReceiveSongClient {
                                     }
                                 });
                                 MediaItem m4712a = MediaItemUtils.m4712a(m7119a.getLocalDataSource());
-                                CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a));
-                                CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a));
+                                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a));
+                                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a));
                             } else if (this.f3720b != null) {
-                                LogUtils.m8379d("ReceiveSongClient", "[apshare]-transfer canceled");
+                                LogUtils.info("ReceiveSongClient", "[apshare]-transfer canceled");
                                 if (this.f3720b != null) {
                                     this.f3721c.post(new Runnable() { // from class: com.sds.android.ttpod.component.apshare.e.4
                                         @Override // java.lang.Runnable
@@ -184,7 +184,7 @@ public class ReceiveSongClient {
                                     fileOutputStream.close();
                                     return;
                                 } catch (Exception e2) {
-                                    LogUtils.m8383b("ReceiveSongClient", e2.getMessage(), e2);
+                                    LogUtils.error("ReceiveSongClient", e2.getMessage(), e2);
                                     return;
                                 }
                             }
@@ -201,10 +201,10 @@ public class ReceiveSongClient {
                                     }
                                 });
                                 MediaItem m4712a2 = MediaItemUtils.m4712a(m7119a.getLocalDataSource());
-                                CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a2));
-                                CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a2));
+                                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a2));
+                                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a2));
                             } else if (this.f3720b != null) {
-                                LogUtils.m8379d("ReceiveSongClient", "[apshare]-transfer canceled");
+                                LogUtils.info("ReceiveSongClient", "[apshare]-transfer canceled");
                                 if (this.f3720b != null) {
                                     this.f3721c.post(new Runnable() { // from class: com.sds.android.ttpod.component.apshare.e.4
                                         @Override // java.lang.Runnable
@@ -219,7 +219,7 @@ public class ReceiveSongClient {
                                 try {
                                     fileOutputStream2.close();
                                 } catch (Exception e3) {
-                                    LogUtils.m8383b("ReceiveSongClient", e3.getMessage(), e3);
+                                    LogUtils.error("ReceiveSongClient", e3.getMessage(), e3);
                                 }
                             }
                             throw th;
@@ -238,7 +238,7 @@ public class ReceiveSongClient {
                     }
                 } while (read > 0);
                 fileOutputStream3.flush();
-                LogUtils.m8379d("ReceiveSongClient", "=== 下载完成..." + m7119a.getTitle() + ", transfer size = " + j2 + " === ");
+                LogUtils.info("ReceiveSongClient", "=== 下载完成..." + m7119a.getTitle() + ", transfer size = " + j2 + " === ");
                 if (this.f3720b != null && j2 == m7119a.getSize()) {
                     this.f3721c.post(new Runnable() { // from class: com.sds.android.ttpod.component.apshare.e.3
                         @Override // java.lang.Runnable
@@ -247,10 +247,10 @@ public class ReceiveSongClient {
                         }
                     });
                     MediaItem m4712a3 = MediaItemUtils.m4712a(m7119a.getLocalDataSource());
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a3));
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a3));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a3));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a3));
                 } else if (this.f3720b != null) {
-                    LogUtils.m8379d("ReceiveSongClient", "[apshare]-transfer canceled");
+                    LogUtils.info("ReceiveSongClient", "[apshare]-transfer canceled");
                     if (this.f3720b != null) {
                         this.f3721c.post(new Runnable() { // from class: com.sds.android.ttpod.component.apshare.e.4
                             @Override // java.lang.Runnable
@@ -265,7 +265,7 @@ public class ReceiveSongClient {
                     try {
                         fileOutputStream3.close();
                     } catch (Exception e4) {
-                        LogUtils.m8383b("ReceiveSongClient", e4.getMessage(), e4);
+                        LogUtils.error("ReceiveSongClient", e4.getMessage(), e4);
                     }
                 }
             } catch (Exception e5) {
@@ -342,7 +342,7 @@ public class ReceiveSongClient {
                 public void mo7059a(InputStream inputStream) {
                     try {
                         String readLine = new BufferedReader(new InputStreamReader(inputStream)).readLine();
-                        LogUtils.m8379d("ReceiveSongClient", "msg: " + readLine);
+                        LogUtils.info("ReceiveSongClient", "msg: " + readLine);
                         if (readLine.equals("black_list")) {
                             ReceiveSongClient.this.m7080d();
                         }
@@ -363,7 +363,7 @@ public class ReceiveSongClient {
 
     /* renamed from: a */
     public void m7096a() {
-        LogUtils.m8379d("ReceiveSongClient", "is in black list " + this.f3725g);
+        LogUtils.info("ReceiveSongClient", "is in black list " + this.f3725g);
         if (!this.f3725g) {
             this.f3723e.execute(new Runnable() { // from class: com.sds.android.ttpod.component.apshare.e.6
                 @Override // java.lang.Runnable
@@ -442,7 +442,7 @@ public class ReceiveSongClient {
                         });
                         ReceiveSongClient.this.f3724f.m7060b();
                         ReceiveSongClient.this.f3724f = null;
-                        LogUtils.m8379d("ReceiveSongClient", "client socket closed");
+                        LogUtils.info("ReceiveSongClient", "client socket closed");
                     }
                 }
             }).start();
@@ -455,7 +455,7 @@ public class ReceiveSongClient {
         PrintWriter printWriter = new PrintWriter(outputStream);
         printWriter.print(str + "\r\n");
         printWriter.flush();
-        LogUtils.m8379d("ReceiveSongClient", "client send message: " + str + ", tid = " + Process.myTid());
+        LogUtils.info("ReceiveSongClient", "client send message: " + str + ", tid = " + Process.myTid());
     }
 
     /* JADX INFO: Access modifiers changed from: private */

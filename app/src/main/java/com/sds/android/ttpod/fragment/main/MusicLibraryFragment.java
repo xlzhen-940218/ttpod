@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import com.sds.android.cloudapi.ttpod.result.OnlineMusicCategoryResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
-import com.sds.android.sdk.core.statistic.StatisticHelper;
+
+
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
@@ -33,10 +33,8 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import com.sds.android.ttpod.widget.NetworkLoadView;
 import com.sds.android.ttpod.widget.SimpleSongView;
@@ -77,7 +75,7 @@ public class MusicLibraryFragment extends BaseFragment implements OnPageSelected
         @Override // com.sds.android.ttpod.widget.NetworkLoadView.InterfaceC2206b
         /* renamed from: a */
         public void mo1678a() {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.GET_MUSIC_CATEGORY, 1, 15));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_MUSIC_CATEGORY, 1, 15));
         }
     };
     private SimpleSongView.InterfaceC2231b mSongCategoryClickListener = new SimpleSongView.InterfaceC2231b() { // from class: com.sds.android.ttpod.fragment.main.MusicLibraryFragment.2
@@ -192,7 +190,7 @@ public class MusicLibraryFragment extends BaseFragment implements OnPageSelected
     public void processFindSongCategoryClick(FindSongGridSectionListAdapter.C0963a<OnlineMusicCategoryResult.CategoryData> c0963a) {
         SAction sAction;
         int i;
-        MusicLibraryStatistic.m5059d();
+        //MusicLibraryStatistic.m5059d();
         String m7617c = c0963a.m7617c();
         SAction sAction2 = SAction.ACTION_LIBRARY_OTHERS;
         if (StringUtils.m8344a(m7617c, CATEGORY_SINGER)) {
@@ -214,7 +212,7 @@ public class MusicLibraryFragment extends BaseFragment implements OnPageSelected
         } else {
             if (StringUtils.m8344a(m7617c, CATEGORY_CMMUSIC)) {
                 if (CMMusicUtils.m7276a()) {
-                    StatisticUtils.m4917a(346, (int) StatisticHelper.DELAY_SEND, 1L);
+                    //StatisticUtils.m4917a(346, (int) 65537, 1L);
                     getActivity().startActivity(new Intent(getActivity(), ListenContentActivity.class));
                     sAction = sAction2;
                     i = 0;
@@ -225,12 +223,12 @@ public class MusicLibraryFragment extends BaseFragment implements OnPageSelected
             sAction = sAction2;
             i = 0;
         }
-        MusicLibraryStatistic.m5063b(i, m7617c);
+        //MusicLibraryStatistic.m5063b(i, m7617c);
         Integer num = this.mStatisticMap.get(m7617c);
         int intValue = num != null ? num.intValue() : 0;
         if (intValue > 0) {
-            StatisticUtils.m4917a(intValue, (int) StatisticHelper.DELAY_SEND, 1L);
-            new SUserEvent("PAGE_CLICK", sAction.getValue(), String.valueOf(SPage.PAGE_MUSIC_LIBRARY.getValue()), m7617c).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(i)).post();
+            //StatisticUtils.m4917a(intValue, (int) 65537, 1L);
+            //new SUserEvent("PAGE_CLICK", sAction.getValue(), String.valueOf(SPage.PAGE_MUSIC_LIBRARY.getValue()), m7617c).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(i)).post();
         }
     }
 

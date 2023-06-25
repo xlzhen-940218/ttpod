@@ -99,7 +99,7 @@ public class SceneRecommendHeader {
 
     /* renamed from: a */
     public void m5486a(String str, String str2) {
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             str = this.f5303a.getString(R.string.post_detail_header_tweet_default);
         }
         m5487a(str);

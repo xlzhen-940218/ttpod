@@ -4,7 +4,7 @@ import android.os.Handler;
 
 import com.sds.android.cloudapi.ttpod.p055a.UrlList;
 import com.sds.android.cloudapi.ttpod.result.FindSongModuleResult;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.DataListResult;
@@ -37,16 +37,16 @@ public class ModuleRequestHelper {
             public void run() {
                 BaseResult m4562a = null;
                 BaseResult m4562a1;
-                ValidityResult m3207a = Cache.m3218a().m3207a(m4084a);
+                ValidityResult m3207a = Cache.getInstance().m3207a(m4084a);
                 if (ModuleRequestHelper.m4081a(m3207a, EnvironmentUtils.C0604c.m8474e())) {
                     long currentTimeMillis2 = System.currentTimeMillis();
                     m4562a1 = request.m8531f();
-                    LogUtils.m8384b("ModuleRequestHelper", "request.execute cost--> " + (System.currentTimeMillis() - currentTimeMillis2) + "ms  " + request.m8532e());
-                    new SSystemEvent("SYS_PAGE_REQUEST", "finish").append("uri", request.m8532e()).append("duration", Long.valueOf(System.currentTimeMillis() - currentTimeMillis)).append("error_code", Integer.valueOf(m4562a1.getCode())).post();
+                    LogUtils.warning("ModuleRequestHelper", "request.execute cost--> " + (System.currentTimeMillis() - currentTimeMillis2) + "ms  " + request.m8532e());
+                    //new //SSystemEvent("SYS_PAGE_REQUEST", "finish").append("uri", request.m8532e()).append("duration", Long.valueOf(System.currentTimeMillis() - currentTimeMillis)).append("error_code", Integer.valueOf(m4562a1.getCode())).post();
                     if (!ModuleRequestHelper.m4085a(m4562a1)) {
                         boolean z = (m4562a1 instanceof DataListResult) && ListUtils.m4718a(((DataListResult) m4562a1).getDataList());
                         if (m4562a1.isSuccess() && !z) {
-                            Cache.m3218a().m3206a(m4084a, new ValidityResult(m4562a1, m4084a));
+                            Cache.getInstance().m3206a(m4084a, new ValidityResult(m4562a1, m4084a));
                         }
                     }
                 } else {
@@ -61,9 +61,9 @@ public class ModuleRequestHelper {
                     @Override // java.lang.Runnable
                     public void run() {
                         if (str == null) {
-                            CommandCenter.m4607a().m4604a(new Command(commandID, finalM4562a), moduleID);
+                            CommandCenter.getInstance().m4604a(new Command(commandID, finalM4562a), moduleID);
                         } else {
-                            CommandCenter.m4607a().m4604a(new Command(commandID, finalM4562a, str), moduleID);
+                            CommandCenter.getInstance().m4604a(new Command(commandID, finalM4562a, str), moduleID);
                         }
                     }
                 });

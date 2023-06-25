@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.sds.android.sdk.core.statistic.HttpClientProxy;
+
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
@@ -38,7 +38,6 @@ public class NetworkBroadcast extends BroadcastReceiver {
     /* renamed from: b */
     private void m2242b() {
         boolean m3945g = UnicomFlowUtil.m3945g();
-        HttpClientProxy.instance().setIsCalculateFlow(m3945g);
         HttpRequest.m8702b(m3945g);
     }
 
@@ -47,7 +46,7 @@ public class NetworkBroadcast extends BroadcastReceiver {
         if (this.f7244b != null) {
             String str = UnicomFlowUtil.m3947e() ? UnicomFlowModule.PROXY_WAP_HOST : UnicomFlowModule.PROXY_HOST;
             boolean m3948d = UnicomFlowUtil.m3948d();
-            LogUtils.m8388a(f7243a, "network change check unicom flow status isUseProxy:" + m3948d);
+            LogUtils.debug(f7243a, "network change check unicom flow status isUseProxy:" + m3948d);
             this.f7244b.m2804a(str, UnicomFlowModule.HTTP_PROXY_PORT.intValue(), UnicomFlowModule.TCP_PROXY_PORT.intValue(), UnicomFlowModule.USERNAME, UnicomFlowModule.PASSWORD, m3948d);
         }
     }

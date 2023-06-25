@@ -12,7 +12,7 @@ import com.sds.android.ttpod.fragment.settings.feedback.FeedbackListFragment;
 import com.sds.android.ttpod.framework.p106a.p107a.ActionPage;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +75,6 @@ public class HelpFeedbackActivity extends SlidingPagerActivity {
     @Override // com.sds.android.ttpod.activities.base.SlidingPagerActivity, androidx.viewpager.widget.ViewPager.OnPageChangeListener
     public void onPageSelected(int i) {
         super.onPageSelected(i);
-        SUserUtils.m4956a(SLIST.get(i).m5275a(), SLIST.get(i).m5274b());
+        //SUserUtils.m4956a(SLIST.get(i).m5275a(), SLIST.get(i).m5274b());
     }
 }

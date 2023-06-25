@@ -25,7 +25,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.mediastore.GroupItem;
 import com.sds.android.ttpod.media.mediastore.GroupType;
@@ -51,11 +50,11 @@ public class GroupListFragment extends BaseGroupListFragment implements IOrderAb
         Bundle arguments = getArguments();
         DebugUtils.m8426a(arguments, "bundle");
         String string = arguments.getString(KEY_GROUP_TYPE);
-        if (StringUtils.m8346a(string)) {
+        if (StringUtils.isEmpty(string)) {
             throw new IllegalArgumentException("groupType must not be empty");
         }
         this.mGroupType = GroupType.valueOf(string);
-        LogUtils.m8386a(TAG, "onCreate lookStatisticId grouptype=%s", this.mGroupType.name());
+        LogUtils.debug(TAG, "onCreate lookStatisticId grouptype=%s", this.mGroupType.name());
         if (this.mGroupType != GroupType.CUSTOM_LOCAL && this.mGroupType != GroupType.CUSTOM_ALL && this.mGroupType != GroupType.DEFAULT_ALBUM && this.mGroupType != GroupType.DEFAULT_ARTIST && this.mGroupType != GroupType.DEFAULT_FOLDER && this.mGroupType != GroupType.DEFAULT_GENRE) {
             throw new IllegalArgumentException("GroupType must be GroupType.CUSTOM_LOCAL, GroupType.DEFAULT_ARTIST, GroupType.DEFAULT_ALBUM, GroupType.DEFAULT_FOLDER or GroupType.DEFAULT_GENRE");
         }
@@ -173,9 +172,9 @@ public class GroupListFragment extends BaseGroupListFragment implements IOrderAb
     @Override // com.sds.android.ttpod.fragment.main.list.BaseGroupListFragment
     protected void onReloadData() {
         if (MediaStorage.MEDIA_ORDER_BY_AMOUNT.equals(Preferences.m3016a(this.mGroupType))) {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST_BY_AMOUNT_ORDER, this.mGroupType));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST_BY_AMOUNT_ORDER, this.mGroupType));
         } else {
-            CommandCenter.m4607a().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, this.mGroupType));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, this.mGroupType));
         }
     }
 
@@ -202,7 +201,7 @@ public class GroupListFragment extends BaseGroupListFragment implements IOrderAb
     public void onGroupItemClicked(GroupItem groupItem) {
         C1641a c1641a;
         if (isLocalGroup() && (c1641a = CLICK_ACTION_MAP.get(this.mGroupType.ordinal())) != null) {
-            SUserUtils.m4956a(c1641a.f5370a, c1641a.f5372c);
+            //SUserUtils.m4956a(c1641a.f5370a, c1641a.f5372c);
         }
         launchSubMediaListFragment((String) TTTextUtils.validateString(getActivity(), groupItem.getName()), groupItem.getGroupID());
     }
@@ -236,7 +235,7 @@ public class GroupListFragment extends BaseGroupListFragment implements IOrderAb
     @Override // com.sds.android.ttpod.fragment.main.list.ISearchAble
     public void search() {
         if (CLICK_ACTION_MAP.get(this.mGroupType.ordinal()) != null) {
-            SUserUtils.m4956a(SAction.ACTION_LOCAL_SEARCH, SPage.PAGE_NONE);
+            //SUserUtils.m4956a(SAction.ACTION_LOCAL_SEARCH, SPage.PAGE_NONE);
         }
         startActivityForResult(new Intent(getActivity(), MediaGroupSearchActivity.class).putExtra(KEY_GROUP_TYPE, this.mGroupType.name()).putExtra("origin", groupTypeToName()), 1);
     }
@@ -266,7 +265,7 @@ public class GroupListFragment extends BaseGroupListFragment implements IOrderAb
         ArrayList arrayList = new ArrayList(list.size());
         for (GroupItem groupItem : list) {
             if (this.mGroupType == GroupType.DEFAULT_FOLDER) {
-                arrayList.add(FileUtils.m8402j(groupItem.getName()));
+                arrayList.add(FileUtils.getFilename(groupItem.getName()));
             } else {
                 arrayList.add(groupItem.getName());
             }
@@ -277,7 +276,7 @@ public class GroupListFragment extends BaseGroupListFragment implements IOrderAb
     private void launchSubMediaListFragment(String str, String str2) {
         Bundle bundle = new Bundle();
         if (this.mGroupType == GroupType.DEFAULT_FOLDER) {
-            str = FileUtils.m8402j(str);
+            str = FileUtils.getFilename(str);
         }
         bundle.putString(SubMediaListFragment.KEY_GROUP_NAME, str);
         bundle.putString(AbsMediaListFragment.KEY_GROUP_ID, str2);
@@ -304,7 +303,7 @@ public class GroupListFragment extends BaseGroupListFragment implements IOrderAb
         Preferences.m3015a(this.mGroupType, str);
         SAction orderAction = orderAction(i);
         if (orderAction != null) {
-            SUserUtils.m4956a(orderAction, SPage.PAGE_NONE);
+            //SUserUtils.m4956a(orderAction, SPage.PAGE_NONE);
         }
         onReloadData();
     }

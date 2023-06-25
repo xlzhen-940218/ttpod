@@ -13,6 +13,8 @@ import androidx.core.view.VelocityTrackerCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewConfigurationCompat;
 import androidx.core.view.accessibility.AccessibilityEventCompat;
+
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -475,7 +477,7 @@ public class SlidingClosableRelativeLayout extends RelativeLayout {
                         if (SDKVersionUtils.m8365i()) {
                             childAt.setDrawingCacheEnabled(z);
                         } else {
-                            if (SDKVersionUtils.m8371c()) {
+                            if (SDKVersionUtils.checkVersionThanAndroid11()) {
                                 z2 = !childAt.isHardwareAccelerated();
                             } else {
                                 z2 = false;
@@ -1001,7 +1003,11 @@ public class SlidingClosableRelativeLayout extends RelativeLayout {
         if (i == 0) {
             return null;
         }
-        return getResources().getDrawable(i);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return getContext().getDrawable(i);
+        }else{
+            return getResources().getDrawable(i);
+        }
     }
 
     @Override // android.view.ViewGroup, android.view.View

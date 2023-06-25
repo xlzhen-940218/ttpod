@@ -8,7 +8,7 @@ import android.os.Process;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
 
 /* loaded from: classes.dex */
 public class CallStateReceiver extends BroadcastReceiver {
@@ -45,6 +45,6 @@ public class CallStateReceiver extends BroadcastReceiver {
 
     /* renamed from: a */
     private void m4129a(int i) {
-        new SSystemEvent("SYS_PHONE_STATE", String.valueOf(i)).append("process_id", Integer.valueOf(Process.myPid())).post();
+        //new //SSystemEvent("SYS_PHONE_STATE", String.valueOf(i)).append("process_id", Integer.valueOf(Process.myPid())).post();
     }
 }

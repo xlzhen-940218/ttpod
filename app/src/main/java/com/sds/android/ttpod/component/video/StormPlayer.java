@@ -44,7 +44,7 @@ public class StormPlayer implements VideoPlayerInterface {
             bundle.putString("title", str2);
             launchIntentForPackage.putExtras(bundle);
             ((Activity) context).startActivityForResult(launchIntentForPackage, 1);
-            LogUtils.m8388a("StormPlayer", "storm play......");
+            LogUtils.debug("StormPlayer", "storm play......");
         }
     }
 
@@ -57,7 +57,7 @@ public class StormPlayer implements VideoPlayerInterface {
     /* renamed from: a */
     public void mo5783a() {
         String m5784b = m5784b();
-        if (!StringUtils.m8346a(m5784b)) {
+        if (!StringUtils.isEmpty(m5784b)) {
             m5785a(m5784b);
         }
     }
@@ -81,9 +81,9 @@ public class StormPlayer implements VideoPlayerInterface {
 
     /* renamed from: a */
     private static void m5785a(String str) {
-        if (!StringUtils.m8346a(f4889a)) {
+        if (!StringUtils.isEmpty(f4889a)) {
             String replace = f4889a.replace("AndroidStorm_", "AndroidStorm_" + str);
-            CommandCenter.m4607a().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, DownloadUtils.m4760a(replace, TTPodConfig.m5285w() + File.separator + FileUtils.m8402j(replace), 0L, "StormPlugin", DownloadTaskInfo.TYPE_APP, true, "stormvideo")));
+            CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, DownloadUtils.m4760a(replace, TTPodConfig.m5285w() + File.separator + FileUtils.getFilename(replace), 0L, "StormPlugin", DownloadTaskInfo.TYPE_APP, true, "stormvideo")));
         }
     }
 
@@ -101,7 +101,7 @@ public class StormPlayer implements VideoPlayerInterface {
             e = e2;
         }
         try {
-            LogUtils.m8388a("StormPlayer", "version name:" + str2 + " code: " + i);
+            LogUtils.debug("StormPlayer", "version name:" + str2 + " code: " + i);
         } catch (Exception e3) {
             e = e3;
             e.printStackTrace();

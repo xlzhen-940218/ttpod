@@ -1,7 +1,7 @@
 package com.sds.android.cloudapi.ttpod.data;
 import com.google.gson.annotations.SerializedName;
-import com.google.gson.annotations.SerializedName;
-import com.sds.android.sdk.core.statistic.SEvent;
+
+
 
 /* loaded from: classes.dex */
 public class GameTucaoApp extends AppBaseInfo {
@@ -15,7 +15,7 @@ public class GameTucaoApp extends AppBaseInfo {
     private String mContent;
     @SerializedName(value = "t_id")
     private int mId;
-    @SerializedName(value = SEvent.FIELD_INDEX)
+    @SerializedName(value = "index")
     private int mIndex;
     @SerializedName(value = "large_logo")
     private String mLargeLogo;

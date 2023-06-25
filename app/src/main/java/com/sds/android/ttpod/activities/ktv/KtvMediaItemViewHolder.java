@@ -46,8 +46,8 @@ public class KtvMediaItemViewHolder extends MediaItemViewHolder implements View.
 
     @Override // com.sds.android.ttpod.component.p085b.MediaItemViewHolder
     /* renamed from: a */
-    public void mo6972a(MediaItem mediaItem) {
-        super.mo6972a(mediaItem);
+    public void updateFlagQuality(MediaItem mediaItem) {
+        super.updateFlagQuality(mediaItem);
         this.f2637c = mediaItem;
     }
 

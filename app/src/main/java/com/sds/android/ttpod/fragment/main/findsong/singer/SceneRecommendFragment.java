@@ -1,5 +1,6 @@
 package com.sds.android.ttpod.fragment.main.findsong.singer;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.view.View;
@@ -23,22 +24,18 @@ public abstract class SceneRecommendFragment extends ImageHeaderMusicListFragmen
                 case R.id.imageview_header_play /* 2131232090 */:
                     if (!SceneRecommendFragment.this.isSongListNotLoaded()) {
                         SceneRecommendFragment.this.replayPlayMediaRepeat(0L);
-                        SceneRecommendFragment.this.postButtonClickStatistic(SAction.ACTION_CLICK_ONLINE_SONG_LIST_PLAY_ALL);
                         return;
                     }
                     return;
                 case R.id.textview_header_detail /* 2131232091 */:
                     SceneRecommendFragment.this.launchFragment((BaseFragment) Fragment.instantiate(SceneRecommendFragment.this.getActivity(), IntroductionFragment.class.getName(), SceneRecommendFragment.this.buildForwardIntroductionArguments()));
-                    SceneRecommendFragment.this.postForwardIntroductionStatistic();
                     return;
                 case R.id.text_next_page /* 2131232097 */:
                     SceneRecommendFragment.this.doNextPageAction();
-                    SceneRecommendFragment.this.postButtonClickStatistic(SAction.ACTION_CLICK_ONLINE_SONG_LIST_REPLACE_ALL);
                     return;
                 case R.id.text_download_all /* 2131232100 */:
                     if (!SceneRecommendFragment.this.isSongListNotLoaded()) {
                         SceneRecommendFragment.this.downloadAllMediaList();
-                        SceneRecommendFragment.this.postButtonClickStatistic(SAction.ACTION_CLICK_ONLINE_SONG_LIST_DOWNLOAD_ALL);
                         return;
                     }
                     return;
@@ -50,10 +47,8 @@ public abstract class SceneRecommendFragment extends ImageHeaderMusicListFragmen
 
     protected abstract Bundle buildForwardIntroductionArguments();
 
-    protected abstract void postButtonClickStatistic(SAction sAction);
 
-    protected abstract void postForwardIntroductionStatistic();
-
+    @SuppressLint("RestrictedApi")
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     protected void setupListHeader() {
         this.mDetailHeader = new SceneRecommendHeader(getActivity(), getLayoutInflater(null), this.mOnlineMediaListFragment.getListView());

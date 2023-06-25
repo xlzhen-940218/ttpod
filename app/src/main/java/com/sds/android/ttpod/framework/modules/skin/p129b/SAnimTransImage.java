@@ -57,7 +57,7 @@ public class SAnimTransImage extends SImage<View> {
             animTransView.m3514a(this.f6421e, this.f6422j);
             return;
         }
-        LogUtils.m8388a("Image", "initView TTImageSwitcher");
+        LogUtils.debug("Image", "initView TTImageSwitcher");
         TTImageSwitcher tTImageSwitcher = (TTImageSwitcher) view;
         tTImageSwitcher.setDefaultImageDrawable(skinCache.m3596a(context.getResources(), this.f6456c));
         tTImageSwitcher.setFactory(tTImageSwitcher);

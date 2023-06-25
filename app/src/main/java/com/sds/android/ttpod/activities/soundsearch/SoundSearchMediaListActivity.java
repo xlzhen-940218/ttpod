@@ -43,8 +43,8 @@ public abstract class SoundSearchMediaListActivity extends SlidingClosableActivi
                     arrayList.add(soundSearchInfo.m5823f());
                 }
                 Preferences.m3063I(false);
-                CommandCenter.m4607a().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
-                CommandCenter.m4607a().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, arrayList.get(m8266a)));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, arrayList.get(m8266a)));
             }
         }
     };
@@ -67,7 +67,7 @@ public abstract class SoundSearchMediaListActivity extends SlidingClosableActivi
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_soundsearch_media_list);
-        MediaItem m3225N = Cache.m3218a().m3225N();
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
             this.mPlayedSongId = m3225N.getSongID().longValue();
         }
@@ -95,8 +95,8 @@ public abstract class SoundSearchMediaListActivity extends SlidingClosableActivi
     }
 
     public void updatePlayMediaInfo() {
-        if (!Cache.m3218a().m3225N().isNull()) {
-            this.mPlayedSongId = Cache.m3218a().m3225N().getSongID().longValue();
+        if (!Cache.getInstance().getCurrentPlayMediaItem().isNull()) {
+            this.mPlayedSongId = Cache.getInstance().getCurrentPlayMediaItem().getSongID().longValue();
             this.mAdapter.notifyDataSetChanged();
         }
     }

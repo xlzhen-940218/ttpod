@@ -79,7 +79,7 @@ public class ApSharingAdapter extends ApShareBaseAdapter implements DataTransfer
     /* renamed from: f */
     public void mo7105f(TransmittableMediaItem transmittableMediaItem) {
         TransmittableMediaItem m7113a = ApShareUtils.m7113a(this.f3159a, transmittableMediaItem.m5772a().getID());
-        LogUtils.m8379d("ApSharingAdapter", "[apshare]-transfer failed");
+        LogUtils.info("ApSharingAdapter", "[apshare]-transfer failed");
         if (m7113a != null) {
             m7113a.m5768a(TransmittableMediaItem.EnumC1381a.TRANSMIT_FAILED);
             notifyDataSetChanged();
@@ -90,7 +90,7 @@ public class ApSharingAdapter extends ApShareBaseAdapter implements DataTransfer
     /* renamed from: g */
     public void mo7104g(TransmittableMediaItem transmittableMediaItem) {
         TransmittableMediaItem m7113a = ApShareUtils.m7113a(this.f3159a, transmittableMediaItem.m5772a().getID());
-        LogUtils.m8379d("ApSharingAdapter", "[apshare]-transfer cancelled");
+        LogUtils.info("ApSharingAdapter", "[apshare]-transfer cancelled");
         if (m7113a != null) {
             m7113a.m5768a(TransmittableMediaItem.EnumC1381a.TRANSMIT_CANCELLED);
             notifyDataSetChanged();

@@ -23,35 +23,35 @@ import java.io.InputStream;
 public class SkinReader {
 
     /* renamed from: b */
-    protected PackHandle f6692b = null;
+    protected PackHandle packHandle = null;
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
     public boolean m3530a(InputStream inputStream) {
-        boolean z = this.f6692b == null;
-        if (this.f6692b == null) {
-            this.f6692b = new PackHandleProxy();
+        boolean z = this.packHandle == null;
+        if (this.packHandle == null) {
+            this.packHandle = new PackHandleProxy();
         }
         try {
-            this.f6692b.mo3756a(inputStream, z);
+            this.packHandle.mo3756a(inputStream, z);
         } catch (Exception e) {
             m3528b(inputStream);
         }
-        return this.f6692b != null && this.f6692b.mo3757a();
+        return this.packHandle != null && this.packHandle.streamNotNull();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: e */
     public boolean m3526e(String str) {
-        if (this.f6692b == null) {
-            this.f6692b = new PackHandleProxy();
+        if (this.packHandle == null) {
+            this.packHandle = new PackHandleProxy();
         }
         try {
-            this.f6692b.mo3755a(str);
+            this.packHandle.mo3755a(str);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return this.f6692b != null && this.f6692b.mo3757a();
+        return this.packHandle != null && this.packHandle.streamNotNull();
     }
 
     /* renamed from: b */
@@ -60,16 +60,16 @@ public class SkinReader {
             try {
                 inputStream.close();
             } catch (Exception e) {
-                LogUtils.m8381c(SkinModule.TAG, "BaseCreator.openSkinPackInputStream crate unPacker failed");
+                LogUtils.error(SkinModule.TAG, "BaseCreator.openSkinPackInputStream crate unPacker failed");
             }
         }
     }
 
     /* renamed from: j */
-    public void m3525j() {
-        if (this.f6692b != null) {
+    public void handleClose() {
+        if (this.packHandle != null) {
             try {
-                this.f6692b.close();
+                this.packHandle.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -93,7 +93,7 @@ public class SkinReader {
         bArr = null;
         for (String str : m3529a(File.separatorChar + "skin")) {
             try {
-                bArr = this.f6692b.mo3753b(str);
+                bArr = this.packHandle.mo3753b(str);
                 if (bArr != null) {
                     break;
                 }
@@ -115,12 +115,12 @@ public class SkinReader {
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
     public InputStream m3533a(int i, String str) {
-        BaseApplication m4635c = BaseApplication.getApplication();
+        BaseApplication application = BaseApplication.getApplication();
         switch (i) {
             case 1:
-                return m3531a(m4635c.getAssets(), str);
+                return openSkin(application.getAssets(), str);
             case 2:
-                return m3532a(m4635c, str);
+                return m3532a(application, str);
             default:
                 return m3527b(str);
         }
@@ -141,15 +141,15 @@ public class SkinReader {
             resourcesForApplication = null;
         }
         if (resourcesForApplication != null) {
-            return m3531a(resourcesForApplication.getAssets(), "skin/skin.tsk");
+            return openSkin(resourcesForApplication.getAssets(), "skin/skin.tsk");
         }
         return null;
     }
 
     /* renamed from: a */
-    private InputStream m3531a(AssetManager assetManager, String str) {
+    private InputStream openSkin(AssetManager assetManager, String name) {
         try {
-            return assetManager.open(str, 1);
+            return assetManager.open(name, 1);
         } catch (IOException e) {
             e.printStackTrace();
             return null;

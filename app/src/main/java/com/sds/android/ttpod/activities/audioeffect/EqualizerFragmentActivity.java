@@ -11,10 +11,9 @@ import com.sds.android.ttpod.adapter.SlidingTabFragmentPagerAdapter;
 import com.sds.android.ttpod.component.ActionBarController;
 import com.sds.android.ttpod.fragment.audioeffect.EqualizerAllFragment;
 import com.sds.android.ttpod.fragment.audioeffect.EqualizerHandpickFragment;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
+
 import java.util.List;
 
 /* loaded from: classes.dex */
@@ -48,11 +47,11 @@ public class EqualizerFragmentActivity extends SlidingPagerActivity {
     public void onPageSelected(int i) {
         super.onPageSelected(i);
         if (i == 0) {
-            AudioEffectStatistic.m5266f();
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_DEFAULT_HANDPICK, SPage.PAGE_NONE, SPage.PAGE_NONE);
+            //AudioEffectStatistic.m5266f();
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_DEFAULT_HANDPICK, SPage.PAGE_NONE, SPage.PAGE_NONE);
         } else if (i == 1) {
-            AudioEffectStatistic.m5264h();
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_ALL, SPage.PAGE_NONE, SPage.PAGE_NONE);
+            //AudioEffectStatistic.m5264h();
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_ALL, SPage.PAGE_NONE, SPage.PAGE_NONE);
         }
     }
 }

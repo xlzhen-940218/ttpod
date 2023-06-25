@@ -320,25 +320,25 @@ public final class MediaStorageImp {
                 contentValues.put("folder", mediaItem.getFolder());
             }
             String title = mediaItem.getTitle();
-            if (StringUtils.m8346a(title)) {
+            if (StringUtils.isEmpty(title)) {
                 title = "<unknown>";
             }
             contentValues.put("title", title);
             contentValues.put("title_key", buildKey(title, z));
             String artist = mediaItem.getArtist();
-            if (StringUtils.m8346a(artist)) {
+            if (StringUtils.isEmpty(artist)) {
                 artist = "<unknown>";
             }
             contentValues.put("artist", artist);
             contentValues.put("artist_key", buildKey(artist, z));
             String album = mediaItem.getAlbum();
-            if (StringUtils.m8346a(album)) {
+            if (StringUtils.isEmpty(album)) {
                 album = "<unknown>";
             }
             contentValues.put("album", album);
             contentValues.put("album_key", buildKey(album, z));
             String genre = mediaItem.getGenre();
-            if (StringUtils.m8346a(genre)) {
+            if (StringUtils.isEmpty(genre)) {
                 genre = "<unknown>";
             }
             contentValues.put("genre", genre);
@@ -415,7 +415,7 @@ public final class MediaStorageImp {
             String str2 = null;
             String string = cursor.getString(2);
             int i2 = cursor.getInt(10);
-            if (!StringUtils.m8346a(string)) {
+            if (!StringUtils.isEmpty(string)) {
                 try {
                     int indexOf = string.indexOf(124);
                     if (indexOf > 0) {

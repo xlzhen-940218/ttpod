@@ -108,16 +108,16 @@ class HttpServer {
 
     /* renamed from: a */
     public HttpResponse m4212a(String str, String str2, Properties properties, Properties properties2) {
-        LogUtils.m8388a("HttpServer", str2 + " '" + str + "' ");
+        LogUtils.debug("HttpServer", str2 + " '" + str + "' ");
         Enumeration<?> propertyNames = properties.propertyNames();
         while (propertyNames.hasMoreElements()) {
             String str3 = (String) propertyNames.nextElement();
-            LogUtils.m8388a("HttpServer", "Header: '" + str3 + "' = '" + properties.getProperty(str3) + "'");
+            LogUtils.debug("HttpServer", "Header: '" + str3 + "' = '" + properties.getProperty(str3) + "'");
         }
         Enumeration<?> propertyNames2 = properties2.propertyNames();
         while (propertyNames2.hasMoreElements()) {
             String str4 = (String) propertyNames2.nextElement();
-            LogUtils.m8388a("HttpServer", "Parameters: '" + str4 + "' = '" + properties2.getProperty(str4) + "'");
+            LogUtils.debug("HttpServer", "Parameters: '" + str4 + "' = '" + properties2.getProperty(str4) + "'");
         }
         HttpResponse m4210a = m4210a(str, properties, this.f6014f);
         if (m4210a.m4224a() == "200 OK") {

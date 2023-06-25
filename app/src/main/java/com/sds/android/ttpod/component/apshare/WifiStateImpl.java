@@ -8,7 +8,7 @@ import android.net.wifi.WifiInfo;
 import android.os.Handler;
 import android.os.Message;
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.component.apshare.WifiAPManager;
+
 import java.util.List;
 
 /* renamed from: com.sds.android.ttpod.component.apshare.k */
@@ -41,7 +41,7 @@ public class WifiStateImpl implements WifiAPManager.InterfaceC1132a {
             } else if (supplicantState.equals(SupplicantState.DISCONNECTED) && this.f3808a != null) {
                 this.f3808a.sendEmptyMessage(8);
             }
-            LogUtils.m8379d("WifiStateImpl", "supplicant state: " + supplicantState.toString());
+            LogUtils.info("WifiStateImpl", "supplicant state: " + supplicantState.toString());
         }
     }
 
@@ -53,7 +53,7 @@ public class WifiStateImpl implements WifiAPManager.InterfaceC1132a {
     @Override // com.sds.android.ttpod.component.apshare.WifiAPManager.InterfaceC1132a
     /* renamed from: a */
     public void mo7024a(int i, int i2) {
-        LogUtils.m8379d("WifiStateImpl", "wifiStateChanged: " + i);
+        LogUtils.info("WifiStateImpl", "wifiStateChanged: " + i);
     }
 
     @Override // com.sds.android.ttpod.component.apshare.WifiAPManager.InterfaceC1132a
@@ -89,7 +89,7 @@ public class WifiStateImpl implements WifiAPManager.InterfaceC1132a {
         if (this.f3808a != null) {
             this.f3808a.sendMessage(m7023a(6, str));
         }
-        LogUtils.m8379d("WifiStateImpl", "connection preparing: " + str);
+        LogUtils.info("WifiStateImpl", "connection preparing: " + str);
     }
 
     @Override // com.sds.android.ttpod.component.apshare.WifiAPManager.InterfaceC1132a
@@ -104,7 +104,7 @@ public class WifiStateImpl implements WifiAPManager.InterfaceC1132a {
     /* renamed from: a */
     public void mo7021a(NetworkInfo networkInfo, WifiInfo wifiInfo) {
         if (wifiInfo.getSSID().contains("TTPODShare-")) {
-            LogUtils.m8379d("WifiStateImpl", "Connect Network Succeeded");
+            LogUtils.info("WifiStateImpl", "Connect Network Succeeded");
             if (this.f3808a != null) {
                 this.f3808a.sendMessage(m7023a(7, wifiInfo.getSSID()));
             }
@@ -117,7 +117,7 @@ public class WifiStateImpl implements WifiAPManager.InterfaceC1132a {
         if (this.f3808a != null) {
             this.f3808a.sendEmptyMessage(9);
         }
-        LogUtils.m8379d("WifiStateImpl", "Connect Network Failed");
+        LogUtils.info("WifiStateImpl", "Connect Network Failed");
     }
 
     /* renamed from: a */

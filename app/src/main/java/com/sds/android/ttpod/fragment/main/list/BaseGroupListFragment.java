@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.DebugUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
@@ -160,11 +160,7 @@ public abstract class BaseGroupListFragment extends BaseFragment {
             } else {
                 i = 0;
             }
-            SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", SAction.ACTION_AMOUNT_SONGLIST.getValue(), 0, 0);
-            sUserEvent.setPageParameter(true);
-            sUserEvent.append("local_count", Integer.valueOf(i));
-            sUserEvent.append("online_count", Integer.valueOf(size - i));
-            sUserEvent.post();
+
         }
     }
 
@@ -262,7 +258,7 @@ public abstract class BaseGroupListFragment extends BaseFragment {
         Context context = view.getContext();
         boolean startsWith = groupItem.getGroupID().startsWith(MediaStorage.GROUP_ID_FOLDER_PREFIX);
         c1631b.m5463d().setVisibility(View.GONE);
-        c1631b.m5465b().setText(startsWith ? FileUtils.m8402j(groupItem.getName()) : TTTextUtils.validateString(view.getContext(), groupItem.getName()));
+        c1631b.m5465b().setText(startsWith ? FileUtils.getFilename(groupItem.getName()) : TTTextUtils.validateString(view.getContext(), groupItem.getName()));
         c1631b.m5464c().setText(context.getString(R.string.count_of_media, groupItem.getCount()) + (startsWith ? "  " + groupItem.getName() : ""));
         c1631b.m5466a().setVisibility(StringUtils.m8344a(groupItem.getGroupID(), this.mPlayingGroupID) ? View.VISIBLE : View.GONE);
         view.setEnabled(StringUtils.m8344a(groupItem.getGroupID(), this.mPlayingGroupID) ? false : true);

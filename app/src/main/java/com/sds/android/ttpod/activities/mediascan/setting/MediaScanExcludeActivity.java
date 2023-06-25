@@ -54,7 +54,7 @@ public class MediaScanExcludeActivity extends SlidingClosableActivity {
                 ((C0766b) view.getTag()).f2729c.toggle();
             }
         });
-        CommandCenter.m4607a().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_FOLDER));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_FOLDER));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -116,7 +116,7 @@ public class MediaScanExcludeActivity extends SlidingClosableActivity {
                 c0766b = (C0766b) view.getTag();
             }
             String str = (String) MediaScanExcludeActivity.this.mAllFolderList.get(i);
-            c0766b.f2727a.setText(FileUtils.m8402j(str));
+            c0766b.f2727a.setText(FileUtils.getFilename(str));
             c0766b.f2728b.setText(FileUtils.m8400l(str));
             c0766b.f2729c.setOnCheckedChangeListener(null);
             c0766b.f2729c.setChecked(MediaScanExcludeActivity.this.mExcludeFolderSet.contains(str));

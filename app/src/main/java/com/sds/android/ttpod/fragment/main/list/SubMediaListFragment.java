@@ -25,10 +25,8 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.media.mediastore.GroupItem;
 import com.sds.android.ttpod.media.mediastore.MediaStorage;
 import com.sds.android.ttpod.utils.GroupItemUtils;
@@ -106,7 +104,7 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
     protected void onSearchActionClicked() {
         if (this.mMediaListFragment != null) {
             this.mMediaListFragment.search();
-            LocalStatistic.m5127af();
+            //LocalStatistic.m5127af();
         }
     }
 
@@ -192,7 +190,7 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
     @Override // com.sds.android.ttpod.fragment.base.ActionBarFragment
     protected Collection<ActionItem> onCreateDropDownMenu() {
         boolean z = true;
-        SUserUtils.m4956a(SAction.ACTION_OPEN_LOCAL_DROP_MENU, SPage.PAGE_NONE);
+        //SUserUtils.m4956a(SAction.ACTION_OPEN_LOCAL_DROP_MENU, SPage.PAGE_NONE);
         String string = getArguments().getString(AbsMediaListFragment.KEY_GROUP_ID);
         ArrayList arrayList = new ArrayList();
         boolean z2 = PopupsUtils.m6716b() && this.mMediaListFragment != null;
@@ -234,7 +232,7 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
         String string2 = getArguments().getString(KEY_GROUP_NAME);
         switch (i) {
             case 4:
-                SUserUtils.m4956a(SAction.ACTION_MENU_SCAN_MUSIC, SPage.PAGE_SCAN_MUSIC);
+                //SUserUtils.m4956a(SAction.ACTION_MENU_SCAN_MUSIC, SPage.PAGE_SCAN_MUSIC);
                 startActivity(new Intent(getActivity(), MediaScanActivity.class));
                 return;
             case 5:
@@ -262,30 +260,30 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
                 return;
             case 15:
                 if (MediaStorage.GROUP_ID_RECENTLY_ADD.equals(string)) {
-                    LocalStatistic.m5115ar();
+                    //LocalStatistic.m5115ar();
                 }
-                SUserUtils.m4956a(SAction.ACTION_MENU_BATCH_OPERATE, SPage.PAGE_NONE);
+                //SUserUtils.m4956a(SAction.ACTION_MENU_BATCH_OPERATE, SPage.PAGE_NONE);
                 startEdit();
                 return;
             case 17:
-                SUserUtils.m4956a(SAction.ACTION_MENU_ADD_MEDIA, SPage.PAGE_NONE);
+                //SUserUtils.m4956a(SAction.ACTION_MENU_ADD_MEDIA, SPage.PAGE_NONE);
                 if (this.mMediaListFragment instanceof DraggableMediaListFragment) {
                     ((DraggableMediaListFragment) this.mMediaListFragment).addMedia(false);
                 }
                 if (GroupItemUtils.m8267b(string)) {
-                    LocalStatistic.m5120am();
+                    //LocalStatistic.m5120am();
                     return;
                 }
                 return;
             case 21:
-                SUserUtils.m4956a(SAction.ACTION_LOCAL_SONG_DETAIL_ADD_TO_SONGLIST, SPage.PAGE_NONE);
+                //SUserUtils.m4956a(SAction.ACTION_LOCAL_SONG_DETAIL_ADD_TO_SONGLIST, SPage.PAGE_NONE);
                 PopupsUtils.m6710b(getActivity(), FileUtils.m8401k(string2), new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.2
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo2038a(EditTextDialog editTextDialog) {
                         if (SubMediaListFragment.this.mMediaListFragment != null && !SubMediaListFragment.this.mMediaListFragment.isEmpty()) {
-                            SUserUtils.m4956a(SAction.ACTION_LOCAL_SONG_DETAIL_ADD_TO_SONGLIST_SURE, SPage.PAGE_NONE);
-                            CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, (String) CommandCenter.m4607a().m4602a(new Command(CommandID.ADD_GROUP, editTextDialog.m6902c(0).m6896d().toString()), String.class), SubMediaListFragment.this.mMediaListFragment.getMediaItemList()));
+                            //SUserUtils.m4956a(SAction.ACTION_LOCAL_SONG_DETAIL_ADD_TO_SONGLIST_SURE, SPage.PAGE_NONE);
+                            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, (String) CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, editTextDialog.m6902c(0).m6896d().toString()), String.class), SubMediaListFragment.this.mMediaListFragment.getMediaItemList()));
                             PopupsUtils.m6760a((int) R.string.add_to_main_success);
                         }
                     }
@@ -294,24 +292,24 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
             case 22:
                 if (this.mMediaListFragment != null) {
                     this.mMediaListFragment.removeAll();
-                    LocalStatistic.m5116aq();
-                    SUserUtils.m4956a(SAction.ACTION_MENU_CLEAR_PLAYLIST, SPage.PAGE_NONE);
+                    //LocalStatistic.m5116aq();
+                    //SUserUtils.m4956a(SAction.ACTION_MENU_CLEAR_PLAYLIST, SPage.PAGE_NONE);
                     return;
                 }
                 return;
             case 23:
                 rename(string, string2);
                 if (GroupItemUtils.m8267b(string)) {
-                    LocalStatistic.m5119an();
-                    SUserUtils.m4956a(SAction.ACTION_MENU_RENAME_SONGLIST, SPage.PAGE_NONE);
+                    //LocalStatistic.m5119an();
+                    //SUserUtils.m4956a(SAction.ACTION_MENU_RENAME_SONGLIST, SPage.PAGE_NONE);
                     return;
                 }
                 return;
             case 24:
                 remove(string);
                 if (GroupItemUtils.m8267b(string)) {
-                    SUserUtils.m4956a(SAction.ACTION_MENU_DELETE_SONGLIST, SPage.PAGE_NONE);
-                    LocalStatistic.m5118ao();
+                    //SUserUtils.m4956a(SAction.ACTION_MENU_DELETE_SONGLIST, SPage.PAGE_NONE);
+                    //LocalStatistic.m5118ao();
                     return;
                 }
                 return;
@@ -334,7 +332,7 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
                     GroupItem groupItem = new GroupItem(m6902c.m6896d().toString(), str, Integer.valueOf(SubMediaListFragment.this.mMediaListFragment != null ? SubMediaListFragment.this.mMediaListFragment.totalCount() : 0));
                     SubMediaListFragment.this.getArguments().putString(SubMediaListFragment.KEY_GROUP_NAME, groupItem.getName());
                     SubMediaListFragment.this.getActionBarController().m7193a((CharSequence) groupItem.getName());
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.UPDATE_GROUP_ITEM, groupItem));
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.UPDATE_GROUP_ITEM, groupItem));
                 }
             }
         }, null);
@@ -347,7 +345,7 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public void mo2038a(MessageDialog messageDialog2) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_GROUP, str));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_GROUP, str));
                 SubMediaListFragment.this.finish();
             }
         }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);

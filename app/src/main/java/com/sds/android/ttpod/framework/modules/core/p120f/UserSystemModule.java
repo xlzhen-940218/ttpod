@@ -21,7 +21,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.mediastore.GroupType;
 import com.sds.android.ttpod.media.mediastore.MediaStorage;
@@ -41,7 +40,7 @@ public final class UserSystemModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
-    protected ModuleID mo3239id() {
+    protected ModuleID id() {
         return ModuleID.USER_SYSTEM;
     }
 
@@ -76,7 +75,7 @@ public final class UserSystemModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(UserResult userResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.RESISTER_FINISHED, new CommonResult(ErrCode.ErrNone, "register ok", userResult)), ModuleID.USER_SYSTEM);
+                CommandCenter.getInstance().m4604a(new Command(CommandID.RESISTER_FINISHED, new CommonResult(ErrCode.ErrNone, "register ok", userResult)), ModuleID.USER_SYSTEM);
                 //UTAnalytics.getInstance().userRegister(userResult.getData().getNickName());
                 UserSystemModule.this.m4167a(userResult);
             }
@@ -84,9 +83,9 @@ public final class UserSystemModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(UserResult userResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.RESISTER_FINISHED, new CommonResult(ErrCode.ErrGeneral, "register fail", userResult)), ModuleID.USER_SYSTEM);
-                ErrorStatistic.m5234e(m8943c.m8532e());
-                ErrorStatistic.m5239a("user", m8943c.m8532e());
+                CommandCenter.getInstance().m4604a(new Command(CommandID.RESISTER_FINISHED, new CommonResult(ErrCode.ErrGeneral, "register fail", userResult)), ModuleID.USER_SYSTEM);
+                //ErrorStatistic.m5234e(m8943c.m8532e());
+                //ErrorStatistic.m5239a("user", m8943c.m8532e());
             }
         });
     }
@@ -98,10 +97,10 @@ public final class UserSystemModule extends BaseModule {
                 BaseResult m8531f = UserSystemAPI.m8950b(str).m8531f();
                 if (m8531f.getCode() != 30307) {
                     if (m8531f.getCode() == -1) {
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.LOGIN_FINISHED, new CommonResult(ErrCode.ErrPathNotFound, m8531f.getMessage())), ModuleID.USER_SYSTEM);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.LOGIN_FINISHED, new CommonResult(ErrCode.ErrPathNotFound, m8531f.getMessage())), ModuleID.USER_SYSTEM);
                         return;
                     } else {
-                        CommandCenter.m4607a().m4595b(new Command(CommandID.LOGIN_FINISHED, new CommonResult(ErrCode.ErrNotFound)), ModuleID.USER_SYSTEM);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.LOGIN_FINISHED, new CommonResult(ErrCode.ErrNotFound)), ModuleID.USER_SYSTEM);
                         return;
                     }
                 }
@@ -122,8 +121,8 @@ public final class UserSystemModule extends BaseModule {
             /* renamed from: a */
             public void onRequestFailure(UserResult userResult) {
                 UserSystemModule.this.m4164b(userResult);
-                ErrorStatistic.m5234e(m8951a.m8532e());
-                ErrorStatistic.m5239a("user", m8951a.m8532e());
+                //ErrorStatistic.m5234e(m8951a.m8532e());
+                //ErrorStatistic.m5239a("user", m8951a.m8532e());
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
@@ -147,8 +146,8 @@ public final class UserSystemModule extends BaseModule {
             /* renamed from: b */
             public void onRequestFailure(UserResult userResult) {
                 UserSystemModule.this.m4164b(userResult);
-                ErrorStatistic.m5234e(m8946b.m8532e());
-                ErrorStatistic.m5239a("user", m8946b.m8532e());
+                //ErrorStatistic.m5234e(m8946b.m8532e());
+                //ErrorStatistic.m5239a("user", m8946b.m8532e());
             }
         });
     }
@@ -158,14 +157,14 @@ public final class UserSystemModule extends BaseModule {
         m8945c.m8544a(new RequestCallback<BaseResult>() { // from class: com.sds.android.ttpod.framework.modules.core.f.a.10
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             public void onRequestSuccess(BaseResult baseResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.FIND_PASSWORD_FINISHED, new CommonResult(ErrCode.ErrNone)), ModuleID.USER_SYSTEM);
+                CommandCenter.getInstance().m4604a(new Command(CommandID.FIND_PASSWORD_FINISHED, new CommonResult(ErrCode.ErrNone)), ModuleID.USER_SYSTEM);
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             public void onRequestFailure(BaseResult baseResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.FIND_PASSWORD_FINISHED, new CommonResult(ErrCode.ErrGeneral)), ModuleID.USER_SYSTEM);
-                ErrorStatistic.m5234e(m8945c.m8532e());
-                ErrorStatistic.m5239a("user", m8945c.m8532e());
+                CommandCenter.getInstance().m4604a(new Command(CommandID.FIND_PASSWORD_FINISHED, new CommonResult(ErrCode.ErrGeneral)), ModuleID.USER_SYSTEM);
+                //ErrorStatistic.m5234e(m8945c.m8532e());
+                //ErrorStatistic.m5239a("user", m8945c.m8532e());
             }
         });
     }
@@ -174,7 +173,7 @@ public final class UserSystemModule extends BaseModule {
         //UTAnalytics.getInstance().updateUserAccount("", "");
         Preferences.m3022a((User) null);
         EnvironmentUtils.C0603b.m8498a(0L);
-        CommandCenter.m4607a().m4604a(new Command(CommandID.LOGOUT_FINISHED, new Object[0]), ModuleID.USER_SYSTEM);
+        CommandCenter.getInstance().m4604a(new Command(CommandID.LOGOUT_FINISHED, new Object[0]), ModuleID.USER_SYSTEM);
     }
 
     public void modifyNickName(final String str) {
@@ -186,15 +185,15 @@ public final class UserSystemModule extends BaseModule {
                 if (Preferences.m2954aq() != null) {
                     m2954aq.setNickName(str);
                     Preferences.m3022a(m2954aq);
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_NICKNAME_FINISHED, new CommonResult(ErrCode.ErrNone, str, baseResult)), ModuleID.USER_SYSTEM);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_NICKNAME_FINISHED, new CommonResult(ErrCode.ErrNone, str, baseResult)), ModuleID.USER_SYSTEM);
                 }
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             public void onRequestFailure(BaseResult baseResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_NICKNAME_FINISHED, new CommonResult(ErrCode.ErrGeneral, str, baseResult)), ModuleID.USER_SYSTEM);
-                ErrorStatistic.m5234e(m8944c.m8532e());
-                ErrorStatistic.m5239a("user", m8944c.m8532e());
+                CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_NICKNAME_FINISHED, new CommonResult(ErrCode.ErrGeneral, str, baseResult)), ModuleID.USER_SYSTEM);
+                //ErrorStatistic.m5234e(m8944c.m8532e());
+                //ErrorStatistic.m5239a("user", m8944c.m8532e());
             }
         });
     }
@@ -208,15 +207,15 @@ public final class UserSystemModule extends BaseModule {
                 if (Preferences.m2954aq() != null) {
                     m2954aq.setUserName(str);
                     Preferences.m3022a(m2954aq);
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_USER_EMAIL_FINISHED, new CommonResult(ErrCode.ErrNone, str, baseResult)), ModuleID.USER_SYSTEM);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_USER_EMAIL_FINISHED, new CommonResult(ErrCode.ErrNone, str, baseResult)), ModuleID.USER_SYSTEM);
                 }
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             public void onRequestFailure(BaseResult baseResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_USER_EMAIL_FINISHED, new CommonResult(ErrCode.ErrGeneral, str, baseResult)), ModuleID.USER_SYSTEM);
-                ErrorStatistic.m5234e(m8941d.m8532e());
-                ErrorStatistic.m5239a("user", m8941d.m8532e());
+                CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_USER_EMAIL_FINISHED, new CommonResult(ErrCode.ErrGeneral, str, baseResult)), ModuleID.USER_SYSTEM);
+                //ErrorStatistic.m5234e(m8941d.m8532e());
+                //ErrorStatistic.m5239a("user", m8941d.m8532e());
             }
         });
     }
@@ -230,15 +229,15 @@ public final class UserSystemModule extends BaseModule {
                 if (Preferences.m2954aq() != null) {
                     m2954aq.setUserName(str);
                     Preferences.m3022a(m2954aq);
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_USER_EMAIL_FINISHED, new CommonResult(ErrCode.ErrNone, str, baseResult)), ModuleID.USER_SYSTEM);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_USER_EMAIL_FINISHED, new CommonResult(ErrCode.ErrNone, str, baseResult)), ModuleID.USER_SYSTEM);
                 }
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             public void onRequestFailure(BaseResult baseResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_USER_EMAIL_FINISHED, new CommonResult(ErrCode.ErrGeneral, str, baseResult)), ModuleID.USER_SYSTEM);
-                ErrorStatistic.m5234e(m8939e.m8532e());
-                ErrorStatistic.m5239a("user", m8939e.m8532e());
+                CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_USER_EMAIL_FINISHED, new CommonResult(ErrCode.ErrGeneral, str, baseResult)), ModuleID.USER_SYSTEM);
+                //ErrorStatistic.m5234e(m8939e.m8532e());
+                //ErrorStatistic.m5239a("user", m8939e.m8532e());
             }
         });
     }
@@ -248,14 +247,14 @@ public final class UserSystemModule extends BaseModule {
         m8938f.m8544a(new RequestCallback<BaseResult>() { // from class: com.sds.android.ttpod.framework.modules.core.f.a.14
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             public void onRequestSuccess(BaseResult baseResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_PASSWORD_FINISHED, new CommonResult(ErrCode.ErrNone, "", "")), ModuleID.USER_SYSTEM);
+                CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_PASSWORD_FINISHED, new CommonResult(ErrCode.ErrNone, "", "")), ModuleID.USER_SYSTEM);
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             public void onRequestFailure(BaseResult baseResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_PASSWORD_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", baseResult)), ModuleID.USER_SYSTEM);
-                ErrorStatistic.m5234e(m8938f.m8532e());
-                ErrorStatistic.m5239a("user", m8938f.m8532e());
+                CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_PASSWORD_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", baseResult)), ModuleID.USER_SYSTEM);
+                //ErrorStatistic.m5234e(m8938f.m8532e());
+                //ErrorStatistic.m5239a("user", m8938f.m8532e());
             }
         });
     }
@@ -270,15 +269,15 @@ public final class UserSystemModule extends BaseModule {
                     m2954aq.setProfileCoverUrl(postFileResult.getUrl());
                     Preferences.m3022a(m2954aq);
                     ImageCacheUtils.m4744a(m2954aq.getProfileCoverUrl(), str, num.intValue(), num2.intValue());
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_COVER_FINISHED, new CommonResult(ErrCode.ErrNone, "", postFileResult)), ModuleID.USER_SYSTEM);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_COVER_FINISHED, new CommonResult(ErrCode.ErrNone, "", postFileResult)), ModuleID.USER_SYSTEM);
                 }
 
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 /* renamed from: b */
                 public void onRequestFailure(PostFileResult postFileResult) {
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_COVER_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", postFileResult)), ModuleID.USER_SYSTEM);
-                    ErrorStatistic.m5234e(UserSystemModule.this.f6031a == null ? str : UserSystemModule.this.f6031a.m8532e());
-                    ErrorStatistic.m5239a("user", UserSystemModule.this.f6031a == null ? str : UserSystemModule.this.f6031a.m8532e());
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_COVER_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", postFileResult)), ModuleID.USER_SYSTEM);
+                    //ErrorStatistic.m5234e(UserSystemModule.this.f6031a == null ? str : UserSystemModule.this.f6031a.m8532e());
+                    //ErrorStatistic.m5239a("user", UserSystemModule.this.f6031a == null ? str : UserSystemModule.this.f6031a.m8532e());
                 }
             });
         }
@@ -294,16 +293,16 @@ public final class UserSystemModule extends BaseModule {
                     m2954aq.setAvatarUrl(postFileResult.getUrl());
                     Preferences.m3022a(m2954aq);
                     ImageCacheUtils.m4744a(m2954aq.getAvatarUrl(), str, num.intValue(), num2.intValue());
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_AVATAR_FINISHED, new CommonResult(ErrCode.ErrNone, "", postFileResult)), ModuleID.USER_SYSTEM);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_AVATAR_FINISHED, new CommonResult(ErrCode.ErrNone, "", postFileResult)), ModuleID.USER_SYSTEM);
                 }
 
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 /* renamed from: b */
                 public void onRequestFailure(PostFileResult postFileResult) {
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_AVATAR_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", postFileResult)), ModuleID.USER_SYSTEM);
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_AVATAR_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", postFileResult)), ModuleID.USER_SYSTEM);
                     if (UserSystemModule.this.f6032b != null) {
-                        ErrorStatistic.m5234e(UserSystemModule.this.f6032b.m8532e());
-                        ErrorStatistic.m5239a("user", UserSystemModule.this.f6032b.m8532e());
+                        //ErrorStatistic.m5234e(UserSystemModule.this.f6032b.m8532e());
+                        //ErrorStatistic.m5239a("user", UserSystemModule.this.f6032b.m8532e());
                     }
                 }
             });
@@ -324,15 +323,15 @@ public final class UserSystemModule extends BaseModule {
                 public void onRequestSuccess(BaseResult baseResult) {
                     if (Preferences.m2954aq() != null) {
                         Preferences.m3022a(tTPodUser);
-                        CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_SEX_BIRTHDAY_FINISHED, new CommonResult(ErrCode.ErrNone, "", baseResult)), ModuleID.USER_SYSTEM);
+                        CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_SEX_BIRTHDAY_FINISHED, new CommonResult(ErrCode.ErrNone, "", baseResult)), ModuleID.USER_SYSTEM);
                     }
                 }
 
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 public void onRequestFailure(BaseResult baseResult) {
-                    CommandCenter.m4607a().m4604a(new Command(CommandID.MODIFY_SEX_BIRTHDAY_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", baseResult)), ModuleID.USER_SYSTEM);
-                    ErrorStatistic.m5234e(m8942d.m8532e());
-                    ErrorStatistic.m5239a("user", m8942d.m8532e());
+                    CommandCenter.getInstance().m4604a(new Command(CommandID.MODIFY_SEX_BIRTHDAY_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", baseResult)), ModuleID.USER_SYSTEM);
+                    //ErrorStatistic.m5234e(m8942d.m8532e());
+                    //ErrorStatistic.m5239a("user", m8942d.m8532e());
                 }
             });
         }
@@ -349,14 +348,14 @@ public final class UserSystemModule extends BaseModule {
             MediaStorage.insertGroup(sContext, MediaStorage.GROUP_NAME_FAV_ONLINE, MediaStorage.buildOnlineFavGroupID(), GroupType.CUSTOM_ONLINE);
         }
         //UTAnalytics.getInstance().updateUserAccount(data.getNickName(), String.valueOf(userId));
-        CommandCenter.m4607a().m4595b(new Command(CommandID.LOGIN_FINISHED, new CommonResult(ErrCode.ErrNone, "", userResult)), ModuleID.USER_SYSTEM);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.LOGIN_FINISHED, new CommonResult(ErrCode.ErrNone, "", userResult)), ModuleID.USER_SYSTEM);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public void m4164b(UserResult userResult) {
         Preferences.m3022a((User) null);
-        CommandCenter.m4607a().m4595b(new Command(CommandID.LOGIN_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", userResult)), ModuleID.USER_SYSTEM);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.LOGIN_FINISHED, new CommonResult(ErrCode.ErrGeneral, "", userResult)), ModuleID.USER_SYSTEM);
     }
 
     public void refreshInformation() {
@@ -369,15 +368,15 @@ public final class UserSystemModule extends BaseModule {
                 public void onRequestSuccess(TTPodUserResult tTPodUserResult) {
                     if (Preferences.m2954aq() != null) {
                         Preferences.m3022a(tTPodUserResult.getData());
-                        CommandCenter.m4607a().m4604a(new Command(CommandID.REFRESH_INFORMATION_FINISHED, new Object[0]), ModuleID.USER_SYSTEM);
+                        CommandCenter.getInstance().m4604a(new Command(CommandID.REFRESH_INFORMATION_FINISHED, new Object[0]), ModuleID.USER_SYSTEM);
                     }
                 }
 
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 /* renamed from: b */
                 public void onRequestFailure(TTPodUserResult tTPodUserResult) {
-                    ErrorStatistic.m5234e(m8956a.m8532e());
-                    ErrorStatistic.m5239a("user", m8956a.m8532e());
+                    //ErrorStatistic.m5234e(m8956a.m8532e());
+                    //ErrorStatistic.m5239a("user", m8956a.m8532e());
                 }
             });
         }
@@ -388,13 +387,13 @@ public final class UserSystemModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(TTPodUserResult tTPodUserResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_USER_INFO_BY_ID, tTPodUserResult), UserSystemModule.this.mo3239id());
+                CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_USER_INFO_BY_ID, tTPodUserResult), UserSystemModule.this.id());
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(TTPodUserResult tTPodUserResult) {
-                CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_USER_INFO_BY_ID, tTPodUserResult), UserSystemModule.this.mo3239id());
+                CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_USER_INFO_BY_ID, tTPodUserResult), UserSystemModule.this.id());
             }
         });
     }

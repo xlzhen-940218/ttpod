@@ -16,7 +16,7 @@ public class SDKVersionUtils {
     }
 
     /* renamed from: c */
-    public static boolean m8371c() {
+    public static boolean checkVersionThanAndroid11() {
         return Build.VERSION.SDK_INT >= 11;
     }
 

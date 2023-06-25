@@ -39,12 +39,12 @@ public class OnlineListDownloader implements Runnable {
 
     @Override // java.lang.Runnable
     public void run() {
-        LogUtils.m8388a("OnlineListDownloader", getClass().getSimpleName() + ".OnlineListDownloader [skin]---> " + this.f6541c);
+        LogUtils.debug("OnlineListDownloader", getClass().getSimpleName() + ".OnlineListDownloader [skin]---> " + this.f6541c);
         boolean m3718b = m3718b(this.f6542d);
         if (m3718b && !TextUtils.isEmpty(this.f6539a)) {
             FileUtils.m8404h(this.f6539a);
         }
-        CommandCenter.m4607a().m4595b(new Command(this.f6541c, Boolean.valueOf(m3718b)), ModuleID.SKIN);
+        CommandCenter.getInstance().m4595b(new Command(this.f6541c, Boolean.valueOf(m3718b)), ModuleID.SKIN);
     }
 
     /* renamed from: a */

@@ -12,11 +12,11 @@ import android.os.Process;
 import android.provider.Settings;
 import android.widget.Toast;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.sdk.core.statistic.HttpClientProxy;
-import com.sds.android.sdk.core.statistic.SEngine;
-import com.sds.android.sdk.core.statistic.SPostStrategy;
-import com.sds.android.sdk.core.statistic.SSystemEvent;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
+
+
+
+
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.util.BitmapUtils;
 import com.sds.android.sdk.lib.util.DebugUtils;
@@ -31,12 +31,6 @@ import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.base.BaseService;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
 import com.sds.android.ttpod.framework.p106a.NotificationUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.AppRuntimeStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.database.SqliteDbWrapper;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.environment.PreferencesID;
@@ -44,7 +38,6 @@ import com.sds.android.ttpod.framework.support.appwidget.AppWidgetManager;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskFacade;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.framework.support.download.ManagerWrapper;
-import com.sds.android.ttpod.framework.support.download.SEngineWrapper;
 import com.sds.android.ttpod.framework.support.minilyric.MiniLyricManager;
 import com.sds.android.ttpod.framework.support.monitor.AppInstallMonitor;
 import com.sds.android.ttpod.framework.support.monitor.MediaButtonReceiver;
@@ -76,7 +69,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     private boolean f6996e = false;
 
     /* renamed from: f */
-    private DownloadTaskFacade f6997f = new DownloadTaskFacade(new SqliteDbWrapper(), new ManagerWrapper(), new SEngineWrapper());
+    private DownloadTaskFacade f6997f = new DownloadTaskFacade(new SqliteDbWrapper(), new ManagerWrapper());
 
     /* renamed from: g */
     private Preferences.InterfaceC2031a f6998g = new Preferences.InterfaceC2031a() { // from class: com.sds.android.ttpod.framework.support.SupportService.1
@@ -107,7 +100,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     private Runnable f6999h = new Runnable() { // from class: com.sds.android.ttpod.framework.support.SupportService.2
         @Override // java.lang.Runnable
         public void run() {
-            LogUtils.m8381c("SupportService", "Sleep Runnable");
+            LogUtils.error("SupportService", "Sleep Runnable");
             m2767a();
             SupportService.this.m2772o();
         }
@@ -115,7 +108,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         /* renamed from: a */
         private void m2767a() {
             try {
-                LogUtils.m8381c("SupportService", "handleSleep");
+                LogUtils.error("SupportService", "handleSleep");
                 if (Preferences.m3074D()) {
                     Settings.System.putInt(BaseApplication.getApplication().getContentResolver(), "airplane_mode_on", 1);
                     BaseApplication.getApplication().sendBroadcast(new Intent("android.intent.action.AIRPLANE_MODE").putExtra("state", true));
@@ -123,7 +116,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
             } catch (Throwable th) {
                 th.printStackTrace();
             }
-            LogUtils.m8381c("SupportService", "sleep goodbye");
+            LogUtils.error("SupportService", "sleep goodbye");
             Toast.makeText(BaseApplication.getApplication(), R.string.sleep_goodbye, Toast.LENGTH_SHORT).show();
         }
     };
@@ -143,7 +136,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     public void onCreate() {
         super.onCreate();
         this.f6997f.m2439a();
-        OnlineMediaStatistic.m5045a(Preferences.m2928ba());
+        //OnlineMediaStatistic.m5045a(Preferences.m2928ba());
         m2771p();
         MediaItem m2606g = Player.m2611e().m2606g();
         if (m2606g != null) {
@@ -181,7 +174,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     /* renamed from: o */
     public void m2772o() {
         UnicomFlowUtil.m3938n();
-        LogUtils.m8381c("SupportService", "handle intent exit");
+        LogUtils.error("SupportService", "handle intent exit");
         m2776k();
         if (Player.m2611e().m2604h() != PlayStatus.STATUS_STOPPED) {
             Player.m2611e().m2594m();
@@ -198,21 +191,21 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
             if (StringUtils.m8344a(stringExtra, "play_pause_command")) {
                 PlayStatus m2604h = Player.m2611e().m2604h();
                 if (m2604h == PlayStatus.STATUS_PLAYING) {
-                    LocalStatistic.m5095k();
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_PAUSE.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
+                    //LocalStatistic.m5095k();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_PAUSE.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
                 } else if (m2604h == PlayStatus.STATUS_PAUSED || m2604h == PlayStatus.STATUS_STOPPED) {
-                    LocalStatistic.m5096j();
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_START.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
+                    //LocalStatistic.m5096j();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_START.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
                 }
             } else if (StringUtils.m8344a(stringExtra, "previous_command")) {
-                LocalStatistic.m5098h();
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_PREV.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
+                //LocalStatistic.m5098h();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_PREV.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
             } else if (StringUtils.m8344a(stringExtra, "next_command")) {
-                LocalStatistic.m5097i();
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_NEXT.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
+                //LocalStatistic.m5097i();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_NEXT.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
             } else if (StringUtils.m8344a(stringExtra, "exit_command")) {
-                LocalStatistic.m5086t();
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_EXIT.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
+                //LocalStatistic.m5086t();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_EXIT.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
             }
         }
     }
@@ -225,18 +218,16 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     @Override // android.app.Service
     public void onDestroy() {
         super.onDestroy();
-        if (!StringUtils.m8344a(OnlineMediaStatistic.m5043b(), Preferences.m2928ba())) {
-            Preferences.m2832s(OnlineMediaStatistic.m5043b());
-        }
+
         m2770q();
         m4620a(15121720);
         NotificationUtils.m4697a();
-        AppRuntimeStatistic.m5272a(AppRuntimeStatistic.EnumC1767a.EXIT_STATE);
-        SSystemEvent sSystemEvent = new SSystemEvent("SYS_STARTUP", "exit");
-        sSystemEvent.setPostStrategy(SPostStrategy.IMMEDIATELAY_WRITE_FILE);
-        sSystemEvent.post();
-        SEngine.unbindFromService(getApplicationContext());
-        StatisticUtils.m4918a();
+        //AppRuntimeStatistic.m5272a(//AppRuntimeStatistic.EnumC1767a.EXIT_STATE);
+        //SSystemEvent //SSystemEvent = //new //SSystemEvent("SYS_STARTUP", "exit");
+        //SSystemEvent.setPostStrategy(SPostStrategy.IMMEDIATELAY_WRITE_FILE);
+        //SSystemEvent.post();
+        //SEngine.unbindFromService(getApplicationContext());
+        //StatisticUtils.m4918a();
         Process.killProcess(Process.myPid());
     }
 
@@ -298,7 +289,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     public void mo2560a(long j) {
         if (HttpRequest.m8701c()) {
             f6992a += j;
-            LogUtils.m8388a("SupportService", "unicom flow play flow changed: flowSize:" + j + "  totalSize:" + f6992a);
+            LogUtils.debug("SupportService", "unicom flow play flow changed: flowSize:" + j + "  totalSize:" + f6992a);
         }
     }
 
@@ -312,7 +303,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     @Override // com.sds.android.ttpod.framework.support.p134a.Player.InterfaceC2056c
     /* renamed from: a */
     public void mo2558a() {
-        LogUtils.m8388a("SupportService", "onPlayStatusChanged");
+        LogUtils.debug("SupportService", "onPlayStatusChanged");
         MediaItem m2606g = Player.m2611e().m2606g();
         sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", Player.m2611e().m2604h().ordinal()).putExtra("song_title", m2606g != null ? m2606g.getTitle() : ""));
         m2769r();
@@ -447,7 +438,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: b */
     public void m2796b(long j) {
-        LogUtils.m8381c("SupportService", "startSleepMode");
+        LogUtils.error("SupportService", "startSleepMode");
         this.f7000i.removeCallbacks(this.f6999h);
         this.f7000i.postDelayed(this.f6999h, j);
     }
@@ -455,7 +446,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: k */
     public void m2776k() {
-        LogUtils.m8381c("SupportService", "stopSleepMode");
+        LogUtils.error("SupportService", "stopSleepMode");
         this.f7000i.removeCallbacks(this.f6999h);
     }
 
@@ -473,22 +464,21 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
 
     /* renamed from: a */
     public void m2804a(String str, int i, int i2, String str2, String str3, boolean z) {
-        LogUtils.m8388a("SupportService", "unicom flow Support Service bindProxy:" + z);
+        LogUtils.debug("SupportService", "unicom flow Support Service bindProxy:" + z);
         this.f6996e = z;
         if (z) {
             HttpRequest.m8715a(str, i, str2, str3);
         }
         HttpRequest.m8705a(z);
         Player.m2611e().m2625a(str, i2, UnicomFlowUtil.m3953a(str2, str3), z);
-        HttpClientProxy.instance().setProxy(str, i, str2, str3, z);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: n */
     public long m2773n() {
-        long m8718a = f6992a + HttpRequest.m8718a() + HttpClientProxy.instance().getTotalFlow();
-        LogUtils.m8388a("SupportService", "unicom flow support http proxy:" + HttpRequest.m8704b() + "  service proxy:" + this.f6996e);
-        LogUtils.m8388a("SupportService", "unicom flow get flow size :" + m8718a);
+        long m8718a = f6992a + HttpRequest.m8718a() ;
+        LogUtils.debug("SupportService", "unicom flow support http proxy:" + HttpRequest.m8704b() + "  service proxy:" + this.f6996e);
+        LogUtils.debug("SupportService", "unicom flow get flow size :" + m8718a);
         return m8718a;
     }
 
@@ -497,7 +487,6 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     public void m2788c(long j) {
         f6992a = j;
         HttpRequest.m8716a(j);
-        HttpClientProxy.instance().setTotalFlow(j);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -536,10 +525,10 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         Throwable th;
         DebugUtils.m8426a(mediaItem, "mediaItem");
         if (SDKVersionUtils.m8368f()) {
-            pendingIntent4 = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("previous_command").putExtra("command", "previous_command").putExtra("key_origin", "notification"), 134217728);
-            pendingIntent3 = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("play_pause_command").putExtra("command", "play_pause_command").putExtra("key_origin", "notification"), 134217728);
-            pendingIntent2 = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("next_command").putExtra("command", "next_command").putExtra("key_origin", "notification"), 134217728);
-            pendingIntent = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("exit_command").putExtra("command", "exit_command").putExtra("key_origin", "notification"), 134217728);
+            pendingIntent4 = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("previous_command").putExtra("command", "previous_command").putExtra("key_origin", "notification"), PendingIntent.FLAG_IMMUTABLE);
+            pendingIntent3 = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("play_pause_command").putExtra("command", "play_pause_command").putExtra("key_origin", "notification"), PendingIntent.FLAG_IMMUTABLE);
+            pendingIntent2 = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("next_command").putExtra("command", "next_command").putExtra("key_origin", "notification"), PendingIntent.FLAG_IMMUTABLE);
+            pendingIntent = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("exit_command").putExtra("command", "exit_command").putExtra("key_origin", "notification"), PendingIntent.FLAG_IMMUTABLE);
         } else {
             pendingIntent = null;
             pendingIntent2 = null;
@@ -548,15 +537,21 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         }
         String substring = SearchManager.m2232a().m2219c().startsWith(mediaItem.getID()) ? SearchManager.m2232a().m2219c().substring(mediaItem.getID().length()) : null;
         try {
-            Bitmap m8445a = StringUtils.m8346a(substring) ? null : BitmapUtils.m8445a(substring, DisplayUtils.m7229a(128));
+            Bitmap m8445a = StringUtils.isEmpty(substring) ? null : BitmapUtils.m8445a(substring, DisplayUtils.m7229a(128));
             if (m8445a == null) {
                 try {
-                    m8445a = BitmapFactory.decodeResource(getResources(), SDKVersionUtils.m8371c() ? R.drawable.img_notification_artist_default_hashoneycomb : R.drawable.img_notification_artist_default, null);
+                    m8445a = BitmapFactory.decodeResource(getResources(), SDKVersionUtils.checkVersionThanAndroid11() ? R.drawable.img_notification_artist_default_hashoneycomb : R.drawable.img_notification_artist_default, null);
                 } catch (Throwable th2) {
                     bitmap = m8445a;
                     th = th2;
                     th.printStackTrace();
-                    Notification m4692a = NotificationUtils.m4692a(BaseApplication.getApplication(), Player.m2611e().m2604h(), mediaItem.getTitle(), TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist()), TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum()), bitmap, PendingIntent.getActivity(this, 0, new Intent(Action.START_ENTRY).addFlags(268435456), 0), pendingIntent4, pendingIntent3, pendingIntent2, pendingIntent);
+                    Notification m4692a = NotificationUtils.m4692a(BaseApplication.getApplication()
+                            , Player.m2611e().m2604h(), mediaItem.getTitle()
+                            , TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist())
+                            , TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum())
+                            , bitmap, PendingIntent.getActivity(this, 0
+                                    , new Intent(Action.START_ENTRY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0)
+                            , pendingIntent4, pendingIntent3, pendingIntent2, pendingIntent);
                     m4692a.flags |= 32;
                     m4692a.tickerText = str;
                     return m4692a;
@@ -567,10 +562,11 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
             bitmap = null;
             th = th3;
         }
-        Notification m4692a2 = NotificationUtils.m4692a(BaseApplication.getApplication(), Player.m2611e().m2604h(), mediaItem.getTitle(), TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist()), TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum()), bitmap, PendingIntent.getActivity(this, 0, new Intent(Action.START_ENTRY).addFlags(268435456), 0), pendingIntent4, pendingIntent3, pendingIntent2, pendingIntent);
-        m4692a2.flags |= 32;
-        m4692a2.tickerText = str;
-        return m4692a2;
+        Notification notification = NotificationUtils.m4692a(BaseApplication.getApplication(), Player.m2611e().m2604h(), mediaItem.getTitle(), TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist()), TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum()), bitmap, PendingIntent.getActivity(this, 0, new Intent(Action.START_ENTRY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                , PendingIntent.FLAG_IMMUTABLE), pendingIntent4, pendingIntent3, pendingIntent2, pendingIntent);
+        notification.flags |= 32;
+        notification.tickerText = str;
+        return notification;
     }
 
     /* renamed from: b */

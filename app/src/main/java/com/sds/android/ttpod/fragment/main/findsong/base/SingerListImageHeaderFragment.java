@@ -12,7 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.SingerData;
 import com.sds.android.cloudapi.ttpod.result.SingerListResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.DebugUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
@@ -30,8 +30,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.media.mediastore.PinyinUtils;
 import com.sds.android.ttpod.utils.ArtistUtils;
@@ -72,14 +70,14 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
                 singerData = (SingerData) findViewById.getTag(R.id.view_bind_data);
             }
             if (singerData != null) {
-                OnlineMediaStatistic.m5045a("library-music-singer_" + SingerListImageHeaderFragment.this.mTitle + "_" + MusicLibraryStatistic.m5069a());
+                //OnlineMediaStatistic.m5045a("library-music-singer_" + SingerListImageHeaderFragment.this.mTitle + "_" + //MusicLibraryStatistic.m5069a());
                 Bundle bundle = new Bundle();
                 SingerDetailFragmentNew singerDetailFragmentNew = new SingerDetailFragmentNew(singerData.getName());
                 bundle.putString(SingerCategoryHotDetailFragment.KEY_CHANNEL, SingerListImageHeaderFragment.this.mTitle);
                 bundle.putSerializable("key_data", singerData);
                 singerDetailFragmentNew.setArguments(bundle);
                 SingerListImageHeaderFragment.this.launchFragment(singerDetailFragmentNew);
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGER_NAME.getValue(), SingerListImageHeaderFragment.this.mTitle, singerData.getName()).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(singerData.getId())).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_SINGER_NAME.getValue(), SingerListImageHeaderFragment.this.mTitle, singerData.getName()).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(singerData.getId())).post();
             }
         }
     };
@@ -260,7 +258,7 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
     }
 
     protected void requestDataList(int i) {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_SINGER_CATEGORY_DETAIL, Integer.valueOf(this.mId), Integer.valueOf(i)));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SINGER_CATEGORY_DETAIL, Integer.valueOf(this.mId), Integer.valueOf(i)));
     }
 
     /* JADX INFO: Access modifiers changed from: private */

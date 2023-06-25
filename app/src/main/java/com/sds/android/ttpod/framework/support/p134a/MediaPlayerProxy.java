@@ -8,13 +8,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.sds.android.sdk.core.statistic.SSystemEvent;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalMediaStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.audiofx.IEffectHandle;
 import com.sds.android.ttpod.media.audiofx.SystemEffectHandle;
@@ -115,14 +112,14 @@ public final class MediaPlayerProxy {
     private TTMediaPlayer.OnMediaPlayerNotifyEventListener f7029A = new TTMediaPlayer.OnMediaPlayerNotifyEventListener() { // from class: com.sds.android.ttpod.framework.support.a.b.1
         @Override // com.sds.android.ttpod.media.player.TTMediaPlayer.OnMediaPlayerNotifyEventListener
         public void onMediaPlayerNotify(int i, int i2, int i3, Object obj) {
-            LogUtils.m8388a("MediaPlayerProxy", "MsgId:" + i);
+            LogUtils.debug("MediaPlayerProxy", "MsgId:" + i);
             switch (i) {
                 case 1:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_PREPARE");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_PREPARE");
                     MediaPlayerProxy.this.m2668q();
                     return;
                 case 2:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_PLAY");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_PLAY");
                     MediaPlayerProxy.this.f7047n = PlayStatus.STATUS_PLAYING;
                     MediaPlayerProxy.this.m2729a(Preferences.m2956ao());
                     if (MediaPlayerProxy.this.f7057x != null) {
@@ -134,26 +131,26 @@ public final class MediaPlayerProxy {
                     MediaPlayerProxy.this.m2669p();
                     return;
                 case 4:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_PAUSE");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_PAUSE");
                     return;
                 case 5:
                     if (MediaPlayerProxy.this.f7058y != null) {
                         MediaPlayerProxy.this.f7058y.mo2577a(i3);
                     }
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_CLOSE");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_CLOSE");
                     return;
                 case 6:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_EXCEPTION");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_EXCEPTION");
                     MediaPlayerProxy.this.m2725a(i2, i3, (MediaPlayerNotificationInfo) obj);
                     return;
                 case 7:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_UPDATE_DURATION");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_UPDATE_DURATION");
                     if (MediaPlayerProxy.this.f7059z != null) {
                         MediaPlayerProxy.this.f7059z.mo2561a(MediaPlayerProxy.this.f7052s.duration());
                     }
                     if (MediaPlayerProxy.this.f7049p != null) {
-                        OnlineMediaStatistic.m5023j(MediaPlayerProxy.this.f7049p.longValue(), MediaPlayerProxy.this.f7052s.duration() / 1000);
-                        new SSystemEvent("SYS_PLAY", "update_duration").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).append("duration", Integer.valueOf(MediaPlayerProxy.this.f7052s.duration() / 1000)).post();
+                        //OnlineMediaStatistic.m5023j(MediaPlayerProxy.this.f7049p.longValue(), MediaPlayerProxy.this.f7052s.duration() / 1000);
+                        //new //SSystemEvent("SYS_PLAY", "update_duration").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).append("duration", Integer.valueOf(MediaPlayerProxy.this.f7052s.duration() / 1000)).post();
                         return;
                     }
                     return;
@@ -168,74 +165,74 @@ public final class MediaPlayerProxy {
                 default:
                     return;
                 case 16:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_BUFFERING_START");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_BUFFERING_START");
                     if (MediaPlayerProxy.this.f7057x != null) {
                         MediaPlayerProxy.this.f7057x.mo2567e();
                     }
                     if (MediaPlayerProxy.this.f7049p != null) {
-                        OnlineMediaStatistic.m5051a(MediaPlayerProxy.this.f7049p.longValue(), MediaPlayerProxy.this.m2687g());
-                        new SSystemEvent("SYS_PLAY", "block_start").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
+                        //OnlineMediaStatistic.m5051a(MediaPlayerProxy.this.f7049p.longValue(), MediaPlayerProxy.this.m2687g());
+                        //new //SSystemEvent("SYS_PLAY", "block_start").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
                         return;
                     }
                     return;
                 case 17:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_BUFFERING_DONE");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_BUFFERING_DONE");
                     if (MediaPlayerProxy.this.f7057x != null) {
                         MediaPlayerProxy.this.f7057x.mo2566f();
                     }
                     if (MediaPlayerProxy.this.f7049p != null) {
-                        new SSystemEvent("SYS_PLAY", "block_done").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
+                        //new //SSystemEvent("SYS_PLAY", "block_done").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
                         return;
                     }
                     return;
                 case 18:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_DNS_DONE");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_DNS_DONE");
                     if (MediaPlayerProxy.this.f7049p != null) {
-                        OnlineMediaStatistic.m5025h(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
-                        new SSystemEvent("SYS_PLAY", "dns_done").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
+                        //OnlineMediaStatistic.m5025h(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
+                        //new //SSystemEvent("SYS_PLAY", "dns_done").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
                         return;
                     }
                     return;
                 case 19:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_CONNECT_DONE");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_CONNECT_DONE");
                     if (MediaPlayerProxy.this.f7049p != null) {
-                        OnlineMediaStatistic.m5024i(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
-                        new SSystemEvent("SYS_PLAY", "connect_done").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
+                        //OnlineMediaStatistic.m5024i(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
+                        //new //SSystemEvent("SYS_PLAY", "connect_done").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
                         return;
                     }
                     return;
                 case 20:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_HTTP_HEADER_RECEIVED");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_HTTP_HEADER_RECEIVED");
                     if (MediaPlayerProxy.this.f7049p != null) {
-                        OnlineMediaStatistic.m5026g(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
-                        new SSystemEvent("SYS_PLAY", "header_received").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
+                        //OnlineMediaStatistic.m5026g(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
+                        //new //SSystemEvent("SYS_PLAY", "header_received").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
                         return;
                     }
                     return;
                 case 21:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_START_RECEIVE_DATA");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_START_RECEIVE_DATA");
                     if (MediaPlayerProxy.this.f7049p != null) {
-                        OnlineMediaStatistic.m5022k(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
-                        new SSystemEvent("SYS_PLAY", "receive_data_start").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
+                        //OnlineMediaStatistic.m5022k(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
+                        //new //SSystemEvent("SYS_PLAY", "receive_data_start").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
                         return;
                     }
                     return;
                 case 22:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_PREFETCH_COMPLETED");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_PREFETCH_COMPLETED");
                     if (MediaPlayerProxy.this.f7049p != null) {
-                        OnlineMediaStatistic.m5030e(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
-                        new SSystemEvent("SYS_PLAY", "receive_data_end").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
+                        //OnlineMediaStatistic.m5030e(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
+                        //new //SSystemEvent("SYS_PLAY", "receive_data_end").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
                         return;
                     }
                     return;
                 case 23:
-                    LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_CACHE_COMPLETED");
+                    LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_CACHE_COMPLETED");
                     if (MediaPlayerProxy.this.f7057x != null) {
                         MediaPlayerProxy.this.f7057x.mo2565g();
                     }
                     if (MediaPlayerProxy.this.f7049p != null) {
-                        OnlineMediaStatistic.m5035c(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
-                        new SSystemEvent("SYS_PLAY", "cache_done").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
+                        //OnlineMediaStatistic.m5035c(MediaPlayerProxy.this.f7049p.longValue(), System.nanoTime());
+                        //new //SSystemEvent("SYS_PLAY", "cache_done").append("song_id", MediaPlayerProxy.this.f7049p).append("play_type", MediaPlayerProxy.this.f7046m).post();
                         return;
                     }
                     return;
@@ -446,23 +443,23 @@ public final class MediaPlayerProxy {
     /* renamed from: b */
     public void m2707b() {
         if (this.f7049p != null) {
-            OnlineMediaStatistic.m5035c(this.f7049p.longValue(), System.nanoTime());
-            OnlineMediaStatistic.m5040b(this.f7049p.longValue(), m2687g() / 1000);
-            OnlineMediaStatistic.m5032d(this.f7049p.longValue(), this.f7052s.getBufferSize());
+            //OnlineMediaStatistic.m5035c(this.f7049p.longValue(), System.nanoTime());
+            //OnlineMediaStatistic.m5040b(this.f7049p.longValue(), m2687g() / 1000);
+            //OnlineMediaStatistic.m5032d(this.f7049p.longValue(), this.f7052s.getBufferSize());
             try {
-                OnlineMediaStatistic.m5052a(this.f7049p.longValue());
+                //OnlineMediaStatistic.m5052a(this.f7049p.longValue());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            new SSystemEvent("SYS_PLAY", "stop").append("song_id", this.f7049p).append("buffer_size", Integer.valueOf(this.f7052s.getBufferSize())).append("time_played", Integer.valueOf(m2687g() / 1000)).append("play_type", this.f7046m).post();
+            //new //SSystemEvent("SYS_PLAY", "stop").append("song_id", this.f7049p).append("buffer_size", Integer.valueOf(this.f7052s.getBufferSize())).append("time_played", Integer.valueOf(m2687g() / 1000)).append("play_type", this.f7046m).post();
         } else if (FileUtils.m8414b(this.f7048o)) {
-            LocalMediaStatistic.m5194d(this.f7048o, m2687g() / 1000);
+            //LocalMediaStatistic.m5194d(this.f7048o, m2687g() / 1000);
             try {
-                LocalMediaStatistic.m5200a(this.f7048o);
+                //LocalMediaStatistic.m5200a(this.f7048o);
             } catch (Exception e2) {
                 e2.printStackTrace();
             }
-            new SSystemEvent("SYS_PLAY", "stop").append("song_id", this.f7048o).append("buffer_size", Integer.valueOf(this.f7052s.getBufferSize())).append("time_played", Integer.valueOf(m2687g() / 1000)).append("play_type", this.f7046m).post();
+            //new //SSystemEvent("SYS_PLAY", "stop").append("song_id", this.f7048o).append("buffer_size", Integer.valueOf(this.f7052s.getBufferSize())).append("time_played", Integer.valueOf(m2687g() / 1000)).append("play_type", this.f7046m).post();
         }
         if (PlayStatus.STATUS_PLAYING == this.f7047n || (this.f7052s instanceof TTMediaPlayer)) {
             this.f7052s.stop();
@@ -477,11 +474,11 @@ public final class MediaPlayerProxy {
         if (this.f7057x != null) {
             this.f7057x.mo2569c();
         }
-        SSystemEvent sSystemEvent = new SSystemEvent("SYS_PLAY", "pause");
+        //SSystemEvent //SSystemEvent = //new //SSystemEvent("SYS_PLAY", "pause");
         if (this.f7049p != null) {
-            sSystemEvent.append("song_id", this.f7049p).append("play_type", this.f7046m).post();
+            //SSystemEvent.append("song_id", this.f7049p).append("play_type", this.f7046m).post();
         } else if (FileUtils.m8419a(this.f7048o)) {
-            sSystemEvent.append("song_id", this.f7048o).append("play_type", this.f7046m).post();
+            //SSystemEvent.append("song_id", this.f7048o).append("play_type", this.f7046m).post();
         }
     }
 
@@ -509,11 +506,11 @@ public final class MediaPlayerProxy {
     /* renamed from: e */
     public void m2694e() {
         m2677k();
-        SSystemEvent sSystemEvent = new SSystemEvent("SYS_PLAY", "resume");
+        //SSystemEvent //SSystemEvent = //new //SSystemEvent("SYS_PLAY", "resume");
         if (this.f7049p != null) {
-            sSystemEvent.append("song_id", this.f7049p).append("play_type", this.f7046m).post();
+            //SSystemEvent.append("song_id", this.f7049p).append("play_type", this.f7046m).post();
         } else if (FileUtils.m8419a(this.f7048o)) {
-            sSystemEvent.append("song_id", this.f7048o).append("play_type", this.f7046m).post();
+            //SSystemEvent.append("song_id", this.f7048o).append("play_type", this.f7046m).post();
         }
     }
 
@@ -644,14 +641,14 @@ public final class MediaPlayerProxy {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: p */
     public void m2669p() {
-        LogUtils.m8388a("statistic_MediaPlayerProxy", "MEDIA_COMPLETE");
+        LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_COMPLETE");
         this.f7047n = PlayStatus.STATUS_STOPPED;
         if (this.f7049p != null) {
-            OnlineMediaStatistic.m5048a(this.f7049p.longValue(), true);
-            new SSystemEvent("SYS_PLAY", "complete").append("song_id", this.f7049p).append("play_type", this.f7046m).post();
+            //OnlineMediaStatistic.m5048a(this.f7049p.longValue(), true);
+            //new //SSystemEvent("SYS_PLAY", "complete").append("song_id", this.f7049p).append("play_type", this.f7046m).post();
         } else if (FileUtils.m8414b(this.f7048o)) {
-            LocalMediaStatistic.m5198a(this.f7048o, true);
-            new SSystemEvent("SYS_PLAY", "complete").append("song_id", this.f7048o).append("play_type", this.f7046m).post();
+            //LocalMediaStatistic.m5198a(this.f7048o, true);
+            //new //SSystemEvent("SYS_PLAY", "complete").append("song_id", this.f7048o).append("play_type", this.f7046m).post();
         }
         if (this.f7057x != null) {
             this.f7057x.mo2568d();
@@ -673,7 +670,7 @@ public final class MediaPlayerProxy {
                     this.f7057x.mo2574a(i, i2, mediaPlayerNotificationInfo);
                 }
             }
-            new SSystemEvent("SYS_PLAY", "error").append("song_id", this.f7048o).append("error_code", Integer.valueOf(i)).append("play_type", this.f7046m).post();
+            //new //SSystemEvent("SYS_PLAY", "error").append("song_id", this.f7048o).append("error_code", Integer.valueOf(i)).append("play_type", this.f7046m).post();
             return;
         }
         if (this.f7057x != null) {
@@ -685,7 +682,7 @@ public final class MediaPlayerProxy {
             str = mediaPlayerNotificationInfo.getURL();
             str2 = mediaPlayerNotificationInfo.getIP();
         }
-        new SSystemEvent("SYS_PLAY", "error").append("song_id", this.f7049p).append("uri", str).append("error_code", Integer.valueOf(i)).append("response_code", Integer.valueOf(i2)).append("ip", str2).append("play_type", this.f7046m).post();
+        //new //SSystemEvent("SYS_PLAY", "error").append("song_id", this.f7049p).append("uri", str).append("error_code", Integer.valueOf(i)).append("response_code", Integer.valueOf(i2)).append("ip", str2).append("play_type", this.f7046m).post();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -697,16 +694,16 @@ public final class MediaPlayerProxy {
         }
         m2728a(0.0f, 0.0f);
         if (this.f7049p != null) {
-            OnlineMediaStatistic.m5030e(this.f7049p.longValue(), System.nanoTime());
-            OnlineMediaStatistic.m5028f(this.f7049p.longValue(), this.f7052s.getFileSize());
-            OnlineMediaStatistic.m5023j(this.f7049p.longValue(), this.f7052s.duration() / 1000);
-            OnlineMediaStatistic.m5049a(this.f7049p.longValue(), this.f7048o);
-            new SSystemEvent("SYS_PLAY", "prepare").append("song_id", this.f7049p).append("file_size", Integer.valueOf(this.f7052s.getFileSize())).append("duration", Integer.valueOf(this.f7052s.duration() / 1000)).append("uri", this.f7048o).append("play_type", this.f7046m).post();
+            //OnlineMediaStatistic.m5030e(this.f7049p.longValue(), System.nanoTime());
+            //OnlineMediaStatistic.m5028f(this.f7049p.longValue(), this.f7052s.getFileSize());
+            //OnlineMediaStatistic.m5023j(this.f7049p.longValue(), this.f7052s.duration() / 1000);
+            //OnlineMediaStatistic.m5049a(this.f7049p.longValue(), this.f7048o);
+            //new //SSystemEvent("SYS_PLAY", "prepare").append("song_id", this.f7049p).append("file_size", Integer.valueOf(this.f7052s.getFileSize())).append("duration", Integer.valueOf(this.f7052s.duration() / 1000)).append("uri", this.f7048o).append("play_type", this.f7046m).post();
         } else if (FileUtils.m8414b(this.f7048o)) {
-            LocalMediaStatistic.m5195c(this.f7048o, this.f7052s.getFileSize());
-            LocalMediaStatistic.m5196b(this.f7048o, this.f7052s.duration() / 1000);
-            StatisticUtils.m4910a("song", "listen_info", "local");
-            new SSystemEvent("SYS_PLAY", "prepare").append("song_id", this.f7048o).append("file_size", Integer.valueOf(this.f7052s.getFileSize())).append("duration", Integer.valueOf(this.f7052s.duration() / 1000)).append("uri", this.f7048o).append("play_type", this.f7046m).post();
+            //LocalMediaStatistic.m5195c(this.f7048o, this.f7052s.getFileSize());
+            //LocalMediaStatistic.m5196b(this.f7048o, this.f7052s.duration() / 1000);
+            //StatisticUtils.m4910a("song", "listen_info", "local");
+            //new //SSystemEvent("SYS_PLAY", "prepare").append("song_id", this.f7048o).append("file_size", Integer.valueOf(this.f7052s.getFileSize())).append("duration", Integer.valueOf(this.f7052s.duration() / 1000)).append("uri", this.f7048o).append("play_type", this.f7046m).post();
         }
     }
 

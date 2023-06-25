@@ -103,7 +103,7 @@ public class LyricProvider {
             if (this.f4591f != mo3628a) {
                 m6125a(mo3635g, null, (float) j, true);
             } else {
-                LogUtils.m8378e("LyricProvider", "setPlayPos");
+                LogUtils.verbose("LyricProvider", "setPlayPos");
             }
             this.f4591f = mo3628a;
         } else if (this.f4591f != -1) {

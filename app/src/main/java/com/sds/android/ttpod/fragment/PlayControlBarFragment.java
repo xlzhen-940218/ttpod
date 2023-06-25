@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.DateUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
@@ -29,7 +29,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeFramework;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.C1780b;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
@@ -75,23 +74,23 @@ public class PlayControlBarFragment extends BasePlayerFragment {
                     }
                     return;
                 case R.id.itv_playcontrolbar_next /* 2131231546 */:
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.NEXT, new Object[0]));
-                    LocalStatistic.m5180C();
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_NEXT.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.NEXT, new Object[0]));
+                    //LocalStatistic.m5180C();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_NEXT.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
                     return;
                 case R.id.itv_playcontrolbar_play /* 2131231547 */:
                     if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
                     } else if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_STOPPED) {
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.START, new Object[0]));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
                     }
-                    LocalStatistic.m5182A();
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PLAY.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
+                    //LocalStatistic.m5182A();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PLAY.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
                     return;
                 case R.id.itv_playcontrolbar_pause /* 2131231548 */:
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.PAUSE, new Object[0]));
-                    LocalStatistic.m5181B();
-                    new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PAUSE.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                    //LocalStatistic.m5181B();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PAUSE.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
                     return;
                 default:
                     return;
@@ -134,7 +133,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
         updatePlayMediaInfo();
         updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
         updatePlayPosition(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k());
-        if (!StringUtils.m8346a(Cache.m3218a().m3164g())) {
+        if (!StringUtils.isEmpty(Cache.getInstance().m3164g())) {
             artistBitmapLoadFinished();
         }
     }
@@ -142,7 +141,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        LogUtils.m8388a(TAG, "PlayControlBarFragment onThemeLoaded");
+        LogUtils.debug(TAG, "PlayControlBarFragment onThemeLoaded");
         ThemeUtils.m8172a(this.mItvPlay, ThemeElement.PLAY_BAR_PLAY_IMAGE, (int) R.string.icon_playbar_play, ThemeElement.PLAY_BAR_TEXT);
         ThemeUtils.m8172a(this.mItvPause, ThemeElement.PLAY_BAR_PAUSE_IMAGE, (int) R.string.icon_playbar_pause, ThemeElement.PLAY_BAR_TEXT);
         ThemeUtils.m8172a(this.mItvNext, ThemeElement.PLAY_BAR_NEXT_IMAGE, (int) R.string.icon_playbar_next, ThemeElement.PLAY_BAR_TEXT);
@@ -181,11 +180,11 @@ public class PlayControlBarFragment extends BasePlayerFragment {
     @Override // com.sds.android.ttpod.fragment.main.BasePlayerFragment
     public void updatePlayMediaInfo() {
         if (isViewAccessAble()) {
-            MediaItem m3225N = Cache.m3218a().m3225N();
-            boolean isNull = m3225N.isNull();
-            this.mSongName.setText(isNull ? getString(R.string.lyric_ttpod) : m3225N.getTitle());
-            this.mArtistName.setText(isNull ? "" : TTTextUtils.validateString(this.mArtistName.getContext(), m3225N.getArtist()));
-            this.mDuration = isNull ? 0 : m3225N.getDuration().intValue();
+            MediaItem mediaItem = Cache.getInstance().getCurrentPlayMediaItem();
+            boolean isNull = mediaItem.isNull();
+            this.mSongName.setText(isNull ? getString(R.string.lyric_ttpod) : mediaItem.getTitle());
+            this.mArtistName.setText(isNull ? "" : TTTextUtils.validateString(this.mArtistName.getContext(), mediaItem.getArtist()));
+            this.mDuration = isNull ? 0 : mediaItem.getDuration().intValue();
             this.mSeekBar.setMax(this.mDuration);
             updatePlayPosition(0);
             if (isNull) {
@@ -212,7 +211,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
     public void playMediaChanged() {
         super.playMediaChanged();
         if (isViewAccessAble()) {
-            LogUtils.m8388a(TAG, "PlayControlBarFragment playMediaChanged");
+            LogUtils.debug(TAG, "PlayControlBarFragment playMediaChanged");
             if (getCurrentArtistBitmap() == null) {
                 loadArtsThemeImage();
             }
@@ -247,12 +246,12 @@ public class PlayControlBarFragment extends BasePlayerFragment {
             if (this.mTrySeekPosition != null) {
                 num = this.mTrySeekPosition;
             }
-            if (!Cache.m3218a().m3225N().isNull()) {
+            if (!Cache.getInstance().getCurrentPlayMediaItem().isNull()) {
                 if (this.mPlayPosition.getVisibility() == View.VISIBLE) {
                     this.mPlayPosition.setText(DateUtils.m8430a(num.intValue()) + "-" + DateUtils.m8430a(this.mDuration));
                 }
                 this.mSeekBar.setProgress(num.intValue());
-                this.mSeekBar.setSecondaryProgress(Cache.m3218a().m3225N().isOnline() ? (int) (SupportFactory.m2397a(BaseApplication.getApplication()).m2464l() * this.mSeekBar.getMax()) : 0);
+                this.mSeekBar.setSecondaryProgress(Cache.getInstance().getCurrentPlayMediaItem().isOnline() ? (int) (SupportFactory.m2397a(BaseApplication.getApplication()).m2464l() * this.mSeekBar.getMax()) : 0);
                 return;
             }
             this.mPlayPosition.setText("");
@@ -316,7 +315,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
     }
 
     public void pictureDeleted(MediaItem mediaItem) {
-        if (isViewAccessAble() && mediaItem.equals(Cache.m3218a().m3225N())) {
+        if (isViewAccessAble() && mediaItem.equals(Cache.getInstance().getCurrentPlayMediaItem())) {
             setArtistBitmap(null, null);
         }
     }

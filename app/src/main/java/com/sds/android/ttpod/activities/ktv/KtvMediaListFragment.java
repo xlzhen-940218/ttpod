@@ -21,7 +21,7 @@ public class KtvMediaListFragment extends DraggableMediaListFragment {
     @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     public void setViewTagHolder(View view) {
         KtvMediaItemViewHolder ktvMediaItemViewHolder = new KtvMediaItemViewHolder(view);
-        ktvMediaItemViewHolder.m6957h().setTag(new MediaItemMenuHolder(ktvMediaItemViewHolder.m6957h()));
+        ktvMediaItemViewHolder.getExpandable().setTag(new MediaItemMenuHolder(ktvMediaItemViewHolder.getExpandable()));
         view.setTag(ktvMediaItemViewHolder);
     }
 
@@ -58,10 +58,10 @@ public class KtvMediaListFragment extends DraggableMediaListFragment {
         if (mediaItemViewHolder instanceof KtvMediaItemViewHolder) {
             KtvMediaItemViewHolder ktvMediaItemViewHolder = (KtvMediaItemViewHolder) mediaItemViewHolder;
             ktvMediaItemViewHolder.m8122a(!z);
-            ktvMediaItemViewHolder.m6961d().setVisibility(View.GONE);
-            ktvMediaItemViewHolder.m6960e().setVisibility(View.GONE);
-            ktvMediaItemViewHolder.m6959f().setVisibility(View.GONE);
-            ktvMediaItemViewHolder.m6958g().setVisibility(View.GONE);
+            ktvMediaItemViewHolder.getMenuView().setVisibility(View.GONE);
+            ktvMediaItemViewHolder.getFlagOnlineView().setVisibility(View.GONE);
+            ktvMediaItemViewHolder.getFlagMvView().setVisibility(View.GONE);
+            ktvMediaItemViewHolder.getFlagQualityView().setVisibility(View.GONE);
         }
     }
 }

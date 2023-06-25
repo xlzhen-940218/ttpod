@@ -22,7 +22,7 @@ public class TTPodConfig {
 
     /* renamed from: a */
     public static void m5307a(boolean z) {
-        f5562c = EnvironmentUtils.C0605d.m8467b() + File.separator + "ttpod";
+        f5562c = EnvironmentUtils.C0605d.getSdcardPath() + File.separator + "ttpod";
         f5561b = f5562c + File.separator + "cache";
         if (z) {
             FileUtils.m8406f(m5300h());
@@ -47,7 +47,7 @@ public class TTPodConfig {
 
     /* renamed from: a */
     public static String m5309a() {
-        return EnvironmentUtils.C0605d.m8467b() + File.separator + "TTPOD_LOG";
+        return EnvironmentUtils.C0605d.getSdcardPath() + File.separator + "TTPOD_LOG";
     }
 
     /* renamed from: b */

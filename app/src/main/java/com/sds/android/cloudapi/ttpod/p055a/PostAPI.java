@@ -44,7 +44,7 @@ public class PostAPI {
     /* renamed from: a */
     public static Request<BaseResult> m8850a(String str, long j, long j2, String str2) {
         Request<BaseResult> m8537b = new PostMethodRequestV2(BaseResult.class, "http://v1.ard.q.itlily.com/share", "repost").m8537b("access_token", str).m8537b("msg_id", Long.valueOf(j)).m8537b("reply_to", Long.valueOf(j2));
-        if (!StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str2)) {
             m8537b.m8537b("tweet", str2);
         }
         return m8537b;

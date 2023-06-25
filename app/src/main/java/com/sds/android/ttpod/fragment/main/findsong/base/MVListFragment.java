@@ -22,7 +22,6 @@ import com.sds.android.ttpod.framework.modules.skin.view.ModifyFitCenterImageVie
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.MVStatistic;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import java.io.File;
 
@@ -44,7 +43,7 @@ public abstract class MVListFragment extends ListLoadingFragment<MVOnlineData> {
 
     /* JADX INFO: Access modifiers changed from: protected */
     public static String generateLocalMvFilePath(String str, MVOnlineData mVOnlineData) {
-        return TTPodConfig.m5283y() + File.separator + (mVOnlineData.getSinger() + SINGER_NAME_SEPARATOR + mVOnlineData.getName()) + ("." + FileUtils.m8399m(FileUtils.m8402j(str)));
+        return TTPodConfig.m5283y() + File.separator + (mVOnlineData.getSinger() + SINGER_NAME_SEPARATOR + mVOnlineData.getName()) + ("." + FileUtils.getSuffix(FileUtils.getFilename(str)));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -125,7 +124,7 @@ public abstract class MVListFragment extends ListLoadingFragment<MVOnlineData> {
             MVOnlineData mVOnlineData = (MVOnlineData) view.getTag(R.id.view_bind_data);
             if (mVOnlineData != null) {
                 m5543a(mVOnlineData, this.f5263e);
-                MVStatistic.m5070d();
+                //MVStatistic.m5070d();
             }
         }
 

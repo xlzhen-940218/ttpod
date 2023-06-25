@@ -24,10 +24,10 @@ public class DownloadedSkinListCreator implements Runnable {
             arrayList = new ArrayList();
             for (File file : m4650a) {
                 SkinItem skinItem = new SkinItem(file.getAbsolutePath(), 0);
-                skinItem.m3573a(new SkinInfoLoader(skinItem.m3571b()).m3576a());
+                skinItem.m3573a(new SkinInfoLoader(skinItem.getPath()).m3576a());
                 arrayList.add(skinItem);
             }
         }
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_DOWNLOADED_SKIN_LIST, arrayList), ModuleID.SKIN);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_DOWNLOADED_SKIN_LIST, arrayList), ModuleID.SKIN);
     }
 }

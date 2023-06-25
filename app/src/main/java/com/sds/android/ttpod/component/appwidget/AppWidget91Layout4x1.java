@@ -111,7 +111,7 @@ public class AppWidget91Layout4x1 extends AppWidget91Base {
                 AppWidget91Layout4x1.this.mClickedPlay = true;
             }
         });
-        LogUtils.m8388a("AppWidget91Layout4x1", "onFinishInflate");
+        LogUtils.debug("AppWidget91Layout4x1", "onFinishInflate");
     }
 
     @Override // com.sds.android.ttpod.component.appwidget.AppWidget91Base
@@ -143,7 +143,7 @@ public class AppWidget91Layout4x1 extends AppWidget91Base {
         String str;
         String str2;
         StateListDrawable newSelector;
-        if (!StringUtils.m8346a(this.f3648a)) {
+        if (!StringUtils.isEmpty(this.f3648a)) {
             if (PlayStatus.STATUS_PLAYING == playStatus) {
                 str = this.f3648a + "pandawidget_ttpod_pausenormal_4x1.png";
                 str2 = this.f3648a + "pandawidget_ttpod_pausepressed_4x1.png";
@@ -166,7 +166,7 @@ public class AppWidget91Layout4x1 extends AppWidget91Base {
     @Override // com.sds.android.ttpod.component.appwidget.AppWidget91Base
     protected void setMiniLyricButton(boolean z) {
         StateListDrawable newSelector;
-        if (!StringUtils.m8346a(this.f3648a)) {
+        if (!StringUtils.isEmpty(this.f3648a)) {
             String str = z ? this.f3648a + "pandawidget_ttpod_minilyricon_4x1.png" : this.f3648a + "pandawidget_ttpod_minilyricoff_4x1.png";
             if (FileUtils.m8414b(str) && (newSelector = newSelector(getContext(), str, str)) != null) {
                 this.f3654g.setImageDrawable(newSelector);
@@ -179,7 +179,7 @@ public class AppWidget91Layout4x1 extends AppWidget91Base {
     @Override // com.sds.android.ttpod.component.appwidget.AppWidget91Base
     protected void applyTheme(Intent intent) {
         String stringExtra = intent.getStringExtra("widgetSkinPath");
-        if (!StringUtils.m8346a(stringExtra)) {
+        if (!StringUtils.isEmpty(stringExtra)) {
             String str = stringExtra + "/widget/ttpod/";
             if (!str.equals(this.f3648a)) {
                 this.f3648a = str;

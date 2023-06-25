@@ -128,7 +128,7 @@ public class AppWidget91Layout4x4 extends AppWidget91Base {
                 AppWidget91Layout4x4.this.startActivity(Action.START_ENTRY);
             }
         });
-        LogUtils.m8388a(TAG, "onFinishInflate");
+        LogUtils.debug(TAG, "onFinishInflate");
     }
 
     @Override // com.sds.android.ttpod.component.appwidget.AppWidget91Base
@@ -147,7 +147,7 @@ public class AppWidget91Layout4x4 extends AppWidget91Base {
         Drawable drawableFromPath;
         if (playMode != null) {
             try {
-                if (!StringUtils.m8346a(this.mTheme91Path) && FileUtils.m8414b(this.mTheme91Path + mStrPlayModeIcons[playMode.ordinal()]) && (drawableFromPath = getDrawableFromPath(this.mTheme91Path + mStrPlayModeIcons[playMode.ordinal()])) != null) {
+                if (!StringUtils.isEmpty(this.mTheme91Path) && FileUtils.m8414b(this.mTheme91Path + mStrPlayModeIcons[playMode.ordinal()]) && (drawableFromPath = getDrawableFromPath(this.mTheme91Path + mStrPlayModeIcons[playMode.ordinal()])) != null) {
                     this.mImageButtonPlayMode.setImageDrawable(drawableFromPath);
                 } else {
                     this.mImageButtonPlayMode.setImageResource(mPlayModeIcons[playMode.ordinal()]);
@@ -167,7 +167,7 @@ public class AppWidget91Layout4x4 extends AppWidget91Base {
         String str;
         String str2;
         StateListDrawable newSelector;
-        if (!StringUtils.m8346a(this.mTheme91Path)) {
+        if (!StringUtils.isEmpty(this.mTheme91Path)) {
             if (PlayStatus.STATUS_PLAYING == playStatus) {
                 str = this.mTheme91Path + PATH_PAUSE_NORMAL;
                 str2 = this.mTheme91Path + PATH_PAUSE_PRESSED;
@@ -198,7 +198,7 @@ public class AppWidget91Layout4x4 extends AppWidget91Base {
     @Override // com.sds.android.ttpod.component.appwidget.AppWidget91Base
     protected void applyTheme(Intent intent) {
         String stringExtra = intent.getStringExtra("widgetSkinPath");
-        if (!StringUtils.m8346a(stringExtra)) {
+        if (!StringUtils.isEmpty(stringExtra)) {
             String str = stringExtra + PATH_FOLDER;
             if (!str.equals(this.mTheme91Path)) {
                 this.mTheme91Path = str;

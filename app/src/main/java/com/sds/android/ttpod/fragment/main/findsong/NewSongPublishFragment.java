@@ -141,7 +141,7 @@ public class NewSongPublishFragment extends SlidingClosableFragment implements A
         if (i != 1) {
             this.mFooter.m7932a(false, 0, getString(R.string.loading));
         }
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_MORE_NEW_SONG_PUBLISH_LIST, Integer.valueOf(i), 30));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_MORE_NEW_SONG_PUBLISH_LIST, Integer.valueOf(i), 30));
     }
 
     public void updatePublishResult(FirstPublishNewSongMoreResult firstPublishNewSongMoreResult) {

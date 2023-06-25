@@ -136,7 +136,7 @@ public class FindSongFragment extends BaseFragment implements OnPageSelectedList
         if (!this.mIsRequesting) {
             this.mIsRequesting = true;
             this.mLastDoRequestTimeMillis = System.currentTimeMillis();
-            CommandCenter.m4607a().m4606a(new Command(CommandID.GET_RECOMMEND_CONTENT, Long.valueOf(this.mLastDataVersion)));
+            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_RECOMMEND_CONTENT, Long.valueOf(this.mLastDataVersion)));
         }
     }
 

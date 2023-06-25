@@ -41,7 +41,7 @@ public class TaskScheduler {
 
                 @Override // android.os.AsyncTask
                 protected void onCancelled() {
-                    LogUtils.m8386a("TaskScheduler", "AsyncTask onCancelled class=%s", runnable.getClass().getName());
+                    LogUtils.debug("TaskScheduler", "AsyncTask onCancelled class=%s", runnable.getClass().getName());
                     if (runnable2 != null) {
                         runnable2.run();
                     }

@@ -19,10 +19,8 @@ import com.sds.android.ttpod.fragment.audioeffect.CloudAudioEffectFragment;
 import com.sds.android.ttpod.fragment.audioeffect.MyAudioEffectFragment;
 import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.p106a.p107a.ActionPage;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import java.util.ArrayList;
 import java.util.List;
@@ -97,12 +95,12 @@ public class CloudAudioEffectActivity extends SlidingPagerActivity {
     public void onPageSelected(int i) {
         super.onPageSelected(i);
         this.mCurrentPage = i;
-        SUserUtils.m4956a(SLIST.get(i).m5275a(), SLIST.get(i).m5274b());
+        //SUserUtils.m4956a(SLIST.get(i).m5275a(), SLIST.get(i).m5274b());
         if (i == 0) {
             this.mDeleteAction.m7155c(false);
         } else if (i == 1) {
             this.mDeleteAction.m7155c(this.mHasPrivateAudioEffect);
-            AudioEffectStatistic.m5249w();
+            //AudioEffectStatistic.m5249w();
         }
     }
 

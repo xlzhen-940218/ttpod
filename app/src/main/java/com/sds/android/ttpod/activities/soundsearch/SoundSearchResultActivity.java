@@ -92,18 +92,18 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
                     new DownloadMenuHandler(SoundSearchResultActivity.this).m6927a(SoundSearchResultActivity.this.mMediaItem, "search");
                     return;
                 case R.id.imageview_soundsearch_play /* 2131230981 */:
-                    if (Cache.m3218a().m3225N().getID().equals(SoundSearchResultActivity.this.mMediaItem.getID())) {
+                    if (Cache.getInstance().getCurrentPlayMediaItem().getID().equals(SoundSearchResultActivity.this.mMediaItem.getID())) {
                         if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
-                            CommandCenter.m4607a().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                            CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
                         } else if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
-                            CommandCenter.m4607a().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                            CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
                         }
                     } else {
                         ArrayList arrayList = new ArrayList();
                         arrayList.add(SoundSearchResultActivity.this.mMediaItem);
                         Preferences.m3063I(false);
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, SoundSearchResultActivity.this.mMediaItem));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, SoundSearchResultActivity.this.mMediaItem));
                     }
                     SoundSearchResultActivity.this.mHasBeenPlayed = true;
                     return;
@@ -165,7 +165,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onDestroy() {
         super.onDestroy();
-        Cache.m3218a().m3149o();
+        Cache.getInstance().m3149o();
         this.mHandler.removeCallbacksAndMessages(null);
     }
 
@@ -188,7 +188,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
             case SEARCH_ONLINE_FINISHED:
                 if (list != null && list.size() > 0) {
                     ResultData.Item item = list.get(0).m2179c()[0];
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_PICTURE, item.m2173c(), item.m2172d(), this.mMediaItem));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_PICTURE, item.m2173c(), item.m2172d(), this.mMediaItem));
                     return;
                 }
                 return;
@@ -209,7 +209,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
                     return;
                 case SEARCH_ONLINE_FINISHED:
                     if (list != null && list.size() > 0) {
-                        CommandCenter.m4607a().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, list.get(0).m2179c()[0], this.mMediaItem));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, list.get(0).m2179c()[0], this.mMediaItem));
                         return;
                     }
                     return;

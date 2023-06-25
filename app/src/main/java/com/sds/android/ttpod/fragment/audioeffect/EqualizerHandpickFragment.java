@@ -13,10 +13,8 @@ import com.sds.android.ttpod.adapter.p070b.AudioEffectGridAdapter;
 import com.sds.android.ttpod.component.p085b.AudioEffectItem;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
-import com.sds.android.ttpod.framework.p106a.p107a.AudioEffectStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.audiofx.TTEqualizer;
@@ -87,7 +85,7 @@ public class EqualizerHandpickFragment extends BaseEqualizerFragment {
     public void performItemClick(String str) {
         if (str.equals(KEY_CUSTOM)) {
             String m2966ah = Preferences.m2966ah();
-            TTEqualizer.Settings equalizerSettingsByName = StringUtils.m8346a(m2966ah) ? getEqualizerSettingsByName(str) : new TTEqualizer.Settings(m2966ah);
+            TTEqualizer.Settings equalizerSettingsByName = StringUtils.isEmpty(m2966ah) ? getEqualizerSettingsByName(str) : new TTEqualizer.Settings(m2966ah);
             setEqualizer(equalizerSettingsByName);
             startCustomEqualizerActivity(equalizerSettingsByName);
         } else {
@@ -97,8 +95,8 @@ public class EqualizerHandpickFragment extends BaseEqualizerFragment {
         this.mHandpickAdapter.m7611a(str);
         if (!this.mIsSelected) {
             this.mIsSelected = true;
-            AudioEffectStatistic.m5265g();
-            SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_DEFAULT_HANDPICK_SELECTED, SPage.PAGE_NONE, SPage.PAGE_NONE);
+            //AudioEffectStatistic.m5265g();
+            //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_DEFAULT_HANDPICK_SELECTED, SPage.PAGE_NONE, SPage.PAGE_NONE);
         }
     }
 }

@@ -100,7 +100,7 @@ public class ScrollableViewGroup extends FrameLayout {
         this.f7907r = new Handler() { // from class: com.sds.android.ttpod.widget.ScrollableViewGroup.1
             @Override // android.os.Handler
             public void handleMessage(Message message) {
-                LogUtils.m8388a("ScrollableViewGroup", "handleMessage: " + message.toString());
+                LogUtils.debug("ScrollableViewGroup", "handleMessage: " + message.toString());
                 if (!ScrollableViewGroup.this.f7905p && ScrollableViewGroup.this.getChildCount() > 1) {
                     ScrollableViewGroup.this.m1562a(ScrollableViewGroup.this.f7893d + 1);
                 }
@@ -125,7 +125,7 @@ public class ScrollableViewGroup extends FrameLayout {
         this.f7907r = new Handler() { // from class: com.sds.android.ttpod.widget.ScrollableViewGroup.1
             @Override // android.os.Handler
             public void handleMessage(Message message) {
-                LogUtils.m8388a("ScrollableViewGroup", "handleMessage: " + message.toString());
+                LogUtils.debug("ScrollableViewGroup", "handleMessage: " + message.toString());
                 if (!ScrollableViewGroup.this.f7905p && ScrollableViewGroup.this.getChildCount() > 1) {
                     ScrollableViewGroup.this.m1562a(ScrollableViewGroup.this.f7893d + 1);
                 }
@@ -150,7 +150,7 @@ public class ScrollableViewGroup extends FrameLayout {
         this.f7907r = new Handler() { // from class: com.sds.android.ttpod.widget.ScrollableViewGroup.1
             @Override // android.os.Handler
             public void handleMessage(Message message) {
-                LogUtils.m8388a("ScrollableViewGroup", "handleMessage: " + message.toString());
+                LogUtils.debug("ScrollableViewGroup", "handleMessage: " + message.toString());
                 if (!ScrollableViewGroup.this.f7905p && ScrollableViewGroup.this.getChildCount() > 1) {
                     ScrollableViewGroup.this.m1562a(ScrollableViewGroup.this.f7893d + 1);
                 }
@@ -165,14 +165,14 @@ public class ScrollableViewGroup extends FrameLayout {
 
     @Override // android.widget.FrameLayout, android.view.ViewGroup, android.view.View
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        LogUtils.m8386a("ScrollableViewGroup", "onLayout %b %d %d %d %d", Boolean.valueOf(z), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i4));
+        LogUtils.debug("ScrollableViewGroup", "onLayout %b %d %d %d %d", Boolean.valueOf(z), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i4));
         int childCount = getChildCount();
         int i5 = 0;
         for (int i6 = 0; i6 < childCount; i6++) {
             View childAt = getChildAt(i6);
             if (childAt.getVisibility() != View.GONE) {
                 int measuredWidth = childAt.getMeasuredWidth();
-                LogUtils.m8388a("ScrollableViewGroup", "onLayout childWidth=" + measuredWidth + " childHeighteight=" + childAt.getMeasuredHeight());
+                LogUtils.debug("ScrollableViewGroup", "onLayout childWidth=" + measuredWidth + " childHeighteight=" + childAt.getMeasuredHeight());
                 childAt.layout(i5, 0, i5 + measuredWidth, childAt.getMeasuredHeight());
                 i5 += measuredWidth;
             }
@@ -181,7 +181,7 @@ public class ScrollableViewGroup extends FrameLayout {
 
     @Override // android.widget.FrameLayout, android.view.View
     protected void onMeasure(int i, int i2) {
-        LogUtils.m8388a("ScrollableViewGroup", String.format("onMeasure %08X %d %08X %d", Integer.valueOf(View.MeasureSpec.getMode(i)), Integer.valueOf(View.MeasureSpec.getSize(i)), Integer.valueOf(View.MeasureSpec.getMode(i2)), Integer.valueOf(View.MeasureSpec.getSize(i2))));
+        LogUtils.debug("ScrollableViewGroup", String.format("onMeasure %08X %d %08X %d", Integer.valueOf(View.MeasureSpec.getMode(i)), Integer.valueOf(View.MeasureSpec.getSize(i)), Integer.valueOf(View.MeasureSpec.getMode(i2)), Integer.valueOf(View.MeasureSpec.getSize(i2))));
         super.onMeasure(i, i2);
     }
 

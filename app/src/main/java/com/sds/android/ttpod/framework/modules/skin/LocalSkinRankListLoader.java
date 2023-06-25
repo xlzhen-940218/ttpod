@@ -24,6 +24,6 @@ public class LocalSkinRankListLoader implements Runnable {
         String m3767a = CachedOnlineListReader.m3767a(SkinUtils.m4645a(TTPodConfig.m5294n(), "rank_"));
         OnlineSkinListResult onlineSkinListResult = TextUtils.isEmpty(m3767a) ? null : (OnlineSkinListResult) JSONUtils.fromJson(m3767a, OnlineSkinListResult.class);
         new ArrayList();
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_SKIN_RANK_LIST, SkinUtils.m4648a(onlineSkinListResult)), ModuleID.SKIN);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SKIN_RANK_LIST, SkinUtils.m4648a(onlineSkinListResult)), ModuleID.SKIN);
     }
 }

@@ -61,7 +61,7 @@ public class QQZoneAuthHandler extends AuthHandler {
                     bundle.putString("access_token", optString);
                     bundle.putString("expires_in", optString2);
                     bundle.putString("openid", optString3);
-                    if (StringUtils.m8346a(optString)) {
+                    if (StringUtils.isEmpty(optString)) {
                         QQZoneAuthHandler.this.m2070a(authCallback, "QQZone SSO授权失败");
                     } else {
                         QQZoneAuthHandler.this.m2071a(authCallback, bundle);

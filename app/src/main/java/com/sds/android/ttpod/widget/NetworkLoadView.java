@@ -137,7 +137,7 @@ public class NetworkLoadView extends FrameLayout implements ThemeManager.Interfa
 
     public void setLoadState(EnumC2205a enumC2205a) {
         this.f7751h = enumC2205a;
-        LogUtils.m8388a("NetworkLoadView", "NetworkLoadView.setLoadState-----> " + this.f7751h + " mOnStartLoadingListener: " + this.f7750g);
+        LogUtils.debug("NetworkLoadView", "NetworkLoadView.setLoadState-----> " + this.f7751h + " mOnStartLoadingListener: " + this.f7750g);
         switch (this.f7751h) {
             case IDLE:
                 m1679d();
@@ -173,7 +173,7 @@ public class NetworkLoadView extends FrameLayout implements ThemeManager.Interfa
     @Override // android.view.View
     protected void onWindowVisibilityChanged(int i) {
         super.onWindowVisibilityChanged(i);
-        LogUtils.m8388a("NetworkLoadView", "NetworkLoadView.onWindowVisibilityChanged----->visibility " + i);
+        LogUtils.debug("NetworkLoadView", "NetworkLoadView.onWindowVisibilityChanged----->visibility " + i);
         if (getVisibility() == View.VISIBLE && this.f7751h == EnumC2205a.LOADING) {
             m1683a();
         } else {
@@ -183,7 +183,7 @@ public class NetworkLoadView extends FrameLayout implements ThemeManager.Interfa
 
     /* renamed from: a */
     public void m1683a() {
-        LogUtils.m8388a("NetworkLoadView", "NetworkLoadView.showLoadingAnimView-----> ");
+        LogUtils.debug("NetworkLoadView", "NetworkLoadView.showLoadingAnimView-----> ");
         setVisibility(View.VISIBLE);
         this.f7744a.setVisibility(View.VISIBLE);
         this.f7745b.setVisibility(View.INVISIBLE);
@@ -200,7 +200,7 @@ public class NetworkLoadView extends FrameLayout implements ThemeManager.Interfa
 
     /* renamed from: c */
     private void m1680c() {
-        LogUtils.m8388a("NetworkLoadView", "NetworkLoadView.showLoadingFailedView-----> ");
+        LogUtils.debug("NetworkLoadView", "NetworkLoadView.showLoadingFailedView-----> ");
         setVisibility(View.VISIBLE);
         this.f7744a.setVisibility(View.INVISIBLE);
         this.f7745b.setVisibility(View.VISIBLE);
@@ -224,7 +224,7 @@ public class NetworkLoadView extends FrameLayout implements ThemeManager.Interfa
 
     /* renamed from: d */
     private void m1679d() {
-        LogUtils.m8388a("NetworkLoadView", "NetworkLoadView.hideAllView-----> ");
+        LogUtils.debug("NetworkLoadView", "NetworkLoadView.hideAllView-----> ");
         setVisibility(this.f7752i);
         this.f7746c.clearAnimation();
     }

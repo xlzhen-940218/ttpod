@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.Post;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.IdListResult;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
@@ -37,7 +37,6 @@ import com.sds.android.ttpod.framework.modules.p124f.MusicCircleModule;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.utils.ThemeUtils;
@@ -133,7 +132,7 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
     }
 
     private void bindFollowButton() {
-        boolean booleanValue = ((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(getUser().getUserId())), Boolean.class)).booleanValue();
+        boolean booleanValue = ((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(getUser().getUserId())), Boolean.class)).booleanValue();
         if (this.mToggleFollowView != null) {
             this.mToggleFollowView.setText(booleanValue ? R.string.remove_follow : R.string.add_follow);
         }
@@ -215,7 +214,7 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
         if (this.mFollowingCountView != null && this.mFollowerCountView != null) {
             this.mFollowingCountView.setText(String.valueOf(getUser().getFollowingsCount()));
             this.mFollowerCountView.setText(String.valueOf(getUser().getFollowersCount()));
-            if (StringUtils.m8346a(getUser().getNickName())) {
+            if (StringUtils.isEmpty(getUser().getNickName())) {
                 getUser().setNickName(tTPodUser.getNickName());
                 getUser().setUserId(tTPodUser.getUserId());
                 getNickName().setText(tTPodUser.getNickName());
@@ -271,21 +270,21 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
     public void onPlayEvent(Post post) {
         if (this.mOrigin.startsWith("recommend")) {
             MusicCircleStatistic.m7956s();
-            OnlineMediaStatistic.m5045a("music-circle");
+            //OnlineMediaStatistic.m5045a("music-circle");
         } else if (this.mOrigin.startsWith("rank")) {
             if (!TextUtils.isEmpty(this.mTitle)) {
                 MusicCircleStatistic.m7975c(this.mTitle);
             }
-            OnlineMediaStatistic.m5045a("music-circle");
+            //OnlineMediaStatistic.m5045a("music-circle");
         } else if (this.mOrigin.startsWith("category")) {
             if (!TextUtils.isEmpty(this.mTitle)) {
                 MusicCircleStatistic.m7969f(this.mTitle);
             }
-            OnlineMediaStatistic.m5045a("music-circle");
+            //OnlineMediaStatistic.m5045a("music-circle");
         } else {
-            OnlineMediaStatistic.m5045a(this.mOrigin);
+            //OnlineMediaStatistic.m5045a(this.mOrigin);
         }
-        OnlineMediaStatistic.m5054a();
+        //OnlineMediaStatistic.m5054a();
     }
 
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListFragment
@@ -338,7 +337,7 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListByIdFragment
     public void onRequestPostIds() {
         super.onRequestPostIds();
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_USER_POST_IDS, Long.valueOf(getUser().getUserId()), onLoadOrigin()));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_USER_POST_IDS, Long.valueOf(getUser().getUserId()), onLoadOrigin()));
     }
 
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListFragment
@@ -398,12 +397,12 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
             this.mToggleFollowView.setText(R.string.is_processing);
             TTPodUser user = getUser();
             long userId = user.getUserId();
-            if (((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(user.getUserId())), Boolean.class)).booleanValue()) {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.UNFOLLOW_FRIEND, Long.valueOf(userId), ""));
+            if (((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(user.getUserId())), Boolean.class)).booleanValue()) {
+                CommandCenter.getInstance().m4606a(new Command(CommandID.UNFOLLOW_FRIEND, Long.valueOf(userId), ""));
             } else {
-                CommandCenter.m4607a().m4606a(new Command(CommandID.FOLLOW_FRIEND, Long.valueOf(userId), ""));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.FOLLOW_FRIEND, Long.valueOf(userId), ""));
             }
-            new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_USER_FOLLOW.getValue(), SPage.PAGE_CIRCLE_USER_HOME.getValue()).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_USER_FOLLOW.getValue(), SPage.PAGE_CIRCLE_USER_HOME.getValue()).post();
         }
     }
 
@@ -414,7 +413,7 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
         bundle.putSerializable("user", getUser());
         privateMessageFragment.setArguments(bundle);
         launchFragment(privateMessageFragment);
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_USER_PRIVATE_MESSAGE.getValue(), SPage.PAGE_CIRCLE_USER_HOME.getValue()).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_USER_PRIVATE_MESSAGE.getValue(), SPage.PAGE_CIRCLE_USER_HOME.getValue()).post();
     }
 
     /* JADX INFO: Access modifiers changed from: private */

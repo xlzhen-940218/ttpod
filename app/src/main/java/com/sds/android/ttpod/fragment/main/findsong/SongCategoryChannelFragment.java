@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import com.sds.android.cloudapi.ttpod.result.OnlineMusicCategoryResult;
 import com.sds.android.cloudapi.ttpod.result.OnlineMusicSubCategoryResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
@@ -23,7 +23,6 @@ import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.widget.NetworkLoadView;
 import java.lang.reflect.Method;
@@ -76,7 +75,7 @@ public class SongCategoryChannelFragment extends GridViewFragment<OnlineMusicCat
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestSubCategory() {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_MUSIC_SUB_CATEGORY, Long.valueOf(this.mId), 1, 15));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_MUSIC_SUB_CATEGORY, Long.valueOf(this.mId), 1, 15));
     }
 
     public void updateSubCategory(OnlineMusicSubCategoryResult onlineMusicSubCategoryResult) {
@@ -129,14 +128,14 @@ public class SongCategoryChannelFragment extends GridViewFragment<OnlineMusicCat
             OnlineMusicSubCategoryResult.SubCategoryData subCategoryData = this.mSubCategoryResult.getSubCategoryList().get(i);
             if (subCategoryData != null) {
                 String name = subCategoryData.getName();
-                if (!StringUtils.m8346a(subCategoryData.getUrl())) {
+                if (!StringUtils.isEmpty(subCategoryData.getUrl())) {
                     gotoBrowserPage(subCategoryData.getUrl(), name);
                 } else {
                     launchFragment(new SubSongCategoryDetailFragment(subCategoryData));
                 }
-                new SUserEvent("PAGE_CLICK", SAction.ACTION_LIBRARY_THREE.getValue(), this.mTitle, name).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(subCategoryData.getId())).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_LIBRARY_THREE.getValue(), this.mTitle, name).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(subCategoryData.getId())).post();
             }
-            MusicLibraryStatistic.m5055f((int) subCategoryData.getId(), subCategoryData.getName());
+            //MusicLibraryStatistic.m5055f((int) subCategoryData.getId(), subCategoryData.getName());
         }
     }
 

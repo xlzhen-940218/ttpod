@@ -8,8 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.MusicRank;
 import com.sds.android.cloudapi.ttpod.result.MusicRanksResult;
-import com.sds.android.sdk.core.statistic.SUserEvent;
-import com.sds.android.sdk.core.statistic.StatisticHelper;
+
+
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
@@ -29,10 +29,8 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.RankStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.media.player.PlayStatus;
@@ -60,7 +58,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
         }
         this.mMusicRank = new MusicRank();
         this.mMusicRank.setId(i);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_MUSIC_RANKS, getRequestId()));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_MUSIC_RANKS, getRequestId()));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
@@ -138,7 +136,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
         if (this.mOnlineMediaListFragment != null) {
             List<MediaItem> mediaItemList = this.mOnlineMediaListFragment.getMediaItemList();
             if (ListUtils.m4717b(mediaItemList) && (indexOf = mediaItemList.indexOf(mediaItem)) > -1) {
-                RankStatistic.m4963a(this.mMusicRank.getTitle(), z, indexOf + 1);
+               // RankStatistic.m4963a(this.mMusicRank.getTitle(), z, indexOf + 1);
             }
         }
     }
@@ -150,7 +148,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
         if (getActivity() != null) {
             new DownloadMenuHandler(getActivity()).m6926a(this.mediaItemList);
         }
-        StatisticUtils.m4917a(295, (int) StatisticHelper.DELAY_SEND, 1L);
+        //StatisticUtils.m4917a(295, (int) 65537, 1L);
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
@@ -189,7 +187,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void requestDataList(int i) {
         super.requestDataList(i);
-        CommandCenter.m4607a().m4606a(new Command(CommandID.GET_RANK_MUSIC_LIST, Integer.valueOf(this.mMusicRank.getId()), Integer.valueOf(i), getRequestId()));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_RANK_MUSIC_LIST, Integer.valueOf(this.mMusicRank.getId()), Integer.valueOf(i), getRequestId()));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
@@ -197,22 +195,16 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
         return this.mMusicRank.getTitle();
     }
 
-    @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment.InterfaceC1667b
-    public void doStatistic(MediaItem mediaItem, int i) {
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_ITEM.getValue(), SPage.PAGE_RANK_DETAIL.getValue(), 0).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mMusicRank.getId())).append("song_list_name", this.mMusicRank.getTitle()).append("position", Integer.valueOf(i + 1)).append("song_id", mediaItem.getSongID()).post();
-    }
+
 
     /* JADX INFO: Access modifiers changed from: private */
     public void onPlayButtonClick() {
         Preferences.m2828t(OnlinePlayingGroupUtils.m6917a(this.mMusicRank));
-        RankStatistic.m4967a(this.mMusicRank.getId(), this.mMusicRank.getTitle());
-        new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RANK_DETAIL_PLAY_ALL.getValue(), SPage.PAGE_RANK_DETAIL.getValue(), 0).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mMusicRank.getId())).append("title", this.mMusicRank.getTitle()).post();
+       // RankStatistic.m4967a(this.mMusicRank.getId(), this.mMusicRank.getTitle());
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RANK_DETAIL_PLAY_ALL.getValue(), SPage.PAGE_RANK_DETAIL.getValue(), 0).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mMusicRank.getId())).append("title", this.mMusicRank.getTitle()).post();
     }
 
-    @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
-    protected String onLoadStatisticModule() {
-        return RankStatistic.m4962b();
-    }
+
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: com.sds.android.ttpod.fragment.main.findsong.RankDetailFragment$b */
@@ -262,7 +254,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
         public void mo5586a(MusicRank musicRank) {
             this.f5229c.setText(musicRank.getDetail());
             this.f5228b.setText(musicRank.getTime());
-            ImageCacheUtils.m4752a(this.f5227a, StringUtils.m8346a(musicRank.getBigPicUrl()) ? musicRank.getPicUrl() : musicRank.getBigPicUrl(), DisplayUtils.m7225c(), DisplayUtils.m7224d() / 2, (int) R.drawable.img_background_ttpod_music_large_logo);
+            ImageCacheUtils.m4752a(this.f5227a, StringUtils.isEmpty(musicRank.getBigPicUrl()) ? musicRank.getPicUrl() : musicRank.getBigPicUrl(), DisplayUtils.m7225c(), DisplayUtils.m7224d() / 2, (int) R.drawable.img_background_ttpod_music_large_logo);
         }
 
         /* renamed from: a */

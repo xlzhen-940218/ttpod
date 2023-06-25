@@ -133,7 +133,7 @@ public abstract class Request<R extends BaseResult> {
 
     /* renamed from: b */
     private boolean m8538b(Object obj) {
-        return obj == null || StringUtils.m8346a(obj.toString());
+        return obj == null || StringUtils.isEmpty(obj.toString());
     }
 
     /* renamed from: d */
@@ -152,12 +152,12 @@ public abstract class Request<R extends BaseResult> {
 
     /* renamed from: f */
     public R m8531f() {
-        LogUtils.m8379d("Request", "in execute lookNetProblem");
+        LogUtils.info("Request", "in execute lookNetProblem");
         if (m8530g()) {
             return this.f2422c;
         }
         this.f2431l = mo8536c();
-        LogUtils.m8380c("Request", "in execute lookNetProblem url=%s", this.f2431l);
+        LogUtils.info("Request", "in execute lookNetProblem url=%s", this.f2431l);
         return m8539b(mo8541a(this.f2431l + (this.f2431l.indexOf("?") == -1 ? "?" : "&") + "utdid=" + EnvironmentUtils.C0603b.m8499a(), this.f2426g, this.f2424e, this.f2425f));
     }
 
@@ -182,23 +182,23 @@ public abstract class Request<R extends BaseResult> {
     public String mo8536c() {
         String mo8547a = mo8547a();
         String m8343a = StringUtils.m8343a("/", this.f2427h);
-        if (!StringUtils.m8346a(m8343a)) {
+        if (!StringUtils.isEmpty(m8343a)) {
             mo8547a = StringUtils.m8342a("/", mo8547a, m8343a);
         }
-        LogUtils.m8388a("Request", mo8547a);
+        LogUtils.debug("Request", mo8547a);
         return mo8547a;
     }
 
     /* renamed from: a */
     protected R m8546a(HttpRequest.C0586a c0586a) {
         if (c0586a == null) {
-            LogUtils.m8381c("Request", "Http request result is null, stop parse.");
+            LogUtils.error("Request", "Http request result is null, stop parse.");
             return null;
         }
         try {
             try {
                 String m8347a = StringUtils.m8347a(c0586a.m8688e());
-                LogUtils.m8386a("Request", "TEST: jsonString %s", m8347a);
+                LogUtils.debug("Request", "TEST: jsonString %s", m8347a);
                 if (this.f2430k != null) {
                     m8347a = this.f2430k.mo8527a(m8347a);
                 }
@@ -237,7 +237,7 @@ public abstract class Request<R extends BaseResult> {
             r = null;
         }
         if (r == null) {
-            LogUtils.m8381c("Request", "return null, this should not happen.");
+            LogUtils.error("Request", "return null, this should not happen.");
         }
         return r;
     }
@@ -296,13 +296,13 @@ public abstract class Request<R extends BaseResult> {
             str6 = str3 + it3.next() + ":" + this.f2425f.get(next) + " ";
         }
         String str7 = "url: " + mo8536c();
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             str7 = str7 + " " + str;
         }
-        if (!StringUtils.m8346a(str2)) {
+        if (!StringUtils.isEmpty(str2)) {
             str7 = str7 + " " + str2;
         }
-        if (!StringUtils.m8346a(str3)) {
+        if (!StringUtils.isEmpty(str3)) {
             return str7 + " " + str3;
         }
         return str7;

@@ -47,7 +47,7 @@ public class SimpleGridView extends ViewGroup {
     @Override // android.view.ViewGroup, android.view.View
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int childCount = getChildCount();
-        LogUtils.m8386a("SimpleGridView", "onLayout %b %d %d %d %d"
+        LogUtils.debug("SimpleGridView", "onLayout %b %d %d %d %d"
                 , Boolean.valueOf(z), Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i4));
         int i5 = 0;
         int i6 = 0;

@@ -45,13 +45,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public final class MediaScanner {
 
     /* renamed from: a */
-    private int f5982a;
+    private int count;
 
     /* renamed from: b */
     private volatile AsyncTaskC1871b f5983b;
 
     /* renamed from: c */
-    private InterfaceC1870a f5984c;
+    private ScanCallback scanCallback;
 
     /* renamed from: d */
     private boolean f5985d;
@@ -66,25 +66,25 @@ public final class MediaScanner {
     /* compiled from: MediaScanner.java */
     /* renamed from: com.sds.android.ttpod.framework.modules.core.d.b$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC1870a {
+    public interface ScanCallback {
         void onScanFinished();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     public MediaScanner() {
-        this.f5982a = 0;
-        if (this.f5982a == 0) {
-            int m4227e = m4227e();
-            this.f5982a = m4227e == 0 ? 1 : m4227e;
-            LogUtils.m8380c("MediaScanner", "MediaScanner mSystemMediaFileCount=%d", Integer.valueOf(this.f5982a));
+        this.count = 0;
+        if (this.count == 0) {
+            int count = getCount();
+            this.count = count == 0 ? 1 : count;
+            LogUtils.info("MediaScanner", "MediaScanner mSystemMediaFileCount=%d", Integer.valueOf(this.count));
         }
         m4225g();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
-    public void m4239a(InterfaceC1870a interfaceC1870a) {
-        this.f5984c = interfaceC1870a;
+    public void m4239a(ScanCallback scanCallback) {
+        this.scanCallback = scanCallback;
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
@@ -96,7 +96,7 @@ public final class MediaScanner {
         }
         if (this.f5983b != null) {
             m4240a();
-            LogUtils.m8384b("MediaScanner", "is scanning, canceled!");
+            LogUtils.warning("MediaScanner", "is scanning, canceled!");
         }
         this.f5983b = new AsyncTaskC1871b(collection, str);
         this.f5983b.execute(new Object[0]);
@@ -138,45 +138,46 @@ public final class MediaScanner {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    private int m4227e() {
-        int i;
+    private int getCount() {
+        int count;
         Cursor query = null;
         Exception e;
         int i2 = 0;
         try {
-            query = BaseApplication.getApplication().getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{"count(*)"}, null, null, null);
+            query = BaseApplication.getApplication().getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+                    , new String[]{"_data"}, null, null, null);
         } catch (Exception e1) {
             e = e1;
         }
         if (query != null) {
-            i = query.moveToNext() ? query.getInt(0) : 0;
+            count = query.getCount();
             try {
                 query.close();
             } catch (Exception e2) {
-                i2 = i;
+                i2 = count;
                 e = e2;
                 e.printStackTrace();
-                i = i2;
-                if (i == 0) {
+                count = i2;
+                if (count == 0) {
                 }
             }
-            if (i == 0) {
+            if (count == 0) {
                 return 1;
             }
-            return i;
+            return count;
         }
-        i = i2;
-        if (i == 0) {
+        count = i2;
+        if (count == 0) {
         }
-        return i;
+        return count;
     }
 
     /* renamed from: f */
     private String[] m4226f() {
-        String m8467b = EnvironmentUtils.C0605d.m8467b();
+        String m8467b = EnvironmentUtils.C0605d.getSdcardPath();
         String m8460d = EnvironmentUtils.C0605d.m8460d(BaseApplication.getApplication());
         ArrayList arrayList = new ArrayList();
-        if (StringUtils.m8346a(m8460d) || StringUtils.m8346a(this.f5987f) || StringUtils.m8344a(this.f5987f, this.f5986e)) {
+        if (StringUtils.isEmpty(m8460d) || StringUtils.isEmpty(this.f5987f) || StringUtils.m8344a(this.f5987f, this.f5986e)) {
             return new String[]{m8467b};
         }
         arrayList.add(m8467b);
@@ -189,19 +190,19 @@ public final class MediaScanner {
 
     /* renamed from: g */
     private void m4225g() {
-        String m8467b = EnvironmentUtils.C0605d.m8467b();
+        String sdcardPath = EnvironmentUtils.C0605d.getSdcardPath();
         String m8460d = EnvironmentUtils.C0605d.m8460d(BaseApplication.getApplication());
-        this.f5986e = m8467b;
+        this.f5986e = sdcardPath;
         this.f5987f = m8460d;
         try {
-            if (StringUtils.m8346a(m8460d) || m8467b.equals(m8460d) || !m4236a(m8467b) || !m4236a(m8460d)) {
+            if (StringUtils.isEmpty(m8460d) || sdcardPath.equals(m8460d) || !m4236a(sdcardPath) || !m4236a(m8460d)) {
                 this.f5987f = "";
-            } else if (SDKVersionUtils.m8372b() && Environment.isExternalStorageRemovable() && FileUtils.m8408d(EnvironmentUtils.C0605d.m8467b(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
+            } else if (SDKVersionUtils.m8372b() && Environment.isExternalStorageRemovable() && FileUtils.m8408d(EnvironmentUtils.C0605d.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
                 this.f5986e = EnvironmentUtils.C0605d.m8460d(BaseApplication.getApplication());
-                this.f5987f = EnvironmentUtils.C0605d.m8467b();
+                this.f5987f = EnvironmentUtils.C0605d.getSdcardPath();
             }
         } catch (Exception e) {
-            this.f5986e = EnvironmentUtils.C0605d.m8467b();
+            this.f5986e = EnvironmentUtils.C0605d.getSdcardPath();
             this.f5987f = "";
             e.printStackTrace();
         }
@@ -222,10 +223,10 @@ public final class MediaScanner {
     /* renamed from: b */
     private String m4232b(String str) {
         String str2 = str + File.separator + MediaStoreOld.AUTHORITY;
-        if (SDKVersionUtils.m8365i() && this.f5987f.equals(str) && !this.f5987f.equals(EnvironmentUtils.C0605d.m8467b())) {
+        if (SDKVersionUtils.m8365i() && this.f5987f.equals(str) && !this.f5987f.equals(EnvironmentUtils.C0605d.getSdcardPath())) {
             str2 = EnvironmentUtils.C0605d.m8470a(BaseApplication.getApplication(), EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
         }
-        if (!FileUtils.m8409d(str2)) {
+        if (!FileUtils.isDir(str2)) {
             FileUtils.m8406f(str2);
         }
         return str2;
@@ -244,7 +245,7 @@ public final class MediaScanner {
         private boolean f5992e;
 
         /* renamed from: h */
-        private volatile String f5995h;
+        private volatile String filePath;
 
         /* renamed from: m */
         private List<String> f6000m;
@@ -253,7 +254,7 @@ public final class MediaScanner {
         private boolean f6001n;
 
         /* renamed from: b */
-        private MediaTag f5989b = new MediaTag();
+        private MediaTag mediaTag = new MediaTag();
 
         /* renamed from: c */
         private final Collection<String> f5990c = new HashSet();
@@ -277,15 +278,15 @@ public final class MediaScanner {
         private List<String> f5999l = new LinkedList();
 
         /* renamed from: o */
-        private FileMatcher f6002o = new FileMatcher(new FileMatcher.CallBack() { // from class: com.sds.android.ttpod.framework.modules.core.d.b.b.1
+        private FileMatcher fileMatcher = new FileMatcher(new FileMatcher.CallBack() { // from class: com.sds.android.ttpod.framework.modules.core.d.b.b.1
             @Override // com.sds.android.ttpod.media.FileMatcher.CallBack
-            public void onFileMatched(String str) {
-                AsyncTaskC1871b.this.m4213a(str);
+            public void onFileMatched(String filePath) {
+                AsyncTaskC1871b.this.m4213a(filePath);
             }
 
             @Override // com.sds.android.ttpod.media.FileMatcher.CallBack
-            public void onFolderMatched(String str) {
-                AsyncTaskC1871b.this.f5995h = str;
+            public void onFolderMatched(String folderPath) {
+                AsyncTaskC1871b.this.filePath = folderPath;
             }
         });
 
@@ -303,12 +304,12 @@ public final class MediaScanner {
 
         /* renamed from: a */
         String m4219a() {
-            return this.f5995h;
+            return this.filePath;
         }
 
         /* renamed from: b */
         Integer m4206b() {
-            int intValue = ((m4202c().intValue() + this.f5997j.get()) * 100) / MediaScanner.this.f5982a;
+            int intValue = ((m4202c().intValue() + this.f5997j.get()) * 100) / MediaScanner.this.count;
             if (intValue >= 95) {
                 intValue = 100;
             }
@@ -323,23 +324,23 @@ public final class MediaScanner {
         /* renamed from: d */
         void m4199d() {
             cancel(true);
-            this.f6002o.stop();
+            this.fileMatcher.stop();
         }
 
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // android.os.AsyncTask
         /* renamed from: a */
         public Void doInBackground(Object... objArr) {
-            LogUtils.m8381c("mediaScan", "doInBackground");
+            LogUtils.error("mediaScan", "doInBackground");
             for (String str : this.f5990c) {
-                LogUtils.m8381c("scan_path", str);
+                LogUtils.error("scan_path", str);
             }
             Collection<String> m4208a = m4208a(this.f5990c);
             for (String str2 : m4208a) {
-                LogUtils.m8381c("merged_scan_path", str2);
+                LogUtils.error("merged_scan_path", str2);
             }
             for (String str3 : m4208a) {
-                if (FileUtils.m8409d(str3)) {
+                if (FileUtils.isDir(str3)) {
                     this.f5998k.addAll(MediaStorage.queryMediaIDsUnderFolder(BaseApplication.getApplication(), str3, Preferences.m2860l(this.f5991d)));
                 }
             }
@@ -348,21 +349,21 @@ public final class MediaScanner {
             Iterator<String> it = Preferences.m2882g().iterator();
             while (it.hasNext()) {
                 String next = it.next();
-                if (!FileUtils.m8409d(next)) {
+                if (!FileUtils.isDir(next)) {
                     it.remove();
                 } else {
                     sb.append(next + "|");
                 }
             }
-            this.f5992e = Preferences.m2878h();
-            String str4 = !Preferences.m2874i() ? "|mp3|wma|aac|m4a|ape|flac|ogg|wma|cue|wav|amr|mid|midi|" : "|mp3|wma|aac|m4a|ape|flac|ogg|wma|cue|wav|";
+            this.f5992e = Preferences.durationLessThan60();
+            String str4 = !Preferences.excludeAmrMid() ? "|mp3|wma|aac|m4a|ape|flac|ogg|wma|cue|wav|amr|mid|midi|" : "|mp3|wma|aac|m4a|ape|flac|ogg|wma|cue|wav|";
             for (String str5 : this.f5990c) {
-                LogUtils.m8381c("scaning", str5);
+                LogUtils.error("scaning", str5);
                 m4211a(str5, sb, str4);
             }
             m4196f();
-            if (MediaScanner.this.f5985d && this.f6001n && !this.f5990c.contains(EnvironmentUtils.C0605d.m8467b()) && this.f5996i.get() == 0) {
-                m4211a(EnvironmentUtils.C0605d.m8467b(), sb, str4);
+            if (MediaScanner.this.f5985d && this.f6001n && !this.f5990c.contains(EnvironmentUtils.C0605d.getSdcardPath()) && this.f5996i.get() == 0) {
+                m4211a(EnvironmentUtils.C0605d.getSdcardPath(), sb, str4);
                 m4196f();
             }
             if (this.f5998k.size() > 0) {
@@ -375,7 +376,7 @@ public final class MediaScanner {
             }
             this.f6000m = null;
             MediaScanner.this.f5983b = null;
-            CommandCenter.m4607a().m4595b(new Command(CommandID.SCAN_FINISHED, m4202c()), ModuleID.MEDIA_SCAN);
+            CommandCenter.getInstance().m4595b(new Command(CommandID.SCAN_FINISHED, m4202c()), ModuleID.MEDIA_SCAN);
             return null;
         }
 
@@ -416,23 +417,23 @@ public final class MediaScanner {
         /* renamed from: a */
         public void onPostExecute(Void r5) {
             super.onPostExecute(r5);
-            this.f6002o.release();
-            if (!isCancelled() && MediaScanner.this.f5984c != null && (MediaScanner.this.f5983b == null || MediaScanner.this.f5983b == this)) {
-                MediaScanner.this.f5984c.onScanFinished();
+            this.fileMatcher.release();
+            if (!isCancelled() && MediaScanner.this.scanCallback != null && (MediaScanner.this.f5983b == null || MediaScanner.this.f5983b == this)) {
+                MediaScanner.this.scanCallback.onScanFinished();
             }
             if (StringUtils.m8344a(Preferences.m2858m(), this.f5991d)) {
-                CommandCenter.m4607a().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
             }
         }
 
         /* renamed from: a */
         private void m4211a(String str, StringBuilder sb, String str2) {
             if (!isCancelled()) {
-                if (FileUtils.m8409d(str)) {
+                if (FileUtils.isDir(str)) {
                     if (str.endsWith("/")) {
                         str = str.substring(0, str.length() - 1);
                     }
-                    this.f6002o.start(sb.toString(), str2, Preferences.m2870j(), str);
+                    this.fileMatcher.start(sb.toString(), str2, Preferences.excludeHiddenFolder(), str);
                 } else if (FileUtils.m8414b(str)) {
                     m4213a(str);
                 }
@@ -441,37 +442,37 @@ public final class MediaScanner {
 
         /* JADX INFO: Access modifiers changed from: private */
         /* renamed from: a */
-        public void m4213a(String str) {
-            this.f5995h = str;
-            String m8399m = FileUtils.m8399m(str);
-            if (!StringUtils.m8346a(m8399m)) {
-                if (m8399m.equalsIgnoreCase("cue")) {
-                    m4200c(str);
-                } else if (m8399m.equalsIgnoreCase("mid") || m8399m.equalsIgnoreCase("midi") || m8399m.equalsIgnoreCase("amr")) {
-                    m4198d(str);
+        public void m4213a(String filePath) {
+            this.filePath = filePath;
+            String suffix = FileUtils.getSuffix(filePath);
+            if (!StringUtils.isEmpty(suffix)) {
+                if (suffix.equalsIgnoreCase("cue")) {
+                    m4200c(filePath);
+                } else if (suffix.equalsIgnoreCase("mid") || suffix.equalsIgnoreCase("midi") || suffix.equalsIgnoreCase("amr")) {
+                    m4198d(filePath);
                 } else {
-                    m4203b(str);
+                    m4203b(filePath);
                 }
             }
         }
 
         /* renamed from: b */
         private void m4203b(String str) {
-            this.f5995h = str;
-            if (this.f5989b.openFile(str, true)) {
-                if (m4217a(this.f5989b.duration())) {
+            this.filePath = str;
+            if (this.mediaTag.openFile(str, true)) {
+                if (m4217a(this.mediaTag.duration())) {
                     long currentTimeMillis = System.currentTimeMillis();
-                    m4214a(new MediaItem(null, null, str, FileUtils.m8400l(str), this.f5989b.getTitle(), this.f5989b.getArtist(), this.f5989b.getAlbum(), this.f5989b.getGenre(), null, FileUtils.m8399m(str), 0, Integer.valueOf(this.f5989b.duration()), Integer.valueOf(this.f5989b.track()), Integer.valueOf(this.f5989b.year()), null, Integer.valueOf(this.f5989b.bitRate()), Integer.valueOf(this.f5989b.sampleRate()), Integer.valueOf(this.f5989b.channels()), this.f5989b.getComment(), 0, 0, Long.valueOf(currentTimeMillis), Long.valueOf(currentTimeMillis), 0L, false, null, null));
+                    m4214a(new MediaItem(null, null, str, FileUtils.m8400l(str), this.mediaTag.getTitle(), this.mediaTag.getArtist(), this.mediaTag.getAlbum(), this.mediaTag.getGenre(), null, FileUtils.getSuffix(str), 0, Integer.valueOf(this.mediaTag.duration()), Integer.valueOf(this.mediaTag.track()), Integer.valueOf(this.mediaTag.year()), null, Integer.valueOf(this.mediaTag.bitRate()), Integer.valueOf(this.mediaTag.sampleRate()), Integer.valueOf(this.mediaTag.channels()), this.mediaTag.getComment(), 0, 0, Long.valueOf(currentTimeMillis), Long.valueOf(currentTimeMillis), 0L, false, null, null));
                     m4197e();
                 } else {
                     this.f5997j.set(this.f5997j.get() + 1);
                 }
             } else {
                 long currentTimeMillis2 = System.currentTimeMillis();
-                m4214a(new MediaItem(null, null, str, FileUtils.m8400l(str), FileUtils.m8401k(str), "", "", "", null, FileUtils.m8399m(str), 0, 0, 0, 0, null, 0, 0, 0, "", 0, 0, Long.valueOf(currentTimeMillis2), Long.valueOf(currentTimeMillis2), 0L, false, null, null));
+                m4214a(new MediaItem(null, null, str, FileUtils.m8400l(str), FileUtils.m8401k(str), "", "", "", null, FileUtils.getSuffix(str), 0, 0, 0, 0, null, 0, 0, 0, "", 0, 0, Long.valueOf(currentTimeMillis2), Long.valueOf(currentTimeMillis2), 0L, false, null, null));
                 m4197e();
             }
-            this.f5989b.close();
+            this.mediaTag.close();
         }
 
         /* renamed from: c */
@@ -512,7 +513,7 @@ public final class MediaScanner {
                         }
                         int i2 = i * 1000;
                         if (m4217a(i2)) {
-                            m4214a(new MediaItem(null, null, FileUtils.m8396p(m4246b), FileUtils.m8400l(m4246b), TextUtils.isEmpty(next.m4257c()) ? title : next.m4257c(), TextUtils.isEmpty(next.m4255d()) ? artist : next.m4255d(), album, genre, null, FileUtils.m8399m(m4246b), Integer.valueOf(m4249h == 0 ? 1 : m4249h * 1000), Integer.valueOf(i2), Integer.valueOf(next.m4253e()), Integer.valueOf(intValue4), 0, Integer.valueOf(intValue), Integer.valueOf(intValue2), Integer.valueOf(intValue3), comment, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null));
+                            m4214a(new MediaItem(null, null, FileUtils.m8396p(m4246b), FileUtils.m8400l(m4246b), TextUtils.isEmpty(next.m4257c()) ? title : next.m4257c(), TextUtils.isEmpty(next.m4255d()) ? artist : next.m4255d(), album, genre, null, FileUtils.getSuffix(m4246b), Integer.valueOf(m4249h == 0 ? 1 : m4249h * 1000), Integer.valueOf(i2), Integer.valueOf(next.m4253e()), Integer.valueOf(intValue4), 0, Integer.valueOf(intValue), Integer.valueOf(intValue2), Integer.valueOf(intValue3), comment, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null));
                             if (cDRWinSheetEntry != null) {
                                 m4197e();
                             }
@@ -530,7 +531,7 @@ public final class MediaScanner {
         /* renamed from: d */
         private void m4198d(String str) {
             String m8396p = FileUtils.m8396p(str);
-            m4214a(new MediaItem(null, null, m8396p, FileUtils.m8400l(m8396p), FileUtils.m8401k(m8396p), "", "", "", null, FileUtils.m8399m(m8396p), 0, 0, 0, 0, 0, 0, 0, 0, null, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null));
+            m4214a(new MediaItem(null, null, m8396p, FileUtils.m8400l(m8396p), FileUtils.m8401k(m8396p), "", "", "", null, FileUtils.getSuffix(m8396p), 0, 0, 0, 0, 0, 0, 0, 0, null, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null));
             m4197e();
         }
 

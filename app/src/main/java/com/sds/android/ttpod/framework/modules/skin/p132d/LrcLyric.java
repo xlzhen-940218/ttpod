@@ -45,7 +45,7 @@ public class LrcLyric implements Lyric {
             LrcSentence lrcSentence = this.f6612b.get(i);
             sb.append(lrcSentence.toString());
             if (i <= 2) {
-                LogUtils.m8386a("LrcLyric", "Lyric lookLyricPic toString idx=%d sentence=%s timestamp=%d", Integer.valueOf(i), lrcSentence.toString(), Long.valueOf(lrcSentence.m3676d()));
+                LogUtils.debug("LrcLyric", "Lyric lookLyricPic toString idx=%d sentence=%s timestamp=%d", Integer.valueOf(i), lrcSentence.toString(), Long.valueOf(lrcSentence.m3676d()));
             }
         }
         return sb.toString();

@@ -42,7 +42,7 @@ public class BackgroundListLoader implements Runnable {
 
     /* renamed from: a */
     private void m3855a(ArrayList<BackgroundItem> arrayList, CommandID commandID) {
-        CommandCenter.m4607a().m4595b(new Command(commandID, arrayList), ModuleID.THEME);
+        CommandCenter.getInstance().m4595b(new Command(commandID, arrayList), ModuleID.THEME);
     }
 
     /* renamed from: b */

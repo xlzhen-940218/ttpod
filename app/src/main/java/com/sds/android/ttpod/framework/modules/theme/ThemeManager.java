@@ -142,7 +142,7 @@ public class ThemeManager {
     @TargetApi(11)
     /* renamed from: a */
     public static int m3272a(ColorDrawable colorDrawable) {
-        if (SDKVersionUtils.m8371c()) {
+        if (SDKVersionUtils.checkVersionThanAndroid11()) {
             return colorDrawable.getColor();
         }
         try {
@@ -185,7 +185,7 @@ public class ThemeManager {
             }
             return drawable;
         }
-        LogUtils.m8381c("Theme", "no theme in the system");
+        LogUtils.error("Theme", "no theme in the system");
         return null;
     }
 
@@ -197,14 +197,14 @@ public class ThemeManager {
         if (f6960a != null && 0 == 0) {
             return f6960a.m3308d(str, str2);
         }
-        LogUtils.m8381c("Theme", "no theme in the system");
+        LogUtils.error("Theme", "no theme in the system");
         return null;
     }
 
     /* renamed from: a */
     public static void m3270a(View view, Drawable drawable) {
         if (view == null || drawable == null) {
-            LogUtils.m8381c("ThemeManager", "ThemeManager.setViewBackground view or background drawable is null");
+            LogUtils.error("ThemeManager", "ThemeManager.setViewBackground view or background drawable is null");
         } else {
             view.setBackgroundDrawable(drawable);
         }
@@ -244,7 +244,7 @@ public class ThemeManager {
     private static void m3257c() {
         String m3038V = Preferences.m3038V();
         if (TextUtils.isEmpty(m3038V)) {
-            m3038V = Preferences.m3036W();
+            m3038V = Preferences.getFirstSkinItemPath();
         }
         f6960a = ThemeFramework.C2013b.m3319a(new SkinCache(m3038V));
     }
@@ -257,7 +257,7 @@ public class ThemeManager {
                 ((TextView) view).setTextColor(colorStateList);
                 return true;
             }
-            LogUtils.m8381c("Theme", "colorStateList is null " + str + " " + str2);
+            LogUtils.error("Theme", "colorStateList is null " + str + " " + str2);
             return false;
         }
         throw new IllegalArgumentException("the view is not TextView, it can't supported to set text color");
@@ -271,7 +271,7 @@ public class ThemeManager {
             ((ListView) view).setDividerHeight(1);
             return true;
         }
-        LogUtils.m8381c("Theme", "divider is null " + str + " " + str2);
+        LogUtils.error("Theme", "divider is null " + str + " " + str2);
         return false;
     }
 
@@ -330,7 +330,7 @@ public class ThemeManager {
             m3270a(view, drawable);
             return true;
         }
-        LogUtils.m8381c("Theme", "background is null: " + str + " " + str2);
+        LogUtils.error("Theme", "background is null: " + str + " " + str2);
         return false;
     }
 

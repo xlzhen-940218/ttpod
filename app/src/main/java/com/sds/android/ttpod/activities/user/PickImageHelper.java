@@ -153,7 +153,7 @@ public class PickImageHelper {
         try {
             this.f3100b.startActivityForResult(new Intent(this.f3100b, CropImageActivity.class).putExtra("input", uri2).putExtra("output", str).putExtra("width", i).putExtra("height", i2), 3);
         } catch (Exception e) {
-            LogUtils.m8383b("PickImageHelper", "无法启动剪切程序。", e);
+            LogUtils.error("PickImageHelper", "无法启动剪切程序。", e);
         }
     }
 
@@ -174,7 +174,7 @@ public class PickImageHelper {
         try {
             fragment.startActivityForResult(new Intent(fragment.getActivity(), CropImageActivity.class).putExtra("input", uri2).putExtra("output", str).putExtra("width", i).putExtra("height", i2), 3);
         } catch (Exception e) {
-            LogUtils.m8383b("PickImageHelper", "无法启动剪切程序。", e);
+            LogUtils.error("PickImageHelper", "无法启动剪切程序。", e);
         }
     }
 

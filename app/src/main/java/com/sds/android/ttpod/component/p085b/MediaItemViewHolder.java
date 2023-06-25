@@ -1,5 +1,6 @@
 package com.sds.android.ttpod.component.p085b;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,130 +27,130 @@ import java.util.ArrayList;
 public class MediaItemViewHolder extends ThemeManager.AbstractC2018a {
 
     /* renamed from: a */
-    private View f3837a;
+    private View convertView;
 
     /* renamed from: b */
-    private View f3838b;
+    private View viewPlayState;
 
     /* renamed from: c */
-    private IconTextView f3839c;
+    private IconTextView thirdPartyView;
 
     /* renamed from: d */
-    private CustomClickIconTextView f3840d;
+    private CustomClickIconTextView menuView;
 
     /* renamed from: e */
-    private IconTextView f3841e;
+    private IconTextView checkView;
 
     /* renamed from: f */
-    private ImageView f3842f;
+    private ImageView flagOnlineView;
 
     /* renamed from: g */
-    private IconTextView f3843g;
+    private IconTextView flagMvView;
 
     /* renamed from: h */
-    private IconTextView f3844h;
+    private IconTextView flagQualityView;
 
     /* renamed from: i */
-    private IconTextView f3845i;
+    private IconTextView downloadStateView;
 
     /* renamed from: j */
-    private IconTextView f3846j;
+    private IconTextView dragHandle;
 
     /* renamed from: k */
-    private TextView f3847k;
+    private TextView numberTv;
 
     /* renamed from: l */
-    private TextView f3848l;
+    private TextView titleView;
 
     /* renamed from: m */
-    private TextView f3849m;
+    private TextView mediaItemSingerTv;
 
     /* renamed from: n */
-    private ImageView f3850n;
+    private ImageView mediaItemFavIv;
 
     /* renamed from: o */
-    private TextView f3851o;
+    private TextView mediaItemFavCountTv;
 
     /* renamed from: p */
-    private View f3852p;
+    private View expandable;
 
     /* renamed from: q */
     private boolean f3853q = false;
 
-    public MediaItemViewHolder(View view) {
-        this.f3837a = view;
-        this.f3838b = view.findViewById(R.id.view_play_state);
-        this.f3840d = (CustomClickIconTextView) view.findViewById(R.id.menu_view);
-        this.f3841e = (IconTextView) view.findViewById(R.id.check_view);
-        this.f3842f = (ImageView) view.findViewById(R.id.flag_online_view);
-        this.f3843g = (IconTextView) view.findViewById(R.id.flag_mv_view);
-        this.f3844h = (IconTextView) view.findViewById(R.id.flag_quality_view);
-        this.f3845i = (IconTextView) view.findViewById(R.id.downloadstate_view);
-        this.f3846j = (IconTextView) view.findViewById(R.id.drag_handle);
-        this.f3847k = (TextView) view.findViewById(R.id.tv_number);
-        this.f3848l = (TextView) view.findViewById(R.id.title_view);
-        this.f3849m = (TextView) view.findViewById(R.id.tv_media_item_singer);
-        this.f3850n = (ImageView) view.findViewById(R.id.iv_media_item_fav);
-        this.f3851o = (TextView) view.findViewById(R.id.tv_media_item_fav_count);
-        this.f3839c = (IconTextView) view.findViewById(R.id.third_party_view);
-        if (this.f3841e != null) {
-            this.f3841e.setCheckable(true);
+    public MediaItemViewHolder(View convertView) {
+        this.convertView = convertView;
+        this.viewPlayState = convertView.findViewById(R.id.view_play_state);
+        this.menuView = (CustomClickIconTextView) convertView.findViewById(R.id.menu_view);
+        this.checkView = (IconTextView) convertView.findViewById(R.id.check_view);
+        this.flagOnlineView = (ImageView) convertView.findViewById(R.id.flag_online_view);
+        this.flagMvView = (IconTextView) convertView.findViewById(R.id.flag_mv_view);
+        this.flagQualityView = (IconTextView) convertView.findViewById(R.id.flag_quality_view);
+        this.downloadStateView = (IconTextView) convertView.findViewById(R.id.downloadstate_view);
+        this.dragHandle = (IconTextView) convertView.findViewById(R.id.drag_handle);
+        this.numberTv = (TextView) convertView.findViewById(R.id.tv_number);
+        this.titleView = (TextView) convertView.findViewById(R.id.title_view);
+        this.mediaItemSingerTv = (TextView) convertView.findViewById(R.id.tv_media_item_singer);
+        this.mediaItemFavIv = (ImageView) convertView.findViewById(R.id.iv_media_item_fav);
+        this.mediaItemFavCountTv = (TextView) convertView.findViewById(R.id.tv_media_item_fav_count);
+        this.thirdPartyView = (IconTextView) convertView.findViewById(R.id.third_party_view);
+        if (this.checkView != null) {
+            this.checkView.setCheckable(true);
         }
-        this.f3852p = view.findViewById(R.id.expandable);
-        this.f3852p.setTag(new MediaItemMenuHolder(this.f3852p));
+        this.expandable = convertView.findViewById(R.id.expandable);
+        this.expandable.setTag(new MediaItemMenuHolder(this.expandable));
     }
 
     /* renamed from: b */
-    public View m6966b() {
-        return this.f3837a;
+    public View getConvertView() {
+        return this.convertView;
     }
 
     /* renamed from: c */
-    public View m6963c() {
-        return this.f3838b;
+    public View getViewPlayState() {
+        return this.viewPlayState;
     }
 
     /* renamed from: d */
-    public CustomClickIconTextView m6961d() {
-        return this.f3840d;
+    public CustomClickIconTextView getMenuView() {
+        return this.menuView;
     }
 
     /* renamed from: e */
-    public ImageView m6960e() {
-        return this.f3842f;
+    public ImageView getFlagOnlineView() {
+        return this.flagOnlineView;
     }
 
     /* renamed from: f */
-    public IconTextView m6959f() {
-        return this.f3843g;
+    public IconTextView getFlagMvView() {
+        return this.flagMvView;
     }
 
     /* renamed from: g */
-    public IconTextView m6958g() {
-        return this.f3844h;
+    public IconTextView getFlagQualityView() {
+        return this.flagQualityView;
     }
 
     /* renamed from: h */
-    public View m6957h() {
-        return this.f3852p;
+    public View getExpandable() {
+        return this.expandable;
     }
 
     /* renamed from: b */
-    public void m6965b(MediaItem mediaItem) {
-        ((MediaItemMenuHolder) this.f3852p.getTag()).m6974b(mediaItem);
+    public void updateExpandable(MediaItem mediaItem) {
+        ((MediaItemMenuHolder) this.expandable.getTag()).m6974b(mediaItem);
     }
 
     /* renamed from: a */
-    public void mo6972a(MediaItem mediaItem) {
+    public void updateFlagQuality(MediaItem mediaItem) {
         if (mediaItem != null) {
             AudioQuality quality = mediaItem.quality();
             if (quality.ordinal() >= AudioQuality.HIGH.ordinal()) {
-                this.f3844h.setVisibility(View.VISIBLE);
-                this.f3844h.setText(quality == AudioQuality.LOSSLESS ? R.string.icon_text_wusun : R.string.icon_text_gaozhi);
-                this.f3844h.setTextColor(quality == AudioQuality.LOSSLESS ? -2185667 : -8665764);
+                this.flagQualityView.setVisibility(View.VISIBLE);
+                this.flagQualityView.setText(quality == AudioQuality.LOSSLESS ? R.string.icon_text_wusun : R.string.icon_text_gaozhi);
+                this.flagQualityView.setTextColor(quality == AudioQuality.LOSSLESS ? -2185667 : -8665764);
                 return;
             }
-            this.f3844h.setVisibility(View.GONE);
+            this.flagQualityView.setVisibility(View.GONE);
         }
     }
 
@@ -157,26 +158,26 @@ public class MediaItemViewHolder extends ThemeManager.AbstractC2018a {
     public void m6962c(MediaItem mediaItem) {
         ArrayList<OnlineMediaItem.OutListItem> outList = mediaItem.getOutList();
         OnlineMediaItem.OutListItem outListItem = !ListUtils.m4718a(outList) ? outList.get(0) : null;
-        if (mediaItem.hasOutList() && (outListItem == null || StringUtils.m8346a(outListItem.getUrl()))) {
-            ThemeManager.m3269a(this.f3848l, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
+        if (mediaItem.hasOutList() && (outListItem == null || StringUtils.isEmpty(outListItem.getUrl()))) {
+            ThemeManager.m3269a(this.titleView, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
         } else {
-            ThemeManager.m3269a(this.f3848l, ThemeElement.SONG_LIST_ITEM_TEXT);
+            ThemeManager.m3269a(this.titleView, ThemeElement.SONG_LIST_ITEM_TEXT);
         }
     }
 
     /* renamed from: i */
     public IconTextView m6956i() {
-        return this.f3845i;
+        return this.downloadStateView;
     }
 
     /* renamed from: j */
     public TextView m6955j() {
-        return this.f3848l;
+        return this.titleView;
     }
 
     /* renamed from: k */
     public TextView m6954k() {
-        return this.f3849m;
+        return this.mediaItemSingerTv;
     }
 
     /* renamed from: a */
@@ -186,10 +187,10 @@ public class MediaItemViewHolder extends ThemeManager.AbstractC2018a {
                 charSequence = charSequence.subSequence(0, 40);
             }
             try {
-                this.f3849m.setText(charSequence);
-                this.f3851o.setText(String.valueOf(i));
-                this.f3851o.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
-                this.f3850n.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
+                this.mediaItemSingerTv.setText(charSequence);
+                this.mediaItemFavCountTv.setText(String.valueOf(i));
+                this.mediaItemFavCountTv.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
+                this.mediaItemFavIv.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -197,33 +198,34 @@ public class MediaItemViewHolder extends ThemeManager.AbstractC2018a {
     }
 
     /* renamed from: a */
+    @SuppressLint("WrongConstant")
     public void m6970a(ActionExpandableListView actionExpandableListView, MediaItem mediaItem, int i, boolean z) {
         int i2 = 0;
-        this.f3847k.setText(String.valueOf(i + 1));
-        this.f3848l.setText(mediaItem.getTitle());
-        this.f3842f.setVisibility(View.GONE);
-        this.f3843g.setVisibility(mediaItem.containMV() ? View.VISIBLE : View.GONE);
-        if (this.f3843g != null) {
-            this.f3843g.setVisibility(mediaItem.containMV() ? View.VISIBLE : View.GONE);
+        this.numberTv.setText(String.valueOf(i + 1));
+        this.titleView.setText(mediaItem.getTitle());
+        this.flagOnlineView.setVisibility(View.GONE);
+        this.flagMvView.setVisibility(mediaItem.containMV() ? View.VISIBLE : View.GONE);
+        if (this.flagMvView != null) {
+            this.flagMvView.setVisibility(mediaItem.containMV() ? View.VISIBLE : View.GONE);
         }
-        mo6972a(mediaItem);
+        updateFlagQuality(mediaItem);
         if (mediaItem.hasOutList()) {
             ArrayList<OnlineMediaItem.OutListItem> outList = mediaItem.getOutList();
             OnlineMediaItem.OutListItem outListItem = !ListUtils.m4718a(outList) ? outList.get(0) : null;
-            IconTextView iconTextView = this.f3839c;
-            if (outListItem == null || StringUtils.m8346a(outListItem.getUrl())) {
+            IconTextView iconTextView = this.thirdPartyView;
+            if (outListItem == null || StringUtils.isEmpty(outListItem.getUrl())) {
                 i2 = 8;
             }
             iconTextView.setVisibility(i2);
         } else {
-            this.f3839c.setVisibility(View.GONE);
+            this.thirdPartyView.setVisibility(View.GONE);
             if (!z) {
                 mediaItem.setFav(MediaItemUtils.m4715a(mediaItem));
             }
         }
         m3250a(ThemeUtils.m8163b());
         if (actionExpandableListView != null) {
-            this.f3840d.setText(actionExpandableListView.mo1260e() == i ? R.string.icon_arrow_top : R.string.icon_arrow_down);
+            this.menuView.setText(actionExpandableListView.mo1260e() == i ? R.string.icon_arrow_top : R.string.icon_arrow_down);
         }
     }
 
@@ -231,40 +233,40 @@ public class MediaItemViewHolder extends ThemeManager.AbstractC2018a {
     public void m6971a(MediaItem mediaItem, PlayStatus playStatus, boolean z) {
         m6967a(z, playStatus);
         if (mediaItem.hasOutList()) {
-            this.f3849m.setText(mediaItem.getArtist());
+            this.mediaItemSingerTv.setText(mediaItem.getArtist());
         } else {
             m6969a((CharSequence) mediaItem.getArtist(), mediaItem.getUseCount().intValue(), true);
         }
-        this.f3848l.setSelected(z);
-        this.f3849m.setSelected(z);
+        this.titleView.setSelected(z);
+        this.mediaItemSingerTv.setSelected(z);
     }
 
     /* renamed from: l */
     public IconTextView m6953l() {
-        return this.f3841e;
+        return this.checkView;
     }
 
     /* renamed from: m */
     public IconTextView m6952m() {
-        return this.f3846j;
+        return this.dragHandle;
     }
 
     /* renamed from: a */
     public void m6968a(Integer num) {
         if (num != null && num.intValue() != 0) {
             Drawable drawable = BaseApplication.getApplication().getResources().getDrawable(R.drawable.song_erro);
-            int textSize = (int) this.f3848l.getTextSize();
+            int textSize = (int) this.titleView.getTextSize();
             drawable.setBounds(0, 0, textSize, textSize);
-            this.f3848l.setCompoundDrawables(drawable, null, null, null);
+            this.titleView.setCompoundDrawables(drawable, null, null, null);
             return;
         }
-        this.f3848l.setCompoundDrawables(null, null, null, null);
+        this.titleView.setCompoundDrawables(null, null, null, null);
     }
 
     /* renamed from: a */
     public void m6967a(boolean z, PlayStatus playStatus) {
-        this.f3848l.setSelected(z);
-        this.f3838b.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
+        this.titleView.setSelected(z);
+        this.viewPlayState.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
     }
 
     /* renamed from: b */
@@ -284,29 +286,29 @@ public class MediaItemViewHolder extends ThemeManager.AbstractC2018a {
 
     /* renamed from: n */
     private void m6951n() {
-        if (this.f3841e != null) {
-            ThemeUtils.m8176a(this.f3841e, R.string.icon_unchecked, R.string.icon_checked, "", "", ThemeElement.SONG_LIST_ITEM_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_TEXT);
+        if (this.checkView != null) {
+            ThemeUtils.m8176a(this.checkView, R.string.icon_unchecked, R.string.icon_checked, "", "", ThemeElement.SONG_LIST_ITEM_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_TEXT);
         }
-        ThemeUtils.m8175a(this.f3840d, (int) R.string.icon_arrow_down, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
-        ThemeManager.m3269a(this.f3837a, ThemeElement.SONG_LIST_ITEM_BACKGROUND);
-        ThemeManager.m3269a(this.f3847k, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
-        ThemeManager.m3269a(this.f3848l, ThemeElement.SONG_LIST_ITEM_TEXT);
-        ThemeManager.m3269a(this.f3849m, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
-        ThemeManager.m3269a(this.f3851o, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
-        ThemeManager.m3269a(this.f3838b, ThemeElement.SONG_LIST_ITEM_INDICATOR);
+        ThemeUtils.m8175a(this.menuView, (int) R.string.icon_arrow_down, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
+        ThemeManager.m3269a(this.convertView, ThemeElement.SONG_LIST_ITEM_BACKGROUND);
+        ThemeManager.m3269a(this.numberTv, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
+        ThemeManager.m3269a(this.titleView, ThemeElement.SONG_LIST_ITEM_TEXT);
+        ThemeManager.m3269a(this.mediaItemSingerTv, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
+        ThemeManager.m3269a(this.mediaItemFavCountTv, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
+        ThemeManager.m3269a(this.viewPlayState, ThemeElement.SONG_LIST_ITEM_INDICATOR);
     }
 
     /* renamed from: o */
     private void m6950o() {
-        if (this.f3841e != null) {
-            ThemeUtils.m8176a(this.f3841e, R.string.icon_unchecked, R.string.icon_checked, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.PLAYER_MUSIC_LIST_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_TEXT);
+        if (this.checkView != null) {
+            ThemeUtils.m8176a(this.checkView, R.string.icon_unchecked, R.string.icon_checked, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.PLAYER_MUSIC_LIST_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_TEXT);
         }
-        ThemeUtils.m8174a(this.f3840d, (int) R.string.icon_arrow_down, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
-        ThemeUtils.m8178a(this.f3837a, ThemeElement.PLAYER_MUSIC_LIST_BACKGROUND, ThemeElement.SONG_LIST_ITEM_BACKGROUND);
-        ThemeUtils.m8178a(this.f3847k, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
-        ThemeUtils.m8178a(this.f3848l, ThemeElement.PLAYER_MUSIC_LIST_TEXT, ThemeElement.SONG_LIST_ITEM_TEXT);
-        ThemeUtils.m8178a(this.f3849m, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
-        ThemeUtils.m8178a(this.f3851o, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
-        ThemeUtils.m8178a(this.f3838b, ThemeElement.PLAYER_MUSIC_LIST_INDICATOR, ThemeElement.SONG_LIST_ITEM_INDICATOR);
+        ThemeUtils.m8174a(this.menuView, (int) R.string.icon_arrow_down, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
+        ThemeUtils.m8178a(this.convertView, ThemeElement.PLAYER_MUSIC_LIST_BACKGROUND, ThemeElement.SONG_LIST_ITEM_BACKGROUND);
+        ThemeUtils.m8178a(this.numberTv, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
+        ThemeUtils.m8178a(this.titleView, ThemeElement.PLAYER_MUSIC_LIST_TEXT, ThemeElement.SONG_LIST_ITEM_TEXT);
+        ThemeUtils.m8178a(this.mediaItemSingerTv, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
+        ThemeUtils.m8178a(this.mediaItemFavCountTv, ThemeElement.PLAYER_MUSIC_LIST_SUB_TEXT, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
+        ThemeUtils.m8178a(this.viewPlayState, ThemeElement.PLAYER_MUSIC_LIST_INDICATOR, ThemeElement.SONG_LIST_ITEM_INDICATOR);
     }
 }

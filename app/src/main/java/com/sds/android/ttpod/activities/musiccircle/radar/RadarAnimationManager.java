@@ -20,8 +20,6 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.musiccircle.MusicCircleStatistic;
-import com.sds.android.ttpod.activities.musiccircle.radar.DrawView;
-import com.sds.android.ttpod.activities.musiccircle.radar.RadarAnimation;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.fragment.musiccircle.WrapUserPostListFragment;
@@ -210,23 +208,23 @@ public class RadarAnimationManager implements View.OnClickListener {
         ImageView m7883b = m7883b(f);
         if (m7883b != null) {
             TextView textView = (TextView) this.f2883j[this.f2898y].findViewById(R.id.info1);
-            LogUtils.m8388a("TEST", "get point view to display.... : " + m7883b + " status: " + this.f2877d);
+            LogUtils.debug("TEST", "get point view to display.... : " + m7883b + " status: " + this.f2877d);
             m7883b.setVisibility(View.VISIBLE);
             if (this.f2877d == EnumC0840c.HAS_RESULT && m7900a(this.f2898y)) {
-                if (!StringUtils.m8346a(textView.getText().toString())) {
-                    LogUtils.m8388a("TEST", "is allow to display... : " + this.f2898y);
+                if (!StringUtils.isEmpty(textView.getText().toString())) {
+                    LogUtils.debug("TEST", "is allow to display... : " + this.f2898y);
                     Animation m7864n = m7864n();
                     m7883b.startAnimation(m7864n);
                     this.f2887n.put(m7864n, new C0839b(m7883b, this.f2898y));
                     this.f2890q++;
                     this.f2886m[this.f2898y] = true;
                 } else if (this.f2898y < this.f2895v.size()) {
-                    LogUtils.m8381c("TEST", "error in radar animation, wrong result:" + this.f2898y + " name: " + this.f2895v.get(this.f2898y).getNickName() + " fans: " + this.f2895v.get(this.f2898y).getFollowersCount() + " same song: " + this.f2895v.get(this.f2898y).getSameSongCount());
+                    LogUtils.error("TEST", "error in radar animation, wrong result:" + this.f2898y + " name: " + this.f2895v.get(this.f2898y).getNickName() + " fans: " + this.f2895v.get(this.f2898y).getFollowersCount() + " same song: " + this.f2895v.get(this.f2898y).getSameSongCount());
                 } else {
-                    LogUtils.m8381c("TEST", "error in radar animation, wrong scope: " + this.f2898y + " data size: " + this.f2895v.size());
+                    LogUtils.error("TEST", "error in radar animation, wrong scope: " + this.f2898y + " data size: " + this.f2895v.size());
                 }
             } else {
-                LogUtils.m8388a("TEST", "hideFlashAnimation start...");
+                LogUtils.debug("TEST", "hideFlashAnimation start...");
                 m7883b.startAnimation(m7863o());
                 this.f2886m[this.f2898y] = true;
             }
@@ -237,25 +235,25 @@ public class RadarAnimationManager implements View.OnClickListener {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: g */
     public void m7871g() {
-        LogUtils.m8388a("TEST", "onAnimationRepeat, count: " + this.f2876c + " status: " + this.f2877d + " display count: " + this.f2890q);
+        LogUtils.debug("TEST", "onAnimationRepeat, count: " + this.f2876c + " status: " + this.f2877d + " display count: " + this.f2890q);
         this.f2876c++;
         if (this.f2876c >= 4) {
             if (this.f2890q > 0) {
                 this.f2877d = EnumC0840c.FINISH;
-                LogUtils.m8388a("TEST", "set Status to FINISH, repeat count: " + this.f2876c + " display count: " + this.f2890q);
+                LogUtils.debug("TEST", "set Status to FINISH, repeat count: " + this.f2876c + " display count: " + this.f2890q);
             } else {
                 this.f2877d = EnumC0840c.ERROR;
             }
         }
         if (this.f2877d == EnumC0840c.FINISH) {
             if (this.f2889p == 0) {
-                LogUtils.m8388a("TEST", "handleErrorStatus: " + this.f2877d + " resultCount: " + this.f2889p);
+                LogUtils.debug("TEST", "handleErrorStatus: " + this.f2877d + " resultCount: " + this.f2889p);
                 m7868j();
                 return;
             }
             m7869i();
         } else if (this.f2877d == EnumC0840c.ERROR) {
-            LogUtils.m8388a("TEST", "handleErrorStatus: " + this.f2877d);
+            LogUtils.debug("TEST", "handleErrorStatus: " + this.f2877d);
             m7868j();
         } else if (this.f2890q == 0) {
             m7854x();
@@ -319,7 +317,7 @@ public class RadarAnimationManager implements View.OnClickListener {
 
     /* renamed from: k */
     private void m7867k() {
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_ALIKE_USERS, "alike"));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_ALIKE_USERS, "alike"));
     }
 
     /* renamed from: a */
@@ -401,7 +399,7 @@ public class RadarAnimationManager implements View.OnClickListener {
         loadAnimation.setAnimationListener(new Animation.AnimationListener() { // from class: com.sds.android.ttpod.activities.musiccircle.radar.c.4
             @Override // android.view.animation.Animation.AnimationListener
             public void onAnimationStart(Animation animation) {
-                LogUtils.m8388a("TEST", " showFlashAnimation start...");
+                LogUtils.debug("TEST", " showFlashAnimation start...");
                 C0839b c0839b = (C0839b) RadarAnimationManager.this.f2887n.get(animation);
                 if (c0839b != null) {
                     RadarAnimationManager.this.m7894a((View) c0839b.m7849a(), c0839b.m7847b());
@@ -439,7 +437,7 @@ public class RadarAnimationManager implements View.OnClickListener {
             for (int i = 0; i < this.f2889p; i++) {
                 this.f2892s.add(this.f2891r.get(i));
             }
-            LogUtils.m8388a("TEST", "return " + this.f2889p + " result!list size:" + list.size() + " index: " + this.f2892s.toString());
+            LogUtils.debug("TEST", "return " + this.f2889p + " result!list size:" + list.size() + " index: " + this.f2892s.toString());
             this.f2877d = EnumC0840c.HAS_RESULT;
             m7854x();
             m7862p();
@@ -463,7 +461,7 @@ public class RadarAnimationManager implements View.OnClickListener {
         int i2 = 0;
         while (i < this.f2889p) {
             Number number = this.f2891r.get(i);
-            LogUtils.m8388a("TEST", "show number: " + number.intValue());
+            LogUtils.debug("TEST", "show number: " + number.intValue());
             RelativeLayout relativeLayout = this.f2883j[number.intValue()];
             relativeLayout.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.radar.c.5
                 @Override // android.view.View.OnClickListener
@@ -477,7 +475,7 @@ public class RadarAnimationManager implements View.OnClickListener {
             ((TextView) relativeLayout.findViewById(R.id.user_name)).setText(alikeTTPodUser.getNickName());
             ((TextView) relativeLayout.findViewById(R.id.info1)).setText("粉丝：" + alikeTTPodUser.getFollowersCount());
             ((TextView) relativeLayout.findViewById(R.id.info2)).setText(String.format("共同歌曲: %d", Integer.valueOf(alikeTTPodUser.getSameSongCount())));
-            LogUtils.m8388a("TEST", "name: " + alikeTTPodUser.getNickName() + "fans: " + alikeTTPodUser.getFollowersCount() + " avatar: " + alikeTTPodUser.getAvatarUrl());
+            LogUtils.debug("TEST", "name: " + alikeTTPodUser.getNickName() + "fans: " + alikeTTPodUser.getFollowersCount() + " avatar: " + alikeTTPodUser.getAvatarUrl());
             String avatarUrl = alikeTTPodUser.getAvatarUrl();
             int m7229a = DisplayUtils.m7229a(70);
             ImageCacheUtils.m4752a((ImageView) relativeLayout.findViewById(R.id.avatar), avatarUrl, m7229a, m7229a, (int) R.drawable.img_avatar_default);
@@ -565,7 +563,7 @@ public class RadarAnimationManager implements View.OnClickListener {
         if (this.f2893t <= 0) {
             this.f2893t = 128;
         }
-        LogUtils.m8388a("TEST", "radar radius: " + this.f2893t);
+        LogUtils.debug("TEST", "radar radius: " + this.f2893t);
     }
 
     /* renamed from: v */
@@ -578,7 +576,7 @@ public class RadarAnimationManager implements View.OnClickListener {
         if (this.f2894u < 0) {
             this.f2894u = 10;
         }
-        LogUtils.m8388a("TEST", "point radius: " + this.f2894u);
+        LogUtils.debug("TEST", "point radius: " + this.f2894u);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -593,7 +591,7 @@ public class RadarAnimationManager implements View.OnClickListener {
 
     /* renamed from: x */
     private void m7854x() {
-        LogUtils.m8388a("TEST", "resetPointAngleFlag...");
+        LogUtils.debug("TEST", "resetPointAngleFlag...");
         for (int i = 0; i < 4; i++) {
             this.f2886m[i] = false;
         }
@@ -611,7 +609,7 @@ public class RadarAnimationManager implements View.OnClickListener {
             int cos = (int) (m7898a * Math.cos(Math.toRadians(m7898a2)));
             this.f2884k[i3] = new Point(sin, cos);
             this.f2885l[i3] = m7896a(this.f2884k[i3]) + (i3 * 90);
-            LogUtils.m8388a("TEST", "r: " + m7898a + " x: " + sin + " y:" + cos + " a: " + m7898a2 + " an: " + this.f2885l[i3]);
+            LogUtils.debug("TEST", "r: " + m7898a + " x: " + sin + " y:" + cos + " a: " + m7898a2 + " an: " + this.f2885l[i3]);
         }
     }
 

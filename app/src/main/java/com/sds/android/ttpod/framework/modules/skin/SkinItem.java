@@ -15,58 +15,58 @@ public class SkinItem implements Serializable {
     protected int f6658a;
 
     /* renamed from: b */
-    protected String f6659b;
+    protected String title;
 
     /* renamed from: c */
-    protected String f6660c;
+    protected String path;
 
     /* renamed from: d */
     protected String f6661d;
 
     /* renamed from: e */
-    protected String f6662e;
+    protected String version;
 
     /* renamed from: f */
-    protected String f6663f;
+    protected String brand;
 
     /* renamed from: g */
     protected long f6664g;
 
     /* renamed from: h */
-    protected OnlineSkinItem f6665h;
+    protected OnlineSkinItem onlineSkinItem;
 
     public SkinItem(OnlineSkinItem onlineSkinItem) {
         this.f6658a = 4;
-        this.f6659b = onlineSkinItem.getName();
-        this.f6660c = TTPodConfig.m5294n() + File.separator + onlineSkinItem.getName() + ".tsk";
-        this.f6663f = onlineSkinItem.getAuthor();
-        this.f6662e = onlineSkinItem.getVersionNumber();
-        this.f6665h = onlineSkinItem;
+        this.title = onlineSkinItem.getName();
+        this.path = TTPodConfig.m5294n() + File.separator + onlineSkinItem.getName() + ".tsk";
+        this.brand = onlineSkinItem.getAuthor();
+        this.version = onlineSkinItem.getVersionNumber();
+        this.onlineSkinItem = onlineSkinItem;
         this.f6664g = onlineSkinItem.getDateCreated();
     }
 
     public SkinItem(SkinItem skinItem) {
         this.f6658a = 0;
-        this.f6659b = skinItem.m3565g();
-        this.f6660c = TTPodConfig.m5294n() + File.separator + skinItem.m3565g() + ".tsk";
-        this.f6663f = skinItem.m3569c();
-        this.f6662e = skinItem.m3568d();
+        this.title = skinItem.m3565g();
+        this.path = TTPodConfig.m5294n() + File.separator + skinItem.m3565g() + ".tsk";
+        this.brand = skinItem.m3569c();
+        this.version = skinItem.m3568d();
         this.f6664g = skinItem.m3567e();
         this.f6661d = skinItem.m3564h();
     }
 
     public SkinItem(String str, int i) {
         m3570b(i);
-        this.f6660c = str;
+        this.path = str;
         this.f6658a = i;
     }
 
     /* renamed from: a */
     public void m3573a(SSkinInfo sSkinInfo) {
         if (sSkinInfo != null) {
-            this.f6663f = sSkinInfo.m3781a();
-            this.f6662e = sSkinInfo.m3780b();
-            this.f6659b = sSkinInfo.m3778d();
+            this.brand = sSkinInfo.m3781a();
+            this.version = sSkinInfo.m3780b();
+            this.title = sSkinInfo.m3778d();
             this.f6664g = sSkinInfo.m3779c();
         }
     }
@@ -83,18 +83,18 @@ public class SkinItem implements Serializable {
     }
 
     /* renamed from: b */
-    public String m3571b() {
-        return this.f6660c;
+    public String getPath() {
+        return this.path;
     }
 
     /* renamed from: c */
     public String m3569c() {
-        return this.f6663f;
+        return this.brand;
     }
 
     /* renamed from: d */
     public String m3568d() {
-        return this.f6662e;
+        return this.version;
     }
 
     /* renamed from: e */
@@ -104,15 +104,15 @@ public class SkinItem implements Serializable {
 
     /* renamed from: f */
     public OnlineSkinItem m3566f() {
-        return this.f6665h;
+        return this.onlineSkinItem;
     }
 
     /* renamed from: g */
     public String m3565g() {
-        if (this.f6659b == null) {
-            this.f6659b = m3564h();
+        if (this.title == null) {
+            this.title = m3564h();
         }
-        return this.f6659b;
+        return this.title;
     }
 
     /* renamed from: h */
@@ -120,12 +120,12 @@ public class SkinItem implements Serializable {
         if (this.f6661d == null) {
             if (2 == this.f6658a) {
                 int i = -1;
-                if (this.f6660c != null) {
-                    i = this.f6660c.lastIndexOf(46);
+                if (this.path != null) {
+                    i = this.path.lastIndexOf(46);
                 }
-                this.f6661d = i < 0 ? this.f6660c : this.f6660c.substring(i + 1);
+                this.f6661d = i < 0 ? this.path : this.path.substring(i + 1);
             } else {
-                this.f6661d = FileUtils.m8401k(this.f6660c);
+                this.f6661d = FileUtils.m8401k(this.path);
             }
         }
         return this.f6661d;
@@ -140,24 +140,24 @@ public class SkinItem implements Serializable {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(" name: " + this.f6659b);
+        sb.append(" name: " + this.title);
         sb.append(" fileName: " + this.f6661d);
-        sb.append(" path: " + this.f6660c);
+        sb.append(" path: " + this.path);
         sb.append(" type: " + this.f6658a);
         return sb.toString();
     }
 
     /* renamed from: a */
     public boolean m3572a(SkinItem skinItem) {
-        if (this.f6659b == null || this.f6662e == null) {
+        if (this.title == null || this.version == null) {
             return false;
         }
-        boolean z = this.f6659b.equals(skinItem.f6659b) && this.f6662e.equals(skinItem.f6662e) && this.f6658a == skinItem.f6658a;
+        boolean z = this.title.equals(skinItem.title) && this.version.equals(skinItem.version) && this.f6658a == skinItem.f6658a;
         if (z) {
             OnlineSkinItem m3566f = skinItem.m3566f();
             if (m3566f != null) {
-                if (this.f6665h != null) {
-                    return m3566f.getPictureUrl().equals(this.f6665h.getPictureUrl());
+                if (this.onlineSkinItem != null) {
+                    return m3566f.getPictureUrl().equals(this.onlineSkinItem.getPictureUrl());
                 }
                 return false;
             }

@@ -26,7 +26,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ErrorStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.widget.PullToRefreshHelper;
 import com.sds.android.ttpod.widget.PullToRefreshListView;
@@ -167,7 +166,7 @@ public abstract class HeaderPostListFragment extends PostListByIdFragment implem
                 @Override // com.sds.android.sdk.lib.request.RequestCallback
                 /* renamed from: b */
                 public void onRequestFailure(TTPodUserResult tTPodUserResult) {
-                    ErrorStatistic.m5232g(m8955a.m8532e());
+                    //ErrorStatistic.m5232g(m8955a.m8532e());
                 }
             });
         }
@@ -223,7 +222,7 @@ public abstract class HeaderPostListFragment extends PostListByIdFragment implem
 
     private void cropPhoto(int i, Intent intent) {
         if (i == 4097) {
-            if (StringUtils.m8346a(this.mLocalCoverImagePath)) {
+            if (StringUtils.isEmpty(this.mLocalCoverImagePath)) {
                 initCoverLocalPath();
             }
             this.mPickImageHelper.m7717a(intent == null ? null : intent.getData(), this.mLocalCoverImagePath);
@@ -246,7 +245,7 @@ public abstract class HeaderPostListFragment extends PostListByIdFragment implem
                 case 3:
                     if (this.mCachedRequestCode == 4097) {
                         bindCover(this.mLocalCoverImagePath);
-                        CommandCenter.m4607a().m4606a(new Command(CommandID.MODIFY_COVER, this.mLocalCoverImagePath, Integer.valueOf(DisplayUtils.m7225c()), Integer.valueOf((int) getResources().getDimension(R.dimen.cover_height))));
+                        CommandCenter.getInstance().m4606a(new Command(CommandID.MODIFY_COVER, this.mLocalCoverImagePath, Integer.valueOf(DisplayUtils.m7225c()), Integer.valueOf((int) getResources().getDimension(R.dimen.cover_height))));
                         return;
                     }
                     return;

@@ -2,7 +2,7 @@ package com.sds.android.sdk.lib.p059a;
 
 import android.util.Base64;
 
-import com.sds.android.sdk.core.statistic.HttpClientProxy;
+
 import com.sds.android.sdk.lib.p064d.OriginalByteArrayOutputStream;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.JSONUtils;
@@ -51,25 +51,25 @@ import org.apache.http.params.HttpProtocolParams;
 public class HttpRequest {
 
     /* renamed from: b */
-    private static ThreadSafeClientConnManager f2326b;
+    private static ThreadSafeClientConnManager threadSafeClientConnManager;
 
     /* renamed from: a */
-    private static HttpClient f2325a = null;
+    private static HttpClient httpClient = null;
 
     /* renamed from: c */
     private static boolean f2327c = false;
 
     /* renamed from: d */
-    private static String f2328d = "";
+    private static String authorization = "";
 
     /* renamed from: e */
     private static String f2329e = "";
 
     /* renamed from: f */
-    private static String f2330f = "";
+    private static String hostname = "";
 
     /* renamed from: g */
-    private static int f2331g = 8080;
+    private static int port = 8080;
 
     /* renamed from: h */
     private static boolean f2332h = false;
@@ -78,29 +78,29 @@ public class HttpRequest {
     private static long f2333i = 0;
 
     /* renamed from: d */
-    private static synchronized HttpClient m8700d() {
+    private static synchronized HttpClient getHttpClient() {
         HttpClient httpClient;
         synchronized (HttpRequest.class) {
-            if (f2325a == null) {
-                f2325a = m8699e();
+            if (HttpRequest.httpClient == null) {
+                HttpRequest.httpClient = initHttpClient();
             }
             if (m8704b()) {
-                f2325a.getParams().setParameter("http.route.default-proxy", new HttpHost(f2330f, f2331g));
-                LogUtils.m8388a("HttpRequest", "set use proxy " + f2327c);
+                HttpRequest.httpClient.getParams().setParameter("http.route.default-proxy", new HttpHost(hostname, port));
+                LogUtils.debug("HttpRequest", "set use proxy " + f2327c);
             } else {
-                f2325a.getParams().removeParameter("http.route.default-proxy");
-                LogUtils.m8388a("HttpRequest", "set remove proxy" + f2327c);
+                HttpRequest.httpClient.getParams().removeParameter("http.route.default-proxy");
+                LogUtils.debug("HttpRequest", "set remove proxy" + f2327c);
             }
-            httpClient = f2325a;
+            httpClient = HttpRequest.httpClient;
         }
         return httpClient;
     }
 
     /* renamed from: a */
     public static void m8715a(String str, int i, String str2, String str3) {
-        f2330f = str;
-        f2331g = i;
-        f2328d = str2;
+        hostname = str;
+        port = i;
+        authorization = str2;
         f2329e = str3;
     }
 
@@ -116,7 +116,7 @@ public class HttpRequest {
 
     /* renamed from: a */
     private static void m8707a(HttpRequestBase httpRequestBase) {
-        httpRequestBase.addHeader(new BasicHeader("Authorization", "Basic " + Base64.encodeToString((f2328d + ":" + f2329e).getBytes(), 0).trim()));
+        httpRequestBase.addHeader(new BasicHeader("Authorization", "Basic " + Base64.encodeToString((authorization + ":" + f2329e).getBytes(), 0).trim()));
     }
 
     /* renamed from: b */
@@ -140,7 +140,7 @@ public class HttpRequest {
     }
 
     /* renamed from: e */
-    private static HttpClient m8699e() {
+    private static HttpClient initHttpClient() {
         BasicHttpParams basicHttpParams = new BasicHttpParams();
         ConnManagerParams.setMaxTotalConnections(basicHttpParams, 100);
         ConnManagerParams.setMaxConnectionsPerRoute(basicHttpParams, new ConnPerRouteBean((int) 400));
@@ -148,36 +148,36 @@ public class HttpRequest {
         HttpProtocolParams.setContentCharset(basicHttpParams, "UTF-8");
         HttpProtocolParams.setUseExpectContinue(basicHttpParams, false);
         HttpProtocolParams.setUserAgent(basicHttpParams, "Mozilla/5.0 (Linux; U; Android 2.3.6; en-us; Nexus S Build/GRK39F) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1");
-        ConnManagerParams.setTimeout(basicHttpParams, (long) 60000);
-        HttpConnectionParams.setConnectionTimeout(basicHttpParams, 60000);
-        HttpConnectionParams.setSoTimeout(basicHttpParams, 60000);
+        ConnManagerParams.setTimeout(basicHttpParams, (long) 6000);
+        HttpConnectionParams.setConnectionTimeout(basicHttpParams, 6000);
+        HttpConnectionParams.setSoTimeout(basicHttpParams, 6000);
         SchemeRegistry schemeRegistry = new SchemeRegistry();
         schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
         schemeRegistry.register(new Scheme("https", SSLSocketFactory.getSocketFactory(), 443));
-        if (f2326b == null) {
-            f2326b = new ThreadSafeClientConnManager(basicHttpParams, schemeRegistry);
+        if (threadSafeClientConnManager == null) {
+            threadSafeClientConnManager = new ThreadSafeClientConnManager(basicHttpParams, schemeRegistry);
         }
-        return new DefaultHttpClient(f2326b, basicHttpParams);
+        return new DefaultHttpClient(threadSafeClientConnManager, basicHttpParams);
     }
 
     /* renamed from: a */
     public static C0586a m8713a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2) {
-        LogUtils.m8388a("HttpRequest", "doGetRequest: " + str);
+        LogUtils.debug("HttpRequest", "doGetRequest: " + str);
         return m8708a(new HttpGet(UrlUtils.m8333a(str, hashMap2)), hashMap, hashMap2);
     }
 
     /* renamed from: a */
     public static C0586a m8708a(HttpGet httpGet, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2) {
         try {
-            m8706a((HttpRequestBase) httpGet, hashMap);
-            C0586a m8709a = m8709a(m8700d().execute(httpGet), (HttpRequestBase) httpGet);
+            buildHeader((HttpRequestBase) httpGet, hashMap);
+            C0586a m8709a = m8709a(getHttpClient().execute(httpGet), (HttpRequestBase) httpGet);
             m8698f();
             return m8709a;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         } catch (Throwable th) {
-            LogUtils.m8381c("HttpRequest", "doGetRequest exception:" + th.toString());
+            LogUtils.error("HttpRequest", "doGetRequest exception:" + th.toString());
             th.printStackTrace();
             return null;
         }
@@ -185,25 +185,25 @@ public class HttpRequest {
 
     /* renamed from: f */
     private static void m8698f() {
-        f2326b.closeIdleConnections(30000L, TimeUnit.MILLISECONDS);
+        threadSafeClientConnManager.closeIdleConnections(30000L, TimeUnit.MILLISECONDS);
     }
 
     /* renamed from: a */
-    public static C0586a m8712a(String str, HashMap<String, Object> hashMap, HttpEntity httpEntity) {
-        LogUtils.m8388a("HttpRequest", "doPostRequest: " + str);
+    public static C0586a m8712a(String uri, HashMap<String, Object> headerMaps, HttpEntity httpEntity) {
+        LogUtils.debug("HttpRequest", "doPostRequest: " + uri);
         try {
-            HttpPost httpPost = new HttpPost(str);
+            HttpPost httpPost = new HttpPost(uri);
             httpPost.setEntity(httpEntity);
-            String str2 = (String) hashMap.get("Connection");
+            String str2 = (String) headerMaps.get("Connection");
             if (str2 == null || !"close".equals(str2)) {
-                hashMap.put("Connection", "close");
+                headerMaps.put("Connection", "close");
             }
-            m8706a((HttpRequestBase) httpPost, hashMap);
-            C0586a m8709a = m8709a(m8700d().execute(httpPost), (HttpRequestBase) httpPost);
+            buildHeader((HttpRequestBase) httpPost, headerMaps);
+            C0586a m8709a = m8709a(getHttpClient().execute(httpPost), (HttpRequestBase) httpPost);
             m8698f();
             return m8709a;
         } catch (Exception e) {
-            LogUtils.m8381c("HttpRequest", "doPostRequest exception: " + e.toString());
+            LogUtils.error("HttpRequest", "doPostRequest exception: " + e.toString());
             e.printStackTrace();
             return null;
         }
@@ -212,7 +212,7 @@ public class HttpRequest {
     /* renamed from: b */
     public static C0586a m8703b(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2) {
         try {
-            LogUtils.m8388a("HttpRequest", "doPostRequest Content: " + hashMap2.toString());
+            LogUtils.debug("HttpRequest", "doPostRequest Content: " + hashMap2.toString());
             return m8712a(str, hashMap, m8710a(hashMap2));
         } catch (Exception e) {
             e.printStackTrace();
@@ -223,7 +223,7 @@ public class HttpRequest {
     /* renamed from: a */
     public static C0586a m8714a(String str, HashMap<String, Object> hashMap, String str2) {
         try {
-            LogUtils.m8388a("HttpRequest", "doPostRequest Content: " + str2);
+            LogUtils.debug("HttpRequest", "doPostRequest Content: " + str2);
             return m8712a(str, hashMap, m8711a(str2, hashMap));
         } catch (Exception e) {
             e.printStackTrace();
@@ -242,7 +242,7 @@ public class HttpRequest {
                         obj = JSONUtils.build(obj);
                     }
                     String obj2 = obj.toString();
-                    LogUtils.m8386a("HttpRequest", "POST:key=%s,value=%s", str, obj2);
+                    LogUtils.debug("HttpRequest", "POST:key=%s,value=%s", str, obj2);
                     arrayList.add(new BasicNameValuePair(str, obj2));
                 }
             }
@@ -253,18 +253,18 @@ public class HttpRequest {
     /* renamed from: a */
     private static HttpEntity m8711a(String str, Map<String, Object> map) throws Exception {
         StringEntity stringEntity = new StringEntity(str, "UTF-8");
-        if (!HttpClientProxy.CONTENT_NOT_ENCODING_GZIP.equals(map.get(HttpClientProxy.HEADER_ACCEPT_GZIP)) && stringEntity.getContentLength() > 500) {
+        if (!"not-gzip".equals(map.get("Accept-Gzip")) && stringEntity.getContentLength() > 500) {
             OriginalByteArrayOutputStream m8329a = ZIPUtils.m8329a(str);
             InputStreamEntity inputStreamEntity = new InputStreamEntity(new ByteArrayInputStream(m8329a.m8583a()), m8329a.size());
-            map.put(HttpClientProxy.HEADER_CONTENT_ENCODING, HttpClientProxy.CONTENT_ENCODING_GZIP);
+            map.put("Content-Encoding", "gzip");
             return inputStreamEntity;
         }
         return stringEntity;
     }
 
     /* renamed from: a */
-    private static void m8706a(HttpRequestBase httpRequestBase, HashMap<String, Object> hashMap) {
-        httpRequestBase.addHeader(new BasicHeader(HttpClientProxy.HEADER_ACCEPT_ENCODING, HttpClientProxy.CONTENT_ENCODING_GZIP));
+    private static void buildHeader(HttpRequestBase httpRequestBase, HashMap<String, Object> hashMap) {
+        httpRequestBase.addHeader(new BasicHeader("Accept-Encoding", "gzip"));
         if (hashMap != null) {
             for (String str : hashMap.keySet()) {
                 httpRequestBase.addHeader(new BasicHeader(str, String.valueOf(hashMap.get(str))));
@@ -278,23 +278,23 @@ public class HttpRequest {
     /* renamed from: a */
     private static C0586a m8709a(HttpResponse httpResponse, HttpRequestBase httpRequestBase) throws Exception {
         InputStream m8331a;
-        LogUtils.m8379d("HttpRequest", "in createResultFromHttpResponse lookNetProblem");
+        LogUtils.info("HttpRequest", "in createResultFromHttpResponse lookNetProblem");
         Header[] allHeaders = httpResponse.getAllHeaders();
         HttpEntity entity = httpResponse.getEntity();
         Header contentEncoding = entity.getContentEncoding();
         String value = contentEncoding != null ? contentEncoding.getValue() : null;
-        if (HttpClientProxy.CONTENT_ENCODING_GZIP.equalsIgnoreCase(value) || HttpClientProxy.CONTENT_ENCODING_DEFLATE.equalsIgnoreCase(value)) {
-            LogUtils.m8388a("HttpRequest", "TEST: unzip GZip or Deflate stream... lookNetProblem");
+        if ("gzip".equalsIgnoreCase(value) || "deflate".equalsIgnoreCase(value)) {
+            LogUtils.debug("HttpRequest", "TEST: unzip GZip or Deflate stream... lookNetProblem");
             m8331a = ZIPUtils.m8331a(entity.getContent());
         } else {
-            LogUtils.m8379d("HttpRequest", "createResultFromHttpResponse not zip format lookNetProblem");
+            LogUtils.info("HttpRequest", "createResultFromHttpResponse not zip format lookNetProblem");
             m8331a = entity.getContent();
         }
         int statusCode = httpResponse.getStatusLine().getStatusCode();
         long contentLength = entity.getContentLength();
-        LogUtils.m8380c("HttpRequest", "createResultFromHttpResponse statusCode=%d lookNetProblem", Integer.valueOf(statusCode));
+        LogUtils.info("HttpRequest", "createResultFromHttpResponse statusCode=%d lookNetProblem", Integer.valueOf(statusCode));
         C0586a c0586a = new C0586a(statusCode, allHeaders, m8331a, (int) contentLength, httpRequestBase);
-        LogUtils.m8379d("HttpRequest", "createResultFromHttpResponse lookNetProblem isUseProxy=" + f2327c + "  host=" + f2330f + "  port=" + f2331g);
+        LogUtils.info("HttpRequest", "createResultFromHttpResponse lookNetProblem isUseProxy=" + f2327c + "  host=" + hostname + "  port=" + port);
         if (f2332h && contentLength > 0) {
             f2333i += contentLength;
         }
@@ -309,10 +309,10 @@ public class HttpRequest {
             if (indexOf > 0) {
                 uri = uri.substring(0, indexOf);
             }
-            LogUtils.m8381c("HttpRequest", "createResultFromHttpResponse lookNetProblem status=" + statusCode + " url=" + uri);
+            LogUtils.error("HttpRequest", "createResultFromHttpResponse lookNetProblem status=" + statusCode + " url=" + uri);
             m8717a(statusCode, uri);
         }
-        LogUtils.m8380c("HttpRequest", "createResultFromHttpResponse statusCode=%d exit function lookNetProblem", Integer.valueOf(statusCode));
+        LogUtils.info("HttpRequest", "createResultFromHttpResponse statusCode=%d exit function lookNetProblem", Integer.valueOf(statusCode));
         return c0586a;
     }
 

@@ -181,12 +181,12 @@ public class FavoritePostsFragment extends SlidingClosableFragment implements Ad
             arrayList.add(Long.valueOf(messageCollectItem.getId()));
         }
         this.mFooter.m7932a(false, 0, getString(R.string.loading));
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, arrayList, "favorite"));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, arrayList, "favorite"));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestFavorites() {
         this.mRequestState = RequestState.REQUESTING;
-        CommandCenter.m4607a().m4606a(new Command(CommandID.REQUEST_FAVORITE_SONG_LIST_POSTS, new Object[0]));
+        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_FAVORITE_SONG_LIST_POSTS, new Object[0]));
     }
 }

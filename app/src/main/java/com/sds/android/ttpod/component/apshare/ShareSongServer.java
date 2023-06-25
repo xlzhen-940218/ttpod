@@ -81,7 +81,7 @@ public class ShareSongServer implements SocketServer.InterfaceC1130b {
                         throw th;
                     }
                 } catch (Exception e3) {
-                    LogUtils.m8383b("ShareSongServer", e3.getMessage(), e3);
+                    LogUtils.error("ShareSongServer", e3.getMessage(), e3);
                     try {
                         if (socket != null && socket.isClosed()) {
                             socket.close();
@@ -107,7 +107,7 @@ public class ShareSongServer implements SocketServer.InterfaceC1130b {
         String readLine;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         String readLine2 = bufferedReader.readLine();
-        LogUtils.m8379d("ShareSongServer", "server receive message: " + readLine2 + ", tid = " + Process.myTid());
+        LogUtils.info("ShareSongServer", "server receive message: " + readLine2 + ", tid = " + Process.myTid());
         if (readLine2.equals("get_share_song_list")) {
             m7068a(socket.getOutputStream());
         } else if (readLine2.equals("download_song")) {
@@ -131,12 +131,12 @@ public class ShareSongServer implements SocketServer.InterfaceC1130b {
                 e = e3;
                 e.printStackTrace();
                 readLine = bufferedReader.readLine();
-                LogUtils.m8379d("ShareSongServer", "msg: " + readLine);
+                LogUtils.info("ShareSongServer", "msg: " + readLine);
                 if (!readLine.equals("download_cancel")) {
                 }
             }
             readLine = bufferedReader.readLine();
-            LogUtils.m8379d("ShareSongServer", "msg: " + readLine);
+            LogUtils.info("ShareSongServer", "msg: " + readLine);
             if (!readLine.equals("download_cancel")) {
                 sendSongHandler.m7075a();
             }
@@ -162,7 +162,7 @@ public class ShareSongServer implements SocketServer.InterfaceC1130b {
                 }
             }
         } catch (Exception e) {
-            LogUtils.m8383b("ShareSongServer", e.getMessage(), e);
+            LogUtils.error("ShareSongServer", e.getMessage(), e);
         }
     }
 
@@ -183,7 +183,7 @@ public class ShareSongServer implements SocketServer.InterfaceC1130b {
                 });
             }
         } catch (Exception e) {
-            LogUtils.m8383b("ShareSongServer", e.getMessage(), e);
+            LogUtils.error("ShareSongServer", e.getMessage(), e);
         }
     }
 

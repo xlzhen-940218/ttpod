@@ -81,7 +81,7 @@ public abstract class BaseSearchFragment extends BaseFragment implements SearchF
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestData(int i) {
-        LogUtils.m8388a(TAG, "requestData page = " + i);
+        LogUtils.debug(TAG, "requestData page = " + i);
         if (i >= 1) {
             this.mIsLoading = true;
             this.mFooterView.m1877a();
@@ -161,7 +161,7 @@ public abstract class BaseSearchFragment extends BaseFragment implements SearchF
     @Override // com.sds.android.ttpod.fragment.main.SearchFragment.InterfaceC1490a
     public void search(String str, String str2) {
         this.mUserInput = str2;
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             this.mPager = new Pager();
             this.mPager.m4665b(VIPPolicy.Entry.MAX_LIMIT);
             this.mStateView.setState(StateView.EnumC2248b.LOADING);

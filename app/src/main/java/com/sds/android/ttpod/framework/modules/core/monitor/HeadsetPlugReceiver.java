@@ -16,9 +16,9 @@ public class HeadsetPlugReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
         if (Action.PLAY_HEADSET_PLUG.equals(action)) {
-            CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_HEADSET_PLUGGED, new Object[0]), ModuleID.MONITOR);
+            CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_HEADSET_PLUGGED, new Object[0]), ModuleID.MONITOR);
         } else if (Action.PLAY_HEADSET_UNPLUG.equals(action)) {
-            CommandCenter.m4607a().m4604a(new Command(CommandID.UPDATE_HEADSET_UNPLUGGED, new Object[0]), ModuleID.MONITOR);
+            CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_HEADSET_UNPLUGGED, new Object[0]), ModuleID.MONITOR);
         }
     }
 

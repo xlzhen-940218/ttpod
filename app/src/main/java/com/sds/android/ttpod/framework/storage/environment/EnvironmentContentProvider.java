@@ -145,7 +145,7 @@ public final class EnvironmentContentProvider extends ContentProvider {
                 BaseApplication.getApplication().sendBroadcast(new Intent(Action.PREFERENCES_CHANGED).putExtra("preferences_id", m3107b));
             }
         } catch (Exception e) {
-            LogUtils.m8384b("EnvironmentContentProvider", "key:" + m3107b + " not existed!");
+            LogUtils.warning("EnvironmentContentProvider", "key:" + m3107b + " not existed!");
         }
         return 0;
     }

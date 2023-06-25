@@ -11,7 +11,6 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.fragment.main.FindSongBaseViewFragment;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.FindSongNewStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.widget.RoundedImageView;
 
@@ -63,8 +62,8 @@ public class FindSongBannerFragment extends FindSongBaseViewFragment {
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 FindSongBannerFragment.this.mFindSongBannerViewContainer.setVisibility(View.GONE);
-                FindSongNewStatistic.m5230a(348, FindSongBannerFragment.this.getModuleData().getId());
-                FindSongNewStatistic.m5230a(324, FindSongBannerFragment.this.getItemData(0).getId());
+               // FindSongNewStatistic.m5230a(348, FindSongBannerFragment.this.getModuleData().getId());
+               // FindSongNewStatistic.m5230a(324, FindSongBannerFragment.this.getItemData(0).getId());
                 FindSongBannerFragment.this.doFindSongStatistic(0, SAction.ACTION_CLICK_ONLINE_FIND_SONG_ITEM_CLOSE);
             }
         });

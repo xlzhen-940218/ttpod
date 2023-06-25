@@ -498,7 +498,7 @@ public class RadialProgressWidget extends View {
                                 i = f8139W;
                             }
                             int i2 = i >= 0 ? i : 0;
-                            LogUtils.m8388a("zz:", "tempValue= " + i2 + "   getCurrentValue= " + this.f8165c + "   angle=  " + m1405a);
+                            LogUtils.debug("zz:", "tempValue= " + i2 + "   getCurrentValue= " + this.f8165c + "   angle=  " + m1405a);
                             if (Math.abs(i2 - this.f8165c) > 50) {
                                 if (this.f8165c == 0 || this.f8165c == f8139W) {
                                     m1407a(this.f8165c);

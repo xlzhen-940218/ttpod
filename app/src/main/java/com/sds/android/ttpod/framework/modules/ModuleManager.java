@@ -40,13 +40,13 @@ import java.util.Set;
 public final class ModuleManager {
 
     /* renamed from: a */
-    private static ModuleManager f6091a = new ModuleManager();
+    private static ModuleManager instance = new ModuleManager();
 
     /* renamed from: e */
     private static final Map<CommandID, Set<ModuleID>> f6092e = new EnumMap(CommandID.class);
 
     /* renamed from: f */
-    private static final Map<ModuleID, Class> f6093f = new EnumMap(ModuleID.class);
+    private static final Map<ModuleID, Class> moduleIdMaps = new EnumMap(ModuleID.class);
 
     /* renamed from: b */
     private Map<ModuleID, BaseModule> f6094b = new EnumMap(ModuleID.class);
@@ -82,35 +82,35 @@ public final class ModuleManager {
 
     /* renamed from: d */
     private static void m4105d() {
-        f6093f.put(ModuleID.DOWNLOAD_MANAGER, DownloadManagerModule.class);
-        f6093f.put(ModuleID.FAVORITE, FavoriteModule.class);
-        f6093f.put(ModuleID.MEDIA_SCAN, MediaScanModule.class);
-        f6093f.put(ModuleID.MEDIA_ACCESS, MediaAccessModule.class);
-        f6093f.put(ModuleID.MONITOR, MonitorModule.class);
-        f6093f.put(ModuleID.MUSIC_CIRCLE, MusicCircleModule.class);
-        f6093f.put(ModuleID.SUPPORT, SupportModule.class);
-        f6093f.put(ModuleID.FIND_SONG, FindSongModule.class);
-        f6093f.put(ModuleID.SEARCH, SearchModule.class);
-        f6093f.put(ModuleID.SKIN, SkinModule.class);
-        f6093f.put(ModuleID.SPLASH, SplashModule.class);
-        f6093f.put(ModuleID.USER_SYSTEM, UserSystemModule.class);
-        f6093f.put(ModuleID.VERSION, VersionUpdateModule.class);
-        f6093f.put(ModuleID.GLOBAL, GlobalModule.class);
-        f6093f.put(ModuleID.LOCK_SCREEN, LockScreenModule.class);
-        f6093f.put(ModuleID.AUDIO_EFFECT, AudioEffectModule.class);
-        f6093f.put(ModuleID.THEME, ThemeModule.class);
-        f6093f.put(ModuleID.VERSION_COMPACT, VersionCompactModule.class);
-        f6093f.put(ModuleID.MUSIC_LIBRARY, MusicLibraryModule.class);
-        f6093f.put(ModuleID.UNICOM_FLOW, UnicomFlowModule.class);
-        f6093f.put(ModuleID.FEEDBACK, FeedbackModule.class);
+        moduleIdMaps.put(ModuleID.DOWNLOAD_MANAGER, DownloadManagerModule.class);
+        moduleIdMaps.put(ModuleID.FAVORITE, FavoriteModule.class);
+        moduleIdMaps.put(ModuleID.MEDIA_SCAN, MediaScanModule.class);
+        moduleIdMaps.put(ModuleID.MEDIA_ACCESS, MediaAccessModule.class);
+        moduleIdMaps.put(ModuleID.MONITOR, MonitorModule.class);
+        moduleIdMaps.put(ModuleID.MUSIC_CIRCLE, MusicCircleModule.class);
+        moduleIdMaps.put(ModuleID.SUPPORT, SupportModule.class);
+        moduleIdMaps.put(ModuleID.FIND_SONG, FindSongModule.class);
+        moduleIdMaps.put(ModuleID.SEARCH, SearchModule.class);
+        moduleIdMaps.put(ModuleID.SKIN, SkinModule.class);
+        moduleIdMaps.put(ModuleID.SPLASH, SplashModule.class);
+        moduleIdMaps.put(ModuleID.USER_SYSTEM, UserSystemModule.class);
+        moduleIdMaps.put(ModuleID.VERSION, VersionUpdateModule.class);
+        moduleIdMaps.put(ModuleID.GLOBAL, GlobalModule.class);
+        moduleIdMaps.put(ModuleID.LOCK_SCREEN, LockScreenModule.class);
+        moduleIdMaps.put(ModuleID.AUDIO_EFFECT, AudioEffectModule.class);
+        moduleIdMaps.put(ModuleID.THEME, ThemeModule.class);
+        moduleIdMaps.put(ModuleID.VERSION_COMPACT, VersionCompactModule.class);
+        moduleIdMaps.put(ModuleID.MUSIC_LIBRARY, MusicLibraryModule.class);
+        moduleIdMaps.put(ModuleID.UNICOM_FLOW, UnicomFlowModule.class);
+        moduleIdMaps.put(ModuleID.FEEDBACK, FeedbackModule.class);
     }
 
     /* renamed from: e */
     private static void m4103e() {
         CommandID[] m4563a;
         try {
-            for (ModuleID moduleID : f6093f.keySet()) {
-                ObserverCommandID observerCommandID = (ObserverCommandID) f6093f.get(moduleID).getAnnotation(ObserverCommandID.class);
+            for (ModuleID moduleID : moduleIdMaps.keySet()) {
+                ObserverCommandID observerCommandID = (ObserverCommandID) moduleIdMaps.get(moduleID).getAnnotation(ObserverCommandID.class);
                 if (observerCommandID != null) {
                     for (CommandID commandID : observerCommandID.m4563a()) {
                         if (EnvironmentUtils.C0602a.m8503h() && commandID.getCommandType() != CommandType.FROM_MODULE) {
@@ -140,8 +140,8 @@ public final class ModuleManager {
     }
 
     /* renamed from: a */
-    public static ModuleManager m4117a() {
-        return f6091a;
+    public static ModuleManager getInstance() {
+        return instance;
     }
 
     private ModuleManager() {
@@ -164,8 +164,8 @@ public final class ModuleManager {
     /* renamed from: c */
     private void m4107c(ModuleID moduleID) {
         if (!m4104d(moduleID)) {
-            LogUtils.m8388a("ModuleManager", "LoadModule:" + moduleID.name());
-            BaseModule m4102e = m4102e(moduleID);
+            LogUtils.debug("ModuleManager", "LoadModule:" + moduleID.name());
+            BaseModule m4102e = loadModulebyId(moduleID);
             m4102e.onCreate();
             this.f6094b.put(moduleID, m4102e);
             if (m4102e.timeOutInMills() != Long.MIN_VALUE) {
@@ -179,7 +179,7 @@ public final class ModuleManager {
 
     /* renamed from: a */
     public void m4113a(ModuleID moduleID) {
-        LogUtils.m8379d("ModuleManager", "unloadModule:" + moduleID.name());
+        LogUtils.info("ModuleManager", "unloadModule:" + moduleID.name());
         DebugUtils.m8427a();
         BaseModule baseModule = this.f6094b.get(moduleID);
         if (baseModule != null) {
@@ -222,7 +222,7 @@ public final class ModuleManager {
     public void m4108c() {
         DebugUtils.m8427a();
         this.f6096d.removeMessages(1);
-        LogUtils.m8388a("ModuleManager", "unInitModule search lookLyricPic");
+        LogUtils.debug("ModuleManager", "unInitModule search lookLyricPic");
         for (BaseModule baseModule : this.f6094b.values()) {
             baseModule.onDestroy();
         }
@@ -236,8 +236,8 @@ public final class ModuleManager {
     }
 
     /* renamed from: e */
-    private BaseModule m4102e(ModuleID moduleID) {
-        Class cls = f6093f.get(moduleID);
+    private BaseModule loadModulebyId(ModuleID moduleID) {
+        Class cls = moduleIdMaps.get(moduleID);
         if (cls == null) {
             throw new IllegalArgumentException("Module(" + moduleID.name() + " not existed or not be register!");
         }

@@ -36,39 +36,39 @@ public final class RingtoneUtils {
 
     /* renamed from: a */
     public static int m8247a(Context context, String str, int i) {
-        LogUtils.m8380c("RingtoneUtils", "setRingtone mediaPath=%s type=%d", str, Integer.valueOf(i));
+        LogUtils.info("RingtoneUtils", "setRingtone mediaPath=%s type=%d", str, Integer.valueOf(i));
         File file = new File(str);
         if (file.exists() && file.isFile()) {
             String absolutePath = file.getAbsolutePath();
-            String lowerCase = FileUtils.m8399m(absolutePath).toLowerCase();
+            String lowerCase = FileUtils.getSuffix(absolutePath).toLowerCase();
             String mimeTypeFromExtension = f2513a.get(lowerCase) != null ? f2513a.get(lowerCase) : MimeTypeMap.getSingleton().getMimeTypeFromExtension(lowerCase);
-            LogUtils.m8380c("RingtoneUtils", "setRingtone absPath=%s mimeType=%s", absolutePath, mimeTypeFromExtension);
+            LogUtils.info("RingtoneUtils", "setRingtone absPath=%s mimeType=%s", absolutePath, mimeTypeFromExtension);
             if (m8246a(mimeTypeFromExtension)) {
                 long m8248a = m8248a(context, str);
-                LogUtils.m8380c("RingtoneUtils", "setRingtone id=%d", Long.valueOf(m8248a));
+                LogUtils.info("RingtoneUtils", "setRingtone id=%d", Long.valueOf(m8248a));
                 if (m8248a > 0) {
                     return m8250a(context, i, absolutePath, m8248a);
                 }
                 return m8249a(context, file, i);
             }
         }
-        LogUtils.m8379d("RingtoneUtils", "setRingtone fail");
+        LogUtils.info("RingtoneUtils", "setRingtone fail");
         return 2;
     }
 
     /* renamed from: a */
     private static int m8250a(Context context, int i, String str, long j) {
         Uri contentUriForPath = MediaStore.Audio.Media.getContentUriForPath(str);
-        LogUtils.m8380c("RingtoneUtils", "updateMedia uri=%s", contentUriForPath.toString());
+        LogUtils.info("RingtoneUtils", "updateMedia uri=%s", contentUriForPath.toString());
         int update = context.getContentResolver().update(contentUriForPath, m8251a(i, new File(str)), "_data=?", new String[]{str});
         Uri withAppendedId = ContentUris.withAppendedId(contentUriForPath, j);
-        LogUtils.m8380c("RingtoneUtils", "updateMedia uriWithId=%s updatedRows=%d", withAppendedId.toString(), Integer.valueOf(update));
+        LogUtils.info("RingtoneUtils", "updateMedia uriWithId=%s updatedRows=%d", withAppendedId.toString(), Integer.valueOf(update));
         RingtoneManager.setActualDefaultRingtoneUri(context, i, withAppendedId);
         Ringtone ringtone = RingtoneManager.getRingtone(context, withAppendedId);
         Object[] objArr = new Object[2];
         objArr[0] = Boolean.valueOf(ringtone != null);
         objArr[1] = ringtone != null ? ringtone.getTitle(context) : "_null_";
-        LogUtils.m8380c("RingtoneUtils", "updateMedia ringtone!=null_%b title=%s", objArr);
+        LogUtils.info("RingtoneUtils", "updateMedia ringtone!=null_%b title=%s", objArr);
         return ringtone != null ? 1 : 2;
     }
 
@@ -80,10 +80,10 @@ public final class RingtoneUtils {
             Ringtone ringtone = RingtoneManager.getRingtone(context, insert);
             Object[] objArr = new Object[1];
             objArr[0] = Boolean.valueOf(ringtone != null);
-            LogUtils.m8380c("RingtoneUtils", "insertMedia ringtone!=null_%b", objArr);
+            LogUtils.info("RingtoneUtils", "insertMedia ringtone!=null_%b", objArr);
             return ringtone != null ? 1 : 3;
         } catch (Exception e) {
-            LogUtils.m8380c("RingtoneUtils", "insertMedia exception=%s", e.toString());
+            LogUtils.info("RingtoneUtils", "insertMedia exception=%s", e.toString());
             e.printStackTrace();
             return 3;
         }

@@ -1,5 +1,6 @@
 package com.sds.android.ttpod.fragment.main;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,12 +13,12 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.core.view.accessibility.AccessibilityEventCompat;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -50,12 +51,8 @@ import com.sds.android.ttpod.framework.modules.skin.SkinCache;
 import com.sds.android.ttpod.framework.modules.skin.p129b.SPlaylistView;
 import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.OnlineMediaStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.StatisticUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -127,7 +124,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
             this.mViewController.m6550y();
             this.mViewController.mo6404r();
         }
-        LogUtils.m8381c("Sun Hao", "ProtraitPlayerFragment resumeRefresh");
+        LogUtils.error("Sun Hao", "ProtraitPlayerFragment resumeRefresh");
         startUpdatePlayPosition();
     }
 
@@ -161,9 +158,9 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadFinished() {
         super.onLoadFinished();
-        SkinCache m3151m = Cache.m3218a().m3151m();
-        if (m3151m == null || m3151m.m3590b() == null) {
-            CommandCenter.m4607a().m4596b(new Command(CommandID.LOAD_SKIN, new Object[0]));
+        SkinCache m3151m = Cache.getInstance().m3151m();
+        if (m3151m == null || m3151m.getSerializableSkin() == null) {
+            CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_SKIN, new Object[0]));
         } else {
             loadSkinFinished(m3151m);
         }
@@ -203,7 +200,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     public void loadSkinFinished(SkinCache skinCache) {
         final FragmentActivity activity = getActivity();
         View view = getView();
-        if (skinCache != null && skinCache.m3585d() && view != null && activity != null) {
+        if (skinCache != null && skinCache.serializableSkinNotNull() && view != null && activity != null) {
             FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.container);
             if (this.mViewController != null) {
                 this.mViewController.mo6441b();
@@ -222,7 +219,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                 }
             }
             if (this.mSkinCache != null) {
-                this.mSkinCache.m3579i();
+                this.mSkinCache.clear();
             }
             this.mSkinCache = skinCache;
             if (!Preferences.m3032Y()) {
@@ -265,17 +262,17 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     public void updateBackground(Drawable drawable) {
         if (drawable == null) {
-            LogUtils.m8379d(TAG, "PortraitPlayerFragment.updateBackground background is null");
+            LogUtils.info(TAG, "PortraitPlayerFragment.updateBackground background is null");
         } else if (this.mViewController != null) {
             if (Preferences.m3032Y()) {
-                SkinCache m3151m = Cache.m3218a().m3151m();
+                SkinCache m3151m = Cache.getInstance().m3151m();
                 if (m3151m != null) {
                     drawable = m3151m.m3589b(BaseApplication.getApplication());
                     if (drawable == null) {
                         drawable = m3151m.m3597a(BaseApplication.getApplication());
                     }
                 } else {
-                    LogUtils.m8388a(TAG, "PortraitPlayerFragment.updateBackground skin cache is null!");
+                    LogUtils.debug(TAG, "PortraitPlayerFragment.updateBackground skin cache is null!");
                 }
             }
             this.mViewController.mo6461a().setBackgroundDrawable(drawable);
@@ -284,7 +281,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     public void updateFavoriteChanged() {
         if (this.mViewController != null) {
-            MediaItem m3225N = Cache.m3218a().m3225N();
+            MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
             if (!m3225N.isNull()) {
                 if (MediaItemUtils.m4715a(m3225N)) {
                     m3225N.setFav(true);
@@ -298,12 +295,12 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     }
 
     public void updateDownloadTaskState(DownloadTaskInfo downloadTaskInfo) {
-        StatisticUtils.m4910a("360", "click", "install_app");
+        //StatisticUtils.m4910a("360", "click", "install_app");
         ApkUtils.m8311a(getActivity(), downloadTaskInfo.getSavePath());
     }
 
     public void skinChanged() {
-        CommandCenter.m4607a().m4596b(new Command(CommandID.LOAD_SKIN, new Object[0]));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_SKIN, new Object[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -439,7 +436,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     @Override // com.sds.android.ttpod.fragment.main.BasePlayerFragment
     public void updatePlayMediaInfo() {
         if (this.mViewController != null) {
-            this.mViewController.mo6448a(Cache.m3218a().m3225N());
+            this.mViewController.mo6448a(Cache.getInstance().getCurrentPlayMediaItem());
             this.mViewController.mo6459a(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue(), SupportFactory.m2397a(BaseApplication.getApplication()).m2464l());
         }
     }
@@ -460,7 +457,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     public void updateSleepMode() {
         if (this.mViewController != null) {
-            this.mViewController.m6525d(((Boolean) CommandCenter.m4607a().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue());
+            this.mViewController.m6525d(((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue());
         }
     }
 
@@ -470,8 +467,8 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     /* JADX INFO: Access modifiers changed from: private */
     public void initViewController() {
-        MediaItem m3225N = Cache.m3218a().m3225N();
-        LogUtils.m8386a(TAG, "initViewController looklyricloading %s", m3225N.getTitle());
+        MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
+        LogUtils.debug(TAG, "initViewController looklyricloading %s", m3225N.getTitle());
         if (!m3225N.isNull()) {
             this.mViewController.mo6447a(m3225N, (Bitmap) null, (Lyric) null);
             updatePlayMediaInfo();
@@ -541,10 +538,10 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                             }
                             FragmentActivity activity = PortraitPlayerFragment.this.getActivity();
                             PortraitPlayerFragment.this.startActivityForResult(new Intent(activity, PlayingListActivity.class), 1002);
-                            if (PortraitPlayerFragment.this.mSkinCache != null && PortraitPlayerFragment.this.mSkinCache.m3585d() && (m3842b = PortraitPlayerFragment.this.mSkinCache.m3590b().m3842b(0)) != null) {
+                            if (PortraitPlayerFragment.this.mSkinCache != null && PortraitPlayerFragment.this.mSkinCache.serializableSkinNotNull() && (m3842b = PortraitPlayerFragment.this.mSkinCache.getSerializableSkin().m3842b(0)) != null) {
                                 PlayingListActivity.overrideActivityInAnimation(activity, m3842b.m3784f());
                             }
-                            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_PLAYING_LIST.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue(), SPage.PAGE_NONE.getValue()).post();
+                            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_PLAYING_LIST.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue(), SPage.PAGE_NONE.getValue()).post();
                             break;
                         case 7:
                             PortraitPlayerFragment.this.tryShowLyricMenu();
@@ -560,12 +557,12 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                             playerMenuDialog.m6803a((PlayerMenuDialog.InterfaceC1165a) PortraitPlayerFragment.this);
                             playerMenuDialog.m6802a((PlayerMenuDialog.InterfaceC1166b) PortraitPlayerFragment.this);
                             playerMenuDialog.show();
-                            new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue(), SPage.PAGE_PLAYER_MENU.getValue()).post();
+                            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue(), SPage.PAGE_PLAYER_MENU.getValue()).post();
                             break;
                         case 30:
                             PortraitPlayerFragment.this.startActivity(new Intent(PortraitPlayerFragment.this.getActivity(), ThemeManagementActivity.class));
-                            ThemeStatistic.m4873s();
-                            ThemeStatistic.m4886g("play");
+                            //ThemeStatistic.m4873s();
+                            //ThemeStatistic.m4886g("play");
                             break;
                         case 31:
                             PortraitPlayerFragment.this.showAdjustMoreDialog();
@@ -602,13 +599,13 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     @Override // com.sds.android.ttpod.component.p087d.p088a.PlayerMenuDialog.InterfaceC1165a
     public void onSetRingtoneSelected() {
-        LocalStatistic.m5141aM();
-        PopupsUtils.m6740a((Context) getActivity(), Cache.m3218a().m3225N());
+        //LocalStatistic.m5141aM();
+        PopupsUtils.m6740a((Context) getActivity(), Cache.getInstance().getCurrentPlayMediaItem());
     }
 
     @Override // com.sds.android.ttpod.component.p087d.p088a.PlayerMenuDialog.InterfaceC1165a
     public void onDownloadSelected() {
-        new DownloadMenuHandler(getActivity()).m6927a(Cache.m3218a().m3225N(), OnlineMediaStatistic.m5043b());
+        new DownloadMenuHandler(getActivity()).m6927a(Cache.getInstance().getCurrentPlayMediaItem(), null);
     }
 
     @Override // com.sds.android.ttpod.component.p087d.p088a.PlayerMenuDialog.InterfaceC1165a
@@ -664,7 +661,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     /* JADX INFO: Access modifiers changed from: private */
     public void tryShowLyricMenu() {
-        final MediaItem m3225N = Cache.m3218a().m3225N();
+        final MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
             PopupsUtils.m6725a(getActivity(), "Lyric".equals(this.mViewController.m6431c(this.mViewController.m6425g()).m6548E()) ? new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_search, (int) R.string.search_lyric), new ActionItem(1, (int) R.drawable.img_contextmenu_remove, (int) R.string.delete_lyric), new ActionItem(2, (int) R.drawable.img_contextmenu_adjust_lyric, (int) R.string.adjust_lyric), new ActionItem(3, (int) R.drawable.img_contextmenu_error_report, (int) R.string.report_lyric_error)} : new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_search, (int) R.string.search_lyric), new ActionItem(1, (int) R.drawable.img_contextmenu_remove, (int) R.string.delete_lyric), new ActionItem(3, (int) R.drawable.img_contextmenu_error_report, (int) R.string.report_lyric_error)}, m3225N.getTitle(), new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.7
                 @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
@@ -705,7 +702,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
         actionItemArr[0] = new ActionItem(0, (int) R.drawable.img_contextmenu_search, (int) R.string.search_lyric);
         actionItemArr[1] = new ActionItem(1, (int) R.drawable.img_contextmenu_remove_lyric, (int) R.string.delete_lyric);
         actionItemArr[2] = new ActionItem(2, (int) R.drawable.img_contextmenu_manager_pic, (int) R.string.manager_picture);
-        if (!Cache.m3218a().m3225N().isOnline()) {
+        if (!Cache.getInstance().getCurrentPlayMediaItem().isOnline()) {
             actionItem = actionItem2;
         }
         actionItemArr[3] = actionItem;
@@ -733,7 +730,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     /* JADX INFO: Access modifiers changed from: private */
     public static void startActivityFromBottom(Context context, Class<?> cls) {
-        Intent flags = new Intent(context, cls).setFlags(603979776);
+        @SuppressLint("WrongConstant") Intent flags = new Intent(context, cls).setFlags(603979776);
         Activity activity = null;
         if ((context instanceof Activity) && (activity = getTopActivity((Activity) context)) != null) {
             context = activity;
@@ -746,7 +743,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     /* JADX INFO: Access modifiers changed from: private */
     public void showSearchLyricDialog() {
-        final MediaItem m3225N = Cache.m3218a().m3225N();
+        final MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
             EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, getString(R.string.title), m3225N.getTitle(), getString(R.string.please_input_title)), new EditTextDialog.C1144a(2, getString(R.string.artist), m3225N.getArtist(), getString(R.string.please_input_artist))}, R.string.search, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.9
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
@@ -754,7 +751,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                 public void mo2038a(EditTextDialog editTextDialog2) {
                     try {
                         EditTextDialog.C1144a m6902c = editTextDialog2.m6902c(1);
-                        CommandCenter.m4607a().m4596b(new Command(CommandID.START_SEARCH_LYRIC, m3225N, editTextDialog2.m6902c(2).m6896d().toString(), m6902c.m6896d().toString()));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.START_SEARCH_LYRIC, m3225N, editTextDialog2.m6902c(2).m6896d().toString(), m6902c.m6896d().toString()));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -766,13 +763,13 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     }
 
     private void showSearchPictureDialog() {
-        final MediaItem m3225N = Cache.m3218a().m3225N();
+        final MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
             EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, getString(R.string.artist), m3225N.getArtist(), getString(R.string.please_input_artist))}, R.string.search, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.10
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(EditTextDialog editTextDialog2) {
-                    CommandCenter.m4607a().m4596b(new Command(CommandID.START_SEARCH_PICTURE, m3225N, editTextDialog2.m6902c(1).m6896d().toString(), null));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.START_SEARCH_PICTURE, m3225N, editTextDialog2.m6902c(1).m6896d().toString(), null));
                 }
             }, null);
             editTextDialog.setTitle(R.string.search_picture);
@@ -786,10 +783,10 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public void mo2038a(MessageDialog messageDialog2) {
-                if (!StringUtils.m8346a(Cache.m3218a().m3159i())) {
+                if (!StringUtils.isEmpty(Cache.getInstance().m3159i())) {
                     ArrayList arrayList = new ArrayList();
-                    arrayList.add(Cache.m3218a().m3225N());
-                    CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_LYRIC, arrayList));
+                    arrayList.add(Cache.getInstance().getCurrentPlayMediaItem());
+                    CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_LYRIC, arrayList));
                 }
             }
         }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
@@ -812,7 +809,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                 } else if (i == 1) {
                     enumC2096a = ReportTask.EnumC2096a.REPORT_NO_MATCH_STATE;
                 }
-                CommandCenter.m4607a().m4596b(new Command(CommandID.REPORT_LYRIC_PICTURE, ReportTask.EnumC2097b.REPORT_TYPE_LYRIC, enumC2096a, mediaItem));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.REPORT_LYRIC_PICTURE, ReportTask.EnumC2097b.REPORT_TYPE_LYRIC, enumC2096a, mediaItem));
                 PopupsUtils.m6760a((int) R.string.thank_you_for_join);
                 listDialog.dismiss();
             }
@@ -834,7 +831,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                 } else if (i == 2) {
                     enumC2096a = ReportTask.EnumC2096a.REPORT_LOW_QUALITY_STATE;
                 }
-                CommandCenter.m4607a().m4596b(new Command(CommandID.REPORT_LYRIC_PICTURE, ReportTask.EnumC2097b.REPORT_TYPE_LYRIC, enumC2096a, mediaItem));
+                CommandCenter.getInstance().m4596b(new Command(CommandID.REPORT_LYRIC_PICTURE, ReportTask.EnumC2097b.REPORT_TYPE_LYRIC, enumC2096a, mediaItem));
                 PopupsUtils.m6760a((int) R.string.thank_you_for_join);
                 listDialog.dismiss();
             }

@@ -22,11 +22,11 @@ import org.xmlpull.v1.XmlPullParserException;
 public class AllLocalSkinListLoader implements Runnable {
 
     /* renamed from: a */
-    private static ArrayList<SkinItem> f6389a = m3871b();
+    private static ArrayList<SkinItem> skinItems = loadLocalSkinItems();
 
     /* renamed from: a */
-    public static SkinItem m3872a() {
-        return f6389a.get(0);
+    public static SkinItem getFirstSkinItem() {
+        return skinItems.get(0);
     }
 
     @Override // java.lang.Runnable
@@ -35,11 +35,11 @@ public class AllLocalSkinListLoader implements Runnable {
         arrayList.addAll(m3870c());
         arrayList.addAll(m3869d());
         arrayList.addAll(m3868e());
-        CommandCenter.m4607a().m4595b(new Command(CommandID.UPDATE_ALL_LOCAL_SKIN_LIST, arrayList), ModuleID.SKIN);
+        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_ALL_LOCAL_SKIN_LIST, arrayList), ModuleID.SKIN);
     }
 
     /* renamed from: b */
-    private static ArrayList<SkinItem> m3871b() {
+    private static ArrayList<SkinItem> loadLocalSkinItems() {
         ArrayList<SkinItem> arrayList = new ArrayList<>();
         try {
             String[] list = BaseApplication.getApplication().getAssets().list("skin");
@@ -59,11 +59,11 @@ public class AllLocalSkinListLoader implements Runnable {
     /* renamed from: c */
     private ArrayList<SkinItem> m3870c() {
         ArrayList<SkinItem> arrayList = new ArrayList<>();
-        Iterator<SkinItem> it = f6389a.iterator();
+        Iterator<SkinItem> it = skinItems.iterator();
         while (it.hasNext()) {
             SkinItem next = it.next();
-            SkinItem skinItem = new SkinItem(next.m3571b(), 1);
-            skinItem.m3573a(new C1976a(next.m3571b()).m3866a());
+            SkinItem skinItem = new SkinItem(next.getPath(), 1);
+            skinItem.m3573a(new LocalSkinReader(next.getPath()).getSSKinInfo());
             arrayList.add(skinItem);
         }
         return arrayList;
@@ -95,7 +95,7 @@ public class AllLocalSkinListLoader implements Runnable {
         if (m4650a != null && m4650a.length > 0) {
             for (File file : m4650a) {
                 SkinItem skinItem = new SkinItem(file.getAbsolutePath(), 0);
-                skinItem.m3573a(new SkinInfoLoader(skinItem.m3571b()).m3576a());
+                skinItem.m3573a(new SkinInfoLoader(skinItem.getPath()).m3576a());
                 arrayList.add(skinItem);
             }
         }
@@ -106,19 +106,19 @@ public class AllLocalSkinListLoader implements Runnable {
     /* compiled from: AllLocalSkinListLoader.java */
     /* renamed from: com.sds.android.ttpod.framework.modules.skin.a$a */
     /* loaded from: classes.dex */
-    public class C1976a extends SkinReader {
+    public class LocalSkinReader extends SkinReader {
 
         /* renamed from: c */
-        private String f6391c;
+        private String path;
 
-        public C1976a(String str) {
-            this.f6391c = str;
+        public LocalSkinReader(String str) {
+            this.path = str;
         }
 
         /* renamed from: a */
-        public SSkinInfo m3866a() {
+        public SSkinInfo getSSKinInfo() {
             SSkinInfo sSkinInfo = null;
-            if (m3530a(m3533a(1, this.f6391c))) {
+            if (m3530a(m3533a(1, this.path))) {
                 KXmlParser kXmlParser = new KXmlParser();
                 BufferedReader k = m3524k();
                 if (k != null) {
@@ -133,12 +133,12 @@ public class AllLocalSkinListLoader implements Runnable {
                         e2.printStackTrace();
                         sSkinInfo = null;
                     }
-                    m3525j();
+                    handleClose();
                     return sSkinInfo;
                 }
             }
             sSkinInfo = null;
-            m3525j();
+            handleClose();
             return sSkinInfo;
         }
     }

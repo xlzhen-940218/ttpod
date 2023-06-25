@@ -32,7 +32,6 @@ import com.sds.android.ttpod.framework.modules.theme.BackgroundItem;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ListViewUtils;
@@ -186,13 +185,13 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
         if (backgroundItem.m3337a() == BackgroundItem.EnumC2011a.FOLLOW_SKIN || m3331b != null) {
             this.mBackgroundAdapter.m5364b(backgroundItem);
             saveBackgroundSettingToSystem(backgroundItem);
-            ThemeStatistic.m4883i();
+            //ThemeStatistic.m4883i();
             refreshEditButton();
         }
     }
 
     private void saveBackgroundSettingToSystem(BackgroundItem backgroundItem) {
-        CommandCenter.m4607a().m4596b(new Command(CommandID.SET_BACKGROUND, backgroundItem.toString()));
+        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_BACKGROUND, backgroundItem.toString()));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -207,7 +206,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     }
 
     protected List<DownloadTaskInfo> getBackgroundTaskList() {
-        return (List) CommandCenter.m4607a().m4602a(new Command(CommandID.GET_TASK_LIST_WITH_TYPE, DownloadTaskInfo.TYPE_BACKGROUND), List.class);
+        return (List) CommandCenter.getInstance().m4602a(new Command(CommandID.GET_TASK_LIST_WITH_TYPE, DownloadTaskInfo.TYPE_BACKGROUND), List.class);
     }
 
     private String getStatisticOrigin() {
@@ -229,8 +228,8 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
                     return;
                 }
                 m4760a.setTag(backgroundItem);
-                CommandCenter.m4607a().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, m4760a, Boolean.FALSE));
-                CommandCenter.m4607a().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, m4760a, Boolean.FALSE));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
                 backgroundItem.m3334a(m4760a);
                 sLastRequestItem = backgroundItem;
                 this.mRefreshHandler.sendEmptyMessage(0);
@@ -248,9 +247,9 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     public void doStatistic(OnlineSkinItem onlineSkinItem) {
         String pictureUrl = onlineSkinItem.getPictureUrl();
         if (pictureUrl != null && pictureUrl.startsWith("http://api.skin.ttpod.com/skin")) {
-            ThemeStatistic.m4884h(onlineSkinItem.getName());
+            //ThemeStatistic.m4884h(onlineSkinItem.getName());
         } else {
-            ThemeStatistic.m4879m();
+            //ThemeStatistic.m4879m();
         }
     }
 
@@ -429,7 +428,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
                 ImageCacheUtils.m4752a(imageView, backgroundItem.m3330c().getPictureUrl(), SkinThumbnailCreator.f6693a, SkinThumbnailCreator.f6694c, (int) R.drawable.img_skin_default_thumbnail);
             } else {
                 imageView.setImageResource(R.drawable.img_skin_default_thumbnail);
-                CommandCenter.m4607a().m4606a(new Command(CommandID.DECODE_BACKGROUND_THUMBNAIL, backgroundItem));
+                CommandCenter.getInstance().m4606a(new Command(CommandID.DECODE_BACKGROUND_THUMBNAIL, backgroundItem));
             }
         }
 

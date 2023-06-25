@@ -52,7 +52,7 @@ public abstract class RecommendPostListAdapter extends BaseListAdapter<Recommend
 
     /* renamed from: a */
     private void m5501a(RecommendPostViewHolder recommendPostViewHolder, String str) {
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             recommendPostViewHolder.m5498c().setVisibility(View.VISIBLE);
             recommendPostViewHolder.m5499b().setText(str);
             return;
@@ -68,7 +68,7 @@ public abstract class RecommendPostListAdapter extends BaseListAdapter<Recommend
 
     /* renamed from: a */
     private void m5506a(TextView textView, String str) {
-        if (!StringUtils.m8346a(str)) {
+        if (!StringUtils.isEmpty(str)) {
             textView.setVisibility(View.VISIBLE);
             textView.setText(str);
             return;
@@ -78,7 +78,7 @@ public abstract class RecommendPostListAdapter extends BaseListAdapter<Recommend
 
     /* renamed from: a */
     private void m5505a(RecommendPost recommendPost, ImageView imageView) {
-        if (!StringUtils.m8346a(recommendPost.getPicUrl())) {
+        if (!StringUtils.isEmpty(recommendPost.getPicUrl())) {
             ImageCacheUtils.m4752a(imageView, recommendPost.getPicUrl(), imageView.getWidth(), imageView.getHeight(), (int) R.drawable.img_musiccircle_post_pic_default);
         } else {
             imageView.setImageResource(R.drawable.img_musiccircle_post_pic_default);

@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.sdk.core.statistic.SUserEvent;
+
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.R;
@@ -33,14 +33,8 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.C1780b;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.ActionPage;
-import com.sds.android.ttpod.framework.p106a.p107a.FindSongNewStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.LocalStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.MusicLibraryStatistic;
-import com.sds.android.ttpod.framework.p106a.p107a.RankStatistic;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
-import com.sds.android.ttpod.framework.p106a.p107a.SUserUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.ThemeStatistic;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.utils.EntryUtils;
 import com.sds.android.ttpod.utils.OfflineModeUtils;
@@ -82,7 +76,7 @@ public class MainFragment extends ActionBarFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        ThemeStatistic.m4876p();
+        //ThemeStatistic.m4876p();
         setPage(SPage.PAGE_NONE);
     }
 
@@ -145,7 +139,7 @@ public class MainFragment extends ActionBarFragment {
 
     public void updateBackground(Drawable drawable) {
         if (drawable == null) {
-            LogUtils.m8381c("MainFragment", "MainFragment.updateBackground background is null");
+            LogUtils.error("MainFragment", "MainFragment.updateBackground background is null");
         } else {
             ThemeManager.m3260b(getRootView(), drawable);
         }
@@ -164,9 +158,7 @@ public class MainFragment extends ActionBarFragment {
 
             @Override // androidx.viewpager.widget.ViewPager.OnPageChangeListener
             public void onPageSelected(int i) {
-                SUserEvent sUserEvent = new SUserEvent("PAGE_CLICK", ((ActionPage) MainFragment.SLIST.get(i)).m5275a().getValue(), SPage.PAGE_NONE.getValue(), ((ActionPage) MainFragment.SLIST.get(i)).m5274b().getValue());
-                sUserEvent.setPageParameter(true);
-                sUserEvent.post();
+
                 MainFragment.this.mCurrentItem = i;
                 final BaseFragment baseFragment = (BaseFragment) MainFragment.this.mMainFragmentPagerAdapter.getItem(i);
                 MainFragment.this.doStatistic(i);
@@ -201,27 +193,27 @@ public class MainFragment extends ActionBarFragment {
                 }
             }
         });
-        LocalStatistic.m5179D();
-        SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_MY, SPage.PAGE_NONE, SPage.PAGE_MY);
+        //LocalStatistic.m5179D();
+        //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_MY, SPage.PAGE_NONE, SPage.PAGE_MY);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void doStatistic(int i) {
         switch (i) {
             case 0:
-                LocalStatistic.m5179D();
+                //LocalStatistic.m5179D();
                 return;
             case 1:
-                LocalStatistic.m5110aw();
-                FindSongNewStatistic.m5231a();
+                //LocalStatistic.m5110aw();
+               // FindSongNewStatistic.m5231a();
                 return;
             case 2:
-                RankStatistic.m4959c();
-                LocalStatistic.m5109ax();
+               // RankStatistic.m4959c();
+                //LocalStatistic.m5109ax();
                 return;
             case 3:
-                MusicLibraryStatistic.m5064b();
-                LocalStatistic.m5108ay();
+                //MusicLibraryStatistic.m5064b();
+                //LocalStatistic.m5108ay();
                 return;
             default:
                 return;
@@ -277,7 +269,7 @@ public class MainFragment extends ActionBarFragment {
     public void onTitleClicked() {
         if (Preferences.m2954aq() == null) {
             EntryUtils.m8297a(false);
-            LocalStatistic.m5113at();
+            //LocalStatistic.m5113at();
         } else if (Preferences.m2998aI()) {
             Bundle bundle = new Bundle();
             bundle.putBoolean("new_flag", false);
@@ -285,7 +277,7 @@ public class MainFragment extends ActionBarFragment {
             MusicCircleEntryFragment musicCircleEntryFragment = new MusicCircleEntryFragment();
             musicCircleEntryFragment.setArguments(bundle);
             launchFragment(musicCircleEntryFragment);
-            LocalStatistic.m5112au();
+            //LocalStatistic.m5112au();
         } else {
             launchFragment(new IPUnSupportedFragment());
         }

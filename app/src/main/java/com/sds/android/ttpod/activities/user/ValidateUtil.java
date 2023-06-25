@@ -70,7 +70,7 @@ public class ValidateUtil {
         if (interfaceC0940a == null) {
             return true;
         }
-        if (StringUtils.m8346a(str)) {
+        if (StringUtils.isEmpty(str)) {
             m7705a(view, i3);
             PopupsUtils.m6760a(i);
             return false;

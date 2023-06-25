@@ -12,7 +12,7 @@ import java.util.Date;
 public final class LogUtils {
 
     /* renamed from: a */
-    private static boolean f2473a = true;
+    private static boolean enableLog = true;
 
     /* renamed from: b */
     private static boolean f2474b = false;
@@ -24,13 +24,13 @@ public final class LogUtils {
     private static String f2476d;
 
     /* renamed from: a */
-    public static void m8385a(boolean z) {
-        f2473a = z;
+    public static void setEnableLog(boolean enableLog) {
+        LogUtils.enableLog = enableLog;
     }
 
     /* renamed from: a */
-    public static void m8388a(String str, String str2) {
-        if (f2473a) {
+    public static void debug(String str, String str2) {
+        if (enableLog) {
             String str3 = "TTPOD:" + str2;
             Log.d(str, str3);
             m8377f(str, str3);
@@ -38,8 +38,8 @@ public final class LogUtils {
     }
 
     /* renamed from: a */
-    public static void m8386a(String str, String str2, Object... objArr) {
-        if (f2473a) {
+    public static void debug(String str, String str2, Object... objArr) {
+        if (enableLog) {
             String format = String.format("TTPOD:" + str2, objArr);
             Log.d(str, format);
             m8377f(str, format);
@@ -47,8 +47,8 @@ public final class LogUtils {
     }
 
     /* renamed from: b */
-    public static void m8384b(String str, String str2) {
-        if (f2473a) {
+    public static void warning(String str, String str2) {
+        if (enableLog) {
             String str3 = "TTPOD:" + str2;
             Log.w(str, str3);
             m8377f(str, str3);
@@ -56,8 +56,8 @@ public final class LogUtils {
     }
 
     /* renamed from: a */
-    public static void m8387a(String str, String str2, Throwable th) {
-        if (f2473a) {
+    public static void warning(String str, String str2, Throwable th) {
+        if (enableLog) {
             String str3 = "TTPOD:" + str2;
             Log.w(str, str3, th);
             m8377f(str, str3 + "\n" + Log.getStackTraceString(th));
@@ -65,8 +65,8 @@ public final class LogUtils {
     }
 
     /* renamed from: c */
-    public static void m8381c(String str, String str2) {
-        if (f2473a) {
+    public static void error(String str, String str2) {
+        if (enableLog) {
             String str3 = "TTPOD:" + str2;
             Log.e(str, str3);
             m8377f(str, str3);
@@ -74,8 +74,8 @@ public final class LogUtils {
     }
 
     /* renamed from: b */
-    public static void m8383b(String str, String str2, Throwable th) {
-        if (f2473a) {
+    public static void error(String str, String str2, Throwable th) {
+        if (enableLog) {
             String str3 = "TTPOD:" + str2;
             Log.e(str, str3, th);
             m8377f(str, str3 + "\n" + Log.getStackTraceString(th));
@@ -83,8 +83,8 @@ public final class LogUtils {
     }
 
     /* renamed from: b */
-    public static void m8382b(String str, String str2, Object... objArr) {
-        if (f2473a) {
+    public static void error(String str, String str2, Object... objArr) {
+        if (enableLog) {
             String format = String.format("TTPOD:" + str2, objArr);
             Log.e(str, format);
             m8377f(str, format);
@@ -92,8 +92,8 @@ public final class LogUtils {
     }
 
     /* renamed from: d */
-    public static void m8379d(String str, String str2) {
-        if (f2473a) {
+    public static void info(String str, String str2) {
+        if (enableLog) {
             String str3 = "TTPOD:" + str2;
             Log.i(str, str3);
             m8377f(str, str3);
@@ -101,8 +101,8 @@ public final class LogUtils {
     }
 
     /* renamed from: c */
-    public static void m8380c(String str, String str2, Object... objArr) {
-        if (f2473a) {
+    public static void info(String str, String str2, Object... objArr) {
+        if (enableLog) {
             String format = String.format("TTPOD:" + str2, objArr);
             Log.i(str, format);
             m8377f(str, format);
@@ -110,8 +110,8 @@ public final class LogUtils {
     }
 
     /* renamed from: e */
-    public static void m8378e(String str, String str2) {
-        if (f2473a) {
+    public static void verbose(String str, String str2) {
+        if (enableLog) {
             String str3 = "TTPOD:" + str2;
             Log.v(str, str3);
             m8377f(str, str3);

@@ -15,7 +15,7 @@ public class GroupItemUtils {
     public static String m8269a() {
         boolean z;
         String string = BaseApplication.getApplication().getString(R.string.playlist);
-        List<GroupItem> m3155k = Cache.m3218a().m3155k();
+        List<GroupItem> m3155k = Cache.getInstance().m3155k();
         int i = 1;
         while (true) {
             int i2 = i + 1;
@@ -39,7 +39,7 @@ public class GroupItemUtils {
 
     /* renamed from: a */
     public static boolean m8268a(String str) {
-        for (GroupItem groupItem : Cache.m3218a().m3155k()) {
+        for (GroupItem groupItem : Cache.getInstance().m3155k()) {
             if (groupItem.getName().equals(str)) {
                 return true;
             }

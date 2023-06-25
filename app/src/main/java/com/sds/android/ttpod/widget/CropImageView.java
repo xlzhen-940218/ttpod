@@ -15,7 +15,6 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.FloatMath;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -179,7 +178,7 @@ public class CropImageView extends View {
     @Override // android.view.View
     protected void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
-        LogUtils.m8388a("CropImageView", "onSizeChanged onBitmapDecodeComplete w=" + i + " h=" + i2);
+        LogUtils.debug("CropImageView", "onSizeChanged onBitmapDecodeComplete w=" + i + " h=" + i2);
         this.f7506h.set(0.0f, 0.0f, i, i2);
         this.f7507i.set(this.f7506h);
         this.f7507i.inset(this.f7512o, this.f7512o);
@@ -199,7 +198,7 @@ public class CropImageView extends View {
             this.f7509k.postRotate(90.0f);
             Bitmap createBitmap = Bitmap.createBitmap(m8435b, 0, 0, m8435b.getWidth(), m8435b.getHeight(), this.f7509k, true);
             m8435b.recycle();
-            LogUtils.m8386a("CropImageView", "getSDcardPic Rotate_90 bitmap=%b bitmapRotated=%b", Boolean.valueOf(m8435b.isRecycled()), Boolean.valueOf(createBitmap.isRecycled()));
+            LogUtils.debug("CropImageView", "getSDcardPic Rotate_90 bitmap=%b bitmapRotated=%b", Boolean.valueOf(m8435b.isRecycled()), Boolean.valueOf(createBitmap.isRecycled()));
             return createBitmap;
         }
         return m8435b;
@@ -220,7 +219,7 @@ public class CropImageView extends View {
             if (this.f7500b != null && !this.f7500b.isRecycled()) {
                 this.f7500b.recycle();
                 this.f7500b = null;
-                LogUtils.m8381c("CropImageView", "showNewImage recycle old image");
+                LogUtils.error("CropImageView", "showNewImage recycle old image");
             }
             try {
                 if (this.f7499a.getScheme().equals("content")) {
@@ -229,10 +228,10 @@ public class CropImageView extends View {
                     bitmap = m1883b(this.f7499a.getPath());
                 }
             } catch (Exception e) {
-                LogUtils.m8381c("CropImageView", "show NewImage Exception e=" + e.toString());
+                LogUtils.error("CropImageView", "show NewImage Exception e=" + e.toString());
                 bitmap = null;
             } catch (OutOfMemoryError e2) {
-                LogUtils.m8381c("CropImageView", "show NewImage OutOfMemoryError: " + e2.toString());
+                LogUtils.error("CropImageView", "show NewImage OutOfMemoryError: " + e2.toString());
                 bitmap = null;
             }
             m1889a(bitmap, 0, null);
@@ -281,7 +280,7 @@ public class CropImageView extends View {
             float width2 = (this.f7506h.width() - f) / 2.0f;
             float height2 = (this.f7506h.height() - height) / 2.0f;
             this.f7508j.set(width2, height2, f + width2, height + height2);
-            LogUtils.m8379d("CropImageView", "onBitmapDecodeComplete view(" + this.f7506h.width() + ", " + this.f7506h.height() + ") bitamap(" + bitmap.getWidth() + ", " + bitmap.getHeight() + ") chooseFrame=" + this.f7508j.toString() + " outPutWidth=" + this.f7510l + " outputHeight=" + this.f7511m);
+            LogUtils.info("CropImageView", "onBitmapDecodeComplete view(" + this.f7506h.width() + ", " + this.f7506h.height() + ") bitamap(" + bitmap.getWidth() + ", " + bitmap.getHeight() + ") chooseFrame=" + this.f7508j.toString() + " outPutWidth=" + this.f7510l + " outputHeight=" + this.f7511m);
             this.f7509k.reset();
             if (this.f7504f.width() > this.f7506h.width() && this.f7504f.height() > this.f7506h.height()) {
                 this.f7509k.setRectToRect(this.f7504f, this.f7506h, Matrix.ScaleToFit.CENTER);
@@ -539,7 +538,7 @@ public class CropImageView extends View {
                     float f2 = (this.f7508j.top - this.f7505g.top) / this.f7520w[4];
                     float width = (this.f7500b.getWidth() * this.f7508j.width()) / this.f7505g.width();
                     float height = (this.f7500b.getHeight() * this.f7508j.height()) / this.f7505g.height();
-                    LogUtils.m8386a("CropImageView", "saveImage (%.2f %.2f, %.2f %.2f) %.2f recycyle=%b path=%s", Float.valueOf(f), Float.valueOf(f2), Float.valueOf(width), Float.valueOf(height), Float.valueOf(this.f7520w[0]), Boolean.valueOf(this.f7500b.isRecycled()), str);
+                    LogUtils.debug("CropImageView", "saveImage (%.2f %.2f, %.2f %.2f) %.2f recycyle=%b path=%s", Float.valueOf(f), Float.valueOf(f2), Float.valueOf(width), Float.valueOf(height), Float.valueOf(this.f7520w[0]), Boolean.valueOf(this.f7500b.isRecycled()), str);
                     Matrix matrix = null;
                     if (width > this.f7510l) {
                         float f3 = this.f7510l / width;
@@ -578,7 +577,7 @@ public class CropImageView extends View {
                         throw th;
                     }
                     try {
-                        LogUtils.m8380c("CropImageView", "compressSuccess %b %d %d", Boolean.valueOf(bitmap2.compress(Bitmap.CompressFormat.JPEG, 70, fileOutputStream2)), Integer.valueOf(bitmap2.getWidth()), Integer.valueOf(bitmap2.getHeight()));
+                        LogUtils.info("CropImageView", "compressSuccess %b %d %d", Boolean.valueOf(bitmap2.compress(Bitmap.CompressFormat.JPEG, 70, fileOutputStream2)), Integer.valueOf(bitmap2.getWidth()), Integer.valueOf(bitmap2.getHeight()));
                         fileOutputStream2.flush();
                         if (fileOutputStream2 != null) {
                             try {
@@ -599,7 +598,7 @@ public class CropImageView extends View {
                         e = e6;
                         bitmap3 = bitmap2;
                         fileOutputStream3 = fileOutputStream2;
-                        LogUtils.m8381c("CropImageView", "saveImage IOException " + e.toString());
+                        LogUtils.error("CropImageView", "saveImage IOException " + e.toString());
                         e.printStackTrace();
                         if (fileOutputStream3 != null) {
                             try {
@@ -620,7 +619,7 @@ public class CropImageView extends View {
                         e = e8;
                         bitmap3 = bitmap2;
                         fileOutputStream3 = fileOutputStream2;
-                        LogUtils.m8381c("CropImageView", "saveImage Exception " + e.toString());
+                        LogUtils.error("CropImageView", "saveImage Exception " + e.toString());
                         e.printStackTrace();
                         if (fileOutputStream3 != null) {
                             try {
@@ -639,7 +638,7 @@ public class CropImageView extends View {
                         return false;
                     } catch (OutOfMemoryError e10) {
                         e = e10;
-                        LogUtils.m8381c("CropImageView", "saveImage OutOfMemoryError:" + e.toString());
+                        LogUtils.error("CropImageView", "saveImage OutOfMemoryError:" + e.toString());
                         if (fileOutputStream2 != null) {
                             try {
                                 fileOutputStream2.close();
