@@ -69,7 +69,7 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
                 //SUserUtils.m4956a(SAction.ACTION_MENU_SONGLIST_SYNC, SPage.PAGE_NONE);
                 if (Preferences.m2954aq() == null) {
                     EntryUtils.m8297a(true);
-                } else if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+                } else if (!EnvironmentUtils.DeviceConfig.isConnected()) {
                     PopupsUtils.m6760a((int) R.string.network_unavailable);
                     return;
                 } else {

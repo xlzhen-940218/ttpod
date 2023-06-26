@@ -350,7 +350,7 @@ public class ShareSelectDialog extends BaseDialog {
         } else if (this.f7407k == ShareType.FRIEND && !this.f7408l.m1942p()) {
             this.f7400c.postDelayed(new RunnableC2156a(this.f7403g, this.f7408l.m1973a()), 500L);
             dismiss();
-        } else if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+        } else if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             this.f7412s.sendEmptyMessage(2);
         } else {
             if (this.f7409m != null) {

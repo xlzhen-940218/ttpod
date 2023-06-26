@@ -104,7 +104,7 @@ public abstract class BaseCategoryFragment extends BaseFragment implements Adapt
 
     @Override // android.widget.AdapterView.OnItemClickListener
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
-        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.shake_error_hint);
             return;
         }

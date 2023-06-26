@@ -82,7 +82,7 @@ public abstract class UserListFragment<Data extends TTPodUser> extends BaseFragm
         this.mReloadView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.musiccircle.UserListFragment.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     UserListFragment.this.reload();
                 } else {
                     PopupsUtils.m6760a((int) R.string.network_error);

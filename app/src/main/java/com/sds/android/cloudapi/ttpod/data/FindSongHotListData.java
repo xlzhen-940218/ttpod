@@ -29,4 +29,20 @@ public class FindSongHotListData extends RecommendData implements Serializable {
     public int getRecommentAlgorithm() {
         return this.mRecommentAlgorithm;
     }
+
+    public void setmAuthor(String mAuthor) {
+        this.mAuthor = mAuthor;
+    }
+
+    public void setmListenCount(long mListenCount) {
+        this.mListenCount = mListenCount;
+    }
+
+    public void setmRecommentAlgorithm(int mRecommentAlgorithm) {
+        this.mRecommentAlgorithm = mRecommentAlgorithm;
+    }
+
+    public void setmRecommentType(int mRecommentType) {
+        this.mRecommentType = mRecommentType;
+    }
 }

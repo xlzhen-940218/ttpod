@@ -57,7 +57,7 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
     private long mPostId;
     private MusiccircleFooter mSecondLoadView;
     private PostDetailHeader mPostDetailHeader = new PostDetailHeader.C0797a();
-    private C0794b mPersonalizedRecommendInfo = new C0793a();
+    private Recomment mPersonalizedRecommendInfo = new C0793a();
     private View.OnClickListener mHeaderButtonClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.PostDetailFragment.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
@@ -341,7 +341,7 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
     /* JADX INFO: Access modifiers changed from: private */
     public void favoritePost() {
        // FindSongNewStatistic.m5220d(origin());
-        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.network_unavailable);
         } else if (Preferences.m2954aq() == null) {
             EntryUtils.m8297a(true);
@@ -380,33 +380,33 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
 
     /* renamed from: com.sds.android.ttpod.activities.musiccircle.PostDetailFragment$b */
     /* loaded from: classes.dex */
-    public static class C0794b {
+    public static class Recomment {
 
         /* renamed from: a */
-        private int f2760a;
+        private int userType;
 
         /* renamed from: b */
-        private int f2761b;
+        private int recommentType;
 
         /* renamed from: c */
-        private int f2762c;
+        private int recommentAlgorithm;
 
-        public C0794b(int i, int i2, int i3) {
-            this.f2760a = i;
-            this.f2761b = i2;
-            this.f2762c = i3;
+        public Recomment(int userType, int recommentType, int recommentAlgorithm) {
+            this.userType = userType;
+            this.recommentType = recommentType;
+            this.recommentAlgorithm = recommentAlgorithm;
         }
     }
 
     /* renamed from: com.sds.android.ttpod.activities.musiccircle.PostDetailFragment$a */
     /* loaded from: classes.dex */
-    private class C0793a extends C0794b {
+    private class C0793a extends Recomment {
         public C0793a() {
             super(0, 0, 0);
         }
     }
 
-    public void setPersonalizedRecommendInfo(C0794b c0794b) {
+    public void setPersonalizedRecommendInfo(Recomment c0794b) {
         this.mPersonalizedRecommendInfo = c0794b;
     }
 }

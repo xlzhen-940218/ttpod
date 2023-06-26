@@ -191,7 +191,7 @@ public final class ModuleManager {
     }
 
     /* renamed from: b */
-    public void m4110b(ModuleID moduleID) {
+    public void updateModuleTime(ModuleID moduleID) {
         if (this.moduleIdTimeMaps.containsKey(moduleID)) {
             this.moduleIdTimeMaps.put(moduleID, Long.valueOf(System.currentTimeMillis()));
         }

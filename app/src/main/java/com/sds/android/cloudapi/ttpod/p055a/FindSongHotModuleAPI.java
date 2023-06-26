@@ -19,11 +19,11 @@ import java.util.Map;
 public class FindSongHotModuleAPI {
 
     /* renamed from: a */
-    private static final String f2266a = UrlList.m8962a();
+    private static final String f2266a = UrlList.getHost();
 
     /* renamed from: a */
     public static Request<FindSongModuleResult> m8899a(long j) {
-        return new GetMethodRequest(FindSongModuleResult.class, UrlList.f2260a + "/recomm_modules").putParams("version", Long.valueOf(j)).putParams("s", EnvironmentUtils.C0603b.m8494b()).putParams("v", EnvironmentUtils.C0603b.m8491c()).putParams("f", "f" + EnvironmentUtils.AppConfig.getChannelType()).putParams("rom", EnvironmentUtils.C0603b.m8488e().get("rom")).putParams("userId", EnvironmentUtils.C0603b.m8488e().get("tid")).putParams("deviceId", EnvironmentUtils.C0603b.m8488e().get("uid"));
+        return new GetMethodRequest(FindSongModuleResult.class, UrlList.recommend + "/recomm_modules").putParams("version", Long.valueOf(j)).putParams("s", EnvironmentUtils.C0603b.m8494b()).putParams("v", EnvironmentUtils.C0603b.m8491c()).putParams("f", "f" + EnvironmentUtils.AppConfig.getChannelType()).putParams("rom", EnvironmentUtils.C0603b.m8488e().get("rom")).putParams("userId", EnvironmentUtils.C0603b.m8488e().get("tid")).putParams("deviceId", EnvironmentUtils.C0603b.m8488e().get("uid"));
     }
 
     /* renamed from: a */

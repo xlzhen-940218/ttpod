@@ -33,7 +33,7 @@ public class ListListenFragment extends BaseMusicFragment implements View.OnClic
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         this.mRootView = layoutInflater.inflate(R.layout.cmmusic_list_listen_activity, viewGroup, false);
         listViewInit();
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             this.mList.setVisibility(View.VISIBLE);
             dbViewContent();
         } else {
@@ -94,7 +94,7 @@ public class ListListenFragment extends BaseMusicFragment implements View.OnClic
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         if (R.id.btn_tryagain_listlistenpage == view.getId()) {
-            if (EnvironmentUtils.DeviceConfig.m8474e()) {
+            if (EnvironmentUtils.DeviceConfig.isConnected()) {
                 this.mList.setVisibility(View.VISIBLE);
                 this.mLayout.setVisibility(View.GONE);
                 sdkInitCheck();

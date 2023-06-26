@@ -1,26 +1,18 @@
-package com.sds.android.sdk.lib.p059a;
+package com.sds.android.sdk.lib.fakebuild;
 
 import com.sds.android.cloudapi.ttpod.data.MusicRank;
 import com.sds.android.cloudapi.ttpod.result.MusicRanksResult;
 import com.sds.android.sdk.lib.fakeentity.Itemlist;
 import com.sds.android.sdk.lib.fakeentity.QQMusicSearchBean;
-import com.sds.android.sdk.lib.fakeentity.Song;
 import com.sds.android.sdk.lib.util.JSONUtils;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import kotlin.text.Regex;
 
 public class FakeMusicRanksResult extends BaseFakeResult<MusicRanksResult> {
 
     @Override
-    MusicRanksResult build() {
+    public MusicRanksResult build() {
         MusicRanksResult musicRanksResult = new MusicRanksResult();
         musicRanksResult.setCode(1);
         musicRanksResult.setMessage("Success");

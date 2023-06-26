@@ -334,7 +334,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
         postViewItemHolder.m7442p().setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.e.e.6
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.DeviceConfig.m8474e() && Preferences.m2954aq() != null) {
+                if (EnvironmentUtils.DeviceConfig.isConnected() && Preferences.m2954aq() != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(Long.valueOf(post.getId()));
                     if (booleanValue) {

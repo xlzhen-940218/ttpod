@@ -1,4 +1,4 @@
-package com.sds.android.sdk.lib.p059a;
+package com.sds.android.sdk.lib.fakebuild;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -10,7 +10,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public abstract class BaseFakeResult<T> {
-    abstract T build();
+   public abstract T build();
 
     protected String requestData(String url) {
         String response = null;

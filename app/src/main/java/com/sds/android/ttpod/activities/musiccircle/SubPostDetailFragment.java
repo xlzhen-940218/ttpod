@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.sds.android.cloudapi.ttpod.data.Post;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.activities.musiccircle.PostDetailFragment;
 import com.sds.android.ttpod.fragment.base.SlidingClosableFragment;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
@@ -57,7 +56,7 @@ public class SubPostDetailFragment extends SlidingClosableFragment {
         return new SubPostDetailFragment(PostDetailFragment.createByPost(post, str));
     }
 
-    public void setPersonalizedRecommendInfo(PostDetailFragment.C0794b c0794b) {
+    public void setPersonalizedRecommendInfo(PostDetailFragment.Recomment c0794b) {
         this.mPostDetailFragment.setPersonalizedRecommendInfo(c0794b);
     }
 }

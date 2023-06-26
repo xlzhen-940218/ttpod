@@ -118,7 +118,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         }, 30000L);
         onNewIntent(getIntent());
         checkExternalStorageExisted();
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             if (new Date().getTime() - Preferences.m2953ar().longValue() > 86400000) {
                 CommandCenter.getInstance().m4605a(new Command(CommandID.CHECK_UPGRADE, Boolean.TRUE), 30);
             }

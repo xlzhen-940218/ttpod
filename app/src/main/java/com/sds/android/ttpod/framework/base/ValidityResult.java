@@ -53,13 +53,13 @@ public class ValidityResult implements Serializable {
 
         public static EnumC1804a from(String str) {
             EnumC1804a enumC1804a = TYPE_DEFAULT;
-            if (str.contains(UrlList.f2260a + "/recomm_modules")) {
+            if (str.contains(UrlList.recommend + "/recomm_modules")) {
                 return TYPE_DEFAULT;
             }
-            if (str.contains(UrlList.f2261b)) {
+            if (str.contains(UrlList.moduleCategory)) {
                 return TYPE_LONG;
             }
-            if (str.contains(UrlList.f2262c)) {
+            if (str.contains(UrlList.moduleSubCategory)) {
                 return TYPE_LONG;
             }
             if (str.contains("http://fm.api.ttpod.com")) {
@@ -68,7 +68,7 @@ public class ValidityResult implements Serializable {
             if (str.contains("http://v1.ard.h.itlily.com/new/plaza")) {
                 return TYPE_DEFAULT;
             }
-            if (str.contains(UrlList.f2260a)) {
+            if (str.contains(UrlList.recommend)) {
                 return TYPE_SHORT;
             }
             if (str.contains("http://v1.ard.q.itlily.com/share/get_celebrities")) {

@@ -93,7 +93,7 @@ public final class DownloadMenuHandler {
         this.f3862e = list;
         if (m6924b() <= 0) {
             PopupsUtils.m6721a("已经下载了");
-        } else if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+        } else if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.network_unavailable);
         } else {
             PopupsUtils.m6728a(this.activity, m6921c(), this.activity.getString(R.string.title_choose_download_playlist, new Object[]{Integer.valueOf(m6924b())}), m6941a());

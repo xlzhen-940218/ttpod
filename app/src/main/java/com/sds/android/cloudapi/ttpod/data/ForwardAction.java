@@ -18,4 +18,12 @@ public class ForwardAction implements Serializable {
     public int getType() {
         return this.mType;
     }
+
+    public void setmValue(String mValue) {
+        this.mValue = mValue;
+    }
+
+    public void setmType(int mType) {
+        this.mType = mType;
+    }
 }

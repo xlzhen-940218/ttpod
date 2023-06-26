@@ -216,7 +216,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     private void tryDownloadBackground(BackgroundItem backgroundItem) {
         OnlineSkinItem m3330c = backgroundItem.m3330c();
         if (m3330c != null) {
-            if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+            if (!EnvironmentUtils.DeviceConfig.isConnected()) {
                 PopupsUtils.m6760a((int) R.string.shake_error_hint);
             } else if (FileUtils.m8414b(backgroundItem.m3325h())) {
                 PopupsUtils.m6760a((int) R.string.skin_file_already_existed);

@@ -19,7 +19,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public final class ObjectCache {
 
     /* renamed from: a */
-    private static ObjectCache f2296a;
+    private static ObjectCache instance;
 
     /* renamed from: b */
     private static final ReentrantLock f2297b = new ReentrantLock();
@@ -40,12 +40,12 @@ public final class ObjectCache {
     private HashMap<String, C0571a> f2302g;
 
     /* renamed from: a */
-    public static synchronized ObjectCache m8776a(float f, String str) {
+    public static synchronized ObjectCache getInstance(float f, String str) {
         ObjectCache objectCache;
         synchronized (ObjectCache.class) {
-            if (f2296a == null) {
-                f2296a = new ObjectCache(f, str);
-                objectCache = f2296a;
+            if (instance == null) {
+                instance = new ObjectCache(f, str);
+                objectCache = instance;
             } else {
                 throw new IllegalStateException("ObjectCache already existed!");
             }

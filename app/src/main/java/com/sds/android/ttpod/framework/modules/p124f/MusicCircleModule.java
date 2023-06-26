@@ -147,7 +147,7 @@ public final class MusicCircleModule extends BaseModule {
     /* renamed from: a */
     public static <Result extends BaseResult> Result m4056a(Request<Result> request) {
         LogUtils.info("MusicCircleModule", "request begin lookNetProblem %s", request.m8532e());
-        Result m8531f = request.m8531f();
+        Result m8531f = request.execute();
         Object[] objArr = new Object[2];
         objArr[0] = Boolean.valueOf(m8531f != null);
         objArr[1] = Integer.valueOf(m8531f != null ? m8531f.getCode() : 0);
@@ -483,7 +483,7 @@ public final class MusicCircleModule extends BaseModule {
 
     public void requestPostSongByIds(List<Long> list, String str) {
         if (Preferences.m2997aJ()) {
-            ModuleRequestHelper.m4082a(OnlineMediaItemAPI.m8864b(list), CommandID.UPDATE_POST_SONG_BY_IDS, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.f.c.25
+            ModuleRequestHelper.execute(OnlineMediaItemAPI.m8864b(list), CommandID.UPDATE_POST_SONG_BY_IDS, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.f.c.25
                 @Override // com.sds.android.ttpod.framework.modules.ResultConvert
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -491,7 +491,7 @@ public final class MusicCircleModule extends BaseModule {
                 }
             }, str);
         } else {
-            ModuleRequestHelper.m4082a(OnlineMediaItemAPI.m8867a(list), CommandID.UPDATE_POST_SONG_BY_IDS, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.f.c.26
+            ModuleRequestHelper.execute(OnlineMediaItemAPI.m8867a(list), CommandID.UPDATE_POST_SONG_BY_IDS, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.f.c.26
                 @Override // com.sds.android.ttpod.framework.modules.ResultConvert
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -526,7 +526,7 @@ public final class MusicCircleModule extends BaseModule {
     }
 
     public void requestPostDetailById(Collection collection, String str) {
-        ModuleRequestHelper.m4082a(PostAPI.m8847a(collection), CommandID.UPDATE_POST_DETAIL_BY_ID, id(), null, str);
+        ModuleRequestHelper.execute(PostAPI.m8847a(collection), CommandID.UPDATE_POST_DETAIL_BY_ID, id(), null, str);
     }
 
     public void requestPostInfosById(final Collection collection, final String str) {
@@ -720,14 +720,14 @@ public final class MusicCircleModule extends BaseModule {
             /* renamed from: b */
             private void m4032b(List<Post> list2) {
                 for (Post post : list2) {
-                    m4034a(post.getSongListName(), MediaStorage.buildMusicCircleFavGroupID(post.getPostId()), m4036a(OnlineMediaItemAPI.m8867a(m4037a(post)).m8531f()));
+                    m4034a(post.getSongListName(), MediaStorage.buildMusicCircleFavGroupID(post.getPostId()), m4036a(OnlineMediaItemAPI.m8867a(m4037a(post)).execute()));
                 }
             }
 
             /* renamed from: c */
             private void m4031c(List<Post> list2) {
                 for (Post post : list2) {
-                    m4034a(post.getSongListName(), MediaStorage.buildMusicCircleFavGroupID(post.getPostId()), m4036a(OnlineMediaItemAPI.m8864b(m4037a(post)).m8531f()));
+                    m4034a(post.getSongListName(), MediaStorage.buildMusicCircleFavGroupID(post.getPostId()), m4036a(OnlineMediaItemAPI.m8864b(m4037a(post)).execute()));
                 }
             }
 
@@ -763,7 +763,7 @@ public final class MusicCircleModule extends BaseModule {
             TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.f.c.40
                 @Override // java.lang.Runnable
                 public void run() {
-                    PostAPI.m8845b(l.longValue()).m8531f();
+                    PostAPI.m8845b(l.longValue()).execute();
                 }
             });
         }

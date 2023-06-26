@@ -204,7 +204,7 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
         inflate.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.message.NoticeFragment.7
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     NoticeFragment.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     NoticeFragment.this.requestNewFollowerNotices();
                     return;
@@ -215,7 +215,7 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
     }
 
     private void toggleFailedView() {
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             loadNoDataView();
         } else {
             loadNetworkErrorView();

@@ -5,16 +5,16 @@ package com.sds.android.cloudapi.ttpod.p055a;
 public final class UrlList {
 
     /* renamed from: a */
-    public static final String f2260a = m8962a() + "/recomm";
+    public static final String recommend = getHost() + "/recomm";
 
     /* renamed from: b */
-    public static final String f2261b = m8962a() + "/module/category";
+    public static final String moduleCategory = getHost() + "/module/category";
 
     /* renamed from: c */
-    public static final String f2262c = m8962a() + "/category/sub_category";
+    public static final String moduleSubCategory = getHost() + "/category/sub_category";
 
     /* renamed from: a */
-    public static String m8962a() {
-        return "http://online.dongting.com";
+    public static String getHost() {
+        return "http://127.0.0.1:18098";
     }
 }

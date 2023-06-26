@@ -276,7 +276,7 @@ public final class SkinModule extends BaseModule {
         this.f6679a.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.skin.o.4
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.getInstance().m4595b(new Command(CommandID.REQUEST_PAGED_SKIN_LIST_FINISHED, SkinAPI.m8829a(num.intValue(), num2.intValue(), num3.intValue()).m8531f()), ModuleID.SKIN);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.REQUEST_PAGED_SKIN_LIST_FINISHED, SkinAPI.m8829a(num.intValue(), num2.intValue(), num3.intValue()).execute()), ModuleID.SKIN);
             }
         });
     }
@@ -289,7 +289,7 @@ public final class SkinModule extends BaseModule {
         this.f6679a.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.skin.o.5
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.getInstance().m4595b(new Command(CommandID.REQUEST_PAGED_BKG_LIST_FINISHED, SkinAPI.m8827b(num.intValue(), num2.intValue(), num3.intValue()).m8531f()), ModuleID.SKIN);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.REQUEST_PAGED_BKG_LIST_FINISHED, SkinAPI.m8827b(num.intValue(), num2.intValue(), num3.intValue()).execute()), ModuleID.SKIN);
             }
         });
     }

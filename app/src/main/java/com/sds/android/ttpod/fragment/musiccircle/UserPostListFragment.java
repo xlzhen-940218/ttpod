@@ -391,7 +391,7 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
 
     /* JADX INFO: Access modifiers changed from: private */
     public void toggleFollow() {
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             this.mToggleFollowView.setText(R.string.is_processing);
             TTPodUser user = getUser();
             long userId = user.getUserId();

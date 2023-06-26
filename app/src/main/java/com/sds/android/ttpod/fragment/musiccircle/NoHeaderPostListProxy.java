@@ -46,7 +46,7 @@ public class NoHeaderPostListProxy {
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 NoHeaderPostListProxy.this.f5456b.setState(StateView.EnumC2248b.LOADING);
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     if (NoHeaderPostListProxy.this.f5458d != null) {
                         NoHeaderPostListProxy.this.f5458d.onClick(view);
                         return;

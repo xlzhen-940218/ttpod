@@ -29,6 +29,18 @@ public class OnlineMusicCategoryResult extends BaseResult {
         return this.mRows;
     }
 
+    public void setmCategoryList(ArrayList<CategoryData> mCategoryList) {
+        this.mCategoryList = mCategoryList;
+    }
+
+    public void setmPages(int mPages) {
+        this.mPages = mPages;
+    }
+
+    public void setmRows(int mRows) {
+        this.mRows = mRows;
+    }
+
     /* loaded from: classes.dex */
     public static class CategoryData implements Serializable {
         private static final String KEY_CATEGORY_ID = "_id";
@@ -51,6 +63,18 @@ public class OnlineMusicCategoryResult extends BaseResult {
 
         public int getCount() {
             return this.mCount;
+        }
+
+        public void setmId(long mId) {
+            this.mId = mId;
+        }
+
+        public void setmName(String mName) {
+            this.mName = mName;
+        }
+
+        public void setmCount(int mCount) {
+            this.mCount = mCount;
         }
     }
 }

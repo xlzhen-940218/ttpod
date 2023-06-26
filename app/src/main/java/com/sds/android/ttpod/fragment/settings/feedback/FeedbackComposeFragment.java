@@ -66,7 +66,7 @@ public class FeedbackComposeFragment extends BaseFragment implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_send_feedback /* 2131231502 */:
-                if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (!EnvironmentUtils.DeviceConfig.isConnected()) {
                     PopupsUtils.m6760a((int) R.string.network_error);
                     return;
                 }

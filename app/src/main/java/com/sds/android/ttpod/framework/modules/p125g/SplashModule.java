@@ -147,7 +147,7 @@ public final class SplashModule extends BaseModule {
     /* renamed from: b */
     public void m3999b(int i) {
         SplashDataResult m8531f;
-        if (EnvironmentUtils.DeviceConfig.m8476d() == 2 && (m8531f = SplashAPI.m8824a(i).m8531f()) != null && 1 == m8531f.getCode()) {
+        if (EnvironmentUtils.DeviceConfig.m8476d() == 2 && (m8531f = SplashAPI.m8824a(i).execute()) != null && 1 == m8531f.getCode()) {
             List<SplashItem> m4012c = SplashInfoParser.m4014a(m8531f).m4012c();
             if (m4001a(m4012c)) {
                 Cache.getInstance().m3214a(m8531f);

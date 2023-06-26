@@ -75,7 +75,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
         this.mReloadView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.settings.feedback.FeedbackListFragment.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view2) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     FeedbackListFragment.this.requestFeedbackList();
                 } else {
                     PopupsUtils.m6760a((int) R.string.network_error);
@@ -89,7 +89,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
         this.mListView.setOnStartRefreshListener(new DragUpdateHelper.InterfaceC2273c() { // from class: com.sds.android.ttpod.fragment.settings.feedback.FeedbackListFragment.2
             @Override // com.sds.android.ttpod.widget.dragupdatelist.DragUpdateHelper.InterfaceC2273c
             public void onStartRefreshEvent() {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     if (FeedbackListFragment.this.mRequestState != RequestState.REQUESTING) {
                         FeedbackListFragment.this.requestFeedbackList();
                         return;
@@ -103,7 +103,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
         this.mAdapter = new C1732a();
         this.mListView.setAdapter((ListAdapter) this.mAdapter);
         loadFeedbackCache();
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             requestFeedbackList();
         }
     }
@@ -122,7 +122,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
 
     @Override // android.widget.AdapterView.OnItemClickListener
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
-        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.network_error);
             return;
         }

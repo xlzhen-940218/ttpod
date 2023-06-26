@@ -17,7 +17,7 @@ import java.util.Map;
 public final class MusicCircleRecommendAPI {
 
     /* renamed from: a */
-    private static final String f2267a = UrlList.f2260a;
+    private static final String f2267a = UrlList.recommend;
 
     /* renamed from: a */
     public static Request<CirclePosterListResultLegacy> m8880a() {

@@ -50,7 +50,7 @@ public abstract class Request<R extends BaseResult> {
     private InterfaceC0601a f2430k;
 
     /* renamed from: l */
-    private String f2431l;
+    private String uri;
 
     /* compiled from: Request.java */
     /* renamed from: com.sds.android.sdk.lib.request.m$a */
@@ -61,7 +61,7 @@ public abstract class Request<R extends BaseResult> {
     }
 
     /* renamed from: a */
-    protected abstract HttpRequest.Response mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3);
+    protected abstract HttpRequest.Response doHttpRequest(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3);
 
     /* renamed from: a */
     public Request<R> m8543a(Class<?> cls) {
@@ -82,7 +82,7 @@ public abstract class Request<R extends BaseResult> {
         this.resultModel = cls;
         this.asyncRequestTask = new AsyncRequestTask();
         this.url = url;
-        m8529h();
+        clear();
     }
 
     /* renamed from: a */
@@ -92,7 +92,7 @@ public abstract class Request<R extends BaseResult> {
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
-    public String mo8547a() {
+    public String getUrl() {
         return this.url;
     }
 
@@ -108,7 +108,7 @@ public abstract class Request<R extends BaseResult> {
     public Request<R> putParams(String str, Object obj) {
         if (!isNull(obj)) {
             this.paramsMaps.put(str, obj.toString());
-            m8529h();
+            clear();
         }
         return this;
     }
@@ -126,7 +126,7 @@ public abstract class Request<R extends BaseResult> {
                 obj = StringUtils.spliceStringAndArray("_", obj);
             }
             this.f2427h.add(obj);
-            m8529h();
+            clear();
         }
         return this;
     }
@@ -140,25 +140,25 @@ public abstract class Request<R extends BaseResult> {
     public Request<R> m8533d(String str, Object obj) {
         if (!isNull(obj)) {
             this.f2426g.put(str, String.valueOf(obj));
-            m8529h();
+            clear();
         }
         return this;
     }
 
     /* renamed from: e */
     public String m8532e() {
-        return this.f2431l;
+        return this.uri;
     }
 
     /* renamed from: f */
-    public R m8531f() {
+    public R execute() {
         LogUtils.info("Request", "in execute lookNetProblem");
-        if (m8530g()) {
+        if (checkResultAndRequestTime()) {
             return this.result;
         }
-        this.f2431l = mo8536c();
-        LogUtils.info("Request", "in execute lookNetProblem url=%s", this.f2431l);
-        return m8539b(mo8541a(this.f2431l + (this.f2431l.indexOf("?") == -1 ? "?" : "&") + "utdid=" + EnvironmentUtils.C0603b.m8499a(), this.f2426g, this.paramsMaps, this.f2425f));
+        this.uri = mo8536c();
+        LogUtils.info("Request", "in execute lookNetProblem url=%s", this.uri);
+        return m8539b(doHttpRequest(this.uri + (this.uri.indexOf("?") == -1 ? "?" : "&") + "utdid=" + EnvironmentUtils.C0603b.m8499a(), this.f2426g, this.paramsMaps, this.f2425f));
     }
 
     /* renamed from: a */
@@ -167,12 +167,12 @@ public abstract class Request<R extends BaseResult> {
     }
 
     /* renamed from: g */
-    protected boolean m8530g() {
+    protected boolean checkResultAndRequestTime() {
         return this.result != null && System.currentTimeMillis() < this.requestTime;
     }
 
     /* renamed from: h */
-    public void m8529h() {
+    public void clear() {
         this.result = null;
         this.requestTime = 0L;
     }
@@ -180,13 +180,13 @@ public abstract class Request<R extends BaseResult> {
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: c */
     public String mo8536c() {
-        String mo8547a = mo8547a();
+        String url = getUrl();
         String m8343a = StringUtils.arrayToString("/", this.f2427h);
         if (!StringUtils.isEmpty(m8343a)) {
-            mo8547a = StringUtils.spliceStringAndArray("/", mo8547a, m8343a);
+            url = StringUtils.spliceStringAndArray("/", url, m8343a);
         }
-        LogUtils.debug("Request", mo8547a);
-        return mo8547a;
+        LogUtils.debug("Request", url);
+        return url;
     }
 
     /* renamed from: a */

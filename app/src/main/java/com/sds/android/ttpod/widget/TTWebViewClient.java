@@ -99,7 +99,7 @@ public class TTWebViewClient extends WebViewClient {
 
     @Override // android.webkit.WebViewClient
     public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             if (this.f8370a == null || !this.f8370a.equals(str)) {
                 this.f8370a = str;
                 webView.getSettings().setBlockNetworkImage(true);

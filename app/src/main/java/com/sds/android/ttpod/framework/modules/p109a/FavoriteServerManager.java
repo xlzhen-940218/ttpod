@@ -196,7 +196,7 @@ class FavoriteServerManager {
     private void m4543a(int i) {
         LogUtils.error("FavoriteServerManager", "doPush");
         String accessToken = Preferences.m2954aq().getAccessToken();
-        BaseResult m8531f = i == 1 ? FavoritesAPI.m8922a(accessToken, this.f5755i).m8531f() : FavoritesAPI.m8921b(accessToken, this.f5755i).m8531f();
+        BaseResult m8531f = i == 1 ? FavoritesAPI.m8922a(accessToken, this.f5755i).execute() : FavoritesAPI.m8921b(accessToken, this.f5755i).execute();
         if (m8531f.isSuccess()) {
             Iterator<InterfaceC1815a> it = this.f5751e.iterator();
             while (it.hasNext()) {
@@ -269,7 +269,7 @@ class FavoriteServerManager {
     public synchronized void m4521k() {
         synchronized (this) {
             if (Preferences.m2954aq() != null) {
-                OnlineMediaItemIdListResult m8531f = FavoritesAPI.m8923a(Preferences.m2954aq().getUserId()).m8531f();
+                OnlineMediaItemIdListResult m8531f = FavoritesAPI.m8923a(Preferences.m2954aq().getUserId()).execute();
                 if (m8531f != null && 1 == m8531f.getCode() && m8531f.getDataList() != null && m8531f.getDataList().size() > 0) {
                     List<Long> m4532b = m4532b(m8531f.getDataList().get(0).getOnlineMediaItemIdList());
                     int size = m4532b.size();
@@ -325,7 +325,7 @@ class FavoriteServerManager {
 
     /* renamed from: a */
     private List<MediaItem> m4538a(List<Long> list) throws Exception {
-        OnlineMediaItemsResult m8531f = OnlineMediaItemAPI.m8867a(list).m8531f();
+        OnlineMediaItemsResult m8531f = OnlineMediaItemAPI.m8867a(list).execute();
         if (m8531f == null || 1 != m8531f.getCode() || m8531f.getDataList() == null || m8531f.getDataList().size() <= 0) {
             return null;
         }

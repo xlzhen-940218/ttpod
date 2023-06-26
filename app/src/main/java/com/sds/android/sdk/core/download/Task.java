@@ -167,7 +167,7 @@ public final class Task implements Runnable {
     /* renamed from: c */
     private void m8723c() {
         try {
-            if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+            if (!EnvironmentUtils.DeviceConfig.isConnected()) {
                 m8734a(EnumC0579b.NETWORK_UNAVAILABLE);
             }
             if (!this.f2317c.resumeBrokenTransferSupported()) {
@@ -210,7 +210,7 @@ public final class Task implements Runnable {
     private boolean m8730a(String str, File file, HashMap<String, Object> hashMap) throws InterruptedException {
         HttpRequest.Response m8729a = m8729a(str, hashMap);
         if (m8729a == null) {
-            m8734a(EnvironmentUtils.DeviceConfig.m8474e() ? EnumC0579b.URL_REQUEST_FAILED : EnumC0579b.NETWORK_UNAVAILABLE);
+            m8734a(EnvironmentUtils.DeviceConfig.isConnected() ? EnumC0579b.URL_REQUEST_FAILED : EnumC0579b.NETWORK_UNAVAILABLE);
             Thread.sleep(1000L);
             return false;
         }
@@ -354,7 +354,7 @@ public final class Task implements Runnable {
                 }
                 this.f2317c.statisticConnectFailedIPs(hostAddress);
                 this.f2315a++;
-                m8734a(EnvironmentUtils.DeviceConfig.m8474e() ? EnumC0579b.URL_REQUEST_FAILED : EnumC0579b.NETWORK_UNAVAILABLE);
+                m8734a(EnvironmentUtils.DeviceConfig.isConnected() ? EnumC0579b.URL_REQUEST_FAILED : EnumC0579b.NETWORK_UNAVAILABLE);
                 i++;
             }
         } catch (URISyntaxException e3) {

@@ -233,7 +233,7 @@ public class MusicLibraryFragment extends BaseFragment implements OnPageSelected
     }
 
     private void gotoTTPodFMPage() {
-        launchFragment(WebSlidingClosableFragment.instantiate("http://fm.ttpod.com/mindex.html", getString(R.string.ttpod_fm), "http://fm.ttpod.com/logo.png", true, false));
+        launchFragment(WebSlidingClosableFragment.instantiate("https://www.accuradio.com/", getString(R.string.ttpod_fm), "http://fm.ttpod.com/logo.png", true, false));
     }
 
     private void gotoMusicPage(String str, String str2) {

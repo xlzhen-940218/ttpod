@@ -66,7 +66,7 @@ public class GlobalModule extends BaseModule {
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.b.b.1
             @Override // java.lang.Runnable
             public void run() {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     GlobalModule.this.m4295b();
                 }
                 GlobalModule.loadGBKToUnicodeData();
@@ -86,7 +86,7 @@ public class GlobalModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public void m4295b() {
-        GlobalResult m8531f = GlobalAPI.m8887a().m8531f();
+        GlobalResult m8531f = GlobalAPI.m8887a().execute();
         if (m8531f != null) {
             LogUtils.debug(f5925a, "Global Api finish, IPSupport: %b, version: %s, isSearchRestricted: %b, is360GuideEnabled: %b, isShow360Union: %b", Boolean.valueOf(m8531f.isIPSupported()), m8531f.getVersion(), Boolean.valueOf(m8531f.isSearchRestricted()), Boolean.valueOf(m8531f.is360GuideEnabled()), Boolean.valueOf(m8531f.is360UnoinEnabled()));
             Preferences.m3055M(m8531f.isIPSupported());
@@ -102,7 +102,7 @@ public class GlobalModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: c */
     public void m4293c() {
-        OperatorPageResult m8531f = GlobalAPI.m8886a("f" + EnvironmentUtils.AppConfig.getChannelType(), "v" + EnvironmentUtils.AppConfig.getAppVersion()).m8531f();
+        OperatorPageResult m8531f = GlobalAPI.m8886a("f" + EnvironmentUtils.AppConfig.getChannelType(), "v" + EnvironmentUtils.AppConfig.getAppVersion()).execute();
         if (m8531f != null && m8531f.getData() != null) {
             boolean z = m8531f.getData().getRecommend() != 0;
             LogUtils.debug(f5925a, "Market Global Api recommand enable: %s ", Boolean.valueOf(z));

@@ -88,7 +88,7 @@ public class SearchModule extends BaseModule {
                     m2945az = "";
                 }
                 LogUtils.debug("SearchModule", "search song searchWord=" + str + ",page=" + num + ",size=" + num2 + ",clientId=" + m2945az + ",sugg=" + str2);
-                OnlineMediaItemsResult m8531f = OnlineMediaSearchAPI.m8860a(str, num.intValue(), num2.intValue(), m2945az).m8531f();
+                OnlineMediaItemsResult m8531f = OnlineMediaSearchAPI.m8860a(str, num.intValue(), num2.intValue(), m2945az).execute();
                 int pages = m8531f.getPages();
                 if (m8531f.isSuccess()) {
                     ArrayList<OnlineMediaItem> dataList = m8531f.getDataList();
@@ -112,7 +112,7 @@ public class SearchModule extends BaseModule {
                 } else {
                     m8858b = OnlineMediaSearchAPI.m8858b(str, num.intValue(), num2.intValue(), str2);
                 }
-                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_ALBUM_FINISHED, m8858b.m8531f()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_ALBUM_FINISHED, m8858b.execute()), ModuleID.SEARCH);
             }
         });
     }
@@ -121,7 +121,7 @@ public class SearchModule extends BaseModule {
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.4
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_PLAY_LIST_RESULT, OnlineMediaSearchAPI.m8857c(str, num.intValue(), num2.intValue(), str2 == null ? "" : str2).m8531f()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_PLAY_LIST_RESULT, OnlineMediaSearchAPI.m8857c(str, num.intValue(), num2.intValue(), str2 == null ? "" : str2).execute()), ModuleID.SEARCH);
             }
         });
     }
@@ -130,7 +130,7 @@ public class SearchModule extends BaseModule {
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.5
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_HOT_WORDS_FINISHED, HotWordsAPI.m8884a().m8531f().getDataList()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_HOT_WORDS_FINISHED, HotWordsAPI.m8884a().execute().getDataList()), ModuleID.SEARCH);
             }
         });
     }
@@ -139,7 +139,7 @@ public class SearchModule extends BaseModule {
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.6
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_ASSOCIATE_FINISHED, AssociateWordsAPI.m8935a(str).m8531f().getDataList()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_ASSOCIATE_FINISHED, AssociateWordsAPI.m8935a(str).execute().getDataList()), ModuleID.SEARCH);
             }
         });
     }
@@ -148,7 +148,7 @@ public class SearchModule extends BaseModule {
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.7
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_BILLBOARD_FINISHED, BillboardAPI.m8934a(num.intValue()).m8531f().getDataList()), ModuleID.SEARCH);
+                CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_BILLBOARD_FINISHED, BillboardAPI.m8934a(num.intValue()).execute().getDataList()), ModuleID.SEARCH);
             }
         });
     }
@@ -157,7 +157,7 @@ public class SearchModule extends BaseModule {
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.8
             @Override // java.lang.Runnable
             public void run() {
-                BaseResult m8531f = OnlineMediaSearchAPI.m8862a(str).m8531f();
+                BaseResult m8531f = OnlineMediaSearchAPI.m8862a(str).execute();
                 CommandCenter m4607a = CommandCenter.getInstance();
                 CommandID commandID = CommandID.UPDATE_REPORT_SONG_FINISHED;
                 Object[] objArr = new Object[1];

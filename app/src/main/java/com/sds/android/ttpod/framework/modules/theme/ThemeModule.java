@@ -296,7 +296,7 @@ public final class ThemeModule extends BaseModule {
         this.f6965d.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.theme.d.3
             @Override // java.lang.Runnable
             public void run() {
-                BackgroundMoreCheckResult m8531f = SkinAPI.m8825d().m8531f();
+                BackgroundMoreCheckResult m8531f = SkinAPI.m8825d().execute();
                 if (m8531f.getCode() == 1) {
                     Preferences.m2961aj(1 == m8531f.getData().getStatus());
                     Preferences.m2896d(m8531f.getCreateTime());

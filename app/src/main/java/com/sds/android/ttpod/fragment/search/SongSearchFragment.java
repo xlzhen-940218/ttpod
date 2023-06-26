@@ -118,7 +118,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
                 this.mIsNewSearch = false;
             }
             this.mIsSearching = false;
-            if (list.size() == 0 && EnvironmentUtils.DeviceConfig.m8474e()) {
+            if (list.size() == 0 && EnvironmentUtils.DeviceConfig.isConnected()) {
                 thirdSearch();
             }
             //SearchStatistic.m4945a(num, getOrigin(), this.mWord);

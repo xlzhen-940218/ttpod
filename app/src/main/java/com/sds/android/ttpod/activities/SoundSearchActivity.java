@@ -192,7 +192,7 @@ public class SoundSearchActivity extends SlidingClosableActivity {
                 }
                 ArrayList arrayList = new ArrayList();
                 for (SoundSearchInfo soundSearchInfo : soundSearchInfoArr2) {
-                    OnlineMediaItemsResult m8531f = OnlineMediaSearchAPI.m8861a(soundSearchInfo.m5824e() + " " + soundSearchInfo.m5826c(), 1, 50).m8531f();
+                    OnlineMediaItemsResult m8531f = OnlineMediaSearchAPI.m8861a(soundSearchInfo.m5824e() + " " + soundSearchInfo.m5826c(), 1, 50).execute();
                     if (m8531f != null) {
                         ArrayList<OnlineMediaItem> dataList = m8531f.getDataList();
                         if (dataList != null && !dataList.isEmpty()) {

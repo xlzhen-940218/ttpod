@@ -33,20 +33,20 @@ public class PostMethodRequest<R extends BaseResult> extends MethodRequest<R> {
     /* renamed from: a */
     public PostMethodRequest<R> m8553a(String str, File file) {
         this.f2419a.put(str, file);
-        m8529h();
+        clear();
         return this;
     }
 
     /* renamed from: a */
     public PostMethodRequest<R> m8552a(String str, Object obj) {
         this.f2419a.put(str, obj);
-        m8529h();
+        clear();
         return this;
     }
 
     @Override // com.sds.android.sdk.lib.request.Request
     /* renamed from: a */
-    protected HttpRequest.Response mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
+    protected HttpRequest.Response doHttpRequest(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
         try {
             String m8551a = m8551a(hashMap2, hashMap3);
             LogUtils.debug("MethodRequest", "post url: %s", str);

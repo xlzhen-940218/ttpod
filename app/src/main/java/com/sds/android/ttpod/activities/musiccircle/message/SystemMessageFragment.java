@@ -53,7 +53,7 @@ public class SystemMessageFragment extends SlidingClosableFragment {
         inflate.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.message.SystemMessageFragment.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     SystemMessageFragment.this.requestSystemMessage();
                 } else {
                     PopupsUtils.m6760a((int) R.string.network_error);
@@ -70,7 +70,7 @@ public class SystemMessageFragment extends SlidingClosableFragment {
     }
 
     private void toggleFailedView() {
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             loadNoDataView();
         } else {
             loadErrorView();

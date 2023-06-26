@@ -61,7 +61,7 @@ public class PlayOnlineMediaTask {
                         PlayOnlineMediaTask.this.m7498a(PlayOnlineMediaTask.this.f3321b, post, PlayOnlineMediaTask.this.f3322c, PlayOnlineMediaTask.this.f3323d);
                     }
                 });
-                return OnlineMediaItemAPI.m8867a(list).m8531f();
+                return OnlineMediaItemAPI.m8867a(list).execute();
             }
 
             /* JADX INFO: Access modifiers changed from: protected */

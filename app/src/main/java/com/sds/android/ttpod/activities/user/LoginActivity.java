@@ -204,7 +204,7 @@ public class LoginActivity extends SlidingClosableActivity {
         String obj = this.mUserNameEditText.getText().toString();
         String obj2 = this.mPassWordEditText.getText().toString();
         if (validate(obj, obj2)) {
-            if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+            if (!EnvironmentUtils.DeviceConfig.isConnected()) {
                 PopupsUtils.m6760a((int) R.string.network_unavailable);
                 return;
             }

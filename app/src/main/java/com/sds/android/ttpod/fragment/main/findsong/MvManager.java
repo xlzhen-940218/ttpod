@@ -86,7 +86,7 @@ public class MvManager {
 
     /* renamed from: a */
     public static void m5560a(Context context, MvPopupDialogCallBack mvPopupDialogCallBack, int i, int i2) {
-        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6721a(context.getString(R.string.cannot_play_for_network_error));
         } else if (2 == EnvironmentUtils.DeviceConfig.m8476d()) {
             mvPopupDialogCallBack.onSuccess();

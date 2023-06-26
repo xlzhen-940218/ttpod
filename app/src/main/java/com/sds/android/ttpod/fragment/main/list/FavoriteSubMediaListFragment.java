@@ -218,7 +218,7 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
 
         public void sync() {
             if (getGroupID().equals(MediaStorage.GROUP_ID_FAV)) {
-                if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (!EnvironmentUtils.DeviceConfig.isConnected()) {
                     PopupsUtils.m6760a((int) R.string.network_unavailable);
                     return;
                 } else if (!this.mIsRefreshing) {

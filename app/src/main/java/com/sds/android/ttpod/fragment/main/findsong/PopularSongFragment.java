@@ -65,7 +65,7 @@ public class PopularSongFragment extends SceneRecommendFragment {
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
     protected void doNextPageAction() {
-        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.network_unavailable);
             return;
         }

@@ -19,7 +19,7 @@ public class PostMethodRequestV2<R extends BaseResult> extends PostMethodRequest
 
     @Override // com.sds.android.sdk.lib.request.PostMethodRequest, com.sds.android.sdk.lib.request.Request
     /* renamed from: a */
-    protected HttpRequest.Response mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
+    protected HttpRequest.Response doHttpRequest(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
         try {
             return HttpRequest.m8703b(str, hashMap, hashMap2);
         } catch (Exception e) {

@@ -81,7 +81,7 @@ public class RecommendFragment extends BaseMusicFragment implements View.OnClick
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         this.mRootView = layoutInflater.inflate(R.layout.cmmusic_recommend_activity, viewGroup, false);
         mViewInit();
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             this.mListView.setVisibility(View.VISIBLE);
             getDBViewContent();
         } else {
@@ -263,7 +263,7 @@ public class RecommendFragment extends BaseMusicFragment implements View.OnClick
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         if (R.id.btn_tryagain_recommpage == view.getId()) {
-            if (EnvironmentUtils.DeviceConfig.m8474e()) {
+            if (EnvironmentUtils.DeviceConfig.isConnected()) {
                 sdkInitCheck();
                 this.mListView.setVisibility(View.VISIBLE);
                 this.mLayout.setVisibility(View.GONE);

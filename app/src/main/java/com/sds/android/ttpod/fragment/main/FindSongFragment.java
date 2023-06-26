@@ -94,7 +94,7 @@ public class FindSongFragment extends BaseFragment implements OnPageSelectedList
             this.mDragUpdateListView.setOnStartRefreshListener(new DragUpdateHelper.InterfaceC2273c() { // from class: com.sds.android.ttpod.fragment.main.FindSongFragment.2
                 @Override // com.sds.android.ttpod.widget.dragupdatelist.DragUpdateHelper.InterfaceC2273c
                 public void onStartRefreshEvent() {
-                    if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                    if (EnvironmentUtils.DeviceConfig.isConnected()) {
                         FindSongFragment.this.doRequest();
                         return;
                     }

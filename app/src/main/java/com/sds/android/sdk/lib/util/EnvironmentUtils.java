@@ -488,7 +488,7 @@ public class EnvironmentUtils {
                 return 1;
             }
             activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-            if (!m8483a(activeNetworkInfo)) {
+            if (!isConnectedNetwork(activeNetworkInfo)) {
                 return -1;
             }
             if (m8475d(activeNetworkInfo)) {
@@ -501,8 +501,8 @@ public class EnvironmentUtils {
         }
 
         /* renamed from: e */
-        public static boolean m8474e() {
-            return m8483a(connectivityManager.getActiveNetworkInfo());
+        public static boolean isConnected() {
+            return isConnectedNetwork(connectivityManager.getActiveNetworkInfo());
         }
 
         /* renamed from: f */
@@ -547,7 +547,7 @@ public class EnvironmentUtils {
         }
 
         /* renamed from: a */
-        private static boolean m8483a(NetworkInfo networkInfo) {
+        private static boolean isConnectedNetwork(NetworkInfo networkInfo) {
             return networkInfo != null && networkInfo.isConnected();
         }
 
@@ -906,7 +906,7 @@ public class EnvironmentUtils {
     public static class C0603b {
 
         /* renamed from: a */
-        private static String f2453a;
+        private static String utdid;
 
         /* renamed from: b */
         private static HashMap<String, Object> f2454b = new HashMap<>();
@@ -944,8 +944,8 @@ public class EnvironmentUtils {
                 if (size > 0) {
                     f2454b.put(OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY, m8335c.get(size - 1));
                 }
-                f2453a = UTDevice.getUtdid(context);
-                f2454b.put("utdid", f2453a);
+                utdid = UTDevice.getUtdid(context);
+                f2454b.put("utdid", utdid);
                 f2455c = new JSONObject(f2454b);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
@@ -960,7 +960,7 @@ public class EnvironmentUtils {
 
         /* renamed from: a */
         public static String m8499a() {
-            return f2453a;
+            return utdid;
         }
 
         /* renamed from: b */

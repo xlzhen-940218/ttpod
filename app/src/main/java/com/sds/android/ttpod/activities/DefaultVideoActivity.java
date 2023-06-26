@@ -51,7 +51,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
             int i3;
             LogUtils.info(DefaultVideoActivity.LOG_TAG, "position: " + mediaPlayer.getCurrentPosition());
             LogUtils.info(DefaultVideoActivity.LOG_TAG, "what:" + i + " :extra:" + i2);
-            int i4 = EnvironmentUtils.DeviceConfig.m8474e() ? i2 : -1004;
+            int i4 = EnvironmentUtils.DeviceConfig.isConnected() ? i2 : -1004;
             if (1 == i) {
                 i4 = -1010;
             }

@@ -123,7 +123,7 @@ public class AsyncRequestTask {
         /* renamed from: a */
         public R doInBackground(Object... objArr) {
             if (objArr == null || objArr.length <= 0) {
-                return this.f2409b.m8531f();
+                return this.f2409b.execute();
             }
             return null;
         }

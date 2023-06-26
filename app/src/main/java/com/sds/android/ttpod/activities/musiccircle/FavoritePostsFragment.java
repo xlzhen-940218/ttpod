@@ -68,7 +68,7 @@ public class FavoritePostsFragment extends SlidingClosableFragment implements Ad
         inflate.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.FavoritePostsFragment.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     FavoritePostsFragment.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     FavoritePostsFragment.this.requestFavorites();
                     return;
@@ -79,7 +79,7 @@ public class FavoritePostsFragment extends SlidingClosableFragment implements Ad
     }
 
     private void toggleFailedView() {
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             loadNoDataView();
         } else {
             loadNetworkErrorView();

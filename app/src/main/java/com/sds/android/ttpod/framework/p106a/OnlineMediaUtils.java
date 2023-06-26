@@ -52,7 +52,7 @@ public class OnlineMediaUtils {
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public OnlineMediaItemsResult mo1981a(List<Long> list2) {
-                return z ? OnlineMediaItemAPI.m8864b(list2).m8531f() : OnlineMediaItemAPI.m8867a(list2).m8531f();
+                return z ? OnlineMediaItemAPI.m8864b(list2).execute() : OnlineMediaItemAPI.m8867a(list2).execute();
             }
 
             /* JADX INFO: Access modifiers changed from: protected */

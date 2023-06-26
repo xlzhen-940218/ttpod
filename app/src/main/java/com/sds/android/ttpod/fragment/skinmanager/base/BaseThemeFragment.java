@@ -460,7 +460,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void tryDownloadSkin(SkinItem skinItem, boolean z) {
-        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.shake_error_hint);
         } else if (FileUtils.m8414b(skinItem.getPath()) && !z) {
             PopupsUtils.m6760a((int) R.string.skin_file_already_existed);

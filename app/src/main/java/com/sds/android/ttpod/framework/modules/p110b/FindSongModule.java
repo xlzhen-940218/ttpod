@@ -101,11 +101,11 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getMusicRanks(String str) {
-        ModuleRequestHelper.m4082a(RankAPI.getMusicRanksRequest(), CommandID.UPDATE_MUSIC_RANKS, id(), null, str);
+        ModuleRequestHelper.execute(RankAPI.getMusicRanksRequest(), CommandID.UPDATE_MUSIC_RANKS, id(), null, str);
     }
 
     public void getRankMusicList(Integer num, Integer num2, String str) {
-        ModuleRequestHelper.m4082a(RankAPI.m8832a(num.intValue(), num2.intValue()), CommandID.UPDATE_RANK_MUSIC_LIST, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.1
+        ModuleRequestHelper.execute(RankAPI.m8832a(num.intValue(), num2.intValue()), CommandID.UPDATE_RANK_MUSIC_LIST, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.1
             @Override // com.sds.android.ttpod.framework.modules.ResultConvert
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -137,11 +137,11 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getSongCategoryInfo(String str) {
-        ModuleRequestHelper.m4082a(RadioAPI.m8837a(), CommandID.UPDATE_SONG_CATEGORY_INFO, id(), null, str);
+        ModuleRequestHelper.execute(RadioAPI.m8837a(), CommandID.UPDATE_SONG_CATEGORY_INFO, id(), null, str);
     }
 
     public void getSongCategoryDetail(Integer num, Integer num2, String str) {
-        ModuleRequestHelper.m4082a(RadioAPI.m8836a(num.intValue(), num2.intValue()), CommandID.UPDATE_SONG_CATEGORY_DETAIL, id(), new ResultConvert<OnlineMediaItemsResult, BaseResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.4
+        ModuleRequestHelper.execute(RadioAPI.m8836a(num.intValue(), num2.intValue()), CommandID.UPDATE_SONG_CATEGORY_DETAIL, id(), new ResultConvert<OnlineMediaItemsResult, BaseResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.4
             @Override // com.sds.android.ttpod.framework.modules.ResultConvert
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public BaseResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -315,7 +315,7 @@ public class FindSongModule extends BaseModule {
                     sb.append("]");
                 }
                 LogUtils.debug("FindSongModule", "getFindSongHotSingers localSingerNames=" + arrayList2 + ",localSingerIds=" + arrayList);
-                SingerListResult m8531f = FindSongHotModuleAPI.m8897a(str, num.intValue(), num2.intValue(), sb.toString(), arrayList).m8531f();
+                SingerListResult m8531f = FindSongHotModuleAPI.m8897a(str, num.intValue(), num2.intValue(), sb.toString(), arrayList).execute();
                 LogUtils.debug("FindSongModule", "getFindSongHotSingers " + m8531f.getDataList());
                 CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_GET_FIND_SONG_HOT_SINGERS, m8531f), ModuleID.FIND_SONG);
             }
@@ -362,7 +362,7 @@ public class FindSongModule extends BaseModule {
         if (StringUtils.isEmpty(str)) {
             return 0L;
         }
-        OnlineMediaItemsResult m8531f = FindSongAPI.m8903a(str, 1, 1).m8531f();
+        OnlineMediaItemsResult m8531f = FindSongAPI.m8903a(str, 1, 1).execute();
         ArrayList<OnlineMediaItem> dataList = m8531f.getDataList();
         if (m8531f.getCode() != 1 || dataList.size() <= 0) {
             l = 0L;

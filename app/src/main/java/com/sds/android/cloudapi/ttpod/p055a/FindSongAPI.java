@@ -23,12 +23,12 @@ public class FindSongAPI {
 
     /* renamed from: a */
     public static Request<OnlineMusicCategoryResult> m8908a(int i, int i2) {
-        return new GetMethodRequest(OnlineMusicCategoryResult.class, UrlList.f2261b).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
+        return new GetMethodRequest(OnlineMusicCategoryResult.class, UrlList.moduleCategory).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
     public static Request<OnlineMusicSubCategoryResult> m8905a(long j, int i, int i2) {
-        return new GetMethodRequest(OnlineMusicSubCategoryResult.class, UrlList.f2262c).putParams("id", Long.valueOf(j)).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
+        return new GetMethodRequest(OnlineMusicSubCategoryResult.class, UrlList.moduleSubCategory).putParams("id", Long.valueOf(j)).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
@@ -64,7 +64,7 @@ public class FindSongAPI {
 
     /* renamed from: a */
     public static Request<IntroductionResult> m8906a(long j) {
-        return new GetMethodRequest(IntroductionResult.class, UrlList.m8962a() + "/recomm/module_detail").putParams("id", Long.valueOf(j));
+        return new GetMethodRequest(IntroductionResult.class, UrlList.getHost() + "/recomm/module_detail").putParams("id", Long.valueOf(j));
     }
 
     /* renamed from: c */

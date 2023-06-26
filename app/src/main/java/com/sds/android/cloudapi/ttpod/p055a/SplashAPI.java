@@ -10,7 +10,7 @@ import com.sds.android.sdk.lib.util.EnvironmentUtils;
 public final class SplashAPI {
 
     /* renamed from: a */
-    private static final String f2268a = UrlList.m8962a() + "/splash/splashes";
+    private static final String f2268a = UrlList.getHost() + "/splash/splashes";
 
     /* renamed from: a */
     public static Request<SplashDataResult> m8824a(int i) {

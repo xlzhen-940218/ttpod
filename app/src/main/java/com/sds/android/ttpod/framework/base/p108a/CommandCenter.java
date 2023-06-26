@@ -126,24 +126,24 @@ public final class CommandCenter {
 
     /* renamed from: a */
     public void execute(Command command) {
-        m4591c(command, null);
-        m4594b(command, (Class) null);
+        checkCommandAndModuleId(command, null);
+        invokeResult(command, (Class) null);
     }
 
     /* renamed from: a */
     public void m4604a(Command command, ModuleID moduleID) {
         m4600a(moduleID);
-        m4591c(command, moduleID);
-        m4594b(command, (Class) null);
+        checkCommandAndModuleId(command, moduleID);
+        invokeResult(command, (Class) null);
     }
 
     /* renamed from: a */
     public <Result> Result m4602a(Command command, Class<Result> cls) {
-        m4591c(command, null);
+        checkCommandAndModuleId(command, null);
         if (!command.getCommandId().getCommandType().equals(CommandType.TO_MODULE)) {
             throw new IllegalArgumentException("id of Command with result must be CommandType.TO_MODULE");
         }
-        return (Result) m4594b(command, cls);
+        return (Result) invokeResult(command, cls);
     }
 
     /* renamed from: b */
@@ -153,11 +153,11 @@ public final class CommandCenter {
 
     /* renamed from: a */
     public void m4605a(final Command command, int i) {
-        m4591c(command, null);
+        checkCommandAndModuleId(command, null);
         this.handler.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.a.b.1
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.this.m4594b(command, null);
+                CommandCenter.this.invokeResult(command, null);
             }
         }, i);
     }
@@ -170,23 +170,23 @@ public final class CommandCenter {
     /* renamed from: a */
     public void m4603a(final Command command, ModuleID moduleID, int i) {
         m4600a(moduleID);
-        m4591c(command, moduleID);
+        checkCommandAndModuleId(command, moduleID);
         this.handler.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.a.b.2
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.this.m4594b(command, null);
+                CommandCenter.this.invokeResult(command, null);
             }
         }, i);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
-    public <Result> Result m4594b(Command command, Class<Result> cls) {
+    public <Result> Result invokeResult(Command command, Class<Result> cls) {
         DebugUtils.m8427a();
         CommandID commandId = command.getCommandId();
         ModuleID moduleID = commandId.getModuleID();
         ModuleManager.getInstance().loadCommandById(commandId);
-        ModuleManager.getInstance().m4110b(moduleID);
+        ModuleManager.getInstance().updateModuleTime(moduleID);
         Map<CommandID, Set<Object>> map = this.moduleIDMapMap.get(moduleID);
         if (map == null || map.isEmpty()) {
             if (EnvironmentUtils.AppConfig.getTestMode() && cls != null) {
@@ -225,7 +225,7 @@ public final class CommandCenter {
     }
 
     /* renamed from: c */
-    private void m4591c(Command command, ModuleID moduleID) {
+    private void checkCommandAndModuleId(Command command, ModuleID moduleID) {
         if (command == null) {
             throw new IllegalArgumentException("command can not be null!");
         }

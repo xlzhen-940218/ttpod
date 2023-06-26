@@ -32,7 +32,7 @@ public class AboutActivity extends SlidingClosableActivity {
             switch (actionItem.m7005e()) {
                 case 1:
                     if (EnvironmentUtils.AppConfig.getAppCheckUpdateEnable()) {
-                        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                        if (EnvironmentUtils.DeviceConfig.isConnected()) {
                             PopupsUtils.m6760a((int) R.string.version_upgrade_check_toast);
                             CommandCenter.getInstance().execute(new Command(CommandID.CHECK_UPGRADE, false));
                         } else {

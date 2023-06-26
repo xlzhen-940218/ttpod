@@ -95,7 +95,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
     }
 
     private void showFailedView() {
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             loadNoDataView();
         } else {
             loadNetworkErrorView();
@@ -125,7 +125,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
         inflate.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.message.MyCommentsFragment.4
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     MyCommentsFragment.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     MyCommentsFragment.this.requestComments();
                     return;

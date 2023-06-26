@@ -32,7 +32,7 @@ public class DjListenFragment extends BaseMusicFragment implements View.OnClickL
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         View inflate = layoutInflater.inflate(R.layout.cmmusic_dj_listen_activity, viewGroup, false);
         listViewInit(inflate);
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             this.mList.setVisibility(View.VISIBLE);
             mViewContent();
         } else {
@@ -95,7 +95,7 @@ public class DjListenFragment extends BaseMusicFragment implements View.OnClickL
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         if (R.id.btn_tryagain_djlistenpage == view.getId()) {
-            if (EnvironmentUtils.DeviceConfig.m8474e()) {
+            if (EnvironmentUtils.DeviceConfig.isConnected()) {
                 sdkInitCheck();
                 this.mList.setVisibility(View.VISIBLE);
                 this.mLayout.setVisibility(View.GONE);

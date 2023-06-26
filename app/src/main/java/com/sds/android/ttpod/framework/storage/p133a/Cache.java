@@ -44,7 +44,7 @@ public final class Cache {
         synchronized (Cache.class) {
             if (instance == null) {
                 instance = new Cache();
-                instance.m3219T();
+                instance.init();
             }
             cache = instance;
         }
@@ -52,8 +52,8 @@ public final class Cache {
     }
 
     /* renamed from: T */
-    private void m3219T() {
-        this.objectCache = ObjectCache.m8776a(0.05f, TTPodConfig.m5299i());
+    private void init() {
+        this.objectCache = ObjectCache.getInstance(0.05f, TTPodConfig.m5299i());
     }
 
     /* renamed from: b */

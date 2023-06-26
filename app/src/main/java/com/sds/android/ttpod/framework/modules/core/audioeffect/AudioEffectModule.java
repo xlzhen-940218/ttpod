@@ -484,7 +484,7 @@ public class AudioEffectModule extends BaseModule {
             }
         }
         if (arrayList2.size() > 0) {
-            OnlineMediaItemsResult m8531f = OnlineMediaItemAPI.m8867a(arrayList2).m8531f();
+            OnlineMediaItemsResult m8531f = OnlineMediaItemAPI.m8867a(arrayList2).execute();
             if (m8531f.getCode() == 1) {
                 for (OnlineMediaItem onlineMediaItem : m8531f.getDataList()) {
                     for (PrivateEffectItem privateEffectItem : arrayList3) {
@@ -743,7 +743,7 @@ public class AudioEffectModule extends BaseModule {
                         } else {
                             m8925a = CloudAudioEffectAPI.m8926a(m2954aq.getAccessToken(), m4379a, valueOf.intValue(), songID.longValue(), title, artist, valueOf2.intValue(), str, audioEffectItemData);
                         }
-                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, m8925a.m8531f()), ModuleID.AUDIO_EFFECT);
+                        CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, m8925a.execute()), ModuleID.AUDIO_EFFECT);
                     }
                 }
             }

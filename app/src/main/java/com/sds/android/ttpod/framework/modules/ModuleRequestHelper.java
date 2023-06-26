@@ -23,12 +23,12 @@ import com.sds.android.ttpod.framework.storage.p133a.Cache;
 public class ModuleRequestHelper {
     /* renamed from: a */
     public static <Result extends BaseResult, TargetResult extends BaseResult> void m4083a(Request<Result> request, CommandID commandID, ModuleID moduleID, ResultConvert<Result, TargetResult> resultConvert) {
-        m4082a(request, commandID, moduleID, resultConvert, null);
+        execute(request, commandID, moduleID, resultConvert, null);
     }
 
     /* renamed from: a */
-    public static <Result extends BaseResult, TargetResult extends BaseResult> void m4082a(final Request<Result> request, final CommandID commandID, final ModuleID moduleID, final ResultConvert<Result, TargetResult> resultConvert, final String str) {
-        final String m4084a = m4084a(request);
+    public static <Result extends BaseResult, TargetResult extends BaseResult> void execute(final Request<Result> request, final CommandID commandID, final ModuleID moduleID, final ResultConvert<Result, TargetResult> resultConvert, final String str) {
+        final String host = isRecommandReplace(request);
         DebugUtils.m8426a(request, "do request is null");
         final Handler handler = new Handler();
         final long currentTimeMillis = System.currentTimeMillis();
@@ -37,16 +37,16 @@ public class ModuleRequestHelper {
             public void run() {
                 BaseResult m4562a = null;
                 BaseResult m4562a1;
-                ValidityResult m3207a = Cache.getInstance().m3207a(m4084a);
-                if (ModuleRequestHelper.m4081a(m3207a, EnvironmentUtils.DeviceConfig.m8474e())) {
+                ValidityResult m3207a = Cache.getInstance().m3207a(host);
+                if (ModuleRequestHelper.checkValidityResult(m3207a, EnvironmentUtils.DeviceConfig.isConnected())) {
                     long currentTimeMillis2 = System.currentTimeMillis();
-                    m4562a1 = request.m8531f();
+                    m4562a1 = request.execute();
                     LogUtils.warning("ModuleRequestHelper", "request.execute cost--> " + (System.currentTimeMillis() - currentTimeMillis2) + "ms  " + request.m8532e());
                     //new //SSystemEvent("SYS_PAGE_REQUEST", "finish").append("uri", request.m8532e()).append("duration", Long.valueOf(System.currentTimeMillis() - currentTimeMillis)).append("error_code", Integer.valueOf(m4562a1.getCode())).post();
                     if (!ModuleRequestHelper.m4085a(m4562a1)) {
                         boolean z = (m4562a1 instanceof DataListResult) && ListUtils.m4718a(((DataListResult) m4562a1).getDataList());
                         if (m4562a1.isSuccess() && !z) {
-                            Cache.getInstance().m3206a(m4084a, new ValidityResult(m4562a1, m4084a));
+                            Cache.getInstance().m3206a(host, new ValidityResult(m4562a1, host));
                         }
                     }
                 } else {
@@ -72,8 +72,8 @@ public class ModuleRequestHelper {
     }
 
     /* renamed from: a */
-    protected static String m4084a(Request request) {
-        if (request.toString().contains(UrlList.f2260a + "/recomm_modules")) {
+    protected static String isRecommandReplace(Request request) {
+        if (request.toString().contains(UrlList.recommend + "/recomm_modules")) {
             return "online.dongting.com/recomm/recomm_modules";
         }
         return request.toString();
@@ -85,7 +85,7 @@ public class ModuleRequestHelper {
     }
 
     /* renamed from: a */
-    protected static boolean m4081a(ValidityResult validityResult, boolean z) {
+    protected static boolean checkValidityResult(ValidityResult validityResult, boolean z) {
         return validityResult == null || validityResult.m4562a() == null || (validityResult.m4561b() && z);
     }
 }

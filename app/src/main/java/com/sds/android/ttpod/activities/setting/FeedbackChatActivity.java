@@ -70,7 +70,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onResume() {
         super.onResume();
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             requestNewestMessage(this.mNewMessageTimestamp, null);
         } else {
             PopupsUtils.m6760a((int) R.string.network_error);
@@ -119,7 +119,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
         this.mBtnSend.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.setting.FeedbackChatActivity.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     String obj = FeedbackChatActivity.this.mEtInput.getText().toString();
                     if (!StringUtils.isEmpty(obj)) {
                         FeedbackChatActivity.this.mBtnSend.setClickable(false);
@@ -136,7 +136,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
         this.mReloadView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.setting.FeedbackChatActivity.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     FeedbackChatActivity.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     FeedbackChatActivity.this.requestNewestMessage();
                     return;

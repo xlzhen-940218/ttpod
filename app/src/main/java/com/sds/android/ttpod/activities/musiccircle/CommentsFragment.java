@@ -291,7 +291,7 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
 
     @Override // com.sds.android.ttpod.component.emoticons.EmoticonsWithInputLayout.InterfaceC1207a
     public void onSend(String str) {
-        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.network_error);
             this.mEmoticonsWithInputLayout.setSendEnable(true);
         } else if (Preferences.m2954aq() == null) {

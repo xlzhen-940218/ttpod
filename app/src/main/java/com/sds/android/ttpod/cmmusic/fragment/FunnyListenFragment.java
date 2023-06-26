@@ -33,7 +33,7 @@ public class FunnyListenFragment extends BaseMusicFragment implements View.OnCli
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         this.mRootView = layoutInflater.inflate(R.layout.cmmusic_funny_listen_activity, viewGroup, false);
         listViewInit();
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             this.mListView.setVisibility(View.VISIBLE);
             mViewContent();
         } else {
@@ -94,7 +94,7 @@ public class FunnyListenFragment extends BaseMusicFragment implements View.OnCli
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         if (R.id.btn_tryagain_funnypage == view.getId()) {
-            if (EnvironmentUtils.DeviceConfig.m8474e()) {
+            if (EnvironmentUtils.DeviceConfig.isConnected()) {
                 sdkInitCheck();
                 this.mListView.setVisibility(View.VISIBLE);
                 this.mLayout.setVisibility(View.GONE);

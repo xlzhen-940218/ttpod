@@ -94,7 +94,7 @@ public final class UserSystemModule extends BaseModule {
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.f.a.7
             @Override // java.lang.Runnable
             public void run() {
-                BaseResult m8531f = UserSystemAPI.m8950b(str).m8531f();
+                BaseResult m8531f = UserSystemAPI.m8950b(str).execute();
                 if (m8531f.getCode() != 30307) {
                     if (m8531f.getCode() == -1) {
                         CommandCenter.getInstance().m4595b(new Command(CommandID.LOGIN_FINISHED, new CommonResult(ErrCode.ErrPathNotFound, m8531f.getMessage())), ModuleID.USER_SYSTEM);
@@ -104,7 +104,7 @@ public final class UserSystemModule extends BaseModule {
                         return;
                     }
                 }
-                UserResult m8531f2 = UserSystemAPI.m8952a(str, str2).m8531f();
+                UserResult m8531f2 = UserSystemAPI.m8952a(str, str2).execute();
                 if (m8531f2.isSuccess()) {
                     UserSystemModule.this.m4167a(m8531f2);
                 } else {

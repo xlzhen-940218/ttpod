@@ -188,7 +188,7 @@ public abstract class RecommendPostListFragment extends SlidingClosableFragment 
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public List<MediaItem> mo1981a(List<Long> list) {
-                return RecommendPostListFragment.this.convertMediaList(OnlineMediaItemAPI.m8867a(list).m8531f().getDataList());
+                return RecommendPostListFragment.this.convertMediaList(OnlineMediaItemAPI.m8867a(list).execute().getDataList());
             }
 
             /* JADX INFO: Access modifiers changed from: protected */

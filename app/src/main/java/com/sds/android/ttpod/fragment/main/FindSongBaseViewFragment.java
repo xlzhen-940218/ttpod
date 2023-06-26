@@ -231,7 +231,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
     }
 
     private void forwardPostDetail(Integer num) {
-        PostDetailFragment.C0794b personalizedRecommendationInfo = getPersonalizedRecommendationInfo(getItemData(num.intValue()));
+        PostDetailFragment.Recomment personalizedRecommendationInfo = getPersonalizedRecommendationInfo(getItemData(num.intValue()));
         Post post = this.mMapPositionToPreLoadSongList.get(num.intValue());
         if (post != null) {
             SubPostDetailFragment createByPost = SubPostDetailFragment.createByPost(post, getModuleName());
@@ -249,16 +249,16 @@ public class FindSongBaseViewFragment extends BaseFragment {
         }
     }
 
-    private PostDetailFragment.C0794b getPersonalizedRecommendationInfo(RecommendData recommendData) {
-        int i;
-        int i2 = 0;
+    private PostDetailFragment.Recomment getPersonalizedRecommendationInfo(RecommendData recommendData) {
+        int recommentType;
+        int recommentAlgorithm = 0;
         if (recommendData instanceof FindSongHotListData) {
-            i = ((FindSongHotListData) recommendData).getRecommentType();
-            i2 = ((FindSongHotListData) recommendData).getRecommentAlgorithm();
+            recommentType = ((FindSongHotListData) recommendData).getRecommentType();
+            recommentAlgorithm = ((FindSongHotListData) recommendData).getRecommentAlgorithm();
         } else {
-            i = 0;
+            recommentType = 0;
         }
-        return new PostDetailFragment.C0794b(this.mUserType, i, i2);
+        return new PostDetailFragment.Recomment(this.mUserType, recommentType, recommentAlgorithm);
     }
 
     private void forwardMusicCircle(Integer num) {

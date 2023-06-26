@@ -15,7 +15,7 @@ public class MusicCircleApi extends BaseApi {
     @Override // com.sds.android.ttpod.share.p136a.BaseApi
     /* renamed from: b */
     public ShareResult mo2076b(ShareInfo shareInfo, ApiCallback apiCallback) {
-        BaseResult m8531f = PostAPI.m8850a(m2110b(), shareInfo.m1944n(), shareInfo.m1945m(), shareInfo.m1958e()).m8531f();
+        BaseResult m8531f = PostAPI.m8850a(m2110b(), shareInfo.m1944n(), shareInfo.m1945m(), shareInfo.m1958e()).execute();
         ShareResult shareResult = new ShareResult();
         if (m8531f == null) {
             shareResult.m2090a("error");

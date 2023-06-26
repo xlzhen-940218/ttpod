@@ -90,7 +90,7 @@ public class WrapUserPostListFragment extends SlidingClosableFragment {
             onGetUserInfo(tTPodUserResult.getData(), "", "");
             return;
         }
-        if (EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.userinfo_not_found);
         } else {
             PopupsUtils.m6760a((int) R.string.network_unavailable);

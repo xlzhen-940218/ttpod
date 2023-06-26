@@ -45,4 +45,28 @@ public class RecommendData implements Serializable {
     public ForwardAction getForwardAction() {
         return this.mForwardAction;
     }
+
+    public void setmDesc(String mDesc) {
+        this.mDesc = mDesc;
+    }
+
+    public void setmId(long mId) {
+        this.mId = mId;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    public void setmPicUrl(String mPicUrl) {
+        this.mPicUrl = mPicUrl;
+    }
+
+    public void setmTag(int mTag) {
+        this.mTag = mTag;
+    }
+
+    public void setmForwardAction(ForwardAction mForwardAction) {
+        this.mForwardAction = mForwardAction;
+    }
 }

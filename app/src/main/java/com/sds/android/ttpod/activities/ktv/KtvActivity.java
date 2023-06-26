@@ -238,7 +238,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public void mo2038a(MessageDialog messageDialog2) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     KtvActivity.this.startDownload();
                     KtvActivity.this.startDownloadDialog();
                     //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_KTV_DOWNLOAD_PLUGIN, SPage.PAGE_KTV, SPage.PAGE_NONE);

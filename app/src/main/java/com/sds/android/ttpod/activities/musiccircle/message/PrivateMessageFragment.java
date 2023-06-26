@@ -155,7 +155,7 @@ public class PrivateMessageFragment extends SlidingClosableFragment implements E
         this.mReloadView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.message.PrivateMessageFragment.4
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.DeviceConfig.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     PrivateMessageFragment.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     PrivateMessageFragment.this.requestNewestMessage();
                     return;

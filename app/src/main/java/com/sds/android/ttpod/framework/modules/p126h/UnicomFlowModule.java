@@ -54,7 +54,7 @@ public class UnicomFlowModule extends BaseModule {
     }
 
     public void netWorkTypeChanged() {
-        if (UnicomFlowUtil.m3946f() && EnvironmentUtils.DeviceConfig.m8474e()) {
+        if (UnicomFlowUtil.m3946f() && EnvironmentUtils.DeviceConfig.isConnected()) {
             //UnicomFlowStatistic.m4854J();
             //new SUserEvent("PAGE_CLICK", 1143, 0).post();
             HttpRequest.m8702b(UnicomFlowUtil.m3945g());

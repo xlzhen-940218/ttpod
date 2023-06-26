@@ -34,4 +34,20 @@ public class FindSongModuleData implements Serializable {
     public ArrayList<OperationZoneResult> getBanners() {
         return this.mBanners;
     }
+
+    public void setmCirclePosts(ArrayList<CirclePosterListResult> mCirclePosts) {
+        this.mCirclePosts = mCirclePosts;
+    }
+
+    public void setmSongLists(ArrayList<FindSongHotListResultNew> mSongLists) {
+        this.mSongLists = mSongLists;
+    }
+
+    public void setmZones(ArrayList<FindSongHandpickResult> mZones) {
+        this.mZones = mZones;
+    }
+
+    public void setmBanners(ArrayList<OperationZoneResult> mBanners) {
+        this.mBanners = mBanners;
+    }
 }
