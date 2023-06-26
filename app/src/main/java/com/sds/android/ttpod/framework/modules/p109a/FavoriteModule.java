@@ -169,7 +169,7 @@ public class FavoriteModule extends BaseModule {
             return;
         }
         if (str.equals(MediaStorage.GROUP_ID_DOWNLOAD) || MediaStorage.GROUP_ID_ALL_LOCAL.equals(str)) {
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.3
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.3
                 @Override // java.lang.Runnable
                 public void run() {
                     FavoriteModule.this.m4560a();
@@ -183,14 +183,14 @@ public class FavoriteModule extends BaseModule {
         DebugUtils.m8426a(mediaItem, "mediaItem");
         if (mediaItem.isOnline()) {
             DebugUtils.m8426a(Preferences.m2954aq(), "UserInfo");
-            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.buildOnlineFavGroupID(), mediaItem));
+            CommandCenter.getInstance().execute(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.buildOnlineFavGroupID(), mediaItem));
             FavoriteServerManager.m4544a().m4542a(mediaItem.getSongID().longValue());
             m4558a(MediaStorage.queryMediaItem(sContext, MediaStorage.buildOnlineFavGroupID(), mediaItem.getID()));
             List<String> m3224O = Cache.getInstance().m3224O();
             m3224O.add(mediaItem.getID());
             Cache.getInstance().m3169e(m3224O);
         } else {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_FAV_LOCAL, mediaItem));
+            CommandCenter.getInstance().execute(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_FAV_LOCAL, mediaItem));
             List<String> m3220S = Cache.getInstance().m3220S();
             m3220S.add(mediaItem.getID());
             Cache.getInstance().m3173d(m3220S);
@@ -242,7 +242,7 @@ public class FavoriteModule extends BaseModule {
         m3224O.remove(mediaItem.getID());
         Cache.getInstance().m3169e(m3224O);
         if (bool.booleanValue()) {
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.4
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.4
                 @Override // java.lang.Runnable
                 public void run() {
                     MediaItem m4712a = MediaItemUtils.m4712a(mediaItem.getLocalDataSource());
@@ -256,7 +256,7 @@ public class FavoriteModule extends BaseModule {
 
     /* renamed from: b */
     private void m4554b(MediaItem mediaItem, Boolean bool) {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_FAV_LOCAL, mediaItem, bool));
+        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_FAV_LOCAL, mediaItem, bool));
         List<String> m3220S = Cache.getInstance().m3220S();
         m3220S.remove(mediaItem.getID());
         Cache.getInstance().m3173d(m3220S);
@@ -297,7 +297,7 @@ public class FavoriteModule extends BaseModule {
     /* renamed from: g */
     private void m4548g() {
         LogUtils.error("FavoriteModule", "asynReloadOnlineFavMediaIDs");
-        TaskScheduler.m8580a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.5
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.5
             @Override // java.lang.Runnable
             public void run() {
                 FavoriteModule.this.m4547h();
@@ -325,7 +325,7 @@ public class FavoriteModule extends BaseModule {
 
     /* renamed from: i */
     private void m4546i() {
-        TaskScheduler.m8580a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.7
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.a.a.7
             @Override // java.lang.Runnable
             public void run() {
                 FavoriteModule.this.m4545j();

@@ -20,8 +20,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.AsyncLoadMediaItemList;
@@ -34,28 +32,28 @@ import java.util.List;
 public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.InterfaceC1136a {
 
     /* renamed from: a */
-    private List<MediaItem> f3397a;
+    private List<MediaItem> mediaItems;
 
     /* renamed from: b */
-    private Activity f3398b;
+    private Activity activity;
 
     /* renamed from: c */
-    private String f3399c;
+    private String groupId;
 
     /* renamed from: d */
-    private String f3400d;
+    private String origin;
 
     /* renamed from: e */
-    private String f3401e;
+    private String module;
 
     /* renamed from: f */
-    private String f3402f;
+    private String localGroupId;
 
     /* renamed from: g */
-    private String f3403g;
+    private String mediaId;
 
     /* renamed from: h */
-    private InterfaceC1003a f3404h;
+    private OnItemClickListener onItemClickListener;
 
     @Override
     public void mo6973a(MediaItem mediaItem, boolean z) {
@@ -65,72 +63,72 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
     /* compiled from: SongListAdapter.java */
     /* renamed from: com.sds.android.ttpod.adapter.f.c$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC1003a {
+    public interface OnItemClickListener {
         /* renamed from: a */
-        void mo5476a(MediaItem mediaItem, View view, MediaItemMenuHolder mediaItemMenuHolder, int i);
+        void onItemClick(MediaItem mediaItem, View view, MediaItemMenuHolder mediaItemMenuHolder, int position);
     }
 
-    public SongListAdapter(Activity activity, String str) {
-        this(activity, str, null);
+    public SongListAdapter(Activity activity, String groupId) {
+        this(activity, groupId, null);
     }
 
-    public SongListAdapter(Activity activity, String str, List<MediaItem> list) {
-        this.f3398b = activity;
-        this.f3399c = str;
-        this.f3397a = list;
+    public SongListAdapter(Activity activity, String groupId, List<MediaItem> list) {
+        this.activity = activity;
+        this.groupId = groupId;
+        this.mediaItems = list;
     }
 
     /* renamed from: a */
-    public void m7399a(String str) {
-        this.f3400d = str;
+    public void setOrigin(String str) {
+        this.origin = str;
     }
 
     /* renamed from: b */
-    public void m7396b(String str) {
-        this.f3403g = str;
+    public void setMediaId(String str) {
+        this.mediaId = str;
     }
 
     /* renamed from: a */
-    public String m7410a() {
-        return this.f3402f;
+    public String getLocalGroupId() {
+        return this.localGroupId;
     }
 
     /* renamed from: c */
-    public void m7395c(String str) {
-        this.f3402f = str;
+    public void setLocalGroupId(String str) {
+        this.localGroupId = str;
     }
 
     /* renamed from: d */
-    public void m7394d(String str) {
-        this.f3401e = str;
+    public void setModule(String str) {
+        this.module = str;
     }
 
     /* renamed from: b */
-    public List<MediaItem> m7397b() {
-        return this.f3397a;
+    public List<MediaItem> getMediaItems() {
+        return this.mediaItems;
     }
 
     /* renamed from: a */
-    public void m7398a(List<MediaItem> list) {
-        this.f3397a = list;
+    public void setMediaItems(List<MediaItem> list) {
+        this.mediaItems = list;
     }
 
     @Override // android.widget.Adapter
     public int getCount() {
-        if (this.f3397a == null) {
+        if (this.mediaItems == null) {
             return 0;
         }
-        return this.f3397a.size();
+        return this.mediaItems.size();
     }
 
     @Override // android.widget.Adapter
     /* renamed from: a */
     public MediaItem getItem(int i) {
         int count = getCount();
-        if (!ListUtils.m4717b(this.f3397a) || i >= count) {
+        if (!ListUtils.m4717b(this.mediaItems) || i >= count) {
             return null;
         }
-        return this.f3397a.get(i);
+        return this.mediaItems.get(i);
     }
 
     @Override // android.widget.Adapter
@@ -141,22 +139,22 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
     @Override // android.widget.Adapter
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
-            view = View.inflate(this.f3398b, R.layout.online_media_list_item, null);
+            view = View.inflate(this.activity, R.layout.online_media_list_item, null);
             view.setTag(new MediaItemViewHolder(view));
         }
-        MediaItem mediaItem = this.f3397a.get(i);
+        MediaItem mediaItem = this.mediaItems.get(i);
         MediaItemViewHolder mediaItemViewHolder = (MediaItemViewHolder) view.getTag();
         MediaItemMenuHolder mediaItemMenuHolder = (MediaItemMenuHolder) mediaItemViewHolder.getExpandable().getTag();
         mediaItemMenuHolder.m6979a(this);
         m7403a(mediaItemMenuHolder, mediaItem, i);
-        if (StringUtils.isEmpty(this.f3402f)) {
-            this.f3402f = Preferences.m2858m();
+        if (StringUtils.isEmpty(this.localGroupId)) {
+            this.localGroupId = Preferences.getLocalGroupId();
         }
-        if (StringUtils.isEmpty(this.f3403g)) {
-            this.f3403g = Preferences.m2854n();
+        if (StringUtils.isEmpty(this.mediaId)) {
+            this.mediaId = Preferences.getMediaId();
         }
-        boolean z = StringUtils.m8344a(this.f3399c, this.f3402f) && StringUtils.m8344a(this.f3403g, mediaItem.getID());
-        mediaItemViewHolder.m6970a(null, mediaItem, i, (this.f3397a instanceof AsyncLoadMediaItemList) && ((AsyncLoadMediaItemList) this.f3397a).isLoadFinished());
+        boolean z = StringUtils.equals(this.groupId, this.localGroupId) && StringUtils.equals(this.mediaId, mediaItem.getID());
+        mediaItemViewHolder.m6970a(null, mediaItem, i, (this.mediaItems instanceof AsyncLoadMediaItemList) && ((AsyncLoadMediaItemList) this.mediaItems).isLoadFinished());
         mediaItemViewHolder.m6971a(mediaItem, (PlayStatus) null, z);
         view.setEnabled(z ? false : true);
         view.setSelected(z);
@@ -172,10 +170,10 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
                 SongListAdapter.this.m7400a(mediaItem, view, mediaItemMenuHolder, i);
                 switch (view.getId()) {
                     case R.id.media_menu_download /* 2131230747 */:
-                        SongListAdapter.this.m7401a(mediaItem);
+                        SongListAdapter.this.download(mediaItem);
                         return;
                     case R.id.media_menu_favor /* 2131230748 */:
-                        mediaItemMenuHolder.m6976a(mediaItem, i);
+                        mediaItemMenuHolder.favority(mediaItem, i);
                         return;
                     case R.id.media_menu_favor_icon /* 2131230749 */:
                     case R.id.media_menu_more /* 2131230750 */:
@@ -183,11 +181,11 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
                     default:
                         return;
                     case R.id.media_menu_mv /* 2131230751 */:
-                        MvManager.m5557b(SongListAdapter.this.f3398b, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.adapter.f.c.1.1
+                        MvManager.showMv(SongListAdapter.this.activity, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.adapter.f.c.1.1
                             @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
                             /* renamed from: a */
-                            public void mo1219a() {
-                                VideoPlayManager.m5816a(SongListAdapter.this.f3398b, mediaItem);
+                            public void onSuccess() {
+                                VideoPlayManager.playVideo(SongListAdapter.this.activity, mediaItem);
                             }
 
                             @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
@@ -198,7 +196,7 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
                         }, 0);
                         return;
                     case R.id.media_menu_share /* 2131230753 */:
-                        PopupsUtils.m6756a(SongListAdapter.this.f3398b, mediaItem);
+                        PopupsUtils.shareMediaItem(SongListAdapter.this.activity, mediaItem);
                         return;
                 }
             }
@@ -211,18 +209,15 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m7400a(MediaItem mediaItem, View view, MediaItemMenuHolder mediaItemMenuHolder, int i) {
-        if (this.f3404h != null) {
-            this.f3404h.mo5476a(mediaItem, view, mediaItemMenuHolder, i);
+        if (this.onItemClickListener != null) {
+            this.onItemClickListener.onItemClick(mediaItem, view, mediaItemMenuHolder, i);
         }
     }
 
 
     /* renamed from: a */
-    public void m7401a(MediaItem mediaItem) {
-        if (this.f3400d != null && this.f3401e != null) {
-            //StatisticUtils.m4907a(this.f3401e, "menu", this.f3400d, 0L, //OnlineMediaStatistic.m5029f(), mediaItem.getTitle(), UUID.randomUUID().toString());
-        }
-        new DownloadMenuHandler(this.f3398b).m6927a(mediaItem, this.f3400d);
+    public void download(MediaItem mediaItem) {
+        new DownloadMenuHandler(this.activity).m6927a(mediaItem, this.origin);
     }
 
     /* renamed from: a */
@@ -231,39 +226,26 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
         MediaItem item = getItem(i);
         if (item != null) {
             LogUtils.debug("ListStatistic", "onMediaItemClicked=" + item.getSongID() + "," + item.getTitle());
-            if (z) {
-                //OnlineMediaStatistic.m5047a(Integer.valueOf(//ListStatistic.m5212a()));
-                //OnlineMediaStatistic.m5038b(//ListStatistic.m5203b());
-                //OnlineMediaStatistic.m5046a(item.getSongID());
-                //OnlineMediaStatistic.m5034c(//ListStatistic.m5201c());
-            } else {
-                //OnlineMediaStatistic.m5047a((Integer) (-1));
-                //OnlineMediaStatistic.m5038b((String) null);
-                //OnlineMediaStatistic.m5046a((Long) (-1L));
-                //OnlineMediaStatistic.m5034c(null);
-            }
-            //OnlineMediaStatistic.m5045a(this.f3400d);
-            //OnlineMediaStatistic.m5054a();
-            if (StringUtils.m8344a(this.f3399c, Preferences.m2858m()) && StringUtils.m8344a(item.getID(), Preferences.m2854n())) {
+            if (StringUtils.equals(this.groupId, Preferences.getLocalGroupId()) && StringUtils.equals(item.getID(), Preferences.getMediaId())) {
                 PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
                 if (m2463m == PlayStatus.STATUS_PAUSED) {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                     return;
                 } else if (m2463m == PlayStatus.STATUS_PLAYING) {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                     return;
                 } else {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
                     return;
                 }
             }
-            CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, m7397b()));
-            CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, this.f3399c, item));
+            CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, getMediaItems()));
+            CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, this.groupId, item));
         }
     }
 
     /* renamed from: a */
-    public void m7407a(InterfaceC1003a interfaceC1003a) {
-        this.f3404h = interfaceC1003a;
+    public void m7407a(OnItemClickListener interfaceC1003a) {
+        this.onItemClickListener = interfaceC1003a;
     }
 }

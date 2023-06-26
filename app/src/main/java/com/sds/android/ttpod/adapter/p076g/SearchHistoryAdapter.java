@@ -56,16 +56,18 @@ public class SearchHistoryAdapter extends BaseAdapter {
 
     @Override // android.widget.Adapter
     public View getView(int i, View view, ViewGroup viewGroup) {
-        C1007b c1007b;
+        SearchHistoryViewHolder searchHistoryViewHolder;
         if (view == null) {
             view = LayoutInflater.from(BaseApplication.getApplication()).inflate(R.layout.online_search_history_item, viewGroup, false);
-            C1007b c1007b2 = new C1007b((IconTextView) view.findViewById(R.id.search_history_clear_ic), view.findViewById(R.id.layout_search_history_clear), (TextView) view.findViewById(R.id.search_history_title));
+            SearchHistoryViewHolder c1007b2 = new SearchHistoryViewHolder((IconTextView) view.findViewById(R.id.search_history_clear_ic)
+                    , view.findViewById(R.id.layout_search_history_clear)
+                    , (TextView) view.findViewById(R.id.search_history_title));
             view.setTag(c1007b2);
-            c1007b = c1007b2;
+            searchHistoryViewHolder = c1007b2;
         } else {
-            c1007b = (C1007b) view.getTag();
+            searchHistoryViewHolder = (SearchHistoryViewHolder) view.getTag();
         }
-        c1007b.f3420d.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.g.a.1
+        searchHistoryViewHolder.clear.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.g.a.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view2) {
                 if (SearchHistoryAdapter.this.f3415b != null) {
@@ -73,32 +75,32 @@ public class SearchHistoryAdapter extends BaseAdapter {
                 }
             }
         });
-        c1007b.f3420d.setTag(this.f3414a.m4093b().get(i));
-        c1007b.f3418b.setText(this.f3414a.m4093b().get(i));
-        ThemeManager.m3269a(c1007b.f3418b, ThemeElement.SONG_LIST_ITEM_TEXT);
+        searchHistoryViewHolder.clear.setTag(this.f3414a.m4093b().get(i));
+        searchHistoryViewHolder.title.setText(this.f3414a.m4093b().get(i));
+        ThemeManager.m3269a(searchHistoryViewHolder.title, ThemeElement.SONG_LIST_ITEM_TEXT);
         ThemeManager.m3269a(view, ThemeElement.SONG_LIST_ITEM_BACKGROUND);
-        ThemeUtils.m8173a(c1007b.f3419c, ThemeElement.SONG_LIST_ITEM_TEXT);
+        ThemeUtils.m8173a(searchHistoryViewHolder.clearIc, ThemeElement.SONG_LIST_ITEM_TEXT);
         return view;
     }
 
     /* compiled from: SearchHistoryAdapter.java */
     /* renamed from: com.sds.android.ttpod.adapter.g.a$b */
     /* loaded from: classes.dex */
-    private final class C1007b {
+    private final class SearchHistoryViewHolder {
 
         /* renamed from: b */
-        private TextView f3418b;
+        private TextView title;
 
         /* renamed from: c */
-        private IconTextView f3419c;
+        private IconTextView clearIc;
 
         /* renamed from: d */
-        private View f3420d;
+        private View clear;
 
-        C1007b(IconTextView iconTextView, View view, TextView textView) {
-            this.f3419c = iconTextView;
-            this.f3418b = textView;
-            this.f3420d = view;
+        SearchHistoryViewHolder(IconTextView iconTextView, View view, TextView textView) {
+            this.clearIc = iconTextView;
+            this.title = textView;
+            this.clear = view;
         }
     }
 

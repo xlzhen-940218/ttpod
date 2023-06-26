@@ -8,13 +8,11 @@ import com.sds.android.cloudapi.ttpod.result.RecommendPostResult;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
+
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
@@ -88,6 +86,6 @@ public class PrivateCustomFragment extends RecommendPostListFragment {
         } else {
             this.mCurrentPage = 1;
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_PRIVATE_CUSTOM_POSTS, Integer.valueOf(this.mCurrentPage), 10));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_PRIVATE_CUSTOM_POSTS, Integer.valueOf(this.mCurrentPage), 10));
     }
 }

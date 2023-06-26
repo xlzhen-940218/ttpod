@@ -13,6 +13,10 @@ public class DataListResult<D> extends BaseResult {
         return this.mDataList;
     }
 
+    public void setDataList(ArrayList<D> mDataList) {
+        this.mDataList = mDataList;
+    }
+
     public boolean isDataListEmpty() {
         return this.mDataList.size() == 0;
     }

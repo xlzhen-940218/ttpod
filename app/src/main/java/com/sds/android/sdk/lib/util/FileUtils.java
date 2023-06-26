@@ -245,7 +245,7 @@ public class FileUtils {
             throw new NullPointerException("path should not be null.");
         }
         try {
-            str2 = StringUtils.m8347a(new FileInputStream(str));
+            str2 = StringUtils.streamToString(new FileInputStream(str));
         } catch (Exception e) {
             e.printStackTrace();
             str2 = null;

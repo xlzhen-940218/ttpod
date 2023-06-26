@@ -141,7 +141,7 @@ public class PersionalListenControlAdapter extends BaseAdapter implements View.O
             this.f3466f.dismiss();
         } else if (R.id.btn_setdefault_submit == id) {
             CmmusicStatistic.m7307c(this.f3467g);
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.c.2
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.c.2
                 @Override // java.lang.Runnable
                 public void run() {
                     String m7317a = SettingUserListenDefaultAndDelete.m7317a(PersionalListenControlAdapter.this.f3465e);

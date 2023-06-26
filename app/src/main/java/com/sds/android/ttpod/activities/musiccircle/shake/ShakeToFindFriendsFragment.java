@@ -196,7 +196,7 @@ public class ShakeToFindFriendsFragment extends SlidingClosableFragment implemen
 
     @Override // com.sds.android.ttpod.activities.musiccircle.shake.Shaker.InterfaceC0849a
     public void onShake() {
-        if (!EnvironmentUtils.C0604c.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             this.mShakeController.m7832c();
             this.mHint.setVisibility(View.VISIBLE);
             this.mHint.setText(R.string.shake_error_hint);

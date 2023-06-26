@@ -77,7 +77,7 @@ public abstract class BaseCategoryFragment extends BaseFragment implements Adapt
     }
 
     private void loadData() {
-        CommandCenter.getInstance().m4606a(getLoadDataCommand());
+        CommandCenter.getInstance().execute(getLoadDataCommand());
     }
 
     public void onDataListDownloaded() {
@@ -104,7 +104,7 @@ public abstract class BaseCategoryFragment extends BaseFragment implements Adapt
 
     @Override // android.widget.AdapterView.OnItemClickListener
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
-        if (!EnvironmentUtils.C0604c.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             PopupsUtils.m6760a((int) R.string.shake_error_hint);
             return;
         }
@@ -116,7 +116,7 @@ public abstract class BaseCategoryFragment extends BaseFragment implements Adapt
 
     private void checkUpdateDataList(Long l) {
         if (l.longValue() + TIME_DELTA < System.currentTimeMillis()) {
-            CommandCenter.getInstance().m4606a(new Command(getRequestDataCommandID(), new Object[0]));
+            CommandCenter.getInstance().execute(new Command(getRequestDataCommandID(), new Object[0]));
         }
     }
 

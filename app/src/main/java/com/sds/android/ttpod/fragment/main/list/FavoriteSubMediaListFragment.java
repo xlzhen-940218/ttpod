@@ -218,13 +218,13 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
 
         public void sync() {
             if (getGroupID().equals(MediaStorage.GROUP_ID_FAV)) {
-                if (!EnvironmentUtils.C0604c.m8474e()) {
+                if (!EnvironmentUtils.DeviceConfig.m8474e()) {
                     PopupsUtils.m6760a((int) R.string.network_unavailable);
                     return;
                 } else if (!this.mIsRefreshing) {
                     this.mIsRefreshing = true;
                     this.mHasNotified = false;
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_FAVORITE_ONLINE_MEDIA_LIST, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.SYNC_FAVORITE_ONLINE_MEDIA_LIST, new Object[0]));
                     PopupsUtils.m6760a((int) R.string.sync_favorite_songs_start);
                     return;
                 } else {

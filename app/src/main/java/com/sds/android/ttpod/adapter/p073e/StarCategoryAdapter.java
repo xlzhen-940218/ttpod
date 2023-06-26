@@ -19,7 +19,7 @@ public class StarCategoryAdapter extends BaseListAdapter<StarCategory> {
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.musiccircle_star_category_item, (ViewGroup) null, false);
         inflate.setTag(inflate.findViewById(R.id.category_title));
         return inflate;
@@ -28,7 +28,7 @@ public class StarCategoryAdapter extends BaseListAdapter<StarCategory> {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo5400a(View view, StarCategory starCategory, int i) {
+    public void buildDataUI(View view, StarCategory starCategory, int i) {
         ((TextView) view.getTag()).setText(starCategory.getName());
     }
 }

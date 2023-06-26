@@ -43,8 +43,8 @@ public abstract class SoundSearchMediaListActivity extends SlidingClosableActivi
                     arrayList.add(soundSearchInfo.m5823f());
                 }
                 Preferences.m3063I(false);
-                CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, arrayList.get(m8266a)));
+                CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
+                CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, arrayList.get(m8266a)));
             }
         }
     };

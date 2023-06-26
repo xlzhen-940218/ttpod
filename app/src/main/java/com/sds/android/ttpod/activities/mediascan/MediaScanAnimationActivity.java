@@ -17,7 +17,7 @@ import com.sds.android.ttpod.framework.base.BaseActivity;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.modules.skin.view.Animation;
+import com.sds.android.ttpod.framework.modules.skin.view.AnimationImageView;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.media.mediastore.MediaStorage;
 import java.lang.reflect.Method;
@@ -31,7 +31,7 @@ public class MediaScanAnimationActivity extends BaseActivity {
     private static final int MSG_REFRESH = 0;
     private static final int REFRESH_TIME = 50;
     private static final String TAG = "MediaScanAnimationActivity";
-    private Animation mAnimationImageView;
+    private AnimationImageView mAnimationImageView;
     private boolean mIsScanning;
     private TextView mMediaScanCountTextView;
     private Button mMediaScanFinishedButton;
@@ -65,7 +65,7 @@ public class MediaScanAnimationActivity extends BaseActivity {
             beginTransaction.replace(R.id.fragment_navigate, slidingPagerFragment);
             beginTransaction.commit();
         }
-        this.mAnimationImageView = (Animation) findViewById(R.id.imageview_mediascan_anim);
+        this.mAnimationImageView = (AnimationImageView) findViewById(R.id.imageview_mediascan_anim);
         this.mAnimationImageView.setIgnoreFocusChanged(true);
         this.mAnimationImageView.setAnimationResource(R.drawable.xml_imageview_mediascan_animation);
         this.mMediaScanCountTextView = (TextView) findViewById(R.id.textview_mediascan_count);
@@ -92,7 +92,7 @@ public class MediaScanAnimationActivity extends BaseActivity {
         if (strArr == null) {
             setPage(SPage.PAGE_SCAN_MUSIC_ONE_KEY);
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.STOP_SCAN, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.STOP_SCAN, new Object[0]));
         CommandCenter m4607a = CommandCenter.getInstance();
         CommandID commandID = CommandID.START_SCAN;
         Object[] objArr = new Object[2];
@@ -101,7 +101,7 @@ public class MediaScanAnimationActivity extends BaseActivity {
             str = MediaStorage.GROUP_ID_ALL_LOCAL;
         }
         objArr[1] = str;
-        m4607a.m4606a(new Command(commandID, objArr));
+        m4607a.execute(new Command(commandID, objArr));
         this.mAnimationImageView.m3504a();
         this.mHandler.sendEmptyMessage(0);
     }

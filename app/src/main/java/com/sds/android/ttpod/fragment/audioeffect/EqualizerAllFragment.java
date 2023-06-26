@@ -23,8 +23,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.EqualizerPreset;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.audiofx.TTEqualizer;
@@ -130,13 +128,13 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
         public void m5742d(String str) {
             EqualizerAllFragment.this.mCustomEqualizerMap.remove(str);
             EqualizerAllFragment.this.mEqualizerAllList.remove(str);
-            CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_CUSTOM_EQUALIZER, str));
+            CommandCenter.getInstance().execute(new Command(CommandID.DELETE_CUSTOM_EQUALIZER, str));
         }
 
         /* JADX INFO: Access modifiers changed from: private */
         /* renamed from: a */
         public void m5748a(TTEqualizer.Settings settings) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.SAVE_CUSTOM_EQUALIZER, settings));
+            CommandCenter.getInstance().execute(new Command(CommandID.SAVE_CUSTOM_EQUALIZER, settings));
         }
     };
 

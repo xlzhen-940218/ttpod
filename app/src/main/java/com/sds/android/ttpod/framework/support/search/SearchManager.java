@@ -183,11 +183,11 @@ public final class SearchManager {
             } else if (mediaItem != null) {
                 if ("lyric_type".equals(stringExtra2)) {
                     m2225a(mediaItem, stringExtra3, stringExtra4);
-                    TaskScheduler.m8581a(new LyricSearchTask(SearchTaskInfoUtils.m3887a(mediaItem, stringExtra4, stringExtra3)));
+                    TaskScheduler.start(new LyricSearchTask(SearchTaskInfoUtils.m3887a(mediaItem, stringExtra4, stringExtra3)));
                     return true;
                 } else if ("picture_type".equals(stringExtra2)) {
                     m2226a(mediaItem, stringExtra3);
-                    TaskScheduler.m8581a(new PictureSearchTask(SearchTaskInfoUtils.m3885b(mediaItem, stringExtra4, stringExtra3)));
+                    TaskScheduler.start(new PictureSearchTask(SearchTaskInfoUtils.m3885b(mediaItem, stringExtra4, stringExtra3)));
                     return true;
                 } else {
                     return true;
@@ -226,10 +226,10 @@ public final class SearchManager {
         } else if ("remove_lyric_pic_command".equals(stringExtra)) {
             MediaItem mediaItem3 = (MediaItem) intent.getParcelableExtra("media");
             if ("lyric_type".equals(stringExtra2)) {
-                TaskScheduler.m8581a(new LyricSearchTask(SearchTaskInfoUtils.m3884c(mediaItem3)));
+                TaskScheduler.start(new LyricSearchTask(SearchTaskInfoUtils.m3884c(mediaItem3)));
                 return true;
             } else if ("picture_type".equals(stringExtra2)) {
-                TaskScheduler.m8581a(new PictureSearchTask(SearchTaskInfoUtils.m3883d(mediaItem3)));
+                TaskScheduler.start(new PictureSearchTask(SearchTaskInfoUtils.m3883d(mediaItem3)));
                 return true;
             } else {
                 return true;
@@ -291,10 +291,10 @@ public final class SearchManager {
         this.f7264n = mediaItem.getID();
         LyricSearchTaskInfo m3888a = SearchTaskInfoUtils.m3888a(mediaItem);
         m3888a.m2204b(true);
-        TaskScheduler.m8581a(new LyricSearchTask(m3888a));
+        TaskScheduler.start(new LyricSearchTask(m3888a));
         PictureSearchTaskInfo m3886b = SearchTaskInfoUtils.m3886b(mediaItem);
         m3886b.m2204b(true);
-        TaskScheduler.m8581a(new PictureSearchTask(m3886b));
+        TaskScheduler.start(new PictureSearchTask(m3886b));
     }
 
     /* renamed from: g */
@@ -319,27 +319,27 @@ public final class SearchManager {
 
     /* renamed from: i */
     private void m2213i() {
-        MediaItem queryMediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.m2858m(), Preferences.m2854n());
+        MediaItem queryMediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.getLocalGroupId(), Preferences.getMediaId());
         if (queryMediaItem != null && !queryMediaItem.isNull()) {
             LogUtils.info("SearchManager", "searchLocalArtistPicture lookLyricPic create local pic search task, artist=%s title=%s", queryMediaItem.getArtist(), queryMediaItem.getTitle());
             PictureSearchTaskInfo m3886b = SearchTaskInfoUtils.m3886b(queryMediaItem);
             m3886b.m2201c(true);
-            TaskScheduler.m8581a(new PictureSearchTask(m3886b));
+            TaskScheduler.start(new PictureSearchTask(m3886b));
         }
     }
 
     /* renamed from: a */
     public void m2227a(MediaItem mediaItem) {
         if (mediaItem == null) {
-            mediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.m2858m(), Preferences.m2854n());
+            mediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.getLocalGroupId(), Preferences.getMediaId());
         }
         if (mediaItem != null && !mediaItem.isNull()) {
             ImageSwitcherEngine.m4724d().m4726c();
             LogUtils.info("SearchManager", "searchLyricPicture lookLyricPic create lyric pic search task, artist=%s title=%s", mediaItem.getArtist(), mediaItem.getTitle());
             m2225a(mediaItem, (String) null, (String) null);
-            TaskScheduler.m8581a(new LyricSearchTask(SearchTaskInfoUtils.m3888a(mediaItem)));
+            TaskScheduler.start(new LyricSearchTask(SearchTaskInfoUtils.m3888a(mediaItem)));
             m2226a(mediaItem, (String) null);
-            TaskScheduler.m8581a(new PictureSearchTask(SearchTaskInfoUtils.m3886b(mediaItem)));
+            TaskScheduler.start(new PictureSearchTask(SearchTaskInfoUtils.m3886b(mediaItem)));
         }
     }
 
@@ -393,14 +393,14 @@ public final class SearchManager {
                         if ("picture_type".equals(stringExtra)) {
                             SearchManager.this.f7255e = intent.getStringExtra("media_id") + stringArrayListExtra.get(0);
                             MediaItem m2606g = Player.m2611e().m2606g();
-                            if (m2606g != null && StringUtils.m8344a(m2606g.getID(), stringExtra2)) {
+                            if (m2606g != null && StringUtils.equals(m2606g.getID(), stringExtra2)) {
                                 Preferences.m3011a(stringArrayListExtra.get(0), m2606g);
                             }
                             SearchManager.this.f7256f.mo2190b();
                         } else if ("lyric_type".equals(stringExtra)) {
                             String str = stringArrayListExtra.get(0);
                             MediaItem m2606g2 = Player.m2611e().m2606g();
-                            if (m2606g2 != null && StringUtils.m8344a(m2606g2.getID(), stringExtra2)) {
+                            if (m2606g2 != null && StringUtils.equals(m2606g2.getID(), stringExtra2)) {
                                 Preferences.m2932b(str, m2606g2);
                                 MiniLyricManager.m2344a().m2331f();
                             }
@@ -421,7 +421,7 @@ public final class SearchManager {
 
     /* renamed from: a */
     public void m2223a(String str, String str2, SearchStatus searchStatus) {
-        if (this.f7269s != null && this.f7258h != null && str != null && StringUtils.m8344a(str, this.f7264n)) {
+        if (this.f7269s != null && this.f7258h != null && str != null && StringUtils.equals(str, this.f7264n)) {
             synchronized (f7254d) {
                 m2220b(str, str2, searchStatus);
             }
@@ -431,8 +431,8 @@ public final class SearchManager {
     /* renamed from: b */
     private void m2220b(String str, String str2, SearchStatus searchStatus) {
         MediaItem queryMediaItem;
-        if (this.f7258h != null && str != null && StringUtils.m8344a(str, this.f7264n)) {
-            if (EnvironmentUtils.C0602a.m8503h() && (queryMediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), MediaStorage.GROUP_ID_ALL_LOCAL, str)) != null) {
+        if (this.f7258h != null && str != null && StringUtils.equals(str, this.f7264n)) {
+            if (EnvironmentUtils.AppConfig.getTestMode() && (queryMediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), MediaStorage.GROUP_ID_ALL_LOCAL, str)) != null) {
                 LogUtils.debug("SearchManager", "dealBatchItemSearchState type=%s status=%s mediaId=%s artist=%s title=%s", str2, searchStatus, str, queryMediaItem.getArtist(), queryMediaItem.getTitle());
             }
             if ("lyric_type".equals(str2)) {

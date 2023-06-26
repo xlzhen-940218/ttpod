@@ -126,7 +126,7 @@ public class ApSharingFragment extends ApShareBaseFragment implements ApSharingA
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(MessageDialog messageDialog2) {
-                    TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.fragment.apshare.ApSharingFragment.2.1
+                    TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.fragment.apshare.ApSharingFragment.2.1
                         @Override // java.lang.Runnable
                         public void run() {
                             if (ApSharingFragment.this.mWifiApManager != null && ApSharingFragment.this.mWifiApManager.m7038c()) {

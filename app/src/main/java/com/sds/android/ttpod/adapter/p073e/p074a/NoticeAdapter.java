@@ -49,7 +49,7 @@ public class NoticeAdapter extends BaseListAdapter<Notice> {
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.musiccircle_notice_repost_item, (ViewGroup) null, false);
         inflate.setTag(new C0977a(inflate));
         return inflate;
@@ -59,11 +59,11 @@ public class NoticeAdapter extends BaseListAdapter<Notice> {
     /* JADX WARN: Multi-variable type inference failed */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo5400a(View view, Notice notice, int i) {
+    public void buildDataUI(View view, Notice notice, int i) {
         String songListName;
         C0977a c0977a = (C0977a) view.getTag();
         c0977a.f3274c.setVisibility(notice.getReadStatus() ? View.GONE : View.VISIBLE);
-        c0977a.f3275d.setText(TimeUtils.m8155a(m7664a(), notice.getTimeStamp()));
+        c0977a.f3275d.setText(TimeUtils.m8155a(getContext(), notice.getTimeStamp()));
         Post post = notice.getPost();
         if (post != null) {
             final LabeledTTPodUser user = post.getUser();

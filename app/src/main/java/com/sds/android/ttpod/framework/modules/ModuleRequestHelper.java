@@ -32,13 +32,13 @@ public class ModuleRequestHelper {
         DebugUtils.m8426a(request, "do request is null");
         final Handler handler = new Handler();
         final long currentTimeMillis = System.currentTimeMillis();
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.e.1
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.e.1
             @Override // java.lang.Runnable
             public void run() {
                 BaseResult m4562a = null;
                 BaseResult m4562a1;
                 ValidityResult m3207a = Cache.getInstance().m3207a(m4084a);
-                if (ModuleRequestHelper.m4081a(m3207a, EnvironmentUtils.C0604c.m8474e())) {
+                if (ModuleRequestHelper.m4081a(m3207a, EnvironmentUtils.DeviceConfig.m8474e())) {
                     long currentTimeMillis2 = System.currentTimeMillis();
                     m4562a1 = request.m8531f();
                     LogUtils.warning("ModuleRequestHelper", "request.execute cost--> " + (System.currentTimeMillis() - currentTimeMillis2) + "ms  " + request.m8532e());

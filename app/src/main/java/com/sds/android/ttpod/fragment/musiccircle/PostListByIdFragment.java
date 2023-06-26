@@ -83,7 +83,7 @@ public abstract class PostListByIdFragment extends PostListFragment {
     private void requestPosts(List<Long> list) {
         updateFooter(false, 0, getString(R.string.loading));
         setRequestState(RequestState.REQUESTING);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, list, onLoadOrigin()));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, list, onLoadOrigin()));
     }
 
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListFragment

@@ -15,7 +15,7 @@
         android:src="@drawable/img_background_song_publish"
         app:Image_border_color="@color/rounded_image_corner"
         app:Image_border_width="@dimen/rounded_image_border"
-        app:corner_radius="4dp"
+        app:image_corner_radius="4dp"
         app:image_ratio="1" />
 
     <TextView

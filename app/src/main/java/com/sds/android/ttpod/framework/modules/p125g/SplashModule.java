@@ -66,7 +66,7 @@ public final class SplashModule extends BaseModule {
     }
 
     public void loadSplash(final Integer num, final Integer num2) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.g.d.1
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.g.d.1
             @Override // java.lang.Runnable
             public void run() {
                 Bitmap bitmap;
@@ -147,7 +147,7 @@ public final class SplashModule extends BaseModule {
     /* renamed from: b */
     public void m3999b(int i) {
         SplashDataResult m8531f;
-        if (EnvironmentUtils.C0604c.m8476d() == 2 && (m8531f = SplashAPI.m8824a(i).m8531f()) != null && 1 == m8531f.getCode()) {
+        if (EnvironmentUtils.DeviceConfig.m8476d() == 2 && (m8531f = SplashAPI.m8824a(i).m8531f()) != null && 1 == m8531f.getCode()) {
             List<SplashItem> m4012c = SplashInfoParser.m4014a(m8531f).m4012c();
             if (m4001a(m4012c)) {
                 Cache.getInstance().m3214a(m8531f);
@@ -238,9 +238,9 @@ public final class SplashModule extends BaseModule {
     private boolean m4002a(String str, String str2) {
         if (!StringUtils.isEmpty(str) && !StringUtils.isEmpty(str2)) {
             String str3 = str2 + ".tmp";
-            HttpRequest.C0586a m8708a = HttpRequest.m8708a(new HttpGet(str), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
-            if (m8708a != null && 200 == m8708a.m8690c()) {
-                if (FileUtils.m8420a(m8708a.m8688e(), str3)) {
+            HttpRequest.Response m8708a = HttpRequest.m8708a(new HttpGet(str), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
+            if (m8708a != null && 200 == m8708a.getStatusCode()) {
+                if (FileUtils.m8420a(m8708a.getInputStream(), str3)) {
                     return FileUtils.m8410c(str3, str2);
                 }
                 FileUtils.m8404h(str3);
@@ -288,7 +288,7 @@ public final class SplashModule extends BaseModule {
                 if (currentTimeMillis < 1500) {
                     CommandCenter.getInstance().m4603a(new Command(CommandID.FINISH_SPLASH, new Object[0]), ModuleID.SPLASH, (int) (1500 - currentTimeMillis));
                 } else {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.FINISH_SPLASH, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.FINISH_SPLASH, new Object[0]));
                 }
             }
         });

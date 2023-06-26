@@ -37,7 +37,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.environment.PreferencesID;
@@ -417,7 +416,7 @@ public class MyFragment extends BaseFragment {
                             PopupsUtils.m6721a("没有歌曲，臣妾做不到啊");
                             return;
                         }
-                        MediaItem mediaItem = (MediaItem) CommandCenter.getInstance().m4602a(new Command(CommandID.QUERY_MEDIA_ITEM, Preferences.m2858m(), Preferences.m2854n()), MediaItem.class);
+                        MediaItem mediaItem = (MediaItem) CommandCenter.getInstance().m4602a(new Command(CommandID.QUERY_MEDIA_ITEM, Preferences.getLocalGroupId(), Preferences.getMediaId()), MediaItem.class);
                         if (mediaItem != null && TTTextUtils.isValidateMediaString(mediaItem.getArtist())) {
                             string = MyFragment.this.getString(R.string.random_song_info, mediaItem.getArtist());
                         } else {

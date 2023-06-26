@@ -54,7 +54,7 @@ public class OnlinePlayingGroupUtils {
 
     /* renamed from: a */
     public static boolean m6910a(String str, Post post) {
-        return StringUtils.m8344a(str, m6916a(post));
+        return StringUtils.equals(str, m6916a(post));
     }
 
     /* renamed from: c */
@@ -69,6 +69,6 @@ public class OnlinePlayingGroupUtils {
 
     /* renamed from: a */
     public static boolean m6911a(String str, AlbumItem albumItem) {
-        return StringUtils.m8344a(str, m6918a(albumItem));
+        return StringUtils.equals(str, m6918a(albumItem));
     }
 }

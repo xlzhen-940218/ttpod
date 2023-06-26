@@ -10,7 +10,7 @@
         android:layout_height="80dp"
         android:scaleType="centerCrop"
         android:src="@drawable/img_background_song_publish"
-        app:corner_radius="4dp" />
+        app:image_corner_radius="4dp" />
 
     <ImageView
         android:id="@+id/first_publish_flag"

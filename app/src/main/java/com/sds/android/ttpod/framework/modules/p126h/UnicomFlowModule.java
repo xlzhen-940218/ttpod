@@ -54,7 +54,7 @@ public class UnicomFlowModule extends BaseModule {
     }
 
     public void netWorkTypeChanged() {
-        if (UnicomFlowUtil.m3946f() && EnvironmentUtils.C0604c.m8474e()) {
+        if (UnicomFlowUtil.m3946f() && EnvironmentUtils.DeviceConfig.m8474e()) {
             //UnicomFlowStatistic.m4854J();
             //new SUserEvent("PAGE_CLICK", 1143, 0).post();
             HttpRequest.m8702b(UnicomFlowUtil.m3945g());
@@ -62,8 +62,8 @@ public class UnicomFlowModule extends BaseModule {
             m3976b();
             m3973c();
             checkStatus();
-            LogUtils.debug(f6291a, "unicom flow save imsi:" + EnvironmentUtils.C0604c.getSubscriberId());
-            Cache.getInstance().m3154k(EnvironmentUtils.C0604c.getSubscriberId());
+            LogUtils.debug(f6291a, "unicom flow save imsi:" + EnvironmentUtils.DeviceConfig.getSubscriberId());
+            Cache.getInstance().m3154k(EnvironmentUtils.DeviceConfig.getSubscriberId());
         }
     }
 
@@ -142,7 +142,7 @@ public class UnicomFlowModule extends BaseModule {
     /* renamed from: c */
     private boolean m3973c() {
         String m3223P = Cache.getInstance().m3223P();
-        if (StringUtils.isEmpty(m3223P) || StringUtils.isEmpty(EnvironmentUtils.C0604c.getSubscriberId()) || m3223P.equals(EnvironmentUtils.C0604c.getSubscriberId())) {
+        if (StringUtils.isEmpty(m3223P) || StringUtils.isEmpty(EnvironmentUtils.DeviceConfig.getSubscriberId()) || m3223P.equals(EnvironmentUtils.DeviceConfig.getSubscriberId())) {
             return false;
         }
         Cache.getInstance().m3174d(UnicomFlowUtil.m3939m());
@@ -156,12 +156,12 @@ public class UnicomFlowModule extends BaseModule {
         if (StringUtils.isEmpty(m3939m)) {
             m3939m = Cache.getInstance().m3238A();
         }
-        if (StringUtils.isEmpty(m3939m) && StringUtils.isEmpty(EnvironmentUtils.C0604c.getSubscriberId())) {
-            LogUtils.debug(f6291a, "unicom flow already checkStatus imsi:" + EnvironmentUtils.C0604c.getSubscriberId() + " phone:" + m3939m);
+        if (StringUtils.isEmpty(m3939m) && StringUtils.isEmpty(EnvironmentUtils.DeviceConfig.getSubscriberId())) {
+            LogUtils.debug(f6291a, "unicom flow already checkStatus imsi:" + EnvironmentUtils.DeviceConfig.getSubscriberId() + " phone:" + m3939m);
             return;
         }
         LogUtils.debug(f6291a, "unicom flow checkStatus");
-        UnicomFlowAPI.m8818b(m3939m, EnvironmentUtils.C0604c.getSubscriberId()).m8544a(new RequestCallback<UnicomFlowResult>() { // from class: com.sds.android.ttpod.framework.modules.h.c.2
+        UnicomFlowAPI.m8818b(m3939m, EnvironmentUtils.DeviceConfig.getSubscriberId()).m8544a(new RequestCallback<UnicomFlowResult>() { // from class: com.sds.android.ttpod.framework.modules.h.c.2
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(UnicomFlowResult unicomFlowResult) {
@@ -220,7 +220,7 @@ public class UnicomFlowModule extends BaseModule {
                 int month2 = simpleDateFormat.parse(m3222Q).getMonth();
                 if (month != month2) {
                     LogUtils.debug(f6291a, "unicom flow handler change month clear flow size currentMonth:" + (month + 1) + "  lastMonth:" + (month2 + 1));
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.CLEAR_UNICOM_TOTAL_FLOW, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.CLEAR_UNICOM_TOTAL_FLOW, new Object[0]));
                 }
             }
         } catch (Exception e) {
@@ -263,7 +263,7 @@ public class UnicomFlowModule extends BaseModule {
     }
 
     public void open(final String str, String str2, String str3) {
-        UnicomFlowAPI.m8819a(str, str2, str3, EnvironmentUtils.C0604c.getSubscriberId()).m8544a(new RequestCallback<UnicomFlowResult>() { // from class: com.sds.android.ttpod.framework.modules.h.c.3
+        UnicomFlowAPI.m8819a(str, str2, str3, EnvironmentUtils.DeviceConfig.getSubscriberId()).m8544a(new RequestCallback<UnicomFlowResult>() { // from class: com.sds.android.ttpod.framework.modules.h.c.3
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(UnicomFlowResult unicomFlowResult) {
@@ -288,14 +288,14 @@ public class UnicomFlowModule extends BaseModule {
     public void m3978a(String str, UnicomFlow unicomFlow) {
         LogUtils.debug(f6291a, "unicom flow set open status");
         Cache.getInstance().m3174d(str);
-        Cache.getInstance().m3154k(EnvironmentUtils.C0604c.getSubscriberId());
+        Cache.getInstance().m3154k(EnvironmentUtils.DeviceConfig.getSubscriberId());
         String openTime = unicomFlow.getOpenTime();
         if (!StringUtils.isEmpty(openTime)) {
             Cache.getInstance().m3160h(openTime);
         }
         Cache.getInstance().m3195b(UnicomFlowStatus.OPEN.ordinal());
         Cache.getInstance().m3202a(UnicomFlowUtil.m3937o());
-        CommandCenter.getInstance().m4606a(new Command(CommandID.CLEAR_UNICOM_TOTAL_FLOW, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.CLEAR_UNICOM_TOTAL_FLOW, new Object[0]));
         m3977a(UnicomFlowUtil.m3948d());
     }
 
@@ -304,7 +304,7 @@ public class UnicomFlowModule extends BaseModule {
     public void m3974b(String str, UnicomFlow unicomFlow) {
         LogUtils.debug(f6291a, "unicom flow set trial status");
         Cache.getInstance().m3174d(str);
-        Cache.getInstance().m3154k(EnvironmentUtils.C0604c.getSubscriberId());
+        Cache.getInstance().m3154k(EnvironmentUtils.DeviceConfig.getSubscriberId());
         String trialTime = unicomFlow.getTrialTime();
         if (!StringUtils.isEmpty(trialTime)) {
             Cache.getInstance().m3158i(trialTime);
@@ -392,7 +392,7 @@ public class UnicomFlowModule extends BaseModule {
     }
 
     public void netAuthorize() {
-        UnicomFlowAPI.m8817c(m3972d(), EnvironmentUtils.C0604c.getSubscriberId()).m8544a(new RequestCallback<UnicomFlowResult>() { // from class: com.sds.android.ttpod.framework.modules.h.c.7
+        UnicomFlowAPI.m8817c(m3972d(), EnvironmentUtils.DeviceConfig.getSubscriberId()).m8544a(new RequestCallback<UnicomFlowResult>() { // from class: com.sds.android.ttpod.framework.modules.h.c.7
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(UnicomFlowResult unicomFlowResult) {
@@ -420,11 +420,11 @@ public class UnicomFlowModule extends BaseModule {
 
     public void saveTotalFlow() {
         if (HttpRequest.m8701c()) {
-            long m2453w = SupportFactory.m2397a(sContext).m2453w() + HttpRequest.m8718a() + Cache.getInstance().m3227L();
+            long m2453w = SupportFactory.m2397a(sContext).m2453w() + HttpRequest.getContentLength() + Cache.getInstance().m3227L();
             LogUtils.debug(f6291a, "unicom flow save total flow size:" + m2453w);
-            HttpRequest.m8716a(0L);
+            HttpRequest.setContentLength(0L);
             SupportFactory.m2397a(sContext).m2503a(0L);
-            if (HttpRequest.m8704b()) {
+            if (HttpRequest.isProxy()) {
                 Cache.getInstance().m3183c(m2453w);
             } else {
                 Cache.getInstance().m3194b(m2453w);
@@ -435,14 +435,14 @@ public class UnicomFlowModule extends BaseModule {
     public void clearTotalFlow() {
         LogUtils.debug(f6291a, "unicom flow clear total flow size:");
         SupportFactory.m2397a(sContext).m2503a(0L);
-        HttpRequest.m8716a(0L);
+        HttpRequest.setContentLength(0L);
         Cache.getInstance().m3183c(0L);
         Cache.getInstance().m3194b(0L);
     }
 
     public void getTotalFlow() {
         long m2453w = SupportFactory.m2397a(sContext).m2453w();
-        long m8718a = HttpRequest.m8718a();
+        long m8718a = HttpRequest.getContentLength();
         long m3227L = Cache.getInstance().m3227L();
         LogUtils.debug(f6291a, "unicom flow get Total supportFlow:" + m2453w + " httpFlow:" + m8718a + " cacheFlow:" + m3227L);
         //UnicomFlowStatistic.m4846a(m2453w + m8718a);

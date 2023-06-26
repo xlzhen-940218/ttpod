@@ -24,8 +24,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.audiofx.TTEqualizer;
@@ -114,7 +112,7 @@ public class CustomEqualizerActivity extends ActionBarActivity implements ThemeM
                         f2578b.m7242f(true);
                         TTEqualizer.Settings settings = new TTEqualizer.Settings(validateFileName, (short) CustomEqualizerActivity.this.mCustomData.length, CustomEqualizerActivity.this.mCustomData);
                         CustomEqualizerActivity.this.mCustomEqualizerMap.put(str, settings);
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.SAVE_CUSTOM_EQUALIZER, settings));
+                        CommandCenter.getInstance().execute(new Command(CommandID.SAVE_CUSTOM_EQUALIZER, settings));
                         PopupsUtils.m6760a((int) R.string.save_successfully);
                         //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_NEW_OK, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
                         //AudioEffectStatistic.m5261k();
@@ -184,7 +182,7 @@ public class CustomEqualizerActivity extends ActionBarActivity implements ThemeM
         setContentView(R.layout.activity_custom_equalizer);
         TTEqualizer.Settings settings = new TTEqualizer.Settings(getIntent().getStringExtra(KEY_CUSTOM_EQUALIZER));
         this.mCustomData = settings.getBandLevels();
-        CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, new Object[0]));
         initContentViews();
         updateView();
         int color = getResources().getColor(R.color.effect_dialog_background);

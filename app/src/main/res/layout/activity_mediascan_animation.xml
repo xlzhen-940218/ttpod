@@ -19,7 +19,7 @@
         android:layout_alignParentBottom="true"
         android:background="#2fa6de">
 
-        <com.sds.android.ttpod.framework.modules.skin.view.Animation
+        <com.sds.android.ttpod.framework.modules.skin.view.AnimationImageView
             android:id="@+id/imageview_mediascan_anim"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

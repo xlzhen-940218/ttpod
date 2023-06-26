@@ -16,7 +16,7 @@ public class ValidateUtil {
         @Override // com.sds.android.ttpod.activities.user.ValidateUtil.InterfaceC0940a
         /* renamed from: a */
         public boolean mo7703a(String str) {
-            return StringUtils.m8339b(str);
+            return StringUtils.emailVerify(str);
         }
     };
 
@@ -52,7 +52,7 @@ public class ValidateUtil {
         @Override // com.sds.android.ttpod.activities.user.ValidateUtil.InterfaceC0940a
         /* renamed from: a */
         public boolean mo7703a(String str) {
-            return StringUtils.m8345a(str, 4, 20);
+            return StringUtils.lengthVerify(str, 4, 20);
         }
     };
 

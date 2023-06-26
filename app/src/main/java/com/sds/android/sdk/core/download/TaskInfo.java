@@ -202,7 +202,7 @@ public class TaskInfo implements Parcelable {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        return StringUtils.m8344a(this.mSavePath, ((TaskInfo) obj).getSavePath());
+        return StringUtils.equals(this.mSavePath, ((TaskInfo) obj).getSavePath());
     }
 
     public int hashCode() {

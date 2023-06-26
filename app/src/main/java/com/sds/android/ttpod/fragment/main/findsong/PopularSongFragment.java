@@ -16,13 +16,10 @@ import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.fragment.main.ResultHelper;
 import com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment;
 import com.sds.android.ttpod.framework.base.BaseApplication;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.MediaItemListResult;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 
@@ -68,7 +65,7 @@ public class PopularSongFragment extends SceneRecommendFragment {
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
     protected void doNextPageAction() {
-        if (!EnvironmentUtils.C0604c.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             PopupsUtils.m6760a((int) R.string.network_unavailable);
             return;
         }
@@ -93,7 +90,7 @@ public class PopularSongFragment extends SceneRecommendFragment {
         super.onLoadFinished();
         updatePopularSongList(this.mResult);
         if (this.mModuleId != 0) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_POPULAR_SONG_INTRODUCTION, Long.valueOf(this.mModuleId)));
+            CommandCenter.getInstance().execute(new Command(CommandID.GET_POPULAR_SONG_INTRODUCTION, Long.valueOf(this.mModuleId)));
         }
     }
 
@@ -150,7 +147,7 @@ public class PopularSongFragment extends SceneRecommendFragment {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void requestDataList(int i) {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_POPULAR_SONG_LIST, Integer.valueOf(i), this.mVersion));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_POPULAR_SONG_LIST, Integer.valueOf(i), this.mVersion));
     }
 
     public void updateData(ArrayList<MediaItem> arrayList, Integer num, String str) {

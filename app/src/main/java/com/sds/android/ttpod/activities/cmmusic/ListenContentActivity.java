@@ -72,7 +72,7 @@ public class ListenContentActivity extends SlidingClosableActivity implements Vi
         setTitle(R.string.cailing);
         initActionBar();
         final String m2905bx = Preferences.m2905bx();
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.activities.cmmusic.ListenContentActivity.1
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.activities.cmmusic.ListenContentActivity.1
             @Override // java.lang.Runnable
             public void run() {
                 /*if (!StringUtils.m8344a(m2905bx, EnvironmentUtils.C0604c.m8481b())) {
@@ -113,13 +113,13 @@ public class ListenContentActivity extends SlidingClosableActivity implements Vi
 
     /* JADX INFO: Access modifiers changed from: private */
     public void updateIMSI() {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.activities.cmmusic.ListenContentActivity.2
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.activities.cmmusic.ListenContentActivity.2
             @Override // java.lang.Runnable
             public void run() {
                 try {
                     Thread.sleep(10000L);
                     if (UserSelectListenQuery.m7315b()) {
-                        Preferences.m2820v(EnvironmentUtils.C0604c.getSubscriberId());
+                        Preferences.m2820v(EnvironmentUtils.DeviceConfig.getSubscriberId());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

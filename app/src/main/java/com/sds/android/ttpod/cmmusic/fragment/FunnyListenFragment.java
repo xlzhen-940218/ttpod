@@ -33,7 +33,7 @@ public class FunnyListenFragment extends BaseMusicFragment implements View.OnCli
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         this.mRootView = layoutInflater.inflate(R.layout.cmmusic_funny_listen_activity, viewGroup, false);
         listViewInit();
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             this.mListView.setVisibility(View.VISIBLE);
             mViewContent();
         } else {
@@ -53,7 +53,7 @@ public class FunnyListenFragment extends BaseMusicFragment implements View.OnCli
 
     private void mViewContent() {
         try {
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.FunnyListenFragment.1
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.FunnyListenFragment.1
                 @Override // java.lang.Runnable
                 public void run() {
                     FunnyListenFragment.this.mItemListTemp = new ArrayList();
@@ -94,7 +94,7 @@ public class FunnyListenFragment extends BaseMusicFragment implements View.OnCli
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         if (R.id.btn_tryagain_funnypage == view.getId()) {
-            if (EnvironmentUtils.C0604c.m8474e()) {
+            if (EnvironmentUtils.DeviceConfig.m8474e()) {
                 sdkInitCheck();
                 this.mListView.setVisibility(View.VISIBLE);
                 this.mLayout.setVisibility(View.GONE);

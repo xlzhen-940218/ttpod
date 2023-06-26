@@ -32,7 +32,6 @@ import com.sds.android.ttpod.adapter.p075f.ShareSelectAdapter;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.common.p082a.ShareWaitingDialog;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.share.IShareAction;
 import com.sds.android.ttpod.share.ShareApiFactory;
 import com.sds.android.ttpod.share.ShareInfo;
@@ -351,7 +350,7 @@ public class ShareSelectDialog extends BaseDialog {
         } else if (this.f7407k == ShareType.FRIEND && !this.f7408l.m1942p()) {
             this.f7400c.postDelayed(new RunnableC2156a(this.f7403g, this.f7408l.m1973a()), 500L);
             dismiss();
-        } else if (!EnvironmentUtils.C0604c.m8474e()) {
+        } else if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             this.f7412s.sendEmptyMessage(2);
         } else {
             if (this.f7409m != null) {

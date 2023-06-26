@@ -115,7 +115,7 @@ public class AudioEffectModule extends BaseModule {
 
     /* renamed from: f */
     private void m4357f() {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.5
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.5
             @Override // java.lang.Runnable
             public void run() {
                 AudioEffectModule.f5858a.lock();
@@ -285,7 +285,7 @@ public class AudioEffectModule extends BaseModule {
     }
 
     public void queryCustomEqualizerList() {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.6
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.6
             @Override // java.lang.Runnable
             public void run() {
                 ArrayList arrayList = new ArrayList();
@@ -308,13 +308,13 @@ public class AudioEffectModule extends BaseModule {
                     for (File file : listFiles) {
                         if (file.getAbsolutePath().endsWith(".tteq")) {
                             try {
-                                TTEqualizer.Settings settings = new TTEqualizer.Settings(StringUtils.m8347a(new FileInputStream(file)));
+                                TTEqualizer.Settings settings = new TTEqualizer.Settings(StringUtils.streamToString(new FileInputStream(file)));
                                 settings.setName(FileUtils.m8401k(file.getAbsolutePath()));
                                 arrayList.add(settings);
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 try {
-                                    String[] split = StringUtils.m8347a(new FileInputStream(file)).split(" ");
+                                    String[] split = StringUtils.streamToString(new FileInputStream(file)).split(" ");
                                     if (split != null && split.length == 10) {
                                         try {
                                             short[] sArr = new short[10];
@@ -345,7 +345,7 @@ public class AudioEffectModule extends BaseModule {
 
     /* renamed from: b */
     private void m4364b(String str) {
-        if (EnvironmentUtils.C0602a.m8502i() && EqualizerPreset.m4337a().contains(str)) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && EqualizerPreset.m4337a().contains(str)) {
             throw new IllegalArgumentException(str + " is default preset!");
         }
     }
@@ -430,7 +430,7 @@ public class AudioEffectModule extends BaseModule {
     }
 
     public void queryPrivateEffect() {
-        TaskScheduler.m8581a(this.f5864g);
+        TaskScheduler.start(this.f5864g);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -567,7 +567,7 @@ public class AudioEffectModule extends BaseModule {
     public void deletePrivateEffectList(final List list) {
         if (list != null && list.size() != 0) {
             if (list.get(0).getClass().equals(PrivateEffectItem.class)) {
-                TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.12
+                TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.12
                     @Override // java.lang.Runnable
                     public void run() {
                         for (Object privateEffectItem : list) {
@@ -577,7 +577,7 @@ public class AudioEffectModule extends BaseModule {
                     }
                 });
             } else if (list.get(0).getClass().equals(MediaItem.class)) {
-                TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.2
+                TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.2
                     @Override // java.lang.Runnable
                     public void run() {
                         int i = 0;
@@ -603,7 +603,7 @@ public class AudioEffectModule extends BaseModule {
                                         if (privateEffectItem != null) {
                                             if (privateEffectItem.m4327d() == null) {
                                                 i = i2;
-                                            } else if (StringUtils.m8344a(privateEffectItem.m4327d(), mediaItem.getLocalDataSource())) {
+                                            } else if (StringUtils.equals(privateEffectItem.m4327d(), mediaItem.getLocalDataSource())) {
                                                 FileUtils.m8404h(privateEffectItem.m4328c());
                                                 i = i2 + 1;
                                             }
@@ -676,7 +676,7 @@ public class AudioEffectModule extends BaseModule {
     }
 
     public void saveEffect(final MediaItem mediaItem, final AudioEffectCache audioEffectCache, final Boolean bool) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.3
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.3
             /* JADX WARN: Removed duplicated region for block: B:12:0x00c5  */
             /* JADX WARN: Removed duplicated region for block: B:39:? A[RETURN, SYNTHETIC] */
             @Override // java.lang.Runnable
@@ -760,14 +760,14 @@ public class AudioEffectModule extends BaseModule {
             } else {
                 this.f5860c.add(mediaItem.getID());
             }
-            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_EFFECT_ONLINE, mediaItem));
+            CommandCenter.getInstance().execute(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_EFFECT_ONLINE, mediaItem));
         } else {
             if (this.f5859b.contains(mediaItem.getID())) {
                 MediaStorage.deleteMediaItem(sContext, MediaStorage.GROUP_ID_EFFECT_LOCAL, mediaItem.getID());
             } else {
                 this.f5859b.add(mediaItem.getID());
             }
-            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_EFFECT_LOCAL, mediaItem));
+            CommandCenter.getInstance().execute(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_EFFECT_LOCAL, mediaItem));
         }
         f5858a.unlock();
     }

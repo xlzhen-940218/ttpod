@@ -216,7 +216,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     private void tryDownloadBackground(BackgroundItem backgroundItem) {
         OnlineSkinItem m3330c = backgroundItem.m3330c();
         if (m3330c != null) {
-            if (!EnvironmentUtils.C0604c.m8474e()) {
+            if (!EnvironmentUtils.DeviceConfig.m8474e()) {
                 PopupsUtils.m6760a((int) R.string.shake_error_hint);
             } else if (FileUtils.m8414b(backgroundItem.m3325h())) {
                 PopupsUtils.m6760a((int) R.string.skin_file_already_existed);
@@ -228,8 +228,8 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
                     return;
                 }
                 m4760a.setTag(backgroundItem);
-                CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, m4760a, Boolean.FALSE));
-                CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
+                CommandCenter.getInstance().execute(new Command(CommandID.DELETE_DOWNLOAD_TASK, m4760a, Boolean.FALSE));
+                CommandCenter.getInstance().execute(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
                 backgroundItem.m3334a(m4760a);
                 sLastRequestItem = backgroundItem;
                 this.mRefreshHandler.sendEmptyMessage(0);
@@ -428,7 +428,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
                 ImageCacheUtils.m4752a(imageView, backgroundItem.m3330c().getPictureUrl(), SkinThumbnailCreator.f6693a, SkinThumbnailCreator.f6694c, (int) R.drawable.img_skin_default_thumbnail);
             } else {
                 imageView.setImageResource(R.drawable.img_skin_default_thumbnail);
-                CommandCenter.getInstance().m4606a(new Command(CommandID.DECODE_BACKGROUND_THUMBNAIL, backgroundItem));
+                CommandCenter.getInstance().execute(new Command(CommandID.DECODE_BACKGROUND_THUMBNAIL, backgroundItem));
             }
         }
 

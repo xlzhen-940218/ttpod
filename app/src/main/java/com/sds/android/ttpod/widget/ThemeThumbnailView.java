@@ -8,30 +8,32 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.sds.android.ttpod.R;
 
 /* loaded from: classes.dex */
-public class ThemeThumbnailView extends androidx.appcompat.widget.AppCompatImageView {
+public class ThemeThumbnailView extends AppCompatImageView {
 
     /* renamed from: a */
     private float heightFactor;
 
     /* renamed from: b */
-    private int f8060b;
+    private int backgroundColor;
 
     public ThemeThumbnailView(Context context) {
         super(context);
-        m1444a(context, null);
+        initView(context, null);
     }
 
     public ThemeThumbnailView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        m1444a(context, attributeSet);
+        initView(context, attributeSet);
     }
 
     public ThemeThumbnailView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        m1444a(context, attributeSet);
+        initView(context, attributeSet);
     }
 
     @Override // android.widget.ImageView, android.view.View
@@ -59,15 +61,15 @@ public class ThemeThumbnailView extends androidx.appcompat.widget.AppCompatImage
         clipBounds.bottom--;
         clipBounds.right--;
         Paint paint = new Paint();
-        paint.setColor(this.f8060b);
+        paint.setColor(this.backgroundColor);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(1.0f);
         canvas.drawRect(clipBounds, paint);
     }
 
     /* renamed from: a */
-    private void m1444a(Context context, AttributeSet attributeSet) {
-        this.f8060b = getResources().getColor(R.color.skin_background_bounder_color);
+    private void initView(Context context, AttributeSet attributeSet) {
+        this.backgroundColor = getResources().getColor(R.color.skin_background_bounder_color);
         if (attributeSet != null) {
             TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ThemeThumbnailView);
             this.heightFactor = obtainStyledAttributes.getFloat(R.styleable.ThemeThumbnailView_heightFactor, 14.0f) / obtainStyledAttributes.getFloat(0, 9.0f);

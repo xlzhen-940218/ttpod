@@ -224,7 +224,7 @@ public final class Cache {
         }
         ArrayList arrayList = new ArrayList();
         for (GroupItem groupItem : list) {
-            if (!StringUtils.m8344a(groupItem.getGroupID(), MediaStorage.GROUP_ID_RECENTLY_PLAY) && !StringUtils.m8344a(groupItem.getGroupID(), MediaStorage.GROUP_ID_RECENTLY_ADD)) {
+            if (!StringUtils.equals(groupItem.getGroupID(), MediaStorage.GROUP_ID_RECENTLY_PLAY) && !StringUtils.equals(groupItem.getGroupID(), MediaStorage.GROUP_ID_RECENTLY_ADD)) {
                 arrayList.add(groupItem);
             }
         }

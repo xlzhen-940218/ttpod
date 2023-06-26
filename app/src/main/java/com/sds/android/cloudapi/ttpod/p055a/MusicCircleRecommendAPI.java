@@ -26,7 +26,7 @@ public final class MusicCircleRecommendAPI {
 
     /* renamed from: a */
     public static Request<RecommendPostResult> m8879a(int i, int i2) {
-        return new GetMethodRequest(RecommendPostResult.class, f2267a, "more_recomm").m8537b("userId", EnvironmentUtils.C0603b.m8488e().get("tid")).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(RecommendPostResult.class, f2267a, "more_recomm").putParams("userId", EnvironmentUtils.C0603b.m8488e().get("tid")).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: b */
@@ -36,7 +36,7 @@ public final class MusicCircleRecommendAPI {
 
     /* renamed from: b */
     public static Request<FirstPublishNewSongMoreResult> m8877b(int i, int i2) {
-        return new GetMethodRequest(FirstPublishNewSongMoreResult.class, f2267a, "new_songs_more").m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(FirstPublishNewSongMoreResult.class, f2267a, "new_songs_more").putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: c */
@@ -46,6 +46,6 @@ public final class MusicCircleRecommendAPI {
 
     /* renamed from: c */
     public static Request<FirstPublishNewAlbumResult> m8875c(int i, int i2) {
-        return new GetMethodRequest(FirstPublishNewAlbumResult.class, f2267a, "new_albums").m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(FirstPublishNewAlbumResult.class, f2267a, "new_albums").putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 }

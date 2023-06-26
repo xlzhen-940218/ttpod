@@ -8,13 +8,13 @@ import com.sds.android.sdk.lib.util.LogUtils;
 /* loaded from: classes.dex */
 public class TaskScheduler {
     /* renamed from: a */
-    public static void m8581a(Runnable runnable) {
-        m8580a(runnable, null);
+    public static void start(Runnable runnable) {
+        start(runnable, null);
     }
 
     /* JADX WARN: Type inference failed for: r0v1, types: [com.sds.android.sdk.lib.e.a$1] */
     /* renamed from: a */
-    public static void m8580a(final Runnable runnable, final Runnable runnable2) {
+    public static void start(final Runnable runnable, final Runnable runnable2) {
         if (runnable == null) {
             if (runnable2 != null) {
                 runnable2.run();

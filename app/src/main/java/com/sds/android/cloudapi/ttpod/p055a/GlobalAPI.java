@@ -30,6 +30,6 @@ public class GlobalAPI {
 
     /* renamed from: a */
     public static Request<OperatorPageResult> m8886a(String str, String str2) {
-        return new GetMethodRequest(OperatorPageResult.class, "http://api.busdh.com/market-api").m8542a("appgame/global").m8537b("f", str).m8537b("v", str2);
+        return new GetMethodRequest(OperatorPageResult.class, "http://api.busdh.com/market-api").m8542a("appgame/global").putParams("f", str).putParams("v", str2);
     }
 }

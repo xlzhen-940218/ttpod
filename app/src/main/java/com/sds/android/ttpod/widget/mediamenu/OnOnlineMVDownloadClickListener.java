@@ -33,10 +33,10 @@ public class OnOnlineMVDownloadClickListener implements View.OnClickListener {
         ListViewUtils.m8264a(this.f8390c);
         if (this.f8389b != null && this.f8388a != null) {
             //MVStatistic.m5070d();
-            MvManager.m5557b(this.f8388a, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.widget.mediamenu.b.1
+            MvManager.showMv(this.f8388a, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.widget.mediamenu.b.1
                 @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
                 /* renamed from: a */
-                public void mo1219a() {
+                public void onSuccess() {
                     OnlineMVFragment.downloadMv(OnOnlineMVDownloadClickListener.this.f8388a, OnOnlineMVDownloadClickListener.this.f8389b);
                 }
 

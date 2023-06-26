@@ -14,13 +14,10 @@ import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.fragment.main.ResultHelper;
 import com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment;
 import com.sds.android.ttpod.framework.base.BaseApplication;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.MediaItemListResult;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -72,7 +69,7 @@ public class SongCategoryDetailFragment extends SceneRecommendFragment {
         super.onLoadFinished();
         updateCategoryDetailView(this.mResult);
         if (this.mId != 0) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SONG_CATEGORY_INFO, getRequestId()));
+            CommandCenter.getInstance().execute(new Command(CommandID.GET_SONG_CATEGORY_INFO, getRequestId()));
         }
     }
 
@@ -167,7 +164,7 @@ public class SongCategoryDetailFragment extends SceneRecommendFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void requestDataList(int i) {
         super.requestDataList(i);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SONG_CATEGORY_DETAIL, Integer.valueOf(String.valueOf(this.mId)), Integer.valueOf(i), getRequestId()));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_SONG_CATEGORY_DETAIL, Integer.valueOf(String.valueOf(this.mId)), Integer.valueOf(i), getRequestId()));
     }
 
 

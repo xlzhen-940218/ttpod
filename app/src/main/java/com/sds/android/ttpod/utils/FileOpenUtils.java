@@ -20,7 +20,7 @@ public class FileOpenUtils {
         if (FileUtils.m8414b(savePath)) {
             Integer type = downloadTaskInfo.getType();
             if (type == DownloadTaskInfo.TYPE_AUDIO) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY, savePath));
+                CommandCenter.getInstance().execute(new Command(CommandID.PLAY, savePath));
             } else if (type == DownloadTaskInfo.TYPE_APP) {
                 return ApkUtils.m8311a(context, savePath);
             } else {

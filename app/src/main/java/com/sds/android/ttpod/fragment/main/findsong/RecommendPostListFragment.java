@@ -158,7 +158,7 @@ public abstract class RecommendPostListFragment extends SlidingClosableFragment 
             /* renamed from: a */
             protected void mo5504a(RecommendPost recommendPost, RecommendPostViewHolder recommendPostViewHolder, int i) {
                 RecommendPostListFragment.this.playMediaItemStatistic(recommendPost.getId(), i);
-                mo7467a(recommendPost);
+                setData(recommendPost);
                 RecommendPostListFragment.this.requestPlayMediaView(recommendPost);
             }
         };
@@ -222,9 +222,9 @@ public abstract class RecommendPostListFragment extends SlidingClosableFragment 
     public void updateDataListView(List<RecommendPost> list) {
         this.mProxy.m5421c();
         if (this.mLoadStatus == EnumC1567a.NEXT_PAGE) {
-            this.mAdapter.m7662b().addAll(list);
+            this.mAdapter.getDataList().addAll(list);
         } else {
-            this.mAdapter.m7663a((List) list);
+            this.mAdapter.setDataList((List) list);
         }
         this.mAdapter.notifyDataSetChanged();
         this.mFooter.m7932a(list.isEmpty(), 8, list.isEmpty() ? getString(R.string.loading_failed) : getString(R.string.num_loaded_data, Integer.valueOf(this.mAdapter.getCount())));
@@ -270,7 +270,7 @@ public abstract class RecommendPostListFragment extends SlidingClosableFragment 
     }
 
     public List<RecommendPost> getDataList() {
-        return this.mAdapter.m7662b();
+        return this.mAdapter.getDataList();
     }
 
     public int getDataCount() {
@@ -283,7 +283,7 @@ public abstract class RecommendPostListFragment extends SlidingClosableFragment 
             int m8266a = ListViewUtils.m8266a(((ListView) adapterView).getHeaderViewsCount(), i, getDataCount());
             RecommendPost item = this.mAdapter.getItem(m8266a);
             startPostDetailStatistic(item.getId(), m8266a);
-            this.mAdapter.mo7467a(item);
+            this.mAdapter.setData(item);
             launchFragment(SubPostDetailFragment.createById(item.getId(), getClass().getSimpleName()));
         }
     }

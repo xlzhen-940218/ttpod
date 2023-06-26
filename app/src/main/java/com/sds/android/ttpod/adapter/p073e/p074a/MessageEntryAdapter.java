@@ -24,7 +24,7 @@ public class MessageEntryAdapter extends BaseListAdapter<PrivateMessageOverView>
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.musiccircle_private_message_item, (ViewGroup) null, false);
         inflate.setTag(new C0974a(inflate));
         return inflate;
@@ -33,7 +33,7 @@ public class MessageEntryAdapter extends BaseListAdapter<PrivateMessageOverView>
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo5400a(View view, PrivateMessageOverView privateMessageOverView, int i) {
+    public void buildDataUI(View view, PrivateMessageOverView privateMessageOverView, int i) {
         C0974a c0974a = (C0974a) view.getTag();
         TTPodUser user = privateMessageOverView.getUser();
         if (user == null) {
@@ -43,7 +43,7 @@ public class MessageEntryAdapter extends BaseListAdapter<PrivateMessageOverView>
         c0974a.f3262b.setVFlagVisible(user.isVerified());
         c0974a.f3264d.setText(user.getNickName());
         c0974a.f3265e.setText(TimeUtils.m8157a(privateMessageOverView.getLastModified()));
-        CharSequence m6641a = EmoticonConversionUtil.m6639b().m6641a(m7664a(), privateMessageOverView.getLastMsg());
+        CharSequence m6641a = EmoticonConversionUtil.m6639b().m6641a(getContext(), privateMessageOverView.getLastMsg());
         if (m6641a == null) {
             m6641a = "";
         }

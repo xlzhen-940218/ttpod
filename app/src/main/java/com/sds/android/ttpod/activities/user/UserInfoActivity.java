@@ -150,7 +150,7 @@ public class UserInfoActivity extends SlidingClosableActivity {
         onNewIntent(getIntent());
         initView();
         initData();
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REFRESH_INFORMATION, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.REFRESH_INFORMATION, new Object[0]));
     }
 
     private String buildLocalCoverPath(TTPodUser tTPodUser) {
@@ -206,7 +206,7 @@ public class UserInfoActivity extends SlidingClosableActivity {
             objArr[0] = this.mUser;
             objArr[1] = Boolean.valueOf(this.mUser.getSex() != this.mOriginUser.getSex());
             objArr[2] = Boolean.valueOf(this.mUser.getBirthdayInSecond() != this.mOriginUser.getBirthdayInSecond());
-            m4607a.m4606a(new Command(commandID, objArr));
+            m4607a.execute(new Command(commandID, objArr));
         }
     }
 
@@ -224,11 +224,11 @@ public class UserInfoActivity extends SlidingClosableActivity {
                 case 3:
                     if (this.mCachedRequestCode == 1) {
                         setCover();
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.MODIFY_COVER, this.mLocalCoverImagePath, Integer.valueOf(DisplayUtils.m7225c()), Integer.valueOf((int) getResources().getDimension(R.dimen.cover_height))));
+                        CommandCenter.getInstance().execute(new Command(CommandID.MODIFY_COVER, this.mLocalCoverImagePath, Integer.valueOf(DisplayUtils.m7225c()), Integer.valueOf((int) getResources().getDimension(R.dimen.cover_height))));
                         return;
                     } else if (this.mCachedRequestCode == 2) {
                         setAvatar();
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.MODIFY_AVATAR, this.mLocalAvatarImagePath, Integer.valueOf((int) getResources().getDimension(R.dimen.avatar_width)), Integer.valueOf((int) getResources().getDimension(R.dimen.avatar_height))));
+                        CommandCenter.getInstance().execute(new Command(CommandID.MODIFY_AVATAR, this.mLocalAvatarImagePath, Integer.valueOf((int) getResources().getDimension(R.dimen.avatar_width)), Integer.valueOf((int) getResources().getDimension(R.dimen.avatar_height))));
                         return;
                     } else {
                         return;
@@ -411,7 +411,7 @@ public class UserInfoActivity extends SlidingClosableActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void onClickLogout() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.LOGOUT, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.LOGOUT, new Object[0]));
         finish();
     }
 
@@ -425,9 +425,9 @@ public class UserInfoActivity extends SlidingClosableActivity {
                 String obj2 = editTextDialog2.m6902c(1).m6896d().toString();
                 if (!obj.equals(UserInfoActivity.this.mUser.getUserName()) && ValidateUtil.m7704a(obj, R.string.use_name_hint_text, R.string.email_format, null, 0, ValidateUtil.f3111a) && ValidateUtil.m7704a(obj2, R.string.pass_word_hint_text, R.string.password_length, null, 0, ValidateUtil.f3114d)) {
                     if (UserInfoActivity.this.mUser.getIsLocalBind() == null || "0".equals(UserInfoActivity.this.mUser.getIsLocalBind().toString())) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.BIND_USER_EMAIL, obj, obj2));
+                        CommandCenter.getInstance().execute(new Command(CommandID.BIND_USER_EMAIL, obj, obj2));
                     } else {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.MODIFY_USER_EMAIL, obj, obj2));
+                        CommandCenter.getInstance().execute(new Command(CommandID.MODIFY_USER_EMAIL, obj, obj2));
                     }
                     PopupsUtils.m6734a((Context) UserInfoActivity.this, UserInfoActivity.this.getString(R.string.loading));
                 }
@@ -446,7 +446,7 @@ public class UserInfoActivity extends SlidingClosableActivity {
                 String obj = editTextDialog2.m6902c(0).m6896d().toString();
                 String obj2 = editTextDialog2.m6902c(1).m6896d().toString();
                 if (ValidateUtil.m7704a(obj, R.string.pass_word_hint_text, R.string.password_length, null, 0, ValidateUtil.f3114d) && ValidateUtil.m7704a(obj2, R.string.pass_word_hint_text, R.string.password_length, null, 0, ValidateUtil.f3114d) && !obj.equals(obj2)) {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.MODIFY_PASSWORD, obj, obj2));
+                    CommandCenter.getInstance().execute(new Command(CommandID.MODIFY_PASSWORD, obj, obj2));
                     PopupsUtils.m6734a((Context) UserInfoActivity.this, UserInfoActivity.this.getString(R.string.loading));
                 }
             }
@@ -507,7 +507,7 @@ public class UserInfoActivity extends SlidingClosableActivity {
                         PopupsUtils.m6721a("内容含有敏感词，请重新输入");
                         return;
                     }
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.MODIFY_NICKNAME, obj));
+                    CommandCenter.getInstance().execute(new Command(CommandID.MODIFY_NICKNAME, obj));
                     PopupsUtils.m6734a((Context) UserInfoActivity.this, UserInfoActivity.this.getString(R.string.loading));
                 }
             }

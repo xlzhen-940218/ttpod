@@ -17,7 +17,7 @@ public class PostRequestRest extends RequestRest {
 
     @Override // com.sds.android.sdk.lib.p060b.RequestRest
     /* renamed from: a */
-    protected HttpRequest.C0586a mo8669a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
+    protected HttpRequest.Response mo8669a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
         return HttpRequest.m8714a(str, hashMap, this.f2352a);
     }
 }

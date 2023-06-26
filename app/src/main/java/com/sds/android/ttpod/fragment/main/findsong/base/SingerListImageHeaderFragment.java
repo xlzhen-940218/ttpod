@@ -23,14 +23,12 @@ import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.fragment.base.SlidingClosableFragment;
 import com.sds.android.ttpod.fragment.main.findsong.SingerCategoryHotDetailFragment;
 import com.sds.android.ttpod.fragment.main.findsong.singer.SingerDetailFragmentNew;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.media.mediastore.PinyinUtils;
 import com.sds.android.ttpod.utils.ArtistUtils;
 import com.sds.android.ttpod.widget.AZSideBar;
@@ -258,7 +256,7 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
     }
 
     protected void requestDataList(int i) {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SINGER_CATEGORY_DETAIL, Integer.valueOf(this.mId), Integer.valueOf(i)));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_SINGER_CATEGORY_DETAIL, Integer.valueOf(this.mId), Integer.valueOf(i)));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -465,8 +463,8 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
 
         @Override // com.sds.android.ttpod.adapter.SectionListAdapter
         /* renamed from: a */
-        protected View mo5523a(ViewGroup viewGroup) {
-            View inflate = this.f3241a.inflate(R.layout.singer_list_section_header, viewGroup, false);
+        protected View getSectionConvertView(ViewGroup viewGroup) {
+            View inflate = this.layoutInflater.inflate(R.layout.singer_list_section_header, viewGroup, false);
             inflate.setTag(new C1603a(inflate));
             inflate.setClickable(false);
             return inflate;
@@ -474,8 +472,8 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
 
         @Override // com.sds.android.ttpod.adapter.SectionListAdapter
         /* renamed from: b */
-        protected View mo5519b(ViewGroup viewGroup) {
-            View inflate = this.f3241a.inflate(R.layout.singer_list_item, viewGroup, false);
+        protected View getSubConvertView(ViewGroup viewGroup) {
+            View inflate = this.layoutInflater.inflate(R.layout.singer_list_item, viewGroup, false);
             inflate.setTag(new C1603a(inflate));
             return inflate;
         }

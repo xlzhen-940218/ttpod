@@ -70,7 +70,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onResume() {
         super.onResume();
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             requestNewestMessage(this.mNewMessageTimestamp, null);
         } else {
             PopupsUtils.m6760a((int) R.string.network_error);
@@ -81,12 +81,12 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
         this.mListView.m1336b();
         if (baseResultRest.m8677d()) {
             if (bool.booleanValue()) {
-                List<FeedbackMessage> b = this.mAdapter.m7662b();
+                List<FeedbackMessage> b = this.mAdapter.getDataList();
                 b.addAll(list);
-                this.mAdapter.m7663a((List) b);
+                this.mAdapter.setDataList((List) b);
             } else {
                 this.mStateView.setState(StateView.EnumC2248b.SUCCESS);
-                this.mAdapter.m7663a(list);
+                this.mAdapter.setDataList(list);
                 if (list.size() > 0) {
                     this.mNewMessageTimestamp = Long.valueOf(((FeedbackMessage) list.get(list.size() - 1)).getTimestamp() + 1);
                 }
@@ -102,7 +102,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
         this.mListView.m1336b();
         if (baseResultRest.m8678c() == 201) {
             synchronized (this.mAdapter) {
-                this.mAdapter.m7662b().add(feedbackMessage);
+                this.mAdapter.getDataList().add(feedbackMessage);
                 this.mNewMessageTimestamp = Long.valueOf(feedbackMessage.getTimestamp() + 1);
             }
             this.mAdapter.notifyDataSetChanged();
@@ -119,7 +119,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
         this.mBtnSend.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.setting.FeedbackChatActivity.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     String obj = FeedbackChatActivity.this.mEtInput.getText().toString();
                     if (!StringUtils.isEmpty(obj)) {
                         FeedbackChatActivity.this.mBtnSend.setClickable(false);
@@ -136,7 +136,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
         this.mReloadView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.setting.FeedbackChatActivity.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     FeedbackChatActivity.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     FeedbackChatActivity.this.requestNewestMessage();
                     return;
@@ -179,7 +179,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
 
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+        protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
             View inflate = layoutInflater.inflate(R.layout.feedback_chat_item, (ViewGroup) null);
             inflate.setTag(new C0878c(inflate));
             return inflate;
@@ -188,7 +188,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a  reason: avoid collision after fix types in other method */
-        public void mo5400a(View view, FeedbackMessage feedbackMessage, int i) {
+        public void buildDataUI(View view, FeedbackMessage feedbackMessage, int i) {
             C0876a c0876a;
             C0878c c0878c = (C0878c) view.getTag();
             boolean z = 1 == feedbackMessage.getMsgSource();

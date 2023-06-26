@@ -244,8 +244,8 @@ public class Support {
 
     /* renamed from: B */
     private Integer m2507B() {
-        String m2850o = Preferences.m2850o();
-        String str = Preferences.m2854n() + File.pathSeparator;
+        String m2850o = Preferences.getPositionInfo();
+        String str = Preferences.getMediaId() + File.pathSeparator;
         if (!StringUtils.isEmpty(m2850o) && m2850o.startsWith(str)) {
             try {
                 return Integer.valueOf(m2850o.substring(str.length()));

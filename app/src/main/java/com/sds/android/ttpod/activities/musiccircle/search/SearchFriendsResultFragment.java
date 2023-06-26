@@ -71,7 +71,7 @@ public class SearchFriendsResultFragment extends SlidingClosableFragment {
 
         @Override // com.sds.android.ttpod.fragment.musiccircle.UserListFragment
         protected void onRequestData(int i, int i2) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.MUSICCIRCLE_SEARCH, this.mSearchContent, "search"));
+            CommandCenter.getInstance().execute(new Command(CommandID.MUSICCIRCLE_SEARCH, this.mSearchContent, "search"));
         }
 
         /* JADX INFO: Access modifiers changed from: protected */

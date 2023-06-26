@@ -70,7 +70,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
             this.mPlayModeView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.PlayingListActivity.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.SWITCH_PLAY_MODE, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.SWITCH_PLAY_MODE, new Object[0]));
                 }
             });
         }
@@ -155,7 +155,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
         }
         Bundle bundle = new Bundle();
         bundle.putString("title", getString(R.string.playing));
-        bundle.putString(AbsMediaListFragment.KEY_GROUP_ID, Preferences.m2858m());
+        bundle.putString(AbsMediaListFragment.KEY_GROUP_ID, Preferences.getLocalGroupId());
         getSupportFragmentManager().beginTransaction().replace(R.id.playing_list, Fragment.instantiate(this, MyPlayingFragment.class.getName(), bundle)).commitAllowingStateLoss();
     }
 

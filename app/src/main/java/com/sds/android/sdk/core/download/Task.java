@@ -167,7 +167,7 @@ public final class Task implements Runnable {
     /* renamed from: c */
     private void m8723c() {
         try {
-            if (!EnvironmentUtils.C0604c.m8474e()) {
+            if (!EnvironmentUtils.DeviceConfig.m8474e()) {
                 m8734a(EnumC0579b.NETWORK_UNAVAILABLE);
             }
             if (!this.f2317c.resumeBrokenTransferSupported()) {
@@ -208,18 +208,18 @@ public final class Task implements Runnable {
 
     /* renamed from: a */
     private boolean m8730a(String str, File file, HashMap<String, Object> hashMap) throws InterruptedException {
-        HttpRequest.C0586a m8729a = m8729a(str, hashMap);
+        HttpRequest.Response m8729a = m8729a(str, hashMap);
         if (m8729a == null) {
-            m8734a(EnvironmentUtils.C0604c.m8474e() ? EnumC0579b.URL_REQUEST_FAILED : EnumC0579b.NETWORK_UNAVAILABLE);
+            m8734a(EnvironmentUtils.DeviceConfig.m8474e() ? EnumC0579b.URL_REQUEST_FAILED : EnumC0579b.NETWORK_UNAVAILABLE);
             Thread.sleep(1000L);
             return false;
         }
-        this.f2317c.setResponseCode(m8729a.m8690c());
+        this.f2317c.setResponseCode(m8729a.getStatusCode());
         if (m8732a(m8729a)) {
             if (m8725b(file, m8729a)) {
                 return true;
             }
-            m8736a((this.f2317c.getFileLength() == null || this.f2317c.getFileLength().intValue() == 0) ? m8729a.m8687f() : this.f2317c.getFileLength().intValue());
+            m8736a((this.f2317c.getFileLength() == null || this.f2317c.getFileLength().intValue() == 0) ? m8729a.getContentLength() : this.f2317c.getFileLength().intValue());
             m8731a(file, m8729a);
         } else {
             m8734a(EnumC0579b.URL_RESPONED_FAILED);
@@ -228,11 +228,11 @@ public final class Task implements Runnable {
     }
 
     /* renamed from: a */
-    private void m8731a(File file, HttpRequest.C0586a c0586a) {
+    private void m8731a(File file, HttpRequest.Response c0586a) {
         int i = 0;
         long j = 0;
         synchronized (this) {
-            this.f2321g = c0586a.m8688e();
+            this.f2321g = c0586a.getInputStream();
             try {
             } finally {
                 try {
@@ -300,24 +300,24 @@ public final class Task implements Runnable {
     }
 
     /* renamed from: b */
-    private boolean m8725b(File file, HttpRequest.C0586a c0586a) {
-        if (EnvironmentUtils.C0605d.m8469a(file.getParentFile()) < c0586a.m8687f()) {
+    private boolean m8725b(File file, HttpRequest.Response c0586a) {
+        if (EnvironmentUtils.C0605d.m8469a(file.getParentFile()) < c0586a.getContentLength()) {
             this.f2315a = 1;
             m8734a(EnumC0579b.STORAGE);
-            c0586a.m8686g();
+            c0586a.close();
             return true;
         }
         return false;
     }
 
     /* renamed from: a */
-    private boolean m8732a(HttpRequest.C0586a c0586a) {
-        int m8690c = c0586a.m8690c();
+    private boolean m8732a(HttpRequest.Response c0586a) {
+        int m8690c = c0586a.getStatusCode();
         return m8690c == 200 || m8690c == 206;
     }
 
     /* renamed from: a */
-    private HttpRequest.C0586a m8729a(String str, HashMap<String, Object> hashMap) {
+    private HttpRequest.Response m8729a(String str, HashMap<String, Object> hashMap) {
         if (this.f2317c.getStatisticRequest()) {
             return m8724b(str, hashMap);
         }
@@ -332,11 +332,11 @@ public final class Task implements Runnable {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    private HttpRequest.C0586a m8724b(String str, HashMap<String, Object> hashMap) {
-        HttpRequest.C0586a c0586a = null;
+    private HttpRequest.Response m8724b(String str, HashMap<String, Object> hashMap) {
+        HttpRequest.Response c0586a = null;
         URI uri = null;
         String str2 = null;
-        HttpRequest.C0586a c0586a2 = null;
+        HttpRequest.Response c0586a2 = null;
         Exception e;
         try {
             InetAddress[] allByName = InetAddress.getAllByName(new URI(str).getHost());
@@ -354,7 +354,7 @@ public final class Task implements Runnable {
                 }
                 this.f2317c.statisticConnectFailedIPs(hostAddress);
                 this.f2315a++;
-                m8734a(EnvironmentUtils.C0604c.m8474e() ? EnumC0579b.URL_REQUEST_FAILED : EnumC0579b.NETWORK_UNAVAILABLE);
+                m8734a(EnvironmentUtils.DeviceConfig.m8474e() ? EnumC0579b.URL_REQUEST_FAILED : EnumC0579b.NETWORK_UNAVAILABLE);
                 i++;
             }
         } catch (URISyntaxException e3) {
@@ -369,7 +369,7 @@ public final class Task implements Runnable {
     }
 
     /* renamed from: c */
-    private HttpRequest.C0586a m8722c(String str, HashMap<String, Object> hashMap) {
+    private HttpRequest.Response m8722c(String str, HashMap<String, Object> hashMap) {
         synchronized (this) {
             this.f2320f = new HttpGet(str);
         }

@@ -64,7 +64,7 @@ public class AdSeatContentFragment extends BaseFragment {
     }
 
     private void getDBViewContent() {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.AdSeatContentFragment.1
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.AdSeatContentFragment.1
             @Override // java.lang.Runnable
             public void run() {
                 AdSeatContentFragment.this.mItemInfoListTemp = new ArrayList();

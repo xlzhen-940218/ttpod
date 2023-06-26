@@ -10,12 +10,12 @@ import com.sds.android.ttpod.framework.modules.skin.p130c.BitmapDrawableCreator;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ClipBitmapDrawable;
 import com.sds.android.ttpod.framework.modules.skin.p130c.DrawableCreator;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ValueParser;
-import com.sds.android.ttpod.framework.modules.skin.view.Animation;
+import com.sds.android.ttpod.framework.modules.skin.view.AnimationImageView;
 import java.util.HashMap;
 
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.b.e */
 /* loaded from: classes.dex */
-public class SAnimation extends SImage<Animation> {
+public class SAnimation extends SImage<AnimationImageView> {
 
     /* renamed from: e */
     private int f6426e;
@@ -42,8 +42,8 @@ public class SAnimation extends SImage<Animation> {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public Animation mo3771b(Context context, SkinCache skinCache) {
-        Animation animation = new Animation(context);
+    public AnimationImageView mo3771b(Context context, SkinCache skinCache) {
+        AnimationImageView animation = new AnimationImageView(context);
         Resources resources = context.getResources();
         animation.setScaleType(m3797a(this.f6457d));
         animation.setImageDrawable(skinCache.m3596a(resources, this.f6429l));
@@ -79,7 +79,7 @@ public class SAnimation extends SImage<Animation> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public void mo3775a(Context context, Animation animation, SkinCache skinCache) {
+    public void mo3775a(Context context, AnimationImageView animation, SkinCache skinCache) {
         super.mo3775a(context, animation, skinCache);
         animation.setDrawingCacheEnabled(false);
     }

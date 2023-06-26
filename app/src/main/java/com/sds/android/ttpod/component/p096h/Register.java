@@ -98,10 +98,10 @@ public final class Register {
 
     /* renamed from: a */
     public static void m6402a(Context context) {
-        if (EnvironmentUtils.C0602a.m8504g() && EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getVerificationEnable() && EnvironmentUtils.AppConfig.getTestMode()) {
             final String str = TTPodConfig.m5311B() + File.separator + "user_data.xml";
             RegisterData m6396a = RegisterData.m6396a(str);
-            String m8478c = StringUtils.isEmpty(EnvironmentUtils.C0604c.getDeviceId()) ? EnvironmentUtils.C0604c.getMacAddress() : EnvironmentUtils.C0604c.getDeviceId();
+            String m8478c = StringUtils.isEmpty(EnvironmentUtils.DeviceConfig.getDeviceId()) ? EnvironmentUtils.DeviceConfig.getMacAddress() : EnvironmentUtils.DeviceConfig.getDeviceId();
             final String m6401a = m6401a(m8478c);
             if (!m6396a.m6395a("serialnumber", "").equals(m6401a)) {
                 EditTextDialog editTextDialog = new EditTextDialog(context, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(0, "设备串号:", m8478c, "", 1, 17).m6901a(), new EditTextDialog.C1144a(1, "注册码:", "", "请输入注册码", 1, 17)}, R.string.verify, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.component.h.a.1
@@ -109,7 +109,7 @@ public final class Register {
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo2038a(EditTextDialog editTextDialog2) {
                         String obj = editTextDialog2.m6902c(1).m6896d().toString();
-                        if (!StringUtils.m8344a(m6401a, obj)) {
+                        if (!StringUtils.equals(m6401a, obj)) {
                             editTextDialog2.m7242f(false);
                             PopupsUtils.m6721a("注册码输入错误");
                             return;
@@ -123,7 +123,7 @@ public final class Register {
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo2038a(EditTextDialog editTextDialog2) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.EXIT, new Object[0]));
+                        CommandCenter.getInstance().execute(new Command(CommandID.EXIT, new Object[0]));
                     }
                 });
                 editTextDialog.setTitle("天天动听内测验证");

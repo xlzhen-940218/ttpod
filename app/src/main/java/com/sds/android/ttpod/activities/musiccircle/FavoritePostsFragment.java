@@ -68,7 +68,7 @@ public class FavoritePostsFragment extends SlidingClosableFragment implements Ad
         inflate.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.FavoritePostsFragment.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     FavoritePostsFragment.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     FavoritePostsFragment.this.requestFavorites();
                     return;
@@ -79,7 +79,7 @@ public class FavoritePostsFragment extends SlidingClosableFragment implements Ad
     }
 
     private void toggleFailedView() {
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             loadNoDataView();
         } else {
             loadNetworkErrorView();
@@ -167,7 +167,7 @@ public class FavoritePostsFragment extends SlidingClosableFragment implements Ad
                 this.mStateView.setState(StateView.EnumC2248b.SUCCESS);
                 this.mRequestState = RequestState.REQUESTED_SUCCESS;
                 this.mFavoritePosts = dataList;
-                this.mFavoriteAdapter.m7663a((List) this.mFavoritePosts);
+                this.mFavoriteAdapter.setDataList((List) this.mFavoritePosts);
                 this.mFooter.m7932a(false, 8, getString(R.string.num_loaded_data, Integer.valueOf(this.mFavoriteAdapter.getCount())));
             }
             this.mListView.m1336b();
@@ -181,12 +181,12 @@ public class FavoritePostsFragment extends SlidingClosableFragment implements Ad
             arrayList.add(Long.valueOf(messageCollectItem.getId()));
         }
         this.mFooter.m7932a(false, 0, getString(R.string.loading));
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, arrayList, "favorite"));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, arrayList, "favorite"));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestFavorites() {
         this.mRequestState = RequestState.REQUESTING;
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_FAVORITE_SONG_LIST_POSTS, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_FAVORITE_SONG_LIST_POSTS, new Object[0]));
     }
 }

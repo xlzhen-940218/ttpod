@@ -22,7 +22,7 @@ public class SystemMessageAdapter extends BaseListAdapter<SystemNotice> {
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.musiccircle_system_message_item, (ViewGroup) null, false);
         inflate.setTag(new C0985a(inflate));
         return inflate;
@@ -31,7 +31,7 @@ public class SystemMessageAdapter extends BaseListAdapter<SystemNotice> {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo5400a(View view, SystemNotice systemNotice, int i) {
+    public void buildDataUI(View view, SystemNotice systemNotice, int i) {
         C0985a c0985a = (C0985a) view.getTag();
         c0985a.f3311b.setText(TimeUtils.m8157a(systemNotice.getTimeStamp()));
         c0985a.f3312c.setText(systemNotice.getTitle());

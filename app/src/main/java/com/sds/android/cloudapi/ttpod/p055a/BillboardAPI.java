@@ -9,6 +9,6 @@ import com.sds.android.sdk.lib.request.Request;
 public class BillboardAPI {
     /* renamed from: a */
     public static Request<BillboardsResult> m8934a(int i) {
-        return new GetMethodRequest(BillboardsResult.class, "http://so.ard.iyyin.com/sug", "billboard").m8537b("size", Integer.valueOf(i));
+        return new GetMethodRequest(BillboardsResult.class, "http://so.ard.iyyin.com/sug", "billboard").putParams("size", Integer.valueOf(i));
     }
 }

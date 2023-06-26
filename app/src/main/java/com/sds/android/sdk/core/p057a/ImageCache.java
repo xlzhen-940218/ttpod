@@ -174,7 +174,7 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
                 options.inJustDecodeBounds = false;
                 options.inPurgeable = true;
                 options.inInputShareable = true;
-                if (StringUtils.m8344a("image/jpeg", options.outMimeType)) {
+                if (StringUtils.equals("image/jpeg", options.outMimeType)) {
                     options.inPreferredConfig = Bitmap.Config.RGB_565;
                 }
                 Bitmap decodeFile = BitmapFactory.decodeFile(str2, options);

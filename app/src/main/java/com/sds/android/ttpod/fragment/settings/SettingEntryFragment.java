@@ -38,7 +38,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.p113b.p114a.ShakeSensitivityType;
 import com.sds.android.ttpod.framework.modules.p123e.LockScreenModule;
 import com.sds.android.ttpod.framework.modules.version.VersionUpdateModule;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import java.util.HashMap;
@@ -241,16 +240,16 @@ public class SettingEntryFragment extends BaseFragment {
                     actionItem.m7010a(actionItem2.m7006d());
                     SettingEntryFragment.this.mBaseSettingCard.m7799a((SettingItem) actionItem, i);
                     Preferences.m2851n(false);
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, false));
+                    CommandCenter.getInstance().execute(new Command(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, false));
                 } else {
                     if (!Preferences.m2818w()) {
                         Preferences.m2851n(true);
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, true));
+                        CommandCenter.getInstance().execute(new Command(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, true));
                     }
                     ShakeSensitivityType shakeSensitivityType = ShakeSensitivityType.values()[actionItem2.m7005e() - 1];
                     actionItem.m7008b(((Integer) SettingEntryFragment.this.mSensitivityTextResIdMap.get(shakeSensitivityType)).intValue());
                     SettingEntryFragment.this.mBaseSettingCard.m7799a((SettingItem) actionItem, i);
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SHAKE_SWITCH_SONG_SENSITIVITY, shakeSensitivityType));
+                    CommandCenter.getInstance().execute(new Command(CommandID.SET_SHAKE_SWITCH_SONG_SENSITIVITY, shakeSensitivityType));
                 }
                 //new SUserEvent("PAGE_CLICK", SAction.ACTION_OPEN_MENU_OF_SHAKE_CHANGE_SONG_SELECT.getValue(), SPage.PAGE_SETTING_PAGE.getValue(), 0).append("type", Integer.valueOf(i2)).post();
             }

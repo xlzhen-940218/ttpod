@@ -92,8 +92,8 @@ public abstract class MVListFragment extends ListLoadingFragment<MVOnlineData> {
 
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-            View inflate = this.f3157c.inflate(R.layout.mv_list_item, viewGroup, false);
+        protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+            View inflate = this.layoutInflater.inflate(R.layout.mv_list_item, viewGroup, false);
             inflate.setTag(new C1594a(inflate));
             return inflate;
         }
@@ -102,9 +102,9 @@ public abstract class MVListFragment extends ListLoadingFragment<MVOnlineData> {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        public void mo5400a(View view, MVOnlineData mVOnlineData, int i) {
-            if (this.f3158d != null) {
-                MVOnlineData mVOnlineData2 = (MVOnlineData) this.f3158d.get(i);
+        public void buildDataUI(View view, MVOnlineData mVOnlineData, int i) {
+            if (this.dataList != null) {
+                MVOnlineData mVOnlineData2 = (MVOnlineData) this.dataList.get(i);
                 view.setTag(R.id.view_bind_data, mVOnlineData2);
                 C1594a c1594a = (C1594a) view.getTag();
                 c1594a.f5268c.setText(mVOnlineData2.getName());

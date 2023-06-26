@@ -24,8 +24,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
 import com.sds.android.ttpod.framework.p106a.Pager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -154,12 +152,12 @@ public class OnlineMediaListFragment extends AbsMediaListFragment {
         MediaItemViewHolder mediaItemViewHolder = (MediaItemViewHolder) view.getTag();
         mediaItemViewHolder.m6970a(this.mListView, mediaItem, i, (this.mMediaItemList instanceof AsyncLoadMediaItemList) && ((AsyncLoadMediaItemList) this.mMediaItemList).isLoadFinished());
         if (StringUtils.isEmpty(this.mPlayingGroupID)) {
-            this.mPlayingGroupID = Preferences.m2858m();
+            this.mPlayingGroupID = Preferences.getLocalGroupId();
         }
         if (StringUtils.isEmpty(this.mPlayingMediaID)) {
-            this.mPlayingMediaID = Preferences.m2854n();
+            this.mPlayingMediaID = Preferences.getMediaId();
         }
-        if (!StringUtils.m8344a(this.mGroupID, this.mPlayingGroupID) || !StringUtils.m8344a(this.mPlayingMediaID, mediaItem.getID())) {
+        if (!StringUtils.equals(this.mGroupID, this.mPlayingGroupID) || !StringUtils.equals(this.mPlayingMediaID, mediaItem.getID())) {
             z = false;
         }
         mediaItemViewHolder.m6971a(mediaItem, this.mPlayStatus, z);
@@ -322,25 +320,25 @@ public class OnlineMediaListFragment extends AbsMediaListFragment {
         }
         //OnlineMediaStatistic.m5045a(getListenOrigin());
         //OnlineMediaStatistic.m5054a();
-        if (StringUtils.m8344a(this.mGroupID, Preferences.m2858m()) && StringUtils.m8344a(mediaItem.getID(), Preferences.m2854n())) {
+        if (StringUtils.equals(this.mGroupID, Preferences.getLocalGroupId()) && StringUtils.equals(mediaItem.getID(), Preferences.getMediaId())) {
             PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
             if (m2463m == PlayStatus.STATUS_PAUSED) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                 return;
             } else if (m2463m == PlayStatus.STATUS_PLAYING) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             } else {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
                 return;
             }
         }
         LogUtils.debug(TAG, "onMediaItemClicked SYNC_NET_TEMPORARY_GROUP " + getMediaItemList());
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, filterThirdParty()));
+        CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, filterThirdParty()));
         if (mediaItem.hasOutList()) {
             popupCopyrightDialog(mediaItem);
         } else {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, this.mGroupID, mediaItem));
+            CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, this.mGroupID, mediaItem));
             this.mPlayingGroupID = this.mGroupID;
             this.mPlayingMediaID = mediaItem.getID();
         }
@@ -377,8 +375,8 @@ public class OnlineMediaListFragment extends AbsMediaListFragment {
     @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     public void updatePlayStatus(PlayStatus playStatus) {
         super.updatePlayStatus(playStatus);
-        this.mPlayingGroupID = Preferences.m2858m();
-        if (StringUtils.m8344a(this.mGroupID, this.mPlayingGroupID)) {
+        this.mPlayingGroupID = Preferences.getLocalGroupId();
+        if (StringUtils.equals(this.mGroupID, this.mPlayingGroupID)) {
             notifyDataSetChanged();
         }
     }
@@ -386,7 +384,7 @@ public class OnlineMediaListFragment extends AbsMediaListFragment {
     @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     public void playMediaChanged() {
         this.mPlayingMediaID = Cache.getInstance().getCurrentPlayMediaItem().getID();
-        if (StringUtils.m8344a(this.mGroupID, Preferences.m2858m())) {
+        if (StringUtils.equals(this.mGroupID, Preferences.getLocalGroupId())) {
             notifyDataSetChanged();
         }
     }

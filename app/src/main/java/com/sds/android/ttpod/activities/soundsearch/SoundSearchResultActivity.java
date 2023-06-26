@@ -94,21 +94,21 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
                 case R.id.imageview_soundsearch_play /* 2131230981 */:
                     if (Cache.getInstance().getCurrentPlayMediaItem().getID().equals(SoundSearchResultActivity.this.mMediaItem.getID())) {
                         if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
-                            CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                            CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                         } else if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
-                            CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                            CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                         }
                     } else {
                         ArrayList arrayList = new ArrayList();
                         arrayList.add(SoundSearchResultActivity.this.mMediaItem);
                         Preferences.m3063I(false);
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, SoundSearchResultActivity.this.mMediaItem));
+                        CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
+                        CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, SoundSearchResultActivity.this.mMediaItem));
                     }
                     SoundSearchResultActivity.this.mHasBeenPlayed = true;
                     return;
                 case R.id.imageview_soundsearch_share /* 2131230982 */:
-                    PopupsUtils.m6756a((Activity) SoundSearchResultActivity.this, SoundSearchResultActivity.this.mMediaItem);
+                    PopupsUtils.shareMediaItem((Activity) SoundSearchResultActivity.this, SoundSearchResultActivity.this.mMediaItem);
                     return;
                 case R.id.lyricview_soundsearch /* 2131230983 */:
                 case R.id.imageview_soundsearch_cover /* 2131230984 */:
@@ -198,7 +198,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
     }
 
     public void updateSearchLyricState(SearchStatus searchStatus, List<ResultData> list, String str, Lyric lyric) {
-        if (StringUtils.m8344a(str, this.mMediaItem.getID())) {
+        if (StringUtils.equals(str, this.mMediaItem.getID())) {
             switch (searchStatus) {
                 case SEARCH_LOCAL_FINISHED:
                 case SEARCH_DOWNLOAD_FINISHED:

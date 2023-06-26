@@ -276,7 +276,7 @@ public class MediaAccessModule extends BaseModule {
                 Preferences.m3010a(str, str2);
                 m4276b(str);
             }
-            if (m4275b.size() <= 400 && !StringUtils.m8344a(MediaStorage.GROUP_ID_RECENTLY_PLAY, str) && !StringUtils.m8344a(MediaStorage.GROUP_ID_FAV, str) && !StringUtils.m8344a(MediaStorage.GROUP_ID_FAV_LOCAL, str) && !str.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
+            if (m4275b.size() <= 400 && !StringUtils.equals(MediaStorage.GROUP_ID_RECENTLY_PLAY, str) && !StringUtils.equals(MediaStorage.GROUP_ID_FAV, str) && !StringUtils.equals(MediaStorage.GROUP_ID_FAV_LOCAL, str) && !str.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
                 this.f5934c.put(str, m4275b);
             }
         }
@@ -286,7 +286,7 @@ public class MediaAccessModule extends BaseModule {
     /* renamed from: b */
     private AsyncLoadMediaItemList m4275b(String str, String str2) {
         AsyncLoadMediaItemList asyncLoadMediaItemList = this.f5934c.get(str);
-        if (asyncLoadMediaItemList != null && !StringUtils.m8344a(asyncLoadMediaItemList.getOrderBy(), str2)) {
+        if (asyncLoadMediaItemList != null && !StringUtils.equals(asyncLoadMediaItemList.getOrderBy(), str2)) {
             this.f5934c.remove(str);
             asyncLoadMediaItemList.clear();
             return null;
@@ -327,7 +327,7 @@ public class MediaAccessModule extends BaseModule {
     public void deleteGroup(String str) {
         m4269f();
         MediaStorage.deleteGroup(sContext, str);
-        if (StringUtils.m8344a(str, Preferences.m2858m())) {
+        if (StringUtils.equals(str, Preferences.getLocalGroupId())) {
             m4268g();
         }
         queryGroupItemList(str.startsWith(MediaStorage.GROUP_ID_MUSICCIRCLE_PREFIX) ? GroupType.CUSTOM_ONLINE : GroupType.CUSTOM_LOCAL);
@@ -432,10 +432,10 @@ public class MediaAccessModule extends BaseModule {
         if (equals) {
             Cache.getInstance().m3182c(mediaItem);
             CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_ITEM_STARTED, mediaItem), ModuleID.MEDIA_ACCESS);
-            CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
-            Preferences.m2884f(Preferences.m2854n() + File.pathSeparator + SupportFactory.m2397a(sContext).m2465k());
+            CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
+            Preferences.getPositionInfo(Preferences.getMediaId() + File.pathSeparator + SupportFactory.m2397a(sContext).m2465k());
         }
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.8
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.8
             @Override // java.lang.Runnable
             public void run() {
                 MediaTag createMediaTag = MediaTag.createMediaTag(mediaItem.getLocalDataSource(), false);
@@ -473,7 +473,7 @@ public class MediaAccessModule extends BaseModule {
             return true;
         }
         for (int i = 0; i < size; i++) {
-            if ((this.f5936e.get(i) != null && !this.f5936e.get(i).equals(list.get(i).getSongID())) || !StringUtils.m8344a(this.f5937f.get(i), list.get(i).getExtra())) {
+            if ((this.f5936e.get(i) != null && !this.f5936e.get(i).equals(list.get(i).getSongID())) || !StringUtils.equals(this.f5937f.get(i), list.get(i).getExtra())) {
                 return true;
             }
         }
@@ -562,7 +562,7 @@ public class MediaAccessModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public void m4276b(String str) {
-        if (StringUtils.m8344a(m4272c(str), Preferences.m2858m())) {
+        if (StringUtils.equals(m4272c(str), Preferences.getLocalGroupId())) {
             CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
         }
     }
@@ -578,8 +578,8 @@ public class MediaAccessModule extends BaseModule {
                 arrayList.add(mediaItem.getID());
             }
         }
-        String m2858m = Preferences.m2858m();
-        String m2854n = Preferences.m2854n();
+        String m2858m = Preferences.getLocalGroupId();
+        String m2854n = Preferences.getMediaId();
         String str2 = null;
         if (arrayList.contains(m2854n) && (size = (queryMediaIDs = MediaStorage.queryMediaIDs(sContext, m2858m, Preferences.m2860l(m2858m))).size()) > 0) {
             if (m4272c(str).equals(m2858m) && size == arrayList.size()) {
@@ -639,13 +639,13 @@ public class MediaAccessModule extends BaseModule {
     private void m4268g() {
         CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
         Preferences.m2894d(MediaStorage.GROUP_ID_ALL_LOCAL);
-        Preferences.m2888e("");
+        Preferences.getMediaId("");
         CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
     }
 
     public void logoutFinished() {
         m4276b(MediaStorage.GROUP_ID_FAV);
-        if (StringUtils.m8344a(Preferences.m2858m(), MediaStorage.GROUP_ID_FAV) && Cache.getInstance().getCurrentPlayMediaItem().isOnline()) {
+        if (StringUtils.equals(Preferences.getLocalGroupId(), MediaStorage.GROUP_ID_FAV) && Cache.getInstance().getCurrentPlayMediaItem().isOnline()) {
             CommandCenter.getInstance().m4596b(new Command(CommandID.NEXT, new Object[0]));
         }
         m4269f();
@@ -672,7 +672,7 @@ public class MediaAccessModule extends BaseModule {
         if (StringUtils.isEmpty(str)) {
             return str;
         }
-        if (StringUtils.m8344a(MediaStorage.GROUP_ID_FAV_LOCAL, str) || str.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
+        if (StringUtils.equals(MediaStorage.GROUP_ID_FAV_LOCAL, str) || str.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
             return MediaStorage.GROUP_ID_FAV;
         }
         return str;

@@ -40,8 +40,6 @@ import com.sds.android.ttpod.framework.modules.ModuleID;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.framework.support.p134a.PlayMode;
@@ -295,7 +293,7 @@ public class StartAction {
         if (!z && 1 == j && this.f2521c != null) {
             String m8226a = m8226a(bundle, "uri", "");
             if (!StringUtils.isEmpty(m8226a)) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.START_COMMON_UPGRADE, m8226a));
+                CommandCenter.getInstance().execute(new Command(CommandID.START_COMMON_UPGRADE, m8226a));
                 this.f2521c.startActivity(new Intent(this.f2521c, VersionUpgradeProgressActivity.class));
             }
         }
@@ -364,7 +362,7 @@ public class StartAction {
         if (StringUtils.isEmpty(string)) {
             return false;
         }
-        List<Long> m8338b = StringUtils.m8338b(string, ",");
+        List<Long> m8338b = StringUtils.stringToLongArray(string, ",");
         if (m8338b.size() > 0) {
             OnlineMediaUtils.m4675a(m8338b, new OnlineMediaUtils.InterfaceC1790a<List<MediaItem>>() { // from class: com.sds.android.ttpod.a.v.3
                 @Override // com.sds.android.ttpod.framework.p106a.OnlineMediaUtils.InterfaceC1790a
@@ -386,7 +384,7 @@ public class StartAction {
         if (StringUtils.isEmpty(string) || !FileUtils.m8419a(string)) {
             return false;
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY, string));
+        CommandCenter.getInstance().execute(new Command(CommandID.PLAY, string));
         m8217b(m8227a);
         return true;
     }
@@ -434,7 +432,7 @@ public class StartAction {
         if (StringUtils.isEmpty(str)) {
             return false;
         }
-        List<Long> m8338b = StringUtils.m8338b(str, ",");
+        List<Long> m8338b = StringUtils.stringToLongArray(str, ",");
         if (m8338b.size() > 0) {
             OnlineMediaUtils.m4675a(m8338b, new OnlineMediaUtils.InterfaceC1790a<List<MediaItem>>() { // from class: com.sds.android.ttpod.a.v.4
                 @Override // com.sds.android.ttpod.framework.p106a.OnlineMediaUtils.InterfaceC1790a
@@ -526,8 +524,8 @@ public class StartAction {
         if (i2 >= list.size()) {
             i2 = 0;
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
-        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(i2)));
+        CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
+        CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(i2)));
         m8217b(i);
         return true;
     }

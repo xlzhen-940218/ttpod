@@ -34,8 +34,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p124f.NoticeType;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.utils.ListViewUtils;
 import com.sds.android.ttpod.widget.dragupdatelist.DragUpdateHelper;
@@ -271,7 +269,7 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
                                         size--;
                                     }
                                 }
-                                MessageEntryFragment.this.mAdapter.m7663a(MessageEntryFragment.this.mPrivateMessages);
+                                MessageEntryFragment.this.mAdapter.setDataList(MessageEntryFragment.this.mPrivateMessages);
                             }
 
                             @Override // com.sds.android.sdk.lib.request.RequestCallback
@@ -317,7 +315,7 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
                 } else {
                     addMessages(dataList);
                 }
-                this.mAdapter.m7663a((List) this.mPrivateMessages);
+                this.mAdapter.setDataList((List) this.mPrivateMessages);
                 this.mRequestState = RequestState.REQUESTED_SUCCESS;
             } else {
                 this.mRequestState = RequestState.REQUESTED_FAIL;
@@ -353,7 +351,7 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
     public void requestPrivateMessages(long j) {
         this.mIsRefreshing = j <= 0;
         this.mRequestState = RequestState.REQUESTING;
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_PRIVATE_MESSAGES, Long.valueOf(j), 20, "private_message"));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_PRIVATE_MESSAGES, Long.valueOf(j), 20, "private_message"));
     }
 
     public void setOriginFragment(SlidingClosableFragment slidingClosableFragment) {

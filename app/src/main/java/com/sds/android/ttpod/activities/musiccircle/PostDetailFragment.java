@@ -36,8 +36,6 @@ import com.sds.android.ttpod.framework.modules.p124f.MusiccircleContentType;
 import com.sds.android.ttpod.framework.modules.p124f.PostUtils;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -188,19 +186,19 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
     }
 
     private void requestPostForSaveCache() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_POST_DETAIL_BY_ID, Arrays.asList(Long.valueOf(this.mPostId)), "we should different from getRequestId()"));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_POST_DETAIL_BY_ID, Arrays.asList(Long.valueOf(this.mPostId)), "we should different from getRequestId()"));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     protected void beforeOnlineFragmentOnMediaItemClicked(MediaItem mediaItem) {
-        if (isPlayingItem() && StringUtils.m8344a(mediaItem.getID(), Preferences.m2854n())) {
+        if (isPlayingItem() && StringUtils.equals(mediaItem.getID(), Preferences.getMediaId())) {
             if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(this.mPostId)));
+                CommandCenter.getInstance().execute(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(this.mPostId)));
                 return;
             }
             return;
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(this.mPostId)));
+        CommandCenter.getInstance().execute(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(this.mPostId)));
     }
 
     private void onNewPost(Post post) {
@@ -212,7 +210,7 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
         updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
         this.mOnlineMediaListFragment.getStateView().setState(StateView.EnumC2248b.SUCCESS);
         this.mSecondLoadView.m7932a(false, 0, getString(R.string.loading));
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_POST_SONG_BY_IDS, PostUtils.m4025c(this.mPost), getRequestId()));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_POST_SONG_BY_IDS, PostUtils.m4025c(this.mPost), getRequestId()));
        // FindSongNewStatistic.m5227a(origin());
     }
 
@@ -291,7 +289,7 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
     }
 
     private void requestPostDetail(long j) {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_POST_DETAIL_BY_ID, Arrays.asList(Long.valueOf(j)), getRequestId()));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_POST_DETAIL_BY_ID, Arrays.asList(Long.valueOf(j)), getRequestId()));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -343,7 +341,7 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
     /* JADX INFO: Access modifiers changed from: private */
     public void favoritePost() {
        // FindSongNewStatistic.m5220d(origin());
-        if (!EnvironmentUtils.C0604c.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             PopupsUtils.m6760a((int) R.string.network_unavailable);
         } else if (Preferences.m2954aq() == null) {
             EntryUtils.m8297a(true);
@@ -354,11 +352,11 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
             //createSUserEvent(SAction.ACTION_CLICK_ONLINE_SONG_LIST_FAVORITE, null).append("status", Integer.valueOf(booleanValue ? 0 : 1)).post();
             if (booleanValue) {
                 this.mOriginPost.decreaseFavoriteCount();
-                CommandCenter.getInstance().m4606a(new Command(CommandID.REMOVE_FAVORITE_POSTS, arrayList, ""));
+                CommandCenter.getInstance().execute(new Command(CommandID.REMOVE_FAVORITE_POSTS, arrayList, ""));
                 PopupsUtils.m6760a((int) R.string.favorite_canceled);
             } else {
                 this.mOriginPost.increaseFavoriteCount();
-                CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_FAVORITE_POSTS, arrayList, ""));
+                CommandCenter.getInstance().execute(new Command(CommandID.ADD_FAVORITE_POSTS, arrayList, ""));
                 PopupsUtils.m6760a((int) R.string.added_songlist_to_favorite);
             }
             this.mPostDetailHeader.m7927a(booleanValue ? false : true, this.mOriginPost.getFavoriteCount());

@@ -63,7 +63,7 @@ public class SearchFriendsFragment extends SlidingClosableFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void search() {
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             String obj = this.mSearchContentInput.getText().toString();
             if (StringUtils.isEmpty(obj)) {
                 PopupsUtils.m6760a((int) R.string.social_search_empty);

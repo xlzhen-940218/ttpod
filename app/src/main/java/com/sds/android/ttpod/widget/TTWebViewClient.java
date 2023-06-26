@@ -12,7 +12,6 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.widget.TTWebView;
 
 /* renamed from: com.sds.android.ttpod.widget.h */
 /* loaded from: classes.dex */
@@ -100,7 +99,7 @@ public class TTWebViewClient extends WebViewClient {
 
     @Override // android.webkit.WebViewClient
     public boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             if (this.f8370a == null || !this.f8370a.equals(str)) {
                 this.f8370a = str;
                 webView.getSettings().setBlockNetworkImage(true);

@@ -79,8 +79,8 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
                 case 1:
                     if ((BaseThemeFragment.sDownloadingTask == null || BaseThemeFragment.sDownloadingTask.getState() == null || BaseThemeFragment.sDownloadingTask.getState().intValue() == 4) && (downloadTaskInfo = (DownloadTaskInfo) BaseThemeFragment.sDownloadingSkinQueue.poll()) != null) {
                         DownloadTaskInfo unused = BaseThemeFragment.sDownloadingTask = downloadTaskInfo;
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, Boolean.FALSE));
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, Boolean.FALSE));
+                        CommandCenter.getInstance().execute(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
                         return;
                     }
                     return;
@@ -185,7 +185,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
     }
 
     protected static void saveSkinToSystem(String str, int i) {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SKIN, str, Integer.valueOf(i)));
+        CommandCenter.getInstance().execute(new Command(CommandID.SET_SKIN, str, Integer.valueOf(i)));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -338,7 +338,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
             setAdapterDataSource(this.mCachedSkinItems);
             refreshEditButton();
         }
-        CommandCenter.getInstance().m4606a(new Command(this.mLoadDataCommandID, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(this.mLoadDataCommandID, new Object[0]));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
@@ -460,7 +460,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void tryDownloadSkin(SkinItem skinItem, boolean z) {
-        if (!EnvironmentUtils.C0604c.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             PopupsUtils.m6760a((int) R.string.shake_error_hint);
         } else if (FileUtils.m8414b(skinItem.getPath()) && !z) {
             PopupsUtils.m6760a((int) R.string.skin_file_already_existed);

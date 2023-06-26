@@ -11,7 +11,6 @@ import com.sds.android.sdk.lib.util.DebugUtils;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.fragment.downloadmanager.DownloadManagerFragment;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.modules.core.p113b.AutoDownloadNetworkType;
@@ -250,7 +249,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
     /* renamed from: d */
     protected boolean m2152d() {
         AutoDownloadNetworkType m3052O = Preferences.m3052O();
-        int m8476d = EnvironmentUtils.C0604c.m8476d();
+        int m8476d = EnvironmentUtils.DeviceConfig.m8476d();
         if (mo2131b().m2198e() || ((AutoDownloadNetworkType.WIFI == m3052O && 2 == m8476d) || AutoDownloadNetworkType.ALL == m3052O)) {
             return m8476d == 2 || !Preferences.m3066H() || (mo2131b().m2198e() && Preferences.m3066H());
         }

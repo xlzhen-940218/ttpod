@@ -14,14 +14,12 @@ import com.sds.android.ttpod.adapter.BaseListAdapter;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.fragment.main.findsong.base.ListLoadingFragment;
 import com.sds.android.ttpod.fragment.main.findsong.singer.SingerDetailFragmentNew;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.utils.ArtistUtils;
 import com.sds.android.ttpod.utils.ListViewUtils;
 
@@ -82,7 +80,7 @@ public class SingerCategoryHotDetailFragment extends ListLoadingFragment<SingerD
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ListLoadingFragment
     protected void requestDataList(int i) {
-        CommandCenter.getInstance().m4606a(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
+        CommandCenter.getInstance().execute(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
     }
 
     @Override // android.widget.AdapterView.OnItemLongClickListener
@@ -108,17 +106,17 @@ public class SingerCategoryHotDetailFragment extends ListLoadingFragment<SingerD
 
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter, android.widget.Adapter
         public int getCount() {
-            if (this.f3158d == null) {
+            if (this.dataList == null) {
                 return 0;
             }
-            int size = this.f3158d.size();
+            int size = this.dataList.size();
             return size % 4 == 0 ? size / 4 : (size / 4) + 1;
         }
 
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-            View inflate = this.f3157c.inflate(R.layout.singer_hot_list_item, viewGroup, false);
+        protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+            View inflate = this.layoutInflater.inflate(R.layout.singer_hot_list_item, viewGroup, false);
             inflate.setTag(new NewSongPublishFragment.C1542b[]{new NewSongPublishFragment.C1542b(inflate.findViewById(R.id.song_item1)), new NewSongPublishFragment.C1542b(inflate.findViewById(R.id.song_item2)), new NewSongPublishFragment.C1542b(inflate.findViewById(R.id.song_item3)), new NewSongPublishFragment.C1542b(inflate.findViewById(R.id.song_item4))});
             return inflate;
         }
@@ -126,8 +124,8 @@ public class SingerCategoryHotDetailFragment extends ListLoadingFragment<SingerD
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a  reason: avoid collision after fix types in other method */
-        public void mo5400a(View view, SingerData singerData, int i) {
-            if (this.f3158d != null) {
+        public void buildDataUI(View view, SingerData singerData, int i) {
+            if (this.dataList != null) {
                 NewSongPublishFragment.C1542b[] c1542bArr = (NewSongPublishFragment.C1542b[]) view.getTag();
                 int i2 = i * 4;
                 m5574a(c1542bArr[0], i2);
@@ -139,8 +137,8 @@ public class SingerCategoryHotDetailFragment extends ListLoadingFragment<SingerD
 
         /* renamed from: a */
         private void m5574a(NewSongPublishFragment.C1542b c1542b, int i) {
-            if (c1542b != null && i < this.f3158d.size()) {
-                SingerData singerData = (SingerData) this.f3158d.get(i);
+            if (c1542b != null && i < this.dataList.size()) {
+                SingerData singerData = (SingerData) this.dataList.get(i);
                 m5573a(c1542b, true);
                 c1542b.m5608d().setVisibility(View.INVISIBLE);
                 c1542b.m5612b().setText(singerData.getName());

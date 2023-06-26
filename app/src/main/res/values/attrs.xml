@@ -180,7 +180,7 @@
     </declare-styleable>
     <declare-styleable name="RoundedImageView">
         <attr name="android:scaleType" format="integer"/>
-        <attr name="corner_radius" format="dimension"/>
+        <attr name="image_corner_radius" format="dimension"/>
         <attr name="image_ratio" format="float"/>
         <attr name="Image_border_width" format="dimension"/>
         <attr name="Image_border_color" format="color"/>

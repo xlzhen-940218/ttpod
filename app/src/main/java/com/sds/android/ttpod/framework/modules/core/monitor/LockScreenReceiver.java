@@ -14,7 +14,7 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 class LockScreenReceiver extends BroadcastReceiver {
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.RECEIVED_LOCK_SCREEN_ACTION, intent));
+        CommandCenter.getInstance().execute(new Command(CommandID.RECEIVED_LOCK_SCREEN_ACTION, intent));
     }
 
     /* renamed from: a */

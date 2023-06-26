@@ -136,7 +136,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
 
     public void updateDownloadMvList() {
         ArrayList<MVOnlineData> readDownloadMvList = readDownloadMvList();
-        this.mListAdapter.m7663a((List) readDownloadMvList);
+        this.mListAdapter.setDataList((List) readDownloadMvList);
         this.mListView.setAdapter(this.mListAdapter);
         ((C1524a) this.mListAdapter).m5546a((Activity) getActivity());
         if (mListener != null) {
@@ -176,7 +176,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void clearList() {
         if (this.mListAdapter != null) {
-            List<MVOnlineData> m7662b = this.mListAdapter.m7662b();
+            List<MVOnlineData> m7662b = this.mListAdapter.getDataList();
             if (m7662b != null) {
                 for (MVOnlineData mVOnlineData : m7662b) {
                     File downloadFile = getDownloadFile(mVOnlineData);
@@ -275,9 +275,9 @@ public class LocalMVCompletedFragment extends MVListFragment {
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // com.sds.android.ttpod.fragment.main.findsong.base.MVListFragment.AbstractView$OnClickListenerC1592a, com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        public void mo5400a(View view, MVOnlineData mVOnlineData, int i) {
-            if (this.f3158d != null) {
-                MVOnlineData mVOnlineData2 = (MVOnlineData) this.f3158d.get(i);
+        public void buildDataUI(View view, MVOnlineData mVOnlineData, int i) {
+            if (this.dataList != null) {
+                MVOnlineData mVOnlineData2 = (MVOnlineData) this.dataList.get(i);
                 view.setTag(R.id.view_bind_data, mVOnlineData2);
                 MVListFragment.AbstractView$OnClickListenerC1592a.C1594a c1594a = (MVListFragment.AbstractView$OnClickListenerC1592a.C1594a) view.getTag();
                 c1594a.m5537c().setText(mVOnlineData2.getName());
@@ -339,7 +339,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo2038a(MessageDialog messageDialog) {
                         downloadFile.delete();
-                        C1524a.this.f3158d.remove(mVOnlineData);
+                        C1524a.this.dataList.remove(mVOnlineData);
                         C1524a.this.notifyDataSetChanged();
                         int count = C1524a.this.getCount();
                         if (count == 0) {

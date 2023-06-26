@@ -14,6 +14,6 @@ public final class SplashAPI {
 
     /* renamed from: a */
     public static Request<SplashDataResult> m8824a(int i) {
-        return new GetMethodRequest(SplashDataResult.class, f2268a).m8537b("version", Integer.valueOf(i)).m8537b("s", EnvironmentUtils.C0603b.m8494b()).m8537b("f", EnvironmentUtils.C0603b.m8489d()).m8537b("v", EnvironmentUtils.C0603b.m8491c());
+        return new GetMethodRequest(SplashDataResult.class, f2268a).putParams("version", Integer.valueOf(i)).putParams("s", EnvironmentUtils.C0603b.m8494b()).putParams("f", EnvironmentUtils.C0603b.m8489d()).putParams("v", EnvironmentUtils.C0603b.m8491c());
     }
 }

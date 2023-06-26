@@ -58,7 +58,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
         super.onCreate(bundle);
         TTPodUser m2954aq = Preferences.m2954aq();
         if (m2954aq != null) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
+            CommandCenter.getInstance().execute(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
         }
     }
 
@@ -231,7 +231,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
             } else {
                 this.mRequestState = RequestState.REQUESTED_SUCCESS;
                 if (this.mIsRefreshing) {
-                    this.mAdapter.m7663a((List) list);
+                    this.mAdapter.setDataList((List) list);
                 } else {
                     this.mAdapter.m7463b(list);
                 }
@@ -246,7 +246,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
     }
 
     public List<Post> getPosts() {
-        return this.mAdapter == null ? new ArrayList() : this.mAdapter.m7662b();
+        return this.mAdapter == null ? new ArrayList() : this.mAdapter.getDataList();
     }
 
     public int getDataCount() {
@@ -298,7 +298,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
     public void onLoginFinished(CommonResult commonResult) {
         TTPodUser m2954aq = Preferences.m2954aq();
         if (m2954aq != null) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
+            CommandCenter.getInstance().execute(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
         }
     }
 
@@ -327,7 +327,7 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
         int m8266a;
         if (this.mListView != null && this.mAdapter != null && (m8266a = ListViewUtils.m8266a(this.mListView.getHeaderViewsCount(), i, this.mAdapter.getCount())) > -1) {
             Post item = this.mAdapter.getItem(m8266a);
-            this.mAdapter.mo7467a(item);
+            this.mAdapter.setData(item);
             launchFragment(SubPostDetailFragment.createByPost(item, onLoadOrigin()));
             onEntryDetail(PostUtils.m4029a(item));
         }

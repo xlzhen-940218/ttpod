@@ -51,8 +51,6 @@ import com.sds.android.ttpod.framework.modules.skin.SkinCache;
 import com.sds.android.ttpod.framework.modules.skin.p129b.SPlaylistView;
 import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -186,7 +184,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     private void addPlayingList(View view) {
         Bundle bundle = new Bundle();
         bundle.putString("title", getString(R.string.playing));
-        bundle.putString(AbsMediaListFragment.KEY_GROUP_ID, Preferences.m2858m());
+        bundle.putString(AbsMediaListFragment.KEY_GROUP_ID, Preferences.getLocalGroupId());
         this.mMediaListFragment = (PlayerMediaListFragment) Fragment.instantiate(getActivity(), PlayerMediaListFragment.class.getName(), bundle);
         getChildFragmentManager().beginTransaction().replace(view.getId(), this.mMediaListFragment).commitAllowingStateLoss();
     }
@@ -786,7 +784,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                 if (!StringUtils.isEmpty(Cache.getInstance().m3159i())) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(Cache.getInstance().getCurrentPlayMediaItem());
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_LYRIC, arrayList));
+                    CommandCenter.getInstance().execute(new Command(CommandID.DELETE_LYRIC, arrayList));
                 }
             }
         }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);

@@ -97,18 +97,18 @@ public class OnlineMediaUtils {
                 break;
             }
         }
-        if (StringUtils.m8344a(mediaItem.getID(), Preferences.m2854n()) && PlayStatus.STATUS_STOPPED != SupportFactory.m2397a(BaseApplication.getApplication()).m2463m()) {
+        if (StringUtils.equals(mediaItem.getID(), Preferences.getMediaId()) && PlayStatus.STATUS_STOPPED != SupportFactory.m2397a(BaseApplication.getApplication()).m2463m()) {
             if (PlayStatus.STATUS_PLAYING == SupportFactory.m2397a(BaseApplication.getApplication()).m2463m()) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             }
-            CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
-            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(j2)));
+            CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
+            CommandCenter.getInstance().execute(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(j2)));
             return;
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, list, str));
-        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, mediaItem));
-        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(j2)));
+        CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, list, str));
+        CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, mediaItem));
+        CommandCenter.getInstance().execute(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(j2)));
     }
 
     /* renamed from: a */
@@ -116,9 +116,9 @@ public class OnlineMediaUtils {
         if (list == null || list.isEmpty()) {
             throw new IllegalArgumentException("mediaItems should not be null and not be empty");
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, list, str));
-        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(0)));
-        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(j)));
+        CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, list, str));
+        CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(0)));
+        CommandCenter.getInstance().execute(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(j)));
     }
 
     /* renamed from: a */

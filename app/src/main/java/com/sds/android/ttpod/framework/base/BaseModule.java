@@ -53,7 +53,7 @@ public abstract class BaseModule {
     }
 
     private void assertCommandMap(Map<CommandID, Method> map) {
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             for (CommandID commandID : map.keySet()) {
                 if (commandID.getCommandType().equals(CommandType.TO_MODULE) && !commandID.getModuleID().equals(id())) {
                     throw new IllegalArgumentException("the CommandID." + commandID.name() + " is not belong to this module(ModuleID." + id().name() + ")!");

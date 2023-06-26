@@ -11,11 +11,9 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.adapter.GridListAdapter;
 import com.sds.android.ttpod.fragment.main.findsong.base.GridViewFragment;
 import com.sds.android.ttpod.fragment.main.findsong.base.SingerListImageHeaderFragment;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.widget.NetworkLoadView;
 
 /* loaded from: classes.dex */
@@ -57,7 +55,7 @@ public class SingerCategoryFragment extends GridViewFragment<SingerCategory> {
     }
 
     protected void requestDataList() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SINGER_CATEGORY_LIST, Integer.valueOf(this.mId)));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_SINGER_CATEGORY_LIST, Integer.valueOf(this.mId)));
     }
 
     @Override // android.widget.AdapterView.OnItemClickListener
@@ -91,7 +89,7 @@ public class SingerCategoryFragment extends GridViewFragment<SingerCategory> {
         @Override // com.sds.android.ttpod.adapter.GridListAdapter
         /* renamed from: b  reason: avoid collision after fix types in other method */
         public String mo5566c(SingerCategory singerCategory) {
-            return this.f3156b.getString(R.string.count_of_singers, Integer.valueOf(singerCategory.getCount()));
+            return this.context.getString(R.string.count_of_singers, Integer.valueOf(singerCategory.getCount()));
         }
 
         /* JADX INFO: Access modifiers changed from: protected */
@@ -104,15 +102,15 @@ public class SingerCategoryFragment extends GridViewFragment<SingerCategory> {
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.GridListAdapter, com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        public void mo5400a(View view, SingerCategory singerCategory, int i) {
-            super.mo5400a(view, singerCategory, i);
+        public void buildDataUI(View view, SingerCategory singerCategory, int i) {
+            super.buildDataUI(view, singerCategory, i);
         }
 
         @Override // com.sds.android.ttpod.adapter.GridListAdapter, com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-            View inflate = this.f3157c.inflate(R.layout.find_song_singer_category_with_num_grid_list_view_item, viewGroup, false);
-            inflate.setTag(new GridListAdapter.C0966a(inflate));
+        protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+            View inflate = this.layoutInflater.inflate(R.layout.find_song_singer_category_with_num_grid_list_view_item, viewGroup, false);
+            inflate.setTag(new GridViewHolder(inflate));
             return inflate;
         }
     }

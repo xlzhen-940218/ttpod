@@ -39,7 +39,6 @@ import com.sds.android.ttpod.fragment.ViewPagerGuideFragment;
 import com.sds.android.ttpod.fragment.downloadmanager.DownloadManagerFragment;
 import com.sds.android.ttpod.fragment.main.MainFragment;
 import com.sds.android.ttpod.fragment.main.PortraitPlayerFragment;
-import com.sds.android.ttpod.fragment.skinmanager.base.ThemeListObserver;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseActivity;
 import com.sds.android.ttpod.framework.base.BaseApplication;
@@ -119,7 +118,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         }, 30000L);
         onNewIntent(getIntent());
         checkExternalStorageExisted();
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             if (new Date().getTime() - Preferences.m2953ar().longValue() > 86400000) {
                 CommandCenter.getInstance().m4605a(new Command(CommandID.CHECK_UPGRADE, Boolean.TRUE), 30);
             }
@@ -201,7 +200,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         CheckerManager.m7949a().m7941c();
         if (this.mIsCheckMonthBeginPopupDialog) {
             this.mIsCheckMonthBeginPopupDialog = false;
-            CommandCenter.getInstance().m4606a(new Command(CommandID.CHECK_BEGIN_MONTH_POPUP_DIALOG, new Object[0]));
+            CommandCenter.getInstance().execute(new Command(CommandID.CHECK_BEGIN_MONTH_POPUP_DIALOG, new Object[0]));
         }
         ThirdPartyManager.m8312c();
         GLSurfaceView gLSurfaceView = (GLSurfaceView) findViewById(R.id.surface_view_scene);

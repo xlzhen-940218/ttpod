@@ -64,4 +64,32 @@ public class FindSongCommonCategory implements Serializable {
     public void setStyle(int i) {
         this.mStyle = i;
     }
+
+    public void setmDetail(String mDetail) {
+        this.mDetail = mDetail;
+    }
+
+    public void setmId(int mId) {
+        this.mId = mId;
+    }
+
+    public void setmPicUrl(String mPicUrl) {
+        this.mPicUrl = mPicUrl;
+    }
+
+    public void setmStyle(int mStyle) {
+        this.mStyle = mStyle;
+    }
+
+    public void setmTime(String mTime) {
+        this.mTime = mTime;
+    }
+
+    public void setmTitle(String mTitle) {
+        this.mTitle = mTitle;
+    }
+
+    public void setmType(int mType) {
+        this.mType = mType;
+    }
 }

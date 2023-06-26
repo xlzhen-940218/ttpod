@@ -7,7 +7,7 @@ import com.sds.android.sdk.lib.util.EnvironmentUtils;
 public class CMMusicUtils {
     /* renamed from: a */
     public static boolean m7276a() {
-        String m8481b = EnvironmentUtils.C0604c.getSubscriberId();
+        String m8481b = EnvironmentUtils.DeviceConfig.getSubscriberId();
         return m8481b.startsWith("46000") || m8481b.startsWith("46002") || m8481b.startsWith("46007");
     }
 }

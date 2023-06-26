@@ -81,7 +81,7 @@ public class RecommendFragment extends BaseMusicFragment implements View.OnClick
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         this.mRootView = layoutInflater.inflate(R.layout.cmmusic_recommend_activity, viewGroup, false);
         mViewInit();
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             this.mListView.setVisibility(View.VISIBLE);
             getDBViewContent();
         } else {
@@ -144,7 +144,7 @@ public class RecommendFragment extends BaseMusicFragment implements View.OnClick
     }
 
     private void getAdseatInfo() {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.RecommendFragment.2
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.RecommendFragment.2
             @Override // java.lang.Runnable
             public void run() {
                 ArrayList<HashMap<String, String>> m7336a = AdSeatInfoQuery.m7336a();
@@ -263,7 +263,7 @@ public class RecommendFragment extends BaseMusicFragment implements View.OnClick
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         if (R.id.btn_tryagain_recommpage == view.getId()) {
-            if (EnvironmentUtils.C0604c.m8474e()) {
+            if (EnvironmentUtils.DeviceConfig.m8474e()) {
                 sdkInitCheck();
                 this.mListView.setVisibility(View.VISIBLE);
                 this.mLayout.setVisibility(View.GONE);

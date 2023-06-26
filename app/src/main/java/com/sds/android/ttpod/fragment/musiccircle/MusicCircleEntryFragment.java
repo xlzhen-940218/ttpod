@@ -29,15 +29,12 @@ import com.sds.android.ttpod.activities.musiccircle.p068a.MusicCircleChecker;
 import com.sds.android.ttpod.component.ActionBarController;
 import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.CommonResult;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.utils.EntryUtils;
@@ -243,7 +240,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
                 //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE.getValue(), SPage.PAGE_CIRCLE_MY_HOME.getValue()).post();
                 return;
             case 28:
-                CommandCenter.getInstance().m4606a(new Command(CommandID.LOGOUT, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.LOGOUT, new Object[0]));
                 finish();
                 return;
             default:
@@ -309,7 +306,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
         this.mUser = Preferences.m2954aq();
         if (this.mUser != null) {
             updateFooter(false, 0, getString(R.string.loading));
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.fragment.musiccircle.MusicCircleEntryFragment.4
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.fragment.musiccircle.MusicCircleEntryFragment.4
                 @Override // java.lang.Runnable
                 public void run() {
                     if (MusicCircleEntryFragment.this.mUser != null) {
@@ -336,7 +333,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
     public void onRequestPostIds() {
         super.onRequestPostIds();
         if (getUser() != null) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_TIMELINE_USER_POST_IDS, onLoadOrigin()));
+            CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_TIMELINE_USER_POST_IDS, onLoadOrigin()));
         }
         CheckerManager m7949a = CheckerManager.m7949a();
         m7949a.m7944a(MusicCircleChecker.class);
@@ -378,7 +375,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
             for (int i = 0; i < 10 && i < list.size(); i++) {
                 arrayList.add(list.get(i));
             }
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.fragment.musiccircle.MusicCircleEntryFragment.5
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.fragment.musiccircle.MusicCircleEntryFragment.5
                 @Override // java.lang.Runnable
                 public void run() {
                     Cache.getInstance().m3215a(userId, arrayList);

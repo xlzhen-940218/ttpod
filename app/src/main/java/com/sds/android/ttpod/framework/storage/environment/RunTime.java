@@ -5,5 +5,5 @@ package com.sds.android.ttpod.framework.storage.environment;
 public class RunTime {
 
     /* renamed from: a */
-    private static final String f6991a = EnvironmentContentProvider.f6982b;
+    private static final String f6991a = EnvironmentContentProvider.runTimeHost;
 }

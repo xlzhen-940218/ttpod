@@ -60,7 +60,7 @@ public class BackgroundRecommendFragment extends BackgroundBaseFragment implemen
     }
 
     private void loadBackgroundList() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.LOAD_BACKGROUND_LIST, false));
+        CommandCenter.getInstance().execute(new Command(CommandID.LOAD_BACKGROUND_LIST, false));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BackgroundBaseFragment

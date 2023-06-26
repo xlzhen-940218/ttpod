@@ -1,7 +1,6 @@
 package com.sds.android.ttpod.fragment;
 
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -68,7 +67,7 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
         public void onDownloadStart(String str, String str2, String str3, String str4, long j) {
             DownloadTaskInfo generateDownloadTaskInfo = WebFragment.this.generateDownloadTaskInfo(str);
             if (generateDownloadTaskInfo != null) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, generateDownloadTaskInfo));
+                CommandCenter.getInstance().execute(new Command(CommandID.ADD_DOWNLOAD_TASK, generateDownloadTaskInfo));
             }
         }
     };
@@ -105,7 +104,7 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
         this.mTTWebViewClient = new TTWebViewClient(getActivity(), this, viewGroup2.findViewById(R.id.error_Page_layout)) { // from class: com.sds.android.ttpod.fragment.WebFragment.2
             @Override // com.sds.android.ttpod.widget.TTWebViewClient, android.webkit.WebViewClient
             public void onReceivedHttpAuthRequest(WebView webView, HttpAuthHandler httpAuthHandler, String str, String str2) {
-                if (HttpRequest.m8704b()) {
+                if (HttpRequest.isProxy()) {
                     httpAuthHandler.proceed(UnicomFlowModule.USERNAME, UnicomFlowModule.PASSWORD);
                 } else {
                     super.onReceivedHttpAuthRequest(webView, httpAuthHandler, str, str2);

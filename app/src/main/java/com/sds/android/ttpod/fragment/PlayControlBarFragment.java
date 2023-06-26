@@ -29,8 +29,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeFramework;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.C1780b;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -74,21 +72,21 @@ public class PlayControlBarFragment extends BasePlayerFragment {
                     }
                     return;
                 case R.id.itv_playcontrolbar_next /* 2131231546 */:
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.NEXT, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
                     //LocalStatistic.m5180C();
                     //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_NEXT.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
                     return;
                 case R.id.itv_playcontrolbar_play /* 2131231547 */:
                     if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                        CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                     } else if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_STOPPED) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
+                        CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
                     }
                     //LocalStatistic.m5182A();
                     //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PLAY.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
                     return;
                 case R.id.itv_playcontrolbar_pause /* 2131231548 */:
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                     //LocalStatistic.m5181B();
                     //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PAUSE.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
                     return;
@@ -278,7 +276,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
 
     @Override // com.sds.android.ttpod.fragment.main.BasePlayerFragment
     public void setArtistBitmap(Bitmap bitmap, String str) {
-        if (!StringUtils.m8344a(getCurrentArtistBitmapPath(), str)) {
+        if (!StringUtils.equals(getCurrentArtistBitmapPath(), str)) {
             if (bitmap != null) {
                 bitmap = cropRoundedBitmap(bitmap);
             }

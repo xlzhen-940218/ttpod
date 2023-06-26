@@ -624,7 +624,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
     /* JADX INFO: Access modifiers changed from: private */
     public void doMatchLyricPic() {
         if (!this.mMatching) {
-            if (EnvironmentUtils.C0604c.m8476d() == -1) {
+            if (EnvironmentUtils.DeviceConfig.m8476d() == -1) {
                 PopupsUtils.m6721a("没有网络，臣妾难为无米之炊( ⊙o⊙ )哇。");
                 return;
             }

@@ -137,7 +137,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
     }
 
     private void preLoadSongListDataInWIFI() {
-        if (EnvironmentUtils.C0604c.m8476d() == 2) {
+        if (EnvironmentUtils.DeviceConfig.m8476d() == 2) {
             CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, getNeedPreLoadSongListIds(), getRequestIdForCommandParallel()));
         }
     }
@@ -165,7 +165,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
     }
 
     public void updatePreLoadSongList(PostResult postResult, String str) {
-        if (StringUtils.m8344a(str, getRequestIdForCommandParallel()) && !ListUtils.m4718a(postResult.getDataList())) {
+        if (StringUtils.equals(str, getRequestIdForCommandParallel()) && !ListUtils.m4718a(postResult.getDataList())) {
             Iterator<Post> it = postResult.getDataList().iterator();
             while (it.hasNext()) {
                 Post next = it.next();

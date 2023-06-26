@@ -23,27 +23,27 @@ public class FindSongHotModuleAPI {
 
     /* renamed from: a */
     public static Request<FindSongModuleResult> m8899a(long j) {
-        return new GetMethodRequest(FindSongModuleResult.class, UrlList.f2260a + "/recomm_modules").m8537b("version", Long.valueOf(j)).m8537b("s", EnvironmentUtils.C0603b.m8494b()).m8537b("v", EnvironmentUtils.C0603b.m8491c()).m8537b("f", "f" + EnvironmentUtils.C0602a.m8512b()).m8537b("rom", EnvironmentUtils.C0603b.m8488e().get("rom")).m8537b("userId", EnvironmentUtils.C0603b.m8488e().get("tid")).m8537b("deviceId", EnvironmentUtils.C0603b.m8488e().get("uid"));
+        return new GetMethodRequest(FindSongModuleResult.class, UrlList.f2260a + "/recomm_modules").putParams("version", Long.valueOf(j)).putParams("s", EnvironmentUtils.C0603b.m8494b()).putParams("v", EnvironmentUtils.C0603b.m8491c()).putParams("f", "f" + EnvironmentUtils.AppConfig.getChannelType()).putParams("rom", EnvironmentUtils.C0603b.m8488e().get("rom")).putParams("userId", EnvironmentUtils.C0603b.m8488e().get("tid")).putParams("deviceId", EnvironmentUtils.C0603b.m8488e().get("uid"));
     }
 
     /* renamed from: a */
     public static Request<FindSongHotModuleResult> m8900a() {
-        return new GetMethodRequest(FindSongHotModuleResult.class, "http://star.dongting.com", "recommend/modulenew").m8537b("v", EnvironmentUtils.C0603b.m8491c());
+        return new GetMethodRequest(FindSongHotModuleResult.class, "http://star.dongting.com", "recommend/modulenew").putParams("v", EnvironmentUtils.C0603b.m8491c());
     }
 
     /* renamed from: a */
     public static Request<HotSongOnlineMediaItemsResultNew> m8898a(String str, int i, int i2) {
-        return new GetMethodRequest(HotSongOnlineMediaItemsResultNew.class, str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(HotSongOnlineMediaItemsResultNew.class, str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: b */
     public static Request<FindSongHotListResultNew> m8895b(String str, int i, int i2) {
-        return new GetMethodRequest(FindSongHotListResultNew.class, str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(FindSongHotListResultNew.class, str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
     public static Request<SingerListResult> m8897a(String str, int i, int i2, String str2, Collection collection) {
-        return new GetMethodRequest(SingerListResult.class, str).m8537b("v", EnvironmentUtils.C0603b.m8491c()).m8537b("singer_name", str2).m8537b("singer_id", collection).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(SingerListResult.class, str).putParams("v", EnvironmentUtils.C0603b.m8491c()).putParams("singer_name", str2).putParams("singer_id", collection).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: b */

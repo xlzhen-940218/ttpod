@@ -8,8 +8,6 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.media.mediastore.GroupItem;
 import com.sds.android.ttpod.media.mediastore.MediaStorage;
 import com.sds.android.ttpod.widget.DraggableListView;
@@ -30,7 +28,7 @@ public class DraggableGroupListFragment extends GroupListFragment {
                 if (i >= 0 && i2 >= 0 && i != i2 && i2 < DraggableGroupListFragment.this.bottomLimit() && i < DraggableGroupListFragment.this.bottomLimit()) {
                     GroupItem groupItem = groupItemList.get(i);
                     GroupItem groupItem2 = groupItemList.get(i2);
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_GROUP_ITEM_EXCHANGE_ORDER_EVENT, DraggableGroupListFragment.this.getGroupType(), groupItem.getGroupID(), groupItem2.getGroupID()));
+                    CommandCenter.getInstance().execute(new Command(CommandID.ADD_GROUP_ITEM_EXCHANGE_ORDER_EVENT, DraggableGroupListFragment.this.getGroupType(), groupItem.getGroupID(), groupItem2.getGroupID()));
                     groupItemList.set(i, groupItem2);
                     groupItemList.set(i2, groupItem);
                 }
@@ -41,7 +39,7 @@ public class DraggableGroupListFragment extends GroupListFragment {
             /* renamed from: a */
             public void mo1773a(int i, int i2) {
                 //SUserUtils.m4956a(SAction.ACTION_MY_SONGLIST_DRAG_SORT, SPage.PAGE_NONE);
-                CommandCenter.getInstance().m4606a(new Command(CommandID.COMMIT_GROUP_ITEM_EXCHANGE_ORDER, DraggableGroupListFragment.this.getGroupType()));
+                CommandCenter.getInstance().execute(new Command(CommandID.COMMIT_GROUP_ITEM_EXCHANGE_ORDER, DraggableGroupListFragment.this.getGroupType()));
                 DraggableGroupListFragment.this.notifyDataSetChanged();
             }
         });

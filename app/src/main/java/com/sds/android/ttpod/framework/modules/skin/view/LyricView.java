@@ -1969,7 +1969,7 @@ public class LyricView extends View implements OnMeasureTextListener {
             return false;
         }
         LyricInfo mo3668g = this.f6801h.mo3668g();
-        return StringUtils.m8344a(mo3668g.m3666a(), str) && new File(str).lastModified() == mo3668g.m3662b();
+        return StringUtils.equals(mo3668g.m3666a(), str) && new File(str).lastModified() == mo3668g.m3662b();
     }
 
     /* renamed from: f */

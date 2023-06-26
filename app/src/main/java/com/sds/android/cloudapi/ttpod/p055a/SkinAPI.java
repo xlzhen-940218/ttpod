@@ -28,7 +28,7 @@ public class SkinAPI {
 
     /* renamed from: a */
     public static Request<OnlinePagedSkinListResult> m8829a(int i, int i2, int i3) {
-        return new GetMethodRequest(OnlinePagedSkinListResult.class, "http://api.skin.ttpod.com/skin", "apiSkinType/info").m8537b("_id", Integer.valueOf(i)).m8537b("page", Integer.valueOf(i2)).m8537b("size", Integer.valueOf(i3));
+        return new GetMethodRequest(OnlinePagedSkinListResult.class, "http://api.skin.ttpod.com/skin", "apiSkinType/info").putParams("_id", Integer.valueOf(i)).putParams("page", Integer.valueOf(i2)).putParams("size", Integer.valueOf(i3));
     }
 
     /* renamed from: d */
@@ -38,6 +38,6 @@ public class SkinAPI {
 
     /* renamed from: b */
     public static Request<OnlinePagedSkinListResult> m8827b(int i, int i2, int i3) {
-        return new GetMethodRequest(OnlinePagedSkinListResult.class, "http://log.topit.me/ttpod/apiSkinTypeInfo.php").m8537b("_id", Integer.valueOf(i)).m8537b("page", Integer.valueOf(i2)).m8537b("size", Integer.valueOf(i3));
+        return new GetMethodRequest(OnlinePagedSkinListResult.class, "http://log.topit.me/ttpod/apiSkinTypeInfo.php").putParams("_id", Integer.valueOf(i)).putParams("page", Integer.valueOf(i2)).putParams("size", Integer.valueOf(i3));
     }
 }

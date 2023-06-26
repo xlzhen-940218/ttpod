@@ -97,7 +97,7 @@ public class SkinCategoryDetailFragment extends ActionBarThemeListFragment {
     }
 
     private void loadDataList(int i, int i2) {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_PAGED_SKIN_LIST, Integer.valueOf(this.mId), Integer.valueOf(i), Integer.valueOf(i2)));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_PAGED_SKIN_LIST, Integer.valueOf(this.mId), Integer.valueOf(i), Integer.valueOf(i2)));
     }
 
     public void updateDataListForAdapter(OnlinePagedSkinListResult onlinePagedSkinListResult) {

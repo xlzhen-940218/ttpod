@@ -13,8 +13,6 @@ import com.sds.android.ttpod.component.p087d.p088a.EditTextDialog;
 import com.sds.android.ttpod.component.video.VideoPlayManager;
 import com.sds.android.ttpod.fragment.main.findsong.MvManager;
 import com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.utils.ListViewUtils;
@@ -81,11 +79,11 @@ public abstract class MediaItemMenuClickStub implements View.OnClickListener {
                 return;
             case R.id.media_menu_mv /* 2131230751 */:
                 final MediaItem mediaItem = this.f5423c;
-                MvManager.m5557b(this.f5421a, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.fragment.main.list.d.1
+                MvManager.showMv(this.f5421a, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.fragment.main.list.d.1
                     @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
                     /* renamed from: a */
-                    public void mo1219a() {
-                        VideoPlayManager.m5816a(MediaItemMenuClickStub.this.f5421a, mediaItem);
+                    public void onSuccess() {
+                        VideoPlayManager.playVideo(MediaItemMenuClickStub.this.f5421a, mediaItem);
                     }
 
                     @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
@@ -101,7 +99,7 @@ public abstract class MediaItemMenuClickStub implements View.OnClickListener {
                 //m5442a(SAction.ACTION_RIGHT_MENU_RING, SPage.PAGE_DIALOG_RING);
                 return;
             case R.id.media_menu_share /* 2131230753 */:
-                PopupsUtils.m6756a(this.f5421a, this.f5423c);
+                PopupsUtils.shareMediaItem(this.f5421a, this.f5423c);
                 //m5442a(SAction.ACTION_RIGHT_MENU_SHARE, SPage.PAGE_DIALOG_SHARE);
                 return;
         }

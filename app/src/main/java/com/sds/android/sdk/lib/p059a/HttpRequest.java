@@ -57,7 +57,7 @@ public class HttpRequest {
     private static HttpClient httpClient = null;
 
     /* renamed from: c */
-    private static boolean f2327c = false;
+    private static boolean proxy = false;
 
     /* renamed from: d */
     private static String authorization = "";
@@ -75,7 +75,7 @@ public class HttpRequest {
     private static boolean f2332h = false;
 
     /* renamed from: i */
-    private static long f2333i = 0;
+    private static long contentLength = 0;
 
     /* renamed from: d */
     private static synchronized HttpClient getHttpClient() {
@@ -84,12 +84,12 @@ public class HttpRequest {
             if (HttpRequest.httpClient == null) {
                 HttpRequest.httpClient = initHttpClient();
             }
-            if (m8704b()) {
+            if (isProxy()) {
                 HttpRequest.httpClient.getParams().setParameter("http.route.default-proxy", new HttpHost(hostname, port));
-                LogUtils.debug("HttpRequest", "set use proxy " + f2327c);
+                LogUtils.debug("HttpRequest", "set use proxy " + proxy);
             } else {
                 HttpRequest.httpClient.getParams().removeParameter("http.route.default-proxy");
-                LogUtils.debug("HttpRequest", "set remove proxy" + f2327c);
+                LogUtils.debug("HttpRequest", "set remove proxy" + proxy);
             }
             httpClient = HttpRequest.httpClient;
         }
@@ -97,36 +97,36 @@ public class HttpRequest {
     }
 
     /* renamed from: a */
-    public static void m8715a(String str, int i, String str2, String str3) {
+    public static void m8715a(String str, int i, String authorization, String str3) {
         hostname = str;
         port = i;
-        authorization = str2;
+        HttpRequest.authorization = authorization;
         f2329e = str3;
     }
 
     /* renamed from: a */
-    public static long m8718a() {
-        return f2333i;
+    public static long getContentLength() {
+        return contentLength;
     }
 
     /* renamed from: a */
-    public static void m8716a(long j) {
-        f2333i = j;
+    public static void setContentLength(long j) {
+        contentLength = j;
     }
 
     /* renamed from: a */
-    private static void m8707a(HttpRequestBase httpRequestBase) {
+    private static void addAuthorization(HttpRequestBase httpRequestBase) {
         httpRequestBase.addHeader(new BasicHeader("Authorization", "Basic " + Base64.encodeToString((authorization + ":" + f2329e).getBytes(), 0).trim()));
     }
 
     /* renamed from: b */
-    public static boolean m8704b() {
-        return f2327c;
+    public static boolean isProxy() {
+        return proxy;
     }
 
     /* renamed from: a */
     public static void m8705a(boolean z) {
-        f2327c = z;
+        proxy = z;
     }
 
     /* renamed from: b */
@@ -161,18 +161,18 @@ public class HttpRequest {
     }
 
     /* renamed from: a */
-    public static C0586a m8713a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2) {
+    public static Response doGetRequest(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2) {
         LogUtils.debug("HttpRequest", "doGetRequest: " + str);
-        return m8708a(new HttpGet(UrlUtils.m8333a(str, hashMap2)), hashMap, hashMap2);
+        return m8708a(new HttpGet(UrlUtils.buildGetParamsUrl(str, hashMap2)), hashMap, hashMap2);
     }
 
     /* renamed from: a */
-    public static C0586a m8708a(HttpGet httpGet, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2) {
+    public static Response m8708a(HttpGet httpGet, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2) {
         try {
             buildHeader((HttpRequestBase) httpGet, hashMap);
-            C0586a m8709a = m8709a(getHttpClient().execute(httpGet), (HttpRequestBase) httpGet);
-            m8698f();
-            return m8709a;
+            Response response = createResultFromHttpResponse(getHttpClient().execute(httpGet), (HttpRequestBase) httpGet);
+            closeIdleConnections();
+            return response;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -184,12 +184,12 @@ public class HttpRequest {
     }
 
     /* renamed from: f */
-    private static void m8698f() {
+    private static void closeIdleConnections() {
         threadSafeClientConnManager.closeIdleConnections(30000L, TimeUnit.MILLISECONDS);
     }
 
     /* renamed from: a */
-    public static C0586a m8712a(String uri, HashMap<String, Object> headerMaps, HttpEntity httpEntity) {
+    public static Response m8712a(String uri, HashMap<String, Object> headerMaps, HttpEntity httpEntity) {
         LogUtils.debug("HttpRequest", "doPostRequest: " + uri);
         try {
             HttpPost httpPost = new HttpPost(uri);
@@ -199,8 +199,8 @@ public class HttpRequest {
                 headerMaps.put("Connection", "close");
             }
             buildHeader((HttpRequestBase) httpPost, headerMaps);
-            C0586a m8709a = m8709a(getHttpClient().execute(httpPost), (HttpRequestBase) httpPost);
-            m8698f();
+            Response m8709a = createResultFromHttpResponse(getHttpClient().execute(httpPost), (HttpRequestBase) httpPost);
+            closeIdleConnections();
             return m8709a;
         } catch (Exception e) {
             LogUtils.error("HttpRequest", "doPostRequest exception: " + e.toString());
@@ -210,7 +210,7 @@ public class HttpRequest {
     }
 
     /* renamed from: b */
-    public static C0586a m8703b(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2) {
+    public static Response m8703b(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2) {
         try {
             LogUtils.debug("HttpRequest", "doPostRequest Content: " + hashMap2.toString());
             return m8712a(str, hashMap, m8710a(hashMap2));
@@ -221,7 +221,7 @@ public class HttpRequest {
     }
 
     /* renamed from: a */
-    public static C0586a m8714a(String str, HashMap<String, Object> hashMap, String str2) {
+    public static Response m8714a(String str, HashMap<String, Object> hashMap, String str2) {
         try {
             LogUtils.debug("HttpRequest", "doPostRequest Content: " + str2);
             return m8712a(str, hashMap, m8711a(str2, hashMap));
@@ -270,13 +270,13 @@ public class HttpRequest {
                 httpRequestBase.addHeader(new BasicHeader(str, String.valueOf(hashMap.get(str))));
             }
         }
-        if (m8704b()) {
-            m8707a(httpRequestBase);
+        if (isProxy()) {
+            addAuthorization(httpRequestBase);
         }
     }
 
     /* renamed from: a */
-    private static C0586a m8709a(HttpResponse httpResponse, HttpRequestBase httpRequestBase) throws Exception {
+    private static Response createResultFromHttpResponse(HttpResponse httpResponse, HttpRequestBase httpRequestBase) throws Exception {
         InputStream m8331a;
         LogUtils.info("HttpRequest", "in createResultFromHttpResponse lookNetProblem");
         Header[] allHeaders = httpResponse.getAllHeaders();
@@ -293,16 +293,16 @@ public class HttpRequest {
         int statusCode = httpResponse.getStatusLine().getStatusCode();
         long contentLength = entity.getContentLength();
         LogUtils.info("HttpRequest", "createResultFromHttpResponse statusCode=%d lookNetProblem", Integer.valueOf(statusCode));
-        C0586a c0586a = new C0586a(statusCode, allHeaders, m8331a, (int) contentLength, httpRequestBase);
-        LogUtils.info("HttpRequest", "createResultFromHttpResponse lookNetProblem isUseProxy=" + f2327c + "  host=" + hostname + "  port=" + port);
+        Response response = new Response(statusCode, allHeaders, m8331a, (int) contentLength, httpRequestBase);
+        LogUtils.info("HttpRequest", "createResultFromHttpResponse lookNetProblem isUseProxy=" + proxy + "  host=" + hostname + "  port=" + port);
         if (f2332h && contentLength > 0) {
-            f2333i += contentLength;
+            HttpRequest.contentLength += contentLength;
         }
-        c0586a.f2343h = "bytes".equals(c0586a.m8694a("Accept-Ranges"));
+        response.ranges = "bytes".equals(response.getHeader("Accept-Ranges"));
         Header contentType = entity.getContentType();
-        c0586a.f2341f = contentType != null ? contentType.getValue() : null;
-        c0586a.f2342g = value;
-        c0586a.f2344i = entity.isChunked();
+        response.contentType = contentType != null ? contentType.getValue() : null;
+        response.contentEncoding = value;
+        response.chunked = entity.isChunked();
         if (statusCode < 200 || statusCode >= 400) {
             String uri = httpRequestBase.getURI().toString();
             int indexOf = uri.indexOf(63);
@@ -313,7 +313,7 @@ public class HttpRequest {
             m8717a(statusCode, uri);
         }
         LogUtils.info("HttpRequest", "createResultFromHttpResponse statusCode=%d exit function lookNetProblem", Integer.valueOf(statusCode));
-        return c0586a;
+        return response;
     }
 
     /* renamed from: a */
@@ -335,76 +335,76 @@ public class HttpRequest {
     /* compiled from: HttpRequest.java */
     /* renamed from: com.sds.android.sdk.lib.a.a$a */
     /* loaded from: classes.dex */
-    public static final class C0586a {
+    public static final class Response {
 
         /* renamed from: j */
-        private static long f2334j = 0;
+        private static long age = 0;
 
         /* renamed from: k */
-        private static long f2335k = 0;
+        private static long date = 0;
 
         /* renamed from: a */
-        private int f2336a;
+        private int statusCode;
 
         /* renamed from: b */
-        private Header[] f2337b;
+        private Header[] headers;
 
         /* renamed from: c */
-        private InputStream f2338c;
+        private InputStream inputStream;
 
         /* renamed from: d */
-        private int f2339d;
+        private int contentLength;
 
         /* renamed from: e */
-        private HttpRequestBase f2340e;
+        private HttpRequestBase httpRequestBase;
 
         /* renamed from: f */
-        private String f2341f;
+        private String contentType;
 
         /* renamed from: g */
-        private String f2342g;
+        private String contentEncoding;
 
         /* renamed from: h */
-        private boolean f2343h;
+        private boolean ranges;
 
         /* renamed from: i */
-        private boolean f2344i;
+        private boolean chunked;
 
         /* renamed from: a */
-        public static long m8697a() {
-            return f2334j;
+        public static long getAge() {
+            return age;
         }
 
         /* renamed from: b */
-        public static long m8693b() {
-            return f2335k;
+        public static long getDate() {
+            return date;
         }
 
-        public C0586a(int i, Header[] headerArr, InputStream inputStream, int i2, HttpRequestBase httpRequestBase) {
-            this.f2336a = i;
-            this.f2337b = headerArr;
-            this.f2338c = inputStream;
-            this.f2339d = i2;
-            this.f2340e = httpRequestBase;
-            f2334j = m8685h();
-            f2335k = m8684i();
+        public Response(int i, Header[] headerArr, InputStream inputStream, int i2, HttpRequestBase httpRequestBase) {
+            this.statusCode = i;
+            this.headers = headerArr;
+            this.inputStream = inputStream;
+            this.contentLength = i2;
+            this.httpRequestBase = httpRequestBase;
+            age = initAge();
+            date = initDate();
         }
 
         /* renamed from: c */
-        public int m8690c() {
-            return this.f2336a;
+        public int getStatusCode() {
+            return this.statusCode;
         }
 
         /* renamed from: d */
-        public Header[] m8689d() {
-            return this.f2337b;
+        public Header[] getHeaders() {
+            return this.headers;
         }
 
         /* renamed from: a */
-        public String m8694a(String str) {
+        public String getHeader(String str) {
             Header[] headerArr;
-            if (this.f2337b != null && this.f2337b.length > 0) {
-                for (Header header : this.f2337b) {
+            if (this.headers != null && this.headers.length > 0) {
+                for (Header header : this.headers) {
                     if (header.getName().equals(str)) {
                         return header.getValue();
                     }
@@ -414,33 +414,33 @@ public class HttpRequest {
         }
 
         /* renamed from: e */
-        public InputStream m8688e() {
-            return this.f2338c;
+        public InputStream getInputStream() {
+            return this.inputStream;
         }
 
         /* renamed from: f */
-        public int m8687f() {
-            return this.f2339d;
+        public int getContentLength() {
+            return this.contentLength;
         }
 
         /* renamed from: g */
-        public void m8686g() {
-            if (this.f2338c != null) {
+        public void close() {
+            if (this.inputStream != null) {
                 try {
-                    this.f2340e.abort();
+                    this.httpRequestBase.abort();
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
-                    this.f2338c = null;
-                    this.f2340e = null;
+                    this.inputStream = null;
+                    this.httpRequestBase = null;
                 }
             }
         }
 
         /* renamed from: h */
-        private long m8685h() {
+        private long initAge() {
             long j = 0;
-            Header[] m8689d = m8689d();
+            Header[] m8689d = getHeaders();
             if (m8689d != null) {
                 for (Header header : m8689d) {
                     if ("age".equals(header.getName())) {
@@ -456,8 +456,8 @@ public class HttpRequest {
         }
 
         /* renamed from: i */
-        private long m8684i() {
-            Header[] m8689d = m8689d();
+        private long initDate() {
+            Header[] m8689d = getHeaders();
             int length = m8689d.length;
             int i = 0;
             while (true) {

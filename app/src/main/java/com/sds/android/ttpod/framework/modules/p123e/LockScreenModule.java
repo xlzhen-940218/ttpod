@@ -77,10 +77,10 @@ public class LockScreenModule extends BaseModule {
     }
 
     public static boolean isAllowDefaultLockScreen() {
-        String m8501j = EnvironmentUtils.C0602a.m8501j();
+        String m8501j = EnvironmentUtils.AppConfig.getNoShortcutChannels();
         if (!StringUtils.isEmpty(m8501j)) {
             String[] split = m8501j.split("_");
-            String m8512b = EnvironmentUtils.C0602a.m8512b();
+            String m8512b = EnvironmentUtils.AppConfig.getChannelType();
             if (split != null && !StringUtils.isEmpty(m8512b)) {
                 for (String str : split) {
                     if (str.equals(m8512b)) {

@@ -26,7 +26,7 @@ public class FavoriteAdapter extends BaseListAdapter<Post> {
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.musiccircle_favorite_item, (ViewGroup) null, false);
         inflate.setTag(new C0986a((UserAvatarView) inflate.findViewById(R.id.image_avatar), (TextView) inflate.findViewById(R.id.tv_tweet), (TextView) inflate.findViewById(R.id.tv_user_name)));
         return inflate;
@@ -35,7 +35,7 @@ public class FavoriteAdapter extends BaseListAdapter<Post> {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo5400a(View view, Post post, int i) {
+    public void buildDataUI(View view, Post post, int i) {
         C0986a c0986a = (C0986a) view.getTag();
         LabeledTTPodUser user = PostUtils.m4029a(post).getUser();
         c0986a.f3318d.setText(user.getNickName());

@@ -599,7 +599,7 @@ public enum CommandID {
     }
 
     private void assertParamTypeNotArray(Class<?>... clsArr) {
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             for (Class<?> cls : clsArr) {
                 if (cls.isArray()) {
                     throw new IllegalArgumentException("ParamType is Array, not Supported!");

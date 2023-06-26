@@ -56,7 +56,7 @@ final class MediaTemporaryStore {
                 break;
             }
             MediaItem next = it.next();
-            if (StringUtils.m8344a(next.getID(), buildMediaItem.getID())) {
+            if (StringUtils.equals(next.getID(), buildMediaItem.getID())) {
                 next.setExtra(buildMediaItem.getExtra());
                 break;
             }

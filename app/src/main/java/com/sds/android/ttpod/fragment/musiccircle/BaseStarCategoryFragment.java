@@ -37,7 +37,7 @@ public abstract class BaseStarCategoryFragment extends BaseFragment implements A
         this.mReloadView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.musiccircle.BaseStarCategoryFragment.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     BaseStarCategoryFragment.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     BaseStarCategoryFragment.this.onRequestData();
                     return;

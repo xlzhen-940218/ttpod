@@ -10,10 +10,10 @@ public class GuideAPI {
     /* renamed from: a */
     public static Request<GuideResult> m8885a(int i, String str, String str2, int i2) {
         GetMethodRequest getMethodRequest = new GetMethodRequest(GuideResult.class, "http://api.busdh.com/market-api/splash/log");
-        getMethodRequest.m8537b("app_id", Integer.valueOf(i));
-        getMethodRequest.m8537b("f", str);
-        getMethodRequest.m8537b("v", str2);
-        getMethodRequest.m8537b("code", Integer.valueOf(i2));
+        getMethodRequest.putParams("app_id", Integer.valueOf(i));
+        getMethodRequest.putParams("f", str);
+        getMethodRequest.putParams("v", str2);
+        getMethodRequest.putParams("code", Integer.valueOf(i2));
         return getMethodRequest;
     }
 }

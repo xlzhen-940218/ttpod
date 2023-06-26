@@ -20,8 +20,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectCache;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.media.text.TTTextUtils;
 
@@ -144,7 +142,7 @@ public class MediaInfoEditDialog extends ScrollableDialog {
         }
         FileUtils.m8410c(m4341a, AudioEffectUtils.m4341a(mediaItem));
         m6825d(mediaItem);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.UPDATE_MEDIA_ITEM, mediaItem));
+        CommandCenter.getInstance().execute(new Command(CommandID.UPDATE_MEDIA_ITEM, mediaItem));
     }
 
     /* JADX WARN: Removed duplicated region for block: B:14:? A[RETURN, SYNTHETIC] */

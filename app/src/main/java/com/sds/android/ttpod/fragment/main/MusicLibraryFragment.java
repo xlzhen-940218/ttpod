@@ -75,7 +75,7 @@ public class MusicLibraryFragment extends BaseFragment implements OnPageSelected
         @Override // com.sds.android.ttpod.widget.NetworkLoadView.InterfaceC2206b
         /* renamed from: a */
         public void mo1678a() {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_MUSIC_CATEGORY, 1, 15));
+            CommandCenter.getInstance().execute(new Command(CommandID.GET_MUSIC_CATEGORY, 1, 15));
         }
     };
     private SimpleSongView.InterfaceC2231b mSongCategoryClickListener = new SimpleSongView.InterfaceC2231b() { // from class: com.sds.android.ttpod.fragment.main.MusicLibraryFragment.2
@@ -193,24 +193,24 @@ public class MusicLibraryFragment extends BaseFragment implements OnPageSelected
         //MusicLibraryStatistic.m5059d();
         String m7617c = c0963a.m7617c();
         SAction sAction2 = SAction.ACTION_LIBRARY_OTHERS;
-        if (StringUtils.m8344a(m7617c, CATEGORY_SINGER)) {
+        if (StringUtils.equals(m7617c, CATEGORY_SINGER)) {
             launchFragment(new SingerCategoryFragment(m7617c, ID_SINGER));
             i = (int) c0963a.m7618b();
             sAction = SAction.ACTION_SINGERS;
-        } else if (StringUtils.m8344a(m7617c, CATEGORY_RADIO)) {
+        } else if (StringUtils.equals(m7617c, CATEGORY_RADIO)) {
             launchFragment(new RadioCategoryFragment(m7617c));
             i = (int) c0963a.m7618b();
             sAction = SAction.ACTION_RADIO;
-        } else if (StringUtils.m8344a(m7617c, CATEGORY_MV)) {
+        } else if (StringUtils.equals(m7617c, CATEGORY_MV)) {
             launchFragment(new OnlineMVFragment(m7617c, ID_MV));
             i = (int) c0963a.m7618b();
             sAction = SAction.ACTION_MV;
-        } else if (StringUtils.m8344a(m7617c, CATEGORY_TTPOD_FM)) {
+        } else if (StringUtils.equals(m7617c, CATEGORY_TTPOD_FM)) {
             gotoTTPodFMPage();
             i = (int) c0963a.m7618b();
             sAction = sAction2;
         } else {
-            if (StringUtils.m8344a(m7617c, CATEGORY_CMMUSIC)) {
+            if (StringUtils.equals(m7617c, CATEGORY_CMMUSIC)) {
                 if (CMMusicUtils.m7276a()) {
                     //StatisticUtils.m4917a(346, (int) 65537, 1L);
                     getActivity().startActivity(new Intent(getActivity(), ListenContentActivity.class));

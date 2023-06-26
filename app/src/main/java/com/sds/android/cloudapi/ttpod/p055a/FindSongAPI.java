@@ -23,22 +23,22 @@ public class FindSongAPI {
 
     /* renamed from: a */
     public static Request<OnlineMusicCategoryResult> m8908a(int i, int i2) {
-        return new GetMethodRequest(OnlineMusicCategoryResult.class, UrlList.f2261b).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(OnlineMusicCategoryResult.class, UrlList.f2261b).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
     public static Request<OnlineMusicSubCategoryResult> m8905a(long j, int i, int i2) {
-        return new GetMethodRequest(OnlineMusicSubCategoryResult.class, UrlList.f2262c).m8537b("id", Long.valueOf(j)).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(OnlineMusicSubCategoryResult.class, UrlList.f2262c).putParams("id", Long.valueOf(j)).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
     public static Request<SingerCategoryResult> m8909a(int i) {
-        return new GetMethodRequest(SingerCategoryResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").m8537b("id", Integer.valueOf(i));
+        return new GetMethodRequest(SingerCategoryResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").putParams("id", Integer.valueOf(i));
     }
 
     /* renamed from: b */
     public static Request<SingerListResult> m8902b(int i, int i2) {
-        return new GetMethodRequest(SingerListResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").m8537b("id", Integer.valueOf(i)).m8537b("page", Integer.valueOf(i2)).m8537b("size", 1000);
+        return new GetMethodRequest(SingerListResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").putParams("id", Integer.valueOf(i)).putParams("page", Integer.valueOf(i2)).putParams("size", 1000);
     }
 
     /* renamed from: a */
@@ -48,7 +48,7 @@ public class FindSongAPI {
 
     /* renamed from: a */
     public static Request<OnlineMediaItemsResult> m8903a(String str, int i, int i2) {
-        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/v2/songs/singersearch").m8537b("q", str).m8537b("page", Integer.valueOf(i)).m8537b("size", Integer.valueOf(i2));
+        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/v2/songs/singersearch").putParams("q", str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: a */
@@ -64,11 +64,11 @@ public class FindSongAPI {
 
     /* renamed from: a */
     public static Request<IntroductionResult> m8906a(long j) {
-        return new GetMethodRequest(IntroductionResult.class, UrlList.m8962a() + "/recomm/module_detail").m8537b("id", Long.valueOf(j));
+        return new GetMethodRequest(IntroductionResult.class, UrlList.m8962a() + "/recomm/module_detail").putParams("id", Long.valueOf(j));
     }
 
     /* renamed from: c */
     public static Request<MVListResult> m8901c(int i, int i2) {
-        return new GetMethodRequest(MVListResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").m8537b("id", Integer.valueOf(i)).m8537b("page", Integer.valueOf(i2)).m8537b("size", 50);
+        return new GetMethodRequest(MVListResult.class, "http://v1.ard.tj.itlily.com/ttpod?a=getnewttpod").putParams("id", Integer.valueOf(i)).putParams("page", Integer.valueOf(i2)).putParams("size", 50);
     }
 }

@@ -19,16 +19,13 @@ import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.component.p086c.OnlinePlayingGroupUtils;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.fragment.main.findsong.base.DoubleItemGridSectionListFragment;
-import com.sds.android.ttpod.fragment.main.list.SubMediaListFragment;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.modules.skin.view.Animation;
+import com.sds.android.ttpod.framework.modules.skin.view.AnimationImageView;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -120,7 +117,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
     }
 
     public void updateSearchPictureState(SearchStatus searchStatus, List<ResultData> list, String str, Bitmap bitmap) {
-        if (StringUtils.m8344a(Cache.getInstance().getCurrentPlayMediaItem().getID(), str)) {
+        if (StringUtils.equals(Cache.getInstance().getCurrentPlayMediaItem().getID(), str)) {
             switch (searchStatus) {
                 case SEARCH_LOCAL_FINISHED:
                 case SEARCH_DOWNLOAD_FINISHED:
@@ -218,7 +215,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
             int categoryChannelId = radioCategoryChannel.getCategoryChannelId();
             String categoryChannelName = radioCategoryChannel.getCategoryChannelName();
             String groupName = getGroupName(radioCategoryChannel);
-            if (!StringUtils.m8344a(this.mActiveChannelTitle, groupName)) {
+            if (!StringUtils.equals(this.mActiveChannelTitle, groupName)) {
                 this.mActiveChannelId = categoryChannelId;
                 this.mActiveChannelTitle = groupName;
                 this.mCurrentChannelState = 4;
@@ -278,9 +275,9 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
 
         @Override // com.sds.android.ttpod.adapter.FindSongGridSectionListAdapter, com.sds.android.ttpod.adapter.SectionListAdapter
         /* renamed from: b */
-        protected View mo5519b(ViewGroup viewGroup) {
-            View inflate = this.f3241a.inflate(R.layout.radio_category_section_subitem_view, viewGroup, false);
-            inflate.setTag(new GridListAdapter.C0966a[]{new GridListAdapter.C0966a(inflate.findViewById(R.id.song_item1)), new GridListAdapter.C0966a(inflate.findViewById(R.id.song_item2))});
+        protected View getSubConvertView(ViewGroup viewGroup) {
+            View inflate = this.layoutInflater.inflate(R.layout.radio_category_section_subitem_view, viewGroup, false);
+            inflate.setTag(new GridListAdapter.GridViewHolder[]{new GridListAdapter.GridViewHolder(inflate.findViewById(R.id.song_item1)), new GridListAdapter.GridViewHolder(inflate.findViewById(R.id.song_item2))});
             return inflate;
         }
 
@@ -308,20 +305,20 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.FindSongGridSectionListAdapter
         /* renamed from: a */
-        public void mo5601b(GridListAdapter.C0966a c0966a, RadioCategoryChannel radioCategoryChannel) {
-            Animation m7596e = c0966a.m7596e();
-            MovementImage movementImage = (MovementImage) c0966a.m7598d();
-            ImageView m7595f = c0966a.m7595f();
+        public void mo5601b(GridListAdapter.GridViewHolder c0966a, RadioCategoryChannel radioCategoryChannel) {
+            AnimationImageView m7596e = c0966a.getPlayIcon();
+            MovementImage movementImage = (MovementImage) c0966a.getImageView();
+            ImageView m7595f = c0966a.getPlayIconBack();
             if ((RadioCategoryFragment.this.mCurrentChannelState == 2 || RadioCategoryFragment.this.mCurrentChannelState == 4) && RadioCategoryFragment.this.isPlayingItem(radioCategoryChannel)) {
                 m7595f.setBackgroundResource(R.drawable.img_online_radio_play);
                 m7595f.setVisibility(View.VISIBLE);
                 m7596e.setVisibility(View.VISIBLE);
                 m7596e.setAnimationResource(R.drawable.xml_imageview_radio_play_animation);
                 m7596e.m3504a();
-                if (!ThemeManager.m3269a(c0966a.m7594g(), ThemeElement.TILE_MASK)) {
-                    c0966a.m7594g().setBackgroundResource(R.drawable.color_background_radio_playing);
+                if (!ThemeManager.m3269a(c0966a.getMask(), ThemeElement.TILE_MASK)) {
+                    c0966a.getMask().setBackgroundResource(R.drawable.color_background_radio_playing);
                 }
-                c0966a.m7594g().setVisibility(View.VISIBLE);
+                c0966a.getMask().setVisibility(View.VISIBLE);
                 movementImage.setVisibility(View.VISIBLE);
                 if (RadioCategoryFragment.this.mArtistBitmap != null) {
                     movementImage.setMoveMentBitmap(RadioCategoryFragment.this.mArtistBitmap);
@@ -336,7 +333,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
             m7595f.setVisibility(View.INVISIBLE);
             m7596e.setVisibility(View.INVISIBLE);
             m7596e.m3499b();
-            ThemeManager.m3269a(c0966a.m7594g(), ThemeElement.TILE_BACKGROUND);
+            ThemeManager.m3269a(c0966a.getMask(), ThemeElement.TILE_BACKGROUND);
             movementImage.setMoveMentBitmap(null);
             movementImage.m1211b();
             movementImage.setVisibility(View.INVISIBLE);
@@ -345,6 +342,6 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
 
     /* JADX INFO: Access modifiers changed from: private */
     public boolean isPlayingItem(RadioCategoryChannel radioCategoryChannel) {
-        return StringUtils.m8344a(this.mActiveChannelTitle, OnlinePlayingGroupUtils.m6915a(radioCategoryChannel));
+        return StringUtils.equals(this.mActiveChannelTitle, OnlinePlayingGroupUtils.m6915a(radioCategoryChannel));
     }
 }

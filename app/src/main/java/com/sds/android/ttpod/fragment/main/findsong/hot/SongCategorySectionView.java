@@ -69,16 +69,16 @@ public class SongCategorySectionView extends SimpleSongView {
         if (obj instanceof FindSongGridSectionListAdapter.C0963a) {
             FindSongGridSectionListAdapter.C0963a<OnlineMusicCategoryResult.CategoryData> c0963a = (FindSongGridSectionListAdapter.C0963a) obj;
             view.setTag(R.id.view_bind_data, c0963a);
-            GridListAdapter.C0966a c0966a = (GridListAdapter.C0966a) view.getTag();
-            c0966a.m7602b().setText(c0963a.m7617c());
-            c0966a.m7600c().setText(m5482a(c0963a));
+            GridListAdapter.GridViewHolder c0966a = (GridListAdapter.GridViewHolder) view.getTag();
+            c0966a.getName().setText(c0963a.m7617c());
+            c0966a.getNumber().setText(m5482a(c0963a));
             if (c0963a.m7617c().equals(MusicLibraryFragment.CATEGORY_MV)) {
-                c0966a.m7600c().setText(R.string.music_library_mv_title);
+                c0966a.getNumber().setText(R.string.music_library_mv_title);
             }
-            if (!ListViewUtils.m8265a(c0966a.m7598d(), (int) R.drawable.img_music_default_icon)) {
-                ThemeManager.m3269a(c0966a.m7594g(), ThemeElement.TILE_BACKGROUND);
-                ThemeManager.m3269a(c0966a.m7602b(), ThemeElement.TILE_TEXT);
-                ThemeManager.m3269a(c0966a.m7600c(), ThemeElement.TILE_SUB_TEXT);
+            if (!ListViewUtils.m8265a(c0966a.getImageView(), (int) R.drawable.img_music_default_icon)) {
+                ThemeManager.m3269a(c0966a.getMask(), ThemeElement.TILE_BACKGROUND);
+                ThemeManager.m3269a(c0966a.getName(), ThemeElement.TILE_TEXT);
+                ThemeManager.m3269a(c0966a.getNumber(), ThemeElement.TILE_SUB_TEXT);
             }
         }
     }
@@ -87,7 +87,7 @@ public class SongCategorySectionView extends SimpleSongView {
     /* renamed from: b */
     protected View mo1541b() {
         View inflate = View.inflate(getContext(), R.layout.find_song_with_num_grid_list_view_item, null);
-        inflate.setTag(new GridListAdapter.C0966a(inflate));
+        inflate.setTag(new GridListAdapter.GridViewHolder(inflate));
         return inflate;
     }
 

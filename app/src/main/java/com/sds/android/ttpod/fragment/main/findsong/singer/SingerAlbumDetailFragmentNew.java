@@ -24,13 +24,10 @@ import com.sds.android.ttpod.adapter.p075f.TabPagerAdapter;
 import com.sds.android.ttpod.component.p086c.OnlinePlayingGroupUtils;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.framework.base.BaseApplication;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -71,8 +68,8 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
             this.mSingerData = (SingerData) arguments.getSerializable("key_data");
         }
         this.mSongAdapter = new SongListAdapter(getActivity(), getGroupID());
-        this.mSongAdapter.m7394d(getModule());
-        this.mSongAdapter.m7399a(getOrigin());
+        this.mSongAdapter.setModule(getModule());
+        this.mSongAdapter.setOrigin(getOrigin());
         ArrayList arrayList = new ArrayList();
         arrayList.add(this.mAlbumItem);
         this.mAlbumIntroduceAdapter = new C1611a(arrayList);
@@ -114,9 +111,9 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
 
     public void playMediaChanged() {
         updatePlayStatus(PlayStatus.STATUS_PLAYING);
-        this.mSongAdapter.m7395c(Preferences.m2858m());
-        this.mSongAdapter.m7396b(Preferences.m2854n());
-        if (StringUtils.m8344a(getGroupID(), this.mSongAdapter.m7410a())) {
+        this.mSongAdapter.setLocalGroupId(Preferences.getLocalGroupId());
+        this.mSongAdapter.setMediaId(Preferences.getMediaId());
+        if (StringUtils.equals(getGroupID(), this.mSongAdapter.getLocalGroupId())) {
             notifyDataSetChanged();
         }
     }
@@ -212,7 +209,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
                 }
                 if (SingerAlbumDetailFragmentNew.this.isAdded()) {
                     SingerAlbumDetailFragmentNew.this.updateStateView(0, onlineMediaItemsResult.getCode(), arrayList, 1);
-                    SingerAlbumDetailFragmentNew.this.mSongAdapter.m7398a(arrayList);
+                    SingerAlbumDetailFragmentNew.this.mSongAdapter.setMediaItems(arrayList);
                 }
             }
 
@@ -321,7 +318,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
 
     private void onSongItemLongClick(AdapterView<?> adapterView, View view, int i, long j) {
         //OnlineMediaStatistic.m5053a(i + 1);
-        this.mSongAdapter.m7401a(this.mSongAdapter.getItem(i));
+        this.mSongAdapter.download(this.mSongAdapter.getItem(i));
     }
 
     /* renamed from: com.sds.android.ttpod.fragment.main.findsong.singer.SingerAlbumDetailFragmentNew$a */

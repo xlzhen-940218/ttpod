@@ -64,7 +64,7 @@ public class WrapUserPostListFragment extends SlidingClosableFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestUserInfo(long j) {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_USER_INFO_BY_ID, Preferences.m2954aq().getAccessToken(), Long.valueOf(j)));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_USER_INFO_BY_ID, Preferences.m2954aq().getAccessToken(), Long.valueOf(j)));
     }
 
     private void onGetUserInfo(TTPodUser tTPodUser, String str, String str2) {
@@ -90,7 +90,7 @@ public class WrapUserPostListFragment extends SlidingClosableFragment {
             onGetUserInfo(tTPodUserResult.getData(), "", "");
             return;
         }
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             PopupsUtils.m6760a((int) R.string.userinfo_not_found);
         } else {
             PopupsUtils.m6760a((int) R.string.network_unavailable);

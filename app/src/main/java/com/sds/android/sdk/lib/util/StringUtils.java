@@ -1,22 +1,26 @@
 package com.sds.android.sdk.lib.util;
 
+import android.text.TextUtils;
+
+import org.w3c.dom.Text;
+
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 /* renamed from: com.sds.android.sdk.lib.util.l */
 /* loaded from: classes.dex */
 public class StringUtils {
     /* renamed from: a */
-    public static String m8343a(String str, Collection<?> collection) {
+    public static String arrayToString(String str, Collection<?> collection) {
         StringBuilder sb = new StringBuilder();
         if (collection != null) {
-            m8340a(sb, str, collection);
+            arrayToString(sb, str, collection);
         }
         String sb2 = sb.toString();
         if (sb2.endsWith(str)) {
@@ -26,11 +30,11 @@ public class StringUtils {
     }
 
     /* renamed from: a */
-    public static String m8342a(String str, Object... objArr) {
+    public static String spliceStringAndArray(String str, Object... objArr) {
         StringBuilder sb = new StringBuilder();
-        if (objArr != null &&  objArr.length > 0) {
+        if (objArr != null && objArr.length > 0) {
             for (Object obj : objArr) {
-                m8337b(sb, str, obj);
+                arrayToString(sb, str, obj);
             }
         }
         String sb2 = sb.toString();
@@ -41,28 +45,27 @@ public class StringUtils {
     }
 
     /* renamed from: a */
-    private static void m8341a(StringBuilder sb, String str, Object obj) {
+    private static void spliceStringAndArray(StringBuilder sb, String str, Object obj) {
         int length = Array.getLength(obj);
         for (int i = 0; i < length; i++) {
-            m8337b(sb, str, Array.get(obj, i));
+            arrayToString(sb, str, Array.get(obj, i));
         }
     }
 
     /* renamed from: a */
-    private static void m8340a(StringBuilder sb, String str, Collection<?> collection) {
-        Iterator<?> it = collection.iterator();
-        while (it.hasNext()) {
-            m8337b(sb, str, it.next());
+    private static void arrayToString(StringBuilder sb, String str, Collection<?> collection) {
+        for (Object o : collection) {
+            arrayToString(sb, str, o);
         }
     }
 
     /* renamed from: b */
-    private static void m8337b(StringBuilder sb, String str, Object obj) {
+    private static void arrayToString(StringBuilder sb, String str, Object obj) {
         if (obj != null) {
             if (obj.getClass().isArray()) {
-                m8341a(sb, str, obj);
+                spliceStringAndArray(sb, str, obj);
             } else if (obj instanceof Collection) {
-                m8340a(sb, str, (Collection<?>) obj);
+                arrayToString(sb, str, (Collection<?>) obj);
             } else {
                 String obj2 = obj.toString();
                 sb.append(obj2);
@@ -79,13 +82,14 @@ public class StringUtils {
     }
 
     /* renamed from: a */
-    public static boolean m8344a(String str, String str2) {
-        return str == str2 || (str != null && str2 != null && str.length() == str2.length() && str.equals(str2));
+    public static boolean equals(String str, String str2) {
+        return Objects.equals(str, str2);
     }
 
+
     /* renamed from: b */
-    public static List<Long> m8338b(String str, String str2) {
-        List<String> m8335c = m8335c(str, str2);
+    public static List<Long> stringToLongArray(String str, String str2) {
+        List<String> m8335c = stringToArray(str, str2);
         ArrayList arrayList = new ArrayList(m8335c.size());
         for (String str3 : m8335c) {
             arrayList.add(Long.valueOf(Long.parseLong(str3)));
@@ -94,7 +98,7 @@ public class StringUtils {
     }
 
     /* renamed from: c */
-    public static List<String> m8335c(String str, String str2) {
+    public static List<String> stringToArray(String str, String str2) {
         ArrayList arrayList = new ArrayList();
         if (!isEmpty(str)) {
             int length = str.length();
@@ -113,7 +117,7 @@ public class StringUtils {
     }
 
     /* renamed from: a */
-    public static String m8347a(InputStream inputStream) {
+    public static String streamToString(InputStream inputStream) {
         try {
             try {
                 byte[] bArr = new byte[4096];
@@ -157,7 +161,7 @@ public class StringUtils {
     }
 
     /* renamed from: b */
-    public static boolean m8339b(String str) {
+    public static boolean emailVerify(String str) {
         if (isEmpty(str)) {
             return false;
         }
@@ -173,7 +177,7 @@ public class StringUtils {
     }
 
     /* renamed from: a */
-    public static boolean m8345a(String str, int i, int i2) {
-        return str != null && str.length() >= i && str.length() <= i2;
+    public static boolean lengthVerify(String str, int min, int max) {
+        return str != null && str.length() >= min && str.length() <= max;
     }
 }

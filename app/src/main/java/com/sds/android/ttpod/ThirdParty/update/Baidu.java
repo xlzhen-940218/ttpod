@@ -66,11 +66,11 @@ public class Baidu implements UpdateInterface {
     public boolean check(Context context, final VersionUpdateData versionUpdateData, final UpdateCallback updateCallback) {
         this.mContext = context;
         final String str = "http://m.baidu.com/api?from=" + FROM + "&token=ttpod&type=app&index=3";
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.ThirdParty.update.Baidu.1
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.ThirdParty.update.Baidu.1
             @Override // java.lang.Runnable
             public void run() {
                 if (StringUtils.isEmpty(Baidu.mRequestUrl)) {
-                    String unused = Baidu.mRequestUrl = Baidu.this.getRequestUrl(HttpRequest.m8713a(str, (HashMap<String, Object>) null, (HashMap<String, Object>) null).m8688e());
+                    String unused = Baidu.mRequestUrl = Baidu.this.getRequestUrl(HttpRequest.doGetRequest(str, (HashMap<String, Object>) null, (HashMap<String, Object>) null).getInputStream());
                 }
                 if (!StringUtils.isEmpty(Baidu.mRequestUrl)) {
                     try {

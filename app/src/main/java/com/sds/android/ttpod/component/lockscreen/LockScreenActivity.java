@@ -211,7 +211,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
     }
 
     public void loadPictureAfterSearchFinished(SearchStatus searchStatus, List<ResultData> list, String str, Bitmap bitmap) {
-        if (StringUtils.m8344a(this.mPlayingMediaItem.getID(), str)) {
+        if (StringUtils.equals(this.mPlayingMediaItem.getID(), str)) {
             if (SearchStatus.SEARCH_LOCAL_FINISHED == searchStatus || SearchStatus.SEARCH_DOWNLOAD_FINISHED == searchStatus) {
                 this.mSongImageView.setImageBitmapDelay(bitmap);
             }
@@ -232,7 +232,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
     }
 
     public void updateSearchLyricState(SearchStatus searchStatus, List<ResultData> list, String str, Lyric lyric) {
-        if (StringUtils.m8344a(this.mPlayingMediaItem.getID(), str)) {
+        if (StringUtils.equals(this.mPlayingMediaItem.getID(), str)) {
             switch (searchStatus) {
                 case SEARCH_LOCAL_FINISHED:
                 case SEARCH_DOWNLOAD_FINISHED:
@@ -259,21 +259,21 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         acquireFastClickSupport();
         switch (view.getId()) {
             case R.id.imageview_pre /* 2131230870 */:
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PREVIOUS, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.PREVIOUS, new Object[0]));
                 return;
             case R.id.imageview_play /* 2131230871 */:
                 if (PlayStatus.STATUS_PAUSED == SupportFactory.m2397a(BaseApplication.getApplication()).m2463m()) {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                     return;
                 } else {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
                     return;
                 }
             case R.id.imageview_pause /* 2131230872 */:
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             case R.id.imageview_next /* 2131230873 */:
-                CommandCenter.getInstance().m4606a(new Command(CommandID.NEXT, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
                 return;
             default:
                 return;

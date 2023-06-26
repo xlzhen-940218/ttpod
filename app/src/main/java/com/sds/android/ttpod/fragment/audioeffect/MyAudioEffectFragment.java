@@ -44,8 +44,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.PrivateEffectItem;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -390,7 +388,7 @@ public class MyAudioEffectFragment extends BaseFragment {
             c1407a.f4976c.setText(m4332a.substring(lastIndexOf + 1));
             EqualizerWaveViewHelper.m7147a(c1407a.f4977d, privateEffectItem.m4323h());
             if (!MyAudioEffectFragment.this.mIsItemClicked) {
-                if (MyAudioEffectFragment.this.mIsCloudAudioOpen && MyAudioEffectFragment.this.mCurrentMediaItem != null && StringUtils.m8344a(privateEffectItem.m4325f().getID(), MyAudioEffectFragment.this.mCurrentMediaItem.getID())) {
+                if (MyAudioEffectFragment.this.mIsCloudAudioOpen && MyAudioEffectFragment.this.mCurrentMediaItem != null && StringUtils.equals(privateEffectItem.m4325f().getID(), MyAudioEffectFragment.this.mCurrentMediaItem.getID())) {
                     this.mSelectItem = i;
                 } else {
                     this.mSelectItem = -1;
@@ -422,22 +420,22 @@ public class MyAudioEffectFragment extends BaseFragment {
                 //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_MY_EFFECT_PLAY, SPage.PAGE_NONE, SPage.PAGE_AUDIO_MY_CLOUD_EFFECT);
             }
             if (!MyAudioEffectFragment.this.mNetTemporaryGroupSynced) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, MyAudioEffectFragment.this.mMediaItemList));
+                CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, MyAudioEffectFragment.this.mMediaItemList));
                 MyAudioEffectFragment.this.mNetTemporaryGroupSynced = true;
             }
             MediaItem m4325f = this.mMyEffectItemList.get(i).m4325f();
             MyAudioEffectFragment.this.mSelectedMediaItem = m4325f;
-            if (!StringUtils.m8344a(MediaStorage.GROUP_ID_ONLINE_TEMPORARY, Preferences.m2858m()) || !StringUtils.m8344a(m4325f.getID(), Preferences.m2854n())) {
+            if (!StringUtils.equals(MediaStorage.GROUP_ID_ONLINE_TEMPORARY, Preferences.getLocalGroupId()) || !StringUtils.equals(m4325f.getID(), Preferences.getMediaId())) {
                 MyAudioEffectFragment.this.mHandler.postDelayed(this.mUpdateRunnable, z ? 2100L : 0L);
                 return;
             }
             PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
             if (m2463m == PlayStatus.STATUS_PAUSED) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
             } else if (m2463m == PlayStatus.STATUS_PLAYING) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
             } else {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
             }
         }
 

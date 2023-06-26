@@ -91,7 +91,7 @@ public final class UserSystemModule extends BaseModule {
     }
 
     public void login(final String str, final String str2) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.f.a.7
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.f.a.7
             @Override // java.lang.Runnable
             public void run() {
                 BaseResult m8531f = UserSystemAPI.m8950b(str).m8531f();

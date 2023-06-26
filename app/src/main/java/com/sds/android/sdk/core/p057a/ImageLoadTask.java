@@ -101,12 +101,12 @@ public final class ImageLoadTask {
         Throwable th;
         Exception e;
         BufferedInputStream bufferedInputStream2 = null;
-        HttpRequest.C0586a m8708a = HttpRequest.m8708a(new HttpGet(str), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
-        if (m8708a != null && m8708a.m8690c() == 200) {
+        HttpRequest.Response m8708a = HttpRequest.m8708a(new HttpGet(str), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
+        if (m8708a != null && m8708a.getStatusCode() == 200) {
             try {
                 fileOutputStream = new FileOutputStream(str2);
                 try {
-                    bufferedInputStream = new BufferedInputStream(m8708a.m8688e(), 8192);
+                    bufferedInputStream = new BufferedInputStream(m8708a.getInputStream(), 8192);
                     try {
                         BufferedOutputStream bufferedOutputStream3 = new BufferedOutputStream(fileOutputStream, 8192);
                         int i = 0;
@@ -128,7 +128,7 @@ public final class ImageLoadTask {
                                 try {
                                     e.printStackTrace();
                                     try {
-                                        m8708a.m8688e().close();
+                                        m8708a.getInputStream().close();
                                         if (bufferedInputStream2 != null) {
                                             bufferedInputStream2.close();
                                         }
@@ -148,7 +148,7 @@ public final class ImageLoadTask {
                                     bufferedOutputStream2 = bufferedOutputStream;
                                     bufferedInputStream = bufferedInputStream3;
                                     try {
-                                        m8708a.m8688e().close();
+                                        m8708a.getInputStream().close();
                                         if (bufferedInputStream != null) {
                                             bufferedInputStream.close();
                                         }
@@ -166,7 +166,7 @@ public final class ImageLoadTask {
                             } catch (Throwable th2) {
                                 th = th2;
                                 bufferedOutputStream2 = bufferedOutputStream3;
-                                m8708a.m8688e().close();
+                                m8708a.getInputStream().close();
                                 if (bufferedInputStream != null) {
                                 }
                                 if (bufferedOutputStream2 != null) {
@@ -178,7 +178,7 @@ public final class ImageLoadTask {
                         }
                         z = true;
                         try {
-                            m8708a.m8688e().close();
+                            m8708a.getInputStream().close();
                             if (bufferedInputStream != null) {
                                 bufferedInputStream.close();
                             }

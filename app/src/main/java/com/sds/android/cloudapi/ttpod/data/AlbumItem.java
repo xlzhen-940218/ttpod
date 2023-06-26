@@ -1,7 +1,6 @@
 package com.sds.android.cloudapi.ttpod.data;
 import com.google.gson.annotations.SerializedName;
 
-import com.google.gson.annotations.SerializedName;
 import com.sds.android.sdk.lib.util.StringUtils;
 
 import java.io.Serializable;
@@ -45,7 +44,7 @@ public class AlbumItem implements Serializable {
     }
 
     public List<Long> getSongIds() {
-        return StringUtils.m8338b(this.mSongIds, ",");
+        return StringUtils.stringToLongArray(this.mSongIds, ",");
     }
 
     public String getLang() {

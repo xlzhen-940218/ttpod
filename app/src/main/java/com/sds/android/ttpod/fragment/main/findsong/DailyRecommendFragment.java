@@ -12,13 +12,10 @@ import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.fragment.main.ResultHelper;
 import com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment;
 import com.sds.android.ttpod.framework.base.BaseApplication;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.MediaItemListResult;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 
@@ -90,7 +87,7 @@ public class DailyRecommendFragment extends SceneRecommendFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void requestDataList(int i) {
         super.requestDataList(i);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_DAILY_RECOMMEND, Integer.valueOf(i)));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_DAILY_RECOMMEND, Integer.valueOf(i)));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment
@@ -109,7 +106,7 @@ public class DailyRecommendFragment extends SceneRecommendFragment {
         super.onLoadFinished();
         updateDailyRecommendList(this.mResult);
         if (this.mIntroductionId != 0) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_POPULAR_SONG_INTRODUCTION, Long.valueOf(this.mIntroductionId)));
+            CommandCenter.getInstance().execute(new Command(CommandID.GET_POPULAR_SONG_INTRODUCTION, Long.valueOf(this.mIntroductionId)));
         }
     }
 

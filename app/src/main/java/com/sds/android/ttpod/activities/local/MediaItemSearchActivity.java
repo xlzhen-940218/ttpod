@@ -52,7 +52,7 @@ public class MediaItemSearchActivity extends BaseSearchActivity {
         super.onNewIntent(intent);
         this.mGroupID = intent.getStringExtra(AbsMediaListFragment.KEY_GROUP_ID);
         DebugUtils.m8426a(this.mGroupID, "mGroupID");
-        CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_MEDIA_ITEM_LIST, this.mGroupID, Preferences.m2860l(this.mGroupID)));
+        CommandCenter.getInstance().execute(new Command(CommandID.QUERY_MEDIA_ITEM_LIST, this.mGroupID, Preferences.m2860l(this.mGroupID)));
     }
 
     @Override // com.sds.android.ttpod.activities.local.BaseSearchActivity
@@ -83,7 +83,7 @@ public class MediaItemSearchActivity extends BaseSearchActivity {
     public void onItemClicked(AdapterView<?> adapterView, View view, int i, long j) {
         int headerViewsCount = i - getListView().getHeaderViewsCount();
         if (headerViewsCount >= 0 && headerViewsCount < this.mMediaItemSearchAdapter.getCount()) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, this.mGroupID, this.mMediaItemSearchAdapter.getItem(headerViewsCount).m8044a()));
+            CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, this.mGroupID, this.mMediaItemSearchAdapter.getItem(headerViewsCount).m8044a()));
         }
         finish();
     }
@@ -110,7 +110,7 @@ public class MediaItemSearchActivity extends BaseSearchActivity {
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM, MediaItemSearchActivity.this.mGroupID, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
+                CommandCenter.getInstance().execute(new Command(CommandID.DELETE_MEDIA_ITEM, MediaItemSearchActivity.this.mGroupID, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
                 MediaItemSearchActivity.this.mMediaItemSearchAdapter.mo7590a(mediaItem);
             }
         });
@@ -194,7 +194,7 @@ public class MediaItemSearchActivity extends BaseSearchActivity {
                 @Override // com.sds.android.ttpod.fragment.main.list.MediaItemMenuClickStub
                 /* renamed from: a */
                 protected void mo5444a() {
-                    mediaItemMenuHolder.m6976a(m8044a, i);
+                    mediaItemMenuHolder.favority(m8044a, i);
                 }
             });
         }

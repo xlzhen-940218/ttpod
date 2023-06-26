@@ -25,7 +25,7 @@ public class MediaSelector {
     private Context f7080f;
 
     /* renamed from: b */
-    private String f7076b = Preferences.m2858m();
+    private String f7076b = Preferences.getLocalGroupId();
 
     /* renamed from: d */
     private ArrayList<String> f7078d = new ArrayList<>();
@@ -50,10 +50,10 @@ public class MediaSelector {
         if (!m2650g()) {
             this.f7076b = MediaStorage.GROUP_ID_ALL_LOCAL;
             Preferences.m2894d(MediaStorage.GROUP_ID_ALL_LOCAL);
-            Preferences.m2888e("");
+            Preferences.getMediaId("");
         }
         this.f7075a = MediaStorage.queryMediaIDs(this.f7080f, this.f7076b, Preferences.m2860l(this.f7076b));
-        String m2854n = Preferences.m2854n();
+        String m2854n = Preferences.getMediaId();
         if (!StringUtils.isEmpty(m2854n)) {
             this.f7077c = MediaStorage.queryMediaItem(this.f7080f, this.f7076b, m2854n);
         }
@@ -67,10 +67,10 @@ public class MediaSelector {
 
     /* renamed from: a */
     public void m2657a(String str, String str2) {
-        if (!StringUtils.m8344a(this.f7076b, str)) {
+        if (!StringUtils.equals(this.f7076b, str)) {
             this.f7078d.clear();
         }
-        this.f7077c = MediaStorage.queryMediaItem(this.f7080f, str, Preferences.m2854n());
+        this.f7077c = MediaStorage.queryMediaItem(this.f7080f, str, Preferences.getMediaId());
         this.f7075a = MediaStorage.queryMediaIDs(this.f7080f, m2658a(str) ? MediaStorage.GROUP_ID_FAV_LOCAL : str, Preferences.m2860l(str));
         if (m2658a(str) && !this.f7075a.isEmpty() && !this.f7075a.contains(str2)) {
             str2 = this.f7075a.get(0);
@@ -81,7 +81,7 @@ public class MediaSelector {
         }
         this.f7076b = str;
         Preferences.m2894d(str);
-        Preferences.m2888e(str2);
+        Preferences.getMediaId(str2);
         if (Preferences.m2862l() == PlayMode.SHUFFLE) {
             if (this.f7078d.size() > 0) {
                 Iterator<String> it = this.f7078d.iterator();
@@ -97,7 +97,7 @@ public class MediaSelector {
 
     /* renamed from: a */
     private boolean m2658a(String str) {
-        return Preferences.m2954aq() == null && StringUtils.m8344a(MediaStorage.GROUP_ID_FAV, str);
+        return Preferences.m2954aq() == null && StringUtils.equals(MediaStorage.GROUP_ID_FAV, str);
     }
 
     /* renamed from: a */
@@ -110,9 +110,9 @@ public class MediaSelector {
 
     /* renamed from: b */
     public MediaItem m2655b() {
-        String m2854n = Preferences.m2854n();
-        this.f7076b = Preferences.m2858m();
-        if (this.f7077c != null && (!StringUtils.m8344a(this.f7077c.getID(), m2854n) || !StringUtils.m8344a(this.f7077c.getGroupID(), this.f7076b))) {
+        String m2854n = Preferences.getMediaId();
+        this.f7076b = Preferences.getLocalGroupId();
+        if (this.f7077c != null && (!StringUtils.equals(this.f7077c.getID(), m2854n) || !StringUtils.equals(this.f7077c.getGroupID(), this.f7076b))) {
             this.f7077c = MediaStorage.queryMediaItem(this.f7080f, this.f7076b, m2854n);
         }
         return this.f7077c;
@@ -202,7 +202,7 @@ public class MediaSelector {
                     throw new IllegalArgumentException("illegal play mode!");
             }
         }
-        Preferences.m2888e(id);
+        Preferences.getMediaId(id);
         this.f7077c = MediaStorage.queryMediaItem(this.f7080f, this.f7076b, id);
     }
 

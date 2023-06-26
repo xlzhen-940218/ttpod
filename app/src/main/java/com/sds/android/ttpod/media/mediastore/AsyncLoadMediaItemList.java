@@ -408,7 +408,7 @@ public class AsyncLoadMediaItemList implements List<MediaItem> {
     }
 
     private void assertNotOutOfBound(int i) {
-        if (EnvironmentUtils.C0602a.m8502i() && i >= size()) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && i >= size()) {
             throw new IndexOutOfBoundsException("out of bound");
         }
     }
@@ -416,7 +416,7 @@ public class AsyncLoadMediaItemList implements List<MediaItem> {
     private void waitForLoadFinished() {
         extractCursor();
         while (!this.mLoadFinished) {
-            if (EnvironmentUtils.C0602a.m8502i()) {
+            if (EnvironmentUtils.AppConfig.getTestMode()) {
                 LogUtils.error(TAG, "WARNING AsyncLoadMediaItemList Sync Loading...");
             }
             try {

@@ -10,14 +10,12 @@ import com.sds.android.cloudapi.ttpod.result.PostResult;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p124f.MusiccircleContentType;
 import com.sds.android.ttpod.framework.modules.p124f.PostUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -65,7 +63,7 @@ public class DiscoveryFragment extends RecommendPostListFragment {
             default:
                 throw new IllegalStateException();
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_CELEBRITY_POSTS, valueOf));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_CELEBRITY_POSTS, valueOf));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment

@@ -115,7 +115,7 @@ public class ShareHttpUtil {
         try {
             HttpResponse execute = m1930a.execute(new HttpGet(encodedPath.build().toString()));
             if (execute.getStatusLine().getStatusCode() == 200) {
-                return StringUtils.m8347a(execute.getEntity().getContent());
+                return StringUtils.streamToString(execute.getEntity().getContent());
             }
         } catch (IOException e) {
             e.printStackTrace();

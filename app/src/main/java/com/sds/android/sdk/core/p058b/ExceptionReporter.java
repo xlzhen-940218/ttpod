@@ -38,7 +38,7 @@ public class ExceptionReporter {
                 th.printStackTrace(new PrintWriter(stringWriter));
                 String obj = stringWriter.toString();
                 LogUtils.error("ExceptionReporter", "TTPod_Crash_Exception:\n" + obj);
-                if (context != null && EnvironmentUtils.C0604c.m8474e()) {
+                if (context != null && EnvironmentUtils.DeviceConfig.m8474e()) {
                     Intent intent = new Intent(str);
                     intent.putExtra("android.intent.extra.SUBJECT", th.toString());
                     intent.putExtra("android.intent.extra.TEXT", obj);
@@ -75,13 +75,13 @@ public class ExceptionReporter {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("time", m8747b());
         hashMap.put("package", EnvironmentUtils.m8526a());
-        hashMap.put("v", EnvironmentUtils.C0602a.m8506e());
-        hashMap.put("f", "f" + EnvironmentUtils.C0602a.m8512b());
+        hashMap.put("v", EnvironmentUtils.AppConfig.getAppVersion());
+        hashMap.put("f", "f" + EnvironmentUtils.AppConfig.getChannelType());
         hashMap.put("mid", Build.MANUFACTURER + "#" + Build.MODEL);
         hashMap.put("splus", Build.VERSION.RELEASE);
         hashMap.put("s", EnvironmentUtils.C0603b.m8488e().get("s"));
         hashMap.put("rom", Build.PRODUCT);
-        hashMap.put("build", "#" + EnvironmentUtils.C0602a.m8508d());
+        hashMap.put("build", "#" + EnvironmentUtils.AppConfig.getBuild());
         hashMap.put("memory", m8751a());
         hashMap.put("message", str2);
         hashMap.put("name", str);

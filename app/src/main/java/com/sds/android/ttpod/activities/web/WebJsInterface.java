@@ -35,8 +35,8 @@ public class WebJsInterface {
 
     @JavascriptInterface
     public String imei() {
-        String m8485a = EnvironmentUtils.C0604c.getDeviceId();
-        return StringUtils.isEmpty(m8485a) ? EnvironmentUtils.C0604c.getMacAddress() : m8485a;
+        String m8485a = EnvironmentUtils.DeviceConfig.getDeviceId();
+        return StringUtils.isEmpty(m8485a) ? EnvironmentUtils.DeviceConfig.getMacAddress() : m8485a;
     }
 
     @JavascriptInterface
@@ -77,15 +77,15 @@ public class WebJsInterface {
     @JavascriptInterface
     public void play(String str) {
         if (!StringUtils.isEmpty(str)) {
-            List<Long> m8338b = StringUtils.m8338b(str, ",");
+            List<Long> m8338b = StringUtils.stringToLongArray(str, ",");
             if (m8338b.size() != 0) {
                 OnlineMediaUtils.m4675a(m8338b, new OnlineMediaUtils.InterfaceC1790a<List<MediaItem>>() { // from class: com.sds.android.ttpod.activities.web.WebJsInterface.1
                     @Override // com.sds.android.ttpod.framework.p106a.OnlineMediaUtils.InterfaceC1790a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo4039a(List<MediaItem> list) {
                         if (list != null && list.size() > 0) {
-                            CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
-                            CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(0)));
+                            CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
+                            CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(0)));
                         }
                     }
                 });

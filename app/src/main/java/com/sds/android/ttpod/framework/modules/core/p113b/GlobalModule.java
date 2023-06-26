@@ -63,10 +63,10 @@ public class GlobalModule extends BaseModule {
         if (Preferences.m2818w()) {
             m4292d();
         }
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.b.b.1
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.b.b.1
             @Override // java.lang.Runnable
             public void run() {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     GlobalModule.this.m4295b();
                 }
                 GlobalModule.loadGBKToUnicodeData();
@@ -102,7 +102,7 @@ public class GlobalModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: c */
     public void m4293c() {
-        OperatorPageResult m8531f = GlobalAPI.m8886a("f" + EnvironmentUtils.C0602a.m8512b(), "v" + EnvironmentUtils.C0602a.m8506e()).m8531f();
+        OperatorPageResult m8531f = GlobalAPI.m8886a("f" + EnvironmentUtils.AppConfig.getChannelType(), "v" + EnvironmentUtils.AppConfig.getAppVersion()).m8531f();
         if (m8531f != null && m8531f.getData() != null) {
             boolean z = m8531f.getData().getRecommend() != 0;
             LogUtils.debug(f5925a, "Market Global Api recommand enable: %s ", Boolean.valueOf(z));

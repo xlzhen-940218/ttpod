@@ -78,7 +78,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
 
     public void playMediaChanged() {
         String id = Cache.getInstance().getCurrentPlayMediaItem().getID();
-        boolean m8344a = StringUtils.m8344a(id, this.mMediaID);
+        boolean m8344a = StringUtils.equals(id, this.mMediaID);
         LogUtils.debug(LOG_TAG, "playMediaChanged lookLyricPic fragment=%s will clear lyric pic info equal=%b %s %s", getClass().getSimpleName(), Boolean.valueOf(m8344a), this.mMediaID, id);
         if (!m8344a) {
             this.mMediaID = id;
@@ -162,7 +162,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
     }
 
     private void flushArtistBitmap(Bitmap bitmap, String str) {
-        if (StringUtils.m8344a(str, this.mArtistPath)) {
+        if (StringUtils.equals(str, this.mArtistPath)) {
             LogUtils.debug(LOG_TAG, "flushArtistBitmap lookLyricPic fragment=%s equal Path=%s", getClass().getSimpleName(), str);
             return;
         }
@@ -176,7 +176,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
         if (searchStatus == SearchStatus.SEARCH_LOCAL_FINISHED || searchStatus == SearchStatus.SEARCH_DOWNLOAD_FINISHED) {
             m2184a = Cache.getInstance().m3164g();
         }
-        if (StringUtils.m8344a(id, str)) {
+        if (StringUtils.equals(id, str)) {
             this.mMediaID = str;
             switch (searchStatus) {
                 case SEARCH_LOCAL_FINISHED:
@@ -210,7 +210,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
     }
 
     public void switchArtistPicture(String str, String str2, Bitmap bitmap) {
-        if (StringUtils.m8344a(Cache.getInstance().getCurrentPlayMediaItem().getID(), str)) {
+        if (StringUtils.equals(Cache.getInstance().getCurrentPlayMediaItem().getID(), str)) {
             switchArtistPicture(bitmap, str2);
         }
     }
@@ -218,13 +218,13 @@ public abstract class BasePlayerFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME_IMAGE_SWITCHER, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.RESUME_IMAGE_SWITCHER, new Object[0]));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onPause() {
         super.onPause();
-        CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE_IMAGE_SWITCHER, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.PAUSE_IMAGE_SWITCHER, new Object[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -235,7 +235,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
     public void updateSearchLyricState(SearchStatus searchStatus, final List<ResultData> list, String str, Lyric lyric) {
         LogUtils.debug(LOG_TAG, "lookLyricPic fragment updateSearchLyricState state=%s title=%s", searchStatus.name(), (list == null || list.isEmpty()) ? "noResult" : list.get(0).m2184a());
         final MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
-        if (StringUtils.m8344a(m3225N.getID(), str)) {
+        if (StringUtils.equals(m3225N.getID(), str)) {
             switch (searchStatus) {
                 case SEARCH_LOCAL_FINISHED:
                 case SEARCH_DOWNLOAD_FINISHED:

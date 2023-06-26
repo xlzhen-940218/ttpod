@@ -95,7 +95,7 @@ public class SkinUtils {
 
     /* renamed from: a */
     public static boolean m4649a(OnlineSkinItem onlineSkinItem) {
-        String m8506e = EnvironmentUtils.C0602a.m8506e();
+        String m8506e = EnvironmentUtils.AppConfig.getAppVersion();
         String version = onlineSkinItem.getVersion();
         return version == null || version.compareTo(m8506e) <= 0;
     }

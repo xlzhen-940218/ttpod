@@ -177,7 +177,7 @@ public final class MediaScanner {
         String m8467b = EnvironmentUtils.C0605d.getSdcardPath();
         String m8460d = EnvironmentUtils.C0605d.m8460d(BaseApplication.getApplication());
         ArrayList arrayList = new ArrayList();
-        if (StringUtils.isEmpty(m8460d) || StringUtils.isEmpty(this.f5987f) || StringUtils.m8344a(this.f5987f, this.f5986e)) {
+        if (StringUtils.isEmpty(m8460d) || StringUtils.isEmpty(this.f5987f) || StringUtils.equals(this.f5987f, this.f5986e)) {
             return new String[]{m8467b};
         }
         arrayList.add(m8467b);
@@ -421,7 +421,7 @@ public final class MediaScanner {
             if (!isCancelled() && MediaScanner.this.scanCallback != null && (MediaScanner.this.f5983b == null || MediaScanner.this.f5983b == this)) {
                 MediaScanner.this.scanCallback.onScanFinished();
             }
-            if (StringUtils.m8344a(Preferences.m2858m(), this.f5991d)) {
+            if (StringUtils.equals(Preferences.getLocalGroupId(), this.f5991d)) {
                 CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
             }
         }

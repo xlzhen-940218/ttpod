@@ -35,7 +35,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
@@ -239,7 +238,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public void mo2038a(MessageDialog messageDialog2) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     KtvActivity.this.startDownload();
                     KtvActivity.this.startDownloadDialog();
                     //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_KTV_DOWNLOAD_PLUGIN, SPage.PAGE_KTV, SPage.PAGE_NONE);
@@ -263,7 +262,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
                         return;
                     }
                     if (KtvActivity.this.mDownloadTaskInfo != null) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo, Boolean.TRUE));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo, Boolean.TRUE));
                     }
                     KtvActivity.this.mDownloadDialog.dismiss();
                 }
@@ -275,7 +274,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
 
     /* JADX INFO: Access modifiers changed from: private */
     public void startDownload() {
-        TaskScheduler.m8580a(new Runnable() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.4
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.4
             @Override // java.lang.Runnable
             public void run() {
                 KtvActivity.this.mIsRequestingApkUrl = true;
@@ -296,8 +295,8 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
     /* JADX INFO: Access modifiers changed from: private */
     public boolean requestApkData(String str) {
         String format = String.format(REQUEST_AD, 11, str);
-        HttpRequest.C0586a m8708a = HttpRequest.m8708a(new HttpGet(format), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
-        JSONObject m8393a = m8708a != null ? JSONUtils.create(m8708a.m8688e()) : null;
+        HttpRequest.Response m8708a = HttpRequest.m8708a(new HttpGet(format), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
+        JSONObject m8393a = m8708a != null ? JSONUtils.create(m8708a.getInputStream()) : null;
         if (m8393a != null) {
             mApkUrl = getApkUrl(m8393a);
         } else {
@@ -371,7 +370,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
         m4760a.setTag(str);
         this.mDownloadTaskInfo = m4760a;
         CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_SHOW_DOWNLOAD_PROGRESS, Boolean.FALSE), ModuleID.VERSION);
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.6
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.6
             /* JADX WARN: Can't wrap try/catch for region: R(9:9|(5:36|37|38|40|27)(1:15)|16|(2:31|(1:35))|22|23|24|26|27) */
             /* JADX WARN: Code restructure failed: missing block: B:37:0x010d, code lost:
                 r0 = move-exception;

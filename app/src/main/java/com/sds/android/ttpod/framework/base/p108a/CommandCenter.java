@@ -125,7 +125,7 @@ public final class CommandCenter {
     }
 
     /* renamed from: a */
-    public void m4606a(Command command) {
+    public void execute(Command command) {
         m4591c(command, null);
         m4594b(command, (Class) null);
     }
@@ -183,35 +183,35 @@ public final class CommandCenter {
     /* renamed from: b */
     public <Result> Result m4594b(Command command, Class<Result> cls) {
         DebugUtils.m8427a();
-        CommandID m4610a = command.getCommandId();
-        ModuleID moduleID = m4610a.getModuleID();
-        ModuleManager.getInstance().m4115a(m4610a);
+        CommandID commandId = command.getCommandId();
+        ModuleID moduleID = commandId.getModuleID();
+        ModuleManager.getInstance().loadCommandById(commandId);
         ModuleManager.getInstance().m4110b(moduleID);
         Map<CommandID, Set<Object>> map = this.moduleIDMapMap.get(moduleID);
         if (map == null || map.isEmpty()) {
-            if (EnvironmentUtils.C0602a.m8502i() && cls != null) {
+            if (EnvironmentUtils.AppConfig.getTestMode() && cls != null) {
                 throw new IllegalArgumentException("exeCommand(CommandID." + command.getCommandId().name() + ") with a result must have one target!");
             }
             this.moduleIDMapMap.remove(moduleID);
             return null;
         }
-        Set<Object> set = map.get(m4610a);
+        Set<Object> set = map.get(commandId);
         if (set == null || set.isEmpty()) {
-            if (EnvironmentUtils.C0602a.m8502i() && cls != null) {
+            if (EnvironmentUtils.AppConfig.getTestMode() && cls != null) {
                 throw new IllegalArgumentException("exeCommand(CommandID." + command.getCommandId().name() + ") with a result must have one target!");
             }
-            map.remove(m4610a);
+            map.remove(commandId);
             if (!map.isEmpty()) {
                 return null;
             }
             this.moduleIDMapMap.remove(moduleID);
             return null;
-        } else if (EnvironmentUtils.C0602a.m8502i() && cls != null && set.size() != 1) {
+        } else if (EnvironmentUtils.AppConfig.getTestMode() && cls != null && set.size() != 1) {
             throw new IllegalArgumentException("exeCommand(CommandID." + command.getCommandId().name() + ") with a result must only have one target!");
         } else {
             Object obj = null;
             for (Object obj2 : set) {
-                obj = this.f5713c.get(obj2).get(m4610a).invoke(obj2, command, cls);
+                obj = this.f5713c.get(obj2).get(commandId).invoke(obj2, command, cls);
             }
             return (Result) obj;
         }
@@ -229,7 +229,7 @@ public final class CommandCenter {
         if (command == null) {
             throw new IllegalArgumentException("command can not be null!");
         }
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             if (command.getCommandId().getCommandType().equals(CommandType.FROM_MODULE)) {
                 if (moduleID == null) {
                     throw new IllegalArgumentException("Command with CommandType.FROM_MODULE should assign fromModuleID");
@@ -269,7 +269,7 @@ public final class CommandCenter {
         public <Result> Result invoke(Object obj, Command command, Class<Result> cls) {
             Result result;
             m4589a(command, cls);
-            if (EnvironmentUtils.C0602a.m8502i() || EnvironmentUtils.C0602a.m8503h()) {
+            if (EnvironmentUtils.AppConfig.getTestMode() ) {
                 try {
                     result = (Result) this.method.invoke(obj, command.getObjects());
                 } catch (IllegalArgumentException e) {
@@ -296,7 +296,7 @@ public final class CommandCenter {
 
         /* renamed from: a */
         private <Result> void m4589a(Command command, Class<Result> cls) {
-            if (EnvironmentUtils.C0602a.m8502i()) {
+            if (EnvironmentUtils.AppConfig.getTestMode()) {
                 Object[] m4608b = command.getObjects();
                 for (int i = 0; i < m4608b.length; i++) {
                     Class<?> cls2 = m4608b[i] == null ? null : m4608b[i].getClass();

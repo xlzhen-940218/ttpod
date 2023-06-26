@@ -153,7 +153,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        if (this.mAutoSelectPlayingMedia && StringUtils.m8344a(Preferences.m2858m(), this.mGroupID)) {
+        if (this.mAutoSelectPlayingMedia && StringUtils.equals(Preferences.getLocalGroupId(), this.mGroupID)) {
             int m2458r = SupportFactory.m2397a(BaseApplication.getApplication()).m2458r();
             selectRow(m2458r);
             if (this.mAZSideBar != null) {
@@ -215,7 +215,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
         iconTextView.setText(this.mNoDataIconResId);
         textView.setText(this.mNoDataMessageResId);
         textView2.setVisibility(this.mDisplayMenu ? View.VISIBLE : View.INVISIBLE);
-        if (StringUtils.m8344a(this.mGroupID, MediaStorage.GROUP_ID_ALL_LOCAL)) {
+        if (StringUtils.equals(this.mGroupID, MediaStorage.GROUP_ID_ALL_LOCAL)) {
             textView2.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.list.MediaListFragment.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
@@ -258,8 +258,8 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
 
     private void loadCacheInfo() {
         if (this.mGroupID != null) {
-            this.mPlayingGroupID = Preferences.m2858m();
-            this.mPlayingMediaID = Preferences.m2854n();
+            this.mPlayingGroupID = Preferences.getLocalGroupId();
+            this.mPlayingMediaID = Preferences.getMediaId();
             this.mOrderBy = Preferences.m2860l(this.mGroupID);
         }
     }
@@ -267,7 +267,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     public void onReloadData() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_ASYNCLOAD_MEDIA_ITEM_LIST, this.mGroupID, Preferences.m2860l(this.mGroupID)));
+        CommandCenter.getInstance().execute(new Command(CommandID.QUERY_ASYNCLOAD_MEDIA_ITEM_LIST, this.mGroupID, Preferences.m2860l(this.mGroupID)));
     }
 
     public void putSelectedMediaItem(Collection<MediaItem> collection) {
@@ -293,14 +293,14 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
             }
             tryNotifySelectedCountChanged();
             notifyDataSetChanged();
-        } else if (StringUtils.m8344a(this.mGroupID, Preferences.m2858m()) && StringUtils.m8344a(mediaItem.getID(), Preferences.m2854n())) {
+        } else if (StringUtils.equals(this.mGroupID, Preferences.getLocalGroupId()) && StringUtils.equals(mediaItem.getID(), Preferences.getMediaId())) {
             PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
             if (m2463m == PlayStatus.STATUS_PAUSED) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
             } else if (m2463m == PlayStatus.STATUS_PLAYING) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
             } else {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
             }
         } else {
 
@@ -359,7 +359,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     }
 
     public void updateAsyncloadMediaItemList(String str, AsyncLoadMediaItemList asyncLoadMediaItemList) {
-        if (StringUtils.m8344a(str, this.mGroupID) && this.mMediaItemList != asyncLoadMediaItemList) {
+        if (StringUtils.equals(str, this.mGroupID) && this.mMediaItemList != asyncLoadMediaItemList) {
             asyncLoadMediaItemList.addRef();
             updateMediaList(asyncLoadMediaItemList);
             loadAZKeys(asyncLoadMediaItemList);
@@ -422,7 +422,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     }
 
     public void updateMediaLibraryChanged(String str) {
-        if (StringUtils.m8344a(str, this.mGroupID) || str.equals(MediaStorage.GROUP_ID_ALL_LOCAL)) {
+        if (StringUtils.equals(str, this.mGroupID) || str.equals(MediaStorage.GROUP_ID_ALL_LOCAL)) {
             onReloadData();
         }
     }
@@ -432,7 +432,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
         if (MediaStorage.GROUP_ID_RECENTLY_PLAY.equals(this.mGroupID)) {
             onReloadData();
         }
-        if (StringUtils.m8344a(this.mGroupID, Preferences.m2858m())) {
+        if (StringUtils.equals(this.mGroupID, Preferences.getLocalGroupId())) {
             notifyDataSetChanged();
         }
     }
@@ -445,7 +445,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     public void updatePlayStatus(PlayStatus playStatus) {
         super.updatePlayStatus(playStatus);
-        if (StringUtils.m8344a(this.mGroupID, Preferences.m2858m())) {
+        if (StringUtils.equals(this.mGroupID, Preferences.getLocalGroupId())) {
             notifyDataSetChanged();
         }
     }
@@ -463,7 +463,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     public View getMediaItemView(final MediaItem mediaItem, View view, ViewGroup viewGroup, final int i) {
         View mediaItemView = super.getMediaItemView(mediaItem, view, viewGroup, i);
         MediaItemViewHolder mediaItemViewHolder = (MediaItemViewHolder) mediaItemView.getTag();
-        mediaItemViewHolder.m6969a((StringUtils.m8344a(this.mOrderBy, MediaStorage.MEDIA_ORDER_BY_FILE_NAME) || StringUtils.m8344a(this.mOrderBy, MediaStorage.MEDIA_ORDER_BY_FILE_NAME_DESC)) ? FileUtils.getFilename(mediaItem.getLocalDataSource()) : TTTextUtils.validateString(mediaItemView.getContext(), mediaItem.getArtist()), 0, false);
+        mediaItemViewHolder.m6969a((StringUtils.equals(this.mOrderBy, MediaStorage.MEDIA_ORDER_BY_FILE_NAME) || StringUtils.equals(this.mOrderBy, MediaStorage.MEDIA_ORDER_BY_FILE_NAME_DESC)) ? FileUtils.getFilename(mediaItem.getLocalDataSource()) : TTTextUtils.validateString(mediaItemView.getContext(), mediaItem.getArtist()), 0, false);
         bindView(mediaItemViewHolder, mediaItem, this.mIsEditing);
         mediaItemViewHolder.m6953l().setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.list.MediaListFragment.5
             @Override // android.view.View.OnClickListener
@@ -520,7 +520,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
         mediaItemViewHolder.getMenuView().setVisibility(View.VISIBLE);
         mediaItemViewHolder.getViewPlayState().setVisibility(View.VISIBLE);
         mediaItemViewHolder.updateFlagQuality(mediaItem);
-        if (!StringUtils.m8344a(this.mGroupID, this.mPlayingGroupID) || !StringUtils.m8344a(this.mPlayingMediaID, mediaItem.getID())) {
+        if (!StringUtils.equals(this.mGroupID, this.mPlayingGroupID) || !StringUtils.equals(this.mPlayingMediaID, mediaItem.getID())) {
             r0 = false;
         }
         mediaItemViewHolder.m6955j().setSelected(r0);
@@ -637,7 +637,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     }
 
     public void removeAll() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM_LIST, this.mGroupID, getMediaItemList(), false));
+        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_MEDIA_ITEM_LIST, this.mGroupID, getMediaItemList(), false));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.list.ISearchAble

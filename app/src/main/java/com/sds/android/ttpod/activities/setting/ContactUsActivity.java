@@ -123,10 +123,10 @@ public class ContactUsActivity extends SlidingClosableActivity {
         sb.append(getString(R.string.version_info));
         sb.append("\n");
         sb.append("Version: ");
-        sb.append(EnvironmentUtils.C0602a.m8506e());
+        sb.append(EnvironmentUtils.AppConfig.getAppVersion());
         sb.append("\n");
         sb.append("Market: ");
-        sb.append(EnvironmentUtils.C0602a.m8512b());
+        sb.append(EnvironmentUtils.AppConfig.getChannelType());
         sb.append("\n");
         sb.append("\n");
         sb.append(getString(R.string.device_info));

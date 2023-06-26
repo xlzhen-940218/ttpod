@@ -243,7 +243,7 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
 
         public C1517b(Context context, List<RecommendData> list, int i) {
             super(context);
-            m7592a(list);
+            setDataList(list);
             this.f5146b = i;
         }
 
@@ -271,7 +271,7 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.ItemsAdapter
         /* renamed from: a  reason: avoid collision after fix types in other method */
-        public View mo5653a(RecommendData recommendData, int i, ViewGroup viewGroup, LayoutInflater layoutInflater) {
+        public View getConvertView(RecommendData recommendData, int i, ViewGroup viewGroup, LayoutInflater layoutInflater) {
             View inflate = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_find_song_gridview_image, viewGroup, false);
             inflate.setTag(new C1518a(inflate));
             return inflate;
@@ -280,7 +280,7 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.ItemsAdapter
         /* renamed from: a  reason: avoid collision after fix types in other method */
-        public void mo5654a(RecommendData recommendData, int i, View view) {
+        public void buildDataUI(RecommendData recommendData, int i, View view) {
             m5655a(recommendData, (C1518a) view.getTag(), i);
         }
 
@@ -294,7 +294,7 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
             ImageCacheUtils.m4752a(c1518a.f5148b, recommendData.getPicUrl(), m8276b, this.f5146b == 1 ? m8276b / 2 : m8276b, (int) R.drawable.img_music_default_icon);
             if (recommendData.getForwardAction().getType() == 13) {
                 Calendar calendar = Calendar.getInstance();
-                calendar.add(5, (i + 1) - m7593a().size());
+                calendar.add(5, (i + 1) - getDataList().size());
                 c1518a.f5150d.setText("" + calendar.get(5));
                 c1518a.f5150d.setVisibility(View.VISIBLE);
                 c1518a.f5149c.setText(FindSongConfig.C0626a.f2499a.get(calendar.get(7)));

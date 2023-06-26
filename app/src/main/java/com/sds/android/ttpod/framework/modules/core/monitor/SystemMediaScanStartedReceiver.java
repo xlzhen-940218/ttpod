@@ -30,7 +30,7 @@ public class SystemMediaScanStartedReceiver extends BroadcastReceiver {
             try {
                 Set<String> m2866k = Preferences.m2866k();
                 if (m2866k != null && m2866k.size() > 0) {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.START_SCAN, m2866k, MediaStorage.GROUP_ID_ALL_LOCAL));
+                    CommandCenter.getInstance().execute(new Command(CommandID.START_SCAN, m2866k, MediaStorage.GROUP_ID_ALL_LOCAL));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

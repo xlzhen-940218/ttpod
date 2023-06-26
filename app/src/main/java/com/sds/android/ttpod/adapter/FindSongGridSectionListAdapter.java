@@ -86,26 +86,26 @@ public abstract class FindSongGridSectionListAdapter<D> extends SectionListAdapt
 
     @Override // com.sds.android.ttpod.adapter.SectionListAdapter
     /* renamed from: a */
-    protected View mo5523a(ViewGroup viewGroup) {
-        return this.f3241a.inflate(R.layout.findsong_grid_section_view, viewGroup, false);
+    protected View getSectionConvertView(ViewGroup viewGroup) {
+        return this.layoutInflater.inflate(R.layout.findsong_grid_section_view, viewGroup, false);
     }
 
     @Override // com.sds.android.ttpod.adapter.SectionListAdapter
     /* renamed from: b */
-    protected View mo5519b(ViewGroup viewGroup) {
-        View inflate = this.f3241a.inflate(R.layout.findsong_grid_section_subitem_view, viewGroup, false);
-        GridListAdapter.C0966a c0966a = new GridListAdapter.C0966a(inflate.findViewById(R.id.song_item1));
-        ThemeUtils.m8178a(c0966a.m7594g(), ThemeElement.TILE_BACKGROUND, ThemeElement.HOME_BACKGROUND);
-        GridListAdapter.C0966a c0966a2 = new GridListAdapter.C0966a(inflate.findViewById(R.id.song_item2));
-        inflate.setTag(new GridListAdapter.C0966a[]{c0966a, c0966a2});
-        ThemeUtils.m8178a(c0966a2.m7594g(), ThemeElement.TILE_BACKGROUND, ThemeElement.HOME_BACKGROUND);
+    protected View getSubConvertView(ViewGroup viewGroup) {
+        View inflate = this.layoutInflater.inflate(R.layout.findsong_grid_section_subitem_view, viewGroup, false);
+        GridListAdapter.GridViewHolder c0966a = new GridListAdapter.GridViewHolder(inflate.findViewById(R.id.song_item1));
+        ThemeUtils.m8178a(c0966a.getMask(), ThemeElement.TILE_BACKGROUND, ThemeElement.HOME_BACKGROUND);
+        GridListAdapter.GridViewHolder c0966a2 = new GridListAdapter.GridViewHolder(inflate.findViewById(R.id.song_item2));
+        inflate.setTag(new GridListAdapter.GridViewHolder[]{c0966a, c0966a2});
+        ThemeUtils.m8178a(c0966a2.getMask(), ThemeElement.TILE_BACKGROUND, ThemeElement.HOME_BACKGROUND);
         return inflate;
     }
 
     /* renamed from: a */
-    private void m7625a(GridListAdapter.C0966a c0966a) {
-        ThemeUtils.m8178a(c0966a.m7602b(), ThemeElement.TILE_TEXT, ThemeElement.HOME_TEXT);
-        ThemeUtils.m8178a(c0966a.m7600c(), ThemeElement.TILE_SUB_TEXT, ThemeElement.HOME_SUB_TEXT);
+    private void m7625a(GridListAdapter.GridViewHolder c0966a) {
+        ThemeUtils.m8178a(c0966a.getName(), ThemeElement.TILE_TEXT, ThemeElement.HOME_TEXT);
+        ThemeUtils.m8178a(c0966a.getNumber(), ThemeElement.TILE_SUB_TEXT, ThemeElement.HOME_SUB_TEXT);
     }
 
     @Override // com.sds.android.ttpod.adapter.SectionListAdapter
@@ -125,7 +125,7 @@ public abstract class FindSongGridSectionListAdapter<D> extends SectionListAdapt
         D mo5526a2 = mo5526a(i, (i2 * 2) + 1);
         Object tag = view.getTag();
         if (tag != null) {
-            GridListAdapter.C0966a[] c0966aArr = (GridListAdapter.C0966a[]) tag;
+            GridListAdapter.GridViewHolder[] c0966aArr = (GridListAdapter.GridViewHolder[]) tag;
             m7624a(c0966aArr[0], (D) mo5526a);
             m7624a(c0966aArr[1], (D) mo5526a2);
             m7625a(c0966aArr[0]);
@@ -134,21 +134,21 @@ public abstract class FindSongGridSectionListAdapter<D> extends SectionListAdapt
     }
 
     /* renamed from: a */
-    protected void m7624a(GridListAdapter.C0966a c0966a, D d) {
+    protected void m7624a(GridListAdapter.GridViewHolder c0966a, D d) {
         if (d != null) {
-            c0966a.m7604a().setVisibility(View.VISIBLE);
-            c0966a.m7602b().setText(mo5603a((D) d));
-            c0966a.m7600c().setText(mo5600b((D) d));
+            c0966a.getConvertView().setVisibility(View.VISIBLE);
+            c0966a.getName().setText(mo5603a((D) d));
+            c0966a.getNumber().setText(mo5600b((D) d));
             mo5601b(c0966a, (D) d);
-            c0966a.m7604a().setTag(R.id.view_bind_data, d);
-            c0966a.m7604a().setOnClickListener(this.f3193c);
+            c0966a.getConvertView().setTag(R.id.view_bind_data, d);
+            c0966a.getConvertView().setOnClickListener(this.f3193c);
             return;
         }
-        c0966a.m7604a().setVisibility(View.INVISIBLE);
+        c0966a.getConvertView().setVisibility(View.INVISIBLE);
     }
 
     /* renamed from: b */
-    protected void mo5601b(GridListAdapter.C0966a c0966a, D d) {
+    protected void mo5601b(GridListAdapter.GridViewHolder c0966a, D d) {
     }
 
     /* compiled from: FindSongGridSectionListAdapter.java */

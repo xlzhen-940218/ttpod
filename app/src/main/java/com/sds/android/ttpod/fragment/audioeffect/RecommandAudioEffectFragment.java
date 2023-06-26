@@ -36,8 +36,6 @@ import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectCache
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.Pager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -341,7 +339,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
             c1412b.f4992e.setText(audioEffectItem.getPickCount() + "");
             if (!RecommandAudioEffectFragment.this.mIsItemClicked) {
                 AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
-                if (m2457s != null && StringUtils.m8344a(audioEffectItem.getID(), m2457s.m4419i()) && m2457s.m4420h() != 0 && m2457s.m4420h() != 4) {
+                if (m2457s != null && StringUtils.equals(audioEffectItem.getID(), m2457s.m4419i()) && m2457s.m4420h() != 0 && m2457s.m4420h() != 4) {
                     this.f4987b = i;
                 } else {
                     this.f4987b = -1;

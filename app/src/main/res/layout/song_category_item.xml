@@ -58,7 +58,7 @@
         android:contentDescription="@string/ttpod"
         android:visibility="invisible" />
 
-    <com.sds.android.ttpod.framework.modules.skin.view.Animation
+    <com.sds.android.ttpod.framework.modules.skin.view.AnimationImageView
         android:id="@+id/grid_view_item_play_icon"
         android:layout_width="32dp"
         android:layout_height="32dp"

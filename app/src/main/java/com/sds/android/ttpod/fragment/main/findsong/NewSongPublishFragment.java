@@ -141,7 +141,7 @@ public class NewSongPublishFragment extends SlidingClosableFragment implements A
         if (i != 1) {
             this.mFooter.m7932a(false, 0, getString(R.string.loading));
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_MORE_NEW_SONG_PUBLISH_LIST, Integer.valueOf(i), 30));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_MORE_NEW_SONG_PUBLISH_LIST, Integer.valueOf(i), 30));
     }
 
     public void updatePublishResult(FirstPublishNewSongMoreResult firstPublishNewSongMoreResult) {
@@ -270,13 +270,13 @@ public class NewSongPublishFragment extends SlidingClosableFragment implements A
 
         @Override // com.sds.android.ttpod.adapter.SectionListAdapter
         /* renamed from: a */
-        protected View mo5523a(ViewGroup viewGroup) {
+        protected View getSectionConvertView(ViewGroup viewGroup) {
             return this.f5193d.inflate(R.layout.new_song_publish_section_view, viewGroup, false);
         }
 
         @Override // com.sds.android.ttpod.adapter.SectionListAdapter
         /* renamed from: b */
-        protected View mo5519b(ViewGroup viewGroup) {
+        protected View getSubConvertView(ViewGroup viewGroup) {
             View inflate = this.f5193d.inflate(R.layout.new_song_publish_list_item, viewGroup, false);
             inflate.setTag(new C1542b[]{new C1542b(inflate.findViewById(R.id.song_item1)), new C1542b(inflate.findViewById(R.id.song_item2)), new C1542b(inflate.findViewById(R.id.song_item3))});
             return inflate;

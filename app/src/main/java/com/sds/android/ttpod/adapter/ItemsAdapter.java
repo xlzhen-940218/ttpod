@@ -13,50 +13,50 @@ import java.util.List;
 public abstract class ItemsAdapter<T> extends BaseAdapter {
 
     /* renamed from: a */
-    private List<T> f3222a;
+    private List<T> dataList;
 
     /* renamed from: b */
-    private final WeakReference<Context> f3223b;
+    private final WeakReference<Context> contextWeakReference;
 
     /* renamed from: c */
-    private final LayoutInflater f3224c;
+    private final LayoutInflater layoutInflater;
 
     /* renamed from: a */
-    protected abstract View mo5653a(T t, int i, ViewGroup viewGroup, LayoutInflater layoutInflater);
+    protected abstract View getConvertView(T t, int i, ViewGroup viewGroup, LayoutInflater layoutInflater);
 
     /* renamed from: a */
-    protected abstract void mo5654a(T t, int i, View view);
+    protected abstract void buildDataUI(T t, int i, View view);
 
     public ItemsAdapter(Context context) {
-        this.f3223b = new WeakReference<>(context);
-        this.f3224c = LayoutInflater.from(context);
+        this.contextWeakReference = new WeakReference<>(context);
+        this.layoutInflater = LayoutInflater.from(context);
     }
 
     /* renamed from: a */
-    public void m7592a(List<T> list) {
-        this.f3222a = list;
+    public void setDataList(List<T> list) {
+        this.dataList = list;
         notifyDataSetChanged();
     }
 
     /* renamed from: a */
-    public List<T> m7593a() {
-        return this.f3222a;
+    public List<T> getDataList() {
+        return this.dataList;
     }
 
     @Override // android.widget.Adapter
     public int getCount() {
-        if (this.f3222a == null) {
+        if (this.dataList == null) {
             return 0;
         }
-        return this.f3222a.size();
+        return this.dataList.size();
     }
 
     @Override // android.widget.Adapter
     public T getItem(int i) {
-        if (this.f3222a == null || i < 0 || i >= this.f3222a.size()) {
+        if (this.dataList == null || i < 0 || i >= this.dataList.size()) {
             return null;
         }
-        return this.f3222a.get(i);
+        return this.dataList.get(i);
     }
 
     @Override // android.widget.Adapter
@@ -65,12 +65,12 @@ public abstract class ItemsAdapter<T> extends BaseAdapter {
     }
 
     @Override // android.widget.Adapter
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        T t = this.f3222a.get(i);
+    public View getView(int position, View view, ViewGroup viewGroup) {
+        T data = this.dataList.get(position);
         if (view == null) {
-            view = mo5653a(t, i, viewGroup, this.f3224c);
+            view = getConvertView(data, position, viewGroup, this.layoutInflater);
         }
-        mo5654a(t, i, view);
+        buildDataUI(data, position, view);
         return view;
     }
 }

@@ -101,7 +101,7 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getMusicRanks(String str) {
-        ModuleRequestHelper.m4082a(RankAPI.m8833a(), CommandID.UPDATE_MUSIC_RANKS, id(), null, str);
+        ModuleRequestHelper.m4082a(RankAPI.getMusicRanksRequest(), CommandID.UPDATE_MUSIC_RANKS, id(), null, str);
     }
 
     public void getRankMusicList(Integer num, Integer num2, String str) {
@@ -286,7 +286,7 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getFindSongHotSingers(final String str, final Integer num, final Integer num2, final Boolean bool) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.b.a.8
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.b.a.8
             @Override // java.lang.Runnable
             public void run() {
                 ArrayList arrayList;

@@ -347,7 +347,7 @@ public class ThemeManager {
 
         /* renamed from: b */
         private boolean m3249b(String str) {
-            return !StringUtils.m8344a(this.f6961a, str);
+            return !StringUtils.equals(this.f6961a, str);
         }
 
         /* renamed from: a */

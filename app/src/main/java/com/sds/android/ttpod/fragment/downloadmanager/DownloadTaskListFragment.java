@@ -26,8 +26,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.AudioQuality;
 import com.sds.android.ttpod.utils.ListViewUtils;
@@ -123,11 +121,11 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
                     case 1:
                     case 2:
                         //SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_PAUSE, SPage.PAGE_NONE);
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.CANCEL_DOWNLOAD_TASK, downloadTaskInfo));
+                        CommandCenter.getInstance().execute(new Command(CommandID.CANCEL_DOWNLOAD_TASK, downloadTaskInfo));
                         return;
                     case 3:
                     case 5:
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
+                        CommandCenter.getInstance().execute(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
                         return;
                     case 4:
                     default:
@@ -323,7 +321,7 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
                         /* renamed from: a  reason: avoid collision after fix types in other method */
                         public void mo2038a(MessageDialog messageDialog) {
                             //SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_CLICK_DELETE_SURE, SPage.PAGE_NONE);
-                            CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, true));
+                            CommandCenter.getInstance().execute(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, true));
                             DownloadTaskListFragment.this.removeTask(downloadTaskInfo);
                         }
                     });
@@ -343,7 +341,7 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
         public String m5710a(DownloadTaskInfo downloadTaskInfo) {
             String m8401k = FileUtils.m8401k(downloadTaskInfo.getSavePath());
             if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType())) {
-                List<String> m8335c = StringUtils.m8335c(m8401k, "-");
+                List<String> m8335c = StringUtils.stringToArray(m8401k, "-");
                 return m8335c.size() > 1 ? m8335c.get(1).trim() : m8335c.get(0).trim();
             }
             return m8401k;

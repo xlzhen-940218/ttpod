@@ -23,7 +23,7 @@ public class TTPodApplication extends BaseApplication {
         @Override // android.content.BroadcastReceiver
         public void onReceive(Context context, Intent intent) {
             LogUtils.error("MediaDBHelper", "onReceive");
-            if (intent != null && StringUtils.m8344a(MediaDBHelper.ACTION_UPDATE_DB_VERSION, intent.getAction())) {
+            if (intent != null && StringUtils.equals(MediaDBHelper.ACTION_UPDATE_DB_VERSION, intent.getAction())) {
                 MediaLibraryVersionManager.instance().setVersion(intent.getIntExtra(MediaDBHelper.KEY_DB_VERSION_OLD, 0), intent.getIntExtra(MediaDBHelper.KEY_DB_VERSION_NEW, 0));
             }
         }

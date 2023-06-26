@@ -11,6 +11,10 @@ public class MusicRank extends FindSongCommonCategory implements Serializable {
     @SerializedName(value = "songlist")
     private ArrayList<SimpleSongInfo> mSongList;
 
+    public void setBigPicUrl(String mBigPicUrl) {
+        this.mBigPicUrl = mBigPicUrl;
+    }
+
     public ArrayList<SimpleSongInfo> getSongList() {
         return this.mSongList;
     }
@@ -20,7 +24,7 @@ public class MusicRank extends FindSongCommonCategory implements Serializable {
     }
 
     /* loaded from: classes.dex */
-    public class SimpleSongInfo implements Serializable {
+    public static class SimpleSongInfo implements Serializable {
         @SerializedName(value = "singerName")
         private String mSingerName;
         @SerializedName(value = "songName")

@@ -99,8 +99,8 @@ public class EnvironmentUtils {
 
     /* renamed from: a */
     public static void m8525a(Context context) {
-        C0602a.m8515a(context);
-        C0604c.initConfig(context);
+        AppConfig.m8515a(context);
+        DeviceConfig.initConfig(context);
         C0603b.m8497a(context);
         packageName = context.getPackageName();
         m8517g();
@@ -413,7 +413,7 @@ public class EnvironmentUtils {
 
     /* renamed from: com.sds.android.sdk.lib.util.EnvironmentUtils$c */
     /* loaded from: classes.dex */
-    public static class C0604c {
+    public static class DeviceConfig {
 
         /* renamed from: a */
         private static final int[] f2456a = {0, 0, 0, 3, 0, 3, 3, 0, 3, 3, 3, 0, 3, 3, 3, 3};
@@ -569,55 +569,55 @@ public class EnvironmentUtils {
 
     /* renamed from: com.sds.android.sdk.lib.util.EnvironmentUtils$a */
     /* loaded from: classes.dex */
-    public static class C0602a {
+    public static class AppConfig {
 
         /* renamed from: a */
-        private static String f2437a = "";
+        private static String appVersion = "";
 
         /* renamed from: b */
-        private static String f2438b = "";
+        private static String versionName = "";
 
         /* renamed from: c */
-        private static boolean f2439c = false;
+        private static boolean verificationEnable = false;
 
         /* renamed from: d */
-        private static boolean f2440d = false;
+        private static boolean urlPrintEnable = false;
 
         /* renamed from: e */
-        private static boolean f2441e = false;
+        private static boolean testMode = false;
 
         /* renamed from: f */
-        private static boolean f2442f = true;
+        private static boolean appcheckUpdateEnable = true;
 
         /* renamed from: g */
-        private static boolean f2443g = true;
+        private static boolean logEnable = true;
 
         /* renamed from: h */
-        private static boolean f2444h = true;
+        private static boolean adSdkEnable = true;
 
         /* renamed from: i */
-        private static String f2445i = "";
+        private static String channelType = "";
 
         /* renamed from: j */
-        private static String f2446j = "";
+        private static String channelNumber = "";
 
         /* renamed from: k */
-        private static String f2447k = "";
+        private static String build = "";
 
         /* renamed from: l */
-        private static String f2448l = "";
+        private static String updateCategory = "";
 
         /* renamed from: m */
-        private static String f2449m = "";
+        private static String noAdChannels = "";
 
         /* renamed from: n */
-        private static String f2450n = "";
+        private static String noShortcutChannels = "";
 
         /* renamed from: o */
-        private static boolean f2451o = false;
+        private static boolean qihooUnionEnable = false;
 
         /* renamed from: p */
-        private static Map<String, String> f2452p;
+        private static Map<String, String> configMaps;
 
         /* renamed from: a */
         public static void m8515a(Context context) {
@@ -632,7 +632,7 @@ public class EnvironmentUtils {
             try {
                 try {
                     inputStream = context.getAssets().open("config");
-                    f2452p = XmlUtils.m8332a(inputStream);
+                    configMaps = XmlUtils.m8332a(inputStream);
                     m8500k();
                     if (inputStream != null) {
                         try {
@@ -666,32 +666,32 @@ public class EnvironmentUtils {
         /* renamed from: k */
         private static void m8500k() {
             try {
-                f2437a = f2452p.get("app_version");
-                f2439c = m8513a(f2452p.get("verification_enable"), false);
-                f2438b = f2452p.get("version_name");
-                f2440d = m8513a(f2452p.get("url_print_enable"), false);
-                f2441e = m8513a(f2452p.get("test_mode"), false);
-                f2442f = m8513a(f2452p.get("app_checkupdate_enable"), true);
-                f2443g = m8513a(f2452p.get("log_enable"), true);
-                f2444h = m8513a(f2452p.get("ad_sdk_enable"), true);
-                f2448l = f2452p.get("update_category");
-                f2449m = f2452p.get("no_ad_channels");
-                f2450n = f2452p.get("no_shortcut_channels");
-                f2451o = m8513a(f2452p.get("360union_enable"), false);
+                appVersion = configMaps.get("app_version");
+                verificationEnable = stringToBool(configMaps.get("verification_enable"), false);
+                versionName = configMaps.get("version_name");
+                urlPrintEnable = stringToBool(configMaps.get("url_print_enable"), false);
+                testMode = stringToBool(configMaps.get("test_mode"), false);
+                appcheckUpdateEnable = stringToBool(configMaps.get("app_checkupdate_enable"), true);
+                logEnable = stringToBool(configMaps.get("log_enable"), true);
+                adSdkEnable = stringToBool(configMaps.get("ad_sdk_enable"), true);
+                updateCategory = configMaps.get("update_category");
+                noAdChannels = configMaps.get("no_ad_channels");
+                noShortcutChannels = configMaps.get("no_shortcut_channels");
+                qihooUnionEnable = stringToBool(configMaps.get("360union_enable"), false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            LogUtils.info("Config", "Build:" + f2447k);
-            LogUtils.info("Config", "AppVersion:" + f2437a);
-            LogUtils.info("Config", "VerificationEnable:" + f2439c);
-            LogUtils.info("Config", "VersionName:" + f2438b);
-            LogUtils.info("Config", "UrlPrintEnable:" + f2440d);
-            LogUtils.info("Config", "TestMode:" + f2441e);
-            LogUtils.info("Config", "AppCheckUpdateEnable:" + f2442f);
-            LogUtils.info("Config", "LogEnable:" + f2443g);
-            LogUtils.info("Config", "AdSdkEnable:" + f2444h);
-            LogUtils.info("Config", "UpdateCategory:" + f2448l);
-            LogUtils.info("Config", "360UnionEnable:" + f2451o);
+            LogUtils.info("Config", "Build:" + build);
+            LogUtils.info("Config", "AppVersion:" + appVersion);
+            LogUtils.info("Config", "VerificationEnable:" + verificationEnable);
+            LogUtils.info("Config", "VersionName:" + versionName);
+            LogUtils.info("Config", "UrlPrintEnable:" + urlPrintEnable);
+            LogUtils.info("Config", "TestMode:" + testMode);
+            LogUtils.info("Config", "AppCheckUpdateEnable:" + appcheckUpdateEnable);
+            LogUtils.info("Config", "LogEnable:" + logEnable);
+            LogUtils.info("Config", "AdSdkEnable:" + adSdkEnable);
+            LogUtils.info("Config", "UpdateCategory:" + updateCategory);
+            LogUtils.info("Config", "360UnionEnable:" + qihooUnionEnable);
         }
 
         /* JADX WARN: Removed duplicated region for block: B:41:0x004d A[EXC_TOP_SPLITTER, SYNTHETIC] */
@@ -744,11 +744,11 @@ public class EnvironmentUtils {
                             e6.printStackTrace();
                         }
                     }
-                    f2446j = str2;
-                    f2445i = str;
+                    channelNumber = str2;
+                    channelType = str;
                 }
-                f2446j = str2;
-                f2445i = str;
+                channelNumber = str2;
+                channelType = str;
             } catch (Throwable th2) {
                 th = th2;
                 bufferedReader2 = bufferedReader;
@@ -800,7 +800,7 @@ public class EnvironmentUtils {
                                             e2.printStackTrace();
                                         }
                                     }
-                                    f2447k = str;
+                                    build = str;
                                 }
                             } else {
                                 str = readLine;
@@ -836,68 +836,68 @@ public class EnvironmentUtils {
                 exc = e6;
                 str = FeedbackItem.STATUS_WAITING;
             }
-            f2447k = str;
+            build = str;
         }
 
         /* renamed from: a */
-        public static boolean m8516a() {
-            return f2442f;
+        public static boolean getAppCheckUpdateEnable() {
+            return appcheckUpdateEnable;
         }
 
         /* renamed from: b */
-        public static String m8512b() {
-            return f2445i;
+        public static String getChannelType() {
+            return channelType;
         }
 
         /* renamed from: c */
-        public static String m8510c() {
-            return f2446j;
+        public static String getChannelNumber() {
+            return channelNumber;
         }
 
         /* renamed from: d */
-        public static String m8508d() {
-            return f2447k;
+        public static String getBuild() {
+            return build;
         }
 
         /* renamed from: e */
-        public static String m8506e() {
-            return f2437a;
+        public static String getAppVersion() {
+            return appVersion;
         }
 
         /* renamed from: f */
-        public static String m8505f() {
-            return f2438b;
+        public static String getVersionName() {
+            return versionName;
         }
 
         /* renamed from: g */
-        public static boolean m8504g() {
-            return f2439c;
+        public static boolean getVerificationEnable() {
+            return verificationEnable;
         }
 
         /* renamed from: h */
         public static boolean m8503h() {
-            return f2441e;
+            return testMode;
         }
 
         /* renamed from: i */
-        public static boolean m8502i() {
-            return f2441e;
+        public static boolean getTestMode() {
+            return testMode;
         }
 
         /* renamed from: j */
-        public static String m8501j() {
-            return f2450n;
+        public static String getNoShortcutChannels() {
+            return noShortcutChannels;
         }
 
         /* renamed from: a */
-        private static boolean m8513a(String str, boolean z) {
+        private static boolean stringToBool(String str, boolean result) {
             if ("false".equalsIgnoreCase(str)) {
                 return false;
             }
             if ("true".equalsIgnoreCase(str)) {
                 return true;
             }
-            return z;
+            return result;
         }
     }
 
@@ -919,27 +919,27 @@ public class EnvironmentUtils {
             try {
                 OpenUDIDManager.m8571a(context);
                 f2454b.put("openudid", OpenUDIDManager.m8572a());
-                String replaceAll = C0604c.getMacAddress().replaceAll("[-:]", "");
+                String replaceAll = DeviceConfig.getMacAddress().replaceAll("[-:]", "");
                 f2454b.put("hid", SecurityUtils.C0612d.m8352a(replaceAll));
-                String m8485a = C0604c.getDeviceId();
+                String m8485a = DeviceConfig.getDeviceId();
                 HashMap<String, Object> hashMap = f2454b;
                 if (!StringUtils.isEmpty(m8485a)) {
                     replaceAll = m8485a;
                 }
                 hashMap.put("uid", replaceAll);
                 f2454b.put("mid", URLEncoder.encode(Build.MODEL, "UTF-8"));
-                f2454b.put("imsi", URLEncoder.encode(C0604c.getSubscriberId(), "UTF-8"));
+                f2454b.put("imsi", URLEncoder.encode(DeviceConfig.getSubscriberId(), "UTF-8"));
                 f2454b.put("s", "s200");
                 f2454b.put("splus", URLEncoder.encode(Build.VERSION.RELEASE + "/" + Build.VERSION.SDK_INT, "UTF-8"));
                 f2454b.put("rom", URLEncoder.encode(Build.FINGERPRINT, "UTF-8"));
-                f2454b.put("v", "v" + C0602a.m8506e());
-                f2454b.put("f", "f" + C0602a.m8512b());
-                f2454b.put("alf", "alf" + C0602a.m8510c());
+                f2454b.put("v", "v" + AppConfig.getAppVersion());
+                f2454b.put("f", "f" + AppConfig.getChannelType());
+                f2454b.put("alf", "alf" + AppConfig.getChannelNumber());
                 f2454b.put("active", Integer.valueOf(m8490c(context) ? 1 : 0));
                 f2454b.put("net", 0);
                 f2454b.put("tid", new Long(0L));
                 f2454b.put("resolution", m8493b(context));
-                List<String> m8335c = StringUtils.m8335c(context.getPackageName(), ".");
+                List<String> m8335c = StringUtils.stringToArray(context.getPackageName(), ".");
                 int size = m8335c.size();
                 if (size > 0) {
                     f2454b.put(OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY, m8335c.get(size - 1));
@@ -980,14 +980,14 @@ public class EnvironmentUtils {
 
         /* renamed from: e */
         public static HashMap<String, Object> m8488e() {
-            f2454b.put("net", Integer.valueOf(C0604c.m8476d()));
+            f2454b.put("net", Integer.valueOf(DeviceConfig.m8476d()));
             return f2454b;
         }
 
         /* renamed from: f */
         public static JSONObject m8487f() {
             try {
-                f2455c.put("net", C0604c.m8476d());
+                f2455c.put("net", DeviceConfig.m8476d());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

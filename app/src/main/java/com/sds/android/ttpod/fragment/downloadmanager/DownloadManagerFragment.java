@@ -22,7 +22,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.NotificationUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
@@ -177,7 +176,7 @@ public class DownloadManagerFragment extends SlidingClosableFragment {
     }
 
     private void cancelCompletedAndErrorNotification() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.CLEAR_COMPLETE_TASK_COUNT, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.CLEAR_COMPLETE_TASK_COUNT, new Object[0]));
         NotificationUtils.m4696a(15121730);
         NotificationUtils.m4696a(15121740);
     }

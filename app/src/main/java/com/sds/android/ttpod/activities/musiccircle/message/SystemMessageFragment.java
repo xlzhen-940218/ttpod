@@ -53,7 +53,7 @@ public class SystemMessageFragment extends SlidingClosableFragment {
         inflate.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.message.SystemMessageFragment.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     SystemMessageFragment.this.requestSystemMessage();
                 } else {
                     PopupsUtils.m6760a((int) R.string.network_error);
@@ -70,7 +70,7 @@ public class SystemMessageFragment extends SlidingClosableFragment {
     }
 
     private void toggleFailedView() {
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             loadNoDataView();
         } else {
             loadErrorView();
@@ -85,7 +85,7 @@ public class SystemMessageFragment extends SlidingClosableFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void requestSystemMessage() {
         this.mStateView.setState(StateView.EnumC2248b.LOADING);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_SYSTEM_NOTICES, 0L, 20, "system_message"));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_SYSTEM_NOTICES, 0L, 20, "system_message"));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -105,7 +105,7 @@ public class SystemMessageFragment extends SlidingClosableFragment {
             this.mStateView.setState(StateView.EnumC2248b.SUCCESS);
             this.mSystemNotices.clear();
             this.mSystemNotices = dataList;
-            this.mAdapter.m7663a((List) this.mSystemNotices);
+            this.mAdapter.setDataList((List) this.mSystemNotices);
         }
     }
 }

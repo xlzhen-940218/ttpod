@@ -4,10 +4,9 @@ import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 /* loaded from: classes.dex */
-public class Animation extends ImageView {
+public class AnimationImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     /* renamed from: a */
     private boolean f6716a;
@@ -24,15 +23,15 @@ public class Animation extends ImageView {
     /* renamed from: e */
     private boolean f6720e;
 
-    public Animation(Context context) {
+    public AnimationImageView(Context context) {
         super(context);
     }
 
-    public Animation(Context context, AttributeSet attributeSet) {
+    public AnimationImageView(Context context, AttributeSet attributeSet) {
         this(context, attributeSet, 0);
     }
 
-    public Animation(Context context, AttributeSet attributeSet, int i) {
+    public AnimationImageView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
     }
 
@@ -83,14 +82,14 @@ public class Animation extends ImageView {
         post(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.skin.view.Animation.1
             @Override // java.lang.Runnable
             public void run() {
-                if (Animation.this.f6718c != null) {
-                    if (Animation.this.getDrawable() != Animation.this.f6718c) {
-                        Animation.super.setImageDrawable(Animation.this.f6718c);
-                        Animation.this.f6716a = Animation.this.f6718c.isRunning();
+                if (AnimationImageView.this.f6718c != null) {
+                    if (AnimationImageView.this.getDrawable() != AnimationImageView.this.f6718c) {
+                        AnimationImageView.super.setImageDrawable(AnimationImageView.this.f6718c);
+                        AnimationImageView.this.f6716a = AnimationImageView.this.f6718c.isRunning();
                     }
-                    if (!Animation.this.f6716a) {
-                        Animation.this.f6718c.start();
-                        Animation.this.f6716a = true;
+                    if (!AnimationImageView.this.f6716a) {
+                        AnimationImageView.this.f6718c.start();
+                        AnimationImageView.this.f6716a = true;
                     }
                 }
             }
@@ -110,14 +109,14 @@ public class Animation extends ImageView {
         post(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.skin.view.Animation.2
             @Override // java.lang.Runnable
             public void run() {
-                if (Animation.this.getDrawable() == Animation.this.f6718c) {
-                    if (Animation.this.f6718c != null) {
-                        Animation.this.f6718c.stop();
+                if (AnimationImageView.this.getDrawable() == AnimationImageView.this.f6718c) {
+                    if (AnimationImageView.this.f6718c != null) {
+                        AnimationImageView.this.f6718c.stop();
                     }
-                    if (Animation.this.f6719d != null) {
-                        Animation.super.setImageDrawable(Animation.this.f6719d);
+                    if (AnimationImageView.this.f6719d != null) {
+                        AnimationImageView.super.setImageDrawable(AnimationImageView.this.f6719d);
                     }
-                    Animation.this.f6716a = false;
+                    AnimationImageView.this.f6716a = false;
                 }
             }
         });

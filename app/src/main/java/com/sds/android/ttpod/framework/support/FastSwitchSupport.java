@@ -57,7 +57,7 @@ public final class FastSwitchSupport extends Support {
             this.f7135c.bindService(new Intent(this.f7135c, SupportService.class), this.f7142j, Context.BIND_AUTO_CREATE);
             LogUtils.info("Support", "音效：重现绑定service");
         }
-        if (MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.m2858m(), Preferences.m2854n()) == null) {
+        if (MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.getLocalGroupId(), Preferences.getMediaId()) == null) {
             this.f7003k.m2652e();
         }
         Iterator<SupportCallback> it = this.f7138f.iterator();
@@ -86,7 +86,7 @@ public final class FastSwitchSupport extends Support {
     public void mo2474c(String str, String str2) {
         MediaSelector mediaSelector = this.f7003k;
         if (str2 == null) {
-            str2 = Preferences.m2854n();
+            str2 = Preferences.getMediaId();
         }
         mediaSelector.m2657a(str, str2);
     }

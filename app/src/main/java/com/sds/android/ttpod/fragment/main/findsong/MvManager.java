@@ -1,8 +1,7 @@
 package com.sds.android.ttpod.fragment.main.findsong;
 
 import android.content.Context;
-import android.content.Intent;
-import android.widget.CompoundButton;
+
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
@@ -20,7 +19,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -62,41 +60,41 @@ public class MvManager {
         if (1 == i && UnicomFlowUtil.m3946f()) {
             m5562a(context, mvPopupDialogCallBack);
         } else {
-            mvPopupDialogCallBack.mo1219a();
+            mvPopupDialogCallBack.onSuccess();
         }
     }
 
     /* renamed from: a */
     private static void m5562a(final Context context, final MvPopupDialogCallBack mvPopupDialogCallBack) {
         if (!Preferences.m2916bm()) {
-            mvPopupDialogCallBack.mo1219a();
+            mvPopupDialogCallBack.onSuccess();
         }
     }
 
     /* renamed from: e */
     private static void m5553e(Context context, final MvPopupDialogCallBack mvPopupDialogCallBack, final int i) {
         if (i == 2 ? !Preferences.m2918bk() : !Preferences.m2919bj()) {
-            mvPopupDialogCallBack.mo1219a();
+            mvPopupDialogCallBack.onSuccess();
             return;
         }
     }
 
     /* renamed from: b */
-    public static void m5557b(Context context, MvPopupDialogCallBack mvPopupDialogCallBack, int i) {
+    public static void showMv(Context context, MvPopupDialogCallBack mvPopupDialogCallBack, int i) {
         m5560a(context, mvPopupDialogCallBack, i, 2);
     }
 
     /* renamed from: a */
     public static void m5560a(Context context, MvPopupDialogCallBack mvPopupDialogCallBack, int i, int i2) {
-        if (!EnvironmentUtils.C0604c.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             PopupsUtils.m6721a(context.getString(R.string.cannot_play_for_network_error));
-        } else if (2 == EnvironmentUtils.C0604c.m8476d()) {
-            mvPopupDialogCallBack.mo1219a();
-        } else if (UnicomFlowUtil.m3946f() && HttpRequest.m8704b()) {
+        } else if (2 == EnvironmentUtils.DeviceConfig.m8476d()) {
+            mvPopupDialogCallBack.onSuccess();
+        } else if (UnicomFlowUtil.m3946f() && HttpRequest.isProxy()) {
             if (i == 0) {
                 m5553e(context, mvPopupDialogCallBack, i2);
             } else {
-                mvPopupDialogCallBack.mo1219a();
+                mvPopupDialogCallBack.onSuccess();
             }
         } else {
             m5561a(context, mvPopupDialogCallBack, i);

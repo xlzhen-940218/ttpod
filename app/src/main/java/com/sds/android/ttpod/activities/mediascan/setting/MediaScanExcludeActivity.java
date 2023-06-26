@@ -54,7 +54,7 @@ public class MediaScanExcludeActivity extends SlidingClosableActivity {
                 ((C0766b) view.getTag()).f2729c.toggle();
             }
         });
-        CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_FOLDER));
+        CommandCenter.getInstance().execute(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_FOLDER));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

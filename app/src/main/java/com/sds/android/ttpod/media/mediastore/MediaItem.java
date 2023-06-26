@@ -171,7 +171,7 @@ public final class MediaItem implements Parcelable, Serializable {
 
     public String getTitleKey() {
         if (this.mTitleKey == null) {
-            if (this.mTitle == null || StringUtils.m8344a(this.mTitle, "<unknown>")) {
+            if (this.mTitle == null || StringUtils.equals(this.mTitle, "<unknown>")) {
                 this.mTitleKey = "";
             } else {
                 this.mTitleKey = PinyinUtils.buildKey(this.mTitle);
@@ -429,7 +429,7 @@ public final class MediaItem implements Parcelable, Serializable {
     }
 
     private void assertOnlineMedia() {
-        if (EnvironmentUtils.C0602a.m8502i() && !isOnline()) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && !isOnline()) {
             throw new IllegalArgumentException("not Online Media");
         }
     }

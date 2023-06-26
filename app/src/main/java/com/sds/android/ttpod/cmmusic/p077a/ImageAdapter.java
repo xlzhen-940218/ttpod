@@ -65,23 +65,23 @@ public class ImageAdapter extends PagerAdapter {
                         Bundle bundle = new Bundle();
                         bundle.putString("pagename", "AdSeatContent");
                         String str2 = (String) ((HashMap) ImageAdapter.this.f3453a.get(i)).get("href");
-                        if (StringUtils.m8344a(str2, "ttlink:a1")) {
+                        if (StringUtils.equals(str2, "ttlink:a1")) {
                             CmmusicStatistic.m7313a("tag_6");
                             intent.setAction("com.sds.android.ttpod.cmmusic.listen_control");
                             bundle.putString("href", "tag_6");
-                        } else if (StringUtils.m8344a(str2, "ttlink:a2")) {
+                        } else if (StringUtils.equals(str2, "ttlink:a2")) {
                             CmmusicStatistic.m7313a("tag_7");
                             intent.setAction("com.sds.android.ttpod.cmmusic.listen_control");
                             bundle.putString("href", "tag_7");
-                        } else if (StringUtils.m8344a(str2, "ttlink:a3")) {
+                        } else if (StringUtils.equals(str2, "ttlink:a3")) {
                             CmmusicStatistic.m7313a("tag_8");
                             intent.setAction("com.sds.android.ttpod.cmmusic.listen_control");
                             bundle.putString("href", "tag_8");
-                        } else if (StringUtils.m8344a(str2, "ttlink:a4")) {
+                        } else if (StringUtils.equals(str2, "ttlink:a4")) {
                             CmmusicStatistic.m7313a("tag_9");
                             intent.setAction("com.sds.android.ttpod.cmmusic.listen_control");
                             bundle.putString("href", "tag_9");
-                        } else if (StringUtils.m8344a(str2, "ttlink:a5")) {
+                        } else if (StringUtils.equals(str2, "ttlink:a5")) {
                             CmmusicStatistic.m7313a("tag_10");
                             intent.setAction("com.sds.android.ttpod.cmmusic.listen_control");
                             bundle.putString("href", "tag_10");

@@ -86,7 +86,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
 
     public void cancelUpgrade() {
         if (this.mDownloadTaskInfo != null) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_DOWNLOAD_TASK, this.mDownloadTaskInfo, Boolean.TRUE));
+            CommandCenter.getInstance().execute(new Command(CommandID.DELETE_DOWNLOAD_TASK, this.mDownloadTaskInfo, Boolean.TRUE));
             cancelUpdateProgress();
             return;
         }
@@ -167,7 +167,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
         m4760a.setTag(str);
         this.mDownloadTaskInfo = m4760a;
         CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_SHOW_DOWNLOAD_PROGRESS, Boolean.FALSE), ModuleID.VERSION);
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.version.VersionUpdateModule.3
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.version.VersionUpdateModule.3
             /* JADX WARN: Can't wrap try/catch for region: R(10:9|(5:32|33|34|36|27)(1:15)|16|(1:31)|22|23|24|26|27|5) */
             /* JADX WARN: Code restructure failed: missing block: B:31:0x00da, code lost:
                 r0 = move-exception;

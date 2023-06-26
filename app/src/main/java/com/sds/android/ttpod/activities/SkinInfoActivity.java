@@ -82,7 +82,7 @@ public class SkinInfoActivity extends ActionBarActivity {
 
     protected void loadSkin() {
         this.mSrcSkinPath = parseSkinPath();
-        CommandCenter.getInstance().m4606a(new Command(CommandID.LOAD_SKIN_WITH_PATH, SkinUtils.m4646a(this.mSrcSkinPath, 0)));
+        CommandCenter.getInstance().execute(new Command(CommandID.LOAD_SKIN_WITH_PATH, SkinUtils.m4646a(this.mSrcSkinPath, 0)));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -170,7 +170,7 @@ public class SkinInfoActivity extends ActionBarActivity {
     }
 
     private void savePreference() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_SKIN, this.mDesSkinPath, 0));
+        CommandCenter.getInstance().execute(new Command(CommandID.SET_SKIN, this.mDesSkinPath, 0));
     }
 
     private String parseSkinPath() {

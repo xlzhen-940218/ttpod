@@ -100,7 +100,7 @@ public class PlayOnlineMediaTask {
             }
             view.setEnabled(true);
             view.clearAnimation();
-            if (onlinePlayStatus == OnlinePlayStatus.PLAYING || (baseListAdapter.m7661c() != null && onlinePlayStatus == OnlinePlayStatus.STOP)) {
+            if (onlinePlayStatus == OnlinePlayStatus.PLAYING || (baseListAdapter.getData() != null && onlinePlayStatus == OnlinePlayStatus.STOP)) {
                 z = true;
             }
             view.setSelected(z);

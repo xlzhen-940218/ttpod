@@ -84,7 +84,7 @@ public final class DownloadMenuHandler {
     /* renamed from: a */
     public void m6926a(List<MediaItem> list) {
         if (ListUtils.m4718a(list)) {
-            if (EnvironmentUtils.C0602a.m8503h()) {
+            if (EnvironmentUtils.AppConfig.getTestMode()) {
                 throw new IllegalArgumentException("mediaItem should not be null");
             }
             LogUtils.error(f3858a, "handleSongListDownload mediaItem should not be null");
@@ -93,7 +93,7 @@ public final class DownloadMenuHandler {
         this.f3862e = list;
         if (m6924b() <= 0) {
             PopupsUtils.m6721a("已经下载了");
-        } else if (!EnvironmentUtils.C0604c.m8474e()) {
+        } else if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             PopupsUtils.m6760a((int) R.string.network_unavailable);
         } else {
             PopupsUtils.m6728a(this.activity, m6921c(), this.activity.getString(R.string.title_choose_download_playlist, new Object[]{Integer.valueOf(m6924b())}), m6941a());
@@ -103,7 +103,7 @@ public final class DownloadMenuHandler {
     /* renamed from: a */
     public void m6927a(MediaItem mediaItem, String str) {
         if (mediaItem == null) {
-            if (EnvironmentUtils.C0602a.m8503h()) {
+            if (EnvironmentUtils.AppConfig.getTestMode()) {
                 throw new IllegalArgumentException("mediaItem should not be null");
             }
             LogUtils.error(f3858a, "handleSingleSongDownload mediaItem should not be null");
@@ -146,7 +146,7 @@ public final class DownloadMenuHandler {
 
                 }
                 List m6925a = DownloadMenuHandler.this.m6925a(DownloadMenuHandler.this.f3862e, m6940a);
-                CommandCenter.getInstance().m4606a(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, m6925a, false));
+                CommandCenter.getInstance().execute(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, m6925a, false));
                 PopupsUtils.m6721a(DownloadMenuHandler.this.activity.getString(R.string.toast_download_songs, new Object[]{Integer.valueOf(m6925a.size())}));
             }
         };
@@ -291,7 +291,7 @@ public final class DownloadMenuHandler {
         m4759a.setTag(mediaItem);
 
         m4759a.setSongType(m6939a(url));
-        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, m4759a));
+        CommandCenter.getInstance().execute(new Command(CommandID.ADD_DOWNLOAD_TASK, m4759a));
     }
 
     /* renamed from: a */

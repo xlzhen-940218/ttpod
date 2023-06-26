@@ -43,16 +43,16 @@ public final class ModuleManager {
     private static ModuleManager instance = new ModuleManager();
 
     /* renamed from: e */
-    private static final Map<CommandID, Set<ModuleID>> f6092e = new EnumMap(CommandID.class);
+    private static final Map<CommandID, Set<ModuleID>> commandIdModuleIdMaps = new EnumMap(CommandID.class);
 
     /* renamed from: f */
-    private static final Map<ModuleID, Class> moduleIdMaps = new EnumMap(ModuleID.class);
+    private static final Map<ModuleID, Class> moduleIdClassMaps = new EnumMap(ModuleID.class);
 
     /* renamed from: b */
-    private Map<ModuleID, BaseModule> f6094b = new EnumMap(ModuleID.class);
+    private Map<ModuleID, BaseModule> moduleIdModuleMaps = new EnumMap(ModuleID.class);
 
     /* renamed from: c */
-    private Map<ModuleID, Long> f6095c = new EnumMap(ModuleID.class);
+    private Map<ModuleID, Long> moduleIdTimeMaps = new EnumMap(ModuleID.class);
 
     /* renamed from: d */
     private Handler f6096d = new Handler() { // from class: com.sds.android.ttpod.framework.modules.d.1
@@ -60,8 +60,8 @@ public final class ModuleManager {
         public void handleMessage(Message message) {
             long currentTimeMillis = System.currentTimeMillis();
             HashSet<ModuleID> hashSet = new HashSet();
-            for (ModuleID moduleID : ModuleManager.this.f6095c.keySet()) {
-                if (((Long) ModuleManager.this.f6095c.get(moduleID)).longValue() + ((BaseModule) ModuleManager.this.f6094b.get(moduleID)).timeOutInMills() < currentTimeMillis) {
+            for (ModuleID moduleID : ModuleManager.this.moduleIdTimeMaps.keySet()) {
+                if (((Long) ModuleManager.this.moduleIdTimeMaps.get(moduleID)).longValue() + ((BaseModule) ModuleManager.this.moduleIdModuleMaps.get(moduleID)).timeOutInMills() < currentTimeMillis) {
                     hashSet.add(moduleID);
                 }
             }
@@ -69,7 +69,7 @@ public final class ModuleManager {
                 ModuleManager.this.m4113a(moduleID2);
             }
             ModuleManager.this.f6096d.removeMessages(1);
-            if (!ModuleManager.this.f6095c.isEmpty()) {
+            if (!ModuleManager.this.moduleIdTimeMaps.isEmpty()) {
                 ModuleManager.this.f6096d.sendEmptyMessageDelayed(1, 15000L);
             }
         }
@@ -82,46 +82,46 @@ public final class ModuleManager {
 
     /* renamed from: d */
     private static void m4105d() {
-        moduleIdMaps.put(ModuleID.DOWNLOAD_MANAGER, DownloadManagerModule.class);
-        moduleIdMaps.put(ModuleID.FAVORITE, FavoriteModule.class);
-        moduleIdMaps.put(ModuleID.MEDIA_SCAN, MediaScanModule.class);
-        moduleIdMaps.put(ModuleID.MEDIA_ACCESS, MediaAccessModule.class);
-        moduleIdMaps.put(ModuleID.MONITOR, MonitorModule.class);
-        moduleIdMaps.put(ModuleID.MUSIC_CIRCLE, MusicCircleModule.class);
-        moduleIdMaps.put(ModuleID.SUPPORT, SupportModule.class);
-        moduleIdMaps.put(ModuleID.FIND_SONG, FindSongModule.class);
-        moduleIdMaps.put(ModuleID.SEARCH, SearchModule.class);
-        moduleIdMaps.put(ModuleID.SKIN, SkinModule.class);
-        moduleIdMaps.put(ModuleID.SPLASH, SplashModule.class);
-        moduleIdMaps.put(ModuleID.USER_SYSTEM, UserSystemModule.class);
-        moduleIdMaps.put(ModuleID.VERSION, VersionUpdateModule.class);
-        moduleIdMaps.put(ModuleID.GLOBAL, GlobalModule.class);
-        moduleIdMaps.put(ModuleID.LOCK_SCREEN, LockScreenModule.class);
-        moduleIdMaps.put(ModuleID.AUDIO_EFFECT, AudioEffectModule.class);
-        moduleIdMaps.put(ModuleID.THEME, ThemeModule.class);
-        moduleIdMaps.put(ModuleID.VERSION_COMPACT, VersionCompactModule.class);
-        moduleIdMaps.put(ModuleID.MUSIC_LIBRARY, MusicLibraryModule.class);
-        moduleIdMaps.put(ModuleID.UNICOM_FLOW, UnicomFlowModule.class);
-        moduleIdMaps.put(ModuleID.FEEDBACK, FeedbackModule.class);
+        moduleIdClassMaps.put(ModuleID.DOWNLOAD_MANAGER, DownloadManagerModule.class);
+        moduleIdClassMaps.put(ModuleID.FAVORITE, FavoriteModule.class);
+        moduleIdClassMaps.put(ModuleID.MEDIA_SCAN, MediaScanModule.class);
+        moduleIdClassMaps.put(ModuleID.MEDIA_ACCESS, MediaAccessModule.class);
+        moduleIdClassMaps.put(ModuleID.MONITOR, MonitorModule.class);
+        moduleIdClassMaps.put(ModuleID.MUSIC_CIRCLE, MusicCircleModule.class);
+        moduleIdClassMaps.put(ModuleID.SUPPORT, SupportModule.class);
+        moduleIdClassMaps.put(ModuleID.FIND_SONG, FindSongModule.class);
+        moduleIdClassMaps.put(ModuleID.SEARCH, SearchModule.class);
+        moduleIdClassMaps.put(ModuleID.SKIN, SkinModule.class);
+        moduleIdClassMaps.put(ModuleID.SPLASH, SplashModule.class);
+        moduleIdClassMaps.put(ModuleID.USER_SYSTEM, UserSystemModule.class);
+        moduleIdClassMaps.put(ModuleID.VERSION, VersionUpdateModule.class);
+        moduleIdClassMaps.put(ModuleID.GLOBAL, GlobalModule.class);
+        moduleIdClassMaps.put(ModuleID.LOCK_SCREEN, LockScreenModule.class);
+        moduleIdClassMaps.put(ModuleID.AUDIO_EFFECT, AudioEffectModule.class);
+        moduleIdClassMaps.put(ModuleID.THEME, ThemeModule.class);
+        moduleIdClassMaps.put(ModuleID.VERSION_COMPACT, VersionCompactModule.class);
+        moduleIdClassMaps.put(ModuleID.MUSIC_LIBRARY, MusicLibraryModule.class);
+        moduleIdClassMaps.put(ModuleID.UNICOM_FLOW, UnicomFlowModule.class);
+        moduleIdClassMaps.put(ModuleID.FEEDBACK, FeedbackModule.class);
     }
 
     /* renamed from: e */
     private static void m4103e() {
         CommandID[] m4563a;
         try {
-            for (ModuleID moduleID : moduleIdMaps.keySet()) {
-                ObserverCommandID observerCommandID = (ObserverCommandID) moduleIdMaps.get(moduleID).getAnnotation(ObserverCommandID.class);
+            for (ModuleID moduleID : moduleIdClassMaps.keySet()) {
+                ObserverCommandID observerCommandID = (ObserverCommandID) moduleIdClassMaps.get(moduleID).getAnnotation(ObserverCommandID.class);
                 if (observerCommandID != null) {
                     for (CommandID commandID : observerCommandID.m4563a()) {
-                        if (EnvironmentUtils.C0602a.m8503h() && commandID.getCommandType() != CommandType.FROM_MODULE) {
+                        if (EnvironmentUtils.AppConfig.getTestMode() && commandID.getCommandType() != CommandType.FROM_MODULE) {
                             throw new IllegalArgumentException("ObserverCommandID must contain command with CommandType = FROM_MODULE");
                         }
-                        Set<ModuleID> set = f6092e.get(commandID);
+                        Set<ModuleID> set = commandIdModuleIdMaps.get(commandID);
                         if (set == null) {
                             set = new HashSet<>();
                         }
                         set.add(moduleID);
-                        f6092e.put(commandID, set);
+                        commandIdModuleIdMaps.put(commandID, set);
                     }
                     continue;
                 }
@@ -135,7 +135,7 @@ public final class ModuleManager {
     public static boolean m4114a(CommandID commandID, ModuleID moduleID) {
         DebugUtils.m8426a(commandID, "commandID");
         DebugUtils.m8426a(moduleID, "moduleClass");
-        Set<ModuleID> set = f6092e.get(commandID);
+        Set<ModuleID> set = commandIdModuleIdMaps.get(commandID);
         return set != null && set.contains(moduleID);
     }
 
@@ -148,28 +148,28 @@ public final class ModuleManager {
     }
 
     /* renamed from: a */
-    public void m4115a(CommandID commandID) {
+    public void loadCommandById(CommandID commandID) {
         if (commandID.getCommandType().equals(CommandType.TO_MODULE)) {
-            m4107c(commandID.getModuleID());
+            add(commandID.getModuleID());
             return;
         }
-        Set<ModuleID> set = f6092e.get(commandID);
+        Set<ModuleID> set = commandIdModuleIdMaps.get(commandID);
         if (set != null) {
             for (ModuleID moduleID : set) {
-                m4107c(moduleID);
+                add(moduleID);
             }
         }
     }
 
     /* renamed from: c */
-    private void m4107c(ModuleID moduleID) {
-        if (!m4104d(moduleID)) {
+    private void add(ModuleID moduleID) {
+        if (!containsModule(moduleID)) {
             LogUtils.debug("ModuleManager", "LoadModule:" + moduleID.name());
-            BaseModule m4102e = loadModulebyId(moduleID);
-            m4102e.onCreate();
-            this.f6094b.put(moduleID, m4102e);
-            if (m4102e.timeOutInMills() != Long.MIN_VALUE) {
-                this.f6095c.put(moduleID, Long.valueOf(System.currentTimeMillis()));
+            BaseModule module = loadModulebyId(moduleID);
+            module.onCreate();
+            this.moduleIdModuleMaps.put(moduleID, module);
+            if (module.timeOutInMills() != Long.MIN_VALUE) {
+                this.moduleIdTimeMaps.put(moduleID, Long.valueOf(System.currentTimeMillis()));
                 if (!this.f6096d.hasMessages(1)) {
                     this.f6096d.sendEmptyMessageDelayed(1, 15000L);
                 }
@@ -181,39 +181,39 @@ public final class ModuleManager {
     public void m4113a(ModuleID moduleID) {
         LogUtils.info("ModuleManager", "unloadModule:" + moduleID.name());
         DebugUtils.m8427a();
-        BaseModule baseModule = this.f6094b.get(moduleID);
+        BaseModule baseModule = this.moduleIdModuleMaps.get(moduleID);
         if (baseModule != null) {
             baseModule.onPreDestroy();
             baseModule.onDestroy();
-            this.f6094b.remove(moduleID);
-            this.f6095c.remove(moduleID);
+            this.moduleIdModuleMaps.remove(moduleID);
+            this.moduleIdTimeMaps.remove(moduleID);
         }
     }
 
     /* renamed from: b */
     public void m4110b(ModuleID moduleID) {
-        if (this.f6095c.containsKey(moduleID)) {
-            this.f6095c.put(moduleID, Long.valueOf(System.currentTimeMillis()));
+        if (this.moduleIdTimeMaps.containsKey(moduleID)) {
+            this.moduleIdTimeMaps.put(moduleID, Long.valueOf(System.currentTimeMillis()));
         }
     }
 
     /* renamed from: a */
-    public void m4116a(Context context) {
+    public void init(Context context) {
         BaseModule.setContext(context);
-        m4101f();
+        initNormalModule();
     }
 
     /* renamed from: f */
-    private void m4101f() {
-        m4107c(ModuleID.GLOBAL);
-        m4107c(ModuleID.FAVORITE);
-        m4107c(ModuleID.SUPPORT);
-        m4107c(ModuleID.MONITOR);
+    private void initNormalModule() {
+        add(ModuleID.GLOBAL);
+        add(ModuleID.FAVORITE);
+        add(ModuleID.SUPPORT);
+        add(ModuleID.MONITOR);
     }
 
     /* renamed from: b */
     public void m4111b() {
-        for (BaseModule baseModule : this.f6094b.values()) {
+        for (BaseModule baseModule : this.moduleIdModuleMaps.values()) {
             baseModule.onPreDestroy();
         }
     }
@@ -223,21 +223,21 @@ public final class ModuleManager {
         DebugUtils.m8427a();
         this.f6096d.removeMessages(1);
         LogUtils.debug("ModuleManager", "unInitModule search lookLyricPic");
-        for (BaseModule baseModule : this.f6094b.values()) {
+        for (BaseModule baseModule : this.moduleIdModuleMaps.values()) {
             baseModule.onDestroy();
         }
-        this.f6094b.clear();
+        this.moduleIdModuleMaps.clear();
     }
 
     /* renamed from: d */
-    private boolean m4104d(ModuleID moduleID) {
+    private boolean containsModule(ModuleID moduleID) {
         DebugUtils.m8427a();
-        return this.f6094b.containsKey(moduleID);
+        return this.moduleIdModuleMaps.containsKey(moduleID);
     }
 
     /* renamed from: e */
     private BaseModule loadModulebyId(ModuleID moduleID) {
-        Class cls = moduleIdMaps.get(moduleID);
+        Class cls = moduleIdClassMaps.get(moduleID);
         if (cls == null) {
             throw new IllegalArgumentException("Module(" + moduleID.name() + " not existed or not be register!");
         }

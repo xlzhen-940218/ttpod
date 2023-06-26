@@ -75,7 +75,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
         this.mReloadView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.settings.feedback.FeedbackListFragment.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view2) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     FeedbackListFragment.this.requestFeedbackList();
                 } else {
                     PopupsUtils.m6760a((int) R.string.network_error);
@@ -89,7 +89,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
         this.mListView.setOnStartRefreshListener(new DragUpdateHelper.InterfaceC2273c() { // from class: com.sds.android.ttpod.fragment.settings.feedback.FeedbackListFragment.2
             @Override // com.sds.android.ttpod.widget.dragupdatelist.DragUpdateHelper.InterfaceC2273c
             public void onStartRefreshEvent() {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     if (FeedbackListFragment.this.mRequestState != RequestState.REQUESTING) {
                         FeedbackListFragment.this.requestFeedbackList();
                         return;
@@ -103,7 +103,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
         this.mAdapter = new C1732a();
         this.mListView.setAdapter((ListAdapter) this.mAdapter);
         loadFeedbackCache();
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             requestFeedbackList();
         }
     }
@@ -112,7 +112,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
     public void onDestroyView() {
         HashMap hashMap = new HashMap();
         if (this.mAdapter != null) {
-            for (FeedbackItem feedbackItem : this.mAdapter.m7662b()) {
+            for (FeedbackItem feedbackItem : this.mAdapter.getDataList()) {
                 hashMap.put(feedbackItem.getId(), feedbackItem);
             }
         }
@@ -122,7 +122,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
 
     @Override // android.widget.AdapterView.OnItemClickListener
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
-        if (!EnvironmentUtils.C0604c.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             PopupsUtils.m6760a((int) R.string.network_error);
             return;
         }
@@ -148,7 +148,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
                 this.mTvHint.setText(R.string.feedback_history_empty);
             }
             sortFeedbackItems(list);
-            this.mAdapter.m7663a(list);
+            this.mAdapter.setDataList(list);
         } else {
             this.mStateView.setState(StateView.EnumC2248b.FAILED);
         }
@@ -160,7 +160,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
         if (baseResultRest.m8677d()) {
             this.mTvHint.setText(R.string.feedback_history_hint);
             synchronized (this.mAdapter) {
-                this.mAdapter.m7662b().add(0, feedbackItem);
+                this.mAdapter.getDataList().add(0, feedbackItem);
                 this.mAdapter.notifyDataSetChanged();
             }
         }
@@ -176,8 +176,8 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
     public void onSendMessageFinish(BaseResultRest baseResultRest, FeedbackMessage feedbackMessage) {
         if (baseResultRest.m8677d()) {
             this.mClickedFeedbackItem.setLastUpdated(feedbackMessage.getTimestamp());
-            this.mAdapter.m7662b().remove(this.mClickedFeedbackItem);
-            this.mAdapter.m7662b().add(0, this.mClickedFeedbackItem);
+            this.mAdapter.getDataList().remove(this.mClickedFeedbackItem);
+            this.mAdapter.getDataList().add(0, this.mClickedFeedbackItem);
             this.mAdapter.notifyDataSetChanged();
         }
     }
@@ -203,7 +203,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
             this.mTvHint.setText(R.string.feedback_history_hint);
             ArrayList arrayList = new ArrayList(m3147q.values());
             sortFeedbackItems(arrayList);
-            this.mAdapter.m7663a((List) arrayList);
+            this.mAdapter.setDataList((List) arrayList);
             this.mStateView.setState(StateView.EnumC2248b.SUCCESS);
         }
     }
@@ -246,13 +246,13 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
 
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter, android.widget.Adapter
         public int getCount() {
-            return this.f3158d.size();
+            return this.dataList.size();
         }
 
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter, android.widget.Adapter
         /* renamed from: a */
         public FeedbackItem getItem(int i) {
-            return (FeedbackItem) this.f3158d.get(i);
+            return (FeedbackItem) this.dataList.get(i);
         }
 
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter, android.widget.Adapter
@@ -262,7 +262,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
 
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+        protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
             View inflate = layoutInflater.inflate(R.layout.feedback_item, (ViewGroup) null);
             inflate.setTag(new C1733b((ViewGroup) inflate));
             return inflate;
@@ -271,7 +271,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a  reason: avoid collision after fix types in other method */
-        public void mo5400a(View view, FeedbackItem feedbackItem, int i) {
+        public void buildDataUI(View view, FeedbackItem feedbackItem, int i) {
             C1733b c1733b = (C1733b) view.getTag();
             c1733b.f5500c.setText(feedbackItem.getProposalContent());
             c1733b.f5501d.setText(TimeUtils.m8156a(feedbackItem.getLastUpdated(), "yyyy-MM-dd hh:mm:ss a"));

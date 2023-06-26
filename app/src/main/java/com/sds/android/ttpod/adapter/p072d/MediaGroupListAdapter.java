@@ -19,7 +19,7 @@ import com.sds.android.ttpod.media.mediastore.MediaStorage;
 public class MediaGroupListAdapter extends BaseListAdapter<GroupItem> {
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.media_group_item, (ViewGroup) null);
         inflate.setTag(new C0969a(inflate));
         return inflate;
@@ -28,9 +28,9 @@ public class MediaGroupListAdapter extends BaseListAdapter<GroupItem> {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public final void mo5400a(View view, GroupItem groupItem, int i) {
+    public final void buildDataUI(View view, GroupItem groupItem, int i) {
         m7578a((C0969a) view.getTag(), groupItem);
-        view.setEnabled(m7661c() == null || !StringUtils.m8344a(groupItem.getGroupID(), m7661c().getGroupID()));
+        view.setEnabled(getData() == null || !StringUtils.equals(groupItem.getGroupID(), getData().getGroupID()));
     }
 
     /* renamed from: a */
@@ -38,8 +38,8 @@ public class MediaGroupListAdapter extends BaseListAdapter<GroupItem> {
         boolean startsWith = groupItem.getGroupID().startsWith(MediaStorage.GROUP_ID_FOLDER_PREFIX);
         c0969a.m7574e().setVisibility(View.GONE);
         c0969a.m7576c().setText(startsWith ? FileUtils.m8401k(groupItem.getName()) : groupItem.getName());
-        c0969a.m7575d().setText(m7664a().getString(R.string.count_of_media, groupItem.getCount()) + (startsWith ? "  " + groupItem.getName() : ""));
-        c0969a.m7577b().setVisibility(groupItem.equals(m7661c()) ? View.VISIBLE : View.GONE);
+        c0969a.m7575d().setText(getContext().getString(R.string.count_of_media, groupItem.getCount()) + (startsWith ? "  " + groupItem.getName() : ""));
+        c0969a.m7577b().setVisibility(groupItem.equals(getData()) ? View.VISIBLE : View.GONE);
     }
 
     /* compiled from: MediaGroupListAdapter.java */

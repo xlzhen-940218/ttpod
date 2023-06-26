@@ -50,14 +50,14 @@ public class StarCategoryFragment extends BaseStarCategoryFragment {
             setLoadingState(StateView.EnumC2248b.SUCCESS);
             this.mDatas.clear();
             this.mDatas = dataList;
-            this.mStarCategoryAdapter.m7663a((List) this.mDatas);
+            this.mStarCategoryAdapter.setDataList((List) this.mDatas);
         }
     }
 
     @Override // com.sds.android.ttpod.fragment.musiccircle.BaseStarCategoryFragment
     protected void onRequestData() {
         if (this.mDatas.isEmpty()) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_STAR_CATEGORIES, "star_category"));
+            CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_STAR_CATEGORIES, "star_category"));
         }
     }
 

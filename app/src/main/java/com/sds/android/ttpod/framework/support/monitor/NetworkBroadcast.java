@@ -28,7 +28,7 @@ public class NetworkBroadcast extends BroadcastReceiver {
 
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
-        if (EnvironmentUtils.C0604c.m8474e() && UnicomFlowUtil.m3946f()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e() && UnicomFlowUtil.m3946f()) {
             m2241c();
             UnicomFlowUtil.m3954a(context);
             m2242b();

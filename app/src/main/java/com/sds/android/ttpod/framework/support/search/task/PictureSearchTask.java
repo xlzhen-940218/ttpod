@@ -62,7 +62,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         if (m2179c == null) {
             length = 0;
         }
-        int m8476d = EnvironmentUtils.C0604c.m8476d();
+        int m8476d = EnvironmentUtils.DeviceConfig.m8476d();
         int m3005aB = Preferences.m3005aB();
         int m3004aC = Preferences.m3004aC();
         if (m8476d != 2) {
@@ -166,13 +166,13 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                         if (arrayList2 != null) {
                             ResultData.Item[] m2179c = arrayList2.get(0).m2179c();
                             i = m2179c == null ? m2179c.length : 0;
-                            int m8476d = EnvironmentUtils.C0604c.m8476d();
+                            int m8476d = EnvironmentUtils.DeviceConfig.m8476d();
                             if (i != 0) {
                             }
                             return true;
                         }
                         i = 0;
-                        int m8476d2 = EnvironmentUtils.C0604c.m8476d();
+                        int m8476d2 = EnvironmentUtils.DeviceConfig.m8476d();
                         if (i != 0) {
                         }
                         return true;
@@ -180,7 +180,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                     if (arrayList2 != null && !arrayList2.isEmpty()) {
                         ResultData.Item[] m2179c2 = arrayList2.get(0).m2179c();
                         i = m2179c2 == null ? m2179c2.length : 0;
-                        int m8476d22 = EnvironmentUtils.C0604c.m8476d();
+                        int m8476d22 = EnvironmentUtils.DeviceConfig.m8476d();
                         if (i != 0 || m8476d22 == -1) {
                             return true;
                         }
@@ -210,7 +210,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             }
         }
         i = 0;
-        int m8476d222 = EnvironmentUtils.C0604c.m8476d();
+        int m8476d222 = EnvironmentUtils.DeviceConfig.m8476d();
         if (i != 0) {
         }
         return true;

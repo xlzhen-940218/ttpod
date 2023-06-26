@@ -41,7 +41,7 @@ public abstract class LyrPicSearchTaskBaseInfo {
     private String f7279h = "";
 
     /* renamed from: i */
-    private int f7280i = EnvironmentUtils.C0604c.m8476d();
+    private int f7280i = EnvironmentUtils.DeviceConfig.m8476d();
 
     /* renamed from: k */
     private MediaItem f7282k = null;

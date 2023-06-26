@@ -76,7 +76,7 @@ public class DownloadUtils {
             if (StringUtils.isEmpty(groupId)) {
                 return groupId;
             }
-            if (StringUtils.m8344a(MediaStorage.GROUP_ID_FAV_LOCAL, groupId) || groupId.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
+            if (StringUtils.equals(MediaStorage.GROUP_ID_FAV_LOCAL, groupId) || groupId.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
                 return MediaStorage.GROUP_ID_FAV;
             }
             return groupId;

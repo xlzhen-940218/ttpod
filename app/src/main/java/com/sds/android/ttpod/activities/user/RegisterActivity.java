@@ -89,12 +89,12 @@ public class RegisterActivity extends SlidingClosableActivity {
     /* JADX INFO: Access modifiers changed from: private */
     public void processRegister(String str, String str2, String str3) {
         if (validate(str, str2, str3)) {
-            if (!EnvironmentUtils.C0604c.m8474e()) {
+            if (!EnvironmentUtils.DeviceConfig.m8474e()) {
                 PopupsUtils.m6760a((int) R.string.network_unavailable);
                 return;
             }
             PopupsUtils.m6748a(this, (int) R.string.begin_register);
-            CommandCenter.getInstance().m4606a(new Command(CommandID.RESISTER, str, str3, str2));
+            CommandCenter.getInstance().execute(new Command(CommandID.RESISTER, str, str3, str2));
         }
     }
 

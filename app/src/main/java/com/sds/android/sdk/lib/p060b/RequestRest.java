@@ -16,7 +16,7 @@ public abstract class RequestRest {
     private BaseResultRest f2353a;
 
     /* renamed from: b */
-    private long f2354b;
+    private long age;
 
     /* renamed from: g */
     private String f2359g;
@@ -51,7 +51,7 @@ public abstract class RequestRest {
     }
 
     /* renamed from: a */
-    protected abstract HttpRequest.C0586a mo8669a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3);
+    protected abstract HttpRequest.Response mo8669a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3);
 
     public RequestRest(String str) {
         this.f2359g = str;
@@ -99,45 +99,45 @@ public abstract class RequestRest {
 
     /* renamed from: c */
     protected boolean m8665c() {
-        return this.f2353a != null && System.currentTimeMillis() < this.f2354b;
+        return this.f2353a != null && System.currentTimeMillis() < this.age;
     }
 
     /* renamed from: d */
     public void m8664d() {
         this.f2353a = null;
-        this.f2354b = 0L;
+        this.age = 0L;
     }
 
     /* renamed from: e */
     protected String m8663e() {
         String m8673a = m8673a();
-        String m8343a = StringUtils.m8343a("/", this.f2358f);
+        String m8343a = StringUtils.arrayToString("/", this.f2358f);
         if (!StringUtils.isEmpty(m8343a)) {
-            m8673a = StringUtils.m8342a("/", m8673a, m8343a);
+            m8673a = StringUtils.spliceStringAndArray("/", m8673a, m8343a);
         }
         LogUtils.debug("Request", m8673a);
         return m8673a;
     }
 
     /* renamed from: a */
-    protected BaseResultRest m8672a(HttpRequest.C0586a c0586a) {
+    protected BaseResultRest m8672a(HttpRequest.Response c0586a) {
         if (c0586a == null) {
             LogUtils.error("Request", "Http request result is null, stop parse.");
             return null;
         }
         BaseResultRest baseResultRest = new BaseResultRest();
-        baseResultRest.m8680b(c0586a.m8690c());
-        baseResultRest.m8682a(c0586a.m8694a("Location"));
+        baseResultRest.m8680b(c0586a.getStatusCode());
+        baseResultRest.m8682a(c0586a.getHeader("Location"));
         try {
             try {
-                String m8347a = StringUtils.m8347a(c0586a.m8688e());
+                String m8347a = StringUtils.streamToString(c0586a.getInputStream());
                 LogUtils.debug("Request", "TEST: jsonString %s", m8347a);
                 if (this.f2361i != null) {
                     m8347a = this.f2361i.m8662a(m8347a);
                 }
                 baseResultRest.m8679b(m8347a);
                 try {
-                    c0586a.m8688e().close();
+                    c0586a.getInputStream().close();
                     return baseResultRest;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -146,7 +146,7 @@ public abstract class RequestRest {
             } catch (Exception e2) {
                 e2.printStackTrace();
                 try {
-                    c0586a.m8688e().close();
+                    c0586a.getInputStream().close();
                     return baseResultRest;
                 } catch (Exception e3) {
                     e3.printStackTrace();
@@ -155,7 +155,7 @@ public abstract class RequestRest {
             }
         } catch (Throwable th) {
             try {
-                c0586a.m8688e().close();
+                c0586a.getInputStream().close();
             } catch (Exception e4) {
                 e4.printStackTrace();
             }
@@ -164,10 +164,10 @@ public abstract class RequestRest {
     }
 
     /* renamed from: b */
-    private BaseResultRest m8667b(HttpRequest.C0586a c0586a) {
+    private BaseResultRest m8667b(HttpRequest.Response c0586a) {
         BaseResultRest m8672a = m8672a(c0586a);
         if (m8672a != null) {
-            this.f2354b = (m8672a.m8675f() - HttpRequest.C0586a.m8697a()) + System.currentTimeMillis();
+            this.age = (m8672a.m8675f() - HttpRequest.Response.getAge()) + System.currentTimeMillis();
         } else {
             m8672a = new BaseResultRest(-1, "无法连接到服务器");
         }

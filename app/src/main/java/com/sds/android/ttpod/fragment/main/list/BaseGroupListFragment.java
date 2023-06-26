@@ -19,7 +19,6 @@ import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.mediastore.GroupItem;
@@ -89,7 +88,7 @@ public abstract class BaseGroupListFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         this.mGroupListAdapter = new C1630a();
-        this.mPlayingGroupID = Preferences.m2858m();
+        this.mPlayingGroupID = Preferences.getLocalGroupId();
         this.mGroupHeaderListView.mo1261a(this.mGroupListAdapter, 0, 0);
         this.mGroupHeaderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() { // from class: com.sds.android.ttpod.fragment.main.list.BaseGroupListFragment.1
             @Override // android.widget.AdapterView.OnItemClickListener
@@ -237,7 +236,7 @@ public abstract class BaseGroupListFragment extends BaseFragment {
     }
 
     public void playGroupChanged() {
-        this.mPlayingGroupID = Preferences.m2858m();
+        this.mPlayingGroupID = Preferences.getLocalGroupId();
         notifyDataSetChanged();
     }
 
@@ -260,8 +259,8 @@ public abstract class BaseGroupListFragment extends BaseFragment {
         c1631b.m5463d().setVisibility(View.GONE);
         c1631b.m5465b().setText(startsWith ? FileUtils.getFilename(groupItem.getName()) : TTTextUtils.validateString(view.getContext(), groupItem.getName()));
         c1631b.m5464c().setText(context.getString(R.string.count_of_media, groupItem.getCount()) + (startsWith ? "  " + groupItem.getName() : ""));
-        c1631b.m5466a().setVisibility(StringUtils.m8344a(groupItem.getGroupID(), this.mPlayingGroupID) ? View.VISIBLE : View.GONE);
-        view.setEnabled(StringUtils.m8344a(groupItem.getGroupID(), this.mPlayingGroupID) ? false : true);
+        c1631b.m5466a().setVisibility(StringUtils.equals(groupItem.getGroupID(), this.mPlayingGroupID) ? View.VISIBLE : View.GONE);
+        view.setEnabled(StringUtils.equals(groupItem.getGroupID(), this.mPlayingGroupID) ? false : true);
         ThemeManager.m3269a(view, ThemeElement.SONG_LIST_ITEM_BACKGROUND);
         ThemeManager.m3269a(c1631b.m5465b(), ThemeElement.SONG_LIST_ITEM_TEXT);
         ThemeManager.m3269a(c1631b.m5464c(), ThemeElement.SONG_LIST_ITEM_SUB_TEXT);

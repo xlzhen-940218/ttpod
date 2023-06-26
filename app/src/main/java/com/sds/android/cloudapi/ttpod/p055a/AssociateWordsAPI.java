@@ -10,6 +10,6 @@ import com.sds.android.sdk.lib.util.EnvironmentUtils;
 public class AssociateWordsAPI {
     /* renamed from: a */
     public static Request<AssociateWordsResult> m8935a(String str) {
-        return new GetMethodRequest(AssociateWordsResult.class, "http://so.ard.iyyin.com/suggest.do").m8537b("q", str).m8537b("v", EnvironmentUtils.C0603b.m8491c());
+        return new GetMethodRequest(AssociateWordsResult.class, "http://so.ard.iyyin.com/suggest.do").putParams("q", str).putParams("v", EnvironmentUtils.C0603b.m8491c());
     }
 }

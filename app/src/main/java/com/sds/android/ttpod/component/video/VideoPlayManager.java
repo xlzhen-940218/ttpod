@@ -9,13 +9,10 @@ import android.content.pm.ApplicationInfo;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
-import com.sds.android.cloudapi.ttpod.p055a.GuideAPI;
-import com.sds.android.cloudapi.ttpod.result.GuideResult;
 
 
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
-import com.sds.android.sdk.lib.request.RequestCallback;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.JSONUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
@@ -28,7 +25,6 @@ import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -81,7 +77,7 @@ public class VideoPlayManager {
                     if ("com.storm.smart".equals(schemeSpecificPart)) {
                         //MVStatistic.m5071c(true);
                     }
-                    if (StringUtils.m8344a(Cache.getInstance().m3146r(), "waiting_intall")) {
+                    if (StringUtils.equals(Cache.getInstance().m3146r(), "waiting_intall")) {
                         Cache.getInstance().m3181c(schemeSpecificPart);
                     }
                 }
@@ -179,7 +175,7 @@ public class VideoPlayManager {
     }
 
     /* renamed from: a */
-    public static void m5816a(Context context, MediaItem mediaItem) {
+    public static void playVideo(Context context, MediaItem mediaItem) {
         List<OnlineMediaItem.Url> mVUrls;
         if (context != null && mediaItem != null && !StringUtils.isEmpty(mediaItem.getExtra()) && (mVUrls = ((OnlineMediaItem) JSONUtils.fromJson(mediaItem.getExtra(), OnlineMediaItem.class)).getMVUrls()) != null && mVUrls.size() > 0) {
             m5814a(context, mVUrls.get(0).getUrl(), mediaItem.getTitle());
@@ -194,7 +190,7 @@ public class VideoPlayManager {
         } else if (f4861c != null) {
             m5800d(context, str, str2);
         } else {
-            m5813a(context, str, str2, EnvironmentUtils.C0604c.m8476d() == 2);
+            m5813a(context, str, str2, EnvironmentUtils.DeviceConfig.m8476d() == 2);
         }
     }
 
@@ -221,7 +217,7 @@ public class VideoPlayManager {
         } else if (f4866h) {
             f4866h = false;
             m5798e(context, str, str2);
-        } else if (StringUtils.m8344a(Cache.getInstance().m3146r(), "tv.pps.mobile") || StringUtils.m8344a(Cache.getInstance().m3146r(), "com.pplive.androidphone") || StringUtils.m8344a(Cache.getInstance().m3146r(), "com.storm.smart")) {
+        } else if (StringUtils.equals(Cache.getInstance().m3146r(), "tv.pps.mobile") || StringUtils.equals(Cache.getInstance().m3146r(), "com.pplive.androidphone") || StringUtils.equals(Cache.getInstance().m3146r(), "com.storm.smart")) {
             m5802c(context, str, str2);
         } else {
             m5798e(context, str, str2);
@@ -273,17 +269,17 @@ public class VideoPlayManager {
                         }
                         return;
                     }
-                    TaskScheduler.m8580a(new Runnable() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.4.1
+                    TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.4.1
                         @Override // java.lang.Runnable
                         public void run() {
                             Object[] objArr = new Object[4];
-                            objArr[0] = "f" + EnvironmentUtils.C0602a.m8512b();
-                            objArr[1] = Integer.valueOf(EnvironmentUtils.C0604c.m8476d());
-                            objArr[2] = EnvironmentUtils.C0602a.m8506e();
+                            objArr[0] = "f" + EnvironmentUtils.AppConfig.getChannelType();
+                            objArr[1] = Integer.valueOf(EnvironmentUtils.DeviceConfig.m8476d());
+                            objArr[2] = EnvironmentUtils.AppConfig.getAppVersion();
                             objArr[3] = Integer.valueOf(z2 ? 1 : 0);
                             String format = String.format("http://api.busdh.com/market-api/splash/app?f=%s&net=%s&v=%s&type=2&local_play=%d", objArr);
-                            HttpRequest.C0586a m8708a = HttpRequest.m8708a(new HttpGet(format), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
-                            JSONObject m8393a = m8708a == null ? null : JSONUtils.create(m8708a.m8688e());
+                            HttpRequest.Response m8708a = HttpRequest.m8708a(new HttpGet(format), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
+                            JSONObject m8393a = m8708a == null ? null : JSONUtils.create(m8708a.getInputStream());
                             if (m8393a != null) {
                                 JSONObject unused2 = VideoPlayManager.f4862d = m8393a;
                                 return;
@@ -330,13 +326,13 @@ public class VideoPlayManager {
                             //m5810a(m5815a ? //MVStatistic.EnumC1771a.ALL_INSTALL : //MVStatistic.EnumC1771a.REQUEST_SUCCESS);
                             return new StormPlayer(string2);
                         } else if (i3 != i && !StringUtils.isEmpty(string2) && !StringUtils.isEmpty(string) && !m5815a) {
-                            if (StringUtils.m8344a(string, "tv.pps.mobile")) {
+                            if (StringUtils.equals(string, "tv.pps.mobile")) {
                                 //m5810a(//MVStatistic.EnumC1771a.REQUEST_SUCCESS);
                                 return new PPSPlayer(string2);
-                            } else if (StringUtils.m8344a(string, "com.pplive.androidphone")) {
+                            } else if (StringUtils.equals(string, "com.pplive.androidphone")) {
                                 //m5810a(//MVStatistic.EnumC1771a.REQUEST_SUCCESS);
                                 return new PPTVPlayer(string2);
-                            } else if (StringUtils.m8344a(string, "com.storm.smart")) {
+                            } else if (StringUtils.equals(string, "com.storm.smart")) {
                                // m5810a(//MVStatistic.EnumC1771a.REQUEST_SUCCESS);
                                 return new StormPlayer(string2);
                             }
@@ -406,7 +402,7 @@ public class VideoPlayManager {
     private static void m5796g() {
         f4859a = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING;
         if (f4859a) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+            CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
         }
     }
 
@@ -414,7 +410,7 @@ public class VideoPlayManager {
     /* renamed from: h */
     public static void m5795h() {
         if (f4859a) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+            CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
         }
     }
 
@@ -428,7 +424,7 @@ public class VideoPlayManager {
             return false;
         }
         for (ApplicationInfo applicationInfo : context.getPackageManager().getInstalledApplications(8192)) {
-            if (StringUtils.m8344a(applicationInfo.packageName, str)) {
+            if (StringUtils.equals(applicationInfo.packageName, str)) {
                 return true;
             }
         }

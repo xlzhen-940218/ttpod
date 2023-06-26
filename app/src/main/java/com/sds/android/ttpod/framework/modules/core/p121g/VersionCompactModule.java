@@ -43,7 +43,7 @@ public class VersionCompactModule extends BaseModule {
     public void doVersionCompact() {
         this.f6074a = true;
         CommandCenter.getInstance().m4604a(new Command(CommandID.DO_VERSION_COMPACT_STARTED, new Object[0]), ModuleID.VERSION_COMPACT);
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.g.b.1
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.g.b.1
             @Override // java.lang.Runnable
             public void run() {
                 if (!OldPreferenceCompact.m4147a()) {

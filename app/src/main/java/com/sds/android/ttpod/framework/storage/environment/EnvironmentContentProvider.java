@@ -20,19 +20,19 @@ import java.util.Set;
 public final class EnvironmentContentProvider extends ContentProvider {
 
     /* renamed from: e */
-    private SharedPreferences f6985e;
+    private SharedPreferences sharedPreferences;
 
     /* renamed from: c */
-    private static final String f6983c = EnvironmentContentProvider.class.getName();
+    private static final String className = EnvironmentContentProvider.class.getName();
 
     /* renamed from: d */
-    private static final String f6984d = "content://" + f6983c;
+    private static final String contentHost = "content://" + className;
 
     /* renamed from: a */
-    static final String f6981a = f6984d + "/" + Preferences.class.getSimpleName() + "/";
+    static final String preferencesContent = contentHost + "/" + Preferences.class.getSimpleName() + "/";
 
     /* renamed from: b */
-    static final String f6982b = f6984d + "/" + RunTime.class.getSimpleName() + "/";
+    static final String runTimeHost = contentHost + "/" + RunTime.class.getSimpleName() + "/";
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: com.sds.android.ttpod.framework.storage.environment.EnvironmentContentProvider$a */
@@ -45,7 +45,7 @@ public final class EnvironmentContentProvider extends ContentProvider {
 
     @Override // android.content.ContentProvider
     public boolean onCreate() {
-        this.f6985e = getContext().getSharedPreferences("preference", 0);
+        this.sharedPreferences = getContext().getSharedPreferences("preference", 0);
         return true;
     }
 
@@ -88,25 +88,25 @@ public final class EnvironmentContentProvider extends ContentProvider {
 
     /* renamed from: a */
     private boolean m3110a(Uri uri) {
-        return uri.toString().startsWith(f6981a);
+        return uri.toString().startsWith(preferencesContent);
     }
 
     /* renamed from: b */
     private String m3107b(Uri uri) {
         m3105d(uri);
-        return uri.toString().substring(m3110a(uri) ? f6981a.length() : f6982b.length());
+        return uri.toString().substring(m3110a(uri) ? preferencesContent.length() : runTimeHost.length());
     }
 
     /* renamed from: a */
     private Cursor m3108a(Uri uri, String str) {
         String m3107b = m3107b(uri);
-        if (this.f6985e.contains(m3107b)) {
-            if (StringUtils.m8344a(EnumC2029a.STRING.name(), str)) {
+        if (this.sharedPreferences.contains(m3107b)) {
+            if (StringUtils.equals(EnumC2029a.STRING.name(), str)) {
                 MatrixCursor matrixCursor = new MatrixCursor(new String[]{m3107b});
-                matrixCursor.addRow(new Object[]{this.f6985e.getString(m3107b, "")});
+                matrixCursor.addRow(new Object[]{this.sharedPreferences.getString(m3107b, "")});
                 return matrixCursor;
-            } else if (StringUtils.m8344a(EnumC2029a.SET.name(), str)) {
-                Set<String> m3101a = AccessHelper.m3101a(this.f6985e.getString(m3107b, null));
+            } else if (StringUtils.equals(EnumC2029a.SET.name(), str)) {
+                Set<String> m3101a = AccessHelper.m3101a(this.sharedPreferences.getString(m3107b, null));
                 String[] strArr = new String[m3101a.size()];
                 Object[] objArr = new Object[m3101a.size()];
                 int i = 0;
@@ -125,17 +125,17 @@ public final class EnvironmentContentProvider extends ContentProvider {
 
     /* renamed from: c */
     private int m3106c(Uri uri) {
-        SharedPreferencesUtils.m8348a(this.f6985e.edit().remove(m3107b(uri)));
+        SharedPreferencesUtils.m8348a(this.sharedPreferences.edit().remove(m3107b(uri)));
         return 0;
     }
 
     /* renamed from: a */
     private int m3109a(Uri uri, ContentValues contentValues, String str) {
         String m3107b = m3107b(uri);
-        if (StringUtils.m8344a(EnumC2029a.STRING.name(), str)) {
-            SharedPreferencesUtils.m8348a(this.f6985e.edit().putString(m3107b, contentValues.getAsString(m3107b)));
-        } else if (StringUtils.m8344a(EnumC2029a.SET.name(), str)) {
-            SharedPreferencesUtils.m8348a(this.f6985e.edit().putString(m3107b, contentValues.getAsString(m3107b)));
+        if (StringUtils.equals(EnumC2029a.STRING.name(), str)) {
+            SharedPreferencesUtils.m8348a(this.sharedPreferences.edit().putString(m3107b, contentValues.getAsString(m3107b)));
+        } else if (StringUtils.equals(EnumC2029a.SET.name(), str)) {
+            SharedPreferencesUtils.m8348a(this.sharedPreferences.edit().putString(m3107b, contentValues.getAsString(m3107b)));
         }
         try {
             if (m3107b.contains("PREFIX")) {
@@ -152,9 +152,9 @@ public final class EnvironmentContentProvider extends ContentProvider {
 
     /* renamed from: d */
     private void m3105d(Uri uri) {
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             String uri2 = uri.toString();
-            if (!uri2.startsWith(f6981a) && !uri2.startsWith(f6982b)) {
+            if (!uri2.startsWith(preferencesContent) && !uri2.startsWith(runTimeHost)) {
                 throw new UnsupportedOperationException(uri2 + ": Type not be supported!");
             }
         }

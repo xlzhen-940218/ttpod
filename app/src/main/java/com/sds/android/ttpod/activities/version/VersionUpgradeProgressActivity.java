@@ -114,7 +114,7 @@ public class VersionUpgradeProgressActivity extends BaseActivity {
         button.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.version.VersionUpgradeProgressActivity.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.CANCEL_UPGRADE, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.CANCEL_UPGRADE, new Object[0]));
                 VersionUpgradeProgressActivity.this.finish();
             }
         });

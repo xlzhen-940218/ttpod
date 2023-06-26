@@ -52,14 +52,14 @@ public class FindSongFragment extends BaseFragment implements OnPageSelectedList
     private final BaseListAdapter<Integer> mEmptyAdapter = new BaseListAdapter<Integer>(getActivity(), new ArrayList()) { // from class: com.sds.android.ttpod.fragment.main.FindSongFragment.1
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+        protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
             return null;
         }
 
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a  reason: avoid collision after fix types in other method */
-        public void mo5400a(View view, Integer num, int i) {
+        public void buildDataUI(View view, Integer num, int i) {
         }
     };
     private HandlerC1457b mMainHandler = new HandlerC1457b();
@@ -94,7 +94,7 @@ public class FindSongFragment extends BaseFragment implements OnPageSelectedList
             this.mDragUpdateListView.setOnStartRefreshListener(new DragUpdateHelper.InterfaceC2273c() { // from class: com.sds.android.ttpod.fragment.main.FindSongFragment.2
                 @Override // com.sds.android.ttpod.widget.dragupdatelist.DragUpdateHelper.InterfaceC2273c
                 public void onStartRefreshEvent() {
-                    if (EnvironmentUtils.C0604c.m8474e()) {
+                    if (EnvironmentUtils.DeviceConfig.m8474e()) {
                         FindSongFragment.this.doRequest();
                         return;
                     }
@@ -136,7 +136,7 @@ public class FindSongFragment extends BaseFragment implements OnPageSelectedList
         if (!this.mIsRequesting) {
             this.mIsRequesting = true;
             this.mLastDoRequestTimeMillis = System.currentTimeMillis();
-            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_RECOMMEND_CONTENT, Long.valueOf(this.mLastDataVersion)));
+            CommandCenter.getInstance().execute(new Command(CommandID.GET_RECOMMEND_CONTENT, Long.valueOf(this.mLastDataVersion)));
         }
     }
 

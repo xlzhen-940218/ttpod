@@ -20,7 +20,7 @@ public class SupportFactory {
             if (f7155a != null) {
                 support = f7155a;
             } else {
-                if (StringUtils.m8344a("com.sds.android.ttpod.main", m2396b(context))) {
+                if (StringUtils.equals("com.sds.android.ttpod.main", m2396b(context))) {
                     f7155a = new FastSwitchSupport(context);
                 } else {
                     f7155a = new Support(context);

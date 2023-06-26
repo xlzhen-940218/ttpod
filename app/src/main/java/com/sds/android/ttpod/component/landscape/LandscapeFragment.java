@@ -96,19 +96,19 @@ public class LandscapeFragment extends BasePlayerFragment {
                         return;
                     case R.id.imagebutton_previous_landscape /* 2131231591 */:
                         ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.PREVIOUS, new Object[0]));
+                        CommandCenter.getInstance().execute(new Command(CommandID.PREVIOUS, new Object[0]));
                         return;
                     case R.id.imagebutton_play_landscape /* 2131231592 */:
                         ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
-                        CommandCenter.getInstance().m4606a(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
+                        CommandCenter.getInstance().execute(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
                         return;
                     case R.id.imagebutton_pause_landscape /* 2131231593 */:
                         ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                        CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                         return;
                     case R.id.imagebutton_next_landscape /* 2131231594 */:
                         ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.NEXT, new Object[0]));
+                        CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
                         return;
                     case R.id.gesture /* 2131231596 */:
                     case R.id.animtransview_landscape_old /* 2131231598 */:
@@ -141,7 +141,7 @@ public class LandscapeFragment extends BasePlayerFragment {
         @Override // com.sds.android.ttpod.framework.modules.skin.view.LyricView.InterfaceC1998c
         /* renamed from: a */
         public void mo3408a(long j) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.SET_POSITION, Integer.valueOf((int) j)));
+            CommandCenter.getInstance().execute(new Command(CommandID.SET_POSITION, Integer.valueOf((int) j)));
         }
 
         @Override // com.sds.android.ttpod.framework.modules.skin.view.LyricView.InterfaceC1998c

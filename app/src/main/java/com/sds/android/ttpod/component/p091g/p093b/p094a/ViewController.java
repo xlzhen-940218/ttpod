@@ -14,7 +14,7 @@ import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.modules.skin.p130c.SkinEventHandler;
 import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
 import com.sds.android.ttpod.framework.modules.skin.view.AnimTransView;
-import com.sds.android.ttpod.framework.modules.skin.view.Animation;
+import com.sds.android.ttpod.framework.modules.skin.view.AnimationImageView;
 import com.sds.android.ttpod.framework.modules.skin.view.AutoScrollableTextView;
 import com.sds.android.ttpod.framework.modules.skin.view.Icon;
 import com.sds.android.ttpod.framework.modules.skin.view.LineVisualization;
@@ -97,7 +97,7 @@ public class ViewController {
     protected Icon f4207S;
 
     /* renamed from: T */
-    protected Animation f4208T;
+    protected AnimationImageView f4208T;
 
     /* renamed from: U */
     protected PlayStatus f4209U;
@@ -374,9 +374,9 @@ public class ViewController {
             if ("LyricShow".equals(tag)) {
                 this.f4198J = (LyricView) view;
             }
-        } else if (view instanceof Animation) {
+        } else if (view instanceof AnimationImageView) {
             if ("NetSearching".equals(tag)) {
-                this.f4208T = (Animation) view;
+                this.f4208T = (AnimationImageView) view;
             }
         } else if (view instanceof LineVisualization) {
             if ("Visualization".equals(tag)) {

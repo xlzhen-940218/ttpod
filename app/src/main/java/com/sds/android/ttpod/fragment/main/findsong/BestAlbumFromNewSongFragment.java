@@ -13,13 +13,11 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.musiccircle.PostDetailFragment;
 import com.sds.android.ttpod.adapter.SlidingTabFragmentPagerAdapter;
 import com.sds.android.ttpod.fragment.base.SlidingClosableFragment;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import com.sds.android.ttpod.widget.SlidingTabHost;
@@ -67,7 +65,7 @@ public class BestAlbumFromNewSongFragment extends SlidingClosableFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void loadData() {
         this.mStateLoadingView.setState(StateView.EnumC2248b.LOADING);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_NEW_SONG_CATEGORY_PUBLISH_LIST, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_NEW_SONG_CATEGORY_PUBLISH_LIST, new Object[0]));
     }
 
     private void bindView() {

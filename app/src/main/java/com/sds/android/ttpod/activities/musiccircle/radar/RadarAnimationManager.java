@@ -317,7 +317,7 @@ public class RadarAnimationManager implements View.OnClickListener {
 
     /* renamed from: k */
     private void m7867k() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_ALIKE_USERS, "alike"));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_ALIKE_USERS, "alike"));
     }
 
     /* renamed from: a */

@@ -171,7 +171,7 @@ public abstract class BaseSearchFragment extends BaseFragment implements SearchF
 
     @Override // com.sds.android.ttpod.fragment.main.SearchResultFragment.InterfaceC1501a
     public void onFragmentSelected(String str, String str2) {
-        if (!StringUtils.m8344a(str, this.mWord)) {
+        if (!StringUtils.equals(str, this.mWord)) {
             search(str, this.mUserInput);
         }
     }

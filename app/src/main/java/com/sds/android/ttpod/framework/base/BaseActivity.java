@@ -55,7 +55,7 @@ public abstract class BaseActivity extends FragmentActivity {
             Preferences.m3033X(booleanValue);
             if (booleanValue) {
                 SupportFactory.m2397a(BaseApplication.getApplication()).m2460p();
-                CommandCenter.getInstance().m4606a(new Command(CommandID.SAVE_UNICOM_TOTAL_FLOW, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.SAVE_UNICOM_TOTAL_FLOW, new Object[0]));
                 //StartupStatistic.m4922b();
                 return;
             }
@@ -230,7 +230,7 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     private void assertCommandMap(Map<CommandID, Method> map) {
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             for (CommandID commandID : map.keySet()) {
                 if (commandID.getCommandType().equals(CommandType.TO_MODULE)) {
                     throw new IllegalArgumentException("the CommandID." + commandID.name() + " can not be registered in activity, because the CommandType is CommandType." + commandID.getCommandType().name() + "!");

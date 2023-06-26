@@ -49,7 +49,7 @@ public class PlayingFragment extends MediaListFragment {
     }
 
     public void playGroupChanged() {
-        this.mGroupID = Preferences.m2858m();
+        this.mGroupID = Preferences.getLocalGroupId();
         onReloadData();
     }
 }

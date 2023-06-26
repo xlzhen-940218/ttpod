@@ -44,12 +44,10 @@ import com.sds.android.ttpod.component.soundsearch.IThemeEditable;
 import com.sds.android.ttpod.component.video.VideoPlayManager;
 import com.sds.android.ttpod.fragment.main.findsong.MvManager;
 import com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack;
-import com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment;
 import com.sds.android.ttpod.fragment.main.list.FavoriteSubMediaListFragment;
 import com.sds.android.ttpod.fragment.main.list.IEditAble;
 import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.base.BaseApplication;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.ErrCode;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
@@ -57,8 +55,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.mediastore.AudioQuality;
@@ -526,7 +522,7 @@ public class PopupsUtils {
     }
 
     /* renamed from: a */
-    public static void m6756a(Activity activity, MediaItem mediaItem) {
+    public static void shareMediaItem(Activity activity, MediaItem mediaItem) {
         if (activity != null) {
             m6752a(activity, (Serializable) ShareInfoConvertUtils.m8236a(mediaItem, ""));
         }
@@ -637,7 +633,7 @@ public class PopupsUtils {
                         case 2:
                             //LocalStatistic.m5146aH();
                             //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_SHARE.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_DIALOG_SHARE.getValue()).post();
-                            PopupsUtils.m6756a(activity, mediaItem);
+                            PopupsUtils.shareMediaItem(activity, mediaItem);
                             return;
                         case 3:
                             //LocalStatistic.m5142aL();
@@ -690,10 +686,10 @@ public class PopupsUtils {
                     switch (actionItem.m7005e()) {
                         case 0:
                             //LocalStatistic.m5146aH();
-                            PopupsUtils.m6756a(activity, mediaItem);
+                            PopupsUtils.shareMediaItem(activity, mediaItem);
                             return;
                         case 1:
-                            MvManager.m5557b(activity, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.component.d.d.5.1
+                            MvManager.showMv(activity, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.component.d.d.5.1
                                 @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
                                 /* renamed from: b */
                                 public void mo1218b() {
@@ -702,8 +698,8 @@ public class PopupsUtils {
 
                                 @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
                                 /* renamed from: a */
-                                public void mo1219a() {
-                                    VideoPlayManager.m5816a(activity, mediaItem);
+                                public void onSuccess() {
+                                    VideoPlayManager.playVideo(activity, mediaItem);
                                 }
                             }, 0);
                             //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_MV.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_PLAYER_PLAY_MV.getValue()).post();
@@ -815,7 +811,7 @@ public class PopupsUtils {
             switch (actionItem.m7005e()) {
                 case 0:
                     //LocalStatistic.m5146aH();
-                    PopupsUtils.m6756a(this.activity, this.mediaItem);
+                    PopupsUtils.shareMediaItem(this.activity, this.mediaItem);
 
                     break;
                 case 1:
@@ -848,11 +844,11 @@ public class PopupsUtils {
                     new DownloadMenuHandler(this.activity).m6927a(this.mediaItem, "favorite-song");
                     break;
                 case 8:
-                    MvManager.m5557b(this.activity, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.component.d.d.a.1
+                    MvManager.showMv(this.activity, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.component.d.d.a.1
                         @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
                         /* renamed from: a */
-                        public void mo1219a() {
-                            VideoPlayManager.m5816a(C1197a.this.activity, C1197a.this.mediaItem);
+                        public void onSuccess() {
+                            VideoPlayManager.playVideo(C1197a.this.activity, C1197a.this.mediaItem);
                         }
 
                         @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
@@ -929,7 +925,7 @@ public class PopupsUtils {
                         /* renamed from: a  reason: avoid collision after fix types in other method */
                         public void mo2038a(EditTextDialog editTextDialog) {
                             String obj = editTextDialog.m6902c(0).m6896d().toString();
-                            CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, (String) CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, obj), String.class), collection));
+                            CommandCenter.getInstance().execute(new Command(CommandID.ADD_MEDIA_ITEM_LIST, (String) CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, obj), String.class), collection));
                             PopupsUtils.m6721a(context.getString(R.string.add_to_group_success, obj));
                             if (interfaceC1064a != null) {
                                 interfaceC1064a.mo2038a(editTextDialog);
@@ -945,7 +941,7 @@ public class PopupsUtils {
                 public void mo5409a(ActionItem actionItem, int i2) {
                     String str = (String) actionItem.m7004f();
                     //LocalStatistic.m5143aK();
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_MEDIA_ITEM_LIST, str, collection));
+                    CommandCenter.getInstance().execute(new Command(CommandID.ADD_MEDIA_ITEM_LIST, str, collection));
                     PopupsUtils.m6721a(context.getString(R.string.add_to_group_success, actionItem.m7006d()));
                     if (interfaceC1135b != null) {
                         interfaceC1135b.mo5409a(actionItem, i2);
@@ -973,9 +969,9 @@ public class PopupsUtils {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
                     if (str.equals(MediaStorage.GROUP_ID_FAV)) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     } else {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM, str, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_MEDIA_ITEM, str, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     }
                     if (interfaceC1064a != null) {
                         interfaceC1064a.mo2038a(moreOptionalDialog);
@@ -986,10 +982,10 @@ public class PopupsUtils {
                         CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, arrayList));
                     }
                     if (moreOptionalDialog.m6819c()) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_PICTURE, arrayList));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_PICTURE, arrayList));
                     }
                     if (moreOptionalDialog.m6816f()) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_LYRIC, arrayList));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_LYRIC, arrayList));
                     }
                 }
             });
@@ -1013,9 +1009,9 @@ public class PopupsUtils {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
                     if (str.equals(MediaStorage.GROUP_ID_FAV)) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM_LIST, collection, Boolean.valueOf(moreOptionalDialog.m6821b())));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM_LIST, collection, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     } else {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM_LIST, str, collection, Boolean.valueOf(moreOptionalDialog.m6821b())));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_MEDIA_ITEM_LIST, str, collection, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     }
                     if (moreOptionalDialog.m6817e()) {
                         PopupsUtils.m6707b(collection);
@@ -1024,10 +1020,10 @@ public class PopupsUtils {
                         interfaceC1064a.mo2038a(moreOptionalDialog);
                     }
                     if (moreOptionalDialog.m6819c()) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_PICTURE, collection));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_PICTURE, collection));
                     }
                     if (moreOptionalDialog.m6816f()) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_LYRIC, collection));
+                        CommandCenter.getInstance().execute(new Command(CommandID.DELETE_LYRIC, collection));
                     }
                 }
             });

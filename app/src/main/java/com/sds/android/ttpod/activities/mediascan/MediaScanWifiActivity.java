@@ -52,14 +52,14 @@ public class MediaScanWifiActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onStart() {
         super.onStart();
-        CommandCenter.getInstance().m4606a(new Command(CommandID.START_WIFI_TRANSMISSION, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.START_WIFI_TRANSMISSION, new Object[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.activities.base.ActionBarActivity, com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onStop() {
         super.onStop();
-        CommandCenter.getInstance().m4606a(new Command(CommandID.STOP_WIFI_TRANSMISSION, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.STOP_WIFI_TRANSMISSION, new Object[0]));
     }
 
     public void updateWifiTransmissionState(CommonResult commonResult) {

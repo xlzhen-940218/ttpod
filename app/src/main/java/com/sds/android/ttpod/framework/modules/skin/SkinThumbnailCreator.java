@@ -60,12 +60,12 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
         Throwable th;
         Exception e;
         BufferedInputStream bufferedInputStream = null;
-        HttpRequest.C0586a m8708a = HttpRequest.m8708a(new HttpGet(str), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
-        if (m8708a != null && m8708a.m8690c() == 200) {
+        HttpRequest.Response m8708a = HttpRequest.m8708a(new HttpGet(str), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
+        if (m8708a != null && m8708a.getStatusCode() == 200) {
             try {
                 fileOutputStream = new FileOutputStream(str2);
                 try {
-                    BufferedInputStream bufferedInputStream2 = new BufferedInputStream(m8708a.m8688e(), 8192);
+                    BufferedInputStream bufferedInputStream2 = new BufferedInputStream(m8708a.getInputStream(), 8192);
                     try {
                         bufferedOutputStream = new BufferedOutputStream(fileOutputStream, 8192);
                         int i = 0;
@@ -87,7 +87,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
                                 try {
                                     e.printStackTrace();
                                     try {
-                                        m8708a.m8688e().close();
+                                        m8708a.getInputStream().close();
                                         if (bufferedInputStream != null) {
                                             bufferedInputStream.close();
                                         }
@@ -105,7 +105,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
                                     th = th1;
                                     bufferedOutputStream = bufferedOutputStream2;
                                     try {
-                                        m8708a.m8688e().close();
+                                        m8708a.getInputStream().close();
                                         if (bufferedInputStream != null) {
                                             bufferedInputStream.close();
                                         }
@@ -123,7 +123,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
                             } catch (Throwable th2) {
                                 th = th2;
                                 bufferedInputStream = bufferedInputStream2;
-                                m8708a.m8688e().close();
+                                m8708a.getInputStream().close();
                                 if (bufferedInputStream != null) {
                                 }
                                 if (bufferedOutputStream != null) {
@@ -135,7 +135,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
                         }
                         z = true;
                         try {
-                            m8708a.m8688e().close();
+                            m8708a.getInputStream().close();
                             if (bufferedInputStream2 != null) {
                                 bufferedInputStream2.close();
                             }

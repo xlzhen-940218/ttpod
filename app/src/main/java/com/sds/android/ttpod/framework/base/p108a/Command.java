@@ -32,7 +32,7 @@ public final class Command {
 
     /* renamed from: a */
     private void m4609a(CommandID commandID, Object... objArr) {
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             Class[] paramTypes = commandID.getParamTypes();
             if (paramTypes.length != objArr.length) {
                 throw new IllegalArgumentException("Command(" + commandID.name() + ") Param Count is " + objArr.length + " while expect to be " + commandID.getParamTypes().length + "!");

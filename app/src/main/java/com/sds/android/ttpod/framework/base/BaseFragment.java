@@ -225,7 +225,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
     }
 
     private void assertCommandMap(Map<CommandID, Method> map) {
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             for (CommandID commandID : map.keySet()) {
                 if (commandID.getCommandType().equals(CommandType.TO_MODULE)) {
                     throw new IllegalArgumentException("the CommandID." + commandID.name() + " can not be registered in fragment, because the CommandType is CommandType." + commandID.getCommandType().name() + " in " + getClass().getSimpleName() + " !");
@@ -366,7 +366,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
     }
 
     private void assertChildFragmentBackStackManager() {
-        if (EnvironmentUtils.C0602a.m8502i() && this.mChildFragmentBackStackManager == null) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && this.mChildFragmentBackStackManager == null) {
             throw new IllegalStateException("you must call setLaunchChildFragmentAttr(int containerViewRes, int enterAnimRes, int popExitAnimRes) or attachChildFragmentBackStackManager(BaseFragment fragment) first");
         }
     }

@@ -54,10 +54,10 @@ public class FeedbackModule extends BaseModule {
     }
 
     public void proposalFeedback(final FeedbackItem feedbackItem) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.1
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.1
             @Override // java.lang.Runnable
             public void run() {
-                PostFeedbackResult postFeedbackResult = new PostFeedbackResult(FeedbackAPI.m8915a(feedbackItem.getProposalContent(), EnvironmentUtils.C0604c.m8473f(), feedbackItem.getContactWay()).m8668b());
+                PostFeedbackResult postFeedbackResult = new PostFeedbackResult(FeedbackAPI.m8915a(feedbackItem.getProposalContent(), EnvironmentUtils.DeviceConfig.m8473f(), feedbackItem.getContactWay()).m8668b());
                 FeedbackItem feedbackItem2 = null;
                 if (postFeedbackResult.m8677d()) {
                     String m8681b = postFeedbackResult.m8681b();
@@ -80,7 +80,7 @@ public class FeedbackModule extends BaseModule {
     public void requestFeedbackList(final Long l, Integer num) {
         if (!this.f5776a) {
             this.f5776a = true;
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.2
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.2
                 @Override // java.lang.Runnable
                 public void run() {
                     RequestRest m8918a = FeedbackAPI.m8918a(l, null);
@@ -114,7 +114,7 @@ public class FeedbackModule extends BaseModule {
     }
 
     public void requestFeedbackMessages(final String str, final Long l, Boolean bool) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.3
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.3
             @Override // java.lang.Runnable
             public void run() {
                 GetFeedbackMessageResult getFeedbackMessageResult = new GetFeedbackMessageResult(FeedbackAPI.m8916a(str, l, (String) null).m8668b());
@@ -152,7 +152,7 @@ public class FeedbackModule extends BaseModule {
     }
 
     public void sendFeedbackMessage(final FeedbackMessage feedbackMessage) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.4
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.4
             @Override // java.lang.Runnable
             public void run() {
                 PostFeedbackMessageResult postFeedbackMessageResult = new PostFeedbackMessageResult(FeedbackAPI.m8911b(feedbackMessage.getThreadId(), feedbackMessage.getType(), feedbackMessage.getContent()).m8668b());
@@ -167,7 +167,7 @@ public class FeedbackModule extends BaseModule {
     }
 
     public void requestNewRepliedFeedbacks(final Long l) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.5
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.5
             @Override // java.lang.Runnable
             public void run() {
                 GetFeedbackResult getFeedbackResult = new GetFeedbackResult(FeedbackAPI.m8919a(l).m8668b());

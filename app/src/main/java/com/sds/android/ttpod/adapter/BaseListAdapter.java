@@ -15,30 +15,30 @@ import java.util.List;
 public abstract class BaseListAdapter<D> extends BaseAdapter {
 
     /* renamed from: a */
-    private D f3155a;
+    private D data;
 
     /* renamed from: b */
-    protected Context f3156b;
+    protected Context context;
 
     /* renamed from: c */
-    protected LayoutInflater f3157c;
+    protected LayoutInflater layoutInflater;
 
     /* renamed from: d */
-    protected List<D> f3158d;
+    protected List<D> dataList;
 
     /* renamed from: a */
-    protected abstract View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup);
+    protected abstract View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup);
 
     /* renamed from: a */
-    protected abstract void mo5400a(View view, D d, int i);
+    protected abstract void buildDataUI(View view, D d, int i);
 
     public BaseListAdapter(Context context, List<D> list) {
         if (list == null) {
             throw new IllegalArgumentException("data must not be null");
         }
-        this.f3156b = context == null ? BaseApplication.getApplication() : context;
-        this.f3158d = list;
-        this.f3157c = LayoutInflater.from(this.f3156b);
+        this.context = context == null ? BaseApplication.getApplication() : context;
+        this.dataList = list;
+        this.layoutInflater = LayoutInflater.from(this.context);
     }
 
     public BaseListAdapter() {
@@ -46,42 +46,42 @@ public abstract class BaseListAdapter<D> extends BaseAdapter {
     }
 
     /* renamed from: a */
-    public Context m7664a() {
-        return this.f3156b;
+    public Context getContext() {
+        return this.context;
     }
 
     /* renamed from: b */
-    public List<D> m7662b() {
-        return this.f3158d;
+    public List<D> getDataList() {
+        return this.dataList;
     }
 
     /* renamed from: a */
-    public void m7663a(List<D> list) {
+    public void setDataList(List<D> list) {
         if (list == null) {
             throw new IllegalArgumentException("data must not be null");
         }
-        this.f3158d = list;
+        this.dataList = list;
         notifyDataSetChanged();
     }
 
     /* renamed from: c */
-    public D m7661c() {
-        return this.f3155a;
+    public D getData() {
+        return this.data;
     }
 
     /* renamed from: a */
-    public void mo7467a(D d) {
-        this.f3155a = d;
+    public void setData(D d) {
+        this.data = d;
     }
 
     @Override // android.widget.Adapter
     public int getCount() {
-        return this.f3158d.size();
+        return this.dataList.size();
     }
 
     @Override // android.widget.Adapter
     public D getItem(int i) {
-        return this.f3158d.get(i);
+        return this.dataList.get(i);
     }
 
     @Override // android.widget.Adapter
@@ -92,9 +92,9 @@ public abstract class BaseListAdapter<D> extends BaseAdapter {
     @Override // android.widget.Adapter
     public View getView(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
-            view = mo5402a(this.f3157c, viewGroup);
+            view = getConvertView(this.layoutInflater, viewGroup);
         }
-        mo5400a(view, getItem(i), i);
+        buildDataUI(view, getItem(i), i);
         return view;
     }
 }

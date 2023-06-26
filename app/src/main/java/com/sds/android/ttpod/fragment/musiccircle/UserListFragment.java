@@ -52,7 +52,7 @@ public abstract class UserListFragment<Data extends TTPodUser> extends BaseFragm
         super.onCreate(bundle);
         TTPodUser m2954aq = Preferences.m2954aq();
         if (m2954aq != null) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
+            CommandCenter.getInstance().execute(new Command(CommandID.SET_LOGIN_UID, Long.valueOf(m2954aq.getUserId())));
         }
     }
 
@@ -82,7 +82,7 @@ public abstract class UserListFragment<Data extends TTPodUser> extends BaseFragm
         this.mReloadView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.musiccircle.UserListFragment.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     UserListFragment.this.reload();
                 } else {
                     PopupsUtils.m6760a((int) R.string.network_error);
@@ -116,7 +116,7 @@ public abstract class UserListFragment<Data extends TTPodUser> extends BaseFragm
             this.mUsers.clear();
         }
         this.mUsers.addAll(list);
-        this.mAdapter.m7663a((List<Data>) this.mUsers);
+        this.mAdapter.setDataList((List<Data>) this.mUsers);
         this.mRequestState = RequestState.REQUESTED_SUCCESS;
         this.mFooter.m7932a(false, 8, this.mUsers.size() + " 条数据");
         setLoadingState(StateView.EnumC2248b.SUCCESS);

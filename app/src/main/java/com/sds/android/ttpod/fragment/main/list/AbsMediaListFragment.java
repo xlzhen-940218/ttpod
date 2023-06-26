@@ -350,7 +350,7 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
             @Override // com.sds.android.ttpod.fragment.main.list.MediaItemMenuClickStub
             /* renamed from: a */
             protected void mo5444a() {
-                mediaItemMenuHolder.m6976a(mediaItem, i);
+                mediaItemMenuHolder.favority(mediaItem, i);
             }
         });
     }

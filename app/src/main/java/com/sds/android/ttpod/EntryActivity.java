@@ -44,7 +44,7 @@ public class EntryActivity extends BaseActivity {
             CommandID commandID = CommandID.SET_AUDIO_ENABLED;
             Object[] objArr = new Object[1];
             objArr[0] = Boolean.valueOf(!Preferences.m3028a());
-            m4607a.m4606a(new Command(commandID, objArr));
+            m4607a.execute(new Command(commandID, objArr));
         }
     };
     private boolean mSentLoadSplashCommand;
@@ -137,7 +137,7 @@ public class EntryActivity extends BaseActivity {
             if (!StringUtils.isEmpty(m3038V) && "assets://".equals(SkinUtils.m4644b(m3038V)) && FileUtils.getFilename(m3038V).startsWith("1")) {
                 Preferences.m2876h("");
             }
-            Preferences.m2844p(EnvironmentUtils.C0602a.m8506e());
+            Preferences.m2844p(EnvironmentUtils.AppConfig.getAppVersion());
             Cache.getInstance().m3142v();
         }
         CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_BACKGROUND, new Object[0]));
@@ -158,7 +158,7 @@ public class EntryActivity extends BaseActivity {
 
         @Override // java.lang.Runnable
         public void run() {
-            Preferences.m2844p(EnvironmentUtils.C0602a.m8506e());
+            Preferences.m2844p(EnvironmentUtils.AppConfig.getAppVersion());
             EntryActivity.this.startActivity(new Intent(EntryActivity.this, GuideActivity.class));
             EntryActivity.this.finish();
         }

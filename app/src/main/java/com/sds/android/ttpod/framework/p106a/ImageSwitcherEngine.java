@@ -102,9 +102,9 @@ public class ImageSwitcherEngine {
     public synchronized void m4729a(String str, ArrayList<String> arrayList) {
         boolean z = false;
         synchronized (this) {
-            MediaItem queryMediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.m2858m(), Preferences.m2854n());
-            if (queryMediaItem != null && !queryMediaItem.isNull() && StringUtils.m8344a(str, queryMediaItem.getID()) && (!this.f5643a.isEmpty() || (arrayList != null && !arrayList.isEmpty()))) {
-                if (StringUtils.m8344a(this.f5644c, str) && arrayList != null && !this.f5643a.isEmpty() && arrayList.containsAll(this.f5643a)) {
+            MediaItem queryMediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.getLocalGroupId(), Preferences.getMediaId());
+            if (queryMediaItem != null && !queryMediaItem.isNull() && StringUtils.equals(str, queryMediaItem.getID()) && (!this.f5643a.isEmpty() || (arrayList != null && !arrayList.isEmpty()))) {
+                if (StringUtils.equals(this.f5644c, str) && arrayList != null && !this.f5643a.isEmpty() && arrayList.containsAll(this.f5643a)) {
                     z = true;
                 }
                 this.f5644c = str;

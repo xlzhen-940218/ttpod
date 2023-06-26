@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import androidx.core.view.accessibility.AccessibilityEventCompat;
 
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
@@ -34,8 +33,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p126h.FlowTrialStatus;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowStatus;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.audiofx.EffectDetect;
@@ -104,7 +101,7 @@ public final class EntryUtils {
 
     /* renamed from: a */
     public static void m8303a() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SWITCH_PLAY_MODE, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.SWITCH_PLAY_MODE, new Object[0]));
         //LocalStatistic.m5174I();
     }
 
@@ -165,7 +162,7 @@ public final class EntryUtils {
     /* renamed from: h */
     public static void m8287h(Context context) {
         if (((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue()) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.STOP_SLEEP_MODE, new Object[0]));
+            CommandCenter.getInstance().execute(new Command(CommandID.STOP_SLEEP_MODE, new Object[0]));
             //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_CANCEL_SLEEP, SPage.PAGE_GLOBAL_MENU, SPage.PAGE_NONE);
             PopupsUtils.m6721a(context.getString(R.string.cancel_sleep_mode));
             return;
@@ -177,7 +174,7 @@ public final class EntryUtils {
     public static void m8296b() {
         //LocalStatistic.m5167P();
         ActivityManager.m4618a().m4616b();
-        CommandCenter.getInstance().m4606a(new Command(CommandID.EXIT, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.EXIT, new Object[0]));
     }
 
     /* renamed from: i */

@@ -30,7 +30,7 @@ public abstract class RecommendPostListAdapter extends BaseListAdapter<Recommend
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.recommend_post_list_item, (ViewGroup) null, false);
         inflate.setTag(new RecommendPostViewHolder(inflate));
         return inflate;
@@ -39,7 +39,7 @@ public abstract class RecommendPostListAdapter extends BaseListAdapter<Recommend
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public final void mo5400a(View view, RecommendPost recommendPost, int i) {
+    public final void buildDataUI(View view, RecommendPost recommendPost, int i) {
         RecommendPostViewHolder recommendPostViewHolder = (RecommendPostViewHolder) view.getTag();
         m5503a(recommendPostViewHolder);
         recommendPostViewHolder.m5500a().setText(recommendPost.getAuthor());
@@ -63,7 +63,7 @@ public abstract class RecommendPostListAdapter extends BaseListAdapter<Recommend
     /* renamed from: a */
     private void m5507a(TextView textView, RecommendPost recommendPost) {
         long time = recommendPost.getTime();
-        textView.setText(time > 0 ? TimeUtils.m8155a(m7664a(), time) : "");
+        textView.setText(time > 0 ? TimeUtils.m8155a(getContext(), time) : "");
     }
 
     /* renamed from: a */

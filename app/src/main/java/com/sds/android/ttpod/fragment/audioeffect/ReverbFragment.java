@@ -17,8 +17,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import java.lang.reflect.Method;
@@ -85,7 +83,7 @@ public class ReverbFragment extends BaseFragment {
         this.mAdapter.m7611a(m6997c);
         int parseInt = Integer.parseInt(m6997c);
         Preferences.m3075C(true);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SET_REVERB, Integer.valueOf(parseInt)));
+        CommandCenter.getInstance().execute(new Command(CommandID.SET_REVERB, Integer.valueOf(parseInt)));
         if (!this.mIsSelectd) {
             this.mIsSelectd = true;
             //AudioEffectStatistic.m5258n();

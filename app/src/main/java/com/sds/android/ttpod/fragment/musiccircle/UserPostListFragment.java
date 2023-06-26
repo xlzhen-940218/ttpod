@@ -37,8 +37,6 @@ import com.sds.android.ttpod.framework.modules.p124f.MusicCircleModule;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -337,7 +335,7 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListByIdFragment
     public void onRequestPostIds() {
         super.onRequestPostIds();
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_USER_POST_IDS, Long.valueOf(getUser().getUserId()), onLoadOrigin()));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_USER_POST_IDS, Long.valueOf(getUser().getUserId()), onLoadOrigin()));
     }
 
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListFragment
@@ -393,14 +391,14 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
 
     /* JADX INFO: Access modifiers changed from: private */
     public void toggleFollow() {
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             this.mToggleFollowView.setText(R.string.is_processing);
             TTPodUser user = getUser();
             long userId = user.getUserId();
             if (((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(user.getUserId())), Boolean.class)).booleanValue()) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.UNFOLLOW_FRIEND, Long.valueOf(userId), ""));
+                CommandCenter.getInstance().execute(new Command(CommandID.UNFOLLOW_FRIEND, Long.valueOf(userId), ""));
             } else {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.FOLLOW_FRIEND, Long.valueOf(userId), ""));
+                CommandCenter.getInstance().execute(new Command(CommandID.FOLLOW_FRIEND, Long.valueOf(userId), ""));
             }
             //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_USER_FOLLOW.getValue(), SPage.PAGE_CIRCLE_USER_HOME.getValue()).post();
         }

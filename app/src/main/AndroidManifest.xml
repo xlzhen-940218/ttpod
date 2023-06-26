@@ -71,12 +71,12 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/ttpod"
         android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:process="com.sds.android.ttpod.main"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:taskAffinity="com.sds.android.ttpod.task"
-        android:theme="@style/Theme.TTPod"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.TTPod">
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="4d707f5e112cf75410007470" />

@@ -19,11 +19,9 @@ import com.sds.android.ttpod.adapter.GridListAdapter;
 import com.sds.android.ttpod.fragment.WebFragment;
 import com.sds.android.ttpod.fragment.main.ResultHelper;
 import com.sds.android.ttpod.fragment.main.findsong.base.GridViewFragment;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.widget.NetworkLoadView;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -75,7 +73,7 @@ public class SongCategoryChannelFragment extends GridViewFragment<OnlineMusicCat
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestSubCategory() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_MUSIC_SUB_CATEGORY, Long.valueOf(this.mId), 1, 15));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_MUSIC_SUB_CATEGORY, Long.valueOf(this.mId), 1, 15));
     }
 
     public void updateSubCategory(OnlineMusicSubCategoryResult onlineMusicSubCategoryResult) {
@@ -99,7 +97,7 @@ public class SongCategoryChannelFragment extends GridViewFragment<OnlineMusicCat
             ArrayList<OnlineMusicSubCategoryResult.SubCategoryData> subCategoryList = onlineMusicSubCategoryResult.getSubCategoryList();
             if (subCategoryList != null) {
                 this.mAdapter = new C1575a();
-                this.mAdapter.m7663a((List) subCategoryList);
+                this.mAdapter.setDataList((List) subCategoryList);
                 setGridListAdapter(this.mAdapter);
                 this.mLoadView.setLoadState(NetworkLoadView.EnumC2205a.IDLE);
             }
@@ -168,7 +166,7 @@ public class SongCategoryChannelFragment extends GridViewFragment<OnlineMusicCat
         @Override // com.sds.android.ttpod.adapter.GridListAdapter
         /* renamed from: b  reason: avoid collision after fix types in other method */
         public String mo5566c(OnlineMusicSubCategoryResult.SubCategoryData subCategoryData) {
-            return subCategoryData.getCount() == 0 ? "" : this.f3156b.getString(R.string.count_of_media, Integer.valueOf(subCategoryData.getCount()));
+            return subCategoryData.getCount() == 0 ? "" : this.context.getString(R.string.count_of_media, Integer.valueOf(subCategoryData.getCount()));
         }
 
         /* JADX INFO: Access modifiers changed from: protected */
@@ -180,18 +178,18 @@ public class SongCategoryChannelFragment extends GridViewFragment<OnlineMusicCat
 
         @Override // com.sds.android.ttpod.adapter.GridListAdapter, com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+        protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
             View inflate = layoutInflater.inflate(R.layout.song_category_grid_list_view_item, viewGroup, false);
-            inflate.setTag(new GridListAdapter.C0966a(inflate));
+            inflate.setTag(new GridViewHolder(inflate));
             return inflate;
         }
 
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.GridListAdapter, com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        public void mo5400a(View view, OnlineMusicSubCategoryResult.SubCategoryData subCategoryData, int i) {
-            super.mo5400a(view, subCategoryData, i);
-            m7607a((GridListAdapter.C0966a) view.getTag());
+        public void buildDataUI(View view, OnlineMusicSubCategoryResult.SubCategoryData subCategoryData, int i) {
+            super.buildDataUI(view, subCategoryData, i);
+            m7607a((GridViewHolder) view.getTag());
         }
     }
 }

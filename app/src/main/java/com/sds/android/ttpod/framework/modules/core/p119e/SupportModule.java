@@ -49,7 +49,7 @@ public final class SupportModule extends BaseModule {
         /* renamed from: a */
         public void mo2448a() {
             super.mo2448a();
-            Cache.getInstance().m3182c(MediaStorage.queryMediaItem(SupportModule.sContext, Preferences.m2858m(), Preferences.m2854n()));
+            Cache.getInstance().m3182c(MediaStorage.queryMediaItem(SupportModule.sContext, Preferences.getLocalGroupId(), Preferences.getMediaId()));
             CommandCenter.getInstance().m4595b(new Command(CommandID.PLAY_MEDIA_CHANGED, new Object[0]), ModuleID.SUPPORT);
             CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_PLAYING_MEDIA_INFO, new Object[0]), ModuleID.SUPPORT);
             CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_PLAY_POSITION, SupportModule.this.f6027d.m2465k()), ModuleID.SUPPORT);
@@ -79,7 +79,7 @@ public final class SupportModule extends BaseModule {
                     MediaStorage.updateMediaItem(SupportModule.sContext, m3225N);
                     CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_PLAYING_MEDIA_INFO, new Object[0]), ModuleID.SUPPORT);
                 }
-            } else if ((playStatus == PlayStatus.STATUS_STOPPED || playStatus == PlayStatus.STATUS_ERROR) && StringUtils.isEmpty(Preferences.m2854n())) {
+            } else if ((playStatus == PlayStatus.STATUS_STOPPED || playStatus == PlayStatus.STATUS_ERROR) && StringUtils.isEmpty(Preferences.getMediaId())) {
                 Cache.getInstance().m3182c((MediaItem) null);
                 CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_PLAYING_MEDIA_INFO, new Object[0]), ModuleID.SUPPORT);
             }
@@ -104,7 +104,7 @@ public final class SupportModule extends BaseModule {
                 if (queryMediaItem != null && !queryMediaItem.isNull()) {
                     queryMediaItem.setDuration(Integer.valueOf(i));
                     queryMediaItem.setDateLastPlayInMills(queryMediaItem.getDateLastAccessInMills());
-                    if (!StringUtils.m8344a(queryMediaItem.getGroupID(), MediaStorage.GROUP_ID_ONLINE_TEMPORARY)) {
+                    if (!StringUtils.equals(queryMediaItem.getGroupID(), MediaStorage.GROUP_ID_ONLINE_TEMPORARY)) {
                         MediaStorage.updateMediaItem(SupportModule.sContext, queryMediaItem);
                     }
                     Cache.getInstance().m3182c(queryMediaItem);
@@ -228,20 +228,20 @@ public final class SupportModule extends BaseModule {
     }
 
     public void playGroup(String str, MediaItem mediaItem) {
-        boolean z = !StringUtils.m8344a(str, Preferences.m2858m());
+        boolean z = !StringUtils.equals(str, Preferences.getLocalGroupId());
         if (MediaStorage.GROUP_ID_ONLINE_TEMPORARY.equals(str)) {
             z = true;
         }
-        if (!StringUtils.m8344a(str, MediaStorage.GROUP_ID_ONLINE_TEMPORARY)) {
+        if (!StringUtils.equals(str, MediaStorage.GROUP_ID_ONLINE_TEMPORARY)) {
             Preferences.m2828t("");
         }
         if (z) {
             CommandCenter.getInstance().m4595b(new Command(CommandID.PLAY_GROUP_CHANGED, new Object[0]), ModuleID.SUPPORT);
             Preferences.m2894d(str);
         }
-        boolean z2 = StringUtils.m8344a(mediaItem.getID(), Preferences.m2854n()) ? false : true;
+        boolean z2 = StringUtils.equals(mediaItem.getID(), Preferences.getMediaId()) ? false : true;
         if (z || z2) {
-            Preferences.m2888e(mediaItem.getID());
+            Preferences.getMediaId(mediaItem.getID());
             m4173a(mediaItem);
         }
         this.f6027d.mo2489a(str, mediaItem.getID());
@@ -249,12 +249,12 @@ public final class SupportModule extends BaseModule {
 
     public void syncGroup(String str, MediaItem mediaItem) {
         DebugUtils.m8426a(mediaItem, "mediaItem");
-        Preferences.m2888e(mediaItem.getID());
+        Preferences.getMediaId(mediaItem.getID());
         this.f6027d.mo2479b(str, mediaItem.getID());
     }
 
     public void syncPlayingGroup() {
-        this.f6027d.mo2479b(Preferences.m2858m(), Preferences.m2854n());
+        this.f6027d.mo2479b(Preferences.getLocalGroupId(), Preferences.getMediaId());
     }
 
     public void scanFinished(Integer num) {
@@ -294,7 +294,7 @@ public final class SupportModule extends BaseModule {
     }
 
     public void exit() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SAVE_UNICOM_TOTAL_FLOW, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.SAVE_UNICOM_TOTAL_FLOW, new Object[0]));
         this.f6027d.m2471e();
     }
 
@@ -308,8 +308,8 @@ public final class SupportModule extends BaseModule {
     }
 
     public void syncCurMediaInfo() {
-        String m2858m = Preferences.m2858m();
-        String m2854n = Preferences.m2854n();
+        String m2858m = Preferences.getLocalGroupId();
+        String m2854n = Preferences.getMediaId();
         Cache.getInstance().m3182c(MediaStorage.queryMediaItem(sContext, m2858m, m2854n));
         this.f6027d.mo2474c(m2858m, m2854n);
         CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_PLAYING_MEDIA_INFO, new Object[0]), ModuleID.SUPPORT);
@@ -320,7 +320,7 @@ public final class SupportModule extends BaseModule {
     private boolean m4168e() {
         if (HttpRequest.m8701c()) {
             long m2453w = this.f6027d.m2453w();
-            long m8718a = m2453w + HttpRequest.m8718a() + Cache.getInstance().m3228K();
+            long m8718a = m2453w + HttpRequest.getContentLength() + Cache.getInstance().m3228K();
             LogUtils.debug("SupportModule", "unicom flow handler greater than 30 size:" + m8718a);
             if (m8718a > 31457280) {
                 Preferences.m2943b((float) UnicomFlowUtil.m3955a(m8718a));

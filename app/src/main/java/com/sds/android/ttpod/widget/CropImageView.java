@@ -32,13 +32,13 @@ import java.io.IOException;
 public class CropImageView extends View {
 
     /* renamed from: n */
-    private static final int f7498n = Color.argb(100, 0, 0, 0);
+    private static final int alpha100 = Color.argb(100, 0, 0, 0);
 
     /* renamed from: a */
-    private Uri f7499a;
+    private Uri uri;
 
     /* renamed from: b */
-    private Bitmap f7500b;
+    private Bitmap bitmap;
 
     /* renamed from: c */
     private Paint f7501c;
@@ -56,7 +56,7 @@ public class CropImageView extends View {
     private RectF f7505g;
 
     /* renamed from: h */
-    private RectF f7506h;
+    private RectF imageSizeRectF;
 
     /* renamed from: i */
     private RectF f7507i;
@@ -65,7 +65,7 @@ public class CropImageView extends View {
     private RectF f7508j;
 
     /* renamed from: k */
-    private Matrix f7509k;
+    private Matrix matrix;
 
     /* renamed from: l */
     private int f7510l;
@@ -107,10 +107,10 @@ public class CropImageView extends View {
         this.f7503e = new Paint();
         this.f7504f = new RectF();
         this.f7505g = new RectF();
-        this.f7506h = new RectF();
+        this.imageSizeRectF = new RectF();
         this.f7507i = new RectF();
         this.f7508j = new RectF();
-        this.f7509k = new Matrix();
+        this.matrix = new Matrix();
         this.f7510l = 4;
         this.f7511m = 4;
         this.f7515r = 0;
@@ -132,10 +132,10 @@ public class CropImageView extends View {
         this.f7503e = new Paint();
         this.f7504f = new RectF();
         this.f7505g = new RectF();
-        this.f7506h = new RectF();
+        this.imageSizeRectF = new RectF();
         this.f7507i = new RectF();
         this.f7508j = new RectF();
-        this.f7509k = new Matrix();
+        this.matrix = new Matrix();
         this.f7510l = 4;
         this.f7511m = 4;
         this.f7515r = 0;
@@ -169,7 +169,7 @@ public class CropImageView extends View {
         this.f7502d.setStrokeWidth(applyDimension);
         this.f7502d.setStyle(Paint.Style.STROKE);
         this.f7501c.setStyle(Paint.Style.FILL);
-        this.f7501c.setColor(f7498n);
+        this.f7501c.setColor(alpha100);
         this.f7503e.setColor(-16711936);
         this.f7503e.setStyle(Paint.Style.FILL);
         this.f7503e.setAntiAlias(true);
@@ -179,24 +179,24 @@ public class CropImageView extends View {
     protected void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         LogUtils.debug("CropImageView", "onSizeChanged onBitmapDecodeComplete w=" + i + " h=" + i2);
-        this.f7506h.set(0.0f, 0.0f, i, i2);
-        this.f7507i.set(this.f7506h);
+        this.imageSizeRectF.set(0.0f, 0.0f, i, i2);
+        this.f7507i.set(this.imageSizeRectF);
         this.f7507i.inset(this.f7512o, this.f7512o);
         m1894a();
     }
 
     public void setImageURI(Uri uri) {
-        this.f7499a = uri;
+        this.uri = uri;
         m1894a();
     }
 
     /* renamed from: b */
     private Bitmap m1883b(String str) throws Exception {
-        Bitmap m8435b = BitmapUtils.m8435b(str, (int) this.f7506h.width(), (int) this.f7506h.height());
+        Bitmap m8435b = BitmapUtils.m8435b(str, (int) this.imageSizeRectF.width(), (int) this.imageSizeRectF.height());
         if (new ExifInterface(str).getAttributeInt("Orientation", 0) == 6) {
-            this.f7509k.reset();
-            this.f7509k.postRotate(90.0f);
-            Bitmap createBitmap = Bitmap.createBitmap(m8435b, 0, 0, m8435b.getWidth(), m8435b.getHeight(), this.f7509k, true);
+            this.matrix.reset();
+            this.matrix.postRotate(90.0f);
+            Bitmap createBitmap = Bitmap.createBitmap(m8435b, 0, 0, m8435b.getWidth(), m8435b.getHeight(), this.matrix, true);
             m8435b.recycle();
             LogUtils.debug("CropImageView", "getSDcardPic Rotate_90 bitmap=%b bitmapRotated=%b", Boolean.valueOf(m8435b.isRecycled()), Boolean.valueOf(createBitmap.isRecycled()));
             return createBitmap;
@@ -205,7 +205,7 @@ public class CropImageView extends View {
     }
 
     private Bitmap getContentPic() throws Exception {
-        Cursor query = getContext().getContentResolver().query(this.f7499a, null, null, null, null);
+        Cursor query = getContext().getContentResolver().query(this.uri, null, null, null, null);
         query.moveToFirst();
         @SuppressLint("Range") String string = query.getString(query.getColumnIndex("_data"));
         query.close();
@@ -215,17 +215,17 @@ public class CropImageView extends View {
     /* renamed from: a */
     private void m1894a() {
         Bitmap bitmap;
-        if (this.f7506h.width() > 0.0f && this.f7506h.height() > 0.0f && this.f7499a != null) {
-            if (this.f7500b != null && !this.f7500b.isRecycled()) {
-                this.f7500b.recycle();
-                this.f7500b = null;
+        if (this.imageSizeRectF.width() > 0.0f && this.imageSizeRectF.height() > 0.0f && this.uri != null) {
+            if (this.bitmap != null && !this.bitmap.isRecycled()) {
+                this.bitmap.recycle();
+                this.bitmap = null;
                 LogUtils.error("CropImageView", "showNewImage recycle old image");
             }
             try {
-                if (this.f7499a.getScheme().equals("content")) {
+                if (this.uri.getScheme().equals("content")) {
                     bitmap = getContentPic();
                 } else {
-                    bitmap = m1883b(this.f7499a.getPath());
+                    bitmap = m1883b(this.uri.getPath());
                 }
             } catch (Exception e) {
                 LogUtils.error("CropImageView", "show NewImage Exception e=" + e.toString());
@@ -241,11 +241,16 @@ public class CropImageView extends View {
     @Override // android.view.View
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f7500b != null) {
-            canvas.drawBitmap(this.f7500b, this.f7509k, null);
+        if (this.bitmap != null) {
+            try {
+                canvas.drawBitmap(this.bitmap, this.matrix, null);
+            }catch (Exception ex){
+                ex.printStackTrace();
+            }
+
             canvas.save();
             canvas.clipRect(this.f7508j, Region.Op.DIFFERENCE);
-            canvas.drawRect(this.f7506h, this.f7501c);
+            canvas.drawRect(this.imageSizeRectF, this.f7501c);
             canvas.restore();
             canvas.drawRect(this.f7508j, this.f7502d);
         }
@@ -254,7 +259,7 @@ public class CropImageView extends View {
     /* renamed from: a */
     private void m1889a(Bitmap bitmap, int i, Context context) {
         float f;
-        this.f7500b = bitmap;
+        this.bitmap = bitmap;
         if (bitmap == null) {
             PopupsUtils.m6760a((int) R.string.userinfo_can_not_open_image);
         } else {
@@ -277,21 +282,21 @@ public class CropImageView extends View {
                     f = width;
                 }
             }
-            float width2 = (this.f7506h.width() - f) / 2.0f;
-            float height2 = (this.f7506h.height() - height) / 2.0f;
+            float width2 = (this.imageSizeRectF.width() - f) / 2.0f;
+            float height2 = (this.imageSizeRectF.height() - height) / 2.0f;
             this.f7508j.set(width2, height2, f + width2, height + height2);
-            LogUtils.info("CropImageView", "onBitmapDecodeComplete view(" + this.f7506h.width() + ", " + this.f7506h.height() + ") bitamap(" + bitmap.getWidth() + ", " + bitmap.getHeight() + ") chooseFrame=" + this.f7508j.toString() + " outPutWidth=" + this.f7510l + " outputHeight=" + this.f7511m);
-            this.f7509k.reset();
-            if (this.f7504f.width() > this.f7506h.width() && this.f7504f.height() > this.f7506h.height()) {
-                this.f7509k.setRectToRect(this.f7504f, this.f7506h, Matrix.ScaleToFit.CENTER);
+            LogUtils.info("CropImageView", "onBitmapDecodeComplete view(" + this.imageSizeRectF.width() + ", " + this.imageSizeRectF.height() + ") bitamap(" + bitmap.getWidth() + ", " + bitmap.getHeight() + ") chooseFrame=" + this.f7508j.toString() + " outPutWidth=" + this.f7510l + " outputHeight=" + this.f7511m);
+            this.matrix.reset();
+            if (this.f7504f.width() > this.imageSizeRectF.width() && this.f7504f.height() > this.imageSizeRectF.height()) {
+                this.matrix.setRectToRect(this.f7504f, this.imageSizeRectF, Matrix.ScaleToFit.CENTER);
                 m1886b();
             }
             if (this.f7505g.width() < this.f7508j.width() || this.f7505g.height() < this.f7508j.height()) {
                 float max = Math.max(this.f7508j.width() / this.f7505g.width(), this.f7508j.height() / this.f7505g.height());
-                this.f7509k.postScale(max, max);
+                this.matrix.postScale(max, max);
                 m1886b();
             }
-            this.f7509k.postTranslate(((this.f7506h.width() - this.f7505g.width()) / 2.0f) - this.f7505g.left, ((this.f7506h.height() - this.f7505g.height()) / 2.0f) - this.f7505g.top);
+            this.matrix.postTranslate(((this.imageSizeRectF.width() - this.f7505g.width()) / 2.0f) - this.f7505g.left, ((this.imageSizeRectF.height() - this.f7505g.height()) / 2.0f) - this.f7505g.top);
             m1886b();
         }
         invalidate();
@@ -299,7 +304,7 @@ public class CropImageView extends View {
 
     /* renamed from: b */
     private void m1886b() {
-        this.f7509k.getValues(this.f7520w);
+        this.matrix.getValues(this.f7520w);
         this.f7505g.left = this.f7520w[2];
         this.f7505g.top = this.f7520w[5];
         this.f7505g.right = this.f7505g.left + (this.f7504f.width() * this.f7520w[0]);
@@ -308,7 +313,7 @@ public class CropImageView extends View {
 
     @Override // android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f7500b == null) {
+        if (this.bitmap == null) {
             return false;
         }
         float rawX = motionEvent.getRawX();
@@ -362,14 +367,14 @@ public class CropImageView extends View {
     /* renamed from: c */
     private void m1882c() {
         if (this.f7505g.left > this.f7508j.left) {
-            this.f7509k.postTranslate(this.f7508j.left - this.f7505g.left, 0.0f);
+            this.matrix.postTranslate(this.f7508j.left - this.f7505g.left, 0.0f);
         } else if (this.f7505g.right < this.f7508j.right) {
-            this.f7509k.postTranslate(this.f7508j.right - this.f7505g.right, 0.0f);
+            this.matrix.postTranslate(this.f7508j.right - this.f7505g.right, 0.0f);
         }
         if (this.f7505g.top > this.f7508j.top) {
-            this.f7509k.postTranslate(0.0f, this.f7508j.top - this.f7505g.top);
+            this.matrix.postTranslate(0.0f, this.f7508j.top - this.f7505g.top);
         } else if (this.f7505g.bottom < this.f7508j.bottom) {
-            this.f7509k.postTranslate(0.0f, this.f7508j.bottom - this.f7505g.bottom);
+            this.matrix.postTranslate(0.0f, this.f7508j.bottom - this.f7505g.bottom);
         }
         m1886b();
     }
@@ -480,7 +485,7 @@ public class CropImageView extends View {
         if (f5 < 0.0f && this.f7505g.bottom + f5 <= this.f7508j.bottom) {
             f5 = this.f7508j.bottom - this.f7505g.bottom;
         }
-        this.f7509k.postTranslate(f4, f5);
+        this.matrix.postTranslate(f4, f5);
     }
 
     /* renamed from: e */
@@ -502,7 +507,7 @@ public class CropImageView extends View {
             f2 = (this.f7505g.width() * f3 < this.f7508j.width() || this.f7505g.height() * f3 < this.f7508j.height()) ? Math.max(this.f7508j.width() / this.f7505g.width(), this.f7508j.height() / this.f7505g.height()) : f3;
         }
         if (z) {
-            this.f7509k.postScale(f2, f2, this.f7519v.x, this.f7519v.y);
+            this.matrix.postScale(f2, f2, this.f7519v.x, this.f7519v.y);
             this.f7516s = f;
         }
         return z;
@@ -523,7 +528,7 @@ public class CropImageView extends View {
         FileOutputStream fileOutputStream = null;
         Bitmap bitmap2;
         FileOutputStream fileOutputStream2 = null;
-        if (this.f7500b == null || this.f7500b.isRecycled()) {
+        if (this.bitmap == null || this.bitmap.isRecycled()) {
             return false;
         }
         FileOutputStream fileOutputStream3 = null;
@@ -536,16 +541,16 @@ public class CropImageView extends View {
                 try {
                     float f = (this.f7508j.left - this.f7505g.left) / this.f7520w[0];
                     float f2 = (this.f7508j.top - this.f7505g.top) / this.f7520w[4];
-                    float width = (this.f7500b.getWidth() * this.f7508j.width()) / this.f7505g.width();
-                    float height = (this.f7500b.getHeight() * this.f7508j.height()) / this.f7505g.height();
-                    LogUtils.debug("CropImageView", "saveImage (%.2f %.2f, %.2f %.2f) %.2f recycyle=%b path=%s", Float.valueOf(f), Float.valueOf(f2), Float.valueOf(width), Float.valueOf(height), Float.valueOf(this.f7520w[0]), Boolean.valueOf(this.f7500b.isRecycled()), str);
+                    float width = (this.bitmap.getWidth() * this.f7508j.width()) / this.f7505g.width();
+                    float height = (this.bitmap.getHeight() * this.f7508j.height()) / this.f7505g.height();
+                    LogUtils.debug("CropImageView", "saveImage (%.2f %.2f, %.2f %.2f) %.2f recycyle=%b path=%s", Float.valueOf(f), Float.valueOf(f2), Float.valueOf(width), Float.valueOf(height), Float.valueOf(this.f7520w[0]), Boolean.valueOf(this.bitmap.isRecycled()), str);
                     Matrix matrix = null;
                     if (width > this.f7510l) {
                         float f3 = this.f7510l / width;
                         matrix = new Matrix();
                         matrix.setScale(f3, f3);
                     }
-                    bitmap2 = Bitmap.createBitmap(this.f7500b, Math.round(f), Math.round(f2), Math.round(width), Math.round(height), matrix, matrix != null);
+                    bitmap2 = Bitmap.createBitmap(this.bitmap, Math.round(f), Math.round(f2), Math.round(width), Math.round(height), matrix, matrix != null);
                     try {
                         fileOutputStream2 = new FileOutputStream(str);
                     } catch (IOException e1) {
@@ -573,7 +578,7 @@ public class CropImageView extends View {
                         if (bitmap3 != null) {
                             bitmap3.recycle();
                         }
-                        this.f7500b.recycle();
+                        this.bitmap.recycle();
                         throw th;
                     }
                     try {
@@ -592,7 +597,7 @@ public class CropImageView extends View {
                         if (bitmap2 != null) {
                             bitmap2.recycle();
                         }
-                        this.f7500b.recycle();
+                        this.bitmap.recycle();
                         return true;
                     } catch (IOException e6) {
                         e = e6;
@@ -613,7 +618,7 @@ public class CropImageView extends View {
                         if (bitmap3 != null) {
                             bitmap3.recycle();
                         }
-                        this.f7500b.recycle();
+                        this.bitmap.recycle();
                         return false;
                     } catch (Exception e8) {
                         e = e8;
@@ -634,7 +639,7 @@ public class CropImageView extends View {
                         if (bitmap3 != null) {
                             bitmap3.recycle();
                         }
-                        this.f7500b.recycle();
+                        this.bitmap.recycle();
                         return false;
                     } catch (OutOfMemoryError e10) {
                         e = e10;
@@ -652,7 +657,7 @@ public class CropImageView extends View {
                         if (bitmap2 != null) {
                             bitmap2.recycle();
                         }
-                        this.f7500b.recycle();
+                        this.bitmap.recycle();
                         return false;
                     }
                 } catch (IOException e12) {

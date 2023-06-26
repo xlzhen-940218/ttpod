@@ -208,14 +208,14 @@ public class HotSondAdapter extends BaseAdapter implements View.OnClickListener 
     /* renamed from: a */
     public void m7374a(final HashMap<String, String> hashMap) {
         CmmusicStatistic.m7312a(this.f3430j, hashMap.get("resource_name"));
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.a.3
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.a.3
             @Override // java.lang.Runnable
             public void run() {
                 BaseDeviceGetInfo m7327a = GetPreListen.m7327a((String) hashMap.get("cailing_id"));
                 if (HotSondAdapter.this.f3434n != null && HotSondAdapter.this.f3431k != null) {
                     if (m7327a.m7281k() != null) {
                         HotSondAdapter.this.m7375a(m7327a.m7281k(), (String) hashMap.get("resource_name"), (String) hashMap.get("resource_songer"));
-                    } else if (StringUtils.m8344a(m7327a.m7285h(), "999011")) {
+                    } else if (StringUtils.equals(m7327a.m7285h(), "999011")) {
                         Message message = new Message();
                         message.what = 7;
                         HotSondAdapter.this.f3434n.sendMessage(message);
@@ -249,8 +249,8 @@ public class HotSondAdapter extends BaseAdapter implements View.OnClickListener 
         if (i >= list.size()) {
             i = 0;
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
-        CommandCenter.getInstance().m4606a(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(i)));
+        CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, list));
+        CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, list.get(i)));
         return true;
     }
 
@@ -301,7 +301,7 @@ public class HotSondAdapter extends BaseAdapter implements View.OnClickListener 
         if (R.id.btn_cancel_opencailing == id) {
             this.f3432l.dismiss();
         } else if (R.id.btn_confirm_opencailing == id) {
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.a.6
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.a.6
                 @Override // java.lang.Runnable
                 public void run() {
                     BaseDeviceGetInfo m7330a = CaiLingFuctionOpenAndCancel.m7330a();
@@ -317,7 +317,7 @@ public class HotSondAdapter extends BaseAdapter implements View.OnClickListener 
         } else if (R.id.btn_cancel_orderpage == id) {
             this.f3432l.dismiss();
         } else if (R.id.btn_submit_orderpage == id) {
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.a.7
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.a.7
                 @Override // java.lang.Runnable
                 public void run() {
                     BaseDeviceGetInfo m7273a = GetDeviceInfo.m7273a();
@@ -357,7 +357,7 @@ public class HotSondAdapter extends BaseAdapter implements View.OnClickListener 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public void m7366b(final String str, final String str2, final String str3) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.a.8
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.a.a.8
             @Override // java.lang.Runnable
             public void run() {
                 BaseDeviceGetInfo m7322a = ListenOrderInfo.m7322a(str, str2, str3);

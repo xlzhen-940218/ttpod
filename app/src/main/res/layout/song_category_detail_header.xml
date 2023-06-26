@@ -21,7 +21,7 @@
             android:layout_alignParentLeft="true"
             android:scaleType="centerCrop"
             android:src="@drawable/img_background_song_publish"
-            ns1:corner_radius="8dp"
+            ns1:image_corner_radius="8dp"
             ns2:oval="false" />
 
         <ImageView

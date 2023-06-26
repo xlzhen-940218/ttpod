@@ -19,7 +19,6 @@ import com.sds.android.ttpod.component.p086c.DownloadMenuHandler;
 import com.sds.android.ttpod.component.p086c.OnlinePlayingGroupUtils;
 import com.sds.android.ttpod.fragment.main.ResultHelper;
 import com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
@@ -29,8 +28,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.media.player.PlayStatus;
@@ -58,7 +55,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
         }
         this.mMusicRank = new MusicRank();
         this.mMusicRank.setId(i);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_MUSIC_RANKS, getRequestId()));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_MUSIC_RANKS, getRequestId()));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
@@ -187,7 +184,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void requestDataList(int i) {
         super.requestDataList(i);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_RANK_MUSIC_LIST, Integer.valueOf(this.mMusicRank.getId()), Integer.valueOf(i), getRequestId()));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_RANK_MUSIC_LIST, Integer.valueOf(this.mMusicRank.getId()), Integer.valueOf(i), getRequestId()));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment

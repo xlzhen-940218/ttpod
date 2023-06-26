@@ -22,7 +22,6 @@ import com.sds.android.ttpod.component.RequestState;
 import com.sds.android.ttpod.fragment.base.SlidingClosableFragment;
 import com.sds.android.ttpod.fragment.main.ResultHelper;
 import com.sds.android.ttpod.framework.base.BaseApplication;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
@@ -30,7 +29,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.Pager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.utils.ListViewUtils;
 import com.sds.android.ttpod.widget.NetworkLoadView;
@@ -136,7 +134,7 @@ public class NewAlbumFragment extends SlidingClosableFragment {
         if (i != 1) {
             this.mFooter.m7932a(false, 0, getString(R.string.loading));
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_NEW_ALBUM_PUBLISH_LIST, Integer.valueOf(i), 10));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_NEW_ALBUM_PUBLISH_LIST, Integer.valueOf(i), 10));
     }
 
     public void updateAlbumResult(FirstPublishNewAlbumResult firstPublishNewAlbumResult) {
@@ -320,13 +318,13 @@ public class NewAlbumFragment extends SlidingClosableFragment {
 
         @Override // com.sds.android.ttpod.adapter.SectionListAdapter
         /* renamed from: a */
-        protected View mo5523a(ViewGroup viewGroup) {
+        protected View getSectionConvertView(ViewGroup viewGroup) {
             return this.f5173c.inflate(R.layout.new_disc_section_view, viewGroup, false);
         }
 
         @Override // com.sds.android.ttpod.adapter.SectionListAdapter
         /* renamed from: b */
-        protected View mo5519b(ViewGroup viewGroup) {
+        protected View getSubConvertView(ViewGroup viewGroup) {
             View inflate = this.f5173c.inflate(R.layout.new_disc_list_item, viewGroup, false);
             inflate.setTag(new C1533a[]{new C1533a(inflate.findViewById(R.id.song_item1)), new C1533a(inflate.findViewById(R.id.song_item2))});
             return inflate;

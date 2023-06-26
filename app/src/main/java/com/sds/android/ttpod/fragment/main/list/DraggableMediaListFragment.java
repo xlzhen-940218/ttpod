@@ -92,7 +92,7 @@ public class DraggableMediaListFragment extends MediaListFragment {
                     mediaItemList.set(iArr[0], mediaItem2);
                     mediaItemList.set(iArr[1], mediaItem);
                 }
-                CommandCenter.getInstance().m4606a(new Command(CommandID.COMMIT_EXCHANGE_ORDER, DraggableMediaListFragment.this.getGroupID(), arrayList));
+                CommandCenter.getInstance().execute(new Command(CommandID.COMMIT_EXCHANGE_ORDER, DraggableMediaListFragment.this.getGroupID(), arrayList));
                 DraggableMediaListFragment.this.mExchangeOrderList.clear();
                 DraggableMediaListFragment.this.notifyDataSetChanged();
             }

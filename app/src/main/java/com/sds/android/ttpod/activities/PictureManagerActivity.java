@@ -133,7 +133,7 @@ public class PictureManagerActivity extends BaseActivity implements View.OnClick
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onDestroy() {
-        if (this.mAdapter != null && this.mAdapter.m7701a() && StringUtils.m8344a(this.mAdapter.m7691b().getID(), Cache.getInstance().getCurrentPlayMediaItem().getID())) {
+        if (this.mAdapter != null && this.mAdapter.m7701a() && StringUtils.equals(this.mAdapter.m7691b().getID(), Cache.getInstance().getCurrentPlayMediaItem().getID())) {
             localSearchArtist();
         }
         super.onDestroy();

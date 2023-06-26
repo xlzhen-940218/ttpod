@@ -38,7 +38,7 @@ public class QQZoneAuthHandler extends AuthHandler {
         hashMap.put("redirect_uri", "http://ttus.ttpod.com/thirdlogin/qq?code=beed767ac431765bb6f66c4a9a437029");
         hashMap.put("scope", "add_share,add_pic_t");
         hashMap.put("display", "mobile");
-        return UrlUtils.m8333a("https://openmobile.qq.com/oauth2.0/authorize", hashMap);
+        return UrlUtils.buildGetParamsUrl("https://openmobile.qq.com/oauth2.0/authorize", hashMap);
     }
 
     @Override // com.sds.android.ttpod.share.p137b.AuthHandler

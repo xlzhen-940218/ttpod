@@ -37,7 +37,7 @@ public class MediaGroupSearchActivity extends BaseSearchActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         onNewIntent(getIntent());
-        CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, this.mGroupType));
+        CommandCenter.getInstance().execute(new Command(CommandID.QUERY_GROUP_ITEM_LIST, this.mGroupType));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

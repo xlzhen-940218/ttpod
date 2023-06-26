@@ -173,7 +173,7 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
                     });
                 }
                 this.mRepostNotices.addAll(dataList);
-                this.mNoticeAdapter.m7663a((List) this.mRepostNotices);
+                this.mNoticeAdapter.setDataList((List) this.mRepostNotices);
             }
             if (this.mNewFollowerses.isEmpty() && this.mRepostNotices.isEmpty()) {
                 toggleFailedView();
@@ -204,7 +204,7 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
         inflate.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.message.NoticeFragment.7
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     NoticeFragment.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     NoticeFragment.this.requestNewFollowerNotices();
                     return;
@@ -215,7 +215,7 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
     }
 
     private void toggleFailedView() {
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             loadNoDataView();
         } else {
             loadNetworkErrorView();
@@ -260,13 +260,13 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
     /* JADX INFO: Access modifiers changed from: private */
     public void requestRepostNotices() {
         this.mRepostNoticeRequestState = RequestState.REQUESTING;
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_REPOST_NOTICES, Integer.valueOf(this.mRepostNotices.size()), 20, "repost_notice"));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_REPOST_NOTICES, Integer.valueOf(this.mRepostNotices.size()), 20, "repost_notice"));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestNewFollowerNotices() {
         this.mIsRefreshing = true;
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_NEW_FOLLOWER_NOTICES, "new_follower_notice"));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_NEW_FOLLOWER_NOTICES, "new_follower_notice"));
     }
 
     @Override // android.widget.AdapterView.OnItemClickListener
@@ -295,7 +295,7 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
                                         size--;
                                     }
                                 }
-                                NoticeFragment.this.mNoticeAdapter.m7663a(NoticeFragment.this.mRepostNotices);
+                                NoticeFragment.this.mNoticeAdapter.setDataList(NoticeFragment.this.mRepostNotices);
                             }
 
                             @Override // com.sds.android.sdk.lib.request.RequestCallback

@@ -163,7 +163,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
 
     /* renamed from: b */
     private boolean m2795b(Intent intent) {
-        if (StringUtils.m8344a(intent.getStringExtra("command"), "exit_command")) {
+        if (StringUtils.equals(intent.getStringExtra("command"), "exit_command")) {
             m2772o();
             return true;
         }
@@ -188,7 +188,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     private void m2787c(Intent intent) {
         if (m2784d(intent)) {
             String stringExtra = intent.getStringExtra("command");
-            if (StringUtils.m8344a(stringExtra, "play_pause_command")) {
+            if (StringUtils.equals(stringExtra, "play_pause_command")) {
                 PlayStatus m2604h = Player.m2611e().m2604h();
                 if (m2604h == PlayStatus.STATUS_PLAYING) {
                     //LocalStatistic.m5095k();
@@ -197,13 +197,13 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
                     //LocalStatistic.m5096j();
                     //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_START.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
                 }
-            } else if (StringUtils.m8344a(stringExtra, "previous_command")) {
+            } else if (StringUtils.equals(stringExtra, "previous_command")) {
                 //LocalStatistic.m5098h();
                 //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_PREV.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
-            } else if (StringUtils.m8344a(stringExtra, "next_command")) {
+            } else if (StringUtils.equals(stringExtra, "next_command")) {
                 //LocalStatistic.m5097i();
                 //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_NEXT.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
-            } else if (StringUtils.m8344a(stringExtra, "exit_command")) {
+            } else if (StringUtils.equals(stringExtra, "exit_command")) {
                 //LocalStatistic.m5086t();
                 //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_EXIT.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
             }
@@ -212,7 +212,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
 
     /* renamed from: d */
     private boolean m2784d(Intent intent) {
-        return StringUtils.m8344a(intent == null ? null : intent.getStringExtra("key_origin"), "notification");
+        return StringUtils.equals(intent == null ? null : intent.getStringExtra("key_origin"), "notification");
     }
 
     @Override // android.app.Service
@@ -279,7 +279,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     @Override // com.sds.android.ttpod.framework.support.p134a.Player.InterfaceC2055b
     /* renamed from: a */
     public void mo2559a(MediaItem mediaItem) {
-        m2790b(Preferences.m2858m(), mediaItem);
+        m2790b(Preferences.getLocalGroupId(), mediaItem);
         m2792b(mediaItem);
         m2768s();
     }
@@ -476,8 +476,8 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: n */
     public long m2773n() {
-        long m8718a = f6992a + HttpRequest.m8718a() ;
-        LogUtils.debug("SupportService", "unicom flow support http proxy:" + HttpRequest.m8704b() + "  service proxy:" + this.f6996e);
+        long m8718a = f6992a + HttpRequest.getContentLength() ;
+        LogUtils.debug("SupportService", "unicom flow support http proxy:" + HttpRequest.isProxy() + "  service proxy:" + this.f6996e);
         LogUtils.debug("SupportService", "unicom flow get flow size :" + m8718a);
         return m8718a;
     }
@@ -486,7 +486,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     /* renamed from: c */
     public void m2788c(long j) {
         f6992a = j;
-        HttpRequest.m8716a(j);
+        HttpRequest.setContentLength(j);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -571,13 +571,13 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
 
     /* renamed from: b */
     private void m2790b(String str, MediaItem mediaItem) {
-        if (!StringUtils.m8344a(str, MediaStorage.GROUP_ID_RECENTLY_PLAY) && mediaItem != null) {
+        if (!StringUtils.equals(str, MediaStorage.GROUP_ID_RECENTLY_PLAY) && mediaItem != null) {
             List<String> queryMediaIDs = MediaStorage.queryMediaIDs(this, MediaStorage.GROUP_ID_RECENTLY_PLAY, MediaStorage.MEDIA_ORDER_BY_PLAY_TIME_DESC);
             if (queryMediaIDs.size() >= 100) {
                 MediaStorage.deleteMediaItem(this, MediaStorage.GROUP_ID_RECENTLY_PLAY, queryMediaIDs.get(queryMediaIDs.size() - 1));
             }
             mediaItem.setDateLastPlayInMills(Long.valueOf(System.currentTimeMillis()));
-            if (!StringUtils.m8344a(mediaItem.getGroupID(), MediaStorage.GROUP_ID_ONLINE_TEMPORARY)) {
+            if (!StringUtils.equals(mediaItem.getGroupID(), MediaStorage.GROUP_ID_ONLINE_TEMPORARY)) {
                 MediaStorage.updateMediaItem(this, mediaItem);
             }
             MediaStorage.deleteMediaItem(this, MediaStorage.GROUP_ID_RECENTLY_PLAY, mediaItem.getID());

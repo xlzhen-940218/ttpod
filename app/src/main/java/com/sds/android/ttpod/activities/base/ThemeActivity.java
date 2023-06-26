@@ -85,7 +85,7 @@ public class ThemeActivity extends BaseActivity {
         String m8402j = FileUtils.getFilename(downloadTaskInfo.getSavePath());
         if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType())) {
             m8402j = FileUtils.m8401k(downloadTaskInfo.getSavePath());
-            List<String> m8335c = StringUtils.m8335c(m8402j, "-");
+            List<String> m8335c = StringUtils.stringToArray(m8402j, "-");
             if (m8335c.size() > 1) {
                 m8402j = m8335c.get(1).trim();
             } else if (m8335c.size() == 1) {
@@ -204,7 +204,7 @@ public class ThemeActivity extends BaseActivity {
             boolean z = this instanceof AboutActivity;
             VersionUpdateData versionUpdateData = (VersionUpdateData) commonResult.m4582d();
             if (num.intValue() == 0) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.START_COMMON_UPGRADE, versionUpdateData.getUpdateUrl()));
+                CommandCenter.getInstance().execute(new Command(CommandID.START_COMMON_UPGRADE, versionUpdateData.getUpdateUrl()));
                 startActivity(new Intent(this, VersionUpgradeProgressActivity.class));
             } else if (num.intValue() == 1) {
                 startVersionUpdateActivity(versionUpdateData, false);

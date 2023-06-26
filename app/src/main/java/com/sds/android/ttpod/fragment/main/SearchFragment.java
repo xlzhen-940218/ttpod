@@ -252,7 +252,7 @@ public class SearchFragment extends SlidingClosableFragment {
         } else {
             this.mHotwordStateView.setState(StateView.EnumC2248b.LOADING);
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_HOT_WORDS, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.START_SEARCH_HOT_WORDS, new Object[0]));
     }
 
     public void startSearch(String str) {

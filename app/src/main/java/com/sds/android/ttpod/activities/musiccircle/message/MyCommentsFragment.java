@@ -95,7 +95,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
     }
 
     private void showFailedView() {
-        if (EnvironmentUtils.C0604c.m8474e()) {
+        if (EnvironmentUtils.DeviceConfig.m8474e()) {
             loadNoDataView();
         } else {
             loadNetworkErrorView();
@@ -125,7 +125,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
         inflate.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.musiccircle.message.MyCommentsFragment.4
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.C0604c.m8474e()) {
+                if (EnvironmentUtils.DeviceConfig.m8474e()) {
                     MyCommentsFragment.this.mStateView.setState(StateView.EnumC2248b.LOADING);
                     MyCommentsFragment.this.requestComments();
                     return;
@@ -161,7 +161,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
                 this.mRequestState = RequestState.REQUESTED_SUCCESS;
                 this.mStateView.setState(StateView.EnumC2248b.SUCCESS);
                 this.mNotices = dataList;
-                this.mCommentAdapter.m7663a((List) dataList);
+                this.mCommentAdapter.setDataList((List) dataList);
                 final Request<BaseResult> m8873a = NoticeAPI.m8873a(Preferences.m2954aq().getAccessToken(), NoticeType.COMMENT.value());
                 m8873a.m8544a(new RequestCallback<BaseResult>() { // from class: com.sds.android.ttpod.activities.musiccircle.message.MyCommentsFragment.5
                     @Override // com.sds.android.sdk.lib.request.RequestCallback
@@ -181,7 +181,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
     /* JADX INFO: Access modifiers changed from: private */
     public void requestComments() {
         this.mRequestState = RequestState.REQUESTING;
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_COMMENT_NOTICES, 0, 20, "comment_notice"));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_COMMENT_NOTICES, 0, 20, "comment_notice"));
     }
 
     @Override // android.widget.AdapterView.OnItemClickListener
@@ -231,7 +231,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
                             size--;
                         }
                     }
-                    MyCommentsFragment.this.mCommentAdapter.m7663a(MyCommentsFragment.this.mNotices);
+                    MyCommentsFragment.this.mCommentAdapter.setDataList(MyCommentsFragment.this.mNotices);
                 }
 
                 @Override // com.sds.android.sdk.lib.request.RequestCallback

@@ -134,11 +134,11 @@ public final class DownloadManagerModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: d */
     public void m4458d() {
-        final int m8476d = EnvironmentUtils.C0604c.m8476d();
+        final int m8476d = EnvironmentUtils.DeviceConfig.m8476d();
         LogUtils.error("DownloadManagerModule", "handleNetWorkState = " + m8476d);
         if (f5791f != m8476d) {
             f5791f = m8476d;
-            TaskScheduler.m8580a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.3
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.3
                 @Override // java.lang.Runnable
                 public void run() {
                     if (m8476d != 2) {
@@ -261,7 +261,7 @@ public final class DownloadManagerModule extends BaseModule {
     }
 
     public void asynAddDownloadTaskList(final List<DownloadTaskInfo> list, final Boolean bool) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.5
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.5
             @Override // java.lang.Runnable
             public void run() {
                 DownloadManagerModule.this.m4466a(list, bool);
@@ -305,7 +305,7 @@ public final class DownloadManagerModule extends BaseModule {
     }
 
     public void addDownloadTaskByGroup(final String str, final Boolean bool) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.6
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.6
             @Override // java.lang.Runnable
             public void run() {
                 List<MediaItem> queryMediaItemList = MediaStorage.queryMediaItemList(BaseApplication.getApplication(), str, Preferences.m2860l(str.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX) ? MediaStorage.GROUP_ID_FAV : str));
@@ -352,7 +352,7 @@ public final class DownloadManagerModule extends BaseModule {
             m4482a((TaskInfo) downloadTaskInfo);
         }
         if (bool.booleanValue()) {
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.7
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.7
                 @Override // java.lang.Runnable
                 public void run() {
                     if (FileUtils.m8414b(downloadTaskInfo.getSavePath())) {
@@ -388,9 +388,9 @@ public final class DownloadManagerModule extends BaseModule {
 
     public void deleteAllFinishedTask(final Integer num, final Boolean bool) {
         if (DownloadTaskInfo.TYPE_AUDIO.equals(num)) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_GROUP, MediaStorage.GROUP_ID_DOWNLOAD));
+            CommandCenter.getInstance().execute(new Command(CommandID.DELETE_GROUP, MediaStorage.GROUP_ID_DOWNLOAD));
         }
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.8
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.8
             @Override // java.lang.Runnable
             public void run() {
                 if (DownloadTaskInfo.TYPE_AUDIO.equals(num)) {
@@ -446,8 +446,8 @@ public final class DownloadManagerModule extends BaseModule {
             m4455e(m4470a);
         }
         if (4 == downloadTaskInfo.getState().intValue()) {
-            if (StringUtils.m8344a(MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.m2858m()) || StringUtils.m8344a(DownloadUtils.m4762a(downloadTaskInfo), Preferences.m2858m())) {
-                SupportFactory.m2397a(sContext).mo2474c(Preferences.m2858m(), null);
+            if (StringUtils.equals(MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.getLocalGroupId()) || StringUtils.equals(DownloadUtils.m4762a(downloadTaskInfo), Preferences.getLocalGroupId())) {
+                SupportFactory.m2397a(sContext).mo2474c(Preferences.getLocalGroupId(), null);
             }
         }
     }

@@ -19,7 +19,7 @@
             android:layout_margin="@dimen/musiccircle_recommend_margin_small"
             android:contentDescription="@string/unknown"
             android:src="@drawable/img_avatar_default"
-            app:corner_radius="22dp" />
+            app:image_corner_radius="22dp" />
 
         <TextView
             android:id="@+id/text_name"

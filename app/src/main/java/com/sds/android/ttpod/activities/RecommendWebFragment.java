@@ -1,6 +1,5 @@
 package com.sds.android.ttpod.activities;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,8 +34,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowModule;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ApkUtils;
@@ -69,7 +66,7 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
         public void onDownloadStart(String str, String str2, String str3, String str4, long j) {
             DownloadTaskInfo generateDownloadTaskInfo = RecommendWebFragment.this.generateDownloadTaskInfo(str);
             if (generateDownloadTaskInfo != null) {
-                CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_DOWNLOAD_TASK, generateDownloadTaskInfo));
+                CommandCenter.getInstance().execute(new Command(CommandID.ADD_DOWNLOAD_TASK, generateDownloadTaskInfo));
             }
         }
     };
@@ -84,7 +81,7 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
         this.mFrameLayoutWebView.addView(this.mWebView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         this.mErrorPageView = inflate.findViewById(R.id.error_Page_layout);
         this.mProgressBar = (ProgressBar) inflate.findViewById(R.id.web_view_load_progress);
-        this.mUrl = String.format(this.mUrl, "f" + EnvironmentUtils.C0602a.m8512b());
+        this.mUrl = String.format(this.mUrl, "f" + EnvironmentUtils.AppConfig.getChannelType());
         init();
         load();
         UnicomFlowUtil.m3950b(getActivity());
@@ -114,7 +111,7 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
         this.mWebView.setWebViewClient(new TTWebViewClient(getActivity(), this, this.mErrorPageView) { // from class: com.sds.android.ttpod.activities.RecommendWebFragment.2
             @Override // com.sds.android.ttpod.widget.TTWebViewClient, android.webkit.WebViewClient
             public void onReceivedHttpAuthRequest(WebView webView, HttpAuthHandler httpAuthHandler, String str, String str2) {
-                if ( HttpRequest.m8704b()) {
+                if ( HttpRequest.isProxy()) {
                     httpAuthHandler.proceed(UnicomFlowModule.USERNAME, UnicomFlowModule.PASSWORD);
                 } else {
                     super.onReceivedHttpAuthRequest(webView, httpAuthHandler, str, str2);

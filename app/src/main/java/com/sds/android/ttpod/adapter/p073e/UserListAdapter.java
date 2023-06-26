@@ -44,14 +44,14 @@ public class UserListAdapter<Data extends TTPodUser> extends BaseListAdapter<Dat
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected final View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-        View inflate = View.inflate(m7664a(), R.layout.musiccircle_user_list_item, null);
+    protected final View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+        View inflate = View.inflate(getContext(), R.layout.musiccircle_user_list_item, null);
         inflate.setTag(new UserInfoViewHolder(inflate));
         return inflate;
     }
 
     @Override
-    protected void mo5400a(View view, Data data, int i) {
+    protected void buildDataUI(View view, Data data, int i) {
         m7431a(view,  data, i);
     }
 
@@ -67,7 +67,7 @@ public class UserListAdapter<Data extends TTPodUser> extends BaseListAdapter<Dat
         ImageCacheUtils.m4752a(m7436a, data.getAvatarUrl(), m7436a.getWidth(), m7436a.getHeight(), (int) R.drawable.img_avatar_default);
         m7436a.setVFlagVisible(data.isVerified());
         userInfoViewHolder.m7435b().setText(data.getNickName());
-        userInfoViewHolder.m7434c().setText(m7664a().getString(R.string.follower_str, Integer.valueOf(data.getFollowersCount())));
+        userInfoViewHolder.m7434c().setText(getContext().getString(R.string.follower_str, Integer.valueOf(data.getFollowersCount())));
         final long userId = data.getUserId();
         final boolean booleanValue = ((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_FOLLOWED, Long.valueOf(userId)), Boolean.class)).booleanValue();
         if (booleanValue) {
@@ -90,9 +90,9 @@ public class UserListAdapter<Data extends TTPodUser> extends BaseListAdapter<Dat
                 if (Preferences.m2954aq() != null) {
                     userInfoViewHolder.m7432e().setText(R.string.is_processing);
                     if (booleanValue) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.UNFOLLOW_FRIEND, Long.valueOf(userId), ""));
+                        CommandCenter.getInstance().execute(new Command(CommandID.UNFOLLOW_FRIEND, Long.valueOf(userId), ""));
                     } else {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.FOLLOW_FRIEND, Long.valueOf(userId), ""));
+                        CommandCenter.getInstance().execute(new Command(CommandID.FOLLOW_FRIEND, Long.valueOf(userId), ""));
                     }
                     if (UserListAdapter.this.f3374a != null) {
                         if (booleanValue) {

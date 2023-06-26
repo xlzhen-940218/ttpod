@@ -193,7 +193,7 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
         if (this.mCommentsIds.isEmpty()) {
             this.mCenterLoadingViewForFirstPage.setState(StateView.EnumC2248b.LOADING);
         }
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_COMMENT_IDS_BY_POST_ID, Long.valueOf(getPostId()), origin()));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_COMMENT_IDS_BY_POST_ID, Long.valueOf(getPostId()), origin()));
     }
 
     public void updateCommentIdList(IdListResult idListResult, String str) {
@@ -215,7 +215,7 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
     private void requestCommentsDetailsByPage(int i) {
         this.mCanRequestWhenScroll = false;
         int i2 = (i - 1) * 20;
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_COMMENT_INFOS_BY_IDS, this.mCommentsIds.subList(i2, Math.min(i2 + 20, this.mCommentsIds.size())), origin()));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_COMMENT_INFOS_BY_IDS, this.mCommentsIds.subList(i2, Math.min(i2 + 20, this.mCommentsIds.size())), origin()));
     }
 
     public void updateCommentsDetailsByPage(CommentListResult commentListResult, String str) {
@@ -291,7 +291,7 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
 
     @Override // com.sds.android.ttpod.component.emoticons.EmoticonsWithInputLayout.InterfaceC1207a
     public void onSend(String str) {
-        if (!EnvironmentUtils.C0604c.m8474e()) {
+        if (!EnvironmentUtils.DeviceConfig.m8474e()) {
             PopupsUtils.m6760a((int) R.string.network_error);
             this.mEmoticonsWithInputLayout.setSendEnable(true);
         } else if (Preferences.m2954aq() == null) {

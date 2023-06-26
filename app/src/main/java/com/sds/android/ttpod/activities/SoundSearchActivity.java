@@ -31,7 +31,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.search.SoundRecognizer;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -123,7 +122,7 @@ public class SoundSearchActivity extends SlidingClosableActivity {
         this.mRecognizerHistory = new SoundSearchHistory(null);
         if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
             Preferences.m3063I(true);
-            CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+            CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
         } else {
             Preferences.m3063I(false);
         }
@@ -142,7 +141,7 @@ public class SoundSearchActivity extends SlidingClosableActivity {
     public void onDestroy() {
         super.onDestroy();
         if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED && Preferences.m2947ax()) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+            CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
         }
         this.mHandler.removeCallbacksAndMessages(null);
     }
@@ -257,7 +256,7 @@ public class SoundSearchActivity extends SlidingClosableActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void startSoundSearch() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_RECOGNIZE, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.START_SEARCH_RECOGNIZE, new Object[0]));
         updateUI(EnumC0680a.RECOGNIZING);
         this.mHandler.postDelayed(this.mTimeOutRunnable, 15000L);
         this.mHandler.sendEmptyMessage(0);
@@ -265,12 +264,12 @@ public class SoundSearchActivity extends SlidingClosableActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void stopSoundSearch() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.STOP_SEARCH_RECOGNIZE, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.STOP_SEARCH_RECOGNIZE, new Object[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void cancelSoundSearch() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.CANCEL_SEARCH_RECOGNIZE, new Object[0]));
+        CommandCenter.getInstance().execute(new Command(CommandID.CANCEL_SEARCH_RECOGNIZE, new Object[0]));
         updateUI(EnumC0680a.RECOGNIZE_IDLE);
     }
 

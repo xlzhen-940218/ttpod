@@ -36,7 +36,7 @@ public class AudioEffectUtils {
                 return true;
             }
             String m8403i = FileUtils.m8403i(m4341a);
-            if (m8403i != null && (audioEffectCache = (AudioEffectCache) JSONUtils.fromJson(m8403i, AudioEffectCache.class)) != null && StringUtils.m8344a(audioEffectCache.m4380p(), mediaItem.getLocalDataSource())) {
+            if (m8403i != null && (audioEffectCache = (AudioEffectCache) JSONUtils.fromJson(m8403i, AudioEffectCache.class)) != null && StringUtils.equals(audioEffectCache.m4380p(), mediaItem.getLocalDataSource())) {
                 return true;
             }
         }

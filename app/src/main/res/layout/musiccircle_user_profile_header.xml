@@ -30,7 +30,7 @@
         android:contentDescription="@android:string/unknownName"
         android:scaleType="fitXY"
         android:src="@drawable/img_avatar_default"
-        app1:corner_radius="28dp" />
+        app1:image_corner_radius="28dp" />
 
     <TextView
         android:id="@+id/text_profile_nick_name"

@@ -141,7 +141,7 @@ public class SearchListenFragment extends BaseFragment implements View.OnClickLi
             public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 SearchListenFragment.this.mListView.setVisibility(View.GONE);
                 SearchListenFragment.this.mSearchKeyArray.removeAll(SearchListenFragment.this.mSearchKeyArray);
-                TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.SearchListenFragment.3.1
+                TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.SearchListenFragment.3.1
                     @Override // java.lang.Runnable
                     public void run() {
                         String replace = SearchListenFragment.this.mSearchName.getText().toString().replace(" ", "");
@@ -217,7 +217,7 @@ public class SearchListenFragment extends BaseFragment implements View.OnClickLi
         this.mViewContentList.clear();
         this.mAdapterbinding.notifyDataSetChanged();
         try {
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.SearchListenFragment.5
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.SearchListenFragment.5
                 @Override // java.lang.Runnable
                 public void run() {
                     if (SearchListenFragment.this.mSearchName.getText().toString().replace(" ", "").equals("")) {
@@ -228,7 +228,7 @@ public class SearchListenFragment extends BaseFragment implements View.OnClickLi
                     }
                     SearchListenFragment.this.mSearchKey = SearchListenFragment.this.mSearchName.getText().toString().replace(" ", "");
                     CmmusicStatistic.m7310b(SearchListenFragment.this.mSearchKey);
-                    List<SondContentInfo> m7321a = MusicSerchQuery.m7321a(SearchListenFragment.this.mSearchKey, EnvironmentUtils.C0604c.getDeviceId(), EnvironmentUtils.C0604c.getSubscriberId());
+                    List<SondContentInfo> m7321a = MusicSerchQuery.m7321a(SearchListenFragment.this.mSearchKey, EnvironmentUtils.DeviceConfig.getDeviceId(), EnvironmentUtils.DeviceConfig.getSubscriberId());
                     if (SearchListenFragment.this.isViewAccessAble() && m7321a != null && m7321a.size() > 0) {
                         for (SondContentInfo sondContentInfo : m7321a) {
                             HashMap hashMap = new HashMap();
@@ -255,7 +255,7 @@ public class SearchListenFragment extends BaseFragment implements View.OnClickLi
     /* JADX INFO: Access modifiers changed from: private */
     public void onScrollAddData(String str, Integer num) {
         try {
-            List<SondContentInfo> m7320a = MusicSerchQuery.m7320a(str, EnvironmentUtils.C0604c.getDeviceId(), EnvironmentUtils.C0604c.getSubscriberId(), String.valueOf(num));
+            List<SondContentInfo> m7320a = MusicSerchQuery.m7320a(str, EnvironmentUtils.DeviceConfig.getDeviceId(), EnvironmentUtils.DeviceConfig.getSubscriberId(), String.valueOf(num));
             if (isViewAccessAble() && m7320a != null && m7320a.size() > 0) {
                 for (SondContentInfo sondContentInfo : m7320a) {
                     HashMap<String, String> hashMap = new HashMap<>();
@@ -278,7 +278,7 @@ public class SearchListenFragment extends BaseFragment implements View.OnClickLi
 
     /* JADX INFO: Access modifiers changed from: private */
     public void recomedKey() {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.SearchListenFragment.6
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.SearchListenFragment.6
             @Override // java.lang.Runnable
             public void run() {
                 ArrayList<HashMap<String, String>> m7319a = SearchRecommendKeyQuery.m7319a();

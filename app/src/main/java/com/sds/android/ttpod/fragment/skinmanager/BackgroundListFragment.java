@@ -101,7 +101,7 @@ public class BackgroundListFragment extends BackgroundBaseFragment {
     }
 
     private void loadDataList(int i, int i2) {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.REQUEST_PAGED_BKG_LIST, Integer.valueOf(this.mId), Integer.valueOf(i), Integer.valueOf(i2)));
+        CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_PAGED_BKG_LIST, Integer.valueOf(this.mId), Integer.valueOf(i), Integer.valueOf(i2)));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BackgroundBaseFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b

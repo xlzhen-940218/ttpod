@@ -89,7 +89,7 @@ public class OfflineModeUtils {
 
     /* renamed from: a */
     public static boolean m8256a() {
-        return EnvironmentUtils.C0604c.m8476d() != 2 && Preferences.m3066H();
+        return EnvironmentUtils.DeviceConfig.m8476d() != 2 && Preferences.m3066H();
     }
 
     /* compiled from: OfflineModeUtils.java */

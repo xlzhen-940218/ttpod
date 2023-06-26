@@ -245,7 +245,7 @@ public abstract class HeaderPostListFragment extends PostListByIdFragment implem
                 case 3:
                     if (this.mCachedRequestCode == 4097) {
                         bindCover(this.mLocalCoverImagePath);
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.MODIFY_COVER, this.mLocalCoverImagePath, Integer.valueOf(DisplayUtils.m7225c()), Integer.valueOf((int) getResources().getDimension(R.dimen.cover_height))));
+                        CommandCenter.getInstance().execute(new Command(CommandID.MODIFY_COVER, this.mLocalCoverImagePath, Integer.valueOf(DisplayUtils.m7225c()), Integer.valueOf((int) getResources().getDimension(R.dimen.cover_height))));
                         return;
                     }
                     return;

@@ -236,7 +236,7 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
                         return;
                     }
                     PopupsUtils.m6721a("图片保存在:" + str);
-                    TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.component.scaleimage.ScaleImageActivity.3.1
+                    TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.component.scaleimage.ScaleImageActivity.3.1
                         /* JADX WARN: Removed duplicated region for block: B:28:0x0036 A[EXC_TOP_SPLITTER, SYNTHETIC] */
                         @Override // java.lang.Runnable
                         /*

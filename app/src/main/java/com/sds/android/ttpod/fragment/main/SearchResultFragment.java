@@ -30,7 +30,6 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity;
 import com.sds.android.ttpod.adapter.SlidingTabFragmentPagerAdapter;
 import com.sds.android.ttpod.adapter.p076g.SearchHistoryAdapter;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
@@ -51,8 +50,6 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.Pager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -370,7 +367,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
         }
         if (!sGotBillboard) {
             sGotBillboard = true;
-            CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_BILLBOARD, 20));
+            CommandCenter.getInstance().execute(new Command(CommandID.START_SEARCH_BILLBOARD, 20));
         }
         //new SUserEvent("PAGE_CLICK", SAction.ACTION_ACCESS_SEARCH_PAGE.getValue(), 0, SPage.PAGE_SEARCH_HOME.getValue()).post();
     }
@@ -528,7 +525,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
             this.mUserInput = str;
             LogUtils.debug(TAG, "set mUserInput=" + str);
             this.mIsShowAssociate = true;
-            CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_ASSOCIATE, str));
+            CommandCenter.getInstance().execute(new Command(CommandID.START_SEARCH_ASSOCIATE, str));
         }
     }
 
@@ -570,7 +567,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
             this.mSearchHistory.m4095a(this.mWord);
             this.mHistoryListAdapter.notifyDataSetChanged();
             hideSoftInputFromWindow();
-            CommandCenter.getInstance().m4606a(new Command(CommandID.GET_SEARCH_TYPES, new Object[0]));
+            CommandCenter.getInstance().execute(new Command(CommandID.GET_SEARCH_TYPES, new Object[0]));
         }
     }
 

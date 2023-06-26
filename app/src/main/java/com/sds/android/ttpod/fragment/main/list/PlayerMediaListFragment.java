@@ -11,7 +11,7 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.widget.IconTextView;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.modules.skin.view.Animation;
+import com.sds.android.ttpod.framework.modules.skin.view.AnimationImageView;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -83,7 +83,7 @@ public class PlayerMediaListFragment extends PlayingFragment {
     private void bindView(C1669a c1669a, MediaItem mediaItem) {
         c1669a.m5450b().setText(mediaItem.getTitle());
         c1669a.m5449c().setText(mediaItem.getArtist());
-        c1669a.m5451a(StringUtils.m8344a(this.mGroupID, Preferences.m2858m()) && StringUtils.m8344a(Preferences.m2854n(), mediaItem.getID()), this.mPlayStatus);
+        c1669a.m5451a(StringUtils.equals(this.mGroupID, Preferences.getLocalGroupId()) && StringUtils.equals(Preferences.getMediaId(), mediaItem.getID()), this.mPlayStatus);
         c1669a.m3250a(ThemeUtils.m8163b());
     }
 
@@ -112,13 +112,13 @@ public class PlayerMediaListFragment extends PlayingFragment {
         private TextView f5410d;
 
         /* renamed from: e */
-        private Animation f5411e;
+        private AnimationImageView f5411e;
 
         public C1669a(View view) {
             this.f5408b = view;
             this.f5409c = (TextView) view.findViewById(R.id.title_view);
             this.f5410d = (TextView) view.findViewById(R.id.media_item_singer);
-            this.f5411e = (Animation) view.findViewById(R.id.play_icon);
+            this.f5411e = (AnimationImageView) view.findViewById(R.id.play_icon);
         }
 
         /* renamed from: b */

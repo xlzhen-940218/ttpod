@@ -38,7 +38,7 @@ public class ShakeMonitor implements ShakeManager.InterfaceC1857a {
     /* renamed from: a */
     public void mo4303a(int i) {
         if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.NEXT, new Object[0]));
+            CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
         }
     }
 

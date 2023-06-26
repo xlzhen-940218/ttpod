@@ -16,7 +16,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.version.VersionUpdateModule;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 
 /* loaded from: classes.dex */
@@ -32,10 +31,10 @@ public class AboutActivity extends SlidingClosableActivity {
             CharSequence m7006d = actionItem.m7006d();
             switch (actionItem.m7005e()) {
                 case 1:
-                    if (EnvironmentUtils.C0602a.m8516a()) {
-                        if (EnvironmentUtils.C0604c.m8474e()) {
+                    if (EnvironmentUtils.AppConfig.getAppCheckUpdateEnable()) {
+                        if (EnvironmentUtils.DeviceConfig.m8474e()) {
                             PopupsUtils.m6760a((int) R.string.version_upgrade_check_toast);
-                            CommandCenter.getInstance().m4606a(new Command(CommandID.CHECK_UPGRADE, false));
+                            CommandCenter.getInstance().execute(new Command(CommandID.CHECK_UPGRADE, false));
                         } else {
                             PopupsUtils.m6760a((int) R.string.version_update_network_bad);
                         }
@@ -69,7 +68,7 @@ public class AboutActivity extends SlidingClosableActivity {
         setPage(SPage.PAGE_ABOUT_TTPOD);
         setContentView(R.layout.activity_setting_about);
         SettingUtils.m7778a(this);
-        ((TextView) findViewById(R.id.id_about_version)).setText(EnvironmentUtils.C0602a.m8505f());
+        ((TextView) findViewById(R.id.id_about_version)).setText(EnvironmentUtils.AppConfig.getVersionName());
         this.mVersionCard = buildAboutCard();
         ((LinearLayout) findViewById(R.id.setting_card_container_about)).addView(this.mVersionCard.m6992e());
     }

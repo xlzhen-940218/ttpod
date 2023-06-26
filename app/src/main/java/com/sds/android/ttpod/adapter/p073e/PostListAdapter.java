@@ -93,7 +93,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
 
     /* renamed from: b */
     public void m7463b(List<Post> list) {
-        this.f3158d.addAll(list);
+        this.dataList.addAll(list);
         notifyDataSetChanged();
     }
 
@@ -117,7 +117,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.musiccircle_post_item, (ViewGroup) null, false);
         inflate.setTag(new PostViewItemHolder(inflate));
         return inflate;
@@ -126,7 +126,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public final void mo5400a(View view, Post post, int i) {
+    public final void buildDataUI(View view, Post post, int i) {
         PostViewItemHolder postViewItemHolder = (PostViewItemHolder) view.getTag();
         m7475a(postViewItemHolder);
         m7470a(postViewItemHolder, post, PostUtils.m4029a(post), i);
@@ -136,7 +136,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
     protected void m7470a(PostViewItemHolder postViewItemHolder, Post post, Post post2, int i) {
         m7474a(postViewItemHolder, post.getUser());
         long createTimeInSecond = post.getCreateTimeInSecond();
-        postViewItemHolder.m7454d().setText(createTimeInSecond > 0 ? TimeUtils.m8155a(m7664a(), createTimeInSecond) : "");
+        postViewItemHolder.m7454d().setText(createTimeInSecond > 0 ? TimeUtils.m8155a(getContext(), createTimeInSecond) : "");
         String tweet = post.getTweet();
         if (TextUtils.isEmpty(tweet)) {
             if (postViewItemHolder.m7449i().getVisibility() != View.GONE) {
@@ -219,7 +219,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 if (Preferences.m2954aq() != null) {
-                    PopupsUtils.m6759a((Activity) PostListAdapter.this.m7664a(), post);
+                    PopupsUtils.m6759a((Activity) PostListAdapter.this.getContext(), post);
                     PostListAdapter.this.mo5436c(post);
                     return;
                 }
@@ -278,8 +278,8 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
                 if (!PostListAdapter.this.m7458h(post)) {
                     PostListAdapter.this.f3330f = 0L;
                     PostListAdapter.this.f3329e = OnlinePlayStatus.LOADING;
-                    PostListAdapter.this.mo7467a(post);
-                    new PlayOnlineMediaTask(PostListAdapter.this.m7664a(), postViewItemHolder.m7447k(), PostListAdapter.this, PostListAdapter.this.f3328a, PostListAdapter.this.f3329e).m7497a(post);
+                    PostListAdapter.this.setData(post);
+                    new PlayOnlineMediaTask(PostListAdapter.this.getContext(), postViewItemHolder.m7447k(), PostListAdapter.this, PostListAdapter.this.f3328a, PostListAdapter.this.f3329e).m7497a(post);
                 } else {
                     PostListAdapter.this.f3328a = PostUtils.m4027b(post);
                     PostListAdapter.this.m7459g(post);
@@ -310,12 +310,12 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
             if (onlinePlayStatus == OnlinePlayStatus.LOADING) {
                 view.setEnabled(false);
                 view.setSelected(true);
-                view.startAnimation(AnimationUtils.loadAnimation(m7664a(), R.anim.unlimited_rotate));
+                view.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.unlimited_rotate));
                 return;
             }
             view.setEnabled(true);
             view.clearAnimation();
-            if (onlinePlayStatus == OnlinePlayStatus.PLAYING || (m7661c() != null && onlinePlayStatus == OnlinePlayStatus.STOP)) {
+            if (onlinePlayStatus == OnlinePlayStatus.PLAYING || (getData() != null && onlinePlayStatus == OnlinePlayStatus.STOP)) {
                 z = true;
             }
             view.setSelected(z);
@@ -334,15 +334,15 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
         postViewItemHolder.m7442p().setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.e.e.6
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (EnvironmentUtils.C0604c.m8474e() && Preferences.m2954aq() != null) {
+                if (EnvironmentUtils.DeviceConfig.m8474e() && Preferences.m2954aq() != null) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(Long.valueOf(post.getId()));
                     if (booleanValue) {
                         post.decreaseFavoriteCount();
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.REMOVE_FAVORITE_POSTS, arrayList, ""));
+                        CommandCenter.getInstance().execute(new Command(CommandID.REMOVE_FAVORITE_POSTS, arrayList, ""));
                     } else {
                         post.increaseFavoriteCount();
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.ADD_FAVORITE_POSTS, arrayList, ""));
+                        CommandCenter.getInstance().execute(new Command(CommandID.ADD_FAVORITE_POSTS, arrayList, ""));
                     }
                     PostListAdapter.this.mo5431a(post, booleanValue);
                     return;
@@ -362,13 +362,13 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: d */
-    public void mo7467a(Post post) {
-        super.mo7467a(post);
+    public void setData(Post post) {
+        super.setData(post);
     }
 
     /* renamed from: e */
     public void m7461e(Post post) {
-        for (Post post2 : m7662b()) {
+        for (Post post2 : getDataList()) {
             Post m4029a = PostUtils.m4029a(post2);
             if (m4029a.getId() == post.getId()) {
                 m4029a.setCommentCount(post.getCommentCount());
@@ -379,7 +379,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
 
     /* renamed from: f */
     public void m7460f(Post post) {
-        for (Post post2 : m7662b()) {
+        for (Post post2 : getDataList()) {
             Post m4029a = PostUtils.m4029a(post2);
             if (m4029a.getId() == post.getId()) {
                 m4029a.setRepostCount(post.getRepostCount());

@@ -46,7 +46,7 @@ public class PostMethodRequest<R extends BaseResult> extends MethodRequest<R> {
 
     @Override // com.sds.android.sdk.lib.request.Request
     /* renamed from: a */
-    protected HttpRequest.C0586a mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
+    protected HttpRequest.Response mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
         try {
             String m8551a = m8551a(hashMap2, hashMap3);
             LogUtils.debug("MethodRequest", "post url: %s", str);
@@ -92,7 +92,7 @@ public class PostMethodRequest<R extends BaseResult> extends MethodRequest<R> {
 
     /* renamed from: a */
     protected void m8550a(JSONObject jSONObject) throws JSONException {
-        jSONObject.put("method", m8554b());
+        jSONObject.put("method", getMethod());
     }
 
     /* renamed from: a */

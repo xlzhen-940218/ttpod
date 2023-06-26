@@ -105,7 +105,7 @@ public class VersionUpgradeActivity extends BaseActivity {
                 public void onClick(View view) {
                     //StatisticUtils.m4910a("update", VersionUpgradeActivity.this.getStatisticType(versionUpdateData.getUpgradeType()), "smart");
                     if (VersionUpdateData.UpdateState.NEED == versionUpdateData.getUpdateState()) {
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.START_SMART_UPGRADE, versionUpdateData.getAppstoreInstalled()));
+                        CommandCenter.getInstance().execute(new Command(CommandID.START_SMART_UPGRADE, versionUpdateData.getAppstoreInstalled()));
                     } else if (VersionUpdateData.UpdateState.NO_NEED == versionUpdateData.getUpdateState()) {
                         PopupsUtils.m6721a("没有发现新的版本");
                         VersionUpgradeActivity.this.finish();
@@ -124,7 +124,7 @@ public class VersionUpgradeActivity extends BaseActivity {
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
                    // UpdateStatistic.m4798b();
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.START_COMMON_UPGRADE, versionUpdateData.getUpdateUrl()));
+                    CommandCenter.getInstance().execute(new Command(CommandID.START_COMMON_UPGRADE, versionUpdateData.getUpdateUrl()));
                     VersionUpgradeActivity.this.startActivity(new Intent(VersionUpgradeActivity.this, VersionUpgradeProgressActivity.class));
                     VersionUpgradeActivity.this.finish();
                 }
@@ -202,7 +202,7 @@ public class VersionUpgradeActivity extends BaseActivity {
     private void downloadApp(String str, String str2) {
         if (!ApkUtils.m8311a(BaseApplication.getApplication(), str2)) {
             DownloadUtils.m4760a(str, str2, 0L, FileUtils.getFilename(str2), DownloadTaskInfo.TYPE_APP, true, "update").setTag(str);
-            CommandCenter.getInstance().m4606a(new Command(CommandID.START_SMART_UPGRADE, false));
+            CommandCenter.getInstance().execute(new Command(CommandID.START_SMART_UPGRADE, false));
             startActivity(new Intent(this, VersionUpgradeProgressActivity.class));
         }
     }

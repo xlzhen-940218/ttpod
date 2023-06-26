@@ -68,4 +68,8 @@ public class BaseResult implements Serializable {
     public int getTTL() {
         return this.mTTL;
     }
+
+    public void setmTTL(int mTTL) {
+        this.mTTL = mTTL;
+    }
 }

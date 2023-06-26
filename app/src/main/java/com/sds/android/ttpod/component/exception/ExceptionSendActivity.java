@@ -23,7 +23,7 @@ public class ExceptionSendActivity extends BaseActivity {
         super.onCreate(bundle);
         String obj = getIntent().getCharSequenceExtra("android.intent.extra.SUBJECT").toString();
         String obj2 = getIntent().getCharSequenceExtra("android.intent.extra.TEXT").toString();
-        String m8478c = StringUtils.isEmpty(EnvironmentUtils.C0604c.getDeviceId()) ? EnvironmentUtils.C0604c.getMacAddress() : EnvironmentUtils.C0604c.getDeviceId();
+        String m8478c = StringUtils.isEmpty(EnvironmentUtils.DeviceConfig.getDeviceId()) ? EnvironmentUtils.DeviceConfig.getMacAddress() : EnvironmentUtils.DeviceConfig.getDeviceId();
         StringBuilder sb = new StringBuilder();
         sb.append("clientId:").append(Preferences.m2945az()).append("\r\n").append("imei:")
                 .append(m8478c).append("\r\n").append(obj2);

@@ -77,7 +77,7 @@ public final class MediaStorage {
     }
 
     public static String buildOnlineFavGroupID() {
-        if (EnvironmentUtils.C0602a.m8502i() && EnvironmentUtils.C0603b.m8486g() <= 0) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && EnvironmentUtils.C0603b.m8486g() <= 0) {
             throw new IllegalStateException("you must login first");
         }
         return GROUP_ID_ONLINE_FAV_PREFIX + EnvironmentUtils.C0603b.m8486g();
@@ -263,13 +263,13 @@ public final class MediaStorage {
     }
 
     private static void assertOrderBy(String str) {
-        if (EnvironmentUtils.C0602a.m8502i() && !str.equals("title_key") && str.equals("artist_key") && str.equals(MEDIA_ORDER_BY_ARTIST_DESC) && str.equals("genre_key") && str.equals(MEDIA_ORDER_BY_GENRE_DESC) && str.equals("album_key") && str.equals(MEDIA_ORDER_BY_ALBUM_DESC) && str.equals(MEDIA_ORDER_BY_ADD_TIME) && str.equals(MEDIA_ORDER_BY_ADD_TIME_DESC) && str.equals(MEDIA_ORDER_BY_ADD_CUSTOM_GROUP_TIME) && str.equals(MEDIA_ORDER_BY_ADD_CUSTOM_GROUP_TIME_DESC) && str.equals(MEDIA_ORDER_BY_PLAY_TIME) && str.equals(MEDIA_ORDER_BY_PLAY_TIME_DESC) && str.equals(MEDIA_ORDER_BY_FILE_NAME) && str.equals(MEDIA_ORDER_BY_FILE_NAME_DESC) && str.equals("track") && str.equals(MEDIA_ORDER_BY_CUSTOM) && str.equals(MEDIA_ORDER_BY_CUSTOM_DESC)) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && !str.equals("title_key") && str.equals("artist_key") && str.equals(MEDIA_ORDER_BY_ARTIST_DESC) && str.equals("genre_key") && str.equals(MEDIA_ORDER_BY_GENRE_DESC) && str.equals("album_key") && str.equals(MEDIA_ORDER_BY_ALBUM_DESC) && str.equals(MEDIA_ORDER_BY_ADD_TIME) && str.equals(MEDIA_ORDER_BY_ADD_TIME_DESC) && str.equals(MEDIA_ORDER_BY_ADD_CUSTOM_GROUP_TIME) && str.equals(MEDIA_ORDER_BY_ADD_CUSTOM_GROUP_TIME_DESC) && str.equals(MEDIA_ORDER_BY_PLAY_TIME) && str.equals(MEDIA_ORDER_BY_PLAY_TIME_DESC) && str.equals(MEDIA_ORDER_BY_FILE_NAME) && str.equals(MEDIA_ORDER_BY_FILE_NAME_DESC) && str.equals("track") && str.equals(MEDIA_ORDER_BY_CUSTOM) && str.equals(MEDIA_ORDER_BY_CUSTOM_DESC)) {
             throw new IllegalArgumentException("orderBy must be MediaStorage.MEDIA_ORDER_BY_TITLE,MEDIA_ORDER_BY_ARTIST,MEDIA_ORDER_BY_ARTIST_DESC,MEDIA_ORDER_BY_GENRE,MEDIA_ORDER_BY_GENRE_DESC,MEDIA_ORDER_BY_ALBUM,MEDIA_ORDER_BY_ALBUM_DESC,MEDIA_ORDER_BY_ADD_TIME,MEDIA_ORDER_BY_ADD_TIME_DESC,MEDIA_ORDER_BY_ADD_CUSTOM_GROUP_TIME,MEDIA_ORDER_BY_ADD_CUSTOM_GROUP_TIME_DESC,MEDIA_ORDER_BY_PLAY_TIME,MEDIA_ORDER_BY_PLAY_TIME_DESC,MEDIA_ORDER_BY_FILE_NAME,MEDIA_ORDER_BY_FILE_NAME_DESC,MEDIA_ORDER_BY_TRACK,MEDIA_ORDER_BY_CUSTOM,MEDIA_ORDER_BY_CUSTOM_DESC");
         }
     }
 
     private void assertOrderBy(String str, String str2) {
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             if (str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
                 LogUtils.warning(TAG, "groupID:" + str + " will ignore orderBy " + str2);
             } else if (!str.startsWith(GROUP_ID_CUSTOM_PREFIX)) {
@@ -281,43 +281,43 @@ public final class MediaStorage {
     }
 
     private static void assertSearchAble(GroupType groupType) {
-        if (EnvironmentUtils.C0602a.m8502i() && groupType != GroupType.DEFAULT_ALBUM && groupType != GroupType.DEFAULT_FOLDER && groupType != GroupType.DEFAULT_GENRE && groupType != GroupType.DEFAULT_ARTIST) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && groupType != GroupType.DEFAULT_ALBUM && groupType != GroupType.DEFAULT_FOLDER && groupType != GroupType.DEFAULT_GENRE && groupType != GroupType.DEFAULT_ARTIST) {
             throw new IllegalArgumentException("groupType must be DEFAULT_ALBUM DEFAULT_FOLDER DEFAULT_GENRE DEFAULT_ARTIST!");
         }
     }
 
     private static void assertMediaItemSearchAble(String str) {
-        if (EnvironmentUtils.C0602a.m8502i() && str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
             throw new IllegalArgumentException("groupID must not be group_id_temporaryonline_temporary");
         }
     }
 
     private static void assertCustomGroupType(GroupType groupType) {
-        if (EnvironmentUtils.C0602a.m8502i() && groupType != GroupType.CUSTOM_LOCAL && groupType != GroupType.CUSTOM_ONLINE && groupType != GroupType.CUSTOM_MIX) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && groupType != GroupType.CUSTOM_LOCAL && groupType != GroupType.CUSTOM_ONLINE && groupType != GroupType.CUSTOM_MIX) {
             throw new IllegalArgumentException("groupType must be CUSTOM_LOCAL CUSTOM_ONLINE CUSTOM_MIX!");
         }
     }
 
     private static void assertDeleteAble(String str) {
-        if (EnvironmentUtils.C0602a.m8502i() && str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
             throw new IllegalArgumentException("groupID must not be group_id_temporaryonline_temporary");
         }
     }
 
     private static void assertExchangeOrderAble(String str) {
-        if (EnvironmentUtils.C0602a.m8502i() && !str.startsWith(GROUP_ID_CUSTOM_PREFIX)) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && !str.startsWith(GROUP_ID_CUSTOM_PREFIX)) {
             throw new IllegalArgumentException("groupID must be startWith group_id_custom");
         }
     }
 
     private static void assertInsertAble(String str) {
-        if (EnvironmentUtils.C0602a.m8502i() && !str.startsWith(GROUP_ID_CUSTOM_PREFIX) && !str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && !str.startsWith(GROUP_ID_CUSTOM_PREFIX) && !str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
             throw new IllegalArgumentException("groupID must be startWith group_id_custom or equal group_id_temporaryonline_temporary");
         }
     }
 
     private static void assertNotDefault(String str) {
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             if (str.equals(GROUP_ID_ALL_LOCAL) || str.equals(GROUP_ID_FAV_LOCAL) || str.equals(GROUP_ID_RECENTLY_ADD_OLD) || str.equals(GROUP_ID_RECENTLY_PLAY_OLD) || str.startsWith(GROUP_ID_ALBUM_PREFIX) || str.startsWith(GROUP_ID_ARTIST_PREFIX) || str.startsWith(GROUP_ID_FOLDER_PREFIX) || str.startsWith(GROUP_ID_GENRE_PREFIX) || str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
                 throw new IllegalArgumentException("group withID " + str + " can not be deleted or modified!");
             }
@@ -325,25 +325,25 @@ public final class MediaStorage {
     }
 
     private static void assertClearAble(String str) {
-        if (EnvironmentUtils.C0602a.m8502i() && !str.startsWith(GROUP_ID_CUSTOM_PREFIX) && !str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && !str.startsWith(GROUP_ID_CUSTOM_PREFIX) && !str.equals(GROUP_ID_ONLINE_TEMPORARY)) {
             throw new IllegalArgumentException("groupID must startwithgroup_id_custom Or equal group_id_temporaryonline_temporary");
         }
     }
 
     private static void assertMediaItemEditAble(MediaItem mediaItem) {
-        if (EnvironmentUtils.C0602a.m8502i() && mediaItem.getGroupID().equals(GROUP_ID_ONLINE_TEMPORARY)) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && mediaItem.getGroupID().equals(GROUP_ID_ONLINE_TEMPORARY)) {
             throw new UnsupportedOperationException("MediaItem with gorupID = GROUP_ID_ONLINE_TEMPORARY, update not supported!");
         }
     }
 
     private static void assertGroupIDValid(String str) {
-        if (EnvironmentUtils.C0602a.m8502i() && !str.startsWith(GROUP_ID_PREFIX)) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && !str.startsWith(GROUP_ID_PREFIX)) {
             throw new IllegalArgumentException("groupID must startwith gorupID group_id_!");
         }
     }
 
     private static void assertExchangeOrderValid(String str, List<ExchangeOrderEntity> list) {
-        if (EnvironmentUtils.C0602a.m8502i()) {
+        if (EnvironmentUtils.AppConfig.getTestMode()) {
             for (ExchangeOrderEntity exchangeOrderEntity : list) {
                 if (!exchangeOrderEntity.getGroupID().equals(str)) {
                     throw new IllegalStateException("groupID is not identical");

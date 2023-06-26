@@ -100,7 +100,7 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
         } else {
             setScaleType(ImageView.ScaleType.FIT_CENTER);
         }
-        this.corner_radius = obtainStyledAttributes.getDimensionPixelSize(R.styleable.RoundedImageView_corner_radius, -1);
+        this.corner_radius = obtainStyledAttributes.getDimensionPixelSize(R.styleable.RoundedImageView_image_corner_radius, -1);
         this.Image_border_width = obtainStyledAttributes.getDimensionPixelSize(R.styleable.RoundedImageView_Image_border_width, -1);
         if (this.corner_radius < 0.0f) {
             this.corner_radius = 0.0f;

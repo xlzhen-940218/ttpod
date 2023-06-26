@@ -33,6 +33,6 @@ public class UserSelectListenQuery {
 
     /* renamed from: b */
     public static boolean m7315b() {
-        return StringUtils.m8344a(GetPreListen.m7327a("600907000003273431").m7285h(), "000000");
+        return StringUtils.equals(GetPreListen.m7327a("600907000003273431").m7285h(), "000000");
     }
 }

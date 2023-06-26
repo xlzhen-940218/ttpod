@@ -97,7 +97,7 @@ public abstract class GridViewFragment<D> extends SlidingClosableFragment implem
                 return;
             }
             this.mLoadView.setLoadState(NetworkLoadView.EnumC2205a.IDLE);
-            this.mGridListAdapter.m7663a((List) arrayList);
+            this.mGridListAdapter.setDataList((List) arrayList);
         }
     }
 

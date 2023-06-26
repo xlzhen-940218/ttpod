@@ -52,7 +52,7 @@ public class JSONUtils {
     /* renamed from: a */
     public static JSONObject create(InputStream inputStream) {
         try {
-            return new JSONObject(StringUtils.m8347a(inputStream));
+            return new JSONObject(StringUtils.streamToString(inputStream));
         } catch (Throwable th) {
             th.printStackTrace();
             return null;
@@ -61,7 +61,7 @@ public class JSONUtils {
 
     /* renamed from: b */
     public static String build(Object obj) {
-        String m8342a = StringUtils.m8342a(",", obj);
+        String m8342a = StringUtils.spliceStringAndArray(",", obj);
         return new StringBuilder(m8342a.length() + 2).append('[').append(m8342a).append(']').toString();
     }
 }

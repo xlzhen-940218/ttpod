@@ -86,19 +86,19 @@ public class UnicomFlowUtil {
 
     /* renamed from: e */
     public static boolean m3947e() {
-        return EnvironmentUtils.C0604c.m8476d() == 1;
+        return EnvironmentUtils.DeviceConfig.m8476d() == 1;
     }
 
     /* renamed from: f */
     public static boolean m3946f() {
-        LogUtils.debug(f6301a, "imsi" + EnvironmentUtils.C0604c.getSubscriberId());
-        return EnvironmentUtils.C0604c.getSubscriberId().startsWith("46001") || EnvironmentUtils.C0604c.getSubscriberId().startsWith("46006");
+        LogUtils.debug(f6301a, "imsi" + EnvironmentUtils.DeviceConfig.getSubscriberId());
+        return EnvironmentUtils.DeviceConfig.getSubscriberId().startsWith("46001") || EnvironmentUtils.DeviceConfig.getSubscriberId().startsWith("46006");
     }
 
     /* renamed from: g */
     public static boolean m3945g() {
-        LogUtils.debug(f6301a, "is use gprs network type:" + EnvironmentUtils.C0604c.m8476d());
-        return EnvironmentUtils.C0604c.m8476d() == 0 || 3 == EnvironmentUtils.C0604c.m8476d() || 1 == EnvironmentUtils.C0604c.m8476d();
+        LogUtils.debug(f6301a, "is use gprs network type:" + EnvironmentUtils.DeviceConfig.m8476d());
+        return EnvironmentUtils.DeviceConfig.m8476d() == 0 || 3 == EnvironmentUtils.DeviceConfig.m8476d() || 1 == EnvironmentUtils.DeviceConfig.m8476d();
     }
 
     /* renamed from: h */
@@ -186,14 +186,14 @@ public class UnicomFlowUtil {
     /* renamed from: a */
     public static void m3954a(Context context) {
         if (m3948d()) {
-            m3952a(HttpRequest.m8704b(), context.getString(HttpRequest.m8704b() ? R.string.unicom_flow_open : R.string.unicom_flow_close));
+            m3952a(HttpRequest.isProxy(), context.getString(HttpRequest.isProxy() ? R.string.unicom_flow_open : R.string.unicom_flow_close));
         }
     }
 
     /* renamed from: b */
     public static void m3950b(Context context) {
-        if (HttpRequest.m8704b()) {
-            m3952a(HttpRequest.m8704b(), context.getString(R.string.unicom_flow_close));
+        if (HttpRequest.isProxy()) {
+            m3952a(HttpRequest.isProxy(), context.getString(R.string.unicom_flow_close));
         }
     }
 

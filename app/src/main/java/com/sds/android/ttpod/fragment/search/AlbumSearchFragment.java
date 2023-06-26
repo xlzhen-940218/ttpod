@@ -16,7 +16,6 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.common.widget.IconTextView;
 import com.sds.android.ttpod.fragment.main.SearchResultFragment;
@@ -27,8 +26,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.Pager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.widget.StateView;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -44,7 +41,7 @@ public class AlbumSearchFragment extends BaseSearchFragment {
     protected void search(String str, int i, int i2) {
         this.mWord = str;
         LogUtils.debug(TAG, "search album, word: " + str + ",page: " + i + ",pageSize: " + i2 + ",mUserInput: " + this.mUserInput);
-        CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_ALBUM, str, Integer.valueOf(i), Integer.valueOf(i2), this.mUserInput));
+        CommandCenter.getInstance().execute(new Command(CommandID.START_SEARCH_ALBUM, str, Integer.valueOf(i), Integer.valueOf(i2), this.mUserInput));
     }
 
     @Override // com.sds.android.ttpod.fragment.search.BaseSearchFragment

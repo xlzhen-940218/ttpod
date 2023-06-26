@@ -17,19 +17,19 @@ import java.util.Map;
 public abstract class Request<R extends BaseResult> {
 
     /* renamed from: a */
-    private Class<R> f2420a;
+    private Class<R> resultModel;
 
     /* renamed from: b */
     private Class<?> f2421b;
 
     /* renamed from: c */
-    private R f2422c;
+    private R result;
 
     /* renamed from: d */
-    private long f2423d;
+    private long requestTime;
 
     /* renamed from: e */
-    private HashMap<String, Object> f2424e = new HashMap<>();
+    private HashMap<String, Object> paramsMaps = new HashMap<>();
 
     /* renamed from: f */
     private HashMap<String, Object> f2425f = new HashMap<>();
@@ -41,10 +41,10 @@ public abstract class Request<R extends BaseResult> {
     private ArrayList<Object> f2427h = new ArrayList<>();
 
     /* renamed from: i */
-    private String f2428i;
+    private String url;
 
     /* renamed from: j */
-    private AsyncRequestTask f2429j;
+    private AsyncRequestTask asyncRequestTask;
 
     /* renamed from: k */
     private InterfaceC0601a f2430k;
@@ -61,7 +61,7 @@ public abstract class Request<R extends BaseResult> {
     }
 
     /* renamed from: a */
-    protected abstract HttpRequest.C0586a mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3);
+    protected abstract HttpRequest.Response mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3);
 
     /* renamed from: a */
     public Request<R> m8543a(Class<?> cls) {
@@ -75,13 +75,13 @@ public abstract class Request<R extends BaseResult> {
         return this.f2421b;
     }
 
-    public Request(Class<R> cls, String str) {
+    public Request(Class<R> cls, String url) {
         if (!BaseResult.class.isAssignableFrom(cls)) {
             throw new IllegalArgumentException("resultClass must be subClass of BaseResult!");
         }
-        this.f2420a = cls;
-        this.f2429j = new AsyncRequestTask();
-        this.f2428i = str;
+        this.resultModel = cls;
+        this.asyncRequestTask = new AsyncRequestTask();
+        this.url = url;
         m8529h();
     }
 
@@ -93,21 +93,21 @@ public abstract class Request<R extends BaseResult> {
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
     public String mo8547a() {
-        return this.f2428i;
+        return this.url;
     }
 
     /* renamed from: a */
     public Request<R> m8540a(Map<String, Object> map) {
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            m8537b(entry.getKey(), entry.getValue());
+            putParams(entry.getKey(), entry.getValue());
         }
         return this;
     }
 
     /* renamed from: b */
-    public Request<R> m8537b(String str, Object obj) {
-        if (!m8538b(obj)) {
-            this.f2424e.put(str, obj.toString());
+    public Request<R> putParams(String str, Object obj) {
+        if (!isNull(obj)) {
+            this.paramsMaps.put(str, obj.toString());
             m8529h();
         }
         return this;
@@ -121,9 +121,9 @@ public abstract class Request<R extends BaseResult> {
 
     /* renamed from: a */
     public Request<R> m8542a(Object obj) {
-        if (!m8538b(obj)) {
+        if (!isNull(obj)) {
             if (obj.getClass().isArray() || (obj instanceof Collection)) {
-                obj = StringUtils.m8342a("_", obj);
+                obj = StringUtils.spliceStringAndArray("_", obj);
             }
             this.f2427h.add(obj);
             m8529h();
@@ -132,13 +132,13 @@ public abstract class Request<R extends BaseResult> {
     }
 
     /* renamed from: b */
-    private boolean m8538b(Object obj) {
+    private boolean isNull(Object obj) {
         return obj == null || StringUtils.isEmpty(obj.toString());
     }
 
     /* renamed from: d */
     public Request<R> m8533d(String str, Object obj) {
-        if (!m8538b(obj)) {
+        if (!isNull(obj)) {
             this.f2426g.put(str, String.valueOf(obj));
             m8529h();
         }
@@ -154,57 +154,57 @@ public abstract class Request<R extends BaseResult> {
     public R m8531f() {
         LogUtils.info("Request", "in execute lookNetProblem");
         if (m8530g()) {
-            return this.f2422c;
+            return this.result;
         }
         this.f2431l = mo8536c();
         LogUtils.info("Request", "in execute lookNetProblem url=%s", this.f2431l);
-        return m8539b(mo8541a(this.f2431l + (this.f2431l.indexOf("?") == -1 ? "?" : "&") + "utdid=" + EnvironmentUtils.C0603b.m8499a(), this.f2426g, this.f2424e, this.f2425f));
+        return m8539b(mo8541a(this.f2431l + (this.f2431l.indexOf("?") == -1 ? "?" : "&") + "utdid=" + EnvironmentUtils.C0603b.m8499a(), this.f2426g, this.paramsMaps, this.f2425f));
     }
 
     /* renamed from: a */
     public void m8544a(RequestCallback<R> requestCallback) {
-        this.f2429j.m8562a(this, requestCallback, new Object[0]);
+        this.asyncRequestTask.m8562a(this, requestCallback, new Object[0]);
     }
 
     /* renamed from: g */
     protected boolean m8530g() {
-        return this.f2422c != null && System.currentTimeMillis() < this.f2423d;
+        return this.result != null && System.currentTimeMillis() < this.requestTime;
     }
 
     /* renamed from: h */
     public void m8529h() {
-        this.f2422c = null;
-        this.f2423d = 0L;
+        this.result = null;
+        this.requestTime = 0L;
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: c */
     public String mo8536c() {
         String mo8547a = mo8547a();
-        String m8343a = StringUtils.m8343a("/", this.f2427h);
+        String m8343a = StringUtils.arrayToString("/", this.f2427h);
         if (!StringUtils.isEmpty(m8343a)) {
-            mo8547a = StringUtils.m8342a("/", mo8547a, m8343a);
+            mo8547a = StringUtils.spliceStringAndArray("/", mo8547a, m8343a);
         }
         LogUtils.debug("Request", mo8547a);
         return mo8547a;
     }
 
     /* renamed from: a */
-    protected R m8546a(HttpRequest.C0586a c0586a) {
+    protected R getResult(HttpRequest.Response c0586a) {
         if (c0586a == null) {
             LogUtils.error("Request", "Http request result is null, stop parse.");
             return null;
         }
         try {
             try {
-                String m8347a = StringUtils.m8347a(c0586a.m8688e());
+                String m8347a = StringUtils.streamToString(c0586a.getInputStream());
                 LogUtils.debug("Request", "TEST: jsonString %s", m8347a);
                 if (this.f2430k != null) {
                     m8347a = this.f2430k.mo8527a(m8347a);
                 }
-                R r = (R) JSONUtils.fromJson(m8347a,  this.f2420a);
+                R r = (R) JSONUtils.fromJson(m8347a,  this.resultModel);
                 try {
-                    c0586a.m8688e().close();
+                    c0586a.getInputStream().close();
                     return r;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -216,7 +216,7 @@ public abstract class Request<R extends BaseResult> {
             }
         } finally {
             try {
-                c0586a.m8688e().close();
+                c0586a.getInputStream().close();
             } catch (Exception e3) {
                 e3.printStackTrace();
             }
@@ -228,7 +228,7 @@ public abstract class Request<R extends BaseResult> {
     public R m8528i() {
         R r;
         try {
-            r = this.f2420a.newInstance();
+            r = this.resultModel.newInstance();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
             r = null;
@@ -243,22 +243,22 @@ public abstract class Request<R extends BaseResult> {
     }
 
     /* renamed from: b */
-    private R m8539b(HttpRequest.C0586a c0586a) {
-        R m8546a = m8546a(c0586a);
-        if (m8546a != null) {
-            this.f2423d = (m8546a.getTTL() - HttpRequest.C0586a.m8697a()) + System.currentTimeMillis();
+    private R m8539b(HttpRequest.Response c0586a) {
+        R result = getResult(c0586a);
+        if (result != null) {
+            this.requestTime = (result.getTTL() - HttpRequest.Response.getAge()) + System.currentTimeMillis();
         } else {
-            m8546a = m8528i();
+            result = m8528i();
             if (c0586a == null) {
-                m8546a.setCode(-1);
-                m8546a.setMessage("无法连接到服务器");
+                result.setCode(-1);
+                result.setMessage("无法连接到服务器");
             } else {
-                m8546a.setCode(-2);
-                m8546a.setMessage(String.format("无法解析数据，HTTP返回代码%d", Integer.valueOf(c0586a.m8690c())));
+                result.setCode(-2);
+                result.setMessage(String.format("无法解析数据，HTTP返回代码%d", Integer.valueOf(c0586a.getStatusCode())));
             }
         }
-        this.f2422c = m8546a;
-        return m8546a;
+        this.result = result;
+        return result;
     }
 
     public String toString() {
@@ -278,13 +278,13 @@ public abstract class Request<R extends BaseResult> {
             str4 = str + it.next() + ":" + this.f2426g.get(next3) + " ";
         }
         String str5 = "";
-        Iterator<String> it2 = this.f2424e.keySet().iterator();
+        Iterator<String> it2 = this.paramsMaps.keySet().iterator();
         while (true) {
             str2 = str5;
             if (!it2.hasNext()) {
                 break;
             }
-            str5 = str2 + it2.next() + ":" + this.f2424e.get(next2) + " ";
+            str5 = str2 + it2.next() + ":" + this.paramsMaps.get(next2) + " ";
         }
         String str6 = "";
         Iterator<String> it3 = this.f2425f.keySet().iterator();

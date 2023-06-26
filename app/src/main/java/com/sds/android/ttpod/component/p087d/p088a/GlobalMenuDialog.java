@@ -30,8 +30,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeFramework;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.modules.version.VersionUpdateModule;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.utils.EntryUtils;
@@ -232,7 +230,7 @@ public class GlobalMenuDialog extends Dialog {
     /* renamed from: a */
     private void m6878a(List<GlobalMenuItem> list) {
         this.f3923p = new GlobalMenuItem(12, 0, R.string.unicom_flow_menu_name, ThemeElement.SETTING_TRAFFIC_IMAGE, R.string.icon_unicom_flow);
-        if (EnvironmentUtils.C0604c.getSubscriberId().startsWith("46001") && Cache.getInstance().m3231H() && Cache.getInstance().m3230I()) {
+        if (EnvironmentUtils.DeviceConfig.getSubscriberId().startsWith("46001") && Cache.getInstance().m3231H() && Cache.getInstance().m3230I()) {
             list.add(8, this.f3923p);
         }
     }

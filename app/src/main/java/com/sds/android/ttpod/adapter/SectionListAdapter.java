@@ -13,13 +13,13 @@ import java.util.ArrayList;
 public abstract class SectionListAdapter extends BaseAdapter {
 
     /* renamed from: b */
-    private ArrayList<Integer> f3242b = new ArrayList<>();
+    private ArrayList<Integer> sectionIndexList = new ArrayList<>();
 
     /* renamed from: c */
     private int f3243c = 0;
 
     /* renamed from: a */
-    protected LayoutInflater f3241a = LayoutInflater.from(BaseApplication.getApplication());
+    protected LayoutInflater layoutInflater = LayoutInflater.from(BaseApplication.getApplication());
 
     /* renamed from: a */
     protected abstract int mo5528a();
@@ -28,7 +28,7 @@ public abstract class SectionListAdapter extends BaseAdapter {
     protected abstract int mo5527a(int i);
 
     /* renamed from: a */
-    protected abstract View mo5523a(ViewGroup viewGroup);
+    protected abstract View getSectionConvertView(ViewGroup viewGroup);
 
     /* renamed from: a */
     protected abstract Object mo5526a(int i, int i2);
@@ -40,7 +40,7 @@ public abstract class SectionListAdapter extends BaseAdapter {
     protected abstract void mo5524a(int i, View view);
 
     /* renamed from: b */
-    protected abstract View mo5519b(ViewGroup viewGroup);
+    protected abstract View getSubConvertView(ViewGroup viewGroup);
 
     /* renamed from: c */
     protected abstract Object mo5517c(int i);
@@ -52,10 +52,10 @@ public abstract class SectionListAdapter extends BaseAdapter {
 
     @Override // android.widget.Adapter
     public final Object getItem(int i) {
-        if (m7569d(i)) {
-            return mo5517c(m7568e(i));
+        if (isSectionIndex(i)) {
+            return mo5517c(findSectionFormSubIndex(i));
         }
-        int m7568e = m7568e(i);
+        int m7568e = findSectionFormSubIndex(i);
         return mo5526a(m7568e, m7571b(i, m7568e));
     }
 
@@ -65,61 +65,61 @@ public abstract class SectionListAdapter extends BaseAdapter {
     }
 
     @Override // android.widget.Adapter
-    public final View getView(int i, View view, ViewGroup viewGroup) {
-        return m7569d(i) ? m7573a(i, view, viewGroup) : m7570b(i, view, viewGroup);
+    public final View getView(int position, View view, ViewGroup viewGroup) {
+        return isSectionIndex(position) ? getSectionView(position, view, viewGroup) : m7570b(position, view, viewGroup);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: b */
     public void m7572b() {
         int mo5528a = mo5528a();
-        this.f3242b.clear();
+        this.sectionIndexList.clear();
         int i = 0;
         for (int i2 = 0; i2 < mo5528a; i2++) {
-            this.f3242b.add(Integer.valueOf(i));
+            this.sectionIndexList.add(Integer.valueOf(i));
             i = i + 1 + mo5527a(i2);
         }
         this.f3243c = i;
     }
 
     /* renamed from: a */
-    protected final View m7573a(int i, View view, ViewGroup viewGroup) {
+    protected final View getSectionView(int position, View view, ViewGroup viewGroup) {
         if (view == null) {
-            view = mo5523a(viewGroup);
+            view = getSectionConvertView(viewGroup);
             view.setTag(R.id.tag_view_key, "section");
         } else if ("section" != view.getTag(R.id.tag_view_key)) {
-            view = mo5523a(viewGroup);
+            view = getSectionConvertView(viewGroup);
             view.setTag(R.id.tag_view_key, "section");
         }
-        mo5524a(m7568e(i), view);
+        mo5524a(findSectionFormSubIndex(position), view);
         return view;
     }
 
     /* renamed from: b */
     protected final View m7570b(int i, View view, ViewGroup viewGroup) {
         if (view == null) {
-            view = mo5519b(viewGroup);
+            view = getSubConvertView(viewGroup);
             view.setTag(R.id.tag_view_key, "subItem");
         } else if ("subItem" != view.getTag(R.id.tag_view_key)) {
-            view = mo5519b(viewGroup);
+            view = getSubConvertView(viewGroup);
             view.setTag(R.id.tag_view_key, "subItem");
         }
-        int m7568e = m7568e(i);
-        mo5525a(m7568e, m7571b(i, m7568e), view);
+        int sectionIndex = findSectionFormSubIndex(i);
+        mo5525a(sectionIndex, m7571b(i, sectionIndex), view);
         return view;
     }
 
     /* renamed from: d */
-    protected boolean m7569d(int i) {
-        return this.f3242b.contains(Integer.valueOf(i));
+    protected boolean isSectionIndex(int i) {
+        return this.sectionIndexList.contains(Integer.valueOf(i));
     }
 
     /* renamed from: e */
-    protected int m7568e(int i) {
-        int size = this.f3242b.size();
+    protected int findSectionFormSubIndex(int i) {
+        int size = this.sectionIndexList.size();
         int i2 = 0;
         while (i2 < size - 1) {
-            if (i >= this.f3242b.get(i2).intValue() && i < this.f3242b.get(i2 + 1).intValue()) {
+            if (i >= this.sectionIndexList.get(i2).intValue() && i < this.sectionIndexList.get(i2 + 1).intValue()) {
                 return i2;
             }
             i2++;
@@ -129,14 +129,14 @@ public abstract class SectionListAdapter extends BaseAdapter {
 
     /* renamed from: b */
     protected int m7571b(int i, int i2) {
-        return (i - this.f3242b.get(i2).intValue()) - 1;
+        return (i - this.sectionIndexList.get(i2).intValue()) - 1;
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: f */
     public int m7567f(int i) {
-        if (i < this.f3242b.size()) {
-            return this.f3242b.get(i).intValue();
+        if (i < this.sectionIndexList.size()) {
+            return this.sectionIndexList.get(i).intValue();
         }
         return -1;
     }

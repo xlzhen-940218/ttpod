@@ -66,7 +66,7 @@ public class SinaWeiboAuthHandler extends AuthHandler {
         hashMap.put("redirect_uri", "http://ttus.ttpod.com/thirdlogin/sina?code=6aef2d447c0e33be42045115551fbcc4");
         hashMap.put("display", "mobile");
         hashMap.put("scope", "all");
-        return UrlUtils.m8333a("https://open.weibo.cn/oauth2/authorize", hashMap);
+        return UrlUtils.buildGetParamsUrl("https://open.weibo.cn/oauth2/authorize", hashMap);
     }
 
     @Override // com.sds.android.ttpod.share.p137b.AuthHandler

@@ -32,8 +32,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ThemeUtils;
@@ -63,7 +61,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
         this.mMVPopupDialogCallBack = new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.fragment.main.findsong.OnlineMVFragment.2
             @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
             /* renamed from: a */
-            public void mo1219a() {
+            public void onSuccess() {
                 OnlineMVFragment.this.playMv(OnlineMVFragment.this.mMVOnlineData);
             }
 
@@ -181,8 +179,8 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
             this.mFooterView.clearAnimation();
             this.mFooterView.m1877a();
         }
-        VideoPlayManager.m5813a(getActivity(), null, null, EnvironmentUtils.C0604c.m8476d() == 2);
-        CommandCenter.getInstance().m4606a(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
+        VideoPlayManager.m5813a(getActivity(), null, null, EnvironmentUtils.DeviceConfig.m8476d() == 2);
+        CommandCenter.getInstance().execute(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
     }
 
     @Override // android.widget.AdapterView.OnItemClickListener
@@ -202,7 +200,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
     protected void playMv(MVOnlineData mVOnlineData) {
         if (mVOnlineData != null) {
             String highQualityUrl = mVOnlineData.getHighQualityUrl();
-            if (highQualityUrl == null || 2 != EnvironmentUtils.C0604c.m8476d()) {
+            if (highQualityUrl == null || 2 != EnvironmentUtils.DeviceConfig.m8476d()) {
                 highQualityUrl = mVOnlineData.getNormalQualityUrl();
             }
             //MVStatistic.m5076a("mv_channel");
@@ -288,8 +286,8 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
 
         @Override // com.sds.android.ttpod.fragment.main.findsong.base.MVListFragment.AbstractView$OnClickListenerC1592a, com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-            View inflate = this.f3157c.inflate(R.layout.mv_list_item_online, viewGroup, false);
+        protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+            View inflate = this.layoutInflater.inflate(R.layout.mv_list_item_online, viewGroup, false);
             inflate.setTag(new MVListFragment.AbstractView$OnClickListenerC1592a.C1594a(inflate));
             return inflate;
         }
@@ -298,8 +296,8 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
         /* JADX WARN: Can't rename method to resolve collision */
         @Override // com.sds.android.ttpod.fragment.main.findsong.base.MVListFragment.AbstractView$OnClickListenerC1592a, com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        public void mo5400a(final View view, MVOnlineData mVOnlineData, int i) {
-            super.mo5400a(view, mVOnlineData, i);
+        public void buildDataUI(final View view, MVOnlineData mVOnlineData, int i) {
+            super.buildDataUI(view, mVOnlineData, i);
             view.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.findsong.OnlineMVFragment.a.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view2) {

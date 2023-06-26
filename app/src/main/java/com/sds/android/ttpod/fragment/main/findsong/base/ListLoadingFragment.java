@@ -201,7 +201,7 @@ public abstract class ListLoadingFragment<D> extends SlidingClosableFragment imp
 
     protected void requestDataList(int i) {
         if (!this.mDataLoading && this.mRequestId != null) {
-            CommandCenter.getInstance().m4606a(new Command(this.mRequestId, Integer.valueOf(i)));
+            CommandCenter.getInstance().execute(new Command(this.mRequestId, Integer.valueOf(i)));
             this.mDataLoading = true;
         }
     }
@@ -240,7 +240,7 @@ public abstract class ListLoadingFragment<D> extends SlidingClosableFragment imp
     }
 
     protected void updateDataListView(ArrayList<D> arrayList) {
-        this.mListAdapter.m7663a((List) arrayList);
+        this.mListAdapter.setDataList((List) arrayList);
     }
 
     protected void showLastPageFooterText() {

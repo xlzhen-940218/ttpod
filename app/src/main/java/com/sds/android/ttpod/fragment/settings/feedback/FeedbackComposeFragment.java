@@ -66,7 +66,7 @@ public class FeedbackComposeFragment extends BaseFragment implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_send_feedback /* 2131231502 */:
-                if (!EnvironmentUtils.C0604c.m8474e()) {
+                if (!EnvironmentUtils.DeviceConfig.m8474e()) {
                     PopupsUtils.m6760a((int) R.string.network_error);
                     return;
                 }
@@ -81,7 +81,7 @@ public class FeedbackComposeFragment extends BaseFragment implements View.OnClic
                 } else {
                     this.mBtnSend.setClickable(false);
                     this.mBtnSend.setText(R.string.feedback_sending);
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.PROPOSAL_FEEDBACK, new FeedbackItem(trim, EnvironmentUtils.C0604c.m8473f().toString(), trim2)));
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.PROPOSAL_FEEDBACK, new FeedbackItem(trim, EnvironmentUtils.DeviceConfig.m8473f().toString(), trim2)));
                     return;
                 }
             default:

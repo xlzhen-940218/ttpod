@@ -1,7 +1,7 @@
 package com.sds.android.sdk.lib.request;
 
 import com.sds.android.sdk.lib.p059a.HttpRequest;
-import com.sds.android.sdk.lib.request.BaseResult;
+
 import java.util.HashMap;
 
 /* renamed from: com.sds.android.sdk.lib.request.j */
@@ -18,7 +18,7 @@ public class PostContentRequest<R extends BaseResult> extends Request<R> {
 
     @Override // com.sds.android.sdk.lib.request.Request
     /* renamed from: a */
-    protected HttpRequest.C0586a mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
+    protected HttpRequest.Response mo8541a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
         return HttpRequest.m8714a(str, hashMap, this.f2418a);
     }
 }

@@ -13,7 +13,6 @@ import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity;
-import com.sds.android.ttpod.fragment.downloadmanager.DownloadManagerFragment;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
@@ -138,8 +137,8 @@ public final class DownloadTaskFacade {
                 if (DownloadTaskInfo.TYPE_AUDIO.equals(m2400d.getType()) && (m4712a = MediaItemUtils.m4712a(m2400d.getSavePath())) != null) {
                     m4712a.setSongID(m2400d.getFileId());
                     m2429a(m4712a);
-                    if (StringUtils.m8344a(MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.m2858m()) || StringUtils.m8344a(DownloadUtils.m4762a(m2400d), Preferences.m2858m())) {
-                        Player.m2611e().m2624a(Preferences.m2858m(), (String) null);
+                    if (StringUtils.equals(MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.getLocalGroupId()) || StringUtils.equals(DownloadUtils.m4762a(m2400d), Preferences.getLocalGroupId())) {
+                        Player.m2611e().m2624a(Preferences.getLocalGroupId(), (String) null);
                     }
                 }
             }
@@ -268,7 +267,7 @@ public final class DownloadTaskFacade {
 
     /* renamed from: a */
     private static void m2426a(boolean z, String str) {
-        if (EnvironmentUtils.C0602a.m8502i() && z) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && z) {
             throw new IllegalArgumentException(str);
         }
     }

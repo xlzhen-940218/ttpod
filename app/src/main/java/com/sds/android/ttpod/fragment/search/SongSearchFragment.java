@@ -13,7 +13,6 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity;
 import com.sds.android.ttpod.activities.web.WebActivity;
 import com.sds.android.ttpod.component.p086c.DownloadMenuHandler;
 import com.sds.android.ttpod.fragment.WebFragment;
@@ -23,8 +22,6 @@ import com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 
 import java.lang.reflect.Method;
@@ -102,7 +99,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
                 show();
                 updateStateViews(null);
             }
-            CommandCenter.getInstance().m4606a(new Command(CommandID.START_SEARCH_SONG, this.mWord, Integer.valueOf(i), 50, this.mUserInput));
+            CommandCenter.getInstance().execute(new Command(CommandID.START_SEARCH_SONG, this.mWord, Integer.valueOf(i), 50, this.mUserInput));
             LogUtils.debug(TAG, "requestSongList " + trim + "cost " + (System.currentTimeMillis() - currentTimeMillis));
         }
     }
@@ -114,14 +111,14 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
 
     public void updateSongSearchFinished(Integer num, Integer num2, List list, String str) {
         LogUtils.debug(TAG, "loadPictureAfterSearchFinished " + list.size() + ", searchWord: " + str);
-        if (isAdded() && StringUtils.m8344a(this.mWord, str)) {
+        if (isAdded() && StringUtils.equals(this.mWord, str)) {
             updateMediaList(num, num2, list);
             if (this.mIsNewSearch) {
                 this.mListView.setSelection(0);
                 this.mIsNewSearch = false;
             }
             this.mIsSearching = false;
-            if (list.size() == 0 && EnvironmentUtils.C0604c.m8474e()) {
+            if (list.size() == 0 && EnvironmentUtils.DeviceConfig.m8474e()) {
                 thirdSearch();
             }
             //SearchStatistic.m4945a(num, getOrigin(), this.mWord);
@@ -138,7 +135,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     @Override // com.sds.android.ttpod.fragment.main.SearchResultFragment.InterfaceC1501a
     public void onFragmentSelected(String str, String str2) {
         this.mUserInput = str2;
-        if (!StringUtils.isEmpty(str) && !StringUtils.m8344a(str, this.mWord)) {
+        if (!StringUtils.isEmpty(str) && !StringUtils.equals(str, this.mWord)) {
             requestSongList(str);
         }
     }

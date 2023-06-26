@@ -52,7 +52,7 @@ public class CommentAdapter extends BaseListAdapter<Notice> {
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.musiccircle_message_comment_item, (ViewGroup) null, false);
         inflate.setTag(new C0972a(inflate));
         return inflate;
@@ -61,7 +61,7 @@ public class CommentAdapter extends BaseListAdapter<Notice> {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public final void mo5400a(View view, Notice notice, int i) {
+    public final void buildDataUI(View view, Notice notice, int i) {
         String songListName;
         String str;
         String str2;
@@ -73,7 +73,7 @@ public class CommentAdapter extends BaseListAdapter<Notice> {
                 ImageCacheUtils.m4752a(c0972a.f3255b, user.getAvatarUrl(), c0972a.f3255b.getWidth(), c0972a.f3255b.getHeight(), (int) R.drawable.img_avatar_default);
                 c0972a.f3257d.setText(user.getNickName());
             }
-            c0972a.f3256c.setText(TimeUtils.m8155a(m7664a(), comment.getCreateTimeInSecond()));
+            c0972a.f3256c.setText(TimeUtils.m8155a(getContext(), comment.getCreateTimeInSecond()));
             View.OnClickListener onClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.e.a.a.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view2) {
@@ -89,15 +89,15 @@ public class CommentAdapter extends BaseListAdapter<Notice> {
         EmoticonConversionUtil m6639b = EmoticonConversionUtil.m6639b();
         String tweet = (comment == null || comment.getUser() == null) ? null : comment.getTweet();
         if (!StringUtils.isEmpty(tweet)) {
-            CharSequence m6641a = m6639b.m6641a(m7664a(), tweet);
+            CharSequence m6641a = m6639b.m6641a(getContext(), tweet);
             if (m6641a == null) {
                 m6641a = "";
             }
             c0972a.f3258e.setText(m6641a);
-            c0972a.f3258e.setTextColor(m7664a().getResources().getColor(R.color.post_text_tweet));
+            c0972a.f3258e.setTextColor(getContext().getResources().getColor(R.color.post_text_tweet));
         } else {
             c0972a.f3258e.setText("抱歉，评论已被删除");
-            c0972a.f3258e.setTextColor(m7664a().getResources().getColor(R.color.post_text_title));
+            c0972a.f3258e.setTextColor(getContext().getResources().getColor(R.color.post_text_title));
         }
         Post originPost = notice.getOriginPost();
         if (originPost != null) {
@@ -127,7 +127,7 @@ public class CommentAdapter extends BaseListAdapter<Notice> {
                     CommentAdapter.this.f3250e.mo7918a(post);
                 }
             }), length, songListName.length() + length, 33);
-            c0972a.f3259f.setText(m6639b.m6641a(m7664a(), spannableString));
+            c0972a.f3259f.setText(m6639b.m6641a(getContext(), spannableString));
             c0972a.f3259f.setMovementMethod(TextViewFixTouchConsume.C2250a.m1445a());
             return;
         }

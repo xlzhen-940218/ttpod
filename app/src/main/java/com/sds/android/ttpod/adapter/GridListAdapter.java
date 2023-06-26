@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
-import com.sds.android.ttpod.framework.modules.skin.view.Animation;
+import com.sds.android.ttpod.framework.modules.skin.view.AnimationImageView;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
@@ -27,106 +27,106 @@ public abstract class GridListAdapter<D> extends BaseListAdapter<D> {
 
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+    protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
         View inflate = layoutInflater.inflate(R.layout.find_song_with_num_grid_list_view_item, viewGroup, false);
-        inflate.setTag(new C0966a(inflate));
+        inflate.setTag(new GridViewHolder(inflate));
         return inflate;
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.adapter.BaseListAdapter
     /* renamed from: a */
-    public void mo5400a(View view, D d, int i) {
-        D d2 = this.f3158d.get(i);
+    public void buildDataUI(View view, D d, int i) {
+        D d2 = this.dataList.get(i);
         view.setTag(R.id.view_bind_data, d2);
-        C0966a c0966a = (C0966a) view.getTag();
-        c0966a.f3213a.setText(mo5568b(d2));
-        c0966a.f3214b.setText(mo5566c(d2));
-        m7606a(c0966a.f3217e, (D) d2);
-        ImageCacheUtils.m4752a(c0966a.f3215c, mo5565d(d2), DisplayUtils.m7225c() / 2, DisplayUtils.m7224d() / 4, (int) R.drawable.img_music_default_icon);
+        GridViewHolder gridViewHolder = (GridViewHolder) view.getTag();
+        gridViewHolder.name.setText(mo5568b(d2));
+        gridViewHolder.number.setText(mo5566c(d2));
+        m7606a(gridViewHolder.playIcon, (D) d2);
+        ImageCacheUtils.m4752a(gridViewHolder.image, mo5565d(d2), DisplayUtils.m7225c() / 2, DisplayUtils.m7224d() / 4, (int) R.drawable.img_music_default_icon);
     }
 
     /* renamed from: a */
-    protected void m7606a(Animation animation, D d) {
+    protected void m7606a(AnimationImageView animation, D d) {
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
-    public void m7607a(C0966a c0966a) {
-        ThemeManager.m3269a(c0966a.m7594g(), ThemeElement.TILE_BACKGROUND);
-        ThemeUtils.m8178a(c0966a.m7602b(), ThemeElement.TILE_TEXT, ThemeElement.HOME_TEXT);
-        ThemeUtils.m8178a(c0966a.m7600c(), ThemeElement.TILE_SUB_TEXT, ThemeElement.HOME_SUB_TEXT);
+    public void m7607a(GridViewHolder c0966a) {
+        ThemeManager.m3269a(c0966a.getMask(), ThemeElement.TILE_BACKGROUND);
+        ThemeUtils.m8178a(c0966a.getName(), ThemeElement.TILE_TEXT, ThemeElement.HOME_TEXT);
+        ThemeUtils.m8178a(c0966a.getNumber(), ThemeElement.TILE_SUB_TEXT, ThemeElement.HOME_SUB_TEXT);
     }
 
     /* compiled from: GridListAdapter.java */
     /* renamed from: com.sds.android.ttpod.adapter.c$a */
     /* loaded from: classes.dex */
-    public static class C0966a {
+    public static class GridViewHolder {
 
         /* renamed from: a */
-        private TextView f3213a;
+        private TextView name;
 
         /* renamed from: b */
-        private TextView f3214b;
+        private TextView number;
 
         /* renamed from: c */
-        private ImageView f3215c;
+        private ImageView image;
 
         /* renamed from: d */
-        private ImageView f3216d;
+        private ImageView playIconBack;
 
         /* renamed from: e */
-        private Animation f3217e;
+        private AnimationImageView playIcon;
 
         /* renamed from: f */
-        private View f3218f;
+        private View convertView;
 
         /* renamed from: g */
-        private View f3219g;
+        private View mask;
 
-        public C0966a(View view) {
-            this.f3218f = view;
-            this.f3213a = (TextView) view.findViewById(R.id.grid_view_item_name);
-            this.f3214b = (TextView) view.findViewById(R.id.grid_view_item_num);
-            this.f3215c = (ImageView) view.findViewById(R.id.grid_view_item_image);
-            this.f3216d = (ImageView) view.findViewById(R.id.grid_view_item_play_icon_back);
-            this.f3217e = (Animation) view.findViewById(R.id.grid_view_item_play_icon);
-            this.f3219g = view.findViewById(R.id.grid_view_item_mask);
+        public GridViewHolder(View view) {
+            this.convertView = view;
+            this.name = (TextView) view.findViewById(R.id.grid_view_item_name);
+            this.number = (TextView) view.findViewById(R.id.grid_view_item_num);
+            this.image = (ImageView) view.findViewById(R.id.grid_view_item_image);
+            this.playIconBack = (ImageView) view.findViewById(R.id.grid_view_item_play_icon_back);
+            this.playIcon = (AnimationImageView) view.findViewById(R.id.grid_view_item_play_icon);
+            this.mask = view.findViewById(R.id.grid_view_item_mask);
         }
 
         /* renamed from: a */
-        public View m7604a() {
-            return this.f3218f;
+        public View getConvertView() {
+            return this.convertView;
         }
 
         /* renamed from: b */
-        public TextView m7602b() {
-            return this.f3213a;
+        public TextView getName() {
+            return this.name;
         }
 
         /* renamed from: c */
-        public TextView m7600c() {
-            return this.f3214b;
+        public TextView getNumber() {
+            return this.number;
         }
 
         /* renamed from: d */
-        public ImageView m7598d() {
-            return this.f3215c;
+        public ImageView getImageView() {
+            return this.image;
         }
 
         /* renamed from: e */
-        public Animation m7596e() {
-            return this.f3217e;
+        public AnimationImageView getPlayIcon() {
+            return this.playIcon;
         }
 
         /* renamed from: f */
-        public ImageView m7595f() {
-            return this.f3216d;
+        public ImageView getPlayIconBack() {
+            return this.playIconBack;
         }
 
         /* renamed from: g */
-        public View m7594g() {
-            return this.f3219g;
+        public View getMask() {
+            return this.mask;
         }
     }
 }

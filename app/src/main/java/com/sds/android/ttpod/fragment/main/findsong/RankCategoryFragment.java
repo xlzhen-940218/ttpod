@@ -35,7 +35,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
@@ -93,7 +92,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
         public void onScrollStateChanged(AbsListView absListView, int i) {
         }
     };
-    private C1555a mAdapter = new C1555a();
+    private RankCategoryAdapter mAdapter = new RankCategoryAdapter();
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onCreate(Bundle bundle) {
@@ -168,7 +167,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
 
     /* JADX INFO: Access modifiers changed from: private */
     public void requestMusicRankList() {
-        CommandCenter.getInstance().m4606a(new Command(CommandID.GET_MUSIC_RANKS, toString()));
+        CommandCenter.getInstance().execute(new Command(CommandID.GET_MUSIC_RANKS, toString()));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
@@ -196,7 +195,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
         if (musicRank != null) {
             isPlayingItem(musicRank);
             String m6917a = OnlinePlayingGroupUtils.m6917a(musicRank);
-            if (!StringUtils.m8344a(this.mActiveChannelTitle, m6917a) || this.mActiveChannelId != musicRank.getId()) {
+            if (!StringUtils.equals(this.mActiveChannelTitle, m6917a) || this.mActiveChannelId != musicRank.getId()) {
                 this.mActiveChannelId = musicRank.getId();
                 this.mActiveChannelTitle = m6917a;
                 this.mCurrentChannelState = 4;
@@ -225,7 +224,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
                 CommandCenter.getInstance().m4596b(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             case 3:
-                CommandCenter.getInstance().m4606a(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
                 return;
             default:
                 return;
@@ -252,7 +251,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
     }
 
     public void playMediaChanged() {
-        if (!StringUtils.m8344a(Preferences.m2926bc(), this.mActiveChannelTitle)) {
+        if (!StringUtils.equals(Preferences.m2926bc(), this.mActiveChannelTitle)) {
             this.mActiveChannelTitle = "";
         }
         if (isAdded()) {
@@ -331,7 +330,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
         } else {
             this.mMusicRankList.addAll(arrayList);
         }
-        this.mAdapter.m7663a((List) this.mMusicRankList);
+        this.mAdapter.setDataList((List) this.mMusicRankList);
         this.mAdapter.notifyDataSetChanged();
     }
 
@@ -355,7 +354,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
 
     /* JADX INFO: Access modifiers changed from: private */
     public boolean isPlayingItem(MusicRank musicRank) {
-        return StringUtils.m8344a(this.mActiveChannelTitle, OnlinePlayingGroupUtils.m6917a(musicRank));
+        return StringUtils.equals(this.mActiveChannelTitle, OnlinePlayingGroupUtils.m6917a(musicRank));
     }
 
     @Override // com.sds.android.ttpod.fragment.OnPageSelectedListener
@@ -368,21 +367,21 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: com.sds.android.ttpod.fragment.main.findsong.RankCategoryFragment$a */
     /* loaded from: classes.dex */
-    public class C1555a extends BaseListAdapter<MusicRank> {
-        private C1555a() {
+    public class RankCategoryAdapter extends BaseListAdapter<MusicRank> {
+        private RankCategoryAdapter() {
         }
 
         /* renamed from: a */
-        protected void m5595a(ImageView imageView, MusicRank musicRank) {
+        protected void setImageViewData(ImageView imageView, MusicRank musicRank) {
             imageView.setImageResource(((RankCategoryFragment.this.mCurrentChannelState == 2 || RankCategoryFragment.this.mCurrentChannelState == 4) && RankCategoryFragment.this.isPlayingItem(musicRank)) ? R.drawable.img_rank_play_paused : R.drawable.img_rank_play_normal);
         }
 
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a */
-        protected View mo5402a(LayoutInflater layoutInflater, ViewGroup viewGroup) {
-            View inflate = this.f3157c.inflate(R.layout.rank_category_item, viewGroup, false);
+        protected View getConvertView(LayoutInflater layoutInflater, ViewGroup viewGroup) {
+            View inflate = this.layoutInflater.inflate(R.layout.rank_category_item, viewGroup, false);
             if (inflate != null) {
-                inflate.setTag(new C1557b(inflate));
+                inflate.setTag(new RankCategoryViewHolder(inflate));
             }
             return inflate;
         }
@@ -390,43 +389,43 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
         /* JADX INFO: Access modifiers changed from: protected */
         @Override // com.sds.android.ttpod.adapter.BaseListAdapter
         /* renamed from: a  reason: avoid collision after fix types in other method */
-        public void mo5400a(View view, MusicRank musicRank, int i) {
+        public void buildDataUI(View view, MusicRank musicRank, int i) {
             long uptimeMillis = SystemClock.uptimeMillis();
             if (RankCategoryFragment.this.mMusicRankList != null) {
                 MusicRank musicRank2 = (MusicRank) RankCategoryFragment.this.mMusicRankList.get(i);
                 view.setTag(R.id.view_bind_data, musicRank2);
-                C1557b c1557b = (C1557b) view.getTag();
-                c1557b.f5220c.setText(musicRank2.getTitle());
-                m5595a(c1557b.f5222e, musicRank2);
-                m5594a(musicRank2, c1557b);
-                c1557b.f5221d.setTag(R.id.view_bind_data, musicRank2);
-                c1557b.f5221d.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.findsong.RankCategoryFragment.a.1
+                RankCategoryViewHolder rankCategoryViewHolder = (RankCategoryViewHolder) view.getTag();
+                rankCategoryViewHolder.title.setText(musicRank2.getTitle());
+                setImageViewData(rankCategoryViewHolder.imagePlayState, musicRank2);
+                setSongListData(musicRank2, rankCategoryViewHolder);
+                rankCategoryViewHolder.image.setTag(R.id.view_bind_data, musicRank2);
+                rankCategoryViewHolder.image.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.findsong.RankCategoryFragment.a.1
                     @Override // android.view.View.OnClickListener
                     public void onClick(View view2) {
                         RankCategoryFragment.this.onPlayImageClick(view2);
                     }
                 });
                 int m7229a = DisplayUtils.m7229a((int) RankCategoryFragment.WIDTH);
-                ImageCacheUtils.m4752a(c1557b.f5221d, musicRank2.getPicUrl(), m7229a, m7229a, (int) R.drawable.img_music_default_icon);
-                c1557b.m3250a(ThemeUtils.m8163b());
+                ImageCacheUtils.m4752a(rankCategoryViewHolder.image, musicRank2.getPicUrl(), m7229a, m7229a, (int) R.drawable.img_music_default_icon);
+                rankCategoryViewHolder.m3250a(ThemeUtils.m8163b());
                 LogUtils.info(RankCategoryFragment.TAG, "time: " + (SystemClock.uptimeMillis() - uptimeMillis));
             }
         }
 
         /* renamed from: a */
-        private void m5594a(MusicRank musicRank, C1557b c1557b) {
+        private void setSongListData(MusicRank musicRank, RankCategoryViewHolder c1557b) {
             int i = 0;
             ArrayList<MusicRank.SimpleSongInfo> songList = musicRank.getSongList();
             if (songList != null) {
                 int min = Math.min(songList.size(), 4);
                 for (int i2 = 0; i2 < min; i2++) {
                     MusicRank.SimpleSongInfo simpleSongInfo = songList.get(i2);
-                    ((TextView) c1557b.f5223f.get(i2)).setText((i2 + 1) + ". " + simpleSongInfo.getSongName() + " - " + simpleSongInfo.getSingerName());
+                    ((TextView) c1557b.songList.get(i2)).setText((i2 + 1) + ". " + simpleSongInfo.getSongName() + " - " + simpleSongInfo.getSingerName());
                 }
                 i = min;
             }
             while (i < 4) {
-                ((TextView) c1557b.f5223f.get(i)).setText("");
+                ((TextView) c1557b.songList.get(i)).setText("");
                 i++;
             }
         }
@@ -435,53 +434,53 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: com.sds.android.ttpod.fragment.main.findsong.RankCategoryFragment$b */
     /* loaded from: classes.dex */
-    public static class C1557b extends ThemeManager.AbstractC2018a {
+    public static class RankCategoryViewHolder extends ThemeManager.AbstractC2018a {
 
         /* renamed from: a */
-        private View f5218a;
+        private View convertView;
 
         /* renamed from: b */
-        private View f5219b;
+        private View titleBarLeftLine;
 
         /* renamed from: c */
-        private TextView f5220c;
+        private TextView title;
 
         /* renamed from: d */
-        private ImageView f5221d;
+        private ImageView image;
 
         /* renamed from: e */
-        private ImageView f5222e;
+        private ImageView imagePlayState;
 
         /* renamed from: f */
-        private List<TextView> f5223f = new ArrayList(4);
+        private List<TextView> songList = new ArrayList(4);
 
         /* renamed from: g */
-        private View f5224g;
+        private View layoutContent;
 
-        public C1557b(View view) {
-            this.f5218a = view;
-            this.f5219b = view.findViewById(R.id.id_title_bar_left_line);
-            this.f5220c = (TextView) view.findViewById(R.id.title);
-            this.f5221d = (ImageView) view.findViewById(R.id.image);
-            this.f5222e = (ImageView) view.findViewById(R.id.image_play_state);
-            this.f5223f.add((TextView) view.findViewById(R.id.song0));
-            this.f5223f.add((TextView) view.findViewById(R.id.song1));
-            this.f5223f.add((TextView) view.findViewById(R.id.song2));
-            this.f5223f.add((TextView) view.findViewById(R.id.song3));
-            this.f5224g = view.findViewById(R.id.layout_content);
+        public RankCategoryViewHolder(View view) {
+            this.convertView = view;
+            this.titleBarLeftLine = view.findViewById(R.id.id_title_bar_left_line);
+            this.title = (TextView) view.findViewById(R.id.title);
+            this.image = (ImageView) view.findViewById(R.id.image);
+            this.imagePlayState = (ImageView) view.findViewById(R.id.image_play_state);
+            this.songList.add((TextView) view.findViewById(R.id.song0));
+            this.songList.add((TextView) view.findViewById(R.id.song1));
+            this.songList.add((TextView) view.findViewById(R.id.song2));
+            this.songList.add((TextView) view.findViewById(R.id.song3));
+            this.layoutContent = view.findViewById(R.id.layout_content);
         }
 
         @Override // com.sds.android.ttpod.framework.modules.theme.ThemeManager.AbstractC2018a
         /* renamed from: a */
         protected void mo3251a() {
-            ThemeManager.m3269a(this.f5224g, ThemeElement.TILE_BACKGROUND);
-            ThemeManager.m3269a(this.f5219b, ThemeElement.SONG_LIST_ITEM_INDICATOR);
-            ThemeManager.m3269a(this.f5220c, ThemeElement.TILE_TEXT);
-            ThemeManager.m3269a(this.f5220c, ThemeElement.TILE_BACKGROUND);
-            ThemeUtils.m8173a((IconTextView) this.f5218a.findViewById(R.id.item_click_arrow), ThemeElement.TILE_SUB_TEXT);
-            int size = this.f5223f.size();
+            ThemeManager.m3269a(this.layoutContent, ThemeElement.TILE_BACKGROUND);
+            ThemeManager.m3269a(this.titleBarLeftLine, ThemeElement.SONG_LIST_ITEM_INDICATOR);
+            ThemeManager.m3269a(this.title, ThemeElement.TILE_TEXT);
+            ThemeManager.m3269a(this.title, ThemeElement.TILE_BACKGROUND);
+            ThemeUtils.m8173a((IconTextView) this.convertView.findViewById(R.id.item_click_arrow), ThemeElement.TILE_SUB_TEXT);
+            int size = this.songList.size();
             for (int i = 0; i < size; i++) {
-                ThemeManager.m3269a(this.f5223f.get(i), ThemeElement.SONG_LIST_ITEM_TEXT);
+                ThemeManager.m3269a(this.songList.get(i), ThemeElement.SONG_LIST_ITEM_TEXT);
             }
         }
     }

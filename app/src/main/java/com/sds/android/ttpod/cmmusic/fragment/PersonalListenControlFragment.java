@@ -62,7 +62,7 @@ public class PersonalListenControlFragment extends BaseFragment {
 
     private void initDBViewContent() {
         try {
-            TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.PersonalListenControlFragment.1
+            TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.cmmusic.fragment.PersonalListenControlFragment.1
                 @Override // java.lang.Runnable
                 public void run() {
                     List<SondContentInfo> m7316a = UserSelectListenQuery.m7316a();

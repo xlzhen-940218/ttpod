@@ -29,8 +29,6 @@ import com.sds.android.ttpod.framework.base.CommonResult;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.mediastore.GroupItem;
 import com.sds.android.ttpod.media.mediastore.GroupType;
@@ -71,7 +69,7 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
                 //SUserUtils.m4956a(SAction.ACTION_MENU_SONGLIST_SYNC, SPage.PAGE_NONE);
                 if (Preferences.m2954aq() == null) {
                     EntryUtils.m8297a(true);
-                } else if (!EnvironmentUtils.C0604c.m8474e()) {
+                } else if (!EnvironmentUtils.DeviceConfig.m8474e()) {
                     PopupsUtils.m6760a((int) R.string.network_unavailable);
                     return;
                 } else {
@@ -149,7 +147,7 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
         }
 
         public void onMusicCirclePostsChanged(BaseResult baseResult, String str) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.CUSTOM_ONLINE));
+            CommandCenter.getInstance().execute(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.CUSTOM_ONLINE));
         }
 
         public void updateMusicCircleLists(PostResult postResult, String str) {
@@ -243,7 +241,7 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
                             return;
                         }
                         editTextDialog2.m7242f(true);
-                        CommandCenter.getInstance().m4606a(new Command(CommandID.UPDATE_GROUP_ITEM, new GroupItem(m6902c.m6896d().toString(), groupItem.getGroupID(), groupItem.getCount())));
+                        CommandCenter.getInstance().execute(new Command(CommandID.UPDATE_GROUP_ITEM, new GroupItem(m6902c.m6896d().toString(), groupItem.getGroupID(), groupItem.getCount())));
                     }
                 }
             }, null);

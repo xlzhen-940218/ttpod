@@ -16,6 +16,7 @@ import androidx.multidex.MultiDexApplication;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
 import com.sds.android.sdk.core.p058b.ExceptionReporter;
 
+import com.sds.android.sdk.lib.p059a.FakeHttpServer;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
@@ -27,6 +28,8 @@ import com.sds.android.ttpod.framework.modules.core.p113b.GlobalModule;
 import com.sds.android.ttpod.framework.storage.database.SearchSqliteDb;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.audiofx.EffectDetect;
+
+import java.io.IOException;
 import java.util.List;
 
 /* loaded from: classes.dex */
@@ -37,12 +40,14 @@ public class BaseApplication extends MultiDexApplication {
 
     /* renamed from: b */
     private static String f5694b;
+    private static FakeHttpServer fakeHttpServer;
 
     @Override // android.app.Application
     public final void onCreate() {
         super.onCreate();
+        startFakeServer();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if(!Environment.isExternalStorageManager()) {
+            if (!Environment.isExternalStorageManager()) {
                 try {
                     Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
                     Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
@@ -63,7 +68,7 @@ public class BaseApplication extends MultiDexApplication {
         application = this;
         f5694b = m4625m();
         EnvironmentUtils.m8525a(this);
-        LogUtils.setEnableLog(EnvironmentUtils.C0602a.m8503h());
+        LogUtils.setEnableLog(EnvironmentUtils.AppConfig.getTestMode());
         EffectDetect.detectAudioPlus(this);
         ExceptionReporter.m8750a(this, Action.EXCEPTION_REPORT);
         //UmengStatisticUtils.m4867a(this, EnvironmentUtils.C0602a.m8512b());
@@ -76,6 +81,21 @@ public class BaseApplication extends MultiDexApplication {
             m4632f();
         } else if (m4629i()) {
             m4633e();
+        }
+
+
+    }
+
+    private void startFakeServer() {
+        if (fakeHttpServer == null) {
+            new Thread(() -> {
+                fakeHttpServer = new FakeHttpServer();
+                try {
+                    fakeHttpServer.start();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }).start();
         }
     }
 
@@ -90,7 +110,7 @@ public class BaseApplication extends MultiDexApplication {
         try {
             m4622p();
             Preferences.m3033X(true);
-            ModuleManager.getInstance().m4116a(this);
+            ModuleManager.getInstance().init(this);
             m4626l();
             //StartupStatistic.m4923a(f5694b);
             //AppRuntimeStatistic.m5273a();
@@ -112,17 +132,7 @@ public class BaseApplication extends MultiDexApplication {
 
     /* renamed from: l */
     private void m4626l() {
-        if (EnvironmentUtils.C0602a.m8503h()) {
-            //SEngine.instance();
-            //SEngine.setURL(StatisticCommitter.TEST_URL_MAIN);
-        } else {
-            //SEngine.instance();
-            //SEngine.setURL("http://collect.log.ttpod.com/ttpod_client_v2");
-        }
-        //SEngine.instance();
-        //SEngine.setGeneralParameter(EnvironmentUtils.C0603b.m8488e());
-        //SEngine.instance();
-        //SEngine.bindToService(this);
+
     }
 
     /* renamed from: d */
@@ -137,7 +147,7 @@ public class BaseApplication extends MultiDexApplication {
         new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.BaseApplication.1
             @Override // java.lang.Runnable
             public void run() {
-                TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.base.BaseApplication.1.1
+                TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.base.BaseApplication.1.1
                     @Override // java.lang.Runnable
                     public void run() {
                         GlobalModule.setContext(BaseApplication.this);

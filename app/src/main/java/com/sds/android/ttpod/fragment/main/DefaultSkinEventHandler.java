@@ -28,8 +28,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.p130c.SkinEventHandler;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -86,12 +84,12 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
             default:
                 return false;
             case 4:
-                CommandCenter.getInstance().m4606a(new Command(CommandID.SET_POSITION, this.f5127a));
+                CommandCenter.getInstance().execute(new Command(CommandID.SET_POSITION, this.f5127a));
                 this.f5127a = null;
                 break;
             case 5:
                 if (((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.IS_SLEEP_MODE_ENABLED, new Object[0]), Boolean.class)).booleanValue()) {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.STOP_SLEEP_MODE, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.STOP_SLEEP_MODE, new Object[0]));
                     PopupsUtils.m6721a(this.f5129c.getString(R.string.cancel_sleep_mode));
                     break;
                 } else {
@@ -99,7 +97,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                     break;
                 }
             case 6:
-                CommandCenter.getInstance().m4606a(new Command(CommandID.SWITCH_PLAY_MODE, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.SWITCH_PLAY_MODE, new Object[0]));
                 m5668f();
                 break;
             case 10:
@@ -132,7 +130,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                 break;
             case 14:
             case 15:
-                if (EnvironmentUtils.C0602a.m8502i() && (obj == null || !(obj instanceof Number))) {
+                if (EnvironmentUtils.AppConfig.getTestMode() && (obj == null || !(obj instanceof Number))) {
                     throw new IllegalArgumentException("actionData must be Integer");
                 }
                 if (i == 15) {
@@ -145,25 +143,25 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                 break;
             case 18:
                 if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.RESUME, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                 } else if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_STOPPED) {
-                    CommandCenter.getInstance().m4606a(new Command(CommandID.START, new Object[0]));
+                    CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
                 }
                 //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_PLAY, SPage.PAGE_PORTRAIT_PLAYER, SPage.PAGE_NONE);
                 break;
             case 19:
                 ((BaseActivity) this.f5129c).acquireFastClickSupport();
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                 //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_PAUSE, SPage.PAGE_PORTRAIT_PLAYER, SPage.PAGE_NONE);
                 break;
             case 20:
                 ((BaseActivity) this.f5129c).acquireFastClickSupport();
-                CommandCenter.getInstance().m4606a(new Command(CommandID.NEXT, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
                 //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_NEXT, SPage.PAGE_PORTRAIT_PLAYER, SPage.PAGE_NONE);
                 break;
             case 21:
                 ((BaseActivity) this.f5129c).acquireFastClickSupport();
-                CommandCenter.getInstance().m4606a(new Command(CommandID.PREVIOUS, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(CommandID.PREVIOUS, new Object[0]));
                 //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_PREV, SPage.PAGE_PORTRAIT_PLAYER, SPage.PAGE_NONE);
                 break;
             case 22:
@@ -193,7 +191,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                         @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                         /* renamed from: a  reason: avoid collision after fix types in other method */
                         public void mo2038a(OptionalDialog optionalDialog) {
-                            CommandCenter.getInstance().m4606a(new Command(CommandID.DELETE_MEDIA_ITEM, m3225N.getGroupID(), m3225N, Boolean.valueOf(optionalDialog.m6808b())));
+                            CommandCenter.getInstance().execute(new Command(CommandID.DELETE_MEDIA_ITEM, m3225N.getGroupID(), m3225N, Boolean.valueOf(optionalDialog.m6808b())));
                         }
                     });
                     break;
@@ -237,7 +235,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
     public void m5676a() {
         MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
-            PopupsUtils.m6756a(this.f5129c, m3225N);
+            PopupsUtils.shareMediaItem(this.f5129c, m3225N);
         }
     }
 
@@ -250,7 +248,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                     @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
                     /* renamed from: a */
                     public void mo5409a(ActionItem actionItem, int i) {
-                        PopupsUtils.m6738a(DefaultSkinEventHandler.this.f5129c, m3225N, Preferences.m2858m(), (BaseDialog.InterfaceC1064a<MoreOptionalDialog>) null);
+                        PopupsUtils.m6738a(DefaultSkinEventHandler.this.f5129c, m3225N, Preferences.getLocalGroupId(), (BaseDialog.InterfaceC1064a<MoreOptionalDialog>) null);
                     }
                 }, new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.fragment.main.a.3
                     @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b

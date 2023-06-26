@@ -172,9 +172,9 @@ public class GroupListFragment extends BaseGroupListFragment implements IOrderAb
     @Override // com.sds.android.ttpod.fragment.main.list.BaseGroupListFragment
     protected void onReloadData() {
         if (MediaStorage.MEDIA_ORDER_BY_AMOUNT.equals(Preferences.m3016a(this.mGroupType))) {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST_BY_AMOUNT_ORDER, this.mGroupType));
+            CommandCenter.getInstance().execute(new Command(CommandID.QUERY_GROUP_ITEM_LIST_BY_AMOUNT_ORDER, this.mGroupType));
         } else {
-            CommandCenter.getInstance().m4606a(new Command(CommandID.QUERY_GROUP_ITEM_LIST, this.mGroupType));
+            CommandCenter.getInstance().execute(new Command(CommandID.QUERY_GROUP_ITEM_LIST, this.mGroupType));
         }
     }
 

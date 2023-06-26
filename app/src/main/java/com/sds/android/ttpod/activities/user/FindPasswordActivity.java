@@ -83,12 +83,12 @@ public class FindPasswordActivity extends SlidingClosableActivity {
     /* JADX INFO: Access modifiers changed from: private */
     public void processFindPassword(String str, View view) {
         if (ValidateUtil.m7704a(str, R.string.use_name_hint_text, R.string.email_format, view, R.anim.shake, ValidateUtil.f3111a)) {
-            if (!EnvironmentUtils.C0604c.m8474e()) {
+            if (!EnvironmentUtils.DeviceConfig.m8474e()) {
                 PopupsUtils.m6760a((int) R.string.network_unavailable);
                 return;
             }
             PopupsUtils.m6748a(this, (int) R.string.find_password_waiting);
-            CommandCenter.getInstance().m4606a(new Command(CommandID.FIND_PASSWORD, str));
+            CommandCenter.getInstance().execute(new Command(CommandID.FIND_PASSWORD, str));
         }
     }
 

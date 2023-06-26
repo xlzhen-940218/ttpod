@@ -173,7 +173,7 @@ public final class MediaDBHelper extends SQLiteOpenHelper {
                 String asString = contentValues.getAsString("_id");
                 if (!customMediaIDs.contains(asString)) {
                     Long asLong = contentValues.getAsLong("song_id");
-                    if (asLong == null || !StringUtils.m8344a(MediaItem.genIDWithSongID(asLong), asString)) {
+                    if (asLong == null || !StringUtils.equals(MediaItem.genIDWithSongID(asLong), asString)) {
                         MediaDBHelper.this.associateLocalMediaTable(sQLiteDatabase, str);
                     } else {
                         sQLiteDatabase.insert(MediaDBHelper.this.associateOnlineMediaTable(sQLiteDatabase, str), null, contentValues);
@@ -486,7 +486,7 @@ public final class MediaDBHelper extends SQLiteOpenHelper {
                                 rawQuery.close();
                                 String buildMediaItemSelectionFromGroupMapSelection = Builder.buildMediaItemSelectionFromGroupMapSelection(str, string, string2, Builder.getOnlineFavTable(sQLiteDatabase), str6, str3);
                                 Cursor rawQuery2 = sQLiteDatabase.rawQuery(buildMediaItemSelectionFromGroupMapSelection, null);
-                                if (StringUtils.isEmpty(str6) && !StringUtils.m8344a(string3, str3)) {
+                                if (StringUtils.isEmpty(str6) && !StringUtils.equals(string3, str3)) {
                                     Cursor rawQuery3 = sQLiteDatabase.rawQuery("SELECT MAX(sort_order) FROM " + str, null);
                                     if (rawQuery3 != null) {
                                         j = rawQuery3.moveToNext() ? rawQuery3.getLong(0) : 0L;
@@ -811,7 +811,7 @@ public final class MediaDBHelper extends SQLiteOpenHelper {
         }
 
         static String unionOrderBy(String str) {
-            if (StringUtils.m8344a(str, MediaStorage.MEDIA_ORDER_BY_ALBUM_DESC) || StringUtils.m8344a(str, "album_key")) {
+            if (StringUtils.equals(str, MediaStorage.MEDIA_ORDER_BY_ALBUM_DESC) || StringUtils.equals(str, "album_key")) {
                 return str + ",track";
             }
             return str;

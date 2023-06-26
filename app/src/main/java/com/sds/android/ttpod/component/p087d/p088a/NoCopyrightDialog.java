@@ -12,8 +12,6 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import java.util.List;
 
@@ -56,7 +54,7 @@ public class NoCopyrightDialog extends ListDialog<ActionItem> {
 
     /* renamed from: b */
     private void m6811b(Context context) {
-        if (HttpRequest.m8704b()) {
+        if (HttpRequest.isProxy()) {
             String string = context.getString(R.string.unicom_flow_search_prefix);
             String string2 = context.getString(R.string.unicom_flow_search_suffix);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();

@@ -8,8 +8,6 @@ import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.widget.IconTextView;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.utils.EntryUtils;
@@ -100,7 +98,7 @@ public class MediaItemMenuHolder {
     }
 
     /* renamed from: a */
-    public void m6976a(MediaItem mediaItem, int i) {
+    public void favority(MediaItem mediaItem, int i) {
         if (!mediaItem.isThirdParty()) {
             boolean fav = mediaItem.getFav();
             if (mediaItem.isOnline() && Preferences.m2954aq() == null) {

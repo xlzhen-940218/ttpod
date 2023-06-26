@@ -76,11 +76,11 @@ public class SearchModule extends BaseModule {
     }
 
     public void reportLyricPicture(ReportTask.EnumC2097b enumC2097b, ReportTask.EnumC2096a enumC2096a, MediaItem mediaItem) {
-        TaskScheduler.m8581a(new ReportTask(enumC2097b, enumC2096a, mediaItem));
+        TaskScheduler.start(new ReportTask(enumC2097b, enumC2096a, mediaItem));
     }
 
     public void aggregateSearch(final String str, final Integer num, final Integer num2, final String str2) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.1
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.1
             @Override // java.lang.Runnable
             public void run() {
                 String m2945az = Preferences.m2945az();
@@ -103,7 +103,7 @@ public class SearchModule extends BaseModule {
     }
 
     public void searchAlbum(final String str, final Integer num, final Integer num2, final String str2) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.3
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.3
             @Override // java.lang.Runnable
             public void run() {
                 Request<AlbumItemsResult> m8858b;
@@ -118,7 +118,7 @@ public class SearchModule extends BaseModule {
     }
 
     public void searchPlaylist(final String str, final Integer num, final Integer num2, final String str2) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.4
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.4
             @Override // java.lang.Runnable
             public void run() {
                 CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_PLAY_LIST_RESULT, OnlineMediaSearchAPI.m8857c(str, num.intValue(), num2.intValue(), str2 == null ? "" : str2).m8531f()), ModuleID.SEARCH);
@@ -127,7 +127,7 @@ public class SearchModule extends BaseModule {
     }
 
     public void searchHotWords() {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.5
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.5
             @Override // java.lang.Runnable
             public void run() {
                 CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_HOT_WORDS_FINISHED, HotWordsAPI.m8884a().m8531f().getDataList()), ModuleID.SEARCH);
@@ -136,7 +136,7 @@ public class SearchModule extends BaseModule {
     }
 
     public void searchAssociateWords(final String str) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.6
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.6
             @Override // java.lang.Runnable
             public void run() {
                 CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_ASSOCIATE_FINISHED, AssociateWordsAPI.m8935a(str).m8531f().getDataList()), ModuleID.SEARCH);
@@ -145,7 +145,7 @@ public class SearchModule extends BaseModule {
     }
 
     public void searchBillboard(final Integer num) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.7
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.7
             @Override // java.lang.Runnable
             public void run() {
                 CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SEARCH_BILLBOARD_FINISHED, BillboardAPI.m8934a(num.intValue()).m8531f().getDataList()), ModuleID.SEARCH);
@@ -154,7 +154,7 @@ public class SearchModule extends BaseModule {
     }
 
     public void reportSong(final String str) {
-        TaskScheduler.m8581a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.8
+        TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.search.a.8
             @Override // java.lang.Runnable
             public void run() {
                 BaseResult m8531f = OnlineMediaSearchAPI.m8862a(str).m8531f();
@@ -246,9 +246,9 @@ public class SearchModule extends BaseModule {
     private void m3920a(final SearchStatus searchStatus, final String str, ArrayList<String> arrayList) {
         MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         String str2 = (arrayList == null || arrayList.isEmpty()) ? null : arrayList.get(0);
-        if (StringUtils.m8344a(m3225N.getID(), str)) {
+        if (StringUtils.equals(m3225N.getID(), str)) {
             Cache m3218a = Cache.getInstance();
-            if (!StringUtils.m8344a(m3218a.m3164g(), str2)) {
+            if (!StringUtils.equals(m3218a.m3164g(), str2)) {
                 m3218a.m3205a(str2, m3225N);
             } else {
                 return;
@@ -287,7 +287,7 @@ public class SearchModule extends BaseModule {
     private void m3917b(final SearchStatus searchStatus, final String str, ArrayList<String> arrayList) {
         final String str2 = arrayList.get(0);
         MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
-        if (StringUtils.m8344a(m3225N.getID(), str)) {
+        if (StringUtils.equals(m3225N.getID(), str)) {
             Cache.getInstance().m3191b(str2, m3225N);
         }
         LogUtils.debug("SearchModule", "asyncLoadLyric lookLyricPic will begin path=%s", str2);
