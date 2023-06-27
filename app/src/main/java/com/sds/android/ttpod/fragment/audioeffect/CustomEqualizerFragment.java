@@ -209,7 +209,7 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
         if (this.mFragmentView == null) {
             this.mFragmentView = layoutInflater.inflate(R.layout.activity_custom_equalizer, (ViewGroup) null);
             this.mEqualizerStyeTextView = (TextView) this.mFragmentView.findViewById(R.id.textview_effect_equalizer);
-            AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+            AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
             if (m2457s != null) {
                 settings = new TTEqualizer.Settings(m2457s.m4421g());
             } else {
@@ -236,7 +236,7 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
     }
 
     public void updateAudioEffectInfo() {
-        AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+        AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
         if (m2457s != null) {
             TTEqualizer.Settings settings = new TTEqualizer.Settings(m2457s.m4421g());
             short[] bandLevels = settings.getBandLevels();

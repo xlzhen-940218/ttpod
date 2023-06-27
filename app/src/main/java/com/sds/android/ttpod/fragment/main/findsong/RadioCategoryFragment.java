@@ -78,8 +78,8 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
         if (arguments != null) {
             this.mRadioCategoryChannel = (RadioCategoryChannel) arguments.getSerializable("data");
         }
-        this.mActiveChannelTitle = Preferences.m2926bc();
-        if (!StringUtils.isEmpty(this.mActiveChannelTitle) && OnlinePlayingGroupUtils.m6909b(this.mActiveChannelTitle) && SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+        this.mActiveChannelTitle = Preferences.getOnlineMediaListGroupName();
+        if (!StringUtils.isEmpty(this.mActiveChannelTitle) && OnlinePlayingGroupUtils.m6909b(this.mActiveChannelTitle) && SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
             this.mCurrentChannelState = 2;
         }
         MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
@@ -182,7 +182,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
             switch (playStatus) {
                 case STATUS_PLAYING:
                     this.mCurrentChannelState = 2;
-                    this.mActiveChannelTitle = Preferences.m2926bc();
+                    this.mActiveChannelTitle = Preferences.getOnlineMediaListGroupName();
                     this.mAdapter.notifyDataSetChanged();
                     return;
                 case STATUS_PAUSED:
@@ -260,7 +260,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
                 CommandCenter.getInstance().m4596b(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             case 3:
-                CommandCenter.getInstance().m4596b(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
+                CommandCenter.getInstance().m4596b(new Command(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
                 return;
             default:
                 return;

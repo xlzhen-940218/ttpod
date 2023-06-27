@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
-import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaItemAPI;
+import com.sds.android.cloudapi.ttpod.api.OnlineMediaItemAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 import com.sds.android.sdk.core.download.Task;
 import com.sds.android.sdk.core.download.TaskInfo;
@@ -79,7 +79,7 @@ public final class DownloadManagerModule extends BaseModule {
         public void mo2448a() {
             DownloadManagerModule.f5790d.lock();
             DownloadManagerModule.this.f5792a.clear();
-            DownloadManagerModule.this.f5792a.addAll(SupportFactory.m2397a(DownloadManagerModule.sContext).m2487a(new int[]{DownloadTaskInfo.TYPE_AUDIO.intValue()}));
+            DownloadManagerModule.this.f5792a.addAll(SupportFactory.getInstance(DownloadManagerModule.sContext).m2487a(new int[]{DownloadTaskInfo.TYPE_AUDIO.intValue()}));
             for (DownloadTaskInfo downloadTaskInfo : DownloadManagerModule.this.f5792a) {
                 if (!DownloadManagerModule.this.f5793b.containsKey(downloadTaskInfo.getGroupId())) {
                     DownloadManagerModule.this.f5793b.put(downloadTaskInfo.getGroupId(), new ConcurrentHashMap());
@@ -102,7 +102,7 @@ public final class DownloadManagerModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     public void onCreate() {
         super.onCreate();
-        SupportFactory.m2397a(sContext).mo2497a(this.f5795e);
+        SupportFactory.getInstance(sContext).mo2497a(this.f5795e);
         m4458d();
         this.f5794c = 0;
     }
@@ -122,7 +122,7 @@ public final class DownloadManagerModule extends BaseModule {
         map.put(CommandID.CLEAR_COMPLETE_TASK_COUNT, ReflectUtils.m8375a(cls, "clearCompleteCount", new Class[0]));
         map.put(CommandID.GET_TASK_DOWNLOADED_LENGTH, ReflectUtils.m8375a(cls, "getTaskDownloadedLength", DownloadTaskInfo.class));
         map.put(CommandID.GET_TOTAL_DOWNLOAD_FILE_SIZE, ReflectUtils.m8375a(cls, "getTotalEvaluatedDownloadFileSizeInByte", List.class, AudioQuality.class));
-        map.put(CommandID.DOWNLOAD_STATE_CHANGED, ReflectUtils.m8375a(cls, "downloadStateChanged", DownloadTaskInfo.class, Task.EnumC0579b.class));
+        map.put(CommandID.DOWNLOAD_STATE_CHANGED, ReflectUtils.m8375a(cls, "downloadStateChanged", DownloadTaskInfo.class, Task.ErrorCodeType.class));
         map.put(CommandID.NET_WORK_TYPE_CHANGED, ReflectUtils.m8375a(cls, "netWorkTypeChanged", new Class[0]));
     }
 
@@ -134,7 +134,7 @@ public final class DownloadManagerModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: d */
     public void m4458d() {
-        final int m8476d = EnvironmentUtils.DeviceConfig.m8476d();
+        final int m8476d = EnvironmentUtils.DeviceConfig.hasNetwork();
         LogUtils.error("DownloadManagerModule", "handleNetWorkState = " + m8476d);
         if (f5791f != m8476d) {
             f5791f = m8476d;
@@ -165,7 +165,7 @@ public final class DownloadManagerModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     public void onPreDestroy() {
         super.onPreDestroy();
-        SupportFactory.m2397a(sContext).m2482b(this.f5795e);
+        SupportFactory.getInstance(sContext).m2482b(this.f5795e);
         this.f5792a.clear();
     }
 
@@ -249,7 +249,7 @@ public final class DownloadManagerModule extends BaseModule {
                     this.f5793b.get(downloadTaskInfo.getGroupId()).put((MediaItem) downloadTaskInfo.getTag(), downloadTaskInfo);
                 }
             }
-            SupportFactory.m2397a(sContext).m2496a(downloadTaskInfo);
+            SupportFactory.getInstance(sContext).m2496a(downloadTaskInfo);
             LogUtils.error("DownloadManagerModule", "addTask");
             m4455e(downloadTaskInfo);
         }
@@ -278,7 +278,7 @@ public final class DownloadManagerModule extends BaseModule {
             for (DownloadTaskInfo downloadTaskInfo : list) {
                 if (FileUtils.m8414b(downloadTaskInfo.getSavePath())) {
                     if (bool.booleanValue()) {
-                        FileUtils.m8404h(downloadTaskInfo.getSavePath());
+                        FileUtils.exists(downloadTaskInfo.getSavePath());
                     }
                     z = true;
                 } else {
@@ -329,7 +329,7 @@ public final class DownloadManagerModule extends BaseModule {
             this.f5793b.get(mediaItem.getGroupID()).remove(mediaItem);
         }
         f5790d.unlock();
-        DownloadTaskInfo m2481b = SupportFactory.m2397a(sContext).m2481b(downloadTaskInfo);
+        DownloadTaskInfo m2481b = SupportFactory.getInstance(sContext).m2481b(downloadTaskInfo);
         if (m2481b != null) {
             m4474a(m2481b, downloadTaskInfo);
             m4455e(downloadTaskInfo);
@@ -339,7 +339,7 @@ public final class DownloadManagerModule extends BaseModule {
     public void deleteDownloadTask(final DownloadTaskInfo downloadTaskInfo, Boolean bool) {
         MediaItem mediaItem;
         if (downloadTaskInfo.getState() != null && 4 != downloadTaskInfo.getState().intValue()) {
-            SupportFactory.m2397a(sContext).m2475c(downloadTaskInfo);
+            SupportFactory.getInstance(sContext).m2475c(downloadTaskInfo);
         }
         f5790d.lock();
         LogUtils.error("DownloadManagerModule", "cancelDownloadTask");
@@ -359,7 +359,7 @@ public final class DownloadManagerModule extends BaseModule {
                         if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType())) {
                             DownloadManagerModule.this.m4457d(downloadTaskInfo);
                         }
-                        FileUtils.m8404h(downloadTaskInfo.getSavePath());
+                        FileUtils.exists(downloadTaskInfo.getSavePath());
                     }
                 }
             });
@@ -367,7 +367,7 @@ public final class DownloadManagerModule extends BaseModule {
     }
 
     public Integer getTaskDownloadedLength(DownloadTaskInfo downloadTaskInfo) {
-        int m2472d = SupportFactory.m2397a(sContext).m2472d(downloadTaskInfo);
+        int m2472d = SupportFactory.getInstance(sContext).m2472d(downloadTaskInfo);
         if (m2472d != 0) {
             downloadTaskInfo.setDownloadLength(m2472d);
         }
@@ -402,7 +402,7 @@ public final class DownloadManagerModule extends BaseModule {
                         if (DownloadTaskInfo.TYPE_AUDIO.equals(num)) {
                             DownloadManagerModule.this.m4457d(downloadTaskInfo);
                         }
-                        FileUtils.m8404h(downloadTaskInfo.getSavePath());
+                        FileUtils.exists(downloadTaskInfo.getSavePath());
                     }
                 }
                 NotificationUtils.m4696a(15121730);
@@ -415,7 +415,7 @@ public final class DownloadManagerModule extends BaseModule {
         this.f5794c = 0;
     }
 
-    public void downloadStateChanged(DownloadTaskInfo downloadTaskInfo, Task.EnumC0579b enumC0579b) {
+    public void downloadStateChanged(DownloadTaskInfo downloadTaskInfo, Task.ErrorCodeType enumC0579b) {
         DownloadTaskInfo m4470a = m4470a(downloadTaskInfo.getSavePath());
         if (m4470a != null) {
             m4474a(downloadTaskInfo, m4470a);
@@ -431,9 +431,9 @@ public final class DownloadManagerModule extends BaseModule {
                 if (m4470a.getTag() != null && DownloadTaskInfo.TYPE_AUDIO == m4470a.getType()) {
                     this.f5793b.get(m4470a.getGroupId()).remove(m4470a.getTag());
                 }
-                if (DownloadTaskInfo.TYPE_AUDIO.equals(m4470a.getType()) && ((enumC0579b == Task.EnumC0579b.URL_REQUEST_FAILED || enumC0579b == Task.EnumC0579b.URL_RESPONED_FAILED) && !m4470a.isUrlUpdated())) {
-                    if (enumC0579b == Task.EnumC0579b.URL_RESPONED_FAILED) {
-                        SupportFactory.m2397a(sContext).m2475c(m4470a);
+                if (DownloadTaskInfo.TYPE_AUDIO.equals(m4470a.getType()) && ((enumC0579b == Task.ErrorCodeType.URL_REQUEST_FAILED || enumC0579b == Task.ErrorCodeType.URL_RESPONED_FAILED) && !m4470a.isUrlUpdated())) {
+                    if (enumC0579b == Task.ErrorCodeType.URL_RESPONED_FAILED) {
+                        SupportFactory.getInstance(sContext).m2475c(m4470a);
                         m4470a.setFileLength(0);
                         m4470a.setDownloadLength(0);
                     }
@@ -447,7 +447,7 @@ public final class DownloadManagerModule extends BaseModule {
         }
         if (4 == downloadTaskInfo.getState().intValue()) {
             if (StringUtils.equals(MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.getLocalGroupId()) || StringUtils.equals(DownloadUtils.m4762a(downloadTaskInfo), Preferences.getLocalGroupId())) {
-                SupportFactory.m2397a(sContext).mo2474c(Preferences.getLocalGroupId(), null);
+                SupportFactory.getInstance(sContext).mo2474c(Preferences.getLocalGroupId(), null);
             }
         }
     }

@@ -113,7 +113,7 @@ public class PlaylistSearchFragment extends BaseSearchFragment {
         PlaylistResult.PlaylistItem playlistItem = this.mPlaylist.get(i);
         if (playlistItem.getQuanId() != 0) {
             launchFragment(SubPostDetailFragment.createById(playlistItem.getQuanId(), "search-playlist"));
-            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_SONG_LIST_ITEM.getValue(), SPage.PAGE_SEARCH_SONG_LIST.getValue(), SPage.PAGE_SEARCH_SONG_LIST_DETAIL.getValue()).append("title", playlistItem.getTitle()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(playlistItem.getQuanId())).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).append("position", Integer.valueOf(i + 1)).post();
+            //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_SONG_LIST_ITEM.getValue(), SPage.PAGE_SEARCH_SONG_LIST.getValue(), SPage.PAGE_SEARCH_SONG_LIST_DETAIL.getValue()).append("title", playlistItem.getTitle()).append(BaseFragment.KEY_SONG_LIST_ID, Long.valueOf(playlistItem.getQuanId())).append("keyword", this.mWord).append("position", Integer.valueOf(i + 1)).post();
         }
     }
 

@@ -4,7 +4,7 @@ import android.content.Intent;
 import com.sds.android.cloudapi.ttpod.data.Notice;
 import com.sds.android.cloudapi.ttpod.data.Post;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.cloudapi.ttpod.p055a.PostAPI;
+import com.sds.android.cloudapi.ttpod.api.PostAPI;
 import com.sds.android.cloudapi.ttpod.result.CommentResult;
 import com.sds.android.sdk.lib.request.Request;
 import com.sds.android.sdk.lib.request.RequestCallback;

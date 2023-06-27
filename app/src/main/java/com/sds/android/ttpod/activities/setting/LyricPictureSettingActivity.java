@@ -10,7 +10,6 @@ import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.component.p087d.p088a.SeekBarDialog;
 import com.sds.android.ttpod.framework.modules.core.p113b.AutoDownloadNetworkType;
 import com.sds.android.ttpod.framework.p106a.PlatformUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import java.util.ArrayList;
@@ -130,6 +129,6 @@ public class LyricPictureSettingActivity extends SlidingClosableActivity {
     }
 
     private boolean isLyricDownloadChecked() {
-        return Preferences.m3052O() != AutoDownloadNetworkType.DISABLE;
+        return Preferences.getDownloadLyricNetWorkType() != AutoDownloadNetworkType.DISABLE;
     }
 }

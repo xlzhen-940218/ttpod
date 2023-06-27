@@ -36,7 +36,7 @@ public final class FastSwitchSupport extends Support {
         this.f7006n = new Runnable() { // from class: com.sds.android.ttpod.framework.support.a.1
             @Override // java.lang.Runnable
             public void run() {
-                FastSwitchSupport.this.f7135c.startService(new Intent(FastSwitchSupport.this.f7135c, SupportService.class).putExtra("command", "play_command").putExtras(FastSwitchSupport.this.m2766A()));
+                FastSwitchSupport.this.context.startService(new Intent(FastSwitchSupport.this.context, SupportService.class).putExtra("command", "play_command").putExtras(FastSwitchSupport.this.m2766A()));
             }
         };
     }
@@ -46,15 +46,15 @@ public final class FastSwitchSupport extends Support {
     public void mo2497a(SupportCallback supportCallback) {
         super.mo2497a(supportCallback);
         if (this.f7003k == null) {
-            this.f7003k = new MediaSelector(this.f7135c);
+            this.f7003k = new MediaSelector(this.context);
         }
     }
 
     @Override // com.sds.android.ttpod.framework.support.Support
     /* renamed from: a */
     public void mo2505a() {
-        if (this.f7137e == null) {
-            this.f7135c.bindService(new Intent(this.f7135c, SupportService.class), this.f7142j, Context.BIND_AUTO_CREATE);
+        if (this.iSupportService == null) {
+            this.context.bindService(new Intent(this.context, SupportService.class), this.f7142j, Context.BIND_AUTO_CREATE);
             LogUtils.info("Support", "音效：重现绑定service");
         }
         if (MediaStorage.queryMediaItem(BaseApplication.getApplication(), Preferences.getLocalGroupId(), Preferences.getMediaId()) == null) {
@@ -71,14 +71,14 @@ public final class FastSwitchSupport extends Support {
     /* renamed from: a */
     public void mo2489a(String str, String str2) {
         this.f7003k.m2657a(str, str2);
-        this.f7135c.startService(new Intent(this.f7135c, SupportService.class).putExtra("command", "play_command").putExtra("group", str).putExtra("media_source", str2).putExtras(m2766A()));
+        this.context.startService(new Intent(this.context, SupportService.class).putExtra("command", "play_command").putExtra("group", str).putExtra("media_source", str2).putExtras(m2766A()));
     }
 
     @Override // com.sds.android.ttpod.framework.support.Support
     /* renamed from: b */
     public void mo2479b(String str, String str2) {
         this.f7003k.m2657a(str, str2);
-        this.f7135c.startService(new Intent(this.f7135c, SupportService.class).putExtra("command", "sync_command").putExtra("group", str).putExtra("media_source", str2).putExtras(m2766A()));
+        this.context.startService(new Intent(this.context, SupportService.class).putExtra("command", "sync_command").putExtra("group", str).putExtra("media_source", str2).putExtras(m2766A()));
     }
 
     @Override // com.sds.android.ttpod.framework.support.Support

@@ -3,7 +3,7 @@ package com.sds.android.ttpod.framework.modules.p125g;
 import android.graphics.Bitmap;
 
 import com.sds.android.cloudapi.ttpod.data.SplashItem;
-import com.sds.android.cloudapi.ttpod.p055a.SplashAPI;
+import com.sds.android.cloudapi.ttpod.api.SplashAPI;
 import com.sds.android.cloudapi.ttpod.result.SplashDataResult;
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
@@ -147,7 +147,7 @@ public final class SplashModule extends BaseModule {
     /* renamed from: b */
     public void m3999b(int i) {
         SplashDataResult m8531f;
-        if (EnvironmentUtils.DeviceConfig.m8476d() == 2 && (m8531f = SplashAPI.m8824a(i).execute()) != null && 1 == m8531f.getCode()) {
+        if (EnvironmentUtils.DeviceConfig.hasNetwork() == 2 && (m8531f = SplashAPI.m8824a(i).execute()) != null && 1 == m8531f.getCode()) {
             List<SplashItem> m4012c = SplashInfoParser.m4014a(m8531f).m4012c();
             if (m4001a(m4012c)) {
                 Cache.getInstance().m3214a(m8531f);
@@ -181,7 +181,7 @@ public final class SplashModule extends BaseModule {
                 }
                 try {
                     ZIPUtils.m8330a(fileInputStream2, m3991c(suitFile));
-                    FileUtils.m8404h(m3995b);
+                    FileUtils.exists(m3995b);
                     try {
                         fileInputStream2.close();
                     } catch (Exception e2) {
@@ -192,7 +192,7 @@ public final class SplashModule extends BaseModule {
                     fileInputStream = fileInputStream2;
                     try {
                         LogUtils.error("SplashModule", "downloadNewSplashInfo doUnZipFolder exception=%s", e.toString());
-                        FileUtils.m8404h(m3995b);
+                        FileUtils.exists(m3995b);
                         try {
                             fileInputStream.close();
                         } catch (Exception e4) {
@@ -201,7 +201,7 @@ public final class SplashModule extends BaseModule {
                         return false;
                     } catch (Throwable th2) {
                         th = th2;
-                        FileUtils.m8404h(m3995b);
+                        FileUtils.exists(m3995b);
                         try {
                             fileInputStream.close();
                         } catch (Exception e5) {
@@ -212,7 +212,7 @@ public final class SplashModule extends BaseModule {
                 } catch (Throwable th3) {
                     th = th3;
                     fileInputStream = fileInputStream2;
-                    FileUtils.m8404h(m3995b);
+                    FileUtils.exists(m3995b);
                     try {
                         fileInputStream.close();
                     } catch (IOException ex) {
@@ -228,7 +228,7 @@ public final class SplashModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m4004a(Integer num) {
-        String str = TTPodConfig.m5297k() + File.separator + "帮助.txt";
+        String str = TTPodConfig.getSplashPath() + File.separator + "帮助.txt";
         if (!FileUtils.m8419a(str)) {
             FileUtils.m8416a(BaseApplication.getApplication().getString(num.intValue()), str);
         }
@@ -243,7 +243,7 @@ public final class SplashModule extends BaseModule {
                 if (FileUtils.m8420a(m8708a.getInputStream(), str3)) {
                     return FileUtils.m8410c(str3, str2);
                 }
-                FileUtils.m8404h(str3);
+                FileUtils.exists(str3);
             }
         }
         return false;
@@ -251,7 +251,7 @@ public final class SplashModule extends BaseModule {
 
     /* renamed from: b */
     private void m3994b(List<SplashItem> list) {
-        String str = TTPodConfig.m5297k() + File.separator;
+        String str = TTPodConfig.getSplashPath() + File.separator;
         String[] list2 = new File(str).list();
         if (list2 != null) {
             HashSet hashSet = new HashSet();
@@ -270,7 +270,7 @@ public final class SplashModule extends BaseModule {
                 if (!hashSet.contains(lowerCase)) {
                     String str4 = str + lowerCase;
                     if (!lowerCase.startsWith(SplashConstant.f6284a[0]) || FileUtils.isDir(str4)) {
-                        FileUtils.m8404h(str4);
+                        FileUtils.exists(str4);
                     }
                 }
             }
@@ -301,7 +301,7 @@ public final class SplashModule extends BaseModule {
         int length = SplashConstant.f6284a.length;
         Bitmap bitmap = null;
         for (int i = 0; i < length; i++) {
-            String str = TTPodConfig.m5297k() + File.separator + strArr[i];
+            String str = TTPodConfig.getSplashPath() + File.separator + strArr[i];
             if (FileUtils.m8419a(str) && (bitmap = m3989e(str)) != null) {
                 break;
             }
@@ -315,13 +315,13 @@ public final class SplashModule extends BaseModule {
         if (StringUtils.isEmpty(m8402j)) {
             return null;
         }
-        return TTPodConfig.m5297k() + File.separator + m8402j;
+        return TTPodConfig.getSplashPath() + File.separator + m8402j;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: c */
     public String m3991c(String str) {
-        return TTPodConfig.m5297k() + File.separator + m3990d(str);
+        return TTPodConfig.getSplashPath() + File.separator + m3990d(str);
     }
 
     /* renamed from: d */

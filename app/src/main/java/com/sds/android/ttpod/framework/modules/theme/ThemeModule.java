@@ -6,7 +6,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import androidx.core.view.ViewCompat;
-import com.sds.android.cloudapi.ttpod.p055a.SkinAPI;
+import com.sds.android.cloudapi.ttpod.api.SkinAPI;
 import com.sds.android.cloudapi.ttpod.result.BackgroundMoreCheckResult;
 import com.sds.android.sdk.lib.p065e.ThreadPool;
 import com.sds.android.sdk.lib.util.ReflectUtils;

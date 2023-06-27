@@ -77,7 +77,7 @@ public class LrcLyric implements Lyric {
         if (this.f6611a.m3652f()) {
             String m3666a = this.f6611a.m3666a();
             if (z && !LyricUtils.m3643a(m3666a)) {
-                FileUtils.m8404h(m3666a);
+                FileUtils.exists(m3666a);
                 FileOutputStream fileOutputStream2 = null;
                 try {
                     fileOutputStream = new FileOutputStream(m3666a);

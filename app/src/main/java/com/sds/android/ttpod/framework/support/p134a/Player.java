@@ -7,7 +7,7 @@ import android.os.PowerManager;
 import com.sds.android.cloudapi.ttpod.data.AudioEffectItem;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaItemAPI;
+import com.sds.android.cloudapi.ttpod.api.OnlineMediaItemAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
@@ -44,7 +44,7 @@ import java.io.File;
 public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScreenMonitor.InterfaceC2082a, CallMonitor.InterfaceC2086a {
 
     /* renamed from: e */
-    private static final String f7086e = TTPodConfig.m5301g();
+    private static final String f7086e = TTPodConfig.getCacheMediaPath();
 
     /* renamed from: s */
     private static Player f7087s = null;
@@ -132,11 +132,11 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                     OnlineMediaItem onlineMediaItem = onlineMediaItemsResult.getDataList().get(0);
                     MediaItem m4716a = MediaItemUtils.m4716a(onlineMediaItem);
                     m2571a(m4716a.getExtra());
-                    OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a(onlineMediaItem, EnvironmentUtils.DeviceConfig.m8476d());
+                    OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a(onlineMediaItem, EnvironmentUtils.DeviceConfig.hasNetwork());
                     if (m4689a != null) {
                         try {
                             Player.this.f7099m.m2707b();
-                            Player.this.f7099m.m2711a(m4689a.getUrl(), TTPodConfig.m5310C(), m4716a.getSongID());
+                            Player.this.f7099m.m2711a(m4689a.getUrl(), TTPodConfig.getAudioTmp(), m4716a.getSongID());
                         } catch (Exception e) {
                             Player.this.m2613d(-100);
                         }
@@ -221,7 +221,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                 if (!m2606g.isOnline() || !StringUtils.isEmpty(m2606g.getLocalDataSource())) {
                     Player.this.m2613d(i);
                     //ErrorStatistic.m5244a(i);
-                } else if (EnvironmentUtils.DeviceConfig.m8476d() == -1) {
+                } else if (EnvironmentUtils.DeviceConfig.hasNetwork() == -1) {
                     Player.this.m2613d(-34);
                 } else if (!m2575a(i) || Player.this.f7104r >= 5) {
                     String str = "";
@@ -253,10 +253,10 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             if (!EnvironmentUtils.C0605d.m8472a() && !EnvironmentUtils.C0605d.m8468a(EnvironmentUtils.C0605d.getSdcardPath())) {
                 return "storage does not exist";
             }
-            if (!FileUtils.isDir(TTPodConfig.m5311B())) {
+            if (!FileUtils.isDir(TTPodConfig.getTTPodPath())) {
                 return "/sdcard/ttpod not exist";
             }
-            if (FileUtils.isDir(TTPodConfig.m5304d())) {
+            if (FileUtils.isDir(TTPodConfig.getCachePath())) {
                 if (!FileUtils.isDir(Player.f7086e)) {
                     return "/sdcard/ttpod/cache/media not exist";
                 }
@@ -314,9 +314,9 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         /* renamed from: g */
         public void mo2565g() {
             MediaItem m2606g;
-            String m5310C = TTPodConfig.m5310C();
+            String m5310C = TTPodConfig.getAudioTmp();
             if (FileUtils.m8419a(m5310C) && (m2606g = Player.this.m2606g()) != null && m2606g.isOnline()) {
-                FileUtils.m8413b(TTPodConfig.m5308a(m2606g.getSongID()), m5310C);
+                FileUtils.m8413b(TTPodConfig.getSongIdPath(m2606g.getSongID()), m5310C);
             }
         }
     };
@@ -434,7 +434,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             String stringExtra3 = intent.getStringExtra("media_source");
             if (StringUtils.equals(stringExtra2, MediaStorage.GROUP_ID_FAV) || stringExtra2.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
                 TTPodUser m2954aq = Preferences.m2954aq();
-                EnvironmentUtils.C0603b.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
+                EnvironmentUtils.UUIDConfig.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
             }
             MediaItem mediaItem2 = (MediaItem) intent.getExtras().get("mediaItem");
             if ((mediaItem2 != null && !mediaItem2.equals(this.f7101o.m2655b())) || !StringUtils.equals(Preferences.getLocalGroupId(), stringExtra2)) {
@@ -462,7 +462,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     public void m2624a(String str, String str2) {
         if (StringUtils.equals(str, MediaStorage.GROUP_ID_FAV) || str.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
             TTPodUser m2954aq = Preferences.m2954aq();
-            EnvironmentUtils.C0603b.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
+            EnvironmentUtils.UUIDConfig.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
         }
         if (!StringUtils.equals(Preferences.getLocalGroupId(), str)) {
             m2638J();
@@ -633,7 +633,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     private void m2578z() {
         if (this.f7093g == null) {
             this.f7093g = this.f7092f + File.separator + f7086e.substring(f7086e.indexOf("ttpod"));
-            FileUtils.m8406f(this.f7093g);
+            FileUtils.createFolder(this.f7093g);
         }
     }
 
@@ -658,7 +658,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                     if (m2606g.isOnline()) {
                         m2627a(m2606g);
                     } else if (m2606g.getID().equals(SecurityUtils.C0610b.m8361a(m2606g.getExtra()))) {
-                        this.f7099m.m2711a(m2606g.getExtra(), TTPodConfig.m5310C(), (Long) null);
+                        this.f7099m.m2711a(m2606g.getExtra(), TTPodConfig.getAudioTmp(), (Long) null);
                     } else {
                         m2613d(-99);
                     }
@@ -674,7 +674,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                                 if (j2 <= 209715200) {
                                     j2 = 209715200;
                                 }
-                                FileUtils.m8417a(str, j2, new String[]{TTPodConfig.m5310C(), m2730a});
+                                FileUtils.m8417a(str, j2, new String[]{TTPodConfig.getAudioTmp(), m2730a});
                             }
                         }
                     });
@@ -698,13 +698,13 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         int m2598k = m2598k() + 1;
         //SSystemEvent //SSystemEvent = //new //SSystemEvent("SYS_PLAY", "start");
         //SSystemEvent.append("song_id", Long.valueOf(longValue));
-        String m2926bc = Preferences.m2926bc();
+        String m2926bc = Preferences.getOnlineMediaListGroupName();
         if (!StringUtils.isEmpty(m2926bc) && m2926bc.startsWith("音乐圈_")) {
             //SSystemEvent.append(BaseFragment.KEY_SONG_LIST_ID, m2926bc.substring("音乐圈_".length()));
         }
         //OnlineMediaStatistic.m5050a(longValue, System.nanoTime());
         //OnlineMediaStatistic.m5036c(longValue, m2598k);
-        String str2 = Preferences.m2983aX() + File.separator + mediaItem.getSongID();
+        String str2 = Preferences.getCacheMediaFolderPath() + File.separator + mediaItem.getSongID();
         if (FileUtils.m8414b(str2)) {
             new File(str2).setLastModified(System.currentTimeMillis());
             //OnlineMediaStatistic.m5039b(longValue, true);
@@ -739,10 +739,10 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         }
         //OnlineMediaStatistic.m5039b(longValue, false);
         //SSystemEvent.append("play_type", "online").post();
-        OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a((OnlineMediaItem) JSONUtils.fromJson(mediaItem.getExtra(), OnlineMediaItem.class), EnvironmentUtils.DeviceConfig.m8476d());
+        OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a((OnlineMediaItem) JSONUtils.fromJson(mediaItem.getExtra(), OnlineMediaItem.class), EnvironmentUtils.DeviceConfig.hasNetwork());
         if (m4689a != null) {
             try {
-                this.f7099m.m2711a(m4689a.getUrl(), TTPodConfig.m5310C(), mediaItem.getSongID());
+                this.f7099m.m2711a(m4689a.getUrl(), TTPodConfig.getAudioTmp(), mediaItem.getSongID());
             } catch (Exception e2) {
                 LogUtils.error("Player", "processPlayError above MAX_ERROR_COUNT");
                 e2.printStackTrace();

@@ -7,7 +7,7 @@ public interface Sentence extends Comparable<Sentence> {
     int mo3640a();
 
     /* renamed from: a */
-    void mo3639a(LyricInfo lyricInfo);
+    void getLyricInfo(LyricInfo lyricInfo);
 
     /* renamed from: b */
     int mo3638b();

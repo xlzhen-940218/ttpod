@@ -415,7 +415,7 @@ public final class MediaDatabaseHelper extends SQLiteOpenHelper {
                     try {
                         sQLiteDatabase2.close();
                         LogUtils.debug(LOG_TAG, String.format("curVersion %d > Version_Newest %d will delete db.", Integer.valueOf(version), 46));
-                        FileUtils.m8404h(path);
+                        FileUtils.exists(path);
                     } catch (Exception e) {
                         LogUtils.error(LOG_TAG, "TTMessage1:" + e.getMessage());
                     } catch (Throwable th2) {

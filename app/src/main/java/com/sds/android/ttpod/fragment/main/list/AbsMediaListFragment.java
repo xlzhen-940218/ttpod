@@ -93,7 +93,7 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
             LogUtils.debug(TAG, "onCreate lookStatisticId groupid=%s", this.mGroupID);
         }
         this.mMediaListAdapter = new MediaListAdapter();
-        this.mPlayStatus = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
+        this.mPlayStatus = SupportFactory.getInstance(BaseApplication.getApplication()).m2463m();
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

@@ -25,10 +25,10 @@ public abstract class SBaseView<T extends View, E> extends SComponent<T> impleme
         super(kXmlParser, hashMap, i);
         this.f6432c = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "Transform"), -1);
         if (this.f6432c < 0) {
-            this.f6432c = "Landscape".equals(this.f6430a) ? 1 : 0;
+            this.f6432c = "Landscape".equals(this.id) ? 1 : 0;
         }
-        if (this.f6430a == null || "Landscape".equals(this.f6430a) || "Portrait".equals(this.f6430a) || "Portait".equals(this.f6430a)) {
-            this.f6430a = "Player";
+        if (this.id == null || "Landscape".equals(this.id) || "Portrait".equals(this.id) || "Portait".equals(this.id)) {
+            this.id = "Player";
         }
         this.f6433d = ValueParser.m3698a(kXmlParser.getAttributeValue(null, "FullScreen"), false);
     }
@@ -44,7 +44,7 @@ public abstract class SBaseView<T extends View, E> extends SComponent<T> impleme
     public void mo3775a(Context context, T t, SkinCache skinCache) {
         t.setEnabled(this.f6445h);
         t.setVisibility(this.f6444g);
-        t.setTag(this.f6430a);
+        t.setTag(this.id);
         Drawable d = m3810d(context, skinCache);
         t.setBackgroundDrawable(d);
         if (d == null) {

@@ -12,7 +12,7 @@ import com.sds.android.ttpod.media.mediastore.MediaItem;
 
 /* renamed from: com.sds.android.ttpod.component.g.b.b */
 /* loaded from: classes.dex */
-public class LyricPanelViewController extends PanelViewController implements LyricView.InterfaceC1998c {
+public class LyricPanelViewController extends PanelViewController implements LyricView.TouchListener {
 
     /* renamed from: a */
     protected TTPodButton f4252a;
@@ -29,11 +29,11 @@ public class LyricPanelViewController extends PanelViewController implements Lyr
     /* renamed from: b_ */
     public void mo6403b_() {
         super.mo6403b_();
-        if (this.f4198J != null) {
-            m6540a((View) this.f4198J, true);
-            this.f4253b = this.f4198J.getAlign();
-            this.f4198J.setEnabled(true);
-            this.f4198J.setTouchListener(this);
+        if (this.lyricView != null) {
+            m6540a((View) this.lyricView, true);
+            this.f4253b = this.lyricView.getAlign();
+            this.lyricView.setEnabled(true);
+            this.lyricView.setTouchListener(this);
         }
     }
 
@@ -57,8 +57,8 @@ public class LyricPanelViewController extends PanelViewController implements Lyr
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: b */
     public void mo6441b() {
-        if (this.f4198J != null) {
-            this.f4198J.setTouchListener(null);
+        if (this.lyricView != null) {
+            this.lyricView.setTouchListener(null);
         }
         super.mo6441b();
     }
@@ -73,11 +73,11 @@ public class LyricPanelViewController extends PanelViewController implements Lyr
 
     /* renamed from: b */
     private void m6510b(int i) {
-        if (this.f4198J != null) {
+        if (this.lyricView != null) {
             if (i < 0) {
-                this.f4198J.setAlign(this.f4253b);
+                this.lyricView.setAlign(this.f4253b);
             } else {
-                this.f4198J.setAlign(Paint.Align.values()[i]);
+                this.lyricView.setAlign(Paint.Align.values()[i]);
             }
         }
     }

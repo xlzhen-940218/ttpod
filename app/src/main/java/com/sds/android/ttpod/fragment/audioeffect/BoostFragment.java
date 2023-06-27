@@ -19,8 +19,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.widget.audioeffect.RadialProgressWidget;
@@ -148,7 +146,7 @@ public class BoostFragment extends BaseFragment {
     }
 
     public void updateAudioEffectInfo() {
-        updateView(SupportFactory.m2397a(BaseApplication.getApplication()).m2457s());
+        updateView(SupportFactory.getInstance(BaseApplication.getApplication()).m2457s());
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
@@ -162,7 +160,7 @@ public class BoostFragment extends BaseFragment {
         if (this.mRootView == null) {
             this.mRootView = layoutInflater.inflate(R.layout.fragment_audio_effect_boost_new, viewGroup, false);
             initViews();
-            updateView(SupportFactory.m2397a(BaseApplication.getApplication()).m2457s(), true);
+            updateView(SupportFactory.getInstance(BaseApplication.getApplication()).m2457s(), true);
         }
         return this.mRootView;
     }

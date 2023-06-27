@@ -42,7 +42,7 @@ public class SAnimTransImage extends SImage<View> {
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: b */
     public View mo3771b(Context context, SkinCache skinCache) {
-        return "AlbumCover".equals(this.f6430a) ? new TTImageSwitcher(context) : new AnimTransView(context);
+        return "AlbumCover".equals(this.id) ? new TTImageSwitcher(context) : new AnimTransView(context);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */

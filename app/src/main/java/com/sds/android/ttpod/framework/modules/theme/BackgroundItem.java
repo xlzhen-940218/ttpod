@@ -143,7 +143,7 @@ public class BackgroundItem implements Serializable {
             stringBuffer.append(TTPodConfig.m5292p());
         } else if (this.f6930d == EnumC2011a.ADD_BY_USER) {
             stringBuffer.append("file://");
-            stringBuffer.append(TTPodConfig.m5293o());
+            stringBuffer.append(TTPodConfig.getBkgsPath());
         } else if (this.f6930d == EnumC2011a.FOLLOW_SKIN) {
             stringBuffer.append("follow_skin");
             return stringBuffer.toString();

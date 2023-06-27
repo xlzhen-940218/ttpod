@@ -40,7 +40,7 @@ public class CachedOnlineListReader {
             return true;
         }
         if (FileUtils.m8405g(str) == 0) {
-            FileUtils.m8404h(str);
+            FileUtils.exists(str);
             return true;
         }
         return false;
@@ -125,7 +125,7 @@ public class CachedOnlineListReader {
             return null;
         }
         String str3 = str2 + File.separator + FileUtils.getFilename(list[0]);
-        FileUtils.m8407e(str3);
+        FileUtils.createFile(str3);
 
         try {
             bufferedInputStream = new BufferedInputStream(assets.open(str + File.separator + list[0]));
@@ -175,7 +175,7 @@ public class CachedOnlineListReader {
         Throwable th;
         AssetManager assets = BaseApplication.getApplication().getResources().getAssets();
         try {
-            FileUtils.m8407e(str2);
+            FileUtils.createFile(str2);
             bufferedInputStream = new BufferedInputStream(assets.open(str));
             try {
                 bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(str2));

@@ -43,7 +43,7 @@ public class LockScreenModule extends BaseModule {
 
     public void startLockScreen() {
         if (Preferences.m2871i(isAllowDefaultLockScreen())) {
-            if (PlayStatus.STATUS_PLAYING == SupportFactory.m2397a(BaseApplication.getApplication()).m2463m()) {
+            if (PlayStatus.STATUS_PLAYING == SupportFactory.getInstance(BaseApplication.getApplication()).m2463m()) {
                 sContext.startActivity(new Intent(Action.LOCK_SCREEN_ACTIVITY_ENTRY).setFlags(268697600));
                 this.f6114b = true;
             }

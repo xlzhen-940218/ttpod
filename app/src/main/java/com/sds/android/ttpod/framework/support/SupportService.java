@@ -86,7 +86,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
                 }
             } else if (preferencesID == PreferencesID.USER_INFO) {
                 TTPodUser m2954aq = Preferences.m2954aq();
-                EnvironmentUtils.C0603b.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
+                EnvironmentUtils.UUIDConfig.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
             } else if (PreferencesID.NOTIFICATION_PRIORITY == preferencesID) {
                 SupportService.this.m4620a(15121720);
                 SupportService.this.m2769r();

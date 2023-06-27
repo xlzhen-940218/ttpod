@@ -54,12 +54,12 @@ public abstract class BaseActivity extends FragmentActivity {
             boolean booleanValue = ((Boolean) message.obj).booleanValue();
             Preferences.m3033X(booleanValue);
             if (booleanValue) {
-                SupportFactory.m2397a(BaseApplication.getApplication()).m2460p();
+                SupportFactory.getInstance(BaseApplication.getApplication()).m2460p();
                 CommandCenter.getInstance().execute(new Command(CommandID.SAVE_UNICOM_TOTAL_FLOW, new Object[0]));
                 //StartupStatistic.m4922b();
                 return;
             }
-            SupportFactory.m2397a(BaseApplication.getApplication()).m2459q();
+            SupportFactory.getInstance(BaseApplication.getApplication()).m2459q();
         }
     };
     private boolean mIsMoveAction = false;

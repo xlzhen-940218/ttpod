@@ -22,7 +22,7 @@ import java.io.File;
 public class PickImageHelper {
 
     /* renamed from: a */
-    private static final String f3099a = TTPodConfig.m5304d() + File.separator + ".temp.jpg";
+    private static final String f3099a = TTPodConfig.getCachePath() + File.separator + ".temp.jpg";
 
     /* renamed from: b */
     private Activity f3100b;

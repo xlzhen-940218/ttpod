@@ -36,16 +36,16 @@ import java.util.List;
 public final class SearchManager {
 
     /* renamed from: a */
-    public static final SearchStatus f7251a = SearchStatus.SEARCH_ONLINE_FINISHED;
+    public static final SearchStatus SEARCH_ONLINE_FINISHED = SearchStatus.SEARCH_ONLINE_FINISHED;
 
     /* renamed from: b */
-    public static final SearchStatus f7252b = SearchStatus.SEARCH_ONLINE_FAILURE;
+    public static final SearchStatus SEARCH_ONLINE_FAILURE = SearchStatus.SEARCH_ONLINE_FAILURE;
 
     /* renamed from: c */
-    public static final SearchStatus f7253c = SearchStatus.SEARCH_LOCAL_FINISHED;
+    public static final SearchStatus SEARCH_LOCAL_FINISHED = SearchStatus.SEARCH_LOCAL_FINISHED;
 
     /* renamed from: d */
-    private static SearchManager f7254d = null;
+    private static SearchManager searchManager = null;
 
     /* renamed from: f */
     private InterfaceC2089b f7256f;
@@ -57,19 +57,19 @@ public final class SearchManager {
     private int f7259i;
 
     /* renamed from: j */
-    private int f7260j;
+    private int successCount;
 
     /* renamed from: k */
-    private int f7261k;
+    private int failedCount;
 
     /* renamed from: l */
-    private int f7262l;
+    private int skipCount;
 
     /* renamed from: m */
-    private int f7263m;
+    private int totalCount;
 
     /* renamed from: n */
-    private String f7264n;
+    private String mediaItemId;
 
     /* renamed from: o */
     private boolean f7265o;
@@ -78,19 +78,19 @@ public final class SearchManager {
     private boolean f7266p;
 
     /* renamed from: q */
-    private SearchStatus f7267q;
+    private SearchStatus lyricSearchStatus;
 
     /* renamed from: r */
-    private SearchStatus f7268r;
+    private SearchStatus pictureSearchStatus;
 
     /* renamed from: s */
-    private Handler f7269s;
+    private Handler handler;
 
     /* renamed from: e */
-    private String f7255e = "";
+    private String mediaId = "";
 
     /* renamed from: g */
-    private C2088a f7257g = new C2088a();
+    private SearchManagerReceiver searchManagerReceiver = new SearchManagerReceiver();
 
     /* compiled from: SearchManager.java */
     /* renamed from: com.sds.android.ttpod.framework.support.search.a$b */
@@ -103,7 +103,7 @@ public final class SearchManager {
     /* renamed from: d */
     private void m2218d() {
         if (Looper.myLooper() == Looper.getMainLooper()) {
-            this.f7269s = new Handler() { // from class: com.sds.android.ttpod.framework.support.search.a.1
+            this.handler = new Handler() { // from class: com.sds.android.ttpod.framework.support.search.a.1
                 @Override // android.os.Handler
                 public void handleMessage(Message message) {
                     switch (message.what) {
@@ -121,27 +121,27 @@ public final class SearchManager {
     /* renamed from: a */
     public static SearchManager m2232a() {
         synchronized (SearchManager.class) {
-            if (f7254d == null) {
-                f7254d = new SearchManager();
-                Manager.m8744a().m8742a("lyrics_picture_file_download", 3);
+            if (searchManager == null) {
+                searchManager = new SearchManager();
+                Manager.getInstance().m8742a("lyrics_picture_file_download", 3);
                 ImageSwitcherEngine.m4724d().m4722e();
-                f7254d.m2218d();
+                searchManager.m2218d();
             }
         }
-        return f7254d;
+        return searchManager;
     }
 
     /* renamed from: b */
     public void m2222b() {
         ImageSwitcherEngine.m4724d().m4721f();
-        Manager.m8744a().m8739b("lyrics_picture_file_download");
-        BaseApplication.getApplication().unregisterReceiver(this.f7257g);
-        this.f7257g = null;
-        f7254d = null;
+        Manager.getInstance().m8739b("lyrics_picture_file_download");
+        BaseApplication.getApplication().unregisterReceiver(this.searchManagerReceiver);
+        this.searchManagerReceiver = null;
+        searchManager = null;
     }
 
     private SearchManager() {
-        BaseApplication.getApplication().registerReceiver(this.f7257g, this.f7257g.m2212a());
+        BaseApplication.getApplication().registerReceiver(this.searchManagerReceiver, this.searchManagerReceiver.m2212a());
     }
 
     /* renamed from: a */
@@ -151,7 +151,7 @@ public final class SearchManager {
 
     /* renamed from: c */
     public String m2219c() {
-        return this.f7255e;
+        return this.mediaId;
     }
 
     /* renamed from: a */
@@ -248,18 +248,18 @@ public final class SearchManager {
     /* renamed from: e */
     private void m2217e() {
         this.f7258h = MediaStorage.queryMediaIDs(BaseApplication.getApplication(), MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.m2860l(MediaStorage.GROUP_ID_ALL_LOCAL));
-        this.f7263m = this.f7258h.size();
-        if (this.f7263m == 0) {
+        this.totalCount = this.f7258h.size();
+        if (this.totalCount == 0) {
             this.f7258h = null;
             m2214h();
             return;
         }
         this.f7259i = -1;
-        this.f7260j = 0;
-        this.f7261k = 0;
-        this.f7262l = 0;
-        if (this.f7269s != null) {
-            this.f7269s.sendEmptyMessage(1);
+        this.successCount = 0;
+        this.failedCount = 0;
+        this.skipCount = 0;
+        if (this.handler != null) {
+            this.handler.sendEmptyMessage(1);
         }
     }
 
@@ -282,13 +282,13 @@ public final class SearchManager {
     public void m2216f() {
         this.f7259i++;
         MediaItem mediaItem = null;
-        while (this.f7258h != null && this.f7259i < this.f7263m && (mediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), MediaStorage.GROUP_ID_ALL_LOCAL, this.f7258h.get(this.f7259i))) == null) {
-            this.f7262l++;
+        while (this.f7258h != null && this.f7259i < this.totalCount && (mediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), MediaStorage.GROUP_ID_ALL_LOCAL, this.f7258h.get(this.f7259i))) == null) {
+            this.skipCount++;
             this.f7259i++;
         }
         this.f7265o = false;
         this.f7266p = false;
-        this.f7264n = mediaItem.getID();
+        this.mediaItemId = mediaItem.getID();
         LyricSearchTaskInfo m3888a = SearchTaskInfoUtils.m3888a(mediaItem);
         m3888a.m2204b(true);
         TaskScheduler.start(new LyricSearchTask(m3888a));
@@ -300,8 +300,8 @@ public final class SearchManager {
     /* renamed from: g */
     private void m2215g() {
         this.f7258h = null;
-        if (this.f7269s != null) {
-            this.f7269s.removeMessages(1);
+        if (this.handler != null) {
+            this.handler.removeMessages(1);
         }
         m2214h();
     }
@@ -310,10 +310,10 @@ public final class SearchManager {
     private void m2214h() {
         Intent intent = new Intent(Action.LYRIC_PIC_BATCH_OPERATE_RESULT);
         intent.putExtra("state", this.f7258h != null);
-        intent.putExtra("total_count", this.f7263m);
-        intent.putExtra("success_count", this.f7260j);
-        intent.putExtra("failed_count", this.f7261k);
-        intent.putExtra("skip_count", this.f7262l);
+        intent.putExtra("total_count", this.totalCount);
+        intent.putExtra("success_count", this.successCount);
+        intent.putExtra("failed_count", this.failedCount);
+        intent.putExtra("skip_count", this.skipCount);
         BaseApplication.getApplication().sendBroadcast(intent);
     }
 
@@ -374,8 +374,8 @@ public final class SearchManager {
     /* compiled from: SearchManager.java */
     /* renamed from: com.sds.android.ttpod.framework.support.search.a$a */
     /* loaded from: classes.dex */
-    public class C2088a extends BroadcastReceiver {
-        private C2088a() {
+    public class SearchManagerReceiver extends BroadcastReceiver {
+        private SearchManagerReceiver() {
         }
 
         @Override // android.content.BroadcastReceiver
@@ -391,10 +391,10 @@ public final class SearchManager {
                     String stringExtra2 = intent.getStringExtra("media_id");
                     if ((searchStatus == SearchStatus.SEARCH_LOCAL_FINISHED || searchStatus == SearchStatus.SEARCH_DOWNLOAD_FINISHED) && (stringArrayListExtra = intent.getStringArrayListExtra("download_result_list")) != null && !stringArrayListExtra.isEmpty()) {
                         if ("picture_type".equals(stringExtra)) {
-                            SearchManager.this.f7255e = intent.getStringExtra("media_id") + stringArrayListExtra.get(0);
-                            MediaItem m2606g = Player.m2611e().m2606g();
-                            if (m2606g != null && StringUtils.equals(m2606g.getID(), stringExtra2)) {
-                                Preferences.m3011a(stringArrayListExtra.get(0), m2606g);
+                            SearchManager.this.mediaId = intent.getStringExtra("media_id") + stringArrayListExtra.get(0);
+                            MediaItem mediaItem = Player.m2611e().m2606g();
+                            if (mediaItem != null && StringUtils.equals(mediaItem.getID(), stringExtra2)) {
+                                Preferences.m3011a(stringArrayListExtra.get(0), mediaItem);
                             }
                             SearchManager.this.f7256f.mo2190b();
                         } else if ("lyric_type".equals(stringExtra)) {
@@ -421,8 +421,8 @@ public final class SearchManager {
 
     /* renamed from: a */
     public void m2223a(String str, String str2, SearchStatus searchStatus) {
-        if (this.f7269s != null && this.f7258h != null && str != null && StringUtils.equals(str, this.f7264n)) {
-            synchronized (f7254d) {
+        if (this.handler != null && this.f7258h != null && str != null && StringUtils.equals(str, this.mediaItemId)) {
+            synchronized (searchManager) {
                 m2220b(str, str2, searchStatus);
             }
         }
@@ -431,28 +431,28 @@ public final class SearchManager {
     /* renamed from: b */
     private void m2220b(String str, String str2, SearchStatus searchStatus) {
         MediaItem queryMediaItem;
-        if (this.f7258h != null && str != null && StringUtils.equals(str, this.f7264n)) {
+        if (this.f7258h != null && str != null && StringUtils.equals(str, this.mediaItemId)) {
             if (EnvironmentUtils.AppConfig.getTestMode() && (queryMediaItem = MediaStorage.queryMediaItem(BaseApplication.getApplication(), MediaStorage.GROUP_ID_ALL_LOCAL, str)) != null) {
                 LogUtils.debug("SearchManager", "dealBatchItemSearchState type=%s status=%s mediaId=%s artist=%s title=%s", str2, searchStatus, str, queryMediaItem.getArtist(), queryMediaItem.getTitle());
             }
             if ("lyric_type".equals(str2)) {
                 this.f7265o = true;
-                this.f7267q = searchStatus;
+                this.lyricSearchStatus = searchStatus;
             } else {
                 this.f7266p = true;
-                this.f7268r = searchStatus;
+                this.pictureSearchStatus = searchStatus;
             }
             if (m2224a(str)) {
-                if (this.f7267q == f7251a || this.f7268r == f7251a) {
-                    this.f7260j++;
-                } else if (this.f7267q == f7252b || this.f7268r == f7252b) {
-                    this.f7261k++;
+                if (this.lyricSearchStatus == SEARCH_ONLINE_FINISHED || this.pictureSearchStatus == SEARCH_ONLINE_FINISHED) {
+                    this.successCount++;
+                } else if (this.lyricSearchStatus == SEARCH_ONLINE_FAILURE || this.pictureSearchStatus == SEARCH_ONLINE_FAILURE) {
+                    this.failedCount++;
                 } else {
-                    this.f7262l++;
+                    this.skipCount++;
                 }
                 m2214h();
-                if (this.f7269s != null) {
-                    this.f7269s.sendEmptyMessage(1);
+                if (this.handler != null) {
+                    this.handler.sendEmptyMessage(1);
                 }
             }
         }

@@ -23,7 +23,6 @@ import android.util.DisplayMetrics;
 
 import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
 import com.sds.android.sdk.lib.openudid.OpenUDIDManager;
-import com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity;
 import com.sds.android.ttpod.media.mediastore.old.MediaStoreOld;
 import com.ta.utdid2.device.UTDevice;
 
@@ -101,7 +100,7 @@ public class EnvironmentUtils {
     public static void m8525a(Context context) {
         AppConfig.m8515a(context);
         DeviceConfig.initConfig(context);
-        C0603b.m8497a(context);
+        UUIDConfig.init(context);
         packageName = context.getPackageName();
         m8517g();
     }
@@ -190,7 +189,7 @@ public class EnvironmentUtils {
                 while (FileUtils.m8414b(str2 + i)) {
                     i++;
                 }
-                File m8407e = FileUtils.m8407e(str2 + i);
+                File m8407e = FileUtils.createFile(str2 + i);
                 if (m8407e != null) {
                     m8407e.delete();
                     return true;
@@ -482,7 +481,7 @@ public class EnvironmentUtils {
         }
 
         /* renamed from: d */
-        public static int m8476d() {
+        public static int hasNetwork() {
             int i = f2461f;
             if (connectivityManager == null) {
                 return 1;
@@ -491,7 +490,7 @@ public class EnvironmentUtils {
             if (!isConnectedNetwork(activeNetworkInfo)) {
                 return -1;
             }
-            if (m8475d(activeNetworkInfo)) {
+            if (isConnected(activeNetworkInfo)) {
                 return 2;
             }
             if (m8477c(activeNetworkInfo)) {
@@ -562,7 +561,7 @@ public class EnvironmentUtils {
         }
 
         /* renamed from: d */
-        private static boolean m8475d(NetworkInfo networkInfo) {
+        private static boolean isConnected(NetworkInfo networkInfo) {
             return networkInfo.getType() == 1;
         }
     }
@@ -903,50 +902,50 @@ public class EnvironmentUtils {
 
     /* renamed from: com.sds.android.sdk.lib.util.EnvironmentUtils$b */
     /* loaded from: classes.dex */
-    public static class C0603b {
+    public static class UUIDConfig {
 
         /* renamed from: a */
         private static String utdid;
 
         /* renamed from: b */
-        private static HashMap<String, Object> f2454b = new HashMap<>();
+        private static HashMap<String, Object> uuidMaps = new HashMap<>();
 
         /* renamed from: c */
-        private static JSONObject f2455c;
+        private static JSONObject uuidJsonObject;
 
         /* renamed from: a */
-        public static void m8497a(Context context) {
+        public static void init(Context context) {
             try {
                 OpenUDIDManager.m8571a(context);
-                f2454b.put("openudid", OpenUDIDManager.m8572a());
+                uuidMaps.put("openudid", OpenUDIDManager.m8572a());
                 String replaceAll = DeviceConfig.getMacAddress().replaceAll("[-:]", "");
-                f2454b.put("hid", SecurityUtils.C0612d.m8352a(replaceAll));
+                uuidMaps.put("hid", SecurityUtils.C0612d.m8352a(replaceAll));
                 String m8485a = DeviceConfig.getDeviceId();
-                HashMap<String, Object> hashMap = f2454b;
+                HashMap<String, Object> hashMap = uuidMaps;
                 if (!StringUtils.isEmpty(m8485a)) {
                     replaceAll = m8485a;
                 }
                 hashMap.put("uid", replaceAll);
-                f2454b.put("mid", URLEncoder.encode(Build.MODEL, "UTF-8"));
-                f2454b.put("imsi", URLEncoder.encode(DeviceConfig.getSubscriberId(), "UTF-8"));
-                f2454b.put("s", "s200");
-                f2454b.put("splus", URLEncoder.encode(Build.VERSION.RELEASE + "/" + Build.VERSION.SDK_INT, "UTF-8"));
-                f2454b.put("rom", URLEncoder.encode(Build.FINGERPRINT, "UTF-8"));
-                f2454b.put("v", "v" + AppConfig.getAppVersion());
-                f2454b.put("f", "f" + AppConfig.getChannelType());
-                f2454b.put("alf", "alf" + AppConfig.getChannelNumber());
-                f2454b.put("active", Integer.valueOf(m8490c(context) ? 1 : 0));
-                f2454b.put("net", 0);
-                f2454b.put("tid", new Long(0L));
-                f2454b.put("resolution", m8493b(context));
+                uuidMaps.put("mid", URLEncoder.encode(Build.MODEL, "UTF-8"));
+                uuidMaps.put("imsi", URLEncoder.encode(DeviceConfig.getSubscriberId(), "UTF-8"));
+                uuidMaps.put("s", "s200");
+                uuidMaps.put("splus", URLEncoder.encode(Build.VERSION.RELEASE + "/" + Build.VERSION.SDK_INT, "UTF-8"));
+                uuidMaps.put("rom", URLEncoder.encode(Build.FINGERPRINT, "UTF-8"));
+                uuidMaps.put("v", "v" + AppConfig.getAppVersion());
+                uuidMaps.put("f", "f" + AppConfig.getChannelType());
+                uuidMaps.put("alf", "alf" + AppConfig.getChannelNumber());
+                uuidMaps.put("active", Integer.valueOf(m8490c(context) ? 1 : 0));
+                uuidMaps.put("net", 0);
+                uuidMaps.put("tid", new Long(0L));
+                uuidMaps.put("resolution", m8493b(context));
                 List<String> m8335c = StringUtils.stringToArray(context.getPackageName(), ".");
                 int size = m8335c.size();
                 if (size > 0) {
-                    f2454b.put(OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY, m8335c.get(size - 1));
+                    uuidMaps.put("app", m8335c.get(size - 1));
                 }
                 utdid = UTDevice.getUtdid(context);
-                f2454b.put("utdid", utdid);
-                f2455c = new JSONObject(f2454b);
+                uuidMaps.put("utdid", utdid);
+                uuidJsonObject = new JSONObject(uuidMaps);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -965,40 +964,40 @@ public class EnvironmentUtils {
 
         /* renamed from: b */
         public static String m8494b() {
-            return (String) f2454b.get("s");
+            return (String) uuidMaps.get("s");
         }
 
         /* renamed from: c */
         public static String m8491c() {
-            return (String) f2454b.get("v");
+            return (String) uuidMaps.get("v");
         }
 
         /* renamed from: d */
         public static String m8489d() {
-            return (String) f2454b.get("f");
+            return (String) uuidMaps.get("f");
         }
 
         /* renamed from: e */
         public static HashMap<String, Object> m8488e() {
-            f2454b.put("net", Integer.valueOf(DeviceConfig.m8476d()));
-            return f2454b;
+            uuidMaps.put("net", Integer.valueOf(DeviceConfig.hasNetwork()));
+            return uuidMaps;
         }
 
         /* renamed from: f */
         public static JSONObject m8487f() {
             try {
-                f2455c.put("net", DeviceConfig.m8476d());
+                uuidJsonObject.put("net", DeviceConfig.hasNetwork());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return f2455c;
+            return uuidJsonObject;
         }
 
         /* renamed from: a */
         public static void m8498a(long j) {
-            f2454b.put("tid", Long.valueOf(j));
+            uuidMaps.put("tid", Long.valueOf(j));
             try {
-                f2455c.put("tid", j);
+                uuidJsonObject.put("tid", j);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -1006,7 +1005,7 @@ public class EnvironmentUtils {
 
         /* renamed from: g */
         public static long m8486g() {
-            return ((Long) f2454b.get("tid")).longValue();
+            return ((Long) uuidMaps.get("tid")).longValue();
         }
 
         /* renamed from: c */

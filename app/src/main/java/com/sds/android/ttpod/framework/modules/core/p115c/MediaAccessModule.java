@@ -111,7 +111,7 @@ public class MediaAccessModule extends BaseModule {
         map.put(CommandID.LOGIN_FINISHED, ReflectUtils.m8375a(cls, "loginFinished", CommonResult.class));
         map.put(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, ReflectUtils.m8375a(cls, "pullFavoriteOnlineMediaListComplete", new Class[0]));
         map.put(CommandID.SCAN_FINISHED, ReflectUtils.m8375a(cls, "scanFinished", Integer.class));
-        map.put(CommandID.DOWNLOAD_STATE_CHANGED, ReflectUtils.m8375a(cls, "downloadStateChanged", DownloadTaskInfo.class, Task.EnumC0579b.class));
+        map.put(CommandID.DOWNLOAD_STATE_CHANGED, ReflectUtils.m8375a(cls, "downloadStateChanged", DownloadTaskInfo.class, Task.ErrorCodeType.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
@@ -124,7 +124,7 @@ public class MediaAccessModule extends BaseModule {
         }
     }
 
-    public void downloadStateChanged(DownloadTaskInfo downloadTaskInfo, Task.EnumC0579b enumC0579b) {
+    public void downloadStateChanged(DownloadTaskInfo downloadTaskInfo, Task.ErrorCodeType enumC0579b) {
         if (4 == downloadTaskInfo.getState().intValue()) {
             if ((DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType()) || DownloadTaskInfo.TYPE_FAVORITE_SONG.equals(downloadTaskInfo.getType()) || DownloadTaskInfo.TYPE_FAVORITE_SONG_LIST.equals(downloadTaskInfo.getType())) && MediaStorage.queryMediaItemBySongID(sContext, MediaStorage.GROUP_ID_ALL_LOCAL, downloadTaskInfo.getFileId()) != null) {
                 m4269f();
@@ -428,12 +428,12 @@ public class MediaAccessModule extends BaseModule {
         m4269f();
         MediaStorage.updateMediaItem(sContext, mediaItem);
         final boolean equals = mediaItem.equals(Cache.getInstance().getCurrentPlayMediaItem());
-        final PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
+        final PlayStatus m2463m = SupportFactory.getInstance(BaseApplication.getApplication()).m2463m();
         if (equals) {
             Cache.getInstance().m3182c(mediaItem);
             CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_ITEM_STARTED, mediaItem), ModuleID.MEDIA_ACCESS);
             CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
-            Preferences.getPositionInfo(Preferences.getMediaId() + File.pathSeparator + SupportFactory.m2397a(sContext).m2465k());
+            Preferences.getPositionInfo(Preferences.getMediaId() + File.pathSeparator + SupportFactory.getInstance(sContext).m2465k());
         }
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.8
             @Override // java.lang.Runnable
@@ -502,7 +502,7 @@ public class MediaAccessModule extends BaseModule {
         m4282a(MediaStorage.GROUP_ID_ONLINE_TEMPORARY);
         MediaStorage.clearGroup(sContext, MediaStorage.GROUP_ID_ONLINE_TEMPORARY);
         int size = arrayList.size();
-        Preferences.m2828t(str);
+        Preferences.setOnlineMediaListGroupName(str);
         for (int i = 0; i < size; i += 50) {
             MediaStorage.insertMediaItems(sContext, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, arrayList.subList(i, Math.min(i + 50, size)));
         }
@@ -539,7 +539,7 @@ public class MediaAccessModule extends BaseModule {
                     if (!m3225N.equals(mediaItem)) {
                         MediaAccessModule.this.m4283a(mediaItem, "lyric_type");
                     } else {
-                        FileUtils.m8404h(Cache.getInstance().m3159i());
+                        FileUtils.exists(Cache.getInstance().m3159i());
                         Cache.getInstance().m3161h();
                         CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_LYRIC_DELETED, mediaItem), ModuleID.MEDIA_ACCESS);
                     }
@@ -605,7 +605,7 @@ public class MediaAccessModule extends BaseModule {
         MediaStorage.deleteMediaItemList(sContext, str, arrayList);
         if (str2 != null) {
             MediaItem queryMediaItem = MediaStorage.queryMediaItem(sContext, m2858m, str2);
-            if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+            if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
                 CommandCenter.getInstance().m4596b(new Command(CommandID.PLAY_GROUP, m2858m, queryMediaItem));
             } else {
                 CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
@@ -627,7 +627,7 @@ public class MediaAccessModule extends BaseModule {
                     MediaStorage.deleteMediaItemList(MediaAccessModule.sContext, MediaStorage.GROUP_ID_ALL_LOCAL, arrayList);
                     for (MediaItem mediaItem2 : collection) {
                         if (mediaItem2 != null) {
-                            FileUtils.m8404h(mediaItem2.getLocalDataSource());
+                            FileUtils.exists(mediaItem2.getLocalDataSource());
                         }
                     }
                 }

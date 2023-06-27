@@ -74,7 +74,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
         public void handleMessage(Message message) {
             if (message.what == 1) {
                 if (SoundSearchResultActivity.this.mLyricView != null) {
-                    SoundSearchResultActivity.this.mLyricView.setPlayingTime(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue());
+                    SoundSearchResultActivity.this.mLyricView.setPlayingTime(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
                     if (message.arg1 == 1) {
                         SoundSearchResultActivity.this.refreshLyric(1);
                     }
@@ -93,9 +93,9 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
                     return;
                 case R.id.imageview_soundsearch_play /* 2131230981 */:
                     if (Cache.getInstance().getCurrentPlayMediaItem().getID().equals(SoundSearchResultActivity.this.mMediaItem.getID())) {
-                        if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
+                        if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
                             CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
-                        } else if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+                        } else if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
                             CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                         }
                     } else {
@@ -187,8 +187,8 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
                 return;
             case SEARCH_ONLINE_FINISHED:
                 if (list != null && list.size() > 0) {
-                    ResultData.Item item = list.get(0).m2179c()[0];
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_PICTURE, item.m2173c(), item.m2172d(), this.mMediaItem));
+                    ResultData.Item item = list.get(0).getLyricArray()[0];
+                    CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_PICTURE, item.getUrl(), item.getLocalLyricPath(), this.mMediaItem));
                     return;
                 }
                 return;
@@ -209,7 +209,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
                     return;
                 case SEARCH_ONLINE_FINISHED:
                     if (list != null && list.size() > 0) {
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, list.get(0).m2179c()[0], this.mMediaItem));
+                        CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, list.get(0).getLyricArray()[0], this.mMediaItem));
                         return;
                     }
                     return;
@@ -281,7 +281,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
         this.mLyricView.setAlign(Paint.Align.CENTER);
         this.mLyricView.setDefaultFontSizeHighlight(18.0f);
         this.mLyricView.setDefaultFontSizeNormal(14.0f);
-        this.mLyricView.setDisplayMode(LyricView.EnumC1996a.Normal);
+        this.mLyricView.setDisplayMode(LyricView.LyricDisplayEnum.Normal);
         this.mLyricView.setTextSize(14.0f);
         this.mLyricView.setTextSizeHighlight(18.0f);
         this.mLyricView.setKalaOK(false);

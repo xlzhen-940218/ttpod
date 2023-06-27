@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import com.sds.android.cloudapi.ttpod.data.AudioEffectItem;
-import com.sds.android.cloudapi.ttpod.p055a.CloudAudioEffectAPI;
+import com.sds.android.cloudapi.ttpod.api.CloudAudioEffectAPI;
 import com.sds.android.cloudapi.ttpod.result.AudioEffectItemResult;
 import com.sds.android.sdk.lib.request.RequestCallback;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
@@ -291,7 +291,7 @@ public class AudioEffectLoader {
                 return;
             }
             m2734h();
-            if (2 == EnvironmentUtils.DeviceConfig.m8476d() || !Preferences.m3066H() || Preferences.m2972ae()) {
+            if (2 == EnvironmentUtils.DeviceConfig.hasNetwork() || !Preferences.m3066H() || Preferences.m2972ae()) {
                 if (Preferences.m2972ae()) {
                     Preferences.m3077B(false);
                 }

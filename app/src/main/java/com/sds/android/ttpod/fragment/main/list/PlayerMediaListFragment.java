@@ -94,7 +94,7 @@ public class PlayerMediaListFragment extends PlayingFragment {
     }
 
     public void scrollToPlayingRow() {
-        selectRow(SupportFactory.m2397a(BaseApplication.getApplication()).m2458r());
+        selectRow(SupportFactory.getInstance(BaseApplication.getApplication()).m2458r());
     }
 
     /* JADX INFO: Access modifiers changed from: private */

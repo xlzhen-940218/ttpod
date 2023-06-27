@@ -55,7 +55,7 @@ public class ReverbFragment extends BaseFragment {
     }
 
     public void updateAudioEffectInfo() {
-        AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+        AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
         if (this.mAdapter != null && m2457s != null) {
             this.mAdapter.m7611a(String.valueOf(m2457s.m4429d()));
         }

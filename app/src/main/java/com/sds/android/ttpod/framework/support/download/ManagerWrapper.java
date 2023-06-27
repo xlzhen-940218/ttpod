@@ -8,7 +8,7 @@ import com.sds.android.sdk.core.download.TaskInfo;
 /* loaded from: classes.dex */
 public class ManagerWrapper {
     /* renamed from: a */
-    public void m2399a(String str, TaskInfo taskInfo, Task.AbstractC0578a abstractC0578a) {
-        Manager.m8744a().m8740a(str, taskInfo, abstractC0578a);
+    public void m2399a(String str, TaskInfo taskInfo, Task.TaskCallback abstractC0578a) {
+        Manager.getInstance().start(str, taskInfo, abstractC0578a);
     }
 }

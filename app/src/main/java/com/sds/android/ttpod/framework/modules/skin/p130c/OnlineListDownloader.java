@@ -42,7 +42,7 @@ public class OnlineListDownloader implements Runnable {
         LogUtils.debug("OnlineListDownloader", getClass().getSimpleName() + ".OnlineListDownloader [skin]---> " + this.f6541c);
         boolean m3718b = m3718b(this.f6542d);
         if (m3718b && !TextUtils.isEmpty(this.f6539a)) {
-            FileUtils.m8404h(this.f6539a);
+            FileUtils.exists(this.f6539a);
         }
         CommandCenter.getInstance().m4595b(new Command(this.f6541c, Boolean.valueOf(m3718b)), ModuleID.SKIN);
     }
@@ -54,7 +54,7 @@ public class OnlineListDownloader implements Runnable {
 
     /* renamed from: a */
     protected String mo3720a(String str) {
-        return !TextUtils.isEmpty(str) ? FileUtils.m8400l(str) : TTPodConfig.m5294n();
+        return !TextUtils.isEmpty(str) ? FileUtils.m8400l(str) : TTPodConfig.getSkinPath();
     }
 
     /* renamed from: b */

@@ -94,7 +94,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         this.mBackgroundAdapter = initAdapter();
-        mDownloadManager = Manager.m8744a();
+        mDownloadManager = Manager.getInstance();
         if (!mDownloadManager.m8743a(BACKGROUND_DOWNLOAD_ISSUE)) {
             mDownloadManager.m8742a(BACKGROUND_DOWNLOAD_ISSUE, 4);
         }

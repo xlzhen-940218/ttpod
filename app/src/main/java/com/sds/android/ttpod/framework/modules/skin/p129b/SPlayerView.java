@@ -48,7 +48,7 @@ public class SPlayerView extends SBaseView<MultiScreenLayout, SPanel> {
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SBaseView, com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
     public void mo3775a(Context context, MultiScreenLayout multiScreenLayout, SkinCache skinCache) {
-        multiScreenLayout.setTag(this.f6430a);
+        multiScreenLayout.setTag(this.id);
         multiScreenLayout.setEnableBackgroundOffset(this.f6472l);
         multiScreenLayout.setEnableBoundaryBounce(this.f6470j);
         multiScreenLayout.setEnableSecondBackground(this.f6471k);

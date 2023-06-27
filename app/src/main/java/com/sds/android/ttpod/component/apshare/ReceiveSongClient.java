@@ -45,7 +45,7 @@ public class ReceiveSongClient {
     private SocketClient f3724f;
 
     /* renamed from: a */
-    private String f3719a = TTPodConfig.m5291q();
+    private String f3719a = TTPodConfig.getSongPath();
 
     /* renamed from: e */
     private ExecutorService f3723e = Executors.newFixedThreadPool(1);

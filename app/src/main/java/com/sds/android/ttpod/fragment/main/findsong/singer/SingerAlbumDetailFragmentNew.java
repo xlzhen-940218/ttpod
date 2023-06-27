@@ -125,7 +125,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.singer.SingerTabFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadFinished() {
         super.onLoadFinished();
-        updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+        updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
         setCurrentItem(this.mTab);
         new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.fragment.main.findsong.singer.SingerAlbumDetailFragmentNew.1
             @Override // java.lang.Runnable
@@ -192,7 +192,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public boolean isPlayingItem() {
-        return OnlinePlayingGroupUtils.m6911a(Preferences.m2926bc(), this.mAlbumItem);
+        return OnlinePlayingGroupUtils.m6911a(Preferences.getOnlineMediaListGroupName(), this.mAlbumItem);
     }
 
     private void requestAlbumSongList() {
@@ -245,7 +245,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
                 if (SingerAlbumDetailFragmentNew.this.isViewAccessAble()) {
                     PopupsUtils.m6760a((int) R.string.network_unavailable);
                 }
-                SingerAlbumDetailFragmentNew.this.updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+                SingerAlbumDetailFragmentNew.this.updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
             }
         });
     }
@@ -300,7 +300,7 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
     private void onSongItemClick(AdapterView<?> adapterView, View view, int i, long j) {
         ListViewUtils.m8264a(this.mListView);
         this.mSongAdapter.m7408a(i, false);
-        Preferences.m2828t(OnlinePlayingGroupUtils.m6918a(this.mAlbumItem));
+        Preferences.setOnlineMediaListGroupName(OnlinePlayingGroupUtils.m6918a(this.mAlbumItem));
         MediaItem item = this.mSongAdapter.getItem(i);
         if (item != null) {
             //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_ONLINE_SONG_LIST_ITEM.getValue(), this.mAlbumItem.getName(), String.valueOf(SPage.PAGE_NONE)).append("song_id", item.getSongID()).append("song_album_id", Long.valueOf(this.mAlbumItem.getId())).post();

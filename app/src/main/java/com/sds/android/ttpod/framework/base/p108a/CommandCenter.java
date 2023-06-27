@@ -28,7 +28,7 @@ public final class CommandCenter {
     private Handler handler = new Handler(Looper.getMainLooper());
 
     /* renamed from: c */
-    private Map<Object, Map<CommandID, C1803a>> f5713c = new HashMap();
+    private Map<Object, Map<CommandID, MethodInvoke>> objectCommandIDMethodInvokeMap = new HashMap();
 
     /* renamed from: d */
     private Map<ModuleID, Map<CommandID, Set<Object>>> moduleIDMapMap = new EnumMap(ModuleID.class);
@@ -45,7 +45,7 @@ public final class CommandCenter {
     public void m4597a(Object obj, Map<CommandID, Method> map) {
         DebugUtils.m8426a(obj, "target");
         DebugUtils.m8427a();
-        if (this.f5713c.containsKey(obj)) {
+        if (this.objectCommandIDMethodInvokeMap.containsKey(obj)) {
             throw new IllegalArgumentException("the target Already registered!");
         }
         if (map == null) {
@@ -61,10 +61,10 @@ public final class CommandCenter {
         EnumMap enumMap = new EnumMap(CommandID.class);
         for (CommandID commandID : map.keySet()) {
             Method method = map.get(commandID);
-            enumMap.put(commandID, new C1803a(method, method.getParameterTypes(), method.getReturnType()));
+            enumMap.put(commandID, new MethodInvoke(method, method.getParameterTypes(), method.getReturnType()));
             m4598a(obj, commandID);
         }
-        this.f5713c.put(obj, enumMap);
+        this.objectCommandIDMethodInvokeMap.put(obj, enumMap);
     }
 
     /* renamed from: a */
@@ -89,7 +89,7 @@ public final class CommandCenter {
 
     /* renamed from: b */
     private void m4593b(Object obj) {
-        Iterator<Object> it = this.f5713c.keySet().iterator();
+        Iterator<Object> it = this.objectCommandIDMethodInvokeMap.keySet().iterator();
         while (it.hasNext()) {
             if (it.next() == obj) {
                 it.remove();
@@ -132,7 +132,7 @@ public final class CommandCenter {
 
     /* renamed from: a */
     public void m4604a(Command command, ModuleID moduleID) {
-        m4600a(moduleID);
+        moduleIDNotNull(moduleID);
         checkCommandAndModuleId(command, moduleID);
         invokeResult(command, (Class) null);
     }
@@ -169,7 +169,7 @@ public final class CommandCenter {
 
     /* renamed from: a */
     public void m4603a(final Command command, ModuleID moduleID, int i) {
-        m4600a(moduleID);
+        moduleIDNotNull(moduleID);
         checkCommandAndModuleId(command, moduleID);
         this.handler.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.a.b.2
             @Override // java.lang.Runnable
@@ -211,14 +211,14 @@ public final class CommandCenter {
         } else {
             Object obj = null;
             for (Object obj2 : set) {
-                obj = this.f5713c.get(obj2).get(commandId).invoke(obj2, command, cls);
+                obj = this.objectCommandIDMethodInvokeMap.get(obj2).get(commandId).invoke(obj2, command, cls);
             }
             return (Result) obj;
         }
     }
 
     /* renamed from: a */
-    private void m4600a(ModuleID moduleID) {
+    private void moduleIDNotNull(ModuleID moduleID) {
         if (moduleID == null) {
             throw new IllegalArgumentException("fromModuleID must not be null!");
         }
@@ -247,7 +247,7 @@ public final class CommandCenter {
     /* compiled from: CommandCenter.java */
     /* renamed from: com.sds.android.ttpod.framework.base.a.b$a */
     /* loaded from: classes.dex */
-    public static final class C1803a {
+    public static final class MethodInvoke {
 
         /* renamed from: a */
         private Method method;
@@ -258,7 +258,7 @@ public final class CommandCenter {
         /* renamed from: c */
         private Class f5721c;
 
-        private C1803a(Method method, Class[] clsArr, Class cls) {
+        private MethodInvoke(Method method, Class[] clsArr, Class cls) {
             this.method = method;
             this.f5720b = clsArr;
             this.f5721c = cls;

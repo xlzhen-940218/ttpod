@@ -16,7 +16,7 @@ import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
-import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaItemAPI;
+import com.sds.android.cloudapi.ttpod.api.OnlineMediaItemAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 
 
@@ -563,7 +563,7 @@ public class ShareSelectDialog extends BaseDialog {
     private String m1991u() {
         String str = this.f7404h + File.separator + "image" + File.separator;
         if (!new File(str).exists()) {
-            FileUtils.m8406f(str);
+            FileUtils.createFolder(str);
         }
         return str;
     }

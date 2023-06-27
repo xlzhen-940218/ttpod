@@ -20,7 +20,6 @@ import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity;
 
 
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
@@ -207,12 +206,12 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
         } else {
             queryParameter = FileUtils.getFilename(str);
         }
-        String str2 = TTPodConfig.m5285w() + File.separator + queryParameter;
+        String str2 = TTPodConfig.getAppPath() + File.separator + queryParameter;
         int intValue = DownloadTaskInfo.TYPE_APP.intValue();
         if (StringUtils.isEmpty(str2) || intValue < 0) {
             return null;
         }
-        return DownloadUtils.m4760a(str, str2, 0L, queryParameter, Integer.valueOf(intValue), true, OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY);
+        return DownloadUtils.m4760a(str, str2, 0L, queryParameter, Integer.valueOf(intValue), true, "app");
     }
 
     private boolean isTaobaoProtocol(String str) {

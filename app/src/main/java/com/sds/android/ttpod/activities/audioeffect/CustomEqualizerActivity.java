@@ -207,7 +207,7 @@ public class CustomEqualizerActivity extends ActionBarActivity implements ThemeM
 
     public void updateAudioEffectInfo() {
         AudioEffectParam m2457s;
-        if (!isFinishing() && (m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s()) != null) {
+        if (!isFinishing() && (m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s()) != null) {
             TTEqualizer.Settings settings = new TTEqualizer.Settings(m2457s.m4421g());
             this.mCustomData = settings.getBandLevels();
             updateView();

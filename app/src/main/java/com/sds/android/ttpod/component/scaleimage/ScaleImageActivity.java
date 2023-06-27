@@ -217,11 +217,11 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         if (view.getId() == R.id.btn_download) {
-            String m5312A = TTPodConfig.m5312A();
+            String m5312A = TTPodConfig.getImagePath();
             if (!FileUtils.isDir(m5312A)) {
-                FileUtils.m8406f(m5312A);
+                FileUtils.createFolder(m5312A);
             }
-            final String str = TTPodConfig.m5312A() + File.separator + FileUtils.m8401k(this.mPicList.get(this.mStartIndex)) + ".jpg";
+            final String str = TTPodConfig.getImagePath() + File.separator + FileUtils.m8401k(this.mPicList.get(this.mStartIndex)) + ".jpg";
             if (new File(str).exists()) {
                 PopupsUtils.m6721a("图片已存在");
                 return;

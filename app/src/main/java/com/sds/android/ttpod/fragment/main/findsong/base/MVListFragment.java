@@ -43,12 +43,12 @@ public abstract class MVListFragment extends ListLoadingFragment<MVOnlineData> {
 
     /* JADX INFO: Access modifiers changed from: protected */
     public static String generateLocalMvFilePath(String str, MVOnlineData mVOnlineData) {
-        return TTPodConfig.m5283y() + File.separator + (mVOnlineData.getSinger() + SINGER_NAME_SEPARATOR + mVOnlineData.getName()) + ("." + FileUtils.getSuffix(FileUtils.getFilename(str)));
+        return TTPodConfig.getMvPath() + File.separator + (mVOnlineData.getSinger() + SINGER_NAME_SEPARATOR + mVOnlineData.getName()) + ("." + FileUtils.getSuffix(FileUtils.getFilename(str)));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     public static String generateMvThumbnailPath(MVOnlineData mVOnlineData, String str) {
-        return TTPodConfig.m5282z() + File.separator + (mVOnlineData.getSinger() + SINGER_NAME_SEPARATOR + mVOnlineData.getName()) + str;
+        return TTPodConfig.getMvCachePath() + File.separator + (mVOnlineData.getSinger() + SINGER_NAME_SEPARATOR + mVOnlineData.getName()) + str;
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

@@ -185,7 +185,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
 
     /* renamed from: a */
     private static void m2541a(RemoteViews remoteViews, String str) {
-        File m8407e = FileUtils.m8407e(str);
+        File m8407e = FileUtils.createFile(str);
         if (m8407e != null && m8407e.exists()) {
             remoteViews.setImageViewUri(R.id.image_album_cover, Uri.fromFile(m8407e));
         } else {
@@ -213,7 +213,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
 
     /* renamed from: a */
     private static String m2537a(String str) {
-        String str2 = TTPodConfig.m5298j() + File.separator + "albumCoverFileTmp";
+        String str2 = TTPodConfig.getCacheTmpPath() + File.separator + "albumCoverFileTmp";
         Bitmap m8445a = BitmapUtils.m8445a(str, DisplayUtils.m7229a(200));
         if (m8445a != null) {
             BitmapUtils.m8450a(m8445a, str2);

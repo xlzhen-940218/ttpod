@@ -17,7 +17,7 @@ public class LrcFormattedLyric implements FormattedLyric {
     protected final OnMeasureTextListener f6608c;
 
     /* renamed from: d */
-    protected ArrayList<LrcSentence> f6609d;
+    protected ArrayList<LrcSentence> lrcLineList;
 
     /* renamed from: e */
     private int f6610e;
@@ -34,18 +34,18 @@ public class LrcFormattedLyric implements FormattedLyric {
         if (i < 0) {
             return null;
         }
-        return this.f6609d.get(i);
+        return this.lrcLineList.get(i);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
     public int mo3630a() {
-        return this.f6609d.size();
+        return this.lrcLineList.size();
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        Iterator<LrcSentence> it = this.f6609d.iterator();
+        Iterator<LrcSentence> it = this.lrcLineList.iterator();
         while (it.hasNext()) {
             sb.append(it.next().toString());
         }
@@ -58,11 +58,11 @@ public class LrcFormattedLyric implements FormattedLyric {
             return null;
         }
         int mo3672b = this.f6606a.mo3672b();
-        this.f6609d = new ArrayList<>((mo3672b >> 1) + mo3672b);
+        this.lrcLineList = new ArrayList<>((mo3672b >> 1) + mo3672b);
         for (int i = 0; i < mo3672b; i++) {
             mo3634a(this.f6606a.m3687b(i), i);
         }
-        LyricUtils.m3641a(this.f6609d, this.f6606a.mo3668g());
+        LyricUtils.m3641a(this.lrcLineList, this.f6606a.mo3668g());
         return this;
     }
 
@@ -215,7 +215,7 @@ public class LrcFormattedLyric implements FormattedLyric {
 
     /* renamed from: a */
     protected void mo3633a(String str, long j, int i, int i2, int i3) {
-        this.f6609d.add(new LrcSentence(j, str, i, i2, i3));
+        this.lrcLineList.add(new LrcSentence(j, str, i, i2, i3));
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
@@ -227,7 +227,7 @@ public class LrcFormattedLyric implements FormattedLyric {
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
     public int mo3628a(long j) {
-        this.f6610e = LyricUtils.m3642a(this.f6609d, j);
+        this.f6610e = LyricUtils.m3642a(this.lrcLineList, j);
         return this.f6610e;
     }
 }

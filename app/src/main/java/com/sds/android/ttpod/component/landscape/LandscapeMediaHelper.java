@@ -170,7 +170,7 @@ public class LandscapeMediaHelper implements Scheduler.InterfaceC1275a {
                 this.f4567j = false;
             }
             if (m6118b instanceof InterfaceC1269e) {
-                if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING && SupportFactory.m2397a(BaseApplication.getApplication()).m2486a(this.f4558a, 64)) {
+                if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING && SupportFactory.getInstance(BaseApplication.getApplication()).m2486a(this.f4558a, 64)) {
                     ((InterfaceC1269e) m6118b).mo6135a(this.f4558a);
                 } else {
                     ((InterfaceC1269e) m6118b).mo6135a(null);

@@ -146,7 +146,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
         this.mTitleLayer.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.audioeffect.CloudAudioEffectFragment.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
+                PlayStatus m2463m = SupportFactory.getInstance(BaseApplication.getApplication()).m2463m();
                 if (m2463m == PlayStatus.STATUS_PAUSED) {
                     CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                 } else if (m2463m == PlayStatus.STATUS_PLAYING) {
@@ -409,7 +409,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
     public void updateAudioEffectInfo() {
         Boolean bool;
         if (this.mAttach && getActivity() != null) {
-            if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+            if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
                 this.mHeadPlaystatusView.setBackgroundResource(R.drawable.myeffect_item_hit);
             } else {
                 this.mHeadPlaystatusView.setBackgroundResource(R.drawable.myeffect_pause);
@@ -419,7 +419,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
                 showNoMatch(false);
                 return;
             }
-            AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+            AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
             if (m2457s != null) {
                 Boolean.valueOf(false);
                 switch (m2457s.m4420h()) {

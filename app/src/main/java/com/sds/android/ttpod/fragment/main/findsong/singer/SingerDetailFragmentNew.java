@@ -237,7 +237,7 @@ public class SingerDetailFragmentNew extends SingerTabFragment implements Abstra
     private void onSongItemClick(AdapterView<?> adapterView, View view, int i, long j) {
         ListViewUtils.m8264a(this.mListView);
         this.mSongAdapter.m7408a(i, onListStatistic());
-        Preferences.m2828t(OnlinePlayingGroupUtils.m6914a(this.mSingerData));
+        Preferences.setOnlineMediaListGroupName(OnlinePlayingGroupUtils.m6914a(this.mSingerData));
         MediaItem item = this.mSongAdapter.getItem(i);
         if (this.mSingerData != null && item != null) {
             //MusicLibraryStatistic.m5068a(this.mSingerData.getId(), this.mSingerData.getName());

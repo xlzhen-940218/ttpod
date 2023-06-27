@@ -15,58 +15,58 @@ import java.util.HashMap;
 public class SLyricShow extends SText {
 
     /* renamed from: s */
-    private int f6458s;
+    private int fontSizeSelected;
 
     /* renamed from: t */
-    private boolean f6459t;
+    private boolean vertical;
 
     /* renamed from: u */
-    private boolean f6460u;
+    private boolean horizontal;
 
     /* renamed from: v */
-    private int f6461v;
+    private int fadeColor;
 
     /* renamed from: w */
-    private String f6462w;
+    private String mode;
 
     /* renamed from: x */
-    private int f6463x;
+    private int fontColorUp;
 
     /* renamed from: y */
-    private int f6464y;
+    private int fontColorUpSelected;
 
     /* renamed from: z */
-    private int f6465z;
+    private int strokeCOlor;
 
     public SLyricShow(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, HashMap<String, SFont> hashMap2, int i) {
         super(kXmlParser, hashMap, hashMap2, i);
-        this.f6458s = 15;
-        this.f6461v = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FadeColor"), 0);
-        this.f6463x = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorUp"), 0);
-        this.f6464y = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorUpSelected"), 0);
-        this.f6465z = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "StrokeColor"), 0);
-        String attributeValue = kXmlParser.getAttributeValue(null, "FadeEdge");
-        if (attributeValue != null) {
-            if (attributeValue.contains("Vertical")) {
-                this.f6459t = true;
+        this.fontSizeSelected = 15;
+        this.fadeColor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FadeColor"), 0);
+        this.fontColorUp = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorUp"), 0);
+        this.fontColorUpSelected = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorUpSelected"), 0);
+        this.strokeCOlor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "StrokeColor"), 0);
+        String fadeEdge = kXmlParser.getAttributeValue(null, "FadeEdge");
+        if (fadeEdge != null) {
+            if (fadeEdge.contains("Vertical")) {
+                this.vertical = true;
             }
-            if (attributeValue.contains("Horizontal")) {
-                this.f6460u = true;
+            if (fadeEdge.contains("Horizontal")) {
+                this.horizontal = true;
             }
         } else {
-            this.f6459t = true;
+            this.vertical = true;
         }
-        if ((this.f6498d & 3) == 3) {
-            this.f6498d = 0;
-        } else if ((this.f6498d & 5) == 5) {
-            this.f6498d = 2;
+        if ((this.align & 3) == 3) {
+            this.align = 0;
+        } else if ((this.align & 5) == 5) {
+            this.align = 2;
         } else {
-            this.f6498d = 1;
+            this.align = 1;
         }
-        this.f6462w = kXmlParser.getAttributeValue(null, "Mode");
-        int m3702a = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FontSizeSelected"), this.f6497c.f6451c);
-        if (m3702a > 0) {
-            this.f6458s = m3702a;
+        this.mode = kXmlParser.getAttributeValue(null, "Mode");
+        int fontSizeSelected = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FontSizeSelected"), this.font.size);
+        if (fontSizeSelected > 0) {
+            this.fontSizeSelected = fontSizeSelected;
         }
     }
 
@@ -74,46 +74,46 @@ public class SLyricShow extends SText {
     /* renamed from: b */
     public View mo3771b(Context context, SkinCache skinCache) {
         LyricView lyricView = new LyricView(context);
-        Typeface m3593a = skinCache.getTypeFace(this.f6497c);
+        Typeface m3593a = skinCache.getTypeFace(this.font);
         if (m3593a != null) {
             lyricView.setTypefaceHighlight(m3593a);
             lyricView.setTypefaceNormal(m3593a);
         }
-        lyricView.setAlign(Paint.Align.values()[this.f6498d]);
-        lyricView.setColorNormal(this.f6499e);
-        lyricView.setDefaultColorHighlight(this.f6502l);
-        lyricView.setColorHighlight(this.f6502l);
-        if ((this.f6504n >> 24) != 0) {
-            lyricView.m3484a(this.f6505o, this.f6506p, this.f6507q, this.f6504n);
+        lyricView.setAlign(Paint.Align.values()[this.align]);
+        lyricView.setColorNormal(this.fontColor);
+        lyricView.setDefaultColorHighlight(this.fontColorSelected);
+        lyricView.setColorHighlight(this.fontColorSelected);
+        if ((this.fontShadowColor >> 24) != 0) {
+            lyricView.m3484a(this.fontShaowRadius, this.fontShaowDx, this.fontShaowDy, this.fontShadowColor);
         }
-        int m3704a = ValueParser.m3704a(this.f6508r, 0);
+        int m3704a = ValueParser.m3704a(this.fadeEdgeLength, 0);
         if (m3704a > 0) {
             lyricView.setFadeEdgeLength(m3704a);
         }
-        if ("Mtv".equalsIgnoreCase(this.f6462w)) {
-            lyricView.setDisplayMode(LyricView.EnumC1996a.MTV);
-            if (this.f6463x != 0 && this.f6464y != 0) {
-                lyricView.setColorGradientUHost(this.f6464y);
-                lyricView.setColorGradientUGuest(this.f6463x);
+        if ("Mtv".equalsIgnoreCase(this.mode)) {
+            lyricView.setDisplayMode(LyricView.LyricDisplayEnum.MTV);
+            if (this.fontColorUp != 0 && this.fontColorUpSelected != 0) {
+                lyricView.setColorGradientUHost(this.fontColorUpSelected);
+                lyricView.setColorGradientUGuest(this.fontColorUp);
                 lyricView.setColorBySkin(true);
             } else {
                 lyricView.setMtvGradient(false);
             }
-            if (this.f6465z == 0) {
+            if (this.strokeCOlor == 0) {
                 lyricView.setMtvStroke(false);
             } else {
-                lyricView.setColorStrokeNormal(this.f6465z);
+                lyricView.setColorStrokeNormal(this.strokeCOlor);
             }
             lyricView.m3451c();
-        } else if ("Single".equalsIgnoreCase(this.f6462w)) {
-            lyricView.setDisplayMode(LyricView.EnumC1996a.Single);
+        } else if ("Single".equalsIgnoreCase(this.mode)) {
+            lyricView.setDisplayMode(LyricView.LyricDisplayEnum.Single);
             lyricView.m3451c();
         }
-        if (this.f6497c.f6451c > 2) {
-            lyricView.setTextSizeHighlight(this.f6458s);
-            lyricView.setTextSizeNormal(this.f6497c.f6451c);
-            lyricView.setDefaultFontSizeNormal(this.f6497c.f6451c);
-            lyricView.setDefaultFontSizeHighlight(this.f6458s);
+        if (this.font.size > 2) {
+            lyricView.setTextSizeHighlight(this.fontSizeSelected);
+            lyricView.setTextSizeNormal(this.font.size);
+            lyricView.setDefaultFontSizeNormal(this.font.size);
+            lyricView.setDefaultFontSizeHighlight(this.fontSizeSelected);
         }
         return lyricView;
     }

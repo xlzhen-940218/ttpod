@@ -12,7 +12,6 @@ import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
-import com.sds.android.ttpod.activities.search.OnlineSearchEntryActivity;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
@@ -50,7 +49,7 @@ public final class DownloadTaskFacade {
 
 
     public DownloadTaskFacade(SqliteDbWrapper sqliteDbWrapper, ManagerWrapper managerWrapper) {
-        this.f7146a.put("download_normal", new C2067a(1, new Task.AbstractC0578a() { // from class: com.sds.android.ttpod.framework.support.download.a.1
+        this.f7146a.put("download_normal", new C2067a(1, new Task.TaskCallback() { // from class: com.sds.android.ttpod.framework.support.download.a.1
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: a */
             public void mo2410a(TaskInfo taskInfo) {
@@ -59,25 +58,25 @@ public final class DownloadTaskFacade {
 
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: b */
-            public void mo2149b(TaskInfo taskInfo) {
+            public void start(TaskInfo taskInfo) {
                 DownloadTaskFacade.this.m2423b(taskInfo);
             }
 
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: c */
-            public void mo2148c(TaskInfo taskInfo) {
+            public void downloaded(TaskInfo taskInfo) {
                 DownloadTaskFacade.this.m2416c(taskInfo);
             }
 
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: a */
-            public void mo2150a(TaskInfo taskInfo, Task.EnumC0579b enumC0579b) {
+            public void error(TaskInfo taskInfo, Task.ErrorCodeType enumC0579b) {
                 DownloadTaskFacade.this.m2436a(taskInfo, enumC0579b);
             }
 
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
             /* renamed from: b */
-            public void mo2409b(TaskInfo taskInfo, Task.EnumC0579b enumC0579b) {
+            public void mo2409b(TaskInfo taskInfo, Task.ErrorCodeType enumC0579b) {
                 //DownloadTaskFacade.this.m2422b(taskInfo, enumC0579b);
             }
         }, sqliteDbWrapper));
@@ -95,7 +94,7 @@ public final class DownloadTaskFacade {
             DownloadTaskInfo m2400d = c2067a.m2400d(downloadTaskInfo);
             m2400d.setState(taskInfo.getState());
             m2400d.setConnectTimeStamp(Long.valueOf(System.nanoTime()));
-            m2434a(m2400d, (Task.EnumC0579b) null);
+            m2434a(m2400d, (Task.ErrorCodeType) null);
             //m2427a("connection", m2400d);
         }
     }
@@ -110,7 +109,7 @@ public final class DownloadTaskFacade {
             DownloadTaskInfo m2400d = c2067a.m2400d(downloadTaskInfo);
             m2400d.setRespondTime(Long.valueOf(System.nanoTime() - m2400d.getConnectTimeStamp().longValue()));
             m2400d.setState(taskInfo.getState());
-            m2434a(m2400d, (Task.EnumC0579b) null);
+            m2434a(m2400d, (Task.ErrorCodeType) null);
             //m2427a("start_download", m2400d);
         }
     }
@@ -148,7 +147,7 @@ public final class DownloadTaskFacade {
             if (c2067a.m2405a(m2400d.getGroupId()) == null) {
                 this.f7146a.remove(m2400d.getGroupId());
             }
-            m2434a(m2400d, (Task.EnumC0579b) null);
+            m2434a(m2400d, (Task.ErrorCodeType) null);
         }
     }
 
@@ -170,7 +169,7 @@ public final class DownloadTaskFacade {
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
-    public void m2436a(TaskInfo taskInfo, Task.EnumC0579b enumC0579b) {
+    public void m2436a(TaskInfo taskInfo, Task.ErrorCodeType enumC0579b) {
         LogUtils.debug("DownloadTaskFacade", taskInfo.getSavePath() + " onError:" + enumC0579b.name());
         DownloadTaskInfo downloadTaskInfo = (DownloadTaskInfo) taskInfo;
         downloadTaskInfo.setRespondTime(Long.valueOf(System.nanoTime() - downloadTaskInfo.getConnectTimeStamp().longValue()));
@@ -181,7 +180,7 @@ public final class DownloadTaskFacade {
             downloadTaskInfo.statisticConnectFailedIPs(downloadTaskInfo.getStatisticConnectFailedIP());
             downloadTaskInfo.setConnectedIP(downloadTaskInfo.getConnectedIP());
         }
-        if (enumC0579b != Task.EnumC0579b.URL_REQUEST_FAILED || downloadTaskInfo.isUrlUpdated()) {
+        if (enumC0579b != Task.ErrorCodeType.URL_REQUEST_FAILED || downloadTaskInfo.isUrlUpdated()) {
             m2433a(downloadTaskInfo, false);
         }
         if (downloadTaskInfo.resumeBrokenTransferSupported()) {
@@ -235,7 +234,7 @@ public final class DownloadTaskFacade {
         for (DownloadTaskInfo downloadTaskInfo : c2067a.m2404b()) {
             m2412e(downloadTaskInfo);
             if (!downloadTaskInfo.resumeBrokenTransferSupported() && ((m3118b = SqliteDb.m3118b(new DownloadTaskInfo(downloadTaskInfo.getSavePath()))) == null || m3118b.isEmpty())) {
-                FileUtils.m8404h(downloadTaskInfo.getSavePath() + ".tmp");
+                FileUtils.exists(downloadTaskInfo.getSavePath() + ".tmp");
             }
         }
     }
@@ -256,7 +255,7 @@ public final class DownloadTaskFacade {
     }
 
     /* renamed from: a */
-    private static void m2434a(DownloadTaskInfo downloadTaskInfo, Task.EnumC0579b enumC0579b) {
+    private static void m2434a(DownloadTaskInfo downloadTaskInfo, Task.ErrorCodeType enumC0579b) {
         Intent intent = new Intent(Action.DOWNLOAD_TASK_STATE_CHANGED);
         intent.putExtra("download_task", downloadTaskInfo);
         if (enumC0579b != null) {
@@ -320,7 +319,7 @@ public final class DownloadTaskFacade {
         }
         C2067a c2067a = this.f7146a.get(downloadTaskInfo.getGroupId());
         if (m3112b == null || m3112b.isEmpty() || c2067a == null || c2067a.m2400d(downloadTaskInfo) == null) {
-            FileUtils.m8404h(downloadTaskInfo.getSavePath() + ".tmp");
+            FileUtils.exists(downloadTaskInfo.getSavePath() + ".tmp");
         }
         return m2411f != null ? m2411f : downloadTaskInfo;
     }
@@ -401,7 +400,7 @@ public final class DownloadTaskFacade {
         private int f7150a;
 
         /* renamed from: c */
-        private Task.AbstractC0578a f7152c;
+        private Task.TaskCallback f7152c;
 
         /* renamed from: d */
         private SqliteDbWrapper f7153d;
@@ -414,19 +413,19 @@ public final class DownloadTaskFacade {
 
         /* renamed from: a */
         static void m2407a(int i) {
-            if (!Manager.m8744a().m8743a("download_manger")) {
-                Manager.m8744a().m8742a("download_manger", i);
+            if (!Manager.getInstance().m8743a("download_manger")) {
+                Manager.getInstance().m8742a("download_manger", i);
             }
         }
 
         /* renamed from: a */
         static void m2408a() {
-            if (Manager.m8744a().m8743a("download_manger")) {
-                Manager.m8744a().m8739b("download_manger");
+            if (Manager.getInstance().m8743a("download_manger")) {
+                Manager.getInstance().m8739b("download_manger");
             }
         }
 
-        public C2067a(int i, Task.AbstractC0578a abstractC0578a, SqliteDbWrapper sqliteDbWrapper) {
+        public C2067a(int i, Task.TaskCallback abstractC0578a, SqliteDbWrapper sqliteDbWrapper) {
             this.f7152c = abstractC0578a;
             this.f7150a = i;
             this.f7153d = sqliteDbWrapper;
@@ -438,7 +437,7 @@ public final class DownloadTaskFacade {
             String groupId = downloadTaskInfo.getGroupId();
             if (groupId != null && this.f7154e.get(groupId) != null && (downloadTaskInfo2 = this.f7154e.get(groupId).get(downloadTaskInfo.getSavePath())) != null) {
                 if (downloadTaskInfo.getState().intValue() == 3) {
-                    Manager.m8744a().m8741a("download_manger", downloadTaskInfo);
+                    Manager.getInstance().m8741a("download_manger", downloadTaskInfo);
                 }
                 this.f7154e.get(groupId).remove(downloadTaskInfo.getSavePath());
                 if (downloadTaskInfo2.resumeBrokenTransferSupported()) {
@@ -517,7 +516,7 @@ public final class DownloadTaskFacade {
         String str2 = EnvironmentCompat.MEDIA_UNKNOWN;
         int intValue = downloadTaskInfo.getType().intValue();
         if (DownloadTaskInfo.TYPE_APP.equals(Integer.valueOf(intValue))) {
-            str2 = OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY;
+            str2 = "app";
         } else if (DownloadTaskInfo.TYPE_AUDIO.equals(Integer.valueOf(intValue))) {
             str2 = "song";
         } else if (DownloadTaskInfo.TYPE_VIDEO.equals(Integer.valueOf(intValue))) {
@@ -525,7 +524,7 @@ public final class DownloadTaskFacade {
         } else if (DownloadTaskInfo.TYPE_SKIN.equals(Integer.valueOf(intValue))) {
             str2 = "theme";
         } else if (DownloadTaskInfo.TYPE_PLUGIN.equals(Integer.valueOf(intValue))) {
-            str2 = OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY;
+            str2 = "app";
         }
         //SessionStatisticEvent m4903b = //StatisticUtils.m4903b("download", str2, downloadTaskInfo.getOrigin(), downloadTaskInfo.hashCode());
         if (z) {

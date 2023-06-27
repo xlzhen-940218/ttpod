@@ -100,7 +100,7 @@ public class LandscapeFragment extends BasePlayerFragment {
                         return;
                     case R.id.imagebutton_play_landscape /* 2131231592 */:
                         ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
-                        CommandCenter.getInstance().execute(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
+                        CommandCenter.getInstance().execute(new Command(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
                         return;
                     case R.id.imagebutton_pause_landscape /* 2131231593 */:
                         ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
@@ -137,7 +137,7 @@ public class LandscapeFragment extends BasePlayerFragment {
             }
         }
     };
-    private LyricView.InterfaceC1998c mLyricTouchListener = new LyricView.InterfaceC1998c() { // from class: com.sds.android.ttpod.component.landscape.LandscapeFragment.3
+    private LyricView.TouchListener mLyricTouchListener = new LyricView.TouchListener() { // from class: com.sds.android.ttpod.component.landscape.LandscapeFragment.3
         @Override // com.sds.android.ttpod.framework.modules.skin.view.LyricView.InterfaceC1998c
         /* renamed from: a */
         public void mo3408a(long j) {
@@ -305,10 +305,10 @@ public class LandscapeFragment extends BasePlayerFragment {
     @Override // com.sds.android.ttpod.fragment.main.BasePlayerFragment
     public void updatePlayPosition() {
         if (this.mLyricView != null) {
-            this.mLyricView.setPlayingTime(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue());
+            this.mLyricView.setPlayingTime(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
         }
         if (this.mMediaHelper != null) {
-            this.mMediaHelper.m6160a(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue());
+            this.mMediaHelper.m6160a(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
         }
     }
 
@@ -412,7 +412,7 @@ public class LandscapeFragment extends BasePlayerFragment {
     public void updatePlayStatus(PlayStatus playStatus) {
         super.updatePlayStatus(playStatus);
         if (isViewAccessAble()) {
-            boolean z = PlayStatus.STATUS_PLAYING == SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
+            boolean z = PlayStatus.STATUS_PLAYING == SupportFactory.getInstance(BaseApplication.getApplication()).m2463m();
             this.mBottomMenu.findViewById(R.id.imagebutton_play_landscape).setVisibility(z ? View.GONE : View.VISIBLE);
             this.mBottomMenu.findViewById(R.id.imagebutton_pause_landscape).setVisibility(z ? View.VISIBLE : View.GONE);
         }
@@ -501,9 +501,9 @@ public class LandscapeFragment extends BasePlayerFragment {
             gestureView.setGestureScale(landscapeGestureHelper);
             gestureView.setGestureState(landscapeGestureHelper);
             this.mMediaHelper = new LandscapeMediaHelper(getActivity());
-            this.mMediaHelper.m6160a(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue());
+            this.mMediaHelper.m6160a(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
             this.mMediaHelper.m6157a(Cache.getInstance().getCurrentPlayMediaItem(), 0);
-            updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+            updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
             this.mMediaHelper.m6159a(getCurrentArtistBitmap());
             this.mMediaHelper.m6158a(getCurrentLyric());
             this.mScreenCapture = new LandscapeScreenCaptureHelper(new LandscapeScreenCaptureHelper.InterfaceC1271a() { // from class: com.sds.android.ttpod.component.landscape.LandscapeFragment.6
@@ -535,13 +535,13 @@ public class LandscapeFragment extends BasePlayerFragment {
             this.mSwitchLandscapeIcon.setVisibility(View.VISIBLE);
             this.mOldLandScapeView = View.inflate(getActivity(), R.layout.landscape_old_layout, this.mLandscapeContent);
             this.mOldLandScapeView.setOnClickListener(this.mClickListener);
-            updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+            updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
             this.mLyricView = (LyricView) this.mOldLandScapeView.findViewById(R.id.lyricview_landscape_old);
             this.mLyricView.setTouchListener(this.mLyricTouchListener);
             this.mLyricView.setKalaOK(Preferences.m3046R());
             this.mLyricView.setColorHighlight(Preferences.m3050P());
             this.mLyricView.setLyric(getCurrentLyric());
-            this.mLyricView.setPlayingTime(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue());
+            this.mLyricView.setPlayingTime(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
             this.mLyricView.setOnClickListener(this.mClickListener);
             this.mLandscapeAnimTransView = (LandscapeAnimTransView) this.mOldLandScapeView.findViewById(R.id.animtransview_landscape_old);
             this.mLandscapeAnimTransView.setOnClickListener(this.mClickListener);

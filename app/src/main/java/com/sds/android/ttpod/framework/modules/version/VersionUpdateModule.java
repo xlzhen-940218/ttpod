@@ -1,6 +1,6 @@
 package com.sds.android.ttpod.framework.modules.version;
 
-import com.sds.android.cloudapi.ttpod.p055a.AppVersionAPI;
+import com.sds.android.cloudapi.ttpod.api.AppVersionAPI;
 import com.sds.android.cloudapi.ttpod.result.AppVersionResult;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.request.RequestCallback;
@@ -105,13 +105,13 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
         if (bool.booleanValue()) {
            // UpdateStatistic.m4800a();
         }
-        new AppVersionAPI().m8964a(EnvironmentUtils.C0603b.m8491c(), EnvironmentUtils.C0603b.m8494b(), EnvironmentUtils.C0603b.m8489d(), false).m8544a(new RequestCallback<AppVersionResult>() { // from class: com.sds.android.ttpod.framework.modules.version.VersionUpdateModule.1
+        new AppVersionAPI().m8964a(EnvironmentUtils.UUIDConfig.m8491c(), EnvironmentUtils.UUIDConfig.m8494b(), EnvironmentUtils.UUIDConfig.m8489d(), false).m8544a(new RequestCallback<AppVersionResult>() { // from class: com.sds.android.ttpod.framework.modules.version.VersionUpdateModule.1
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             public void onRequestSuccess(AppVersionResult appVersionResult) {
                 Preferences.m3013a(Long.valueOf(new Date().getTime()));
                 Preferences.m2848o(appVersionResult.getLatestVersion());
                 VersionUpdateData versionUpdateData = new VersionUpdateData(appVersionResult);
-                if (VersionUpdateModule.compare(appVersionResult.getLatestVersion(), EnvironmentUtils.C0603b.m8491c()) <= 0) {
+                if (VersionUpdateModule.compare(appVersionResult.getLatestVersion(), EnvironmentUtils.UUIDConfig.m8491c()) <= 0) {
                     ignoreUpdate(versionUpdateData);
                 } else if (versionUpdateData.isUpdateMandatory()) {
                     mandatoryUpdate(versionUpdateData);
@@ -129,7 +129,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
             }
 
             private void statisticUpdateError() {
-                String m8532e = new AppVersionAPI().m8964a(EnvironmentUtils.C0603b.m8491c(), EnvironmentUtils.C0603b.m8494b(), EnvironmentUtils.C0603b.m8489d(), false).m8532e();
+                String m8532e = new AppVersionAPI().m8964a(EnvironmentUtils.UUIDConfig.m8491c(), EnvironmentUtils.UUIDConfig.m8494b(), EnvironmentUtils.UUIDConfig.m8489d(), false).m8532e();
                 //ErrorStatistic.m5233f(m8532e);
                 //ErrorStatistic.m5239a("update", m8532e);
             }
@@ -157,7 +157,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
 
     /* JADX INFO: Access modifiers changed from: private */
     public String getSavePath(String str, String str2) {
-        return TTPodConfig.m5285w() + File.separator + str2 + str.hashCode() + ".apk";
+        return TTPodConfig.getAppPath() + File.separator + str2 + str.hashCode() + ".apk";
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -183,7 +183,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
             public void run() {
                 VersionUpdateModule.this.mIsStop = false;
                 if (FileUtils.m8419a(m4760a.getSavePath())) {
-                    FileUtils.m8404h(m4760a.getSavePath());
+                    FileUtils.exists(m4760a.getSavePath());
                 }
                 CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
                 while (!VersionUpdateModule.this.mIsStop && VersionUpdateModule.this.mDownloadTaskInfo != null) {
@@ -221,7 +221,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
     }
 
     public static boolean hasNewVersion() {
-        return compare(Preferences.m3002aE(), EnvironmentUtils.C0603b.m8491c()) > 0;
+        return compare(Preferences.m3002aE(), EnvironmentUtils.UUIDConfig.m8491c()) > 0;
     }
 
     /* JADX INFO: Access modifiers changed from: private */

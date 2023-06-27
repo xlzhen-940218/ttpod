@@ -3,7 +3,7 @@ package com.sds.android.ttpod.framework.modules.skin;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.TextUtils;
-import com.sds.android.cloudapi.ttpod.p055a.SkinAPI;
+import com.sds.android.cloudapi.ttpod.api.SkinAPI;
 import com.sds.android.cloudapi.ttpod.result.BackgroundCheckResult;
 import com.sds.android.cloudapi.ttpod.result.SkinListCheckResult;
 import com.sds.android.sdk.lib.p065e.ThreadPool;
@@ -112,7 +112,7 @@ public final class SkinModule extends BaseModule {
         switch (num.intValue()) {
             case 0:
                 z = m3542a(str);
-                String str2 = TTPodConfig.m5298j() + File.separator + SecurityUtils.C0610b.m8361a(SkinUtils.m4646a(str, num.intValue()));
+                String str2 = TTPodConfig.getCacheTmpPath() + File.separator + SecurityUtils.C0610b.m8361a(SkinUtils.m4646a(str, num.intValue()));
                 if (FileUtils.m8419a(str2)) {
                     new File(str2).delete();
                     break;
@@ -150,7 +150,7 @@ public final class SkinModule extends BaseModule {
             /* renamed from: a */
             public void onRequestSuccess(SkinListCheckResult skinListCheckResult) {
                 Long data = skinListCheckResult.getData();
-                String m4645a = SkinUtils.m4645a(TTPodConfig.m5294n(), "list_");
+                String m4645a = SkinUtils.m4645a(TTPodConfig.getSkinPath(), "list_");
                 if (SkinModule.this.m3543a(data, m4645a)) {
                     SkinModule.this.f6679a.m8576a((Runnable) new OnlineListDownloader(data, "http://api.skin.ttpod.com/skin/recommend_skin/list_", m4645a, CommandID.FINISH_UPDATE_RECOMMEND_SKIN_LIST));
                 } else {
@@ -172,7 +172,7 @@ public final class SkinModule extends BaseModule {
             /* renamed from: a */
             public void onRequestSuccess(SkinListCheckResult skinListCheckResult) {
                 Long data = skinListCheckResult.getData();
-                String m4645a = SkinUtils.m4645a(TTPodConfig.m5294n(), "rank_");
+                String m4645a = SkinUtils.m4645a(TTPodConfig.getSkinPath(), "rank_");
                 if (SkinModule.this.m3543a(data, m4645a)) {
                     SkinModule.this.f6679a.m8576a((Runnable) new OnlineSkinRankListDownloader(data, "http://api.skin.ttpod.com/skin/hot_skin/list_", m4645a, CommandID.FINISH_UPDATE_SKIN_RANK_LIST));
                 } else {

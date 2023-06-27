@@ -223,7 +223,7 @@ public class StartAction {
             return m8187t(bundle);
         }
         String string3 = bundle.getString("uri");
-        int m8227a4 = (int) m8227a(bundle, OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY, 0L);
+        int m8227a4 = (int) m8227a(bundle, "app", 0L);
         if (!StringUtils.isEmpty(string3) && m8227a4 > 0) {
             bundle.putString("uri", string3);
             return m8212c(bundle);
@@ -493,18 +493,18 @@ public class StartAction {
     /* renamed from: a */
     private String m8232a(int i) {
         if (DownloadTaskInfo.TYPE_AUDIO.intValue() == i) {
-            return TTPodConfig.m5291q();
+            return TTPodConfig.getSongPath();
         }
         if (DownloadTaskInfo.TYPE_APP.intValue() == i) {
-            return TTPodConfig.m5285w();
+            return TTPodConfig.getAppPath();
         }
         if (DownloadTaskInfo.TYPE_VIDEO.intValue() == i) {
-            return TTPodConfig.m5283y();
+            return TTPodConfig.getMvPath();
         }
         if (DownloadTaskInfo.TYPE_SKIN.intValue() == i) {
-            return TTPodConfig.m5294n();
+            return TTPodConfig.getSkinPath();
         }
-        return TTPodConfig.m5311B();
+        return TTPodConfig.getTTPodPath();
     }
 
     /* renamed from: b */
@@ -609,7 +609,7 @@ public class StartAction {
         Bundle bundle = new Bundle();
         bundle.putString(SearchResultFragment.KEY_SEARCH_WORD, str);
         bundle.putBoolean(OnlineSearchEntryActivity.KEY_FROM_THIRD, true);
-        bundle.putInt(OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY, i);
+        bundle.putInt("app", i);
         searchResultFragment.setArguments(bundle);
         this.f2521c.launchFragment(searchResultFragment);
     }

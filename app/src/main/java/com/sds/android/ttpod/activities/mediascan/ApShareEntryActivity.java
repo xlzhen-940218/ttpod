@@ -80,7 +80,7 @@ public class ApShareEntryActivity extends BaseActivity {
             switch (i) {
                 case 2:
                     if (intent.getBooleanExtra(MediaScanWifiActivity.KEY_WIFI_UPLOAD, false)) {
-                        String[] strArr = {TTPodConfig.m5296l()};
+                        String[] strArr = {TTPodConfig.getMyMusicsPath()};
                         Intent intent2 = new Intent(this, MediaScanAnimationActivity.class);
                         intent2.putExtra(MediaScanAnimationActivity.KEY_SCAN_FILES, strArr);
                         startActivity(intent2);

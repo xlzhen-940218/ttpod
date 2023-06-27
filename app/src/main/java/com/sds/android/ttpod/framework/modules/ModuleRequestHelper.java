@@ -2,7 +2,7 @@ package com.sds.android.ttpod.framework.modules;
 
 import android.os.Handler;
 
-import com.sds.android.cloudapi.ttpod.p055a.UrlList;
+import com.sds.android.cloudapi.ttpod.api.UrlList;
 import com.sds.android.cloudapi.ttpod.result.FindSongModuleResult;
 
 import com.sds.android.sdk.lib.p065e.TaskScheduler;

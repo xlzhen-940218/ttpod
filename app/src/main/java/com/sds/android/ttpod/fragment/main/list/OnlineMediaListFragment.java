@@ -321,7 +321,7 @@ public class OnlineMediaListFragment extends AbsMediaListFragment {
         //OnlineMediaStatistic.m5045a(getListenOrigin());
         //OnlineMediaStatistic.m5054a();
         if (StringUtils.equals(this.mGroupID, Preferences.getLocalGroupId()) && StringUtils.equals(mediaItem.getID(), Preferences.getMediaId())) {
-            PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
+            PlayStatus m2463m = SupportFactory.getInstance(BaseApplication.getApplication()).m2463m();
             if (m2463m == PlayStatus.STATUS_PAUSED) {
                 CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                 return;

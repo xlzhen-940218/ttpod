@@ -86,7 +86,7 @@ public class UnicomFlowUtil {
 
     /* renamed from: e */
     public static boolean m3947e() {
-        return EnvironmentUtils.DeviceConfig.m8476d() == 1;
+        return EnvironmentUtils.DeviceConfig.hasNetwork() == 1;
     }
 
     /* renamed from: f */
@@ -97,8 +97,8 @@ public class UnicomFlowUtil {
 
     /* renamed from: g */
     public static boolean m3945g() {
-        LogUtils.debug(f6301a, "is use gprs network type:" + EnvironmentUtils.DeviceConfig.m8476d());
-        return EnvironmentUtils.DeviceConfig.m8476d() == 0 || 3 == EnvironmentUtils.DeviceConfig.m8476d() || 1 == EnvironmentUtils.DeviceConfig.m8476d();
+        LogUtils.debug(f6301a, "is use gprs network type:" + EnvironmentUtils.DeviceConfig.hasNetwork());
+        return EnvironmentUtils.DeviceConfig.hasNetwork() == 0 || 3 == EnvironmentUtils.DeviceConfig.hasNetwork() || 1 == EnvironmentUtils.DeviceConfig.hasNetwork();
     }
 
     /* renamed from: h */

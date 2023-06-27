@@ -160,7 +160,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
         public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
             if (i == 3 || i == 2 || i == 0 || i == 4) {
                 SearchResultFragment.this.searchKeyword();
-                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_BUTTON.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_BUTTON.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append("keyword", SearchResultFragment.this.mWord).post();
                 return true;
             }
             return false;
@@ -197,7 +197,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
         updateSongListOriginPrefix("search-hotword");
         this.mUserInput = null;
         requestSongList(str);
-        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_HOT_SEARCH_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_HOT_SEARCH_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append("keyword", this.mWord).post();
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
@@ -257,7 +257,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
             /* renamed from: a */
             public void mo5433a(ActionBarController.C1070a c1070a) {
                 SearchResultFragment.this.searchKeyword();
-                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_BUTTON.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_BUTTON.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append("keyword", SearchResultFragment.this.mWord).post();
             }
         });
         this.mSearchInputLayout = actionBarController.m7201a();
@@ -303,7 +303,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
                 SearchResultFragment.this.updateSongListOriginPrefix("search-associativeWord");
                 SearchResultFragment.this.requestSongList(str);
                 SearchResultFragment.this.mAssociateView.m1431c();
-                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RELATED_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RELATED_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append("keyword", SearchResultFragment.this.mWord).post();
             }
         });
         return this.mRootView;
@@ -344,7 +344,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
                     SearchResultFragment.this.updateSongListOriginPrefix("search-historyWord");
                     SearchResultFragment.this.mUserInput = null;
                     SearchResultFragment.this.requestSongList(SearchResultFragment.this.mHistoryListAdapter.getItem(m8266a));
-                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_HISTORY_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, SearchResultFragment.this.mWord).post();
+                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_HISTORY_WORD.getValue(), SPage.PAGE_SEARCH_HOME.getValue(), 0).append("keyword", SearchResultFragment.this.mWord).post();
                 }
             }
         });

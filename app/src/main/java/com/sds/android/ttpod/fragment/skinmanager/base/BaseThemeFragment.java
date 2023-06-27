@@ -474,12 +474,12 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
             OnlineSkinItem m3566f = skinItem2 != null ? skinItem2.m3566f() : null;
             if (m3566f != null) {
                 String skinUrl = m3566f.getSkinUrl();
-                String str = TTPodConfig.m5294n() + File.separator + m3565g + ".tsk";
+                String str = TTPodConfig.getSkinPath() + File.separator + m3565g + ".tsk";
                 if (z) {
                     str = str + UPDATE_TEMP_SUFFIX;
                 }
                 if (FileUtils.m8414b(str)) {
-                    FileUtils.m8404h(str);
+                    FileUtils.exists(str);
                 }
                 DownloadTaskInfo m4760a = DownloadUtils.m4760a(skinUrl, str, 0L, m3565g, DownloadTaskInfo.TYPE_SKIN, false, getStatisticOrigin());
                 sDownloadingSkinQueue.offer(m4760a);
@@ -918,7 +918,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
             String savePath = downloadTaskInfo.getSavePath();
             if (savePath.endsWith(BaseThemeFragment.UPDATE_TEMP_SUFFIX)) {
                 String substring = savePath.substring(0, savePath.length() - BaseThemeFragment.UPDATE_TEMP_SUFFIX.length());
-                FileUtils.m8404h(substring);
+                FileUtils.exists(substring);
                 FileUtils.m8410c(savePath, substring);
                 ImageCacheUtils.m4739b(substring, SkinThumbnailCreator.f6693a, SkinThumbnailCreator.f6694c);
             }

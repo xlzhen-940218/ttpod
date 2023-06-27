@@ -32,7 +32,7 @@ public final class WifiTransmission implements HttpServer.InterfaceC1874a {
                 String m4177d = m4177d();
                 if (m4177d != null) {
                     try {
-                        this.f6023b = new HttpServer(m8376a, 8888, m4177d, TTPodConfig.m5296l(), this);
+                        this.f6023b = new HttpServer(m8376a, 8888, m4177d, TTPodConfig.getMyMusicsPath(), this);
                         this.f6023b.m4218a();
                         CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, new CommonResult(ErrCode.ErrNone, "ok", "http://" + m8376a + ":8888")), ModuleID.MEDIA_SCAN);
                         return;

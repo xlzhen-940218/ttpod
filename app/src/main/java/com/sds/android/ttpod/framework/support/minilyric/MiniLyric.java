@@ -53,34 +53,34 @@ public class MiniLyric implements View.OnTouchListener {
     private boolean f7204f;
 
     /* renamed from: h */
-    private View f7206h;
+    private View settingImageView;
 
     /* renamed from: i */
-    private View f7207i;
+    private View previousButton;
 
     /* renamed from: j */
-    private View f7208j;
+    private View nextButton;
 
     /* renamed from: k */
-    private View f7209k;
+    private View ttpodImageView;
 
     /* renamed from: l */
-    private ImageView f7210l;
+    private ImageView playPauseButton;
 
     /* renamed from: m */
-    private View f7211m;
+    private View fontZoomOutImageView;
 
     /* renamed from: n */
-    private View f7212n;
+    private View fontZoomInImageView;
 
     /* renamed from: o */
-    private View f7213o;
+    private View lockImageView;
 
     /* renamed from: p */
-    private View f7214p;
+    private View closeImageView;
 
     /* renamed from: z */
-    private Context f7224z;
+    private Context context;
 
     /* renamed from: c */
     private C2080b f7201c = new C2080b(0, Preferences.m2976ac());
@@ -92,22 +92,22 @@ public class MiniLyric implements View.OnTouchListener {
     private C2079a f7215q = null;
 
     /* renamed from: r */
-    private TextView f7216r = null;
+    private TextView okTextView = null;
 
     /* renamed from: s */
-    private View f7217s = null;
+    private View miniLyricSettingView = null;
 
     /* renamed from: t */
-    private LyricView f7218t = null;
+    private LyricView lyricView = null;
 
     /* renamed from: u */
-    private LinearLayout f7219u = null;
+    private LinearLayout miniLyricView = null;
 
     /* renamed from: v */
-    private FrameLayout f7220v = null;
+    private FrameLayout frameInner = null;
 
     /* renamed from: w */
-    private FloatWindow f7221w = null;
+    private FloatWindow floatWindow = null;
 
     /* renamed from: x */
     private Handler f7222x = new Handler(Looper.getMainLooper());
@@ -150,8 +150,8 @@ public class MiniLyric implements View.OnTouchListener {
         private SparseArray<ImageView> f7233e;
 
         private C2079a() {
-            this.f7230b = MiniLyric.this.f7224z.getResources().getDrawable(R.drawable.img_button_minilyric_choice_color);
-            this.f7231c = MiniLyric.this.f7224z.getResources().getDrawable(R.color.transparent);
+            this.f7230b = MiniLyric.this.context.getResources().getDrawable(R.drawable.img_button_minilyric_choice_color);
+            this.f7231c = MiniLyric.this.context.getResources().getDrawable(R.color.transparent);
             this.f7232d = new SparseArray<>();
             this.f7233e = new SparseArray<>();
         }
@@ -182,11 +182,11 @@ public class MiniLyric implements View.OnTouchListener {
     }
 
     public MiniLyric(Context context) {
-        this.f7224z = null;
+        this.context = null;
         if (context == null) {
             throw new NullPointerException();
         }
-        this.f7224z = context;
+        this.context = context;
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
@@ -203,43 +203,44 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: g */
     private void m2291g() {
-        this.f7219u = (LinearLayout) ((LayoutInflater) this.f7224z.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.minilyricview_main, (ViewGroup) null, false);
-        this.f7220v = (FrameLayout) this.f7219u.findViewById(R.id.frame_inner);
-        this.f7206h = this.f7219u.findViewById(R.id.iv_setting);
-        this.f7207i = this.f7219u.findViewById(R.id.button_previous_minilyric);
-        this.f7208j = this.f7219u.findViewById(R.id.button_next_minilyric);
-        this.f7210l = (ImageView) this.f7219u.findViewById(R.id.button_playpause_minilyric);
-        this.f7209k = this.f7219u.findViewById(R.id.iv_ttpod);
-        this.f7218t = new LyricView(this.f7224z);
-        this.f7220v.addView(this.f7218t, 0);
-        if (this.f7221w == null) {
-            this.f7221w = new FloatWindow(this.f7219u, -1, -2, false);
+        this.miniLyricView = (LinearLayout) ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                .inflate(R.layout.minilyricview_main, (ViewGroup) null, false);
+        this.frameInner = (FrameLayout) this.miniLyricView.findViewById(R.id.frame_inner);
+        this.settingImageView = this.miniLyricView.findViewById(R.id.iv_setting);
+        this.previousButton = this.miniLyricView.findViewById(R.id.button_previous_minilyric);
+        this.nextButton = this.miniLyricView.findViewById(R.id.button_next_minilyric);
+        this.playPauseButton = (ImageView) this.miniLyricView.findViewById(R.id.button_playpause_minilyric);
+        this.ttpodImageView = this.miniLyricView.findViewById(R.id.iv_ttpod);
+        this.lyricView = new LyricView(this.context);
+        this.frameInner.addView(this.lyricView, 0);
+        if (this.floatWindow == null) {
+            this.floatWindow = new FloatWindow(this.miniLyricView, -1, -2, false);
         }
     }
 
     /* renamed from: h */
     private void m2289h() {
-        this.f7219u.setOnTouchListener(this);
-        this.f7206h.setOnTouchListener(this);
-        this.f7206h.setVisibility(View.INVISIBLE);
-        this.f7207i.setOnTouchListener(this);
-        this.f7207i.setVisibility(View.INVISIBLE);
-        this.f7208j.setOnTouchListener(this);
-        this.f7208j.setVisibility(View.INVISIBLE);
-        this.f7210l.setOnTouchListener(this);
-        this.f7210l.setVisibility(View.INVISIBLE);
-        this.f7209k.setOnTouchListener(this);
-        this.f7209k.setVisibility(View.INVISIBLE);
+        this.miniLyricView.setOnTouchListener(this);
+        this.settingImageView.setOnTouchListener(this);
+        this.settingImageView.setVisibility(View.INVISIBLE);
+        this.previousButton.setOnTouchListener(this);
+        this.previousButton.setVisibility(View.INVISIBLE);
+        this.nextButton.setOnTouchListener(this);
+        this.nextButton.setVisibility(View.INVISIBLE);
+        this.playPauseButton.setOnTouchListener(this);
+        this.playPauseButton.setVisibility(View.INVISIBLE);
+        this.ttpodImageView.setOnTouchListener(this);
+        this.ttpodImageView.setVisibility(View.INVISIBLE);
         m2309b(Preferences.m2978ab());
         Typeface create = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);
-        this.f7218t.setTypefaceHighlight(create);
-        this.f7218t.setTypefaceNormal(create);
-        this.f7218t.setKalaOK(true);
-        this.f7218t.setTextSize(Preferences.m3030Z());
+        this.lyricView.setTypefaceHighlight(create);
+        this.lyricView.setTypefaceNormal(create);
+        this.lyricView.setKalaOK(true);
+        this.lyricView.setTextSize(Preferences.m3030Z());
         m2322a(4);
-        this.f7218t.setEnabled(true);
-        this.f7218t.setClickable(true);
-        this.f7218t.setOnTouchListener(this);
+        this.lyricView.setEnabled(true);
+        this.lyricView.setClickable(true);
+        this.lyricView.setOnTouchListener(this);
         this.f7202d = new C2080b(0, 0);
         this.f7203e = new C2080b(0, 0);
         this.f7201c.m2273a(0, Preferences.m2976ac());
@@ -247,23 +248,24 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: i */
     private void m2288i() {
-        this.f7217s = ((LayoutInflater) BaseApplication.getApplication().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.minilyricsettingview_main, (ViewGroup) null, false);
-        this.f7211m = this.f7217s.findViewById(R.id.iv_font_zoomout);
-        this.f7212n = this.f7217s.findViewById(R.id.iv_font_zoomin);
-        this.f7213o = this.f7217s.findViewById(R.id.iv_lock);
-        this.f7214p = this.f7217s.findViewById(R.id.iv_close);
-        this.f7216r = (TextView) this.f7217s.findViewById(R.id.tv_ok);
+        this.miniLyricSettingView = ((LayoutInflater) BaseApplication.getApplication().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                .inflate(R.layout.minilyricsettingview_main, (ViewGroup) null, false);
+        this.fontZoomOutImageView = this.miniLyricSettingView.findViewById(R.id.iv_font_zoomout);
+        this.fontZoomInImageView = this.miniLyricSettingView.findViewById(R.id.iv_font_zoomin);
+        this.lockImageView = this.miniLyricSettingView.findViewById(R.id.iv_lock);
+        this.closeImageView = this.miniLyricSettingView.findViewById(R.id.iv_close);
+        this.okTextView = (TextView) this.miniLyricSettingView.findViewById(R.id.tv_ok);
     }
 
     /* renamed from: j */
     private void m2287j() {
-        this.f7217s.setOnTouchListener(this);
-        this.f7217s.setVisibility(View.GONE);
-        this.f7211m.setOnTouchListener(this);
-        this.f7212n.setOnTouchListener(this);
-        this.f7213o.setOnTouchListener(this);
-        this.f7214p.setOnTouchListener(this);
-        this.f7216r.setOnTouchListener(this);
+        this.miniLyricSettingView.setOnTouchListener(this);
+        this.miniLyricSettingView.setVisibility(View.GONE);
+        this.fontZoomOutImageView.setOnTouchListener(this);
+        this.fontZoomInImageView.setOnTouchListener(this);
+        this.lockImageView.setOnTouchListener(this);
+        this.closeImageView.setOnTouchListener(this);
+        this.okTextView.setOnTouchListener(this);
     }
 
     /* renamed from: k */
@@ -279,9 +281,9 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: a */
     private void m2321a(int i, int i2, int i3) {
-        ImageView imageView = (ImageView) this.f7217s.findViewById(i3);
+        ImageView imageView = (ImageView) this.miniLyricSettingView.findViewById(i3);
         imageView.setOnTouchListener(this);
-        this.f7215q.m2275a(Integer.valueOf(i), (ImageView) this.f7217s.findViewById(i2), imageView);
+        this.f7215q.m2275a(Integer.valueOf(i), (ImageView) this.miniLyricSettingView.findViewById(i2), imageView);
     }
 
     /* renamed from: b */
@@ -326,16 +328,16 @@ public class MiniLyric implements View.OnTouchListener {
                 i3 = -328966;
                 break;
         }
-        this.f7218t.setColorHighlight(i3);
-        this.f7218t.setColorNormal(i2);
-        this.f7218t.setColorGradientUGuest(i5);
-        this.f7218t.setColorGradientUHost(i4);
+        this.lyricView.setColorHighlight(i3);
+        this.lyricView.setColorNormal(i2);
+        this.lyricView.setColorGradientUGuest(i5);
+        this.lyricView.setColorGradientUHost(i4);
     }
 
     /* renamed from: a */
     public void m2319a(long j) {
-        if (this.f7218t != null) {
-            this.f7218t.setPlayingTime(j);
+        if (this.lyricView != null) {
+            this.lyricView.setPlayingTime(j);
         }
     }
 
@@ -347,44 +349,44 @@ public class MiniLyric implements View.OnTouchListener {
     /* renamed from: a */
     public void m2317a(Lyric lyric) {
         boolean z;
-        this.f7218t.setLyric(lyric);
+        this.lyricView.setLyric(lyric);
         if (m2310b()) {
             z = false;
         } else {
             z = lyric == null;
         }
         this.f7223y = z;
-        if (this.f7223y && this.f7217s.getVisibility() == View.VISIBLE) {
+        if (this.f7223y && this.miniLyricSettingView.getVisibility() == View.VISIBLE) {
             m2300c(false);
         }
         if (m2310b() && lyric == null) {
-            this.f7218t.setState(8);
+            this.lyricView.setState(8);
         }
-        this.f7219u.setVisibility(this.f7223y ? View.INVISIBLE : View.VISIBLE);
+        this.miniLyricView.setVisibility(this.f7223y ? View.INVISIBLE : View.VISIBLE);
     }
 
     /* renamed from: c */
     public boolean m2304c() {
-        return this.f7218t.m3429h();
+        return this.lyricView.m3429h();
     }
 
     /* renamed from: d */
     public void m2299d() {
-        this.f7218t.setState(1);
+        this.lyricView.setState(1);
     }
 
     /* renamed from: c */
     private void m2303c(int i) {
-        DisplayMetrics displayMetrics = this.f7224z.getResources().getDisplayMetrics();
+        DisplayMetrics displayMetrics = this.context.getResources().getDisplayMetrics();
         int m7229a = DisplayUtils.m7229a((int) ((Math.max(displayMetrics.scaledDensity / displayMetrics.density, 1.0f) * 84.0f) - ((28 - i) * 3)));
-        this.f7218t.getLayoutParams().height = m7229a;
-        this.f7206h.getLayoutParams().height = m7229a;
-        this.f7207i.getLayoutParams().height = m7229a;
-        this.f7208j.getLayoutParams().height = m7229a;
-        this.f7209k.getLayoutParams().height = m7229a;
-        this.f7210l.getLayoutParams().height = m7229a;
-        this.f7220v.getLayoutParams().height = m7229a;
-        this.f7220v.requestLayout();
+        this.lyricView.getLayoutParams().height = m7229a;
+        this.settingImageView.getLayoutParams().height = m7229a;
+        this.previousButton.getLayoutParams().height = m7229a;
+        this.nextButton.getLayoutParams().height = m7229a;
+        this.ttpodImageView.getLayoutParams().height = m7229a;
+        this.playPauseButton.getLayoutParams().height = m7229a;
+        this.frameInner.getLayoutParams().height = m7229a;
+        this.frameInner.requestLayout();
     }
 
     /* renamed from: a */
@@ -393,12 +395,12 @@ public class MiniLyric implements View.OnTouchListener {
         LogUtils.debug("minilyric", "setDisplayMode fontSize=" + m3030Z);
         switch (i) {
             case 3:
-                this.f7218t.setLayoutParams(new FrameLayout.LayoutParams(-2, DisplayUtils.m7229a(40 - (28 - m3030Z))));
-                this.f7218t.setDisplayMode(LyricView.EnumC1996a.Single);
+                this.lyricView.setLayoutParams(new FrameLayout.LayoutParams(-2, DisplayUtils.m7229a(40 - (28 - m3030Z))));
+                this.lyricView.setDisplayMode(LyricView.LyricDisplayEnum.Single);
                 return;
             case 4:
-                this.f7218t.setLayoutParams(new FrameLayout.LayoutParams(-2, 0));
-                this.f7218t.setDisplayMode(LyricView.EnumC1996a.MTV);
+                this.lyricView.setLayoutParams(new FrameLayout.LayoutParams(-2, 0));
+                this.lyricView.setDisplayMode(LyricView.LyricDisplayEnum.MTV);
                 m2303c(m3030Z);
                 return;
             default:
@@ -409,26 +411,26 @@ public class MiniLyric implements View.OnTouchListener {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m2320a(int i, int i2, int i3, int i4) {
-        this.f7221w.m2363a(i, i2, i3, i4);
+        this.floatWindow.m2363a(i, i2, i3, i4);
     }
 
     /* renamed from: e */
     public void m2296e() {
         LogUtils.debug("minilyric", "show");
-        if (this.f7218t != null) {
-            this.f7218t.m3427i();
+        if (this.lyricView != null) {
+            this.lyricView.screenOn();
         }
-        this.f7219u.setVisibility(View.VISIBLE);
-        this.f7221w.m2364a(83, this.f7201c.m2274a(), this.f7201c.m2270b());
-        this.f7221w.m2357b();
-        m2311a(Preferences.m2980aa(), false);
+        this.miniLyricView.setVisibility(View.VISIBLE);
+        this.floatWindow.m2364a(83, this.f7201c.m2274a(), this.f7201c.m2270b());
+        this.floatWindow.m2357b();
+        lockStateNotification(Preferences.m2980aa(), false);
     }
 
     /* renamed from: a */
     public void m2312a(boolean z) {
         LogUtils.debug("minilyric", "hide");
-        this.f7221w.m2353c();
-        this.f7219u.setVisibility(View.INVISIBLE);
+        this.floatWindow.m2353c();
+        this.miniLyricView.setVisibility(View.INVISIBLE);
         m2300c(true);
         NotificationUtils.m4696a(12101710);
     }
@@ -439,22 +441,22 @@ public class MiniLyric implements View.OnTouchListener {
         this.f7201c = null;
         this.f7202d = null;
         this.f7203e = null;
-        this.f7218t = null;
-        if (this.f7221w.m2366a()) {
-            this.f7221w.m2353c();
+        this.lyricView = null;
+        if (this.floatWindow.m2366a()) {
+            this.floatWindow.m2353c();
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public void m2305b(boolean z, boolean z2) {
-        if (!z || this.f7206h.getVisibility() != View.VISIBLE) {
+        if (!z || this.settingImageView.getVisibility() != View.VISIBLE) {
             if (z2 && !z) {
                 AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
                 alphaAnimation.setDuration(300L);
-                this.f7206h.startAnimation(alphaAnimation);
+                this.settingImageView.startAnimation(alphaAnimation);
             }
-            this.f7206h.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
+            this.settingImageView.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
         }
     }
 
@@ -464,20 +466,20 @@ public class MiniLyric implements View.OnTouchListener {
         if (!z) {
             AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
             alphaAnimation.setDuration(300L);
-            this.f7207i.startAnimation(alphaAnimation);
-            this.f7208j.startAnimation(alphaAnimation);
-            this.f7209k.startAnimation(alphaAnimation);
-            this.f7210l.startAnimation(alphaAnimation);
+            this.previousButton.startAnimation(alphaAnimation);
+            this.nextButton.startAnimation(alphaAnimation);
+            this.ttpodImageView.startAnimation(alphaAnimation);
+            this.playPauseButton.startAnimation(alphaAnimation);
         }
-        this.f7207i.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
-        this.f7208j.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
-        this.f7209k.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
-        this.f7210l.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
+        this.previousButton.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
+        this.nextButton.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
+        this.ttpodImageView.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
+        this.playPauseButton.setVisibility(z ? View.VISIBLE : View.INVISIBLE);
     }
 
     @Override // android.view.View.OnTouchListener
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (this.f7202d != null && this.f7203e != null && this.f7201c != null && this.f7219u != null) {
+        if (this.f7202d != null && this.f7203e != null && this.f7201c != null && this.miniLyricView != null) {
             int rawY = (int) motionEvent.getRawY();
             switch (motionEvent.getAction()) {
                 case 0:
@@ -487,16 +489,16 @@ public class MiniLyric implements View.OnTouchListener {
                     this.f7199a = System.currentTimeMillis();
                     break;
                 case 1:
-                    if (this.f7217s != null) {
+                    if (this.miniLyricSettingView != null) {
                         this.f7200b = System.currentTimeMillis();
                         if (this.f7205g && this.f7200b - this.f7199a < 250) {
                             m2318a(view);
                         }
                         int i = this.f7201c.f7236c;
-                        if (this.f7217s.getVisibility() != View.VISIBLE) {
+                        if (this.miniLyricSettingView.getVisibility() != View.VISIBLE) {
                             this.f7222x.postDelayed(this.f7197A, 1500L);
                         } else if (this.f7204f) {
-                            i += this.f7217s.getHeight();
+                            i += this.miniLyricSettingView.getHeight();
                         }
                         Preferences.m2881g(i);
                         break;
@@ -507,7 +509,7 @@ public class MiniLyric implements View.OnTouchListener {
                     m2305b(true, true);
                     int i2 = this.f7202d.f7236c - rawY;
                     this.f7201c.f7236c = this.f7203e.f7236c + i2;
-                    int m7224d = DisplayUtils.m7224d() - this.f7219u.getHeight();
+                    int m7224d = DisplayUtils.m7224d() - this.miniLyricView.getHeight();
                     if (this.f7201c.f7236c < 0) {
                         this.f7201c.f7236c = 0;
                     } else if (this.f7201c.f7236c > m7224d) {
@@ -525,30 +527,30 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: a */
     private void m2318a(View view) {
-        if (view.equals(this.f7218t)) {
+        if (view.equals(this.lyricView)) {
             this.f7222x.removeCallbacks(this.f7197A);
             this.f7222x.removeCallbacks(this.f7198B);
             m2305b(true, true);
             m2306b(true);
             this.f7222x.postDelayed(this.f7197A, 1500L);
             this.f7222x.postDelayed(this.f7198B, 1500L);
-        } else if (view.equals(this.f7206h)) {
+        } else if (view.equals(this.settingImageView)) {
             this.f7222x.removeCallbacks(this.f7197A);
             m2284m();
-        } else if (view.equals(this.f7214p)) {
+        } else if (view.equals(this.closeImageView)) {
             m2282o();
-        } else if (view.equals(this.f7213o)) {
+        } else if (view.equals(this.lockImageView)) {
             m2285l();
-        } else if (view.equals(this.f7209k)) {
-            this.f7224z.sendBroadcast(new Intent(Action.STOP_LOCK_SCREEN));
-            this.f7224z.startActivity(new Intent(Action.START_ENTRY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-        } else if (view.equals(this.f7211m)) {
+        } else if (view.equals(this.ttpodImageView)) {
+            this.context.sendBroadcast(new Intent(Action.STOP_LOCK_SCREEN));
+            this.context.startActivity(new Intent(Action.START_ENTRY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        } else if (view.equals(this.fontZoomOutImageView)) {
             m2280q();
-        } else if (view.equals(this.f7212n)) {
+        } else if (view.equals(this.fontZoomInImageView)) {
             m2279r();
-        } else if (view.equals(this.f7216r)) {
+        } else if (view.equals(this.okTextView)) {
             m2300c(false);
-        } else if (view.equals(this.f7207i) || view.equals(this.f7208j) || view.equals(this.f7210l)) {
+        } else if (view.equals(this.previousButton) || view.equals(this.nextButton) || view.equals(this.playPauseButton)) {
             m2308b(view);
         } else if (view instanceof ImageView) {
             m2302c(view);
@@ -559,9 +561,9 @@ public class MiniLyric implements View.OnTouchListener {
     private void m2308b(View view) {
         this.f7222x.removeCallbacks(this.f7198B);
         this.f7222x.postDelayed(this.f7198B, 1500L);
-        if (view.equals(this.f7207i)) {
+        if (view.equals(this.previousButton)) {
             BaseApplication.getApplication().startService(new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", "previous_command"));
-        } else if (view.equals(this.f7208j)) {
+        } else if (view.equals(this.nextButton)) {
             BaseApplication.getApplication().startService(new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", "next_command"));
         } else {
             BaseApplication.getApplication().startService(new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", "pause_command"));
@@ -578,14 +580,14 @@ public class MiniLyric implements View.OnTouchListener {
     private void m2302c(View view) {
         int m2277a = this.f7215q.m2277a((ImageView) view);
         this.f7215q.m2276a(Integer.valueOf(m2277a));
-        if (this.f7218t != null) {
+        if (this.lyricView != null) {
             m2309b(m2277a);
         }
     }
 
     /* renamed from: m */
     private void m2284m() {
-        if (this.f7217s.getVisibility() == View.VISIBLE) {
+        if (this.miniLyricSettingView.getVisibility() == View.VISIBLE) {
             m2300c(false);
         } else {
             m2281p();
@@ -597,7 +599,7 @@ public class MiniLyric implements View.OnTouchListener {
     public void m2283n() {
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
         alphaAnimation.setDuration(300L);
-        this.f7219u.setLayoutAnimation(new LayoutAnimationController(alphaAnimation));
+        this.miniLyricView.setLayoutAnimation(new LayoutAnimationController(alphaAnimation));
     }
 
     /* renamed from: o */
@@ -609,19 +611,19 @@ public class MiniLyric implements View.OnTouchListener {
 
     /* renamed from: p */
     private void m2281p() {
-        if (this.f7217s.getVisibility() != View.VISIBLE) {
-            this.f7217s.setVisibility(View.VISIBLE);
-            int m7224d = DisplayUtils.m7224d() - this.f7218t.getHeight();
-            this.f7219u.setVisibility(View.INVISIBLE);
+        if (this.miniLyricSettingView.getVisibility() != View.VISIBLE) {
+            this.miniLyricSettingView.setVisibility(View.VISIBLE);
+            int m7224d = DisplayUtils.m7224d() - this.lyricView.getHeight();
+            this.miniLyricView.setVisibility(View.INVISIBLE);
             this.f7204f = this.f7201c.f7236c > (m7224d >> 1);
-            this.f7219u.removeView(this.f7217s);
-            this.f7219u.addView(this.f7217s, this.f7204f ? 1 : 0);
+            this.miniLyricView.removeView(this.miniLyricSettingView);
+            this.miniLyricView.addView(this.miniLyricSettingView, this.f7204f ? 1 : 0);
             this.f7222x.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.support.minilyric.a.3
                 @Override // java.lang.Runnable
                 public void run() {
-                    MiniLyric.this.f7219u.setVisibility(View.VISIBLE);
+                    MiniLyric.this.miniLyricView.setVisibility(View.VISIBLE);
                     if (MiniLyric.this.f7204f) {
-                        C2080b.m2268b(MiniLyric.this.f7201c, MiniLyric.this.f7217s.getHeight());
+                        C2080b.m2268b(MiniLyric.this.f7201c, MiniLyric.this.miniLyricSettingView.getHeight());
                         MiniLyric.this.m2320a(MiniLyric.this.f7201c.f7235b, MiniLyric.this.f7201c.f7236c, -1, -2);
                     }
                 }
@@ -632,32 +634,32 @@ public class MiniLyric implements View.OnTouchListener {
     /* renamed from: c */
     private void m2300c(boolean z) {
         LogUtils.debug("minilyric", "hideSettingPanel immediate = " + z);
-        if (View.GONE != this.f7217s.getVisibility()) {
+        if (View.GONE != this.miniLyricSettingView.getVisibility()) {
             if (z) {
                 m2305b(false, false);
-                if (this.f7217s.getVisibility() == View.VISIBLE && this.f7204f) {
-                    C2080b.m2266c(this.f7201c, this.f7217s.getHeight());
+                if (this.miniLyricSettingView.getVisibility() == View.VISIBLE && this.f7204f) {
+                    C2080b.m2266c(this.f7201c, this.miniLyricSettingView.getHeight());
                 }
-                this.f7217s.setVisibility(View.GONE);
+                this.miniLyricSettingView.setVisibility(View.GONE);
             } else {
                 this.f7222x.removeCallbacks(this.f7197A);
                 this.f7222x.postDelayed(this.f7197A, 1500L);
             }
-            if (this.f7221w.m2366a()) {
-                this.f7219u.setVisibility(View.INVISIBLE);
+            if (this.floatWindow.m2366a()) {
+                this.miniLyricView.setVisibility(View.INVISIBLE);
             }
             if (!z) {
                 this.f7222x.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.support.minilyric.a.4
                     @Override // java.lang.Runnable
                     public void run() {
                         if (!MiniLyric.this.f7223y) {
-                            MiniLyric.this.f7219u.setVisibility(View.VISIBLE);
+                            MiniLyric.this.miniLyricView.setVisibility(View.VISIBLE);
                         }
                         if (MiniLyric.this.f7204f) {
-                            C2080b.m2266c(MiniLyric.this.f7201c, MiniLyric.this.f7217s.getVisibility() == View.VISIBLE ? MiniLyric.this.f7217s.getHeight() : 0);
+                            C2080b.m2266c(MiniLyric.this.f7201c, MiniLyric.this.miniLyricSettingView.getVisibility() == View.VISIBLE ? MiniLyric.this.miniLyricSettingView.getHeight() : 0);
                             MiniLyric.this.m2320a(MiniLyric.this.f7201c.m2274a(), MiniLyric.this.f7201c.m2270b(), -1, -2);
                         }
-                        MiniLyric.this.f7217s.setVisibility(View.GONE);
+                        MiniLyric.this.miniLyricSettingView.setVisibility(View.GONE);
                         MiniLyric.this.m2283n();
                     }
                 }, 100L);
@@ -673,7 +675,7 @@ public class MiniLyric implements View.OnTouchListener {
             LogUtils.debug("minilyric", "fontZoomOut fontSize=" + i);
             Preferences.m2891e(i);
             m2303c(i);
-            this.f7218t.setTextSize(i);
+            this.lyricView.setTextSize(i);
         }
     }
 
@@ -685,8 +687,8 @@ public class MiniLyric implements View.OnTouchListener {
             LogUtils.debug("minilyric", "fontZoomIn fontSize=" + i);
             Preferences.m2891e(i);
             m2303c(i);
-            if (this.f7218t != null) {
-                this.f7218t.setTextSize(i);
+            if (this.lyricView != null) {
+                this.lyricView.setTextSize(i);
             }
         }
     }
@@ -746,10 +748,10 @@ public class MiniLyric implements View.OnTouchListener {
     }
 
     /* renamed from: a */
-    public void m2311a(boolean z, boolean z2) {
+    public void lockStateNotification(boolean z, boolean z2) {
         LogUtils.debug("minilyric", "lockStateNotification " + z);
         m2297d(z);
-        if (this.f7221w.m2366a()) {
+        if (this.floatWindow.m2366a()) {
             m2300c(false);
             m2320a(this.f7201c.m2274a(), this.f7201c.m2270b(), -1, -2);
         } else {
@@ -793,9 +795,9 @@ public class MiniLyric implements View.OnTouchListener {
     /* renamed from: e */
     private void m2294e(boolean z) {
         if (z) {
-            this.f7221w.m2354b(false);
+            this.floatWindow.m2354b(false);
         } else {
-            this.f7221w.m2354b(true);
+            this.floatWindow.m2354b(true);
         }
     }
 }

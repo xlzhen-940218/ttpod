@@ -103,7 +103,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
         if (playStatus == PlayStatus.STATUS_PLAYING) {
             startUpdatePlayPosition();
         } else if (Cache.getInstance().getCurrentPlayMediaItem().isOnline()) {
-            if (SupportFactory.m2397a(BaseApplication.getApplication()).m2464l() > BUFFER_COMPLETE_PERCENT) {
+            if (SupportFactory.getInstance(BaseApplication.getApplication()).m2464l() > BUFFER_COMPLETE_PERCENT) {
                 stopUpdatePlayPosition();
             }
         } else {
@@ -171,7 +171,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
     }
 
     public void updateSearchPictureState(SearchStatus searchStatus, List<ResultData> list, String str, Bitmap bitmap) {
-        String m2184a = (list == null || list.isEmpty()) ? "noResult" : list.get(0).m2184a();
+        String m2184a = (list == null || list.isEmpty()) ? "noResult" : list.get(0).getTitle();
         String id = Cache.getInstance().getCurrentPlayMediaItem().getID();
         if (searchStatus == SearchStatus.SEARCH_LOCAL_FINISHED || searchStatus == SearchStatus.SEARCH_DOWNLOAD_FINISHED) {
             m2184a = Cache.getInstance().m3164g();
@@ -233,7 +233,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
     }
 
     public void updateSearchLyricState(SearchStatus searchStatus, final List<ResultData> list, String str, Lyric lyric) {
-        LogUtils.debug(LOG_TAG, "lookLyricPic fragment updateSearchLyricState state=%s title=%s", searchStatus.name(), (list == null || list.isEmpty()) ? "noResult" : list.get(0).m2184a());
+        LogUtils.debug(LOG_TAG, "lookLyricPic fragment updateSearchLyricState state=%s title=%s", searchStatus.name(), (list == null || list.isEmpty()) ? "noResult" : list.get(0).getTitle());
         final MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (StringUtils.equals(m3225N.getID(), str)) {
             switch (searchStatus) {
@@ -275,8 +275,8 @@ public abstract class BasePlayerFragment extends BaseFragment {
                             @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
                             /* renamed from: a */
                             public void mo5409a(ActionItem actionItem, int i) {
-                                DebugUtils.m8423a((Object[]) ((ResultData) list.get(i)).m2179c(), "items");
-                                CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, ((ResultData) list.get(i)).m2179c()[0], m3225N));
+                                DebugUtils.m8423a((Object[]) ((ResultData) list.get(i)).getLyricArray(), "items");
+                                CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, ((ResultData) list.get(i)).getLyricArray()[0], m3225N));
                             }
                         }, new DialogInterface.OnCancelListener() { // from class: com.sds.android.ttpod.fragment.main.BasePlayerFragment.3
                             @Override // android.content.DialogInterface.OnCancelListener

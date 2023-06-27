@@ -295,7 +295,7 @@ public class BitmapUtils {
         FileOutputStream fileOutputStream;
         DebugUtils.m8426a(bitmap, "bitmap");
         DebugUtils.m8426a(str, "savePath");
-        FileUtils.m8404h(str);
+        FileUtils.exists(str);
         Throwable th;
         Exception e;
         try {

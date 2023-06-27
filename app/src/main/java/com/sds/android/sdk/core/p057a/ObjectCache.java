@@ -54,7 +54,7 @@ public final class ObjectCache {
     }
 
     private ObjectCache(float f, String str) {
-        this.f2298c = FileUtils.m8406f(str);
+        this.f2298c = FileUtils.createFolder(str);
         if (this.f2298c == null) {
             this.f2298c = new File("");
         }
@@ -271,7 +271,7 @@ public final class ObjectCache {
     /* renamed from: e */
     private void m8761e(String str) {
         f2297b.lock();
-        FileUtils.m8404h(m8760f(str));
+        FileUtils.exists(m8760f(str));
         f2297b.unlock();
     }
 
@@ -495,7 +495,7 @@ public final class ObjectCache {
                                 ObjectCache.f2297b.unlock();
                             }
                             if (z) {
-                                FileUtils.m8412c(file);
+                                FileUtils.exists(file);
                             }
                             ObjectCache.f2297b.unlock();
                         } catch (Throwable th3) {

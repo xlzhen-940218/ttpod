@@ -74,7 +74,7 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
                 break;
             }
             sBaseView = sBaseViewArr[i2];
-            if (!TextUtils.equals(str, sBaseView.f6430a)) {
+            if (!TextUtils.equals(str, sBaseView.id)) {
                 sBaseView = sBaseView3;
             } else if (sBaseView.f6432c == i) {
                 sBaseView2 = sBaseView;
@@ -155,11 +155,11 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
                     String name = kXmlParser.getName();
                     if ("Bitmap".equals(name)) {
                         SBitmap sBitmap = new SBitmap(kXmlParser);
-                        hashMap.put(sBitmap.f6430a, sBitmap);
+                        hashMap.put(sBitmap.id, sBitmap);
                         break;
                     } else if ("Font".equals(name)) {
                         SFont sFont = new SFont(kXmlParser);
-                        hashMap2.put(sFont.f6453e, sFont);
+                        hashMap2.put(sFont.familyName, sFont);
                         break;
                     } else {
                         int size = arrayList.size();

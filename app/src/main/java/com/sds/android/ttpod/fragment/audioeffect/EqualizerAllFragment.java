@@ -143,7 +143,7 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
         if (this.mRootView == null) {
             this.mRootView = layoutInflater.inflate(R.layout.fragment_equalizer_all, (ViewGroup) null);
             CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, new Object[0]));
-            AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+            AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
             initAllData(m2457s != null ? m2457s.m4421g() : "");
             initListView();
         }

@@ -34,7 +34,7 @@ public final class MonitorModule extends BaseModule {
     private LockScreenReceiver f6083f;
 
     /* renamed from: g */
-    private SearchEventReceiver f6084g;
+    private SearchEventReceiver searchEventReceiver;
 
     /* renamed from: h */
     private DownloadStateReceiver f6085h;
@@ -89,8 +89,8 @@ public final class MonitorModule extends BaseModule {
         sContext.registerReceiver(this.f6082e, CallStateReceiver.m4130a());
         this.f6083f = new LockScreenReceiver();
         sContext.registerReceiver(this.f6083f, LockScreenReceiver.m4121a());
-        this.f6084g = new SearchEventReceiver();
-        sContext.registerReceiver(this.f6084g, SearchEventReceiver.m4123a());
+        this.searchEventReceiver = new SearchEventReceiver();
+        sContext.registerReceiver(this.searchEventReceiver, SearchEventReceiver.m4123a());
         this.f6085h = new DownloadStateReceiver();
         sContext.registerReceiver(this.f6085h, DownloadStateReceiver.m4128a());
         this.f6086i = new HeadsetPlugReceiver();
@@ -113,7 +113,7 @@ public final class MonitorModule extends BaseModule {
         sContext.unregisterReceiver(this.f6081d);
         sContext.unregisterReceiver(this.f6082e);
         sContext.unregisterReceiver(this.f6083f);
-        sContext.unregisterReceiver(this.f6084g);
+        sContext.unregisterReceiver(this.searchEventReceiver);
         sContext.unregisterReceiver(this.f6085h);
         sContext.unregisterReceiver(this.f6086i);
         sContext.unregisterReceiver(this.f6087j);

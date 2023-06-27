@@ -44,7 +44,7 @@ public class BackgroundCreateUtils {
         options.inJustDecodeBounds = false;
         try {
             if (backgroundItem.m3337a() == BackgroundItem.EnumC2011a.ADD_BY_USER) {
-                bitmap = BitmapFactory.decodeFile(TTPodConfig.m5293o() + File.separator + backgroundItem.m3331b(), options);
+                bitmap = BitmapFactory.decodeFile(TTPodConfig.getBkgsPath() + File.separator + backgroundItem.m3331b(), options);
             } else {
                 bitmap = BitmapFactory.decodeStream(m5276c, null, options);
             }
@@ -96,7 +96,7 @@ public class BackgroundCreateUtils {
     /* renamed from: a */
     private static InputStream m5278a(String str) {
         try {
-            return new FileInputStream(TTPodConfig.m5293o() + File.separator + str);
+            return new FileInputStream(TTPodConfig.getBkgsPath() + File.separator + str);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return null;
@@ -106,9 +106,9 @@ public class BackgroundCreateUtils {
     /* renamed from: b */
     public static void m5277b(BackgroundItem backgroundItem) {
         Bitmap bitmap;
-        File file = new File(TTPodConfig.m5293o() + File.separator + backgroundItem.m3331b());
+        File file = new File(TTPodConfig.getBkgsPath() + File.separator + backgroundItem.m3331b());
         if (file.exists()) {
-            String str = TTPodConfig.m5298j() + File.separator + SecurityUtils.C0610b.m8361a(String.valueOf(file.lastModified()));
+            String str = TTPodConfig.getCacheTmpPath() + File.separator + SecurityUtils.C0610b.m8361a(String.valueOf(file.lastModified()));
             if (FileUtils.m8419a(str)) {
                 new File(str).delete();
             }

@@ -12,13 +12,13 @@ public class ResultData implements Parcelable {
         /* renamed from: a */
         public ResultData createFromParcel(Parcel parcel) {
             ResultData resultData = new ResultData();
-            resultData.f7288a = parcel.readString();
-            resultData.f7289b = parcel.readString();
-            resultData.f7290c = parcel.readString();
-            resultData.f7291d = parcel.readString();
+            resultData.title = parcel.readString();
+            resultData.artist = parcel.readString();
+            resultData.album = parcel.readString();
+            resultData.allname = parcel.readString();
             if (parcel.readByte() != 0) {
                 Parcelable[] readParcelableArray = parcel.readParcelableArray(Item.class.getClassLoader());
-                resultData.f7292e = (Item[]) ResultData.m2180b(readParcelableArray, readParcelableArray.length, Item[].class);
+                resultData.lyricArray = (Item[]) ResultData.m2180b(readParcelableArray, readParcelableArray.length, Item[].class);
             }
             return resultData;
         }
@@ -31,59 +31,79 @@ public class ResultData implements Parcelable {
     };
 
     /* renamed from: a */
-    protected String f7288a;
+    protected String title;
 
     /* renamed from: b */
-    protected String f7289b;
+    protected String artist;
 
     /* renamed from: c */
-    protected String f7290c;
+    protected String album;
 
     /* renamed from: d */
-    protected String f7291d;
+    protected String allname;
 
     /* renamed from: e */
-    protected Item[] f7292e;
+    protected Item[] lyricArray;
 
     public String toString() {
         StringBuilder sb = new StringBuilder(32);
-        if (!TextUtils.isEmpty(this.f7289b)) {
-            sb.append(this.f7289b);
+        if (!TextUtils.isEmpty(this.artist)) {
+            sb.append(this.artist);
         }
-        if (!TextUtils.isEmpty(this.f7288a)) {
+        if (!TextUtils.isEmpty(this.title)) {
             if (sb.length() > 0) {
                 sb.append('-');
             }
-            sb.append(this.f7288a);
+            sb.append(this.title);
         }
-        if (!TextUtils.isEmpty(this.f7290c)) {
+        if (!TextUtils.isEmpty(this.album)) {
             if (sb.length() > 0) {
                 sb.append('/');
             }
-            sb.append(this.f7290c);
+            sb.append(this.album);
         }
-        if (sb.length() == 0 && !TextUtils.isEmpty(this.f7291d)) {
-            sb.append(this.f7291d);
+        if (sb.length() == 0 && !TextUtils.isEmpty(this.allname)) {
+            sb.append(this.allname);
         }
-        if (this.f7292e != null && 1 == this.f7292e.length && "trc".equals(this.f7292e[0].m2174b())) {
+        if (this.lyricArray != null && 1 == this.lyricArray.length && "trc".equals(this.lyricArray[0].getType())) {
             sb.append(" TRC");
         }
         return sb.toString();
     }
 
     /* renamed from: a */
-    public String m2184a() {
-        return this.f7288a;
+    public String getTitle() {
+        return this.title;
     }
 
     /* renamed from: b */
-    public String m2181b() {
-        return this.f7289b;
+    public String getArtist() {
+        return this.artist;
     }
 
     /* renamed from: c */
-    public Item[] m2179c() {
-        return this.f7292e;
+    public Item[] getLyricArray() {
+        return this.lyricArray;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public void setAllname(String allname) {
+        this.allname = allname;
+    }
+
+    public void setLyricArray(Item[] lyricArray) {
+        this.lyricArray = lyricArray;
     }
 
     @Override // android.os.Parcelable
@@ -93,13 +113,13 @@ public class ResultData implements Parcelable {
 
     @Override // android.os.Parcelable
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.f7288a != null ? this.f7288a : "");
-        parcel.writeString(this.f7289b != null ? this.f7289b : "");
-        parcel.writeString(this.f7290c != null ? this.f7290c : "");
-        parcel.writeString(this.f7291d != null ? this.f7291d : "");
-        parcel.writeByte((byte) (this.f7292e != null ? 1 : 0));
-        if (this.f7292e != null) {
-            parcel.writeParcelableArray(this.f7292e, i);
+        parcel.writeString(this.title != null ? this.title : "");
+        parcel.writeString(this.artist != null ? this.artist : "");
+        parcel.writeString(this.album != null ? this.album : "");
+        parcel.writeString(this.allname != null ? this.allname : "");
+        parcel.writeByte((byte) (this.lyricArray != null ? 1 : 0));
+        if (this.lyricArray != null) {
+            parcel.writeParcelableArray(this.lyricArray, i);
         }
     }
 
@@ -145,48 +165,64 @@ public class ResultData implements Parcelable {
         };
 
         /* renamed from: a */
-        protected String f7293a;
+        protected String type;
 
         /* renamed from: b */
-        protected String f7294b;
+        protected String url;
 
         /* renamed from: c */
-        protected String f7295c;
+        protected String localLyricPath;
 
         /* renamed from: d */
-        protected int f7296d;
+        protected int id;
 
-        public Item(String str, String str2, String str3, int i) {
-            this.f7293a = str;
-            this.f7294b = str2;
-            this.f7295c = str3;
-            this.f7296d = i;
+        public Item(String type, String url, String localLyricPath, int id) {
+            this.type = type;
+            this.url = url;
+            this.localLyricPath = localLyricPath;
+            this.id = id;
+        }
+
+        public void setType(String type) {
+            this.type = type;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public void setLocalLyricPath(String localLyricPath) {
+            this.localLyricPath = localLyricPath;
+        }
+
+        public void setId(int id) {
+            this.id = id;
         }
 
         /* renamed from: a */
-        public int m2176a() {
-            return this.f7296d;
+        public int getId() {
+            return this.id;
         }
 
         /* renamed from: b */
-        public String m2174b() {
-            return this.f7293a;
+        public String getType() {
+            return this.type;
         }
 
         /* renamed from: c */
-        public String m2173c() {
-            return this.f7294b;
+        public String getUrl() {
+            return this.url;
         }
 
         /* renamed from: d */
-        public String m2172d() {
-            return this.f7295c;
+        public String getLocalLyricPath() {
+            return this.localLyricPath;
         }
 
         @Override // java.lang.Comparable
         /* renamed from: a */
         public int compareTo(Item item) {
-            return this.f7296d - item.f7296d;
+            return this.id - item.id;
         }
 
         @Override // android.os.Parcelable
@@ -196,10 +232,10 @@ public class ResultData implements Parcelable {
 
         @Override // android.os.Parcelable
         public void writeToParcel(Parcel parcel, int i) {
-            parcel.writeString(this.f7293a != null ? this.f7293a : "");
-            parcel.writeString(this.f7294b != null ? this.f7294b : "");
-            parcel.writeString(this.f7295c != null ? this.f7295c : "");
-            parcel.writeInt(this.f7296d);
+            parcel.writeString(this.type != null ? this.type : "");
+            parcel.writeString(this.url != null ? this.url : "");
+            parcel.writeString(this.localLyricPath != null ? this.localLyricPath : "");
+            parcel.writeInt(this.id);
         }
     }
 }

@@ -16,7 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.data.VoiceOfChina;
-import com.sds.android.cloudapi.ttpod.p055a.VoiceOfChinaAPI;
+import com.sds.android.cloudapi.ttpod.api.VoiceOfChinaAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 import com.sds.android.cloudapi.ttpod.result.VoiceOfChinaListResult;
 import com.sds.android.sdk.lib.request.RequestCallback;

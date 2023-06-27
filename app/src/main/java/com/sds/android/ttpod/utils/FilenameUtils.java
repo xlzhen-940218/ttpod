@@ -11,7 +11,7 @@ import java.util.GregorianCalendar;
 public class FilenameUtils {
     /* renamed from: a */
     public static String m8280a() {
-        String m5309a = TTPodConfig.m5309a();
+        String m5309a = TTPodConfig.getTTPodLog();
         return m5309a + File.separator + m8279b();
     }
 

@@ -37,7 +37,7 @@ public class ShakeMonitor implements ShakeManager.InterfaceC1857a {
     @Override // com.sds.android.ttpod.framework.modules.core.p113b.p114a.ShakeManager.InterfaceC1857a
     /* renamed from: a */
     public void mo4303a(int i) {
-        if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+        if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
             CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
         }
     }

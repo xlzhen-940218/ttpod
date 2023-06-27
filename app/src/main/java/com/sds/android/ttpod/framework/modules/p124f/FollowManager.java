@@ -1,7 +1,7 @@
 package com.sds.android.ttpod.framework.modules.p124f;
 
 import android.util.LongSparseArray;
-import com.sds.android.cloudapi.ttpod.p055a.FriendsAPI;
+import com.sds.android.cloudapi.ttpod.api.FriendsAPI;
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.IdListResult;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;

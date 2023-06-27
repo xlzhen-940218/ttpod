@@ -1,12 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center" android:layout_gravity="center" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
-    <FrameLayout android:id="@+id/frame_inner" android:layout_width="match_parent" android:layout_height="wrap_content">
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent">
-            <ImageView android:layout_gravity="center" android:id="@+id/iv_setting" android:clickable="true" android:layout_width="64dp" android:layout_height="match_parent" android:src="@drawable/xml_button_minilyric_setting" android:scaleType="center"/>
-            <ImageView android:id="@+id/button_previous_minilyric" android:clickable="true" android:layout_width="0dp" android:layout_height="wrap_content" android:src="@drawable/xml_button_minilyric_previous" android:scaleType="center" android:layout_weight="1"/>
-            <ImageView android:id="@+id/button_playpause_minilyric" android:clickable="true" android:layout_width="0dp" android:layout_height="wrap_content" android:src="@drawable/xml_button_minilyric_pause" android:scaleType="center" android:layout_weight="1"/>
-            <ImageView android:id="@+id/button_next_minilyric" android:clickable="true" android:layout_width="0dp" android:layout_height="wrap_content" android:src="@drawable/xml_button_minilyric_next" android:scaleType="center" android:layout_weight="1"/>
-            <ImageView android:layout_gravity="center" android:id="@+id/iv_ttpod" android:clickable="true" android:layout_width="64dp" android:layout_height="match_parent" android:src="@drawable/xml_button_minilyric_ttpod" android:scaleType="center"/>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/frame_inner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_setting"
+                android:layout_width="64dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:scaleType="center"
+                android:src="@drawable/xml_button_minilyric_setting" />
+
+            <ImageView
+                android:id="@+id/button_previous_minilyric"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="center"
+                android:src="@drawable/xml_button_minilyric_previous" />
+
+            <ImageView
+                android:id="@+id/button_playpause_minilyric"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="center"
+                android:src="@drawable/xml_button_minilyric_pause" />
+
+            <ImageView
+                android:id="@+id/button_next_minilyric"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="center"
+                android:src="@drawable/xml_button_minilyric_next" />
+
+            <ImageView
+                android:id="@+id/iv_ttpod"
+                android:layout_width="64dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:scaleType="center"
+                android:src="@drawable/xml_button_minilyric_ttpod" />
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

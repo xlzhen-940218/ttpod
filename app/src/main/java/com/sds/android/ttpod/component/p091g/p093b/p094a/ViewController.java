@@ -67,7 +67,7 @@ public class ViewController {
     protected SeekBar f4197I;
 
     /* renamed from: J */
-    protected LyricView f4198J;
+    protected LyricView lyricView;
 
     /* renamed from: K */
     protected LineVisualization f4199K;
@@ -231,7 +231,7 @@ public class ViewController {
 
     /* renamed from: F */
     public LyricView m6547F() {
-        return this.f4198J;
+        return this.lyricView;
     }
 
     /* renamed from: G */
@@ -372,7 +372,7 @@ public class ViewController {
             }
         } else if (view instanceof LyricView) {
             if ("LyricShow".equals(tag)) {
-                this.f4198J = (LyricView) view;
+                this.lyricView = (LyricView) view;
             }
         } else if (view instanceof AnimationImageView) {
             if ("NetSearching".equals(tag)) {
@@ -506,7 +506,7 @@ public class ViewController {
                 } else if (view == this.f4233p) {
                     i = 33;
                 } else {
-                    if (view == this.f4231n || view == this.f4198J || (view instanceof MultiScreenLayout) || view == this.f4199K || view == this.f4201M || (view instanceof TTImageSwitcher) || view == this.f4200L || (view instanceof AnimTransView)) {
+                    if (view == this.f4231n || view == this.lyricView || (view instanceof MultiScreenLayout) || view == this.f4199K || view == this.f4201M || (view instanceof TTImageSwitcher) || view == this.f4200L || (view instanceof AnimTransView)) {
                         i = 29;
                     }
                     i = -1;
@@ -566,8 +566,8 @@ public class ViewController {
                 }
             }
         }
-        if (m6526d(this.f4198J)) {
-            this.f4198J.setPlayingTime(j);
+        if (m6526d(this.lyricView)) {
+            this.lyricView.setPlayingTime(j);
         }
     }
 
@@ -597,8 +597,8 @@ public class ViewController {
 
     /* renamed from: a_ */
     public void mo6442a_(int i) {
-        if (this.f4198J != null) {
-            this.f4198J.m3431g();
+        if (this.lyricView != null) {
+            this.lyricView.m3431g();
         }
     }
 
@@ -636,12 +636,12 @@ public class ViewController {
         m6532b(mediaItem);
         m6534b(mediaItem.getDuration().intValue());
         mo6443a(mediaItem.getFav());
-        if (z && this.f4198J != null) {
+        if (z && this.lyricView != null) {
             String m3193b = Cache.getInstance().m3193b(mediaItem);
-            boolean m3453b = this.f4198J.m3453b(m3193b);
+            boolean m3453b = this.lyricView.m3453b(m3193b);
             LogUtils.debug("ViewController", "looklyricloading updateView %s want setState equalLyricFile=%b cachePath=%s", getClass().getSimpleName(), Boolean.valueOf(m3453b), m3193b);
             if (!m3453b) {
-                this.f4198J.setState(1);
+                this.lyricView.setState(1);
             }
         }
     }
@@ -695,12 +695,12 @@ public class ViewController {
     /* renamed from: a */
     public void mo6447a(MediaItem mediaItem, Bitmap bitmap, Lyric lyric) {
         m6537a(mediaItem, true);
-        if (this.f4198J != null) {
-            this.f4198J.setFadeColor(Preferences.m3042T());
-            this.f4198J.setKalaOK(Preferences.m3046R());
-            this.f4198J.setMtvPostionDown(true);
-            if (this.f4198J.getDisplayMode() != LyricView.EnumC1996a.MTV || !this.f4198J.m3443d()) {
-                this.f4198J.setColorHighlight(Preferences.m3050P());
+        if (this.lyricView != null) {
+            this.lyricView.setFadeColor(Preferences.m3042T());
+            this.lyricView.setKalaOK(Preferences.m3046R());
+            this.lyricView.setMtvPositionDown(true);
+            if (this.lyricView.getDisplayMode() != LyricView.LyricDisplayEnum.MTV || !this.lyricView.getColorBySkin()) {
+                this.lyricView.setColorHighlight(Preferences.m3050P());
             }
             m6523h(Preferences.m3048Q());
         }
@@ -715,18 +715,18 @@ public class ViewController {
 
     /* renamed from: d */
     public void mo6428d(int i) {
-        if (this.f4198J != null) {
-            if (this.f4198J.getDisplayMode() != LyricView.EnumC1996a.MTV || !this.f4198J.m3443d()) {
-                this.f4198J.setColorHighlight(i);
+        if (this.lyricView != null) {
+            if (this.lyricView.getDisplayMode() != LyricView.LyricDisplayEnum.MTV || !this.lyricView.getColorBySkin()) {
+                this.lyricView.setColorHighlight(i);
             }
         }
     }
 
     /* renamed from: h */
     public void m6523h(int i) {
-        if (this.f4198J != null) {
-            this.f4198J.m3459b(0, this.f4198J.getDefaultFontSizeHighlight() + i);
-            this.f4198J.m3482a(0, this.f4198J.getDefaultFontSizeNormal() + i);
+        if (this.lyricView != null) {
+            this.lyricView.m3459b(0, this.lyricView.getDefaultFontSizeHighlight() + i);
+            this.lyricView.m3482a(0, this.lyricView.getDefaultFontSizeNormal() + i);
         }
     }
 
@@ -744,53 +744,53 @@ public class ViewController {
 
     /* renamed from: m */
     public void mo6415m() {
-        if (this.f4198J != null) {
-            this.f4198J.setState(2);
+        if (this.lyricView != null) {
+            this.lyricView.setState(2);
         }
     }
 
     /* renamed from: h */
     public void mo6423h() {
         m6533b((Lyric) null);
-        if (this.f4198J != null) {
-            this.f4198J.setState(4);
+        if (this.lyricView != null) {
+            this.lyricView.setState(4);
         }
     }
 
     /* renamed from: j */
     public void mo6421j() {
-        if (this.f4198J != null) {
-            this.f4198J.setState(5);
+        if (this.lyricView != null) {
+            this.lyricView.setState(5);
         }
     }
 
     /* renamed from: k */
     public void mo6419k() {
-        if (this.f4198J != null) {
-            this.f4198J.setState(6);
+        if (this.lyricView != null) {
+            this.lyricView.setState(6);
         }
     }
 
     /* renamed from: l */
     public void mo6417l() {
-        if (this.f4198J != null) {
-            this.f4198J.setState(1);
+        if (this.lyricView != null) {
+            this.lyricView.setState(1);
         }
     }
 
     /* renamed from: i */
     public void mo6422i() {
-        if (this.f4198J != null) {
-            this.f4198J.setState(8);
+        if (this.lyricView != null) {
+            this.lyricView.setState(8);
         }
     }
 
     /* renamed from: b */
     private void m6533b(Lyric lyric) {
         this.f4211W = lyric;
-        if (this.f4198J != null) {
-            this.f4198J.setLyric(lyric);
-            this.f4198J.setPlayingTime(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue());
+        if (this.lyricView != null) {
+            this.lyricView.setLyric(lyric);
+            this.lyricView.setPlayingTime(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
         }
     }
 
@@ -868,7 +868,7 @@ public class ViewController {
         this.f4202N = null;
         this.f4203O = null;
         this.f4205Q = null;
-        this.f4198J = null;
+        this.lyricView = null;
         this.f4200L = null;
         this.f4201M = null;
         this.f4224g = null;

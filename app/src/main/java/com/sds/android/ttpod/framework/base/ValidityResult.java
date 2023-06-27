@@ -1,6 +1,6 @@
 package com.sds.android.ttpod.framework.base;
 
-import com.sds.android.cloudapi.ttpod.p055a.UrlList;
+import com.sds.android.cloudapi.ttpod.api.UrlList;
 import com.sds.android.sdk.lib.request.BaseResult;
 import java.io.Serializable;
 

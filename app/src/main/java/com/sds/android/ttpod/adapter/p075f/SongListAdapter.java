@@ -227,7 +227,7 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
         if (item != null) {
             LogUtils.debug("ListStatistic", "onMediaItemClicked=" + item.getSongID() + "," + item.getTitle());
             if (StringUtils.equals(this.groupId, Preferences.getLocalGroupId()) && StringUtils.equals(item.getID(), Preferences.getMediaId())) {
-                PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
+                PlayStatus m2463m = SupportFactory.getInstance(BaseApplication.getApplication()).m2463m();
                 if (m2463m == PlayStatus.STATUS_PAUSED) {
                     CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                     return;

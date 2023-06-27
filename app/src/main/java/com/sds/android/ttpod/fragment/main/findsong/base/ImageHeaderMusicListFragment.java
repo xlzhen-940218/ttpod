@@ -96,7 +96,7 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment {
 
     /* JADX INFO: Access modifiers changed from: protected */
     public boolean isPlayingItem() {
-        return StringUtils.equals(Preferences.m2926bc(), this.mPlayingGroupName);
+        return StringUtils.equals(Preferences.getOnlineMediaListGroupName(), this.mPlayingGroupName);
     }
 
     public void playMediaChanged() {
@@ -144,7 +144,7 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
     public void onResume() {
         super.onResume();
-        updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+        updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
     }
 
     private void initOnlineMediaListFragment() {

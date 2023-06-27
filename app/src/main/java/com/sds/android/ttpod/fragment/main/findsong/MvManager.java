@@ -88,7 +88,7 @@ public class MvManager {
     public static void m5560a(Context context, MvPopupDialogCallBack mvPopupDialogCallBack, int i, int i2) {
         if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6721a(context.getString(R.string.cannot_play_for_network_error));
-        } else if (2 == EnvironmentUtils.DeviceConfig.m8476d()) {
+        } else if (2 == EnvironmentUtils.DeviceConfig.hasNetwork()) {
             mvPopupDialogCallBack.onSuccess();
         } else if (UnicomFlowUtil.m3946f() && HttpRequest.isProxy()) {
             if (i == 0) {
@@ -104,7 +104,7 @@ public class MvManager {
     /* renamed from: a */
     public static void m5559a(MediaItem mediaItem) {
         String m5556b = m5556b(mediaItem);
-        DownloadTaskInfo m4760a = DownloadUtils.m4760a(m5556b, TTPodConfig.m5283y() + File.separator + (mediaItem.getArtist() + " - " + mediaItem.getTitle()) + ("." + FileUtils.getSuffix(FileUtils.getFilename(m5556b))), 0L, mediaItem.getTitle(), DownloadTaskInfo.TYPE_VIDEO, true, "mv_channel");
+        DownloadTaskInfo m4760a = DownloadUtils.m4760a(m5556b, TTPodConfig.getMvPath() + File.separator + (mediaItem.getArtist() + " - " + mediaItem.getTitle()) + ("." + FileUtils.getSuffix(FileUtils.getFilename(m5556b))), 0L, mediaItem.getTitle(), DownloadTaskInfo.TYPE_VIDEO, true, "mv_channel");
         m4760a.setTag(m5556b);
         CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
     }

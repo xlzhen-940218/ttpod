@@ -1,6 +1,6 @@
 package com.sds.android.ttpod.framework.modules.p110b;
 
-import com.sds.android.cloudapi.ttpod.p055a.FindSongAPI;
+import com.sds.android.cloudapi.ttpod.api.FindSongAPI;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.framework.base.BaseModule;
 import com.sds.android.ttpod.framework.modules.CommandID;

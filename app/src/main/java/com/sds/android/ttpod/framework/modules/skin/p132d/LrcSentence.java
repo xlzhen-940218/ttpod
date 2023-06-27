@@ -8,42 +8,42 @@ public class LrcSentence implements Sentence {
     protected int f6618a;
 
     /* renamed from: b */
-    protected String f6619b;
+    protected String lrcText;
 
     /* renamed from: c */
-    private long f6620c;
+    private long lrcTime;
 
     /* renamed from: d */
-    private int f6621d;
+    private int index;
 
     /* renamed from: e */
     private int f6622e;
 
     /* renamed from: f */
-    private LyricInfo f6623f;
+    private LyricInfo lyricInfo;
 
     public LrcSentence() {
     }
 
     public LrcSentence(LrcSentence lrcSentence) {
-        this.f6620c = lrcSentence.f6620c;
+        this.lrcTime = lrcSentence.lrcTime;
         this.f6618a = lrcSentence.f6618a;
-        this.f6619b = lrcSentence.f6619b;
-        this.f6621d = lrcSentence.f6621d;
+        this.lrcText = lrcSentence.lrcText;
+        this.index = lrcSentence.index;
         this.f6622e = lrcSentence.f6622e;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: a */
-    public void mo3639a(LyricInfo lyricInfo) {
-        this.f6623f = lyricInfo;
+    public void getLyricInfo(LyricInfo lyricInfo) {
+        this.lyricInfo = lyricInfo;
     }
 
-    public LrcSentence(long j, String str, int i, int i2, int i3) {
-        this.f6620c = j;
+    public LrcSentence(long lrcTime, String lrcText, int i, int index, int i3) {
+        this.lrcTime = lrcTime;
         this.f6618a = i < 1 ? 1 : i;
-        this.f6619b = str;
-        this.f6621d = i2;
+        this.lrcText = lrcText;
+        this.index = index;
         this.f6622e = i3;
     }
 
@@ -61,24 +61,24 @@ public class LrcSentence implements Sentence {
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: b */
     public int mo3638b() {
-        return this.f6621d;
+        return this.index;
     }
 
     /* renamed from: c */
-    protected String mo3612c() {
-        return this.f6619b;
+    protected String getLrcText() {
+        return this.lrcText;
     }
 
     public String toString() {
-        long abs = Math.abs(this.f6620c);
+        long abs = Math.abs(this.lrcTime);
         long j = abs / 1000;
         long j2 = j / 60;
-        return String.format("[%s%02d:%02d.%03d]%s\n", this.f6620c < 0 ? "-" : "", Long.valueOf(j2), Long.valueOf(j - (j2 * 60)), Long.valueOf(abs - (j * 1000)), mo3612c());
+        return String.format("[%s%02d:%02d.%03d]%s\n", this.lrcTime < 0 ? "-" : "", Long.valueOf(j2), Long.valueOf(j - (j2 * 60)), Long.valueOf(abs - (j * 1000)), getLrcText());
     }
 
     /* renamed from: a */
-    public void m3679a(long j) {
-        this.f6620c = j;
+    public void setLrcTime(long lrcTime) {
+        this.lrcTime = lrcTime;
     }
 
     /* renamed from: b */
@@ -91,18 +91,18 @@ public class LrcSentence implements Sentence {
 
     /* renamed from: a */
     public void m3677a(String str) {
-        this.f6619b = str;
+        this.lrcText = str;
     }
 
     /* renamed from: d */
     public long m3676d() {
-        return this.f6620c;
+        return this.lrcTime;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: e */
     public long mo3637e() {
-        return (this.f6623f != null ? this.f6623f.m3656d() : 0L) + this.f6620c;
+        return (this.lyricInfo != null ? this.lyricInfo.m3656d() : 0L) + this.lrcTime;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
@@ -114,7 +114,7 @@ public class LrcSentence implements Sentence {
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: g */
     public String mo3635g() {
-        return this.f6619b;
+        return this.lrcText;
     }
 
     @Override // java.lang.Comparable
@@ -126,7 +126,7 @@ public class LrcSentence implements Sentence {
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: c */
     public int mo3611c(int i) {
-        if (LyricUtils.m3643a(this.f6619b)) {
+        if (LyricUtils.m3643a(this.lrcText)) {
             return 0;
         }
         return (this.f6622e * i) / this.f6618a;

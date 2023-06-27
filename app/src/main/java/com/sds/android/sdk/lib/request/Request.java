@@ -158,7 +158,7 @@ public abstract class Request<R extends BaseResult> {
         }
         this.uri = mo8536c();
         LogUtils.info("Request", "in execute lookNetProblem url=%s", this.uri);
-        return m8539b(doHttpRequest(this.uri + (this.uri.indexOf("?") == -1 ? "?" : "&") + "utdid=" + EnvironmentUtils.C0603b.m8499a(), this.f2426g, this.paramsMaps, this.f2425f));
+        return m8539b(doHttpRequest(this.uri + (this.uri.indexOf("?") == -1 ? "?" : "&") + "utdid=" + EnvironmentUtils.UUIDConfig.m8499a(), this.f2426g, this.paramsMaps, this.f2425f));
     }
 
     /* renamed from: a */

@@ -42,11 +42,11 @@ public class LogcatUtils {
 
     /* renamed from: c */
     public static void m8259c() {
-        String m5309a = TTPodConfig.m5309a();
+        String m5309a = TTPodConfig.getTTPodLog();
         String[] list = new File(m5309a).list();
         int length = list != null ? list.length : 0;
         for (int i = 0; i < length; i++) {
-            FileUtils.m8404h(m5309a + File.separator + list[i]);
+            FileUtils.exists(m5309a + File.separator + list[i]);
         }
     }
 }

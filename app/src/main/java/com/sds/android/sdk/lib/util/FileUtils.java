@@ -61,7 +61,7 @@ public class FileUtils {
     }
 
     /* renamed from: e */
-    public static synchronized File m8407e(String str) {
+    public static synchronized File createFile(String str) {
         File file = null;
         synchronized (FileUtils.class) {
             if (!StringUtils.isEmpty(str)) {
@@ -92,12 +92,14 @@ public class FileUtils {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public static synchronized File m8406f(String str) {
+    public static synchronized File createFolder(String str) {
         File file = null;
         synchronized (FileUtils.class) {
             if (!StringUtils.isEmpty(str)) {
                 File file2 = new File(str);
                 if (!file2.isDirectory()) {
+                    file2.delete();
+                    file2.mkdirs();
                 }
                 file = file2;
             }
@@ -199,11 +201,11 @@ public class FileUtils {
     }
 
     /* renamed from: h */
-    public static synchronized boolean m8404h(String str) {
+    public static synchronized boolean exists(String path) {
         boolean z = false;
         synchronized (FileUtils.class) {
-            if (!StringUtils.isEmpty(str)) {
-                z = m8412c(new File(str));
+            if (!StringUtils.isEmpty(path)) {
+                z = exists(new File(path));
             }
         }
         return z;
@@ -216,7 +218,7 @@ public class FileUtils {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    public static synchronized boolean m8412c(File file) {
+    public static synchronized boolean exists(File file) {
         File[] listFiles;
         boolean z = false;
         synchronized (FileUtils.class) {
@@ -225,7 +227,7 @@ public class FileUtils {
             } else {
                 if (file.isDirectory() && (listFiles = file.listFiles()) != null) {
                     for (File file2 : listFiles) {
-                        if (!m8412c(file2)) {
+                        if (!exists(file2)) {
                             break;
                         }
                     }
@@ -266,7 +268,7 @@ public class FileUtils {
             BufferedWriter bufferedWriter = null;
             try {
                 try {
-                    m8407e = m8407e(str2);
+                    m8407e = createFile(str2);
                 } catch (ArrayIndexOutOfBoundsException e2) {
                     e = e2;
                 }
@@ -354,7 +356,7 @@ public class FileUtils {
             FileOutputStream fileOutputStream = null;
             try {
                 try {
-                    m8407e = m8407e(str);
+                    m8407e = createFile(str);
                 } catch (Throwable th1) {
                     th = th1;
                 }
@@ -523,7 +525,7 @@ public class FileUtils {
     }
 
     /* renamed from: o */
-    public static String m8397o(String str) {
+    public static String removeWrongCharacter(String str) {
         if (str == null) {
             return null;
         }
@@ -545,11 +547,11 @@ public class FileUtils {
         Long valueOf = Long.valueOf(System.currentTimeMillis());
         String str3 = str + File.separator + valueOf.toString();
         boolean z = false;
-        m8407e(str3);
+        createFile(str3);
         if (m8419a(str3) && m8419a(str2 + File.separator + valueOf)) {
             z = true;
         }
-        m8404h(str3);
+        exists(str3);
         return z;
     }
 }

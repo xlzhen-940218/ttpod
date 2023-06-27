@@ -59,7 +59,7 @@ public class WebJsInterface {
 
     @JavascriptInterface
     public String getGeneralParameters() {
-        return JSONUtils.toJson(EnvironmentUtils.C0603b.m8488e());
+        return JSONUtils.toJson(EnvironmentUtils.UUIDConfig.m8488e());
     }
 
     @JavascriptInterface
@@ -110,7 +110,7 @@ public class WebJsInterface {
         PlayStatus playStatus = PlayStatus.STATUS_STOPPED;
         if (!m3225N.isNull() && m3225N.isOnline()) {
             j = m3225N.getSongID();
-            playStatus = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
+            playStatus = SupportFactory.getInstance(BaseApplication.getApplication()).m2463m();
         }
         addJson(jSONObject, KEY_SONG_ID, j);
         addJson(jSONObject, "status", playStatus.toString());

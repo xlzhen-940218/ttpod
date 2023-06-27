@@ -71,13 +71,13 @@ public class TrcFormattedLyric extends LrcFormattedLyric {
             trcSentence.m3677a(str.substring(1));
         }
         trcSentence.m3618a(this.f6608c);
-        this.f6609d.add(trcSentence);
+        this.lrcLineList.add(trcSentence);
         return i5;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.LrcFormattedLyric
     /* renamed from: a */
     protected void mo3633a(String str, long j, int i, int i2, int i3) {
-        this.f6609d.add(new TrcSentence(j, str, i, i2, i3));
+        this.lrcLineList.add(new TrcSentence(j, str, i, i2, i3));
     }
 }

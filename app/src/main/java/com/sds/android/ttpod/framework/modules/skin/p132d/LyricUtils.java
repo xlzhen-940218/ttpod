@@ -22,7 +22,7 @@ public final class LyricUtils {
 
     /* renamed from: a */
     public static int m3642a(List<? extends Sentence> list, long j) {
-        f6635a.m3679a(j);
+        f6635a.setLrcTime(j);
         int binarySearch = Collections.binarySearch(list, f6635a);
         if (binarySearch < 0) {
             binarySearch = (-binarySearch) - 2;
@@ -34,7 +34,7 @@ public final class LyricUtils {
     /* renamed from: a */
     public static void m3641a(List<? extends Sentence> list, LyricInfo lyricInfo) {
         for (Sentence sentence : list) {
-            sentence.mo3639a(lyricInfo);
+            sentence.getLyricInfo(lyricInfo);
         }
     }
 }

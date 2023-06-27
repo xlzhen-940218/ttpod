@@ -10,7 +10,7 @@ import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.cloudapi.ttpod.p055a.UserSystemAPI;
+import com.sds.android.cloudapi.ttpod.api.UserSystemAPI;
 import com.sds.android.cloudapi.ttpod.result.TTPodUserResult;
 import com.sds.android.sdk.lib.request.Request;
 import com.sds.android.sdk.lib.request.RequestCallback;
@@ -213,11 +213,11 @@ public abstract class HeaderPostListFragment extends PostListByIdFragment implem
     }
 
     private void initCoverLocalPath() {
-        this.mLocalCoverImagePath = String.format(TTPodConfig.m5298j() + File.separator + ".%d.cover.jpg", Long.valueOf(this.mUser.getUserId() + (this.mUser.getProfileCoverUrl() == null ? 0 : this.mUser.getProfileCoverUrl().hashCode())));
+        this.mLocalCoverImagePath = String.format(TTPodConfig.getCacheTmpPath() + File.separator + ".%d.cover.jpg", Long.valueOf(this.mUser.getUserId() + (this.mUser.getProfileCoverUrl() == null ? 0 : this.mUser.getProfileCoverUrl().hashCode())));
     }
 
     private void initAvatarLocalPath() {
-        this.mLocalAvatarImagePath = String.format(TTPodConfig.m5298j() + File.separator + ".%d.avatar.jpg", Long.valueOf(this.mUser.getUserId() + (this.mUser.getAvatarUrl() == null ? 0 : this.mUser.getAvatarUrl().hashCode())));
+        this.mLocalAvatarImagePath = String.format(TTPodConfig.getCacheTmpPath() + File.separator + ".%d.avatar.jpg", Long.valueOf(this.mUser.getUserId() + (this.mUser.getAvatarUrl() == null ? 0 : this.mUser.getAvatarUrl().hashCode())));
     }
 
     private void cropPhoto(int i, Intent intent) {

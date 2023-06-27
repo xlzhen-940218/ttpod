@@ -192,7 +192,7 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     protected void beforeOnlineFragmentOnMediaItemClicked(MediaItem mediaItem) {
         if (isPlayingItem() && StringUtils.equals(mediaItem.getID(), Preferences.getMediaId())) {
-            if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
+            if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
                 CommandCenter.getInstance().execute(new Command(CommandID.ADD_LISTENER_COUNT, Long.valueOf(this.mPostId)));
                 return;
             }
@@ -207,7 +207,7 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
         setTitle(this.mOriginPost.getType() < MusiccircleContentType.DJ.value() ? this.mOriginPost.getMediaItem().getTitle() : this.mOriginPost.getSongListName());
         this.mPostDetailHeader.m7929a(this.mOriginPost);
         setPlayingGroupName(OnlinePlayingGroupUtils.m6916a(this.mOriginPost));
-        updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+        updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
         this.mOnlineMediaListFragment.getStateView().setState(StateView.EnumC2248b.SUCCESS);
         this.mSecondLoadView.m7932a(false, 0, getString(R.string.loading));
         CommandCenter.getInstance().execute(new Command(CommandID.REQUEST_POST_SONG_BY_IDS, PostUtils.m4025c(this.mPost), getRequestId()));
@@ -250,7 +250,7 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
     public void doStatisticMediaClick(MediaItem mediaItem) {
         super.doStatisticMediaClick(mediaItem);
        // FindSongNewStatistic.m5215h(origin());
-        Preferences.m2828t(OnlinePlayingGroupUtils.m6916a(this.mOriginPost));
+        Preferences.setOnlineMediaListGroupName(OnlinePlayingGroupUtils.m6916a(this.mOriginPost));
         doStatistic();
     }
 

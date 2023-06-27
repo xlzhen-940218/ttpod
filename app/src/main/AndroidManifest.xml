@@ -587,8 +587,7 @@
             android:process=":remote" />-->
         <service
             android:name="com.sds.android.ttpod.framework.support.SupportService"
-            android:exported="true"
-            android:process="com.sds.android.ttpod.support" />
+            android:exported="true"/>
 
         <receiver
             android:name="com.sds.android.ttpod.framework.support.monitor.MediaButtonReceiver"

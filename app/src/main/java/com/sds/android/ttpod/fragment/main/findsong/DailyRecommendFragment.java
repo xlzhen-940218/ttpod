@@ -78,7 +78,7 @@ public class DailyRecommendFragment extends SceneRecommendFragment {
             getDetailHeader().m5486a(this.mIntroductionData.getDetail(), this.mIntroductionData.getPicUrl());
             this.mOnlineMediaListFragment.onThemeChanged();
             hideListFootLoadView();
-            updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+            updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
             showSecondLoadView();
         }
     }

@@ -77,9 +77,9 @@ public class PlayControlBarFragment extends BasePlayerFragment {
                     //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_NEXT.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
                     return;
                 case R.id.itv_playcontrolbar_play /* 2131231547 */:
-                    if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
+                    if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
                         CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
-                    } else if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_STOPPED) {
+                    } else if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_STOPPED) {
                         CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
                     }
                     //LocalStatistic.m5182A();
@@ -129,8 +129,8 @@ public class PlayControlBarFragment extends BasePlayerFragment {
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         updatePlayMediaInfo();
-        updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
-        updatePlayPosition(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k());
+        updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
+        updatePlayPosition(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k());
         if (!StringUtils.isEmpty(Cache.getInstance().m3164g())) {
             artistBitmapLoadFinished();
         }
@@ -235,7 +235,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
         if (i >= 20) {
             this.mUpdatePlayPositionCount = 0;
             super.updatePlayPosition();
-            updatePlayPosition(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k());
+            updatePlayPosition(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k());
         }
     }
 
@@ -249,7 +249,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
                     this.mPlayPosition.setText(DateUtils.m8430a(num.intValue()) + "-" + DateUtils.m8430a(this.mDuration));
                 }
                 this.mSeekBar.setProgress(num.intValue());
-                this.mSeekBar.setSecondaryProgress(Cache.getInstance().getCurrentPlayMediaItem().isOnline() ? (int) (SupportFactory.m2397a(BaseApplication.getApplication()).m2464l() * this.mSeekBar.getMax()) : 0);
+                this.mSeekBar.setSecondaryProgress(Cache.getInstance().getCurrentPlayMediaItem().isOnline() ? (int) (SupportFactory.getInstance(BaseApplication.getApplication()).m2464l() * this.mSeekBar.getMax()) : 0);
                 return;
             }
             this.mPlayPosition.setText("");

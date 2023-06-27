@@ -12,6 +12,6 @@ public class RomRecognizer {
 
     /* renamed from: a */
     private static boolean m4654a(String str) {
-        return ((String) EnvironmentUtils.C0603b.m8488e().get("rom")).toLowerCase().contains(str);
+        return ((String) EnvironmentUtils.UUIDConfig.m8488e().get("rom")).toLowerCase().contains(str);
     }
 }

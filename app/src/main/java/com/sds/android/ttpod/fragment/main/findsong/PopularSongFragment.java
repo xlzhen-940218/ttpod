@@ -135,7 +135,7 @@ public class PopularSongFragment extends SceneRecommendFragment {
             getDetailHeader().m5486a(introductionData.getDetail(), introductionData.getPicUrl());
             showSecondLoadView();
             this.mOnlineMediaListFragment.onThemeChanged();
-            updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+            updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
         }
     }
 

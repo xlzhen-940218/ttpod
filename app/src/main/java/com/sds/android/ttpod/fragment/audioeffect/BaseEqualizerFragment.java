@@ -33,7 +33,7 @@ public abstract class BaseEqualizerFragment extends BaseFragment {
     }
 
     private void loadEqData() {
-        AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+        AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
         if (m2457s != null) {
             this.mEqualizerSettings = new TTEqualizer.Settings(m2457s.m4421g());
         } else if (this.mEqualizerSettings == null) {
@@ -59,7 +59,7 @@ public abstract class BaseEqualizerFragment extends BaseFragment {
     public void updateAudioEffectInfo() {
         if (isAdded()) {
             TTEqualizer.Settings settings = DEFAULT_SETTINGS;
-            AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+            AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
             if (m2457s != null) {
                 settings = new TTEqualizer.Settings(m2457s.m4421g());
             }

@@ -194,7 +194,7 @@ public abstract class BasePlayerViewController extends ViewEventController {
                     if (BasePlayerViewController.this.f4183ac == null || BasePlayerViewController.this.f4183ac.length != numberOfLine) {
                         BasePlayerViewController.this.f4183ac = new int[numberOfLine];
                     }
-                    if (BasePlayerViewController.this.f4209U != PlayStatus.STATUS_PLAYING || !SupportFactory.m2397a(BaseApplication.getApplication()).m2486a(BasePlayerViewController.this.f4183ac, numberOfLine)) {
+                    if (BasePlayerViewController.this.f4209U != PlayStatus.STATUS_PLAYING || !SupportFactory.getInstance(BaseApplication.getApplication()).m2486a(BasePlayerViewController.this.f4183ac, numberOfLine)) {
                         BasePlayerViewController.this.f4185c.m3354a(BasePlayerViewController.f4178ab);
                     } else {
                         BasePlayerViewController.this.f4185c.m3354a(BasePlayerViewController.this.f4183ac);

@@ -23,7 +23,7 @@ public class TrcParser extends LrcParser {
     /* renamed from: b */
     public TrcSentence mo3623a(long j, String str) {
         TrcSentence trcSentence = new TrcSentence();
-        trcSentence.m3679a(j);
+        trcSentence.setLrcTime(j);
         StringBuilder sb = new StringBuilder();
         Matcher matcher = f6640a.matcher(str);
         int i = 0;

@@ -147,7 +147,7 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
     }
 
     public void playMediaChanged() {
-        callJsPlayStatusChange(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m().toString());
+        callJsPlayStatusChange(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m().toString());
     }
 
     public void updatePlayStatus(PlayStatus playStatus) {
@@ -191,16 +191,16 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
         }
         Integer num = -1;
         if (mimeTypeFromExtension.startsWith("tsk/")) {
-            str2 = TTPodConfig.m5294n() + File.separator + m8402j;
+            str2 = TTPodConfig.getSkinPath() + File.separator + m8402j;
             num = DownloadTaskInfo.TYPE_SKIN;
         } else if (mimeTypeFromExtension.startsWith("audio/")) {
             str2 = Preferences.m3054N() + File.separator + m8402j;
             num = DownloadTaskInfo.TYPE_AUDIO;
         } else if (mimeTypeFromExtension.startsWith("application/")) {
-            str2 = TTPodConfig.m5285w() + File.separator + m8402j;
+            str2 = TTPodConfig.getAppPath() + File.separator + m8402j;
             num = DownloadTaskInfo.TYPE_APP;
         } else if (mimeTypeFromExtension.startsWith("video/")) {
-            str2 = TTPodConfig.m5283y() + File.separator + m8402j;
+            str2 = TTPodConfig.getMvPath() + File.separator + m8402j;
             num = DownloadTaskInfo.TYPE_VIDEO;
         } else {
             str2 = null;

@@ -2,11 +2,10 @@ package com.sds.android.ttpod.activities.musiccircle.p068a;
 
 import com.sds.android.cloudapi.ttpod.data.NewNoticeCount;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.cloudapi.ttpod.p055a.NoticeAPI;
+import com.sds.android.cloudapi.ttpod.api.NoticeAPI;
 import com.sds.android.cloudapi.ttpod.result.NewNoticeCountResult;
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.RequestCallback;
-import com.sds.android.ttpod.activities.musiccircle.p068a.Checker;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
 /* renamed from: com.sds.android.ttpod.activities.musiccircle.a.d */

@@ -19,7 +19,6 @@ import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.component.p087d.p088a.MessageDialog;
 import com.sds.android.ttpod.component.p087d.p088a.OptionalDialog;
 import com.sds.android.ttpod.framework.TTPodConfig;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.widget.CheckImageView;
@@ -47,7 +46,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
             public void onClick(View view) {
                 String m3054N = Preferences.m3054N();
                 if (SDKVersionUtils.m8365i()) {
-                    m3054N = TTPodConfig.m5291q();
+                    m3054N = TTPodConfig.getSongPath();
                 }
                 DownloadLocationActivity.this.startActivityForResult(new Intent(DownloadLocationActivity.this, FilePickerActivity.class).putExtra(FilePickerActivity.KEY_EXTRA_PATH, m3054N).putExtra(FilePickerActivity.KEY_EXTRA_CHOICE_MODE, 1).putExtra(FilePickerActivity.KEY_EXTRA_NEW_FOLDER, true).putExtra(FilePickerActivity.KEY_EXTRA_SHOW_FILE_TYPE, 2), 0);
             }
@@ -94,7 +93,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         progressBar.setProgress((int) (totalSizeInGB - availableSizeInGB));
         final String str2 = getWritableBasePath(str) + File.separator + "song";
         if (!FileUtils.isDir(str2)) {
-            FileUtils.m8406f(str2);
+            FileUtils.createFolder(str2);
         }
         this.mStandardSDCardCheckView = (CheckImageView) findViewById(R.id.standard_sdcard_checkView);
         this.mStandardSDCardCheckView.m1899a(R.drawable.img_checkbox_multiselect_unchecked, R.drawable.img_checkbox_multiselect_checked);
@@ -126,7 +125,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         this.mExtensionSDCardCheckView.m1899a(R.drawable.img_checkbox_multiselect_unchecked, R.drawable.img_checkbox_multiselect_checked);
         final String str2 = getWritableBasePath(str) + File.separator + "song";
         if (!FileUtils.isDir(str2)) {
-            FileUtils.m8406f(str2);
+            FileUtils.createFolder(str2);
         }
         this.mExtensionSDCardCheckView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.setting.DownloadLocationActivity.3
             @Override // android.view.View.OnClickListener
@@ -163,7 +162,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
             str2 = EnvironmentUtils.C0605d.m8470a(this, EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
         }
         if (!FileUtils.isDir(str2)) {
-            FileUtils.m8406f(str2);
+            FileUtils.createFolder(str2);
         }
         return str2;
     }
@@ -201,9 +200,9 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
     private boolean checkSDCardPath(String str) {
         Long valueOf = Long.valueOf(System.currentTimeMillis());
         String str2 = getWritableBasePath(str) + File.separator + valueOf.toString();
-        FileUtils.m8407e(str2);
+        FileUtils.createFile(str2);
         if (FileUtils.m8419a(str2)) {
-            FileUtils.m8404h(str2);
+            FileUtils.exists(str2);
             return true;
         }
         return false;
@@ -239,7 +238,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
     public void updateDownloadPath(String str) {
         String str2 = getWritableBasePath(this.mStandardCardPath) + File.separator + "song";
         String str3 = getWritableBasePath(this.mExtensionCardPath) + File.separator + "song";
-        FileUtils.m8406f(str);
+        FileUtils.createFolder(str);
         if (!StringUtils.isEmpty(str) && str.equals(str2)) {
             setCheckViewById(R.id.standard_sdcard_checkView);
         } else if (!StringUtils.isEmpty(str) && str.equals(str3)) {

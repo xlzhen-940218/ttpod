@@ -60,7 +60,7 @@ public class EntryActivity extends BaseActivity {
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, androidx.fragment.app.FragmentActivity, android.app.Activity
     public void onResume() {
         super.onResume();
-        if (TTPodConfig.m5306b()) {
+        if (TTPodConfig.getFinishSplash()) {
             startMainActivity();
         }
     }
@@ -77,7 +77,7 @@ public class EntryActivity extends BaseActivity {
     public void onWindowFocusChanged(boolean z) {
         super.onWindowFocusChanged(z);
         LogUtils.error("start", "EntryActivity onWindowFocusChanged splash loaded test");
-        if (z && !this.mSentLoadSplashCommand && !TTPodConfig.m5306b()) {
+        if (z && !this.mSentLoadSplashCommand && !TTPodConfig.getFinishSplash()) {
             this.mSentLoadSplashCommand = true;
             CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_SPLASH, Integer.valueOf((int) R.drawable.img_splash), Integer.valueOf((int) R.string.readme)));
         }
@@ -126,7 +126,7 @@ public class EntryActivity extends BaseActivity {
     }
 
     public void finishSplash() {
-        TTPodConfig.m5305c();
+        TTPodConfig.setFinishSplash();
         LogUtils.error("start", "finishSplash");
         startMainActivity();
     }

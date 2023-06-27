@@ -77,10 +77,10 @@ public final class MediaStorage {
     }
 
     public static String buildOnlineFavGroupID() {
-        if (EnvironmentUtils.AppConfig.getTestMode() && EnvironmentUtils.C0603b.m8486g() <= 0) {
+        if (EnvironmentUtils.AppConfig.getTestMode() && EnvironmentUtils.UUIDConfig.m8486g() <= 0) {
             throw new IllegalStateException("you must login first");
         }
-        return GROUP_ID_ONLINE_FAV_PREFIX + EnvironmentUtils.C0603b.m8486g();
+        return GROUP_ID_ONLINE_FAV_PREFIX + EnvironmentUtils.UUIDConfig.m8486g();
     }
 
     public static String buildMusicCircleFavGroupID(long j) {
@@ -88,7 +88,7 @@ public final class MediaStorage {
     }
 
     public static String buildMusicCircleFavGroupIDPrefix() {
-        return GROUP_ID_MUSICCIRCLE_PREFIX + EnvironmentUtils.C0603b.m8486g() + "_";
+        return GROUP_ID_MUSICCIRCLE_PREFIX + EnvironmentUtils.UUIDConfig.m8486g() + "_";
     }
 
     public static void insertGroup(Context context, String str, String str2, GroupType groupType) {

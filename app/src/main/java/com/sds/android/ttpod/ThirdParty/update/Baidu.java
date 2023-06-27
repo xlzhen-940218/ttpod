@@ -296,7 +296,7 @@ public class Baidu implements UpdateInterface {
             return null;
         }
         try {
-            NodeList childNodes = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputStream).getDocumentElement().getElementsByTagName(OnlineSearchEntryActivity.KEY_THIRD_APP_IDENTITY).item(0).getChildNodes();
+            NodeList childNodes = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputStream).getDocumentElement().getElementsByTagName("app").item(0).getChildNodes();
             hashMap = new HashMap();
             for (int i = 0; i < childNodes.getLength(); i++) {
                 try {

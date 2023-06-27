@@ -4,10 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
-import com.sds.android.cloudapi.ttpod.p055a.FindSongAPI;
-import com.sds.android.cloudapi.ttpod.p055a.FindSongHotModuleAPI;
-import com.sds.android.cloudapi.ttpod.p055a.RadioAPI;
-import com.sds.android.cloudapi.ttpod.p055a.RankAPI;
+import com.sds.android.cloudapi.ttpod.api.FindSongAPI;
+import com.sds.android.cloudapi.ttpod.api.FindSongHotModuleAPI;
+import com.sds.android.cloudapi.ttpod.api.RadioAPI;
+import com.sds.android.cloudapi.ttpod.api.RankAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 import com.sds.android.cloudapi.ttpod.result.OperationZoneResult;
 import com.sds.android.cloudapi.ttpod.result.SingerListResult;
@@ -178,7 +178,7 @@ public class FindSongModule extends BaseModule {
         new Thread("extractMvThumbnail") { // from class: com.sds.android.ttpod.framework.modules.b.a.6
             @Override // java.lang.Thread, java.lang.Runnable
             public void run() {
-                Bitmap decodeFile = BitmapFactory.decodeFile(TTPodConfig.m5282z() + File.separator + (FileUtils.m8401k(str) + ".jpg"));
+                Bitmap decodeFile = BitmapFactory.decodeFile(TTPodConfig.getMvCachePath() + File.separator + (FileUtils.m8401k(str) + ".jpg"));
                 if (decodeFile == null && SDKVersionUtils.m8373a()) {
                     decodeFile = ThumbnailUtils.createVideoThumbnail(str, 3);
                 }

@@ -74,7 +74,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
 
     private void thirdSearch() {
         Intent intent = new Intent(getActivity(), WebActivity.class);
-        intent.setData(Uri.parse(SearchResultFragment.THIRD_SEACH_URL + this.mWord + "&v=" + EnvironmentUtils.C0603b.m8491c()));
+        intent.setData(Uri.parse(SearchResultFragment.THIRD_SEACH_URL + this.mWord + "&v=" + EnvironmentUtils.UUIDConfig.m8491c()));
         intent.putExtra(WebFragment.EXTRA_TITLE, getString(R.string.online_search_third_part_title));
         intent.putExtra(WebFragment.EXTRA_HINT_BANNER_SHOW, true);
         startActivity(intent);
@@ -145,7 +145,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     public void onMediaItemClicked(MediaItem mediaItem, int i) {
         super.onMediaItemClicked(mediaItem, i);
         //StatisticUtils.m4907a("search", "listen", getOrigin(), 0L, //OnlineMediaStatistic.m5029f(), this.mWord, //SearchStatistic.m4950a());
-        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_SONG_ITEM.getValue(), SPage.PAGE_SEARCH_SINGLE_SONG.getValue(), 0).append("song_id", mediaItem.getSongID()).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).append("position", Integer.valueOf(//OnlineMediaStatistic.m5029f())).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_SONG_ITEM.getValue(), SPage.PAGE_SEARCH_SINGLE_SONG.getValue(), 0).append("song_id", mediaItem.getSongID()).append("keyword", this.mWord).append("position", Integer.valueOf(//OnlineMediaStatistic.m5029f())).post();
     }
 
     @Override // com.sds.android.ttpod.fragment.main.list.OnlineMediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment

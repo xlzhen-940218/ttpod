@@ -13,8 +13,6 @@ import com.sds.android.ttpod.adapter.p070b.AudioEffectGridAdapter;
 import com.sds.android.ttpod.component.p085b.AudioEffectItem;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.audiofx.TTEqualizer;
@@ -42,7 +40,7 @@ public class EqualizerHandpickFragment extends BaseEqualizerFragment {
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         if (this.mRootView == null) {
             this.mRootView = layoutInflater.inflate(R.layout.fragment_audio_effect_reverb, viewGroup, false);
-            AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+            AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
             initHandpickData(m2457s != null ? m2457s.m4421g() : "");
             initGridView();
         }

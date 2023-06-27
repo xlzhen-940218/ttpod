@@ -1,7 +1,7 @@
 package com.sds.android.ttpod.framework.modules.p126h;
 
 import com.sds.android.cloudapi.ttpod.data.UnicomFlow;
-import com.sds.android.cloudapi.ttpod.p055a.UnicomFlowAPI;
+import com.sds.android.cloudapi.ttpod.api.UnicomFlowAPI;
 import com.sds.android.cloudapi.ttpod.result.UnicomFlowResult;
 
 import com.sds.android.sdk.lib.p059a.HttpRequest;
@@ -241,7 +241,7 @@ public class UnicomFlowModule extends BaseModule {
         unicomProxyData.m3929b(HTTP_PROXY_PORT.intValue());
         unicomProxyData.m3928b(USERNAME);
         unicomProxyData.m3926c(PASSWORD);
-        SupportFactory.m2397a(sContext).m2499a(unicomProxyData, z);
+        SupportFactory.getInstance(sContext).m2499a(unicomProxyData, z);
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
@@ -420,10 +420,10 @@ public class UnicomFlowModule extends BaseModule {
 
     public void saveTotalFlow() {
         if (HttpRequest.m8701c()) {
-            long m2453w = SupportFactory.m2397a(sContext).m2453w() + HttpRequest.getContentLength() + Cache.getInstance().m3227L();
+            long m2453w = SupportFactory.getInstance(sContext).m2453w() + HttpRequest.getContentLength() + Cache.getInstance().m3227L();
             LogUtils.debug(f6291a, "unicom flow save total flow size:" + m2453w);
             HttpRequest.setContentLength(0L);
-            SupportFactory.m2397a(sContext).m2503a(0L);
+            SupportFactory.getInstance(sContext).m2503a(0L);
             if (HttpRequest.isProxy()) {
                 Cache.getInstance().m3183c(m2453w);
             } else {
@@ -434,14 +434,14 @@ public class UnicomFlowModule extends BaseModule {
 
     public void clearTotalFlow() {
         LogUtils.debug(f6291a, "unicom flow clear total flow size:");
-        SupportFactory.m2397a(sContext).m2503a(0L);
+        SupportFactory.getInstance(sContext).m2503a(0L);
         HttpRequest.setContentLength(0L);
         Cache.getInstance().m3183c(0L);
         Cache.getInstance().m3194b(0L);
     }
 
     public void getTotalFlow() {
-        long m2453w = SupportFactory.m2397a(sContext).m2453w();
+        long m2453w = SupportFactory.getInstance(sContext).m2453w();
         long m8718a = HttpRequest.getContentLength();
         long m3227L = Cache.getInstance().m3227L();
         LogUtils.debug(f6291a, "unicom flow get Total supportFlow:" + m2453w + " httpFlow:" + m8718a + " cacheFlow:" + m3227L);

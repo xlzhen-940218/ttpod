@@ -179,7 +179,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
             this.mFooterView.clearAnimation();
             this.mFooterView.m1877a();
         }
-        VideoPlayManager.m5813a(getActivity(), null, null, EnvironmentUtils.DeviceConfig.m8476d() == 2);
+        VideoPlayManager.m5813a(getActivity(), null, null, EnvironmentUtils.DeviceConfig.hasNetwork() == 2);
         CommandCenter.getInstance().execute(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
     }
 
@@ -200,7 +200,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
     protected void playMv(MVOnlineData mVOnlineData) {
         if (mVOnlineData != null) {
             String highQualityUrl = mVOnlineData.getHighQualityUrl();
-            if (highQualityUrl == null || 2 != EnvironmentUtils.DeviceConfig.m8476d()) {
+            if (highQualityUrl == null || 2 != EnvironmentUtils.DeviceConfig.hasNetwork()) {
                 highQualityUrl = mVOnlineData.getNormalQualityUrl();
             }
             //MVStatistic.m5076a("mv_channel");
@@ -224,7 +224,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
             /* renamed from: a */
             public void mo4733a(String str, int i, int i2, Bitmap bitmap) {
                 File m8407e;
-                if (bitmap != null && (m8407e = FileUtils.m8407e(generateMvThumbnailPath)) != null) {
+                if (bitmap != null && (m8407e = FileUtils.createFile(generateMvThumbnailPath)) != null) {
                     try {
                         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(new FileOutputStream(m8407e));
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bufferedOutputStream);

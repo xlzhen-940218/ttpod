@@ -20,7 +20,7 @@ public class LocalSkinListLoader implements Runnable {
 
     /* renamed from: a */
     public void m3601a() {
-        String m5294n = TTPodConfig.m5294n();
+        String m5294n = TTPodConfig.getSkinPath();
         String m3765a = CachedOnlineListReader.m3765a(m5294n, SkinUtils.m4645a(m5294n, "list_"), "skin_list");
         CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_RECOMMEND_SKIN_LIST, SkinUtils.m4648a(TextUtils.isEmpty(m3765a) ? null : (OnlineSkinListResult) JSONUtils.fromJson(m3765a, OnlineSkinListResult.class))), ModuleID.SKIN);
     }

@@ -120,8 +120,8 @@ public class SkinCache extends SkinReader {
         if (sFont == null || this.f6647d == null) {
             return null;
         }
-        String m3801b = sFont.m3801b();
-        int max = Math.max(0, sFont.m3800c());
+        String m3801b = sFont.getFamilyName();
+        int max = Math.max(0, sFont.getStyle());
         if (m3801b == null) {
             str = String.valueOf(max);
         } else {

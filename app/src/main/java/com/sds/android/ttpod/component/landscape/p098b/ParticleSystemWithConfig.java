@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.util.Xml;
-import com.sds.android.ttpod.component.landscape.p098b.BaseParticleSystem;
+
 import com.sds.android.ttpod.component.landscape.p100d.Color4F;
 import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -37,7 +37,7 @@ public class ParticleSystemWithConfig extends BaseParticleSystem implements Next
     private ArrayList<ArrayList<BaseParticleSystem.C1255b>> f4491p;
 
     /* renamed from: n */
-    private static final String f4485n = TTPodConfig.m5284x() + File.separator + "particle_effect_configuration.xml";
+    private static final String f4485n = TTPodConfig.getLandscapePath() + File.separator + "particle_effect_configuration.xml";
 
     /* renamed from: g */
     protected static final String f4484g = "landscape" + File.separator;

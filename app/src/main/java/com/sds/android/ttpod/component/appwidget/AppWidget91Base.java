@@ -181,7 +181,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
 
     private synchronized void initSupport() {
         LogUtils.debug(TAG, "initSupport");
-        this.mSupport = SupportFactory.m2397a(getContext());
+        this.mSupport = SupportFactory.getInstance(getContext());
         this.mSupport.mo2497a(this.mSupportCallback);
     }
 

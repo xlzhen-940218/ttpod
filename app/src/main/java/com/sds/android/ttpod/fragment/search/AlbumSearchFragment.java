@@ -135,7 +135,7 @@ public class AlbumSearchFragment extends BaseSearchFragment {
         bundle.putSerializable(SearchResultFragment.KEY_SEARCH_WORD, this.mAlbumItemList.get(i));
         albumDetailFragment.setArguments(bundle);
         launchFragment(albumDetailFragment);
-        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_ITEM.getValue(), SPage.PAGE_SEARCH_ALBUM.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue()).append("title", this.mAlbumItemList.get(i).getName()).append("song_album_id", Long.valueOf(this.mAlbumItemList.get(i).getId())).append(OnlineSearchEntryActivity.KEY_THIRD_ONLINE_SEARCH_KEYWORD, this.mWord).append("position", Integer.valueOf(i + 1)).post();
+        //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_SEARCH_ALBUM_ITEM.getValue(), SPage.PAGE_SEARCH_ALBUM.getValue(), SPage.PAGE_SEARCH_ALBUM_DETAIL.getValue()).append("title", this.mAlbumItemList.get(i).getName()).append("song_album_id", Long.valueOf(this.mAlbumItemList.get(i).getId())).append("keyword", this.mWord).append("position", Integer.valueOf(i + 1)).post();
     }
 
     /* renamed from: com.sds.android.ttpod.fragment.search.AlbumSearchFragment$a */

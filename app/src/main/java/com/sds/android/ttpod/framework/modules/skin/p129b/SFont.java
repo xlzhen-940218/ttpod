@@ -8,51 +8,51 @@ import com.sds.android.ttpod.framework.modules.skin.p130c.ValueParser;
 public class SFont extends SBase {
 
     /* renamed from: c */
-    int f6451c;
+    int size;
 
     /* renamed from: d */
-    int f6452d;
+    int style;
 
     /* renamed from: e */
-    String f6453e;
+    String familyName;
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SBase
     /* renamed from: a */
-    public /* bridge */ /* synthetic */ String mo3794a() {
-        return super.mo3794a();
+    public /* bridge */ /* synthetic */ String getId() {
+        return super.getId();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     public SFont(KXmlParser kXmlParser) {
         super(kXmlParser);
-        this.f6451c = 15;
-        this.f6452d = 0;
-        this.f6451c = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "Size"), this.f6451c);
-        this.f6452d = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "Style"), this.f6452d);
-        this.f6453e = kXmlParser.getAttributeValue(null, "FamilyName");
+        this.size = 15;
+        this.style = 0;
+        this.size = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "Size"), this.size);
+        this.style = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "Style"), this.style);
+        this.familyName = kXmlParser.getAttributeValue(null, "FamilyName");
     }
 
     public SFont(String str) {
-        this.f6451c = 15;
-        this.f6452d = 0;
-        this.f6453e = str;
+        this.size = 15;
+        this.style = 0;
+        this.familyName = str;
     }
 
     public SFont(SFont sFont) {
-        this.f6451c = 15;
-        this.f6452d = 0;
-        this.f6453e = sFont.f6453e;
-        this.f6452d = sFont.f6452d;
-        this.f6451c = sFont.f6451c;
+        this.size = 15;
+        this.style = 0;
+        this.familyName = sFont.familyName;
+        this.style = sFont.style;
+        this.size = sFont.size;
     }
 
     /* renamed from: b */
-    public String m3801b() {
-        return this.f6453e;
+    public String getFamilyName() {
+        return this.familyName;
     }
 
     /* renamed from: c */
-    public int m3800c() {
-        return this.f6452d;
+    public int getStyle() {
+        return this.style;
     }
 }

@@ -60,9 +60,9 @@ public class PanelViewController extends ViewEventController {
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: d */
     public void m6468d() {
-        if (this.f4198J != null && !this.f4198J.m3462b()) {
-            this.f4198J.setDisplayMode(LyricView.EnumC1996a.Single);
-            this.f4198J.setSlowScroll(false);
+        if (this.lyricView != null && !this.lyricView.m3462b()) {
+            this.lyricView.setDisplayMode(LyricView.LyricDisplayEnum.Single);
+            this.lyricView.setSlowScroll(false);
         }
     }
 

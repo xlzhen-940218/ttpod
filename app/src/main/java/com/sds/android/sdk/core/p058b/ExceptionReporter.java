@@ -79,7 +79,7 @@ public class ExceptionReporter {
         hashMap.put("f", "f" + EnvironmentUtils.AppConfig.getChannelType());
         hashMap.put("mid", Build.MANUFACTURER + "#" + Build.MODEL);
         hashMap.put("splus", Build.VERSION.RELEASE);
-        hashMap.put("s", EnvironmentUtils.C0603b.m8488e().get("s"));
+        hashMap.put("s", EnvironmentUtils.UUIDConfig.m8488e().get("s"));
         hashMap.put("rom", Build.PRODUCT);
         hashMap.put("build", "#" + EnvironmentUtils.AppConfig.getBuild());
         hashMap.put("memory", m8751a());

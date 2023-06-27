@@ -124,7 +124,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void doStatisticMediaClick(MediaItem mediaItem) {
         super.doStatisticMediaClick(mediaItem);
-        Preferences.m2828t(OnlinePlayingGroupUtils.m6917a(this.mMusicRank));
+        Preferences.setOnlineMediaListGroupName(OnlinePlayingGroupUtils.m6917a(this.mMusicRank));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
@@ -196,7 +196,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void onPlayButtonClick() {
-        Preferences.m2828t(OnlinePlayingGroupUtils.m6917a(this.mMusicRank));
+        Preferences.setOnlineMediaListGroupName(OnlinePlayingGroupUtils.m6917a(this.mMusicRank));
        // RankStatistic.m4967a(this.mMusicRank.getId(), this.mMusicRank.getTitle());
         //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_RANK_DETAIL_PLAY_ALL.getValue(), SPage.PAGE_RANK_DETAIL.getValue(), 0).append(BaseFragment.KEY_SONG_LIST_ID, Integer.valueOf(this.mMusicRank.getId())).append("title", this.mMusicRank.getTitle()).post();
     }

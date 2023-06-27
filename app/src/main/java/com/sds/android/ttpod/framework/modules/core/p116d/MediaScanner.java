@@ -212,9 +212,9 @@ public final class MediaScanner {
     private boolean m4236a(String str) {
         Long valueOf = Long.valueOf(System.currentTimeMillis());
         String str2 = m4232b(str) + File.separator + valueOf.toString();
-        FileUtils.m8407e(str2);
+        FileUtils.createFile(str2);
         if (FileUtils.m8419a(str2)) {
-            FileUtils.m8404h(str2);
+            FileUtils.exists(str2);
             return true;
         }
         return false;
@@ -227,7 +227,7 @@ public final class MediaScanner {
             str2 = EnvironmentUtils.C0605d.m8470a(BaseApplication.getApplication(), EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
         }
         if (!FileUtils.isDir(str2)) {
-            FileUtils.m8406f(str2);
+            FileUtils.createFolder(str2);
         }
         return str2;
     }

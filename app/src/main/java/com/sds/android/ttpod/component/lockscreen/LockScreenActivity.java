@@ -93,7 +93,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
                     removeMessages(0);
                     if (LockScreenActivity.this.mLyricView != null && LockScreenActivity.this.mLyricView.getLyric() != null) {
                         if (LockScreenActivity.this.mPowerManager == null || LockScreenActivity.this.mPowerManager.isScreenOn()) {
-                            LockScreenActivity.this.mLyricView.setPlayingTime(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue());
+                            LockScreenActivity.this.mLyricView.setPlayingTime(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
                             sendEmptyMessageDelayed(0, 100L);
                             break;
                         } else {
@@ -262,7 +262,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
                 CommandCenter.getInstance().execute(new Command(CommandID.PREVIOUS, new Object[0]));
                 return;
             case R.id.imageview_play /* 2131230871 */:
-                if (PlayStatus.STATUS_PAUSED == SupportFactory.m2397a(BaseApplication.getApplication()).m2463m()) {
+                if (PlayStatus.STATUS_PAUSED == SupportFactory.getInstance(BaseApplication.getApplication()).m2463m()) {
                     CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
                     return;
                 } else {
@@ -326,13 +326,13 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         this.mImgViewPause.setOnClickListener(this);
         this.mImgViewPlay.setOnClickListener(this);
         this.mImgViewNext.setOnClickListener(this);
-        updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+        updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
         initLyricView();
     }
 
     private void initLyricView() {
         this.mLyricView.setSlowScroll(false);
-        this.mLyricView.setDisplayMode(LyricView.EnumC1996a.Normal);
+        this.mLyricView.setDisplayMode(LyricView.LyricDisplayEnum.Normal);
         this.mLyricView.setDefaultColorHighlight(-1);
         this.mLyricView.setColorHighlight(-1);
         this.mLyricView.setFadeEdgeLength(DisplayUtils.m7229a(22));

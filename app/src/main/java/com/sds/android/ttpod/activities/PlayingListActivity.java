@@ -95,7 +95,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
         }
         updatePlayMode();
         updateSleepMode();
-        updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+        updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
     }
 
     @SuppressLint("ResourceType")
@@ -269,7 +269,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
     public void updatePlayMediaInfo() {
         if (this.mViewController != null) {
             this.mViewController.mo6448a(Cache.getInstance().getCurrentPlayMediaItem());
-            this.mViewController.mo6459a(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue(), SupportFactory.m2397a(BaseApplication.getApplication()).m2464l());
+            this.mViewController.mo6459a(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue(), SupportFactory.getInstance(BaseApplication.getApplication()).m2464l());
         }
     }
 

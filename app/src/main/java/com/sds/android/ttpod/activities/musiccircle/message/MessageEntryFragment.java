@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.NewNoticeCount;
 import com.sds.android.cloudapi.ttpod.data.PrivateMessageOverView;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.cloudapi.ttpod.p055a.NoticeAPI;
-import com.sds.android.cloudapi.ttpod.p055a.PrivateMessageAPI;
+import com.sds.android.cloudapi.ttpod.api.NoticeAPI;
+import com.sds.android.cloudapi.ttpod.api.PrivateMessageAPI;
 import com.sds.android.cloudapi.ttpod.result.NewNoticeCountResult;
 import com.sds.android.cloudapi.ttpod.result.PrivateMessageOverViewListResult;
 

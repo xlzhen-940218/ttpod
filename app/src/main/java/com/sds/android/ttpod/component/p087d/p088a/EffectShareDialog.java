@@ -19,8 +19,6 @@ import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectCache
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.EqualizerPreset;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.audiofx.TTEqualizer;
@@ -108,7 +106,7 @@ public class EffectShareDialog extends BaseDialog {
 
     /* renamed from: b */
     private void m6890b() {
-        AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+        AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
         if (m2457s != null) {
             this.f3894e = EqualizerPreset.m4335a(new TTEqualizer.Settings(m2457s.m4421g()).getName());
         }
@@ -161,7 +159,7 @@ public class EffectShareDialog extends BaseDialog {
 
     /* renamed from: e */
     private void m6887e() {
-        AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+        AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
         if (m2457s != null) {
             this.f3897h = new TTEqualizer.Settings(m2457s.m4421g()).getBandLevels();
             this.f3900k = m2457s.m4426e();

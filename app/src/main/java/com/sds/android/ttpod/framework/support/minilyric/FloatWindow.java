@@ -1,5 +1,6 @@
 package com.sds.android.ttpod.framework.support.minilyric;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
@@ -128,7 +129,7 @@ public class FloatWindow {
             }
         };
         this.f7158a = context;
-        this.f7159b = (WindowManager) context.getSystemService("window");
+        this.f7159b = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
     }
 
     public FloatWindow() {
@@ -168,7 +169,7 @@ public class FloatWindow {
             }
         };
         this.f7158a = view.getContext();
-        this.f7159b = (WindowManager) this.f7158a.getSystemService("window");
+        this.f7159b = (WindowManager) this.f7158a.getSystemService(Context.WINDOW_SERVICE);
         m2361a(view);
         m2356b(i);
         m2365a(i2);
@@ -220,6 +221,7 @@ public class FloatWindow {
     }
 
     /* renamed from: d */
+    @SuppressLint("WrongConstant")
     private WindowManager.LayoutParams m2350d() {
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.gravity = 83;

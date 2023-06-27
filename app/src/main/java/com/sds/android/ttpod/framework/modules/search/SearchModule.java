@@ -3,10 +3,10 @@ package com.sds.android.ttpod.framework.modules.search;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
-import com.sds.android.cloudapi.ttpod.p055a.AssociateWordsAPI;
-import com.sds.android.cloudapi.ttpod.p055a.BillboardAPI;
-import com.sds.android.cloudapi.ttpod.p055a.HotWordsAPI;
-import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaSearchAPI;
+import com.sds.android.cloudapi.ttpod.api.AssociateWordsAPI;
+import com.sds.android.cloudapi.ttpod.api.BillboardAPI;
+import com.sds.android.cloudapi.ttpod.api.HotWordsAPI;
+import com.sds.android.cloudapi.ttpod.api.OnlineMediaSearchAPI;
 import com.sds.android.cloudapi.ttpod.result.AlbumItemsResult;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
@@ -342,14 +342,14 @@ public class SearchModule extends BaseModule {
     }
 
     public void downloadLyric(ResultData.Item item, MediaItem mediaItem) {
-        SupportFactory.m2397a(sContext).m2495a(item, mediaItem);
+        SupportFactory.getInstance(sContext).m2495a(item, mediaItem);
     }
 
     public void searchPicture(MediaItem mediaItem, String str, String str2) {
-        SupportFactory.m2397a(sContext).m2494a(mediaItem, str, str2);
+        SupportFactory.getInstance(sContext).m2494a(mediaItem, str, str2);
     }
 
-    public void searchLyric(MediaItem mediaItem, String str, String str2) {
-        SupportFactory.m2397a(sContext).m2480b(mediaItem, str, str2);
+    public void searchLyric(MediaItem mediaItem, String singer, String songName) {
+        SupportFactory.getInstance(sContext).m2480b(mediaItem, singer, songName);
     }
 }

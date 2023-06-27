@@ -15,8 +15,8 @@ public final class SMotion extends SBase {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SBase
     /* renamed from: a */
-    public /* bridge */ /* synthetic */ String mo3794a() {
-        return super.mo3794a();
+    public /* bridge */ /* synthetic */ String getId() {
+        return super.getId();
     }
 
     public SMotion(KXmlParser kXmlParser) throws Exception {

@@ -43,13 +43,13 @@ public class Support {
     protected static boolean f7134b = false;
 
     /* renamed from: c */
-    protected Context f7135c;
+    protected Context context;
 
     /* renamed from: e */
-    protected ISupportService f7137e;
+    protected ISupportService iSupportService;
 
     /* renamed from: d */
-    protected boolean f7136d = false;
+    protected boolean isExitCommand = false;
 
     /* renamed from: f */
     protected ConcurrentLinkedQueue<SupportCallback> f7138f = new ConcurrentLinkedQueue<>();
@@ -67,7 +67,7 @@ public class Support {
     protected ServiceConnection f7142j = new ServiceConnection() { // from class: com.sds.android.ttpod.framework.support.c.1
         @Override // android.content.ServiceConnection
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-            Support.this.f7137e = ISupportService.AbstractBinderC2061a.m2509a(iBinder);
+            Support.this.iSupportService = ISupportService.AbstractBinderC2061a.m2509a(iBinder);
             for (DownloadTaskInfo downloadTaskInfo : Support.this.f7141i) {
                 Support.this.m2496a(downloadTaskInfo);
             }
@@ -82,29 +82,29 @@ public class Support {
 
         @Override // android.content.ServiceConnection
         public void onServiceDisconnected(ComponentName componentName) {
-            Support.this.f7137e = null;
+            Support.this.iSupportService = null;
             Iterator<SupportCallback> it = Support.this.f7138f.iterator();
             while (it.hasNext()) {
                 it.next().m2442c();
             }
-            Support.this.f7135c.unbindService(Support.this.f7142j);
+            Support.this.context.unbindService(Support.this.f7142j);
             LogUtils.info("Support", "音效:onServiceDisconnected");
         }
     };
 
     public Support(Context context) {
         DebugUtils.m8426a(context, "context");
-        this.f7135c = context;
+        this.context = context;
     }
 
     /* renamed from: a */
     public void m2499a(UnicomProxyData unicomProxyData, boolean z) {
         f7133a = unicomProxyData;
         f7134b = z;
-        LogUtils.debug("Support", "support bindProxy is mSupportService:" + this.f7137e);
-        if (this.f7137e != null && unicomProxyData != null) {
+        LogUtils.debug("Support", "support bindProxy is mSupportService:" + this.iSupportService);
+        if (this.iSupportService != null && unicomProxyData != null) {
             try {
-                this.f7137e.mo2389a(unicomProxyData.m3933a(), unicomProxyData.m3927c(), unicomProxyData.m3930b(), unicomProxyData.m3925d(), unicomProxyData.m3924e(), z);
+                this.iSupportService.mo2389a(unicomProxyData.m3933a(), unicomProxyData.m3927c(), unicomProxyData.m3930b(), unicomProxyData.m3925d(), unicomProxyData.m3924e(), z);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -141,7 +141,7 @@ public class Support {
         try {
             this.f7138f.clear();
             m2508A();
-            this.f7135c.stopService(new Intent(this.f7135c, SupportService.class));
+            this.context.stopService(new Intent(this.context, SupportService.class));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -162,15 +162,15 @@ public class Support {
 
     /* renamed from: z */
     private void m2450z() {
-        this.f7135c.bindService(new Intent(this.f7135c, SupportService.class), this.f7142j, Context.BIND_AUTO_CREATE);
-        this.f7135c.registerReceiver(this.f7139g, this.f7139g.m2449a());
+        this.context.bindService(new Intent(this.context, SupportService.class), this.f7142j, Context.BIND_AUTO_CREATE);
+        this.context.registerReceiver(this.f7139g, this.f7139g.m2449a());
     }
 
     /* renamed from: A */
     private void m2508A() {
-        this.f7135c.unbindService(this.f7142j);
-        this.f7135c.unregisterReceiver(this.f7139g);
-        this.f7137e = null;
+        this.context.unbindService(this.f7142j);
+        this.context.unregisterReceiver(this.f7139g);
+        this.iSupportService = null;
     }
 
     /* renamed from: e */
@@ -192,7 +192,7 @@ public class Support {
     /* renamed from: f */
     public void m2470f() {
         try {
-            this.f7137e.mo2395a();
+            this.iSupportService.mo2395a();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -233,8 +233,8 @@ public class Support {
     /* renamed from: k */
     public Integer m2465k() {
         try {
-            if (this.f7137e != null) {
-                return Integer.valueOf(this.f7137e.mo2378c());
+            if (this.iSupportService != null) {
+                return Integer.valueOf(this.iSupportService.mo2378c());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -259,7 +259,7 @@ public class Support {
     /* renamed from: a */
     public void m2491a(Integer num) {
         try {
-            this.f7137e.mo2394a(num.intValue());
+            this.iSupportService.mo2394a(num.intValue());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -268,8 +268,8 @@ public class Support {
     /* renamed from: l */
     public float m2464l() {
         try {
-            if (this.f7137e != null) {
-                return this.f7137e.mo2376d();
+            if (this.iSupportService != null) {
+                return this.iSupportService.mo2376d();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -280,7 +280,7 @@ public class Support {
     /* renamed from: m */
     public PlayStatus m2463m() {
         try {
-            return PlayStatus.values()[this.f7137e.mo2383b()];
+            return PlayStatus.values()[this.iSupportService.mo2383b()];
         } catch (Exception e) {
             e.printStackTrace();
             return PlayStatus.STATUS_STOPPED;
@@ -318,8 +318,8 @@ public class Support {
     }
 
     /* renamed from: b */
-    public void m2480b(MediaItem mediaItem, String str, String str2) {
-        m2493a(mediaItem, str, str2, "lyric_type");
+    public void m2480b(MediaItem mediaItem, String singer, String songName) {
+        m2493a(mediaItem, singer, songName, "lyric_type");
     }
 
     /* renamed from: a */
@@ -335,7 +335,7 @@ public class Support {
     /* renamed from: r */
     public int m2458r() {
         try {
-            return this.f7137e.mo2374e();
+            return this.iSupportService.mo2374e();
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -345,7 +345,7 @@ public class Support {
     /* renamed from: a */
     public boolean m2486a(int[] iArr, int i) {
         try {
-            return this.f7137e.mo2384a(iArr, i);
+            return this.iSupportService.mo2384a(iArr, i);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -358,10 +358,10 @@ public class Support {
     /* renamed from: a */
     public void m2488a(Map map) {
         try {
-            if (this.f7137e == null) {
+            if (this.iSupportService == null) {
                 this.f7140h.add(map);
             } else {
-                this.f7137e.mo2387a(map);
+                this.iSupportService.mo2387a(map);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -384,7 +384,7 @@ public class Support {
     /* renamed from: s */
     public AudioEffectParam m2457s() {
         try {
-            return (AudioEffectParam) JSONUtils.fromJson(this.f7137e.mo2369j(), AudioEffectParam.class);
+            return (AudioEffectParam) JSONUtils.fromJson(this.iSupportService.mo2369j(), AudioEffectParam.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -394,7 +394,7 @@ public class Support {
     /* renamed from: t */
     public void m2456t() {
         try {
-            this.f7137e.mo2372g();
+            this.iSupportService.mo2372g();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -403,7 +403,7 @@ public class Support {
     /* renamed from: u */
     public void m2455u() {
         try {
-            this.f7137e.mo2371h();
+            this.iSupportService.mo2371h();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -412,7 +412,7 @@ public class Support {
     /* renamed from: a */
     public void m2492a(Boolean bool) {
         try {
-            this.f7137e.mo2386a(bool.booleanValue());
+            this.iSupportService.mo2386a(bool.booleanValue());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -421,7 +421,7 @@ public class Support {
     /* renamed from: a */
     public void m2501a(AudioEffectItem audioEffectItem, boolean z) {
         try {
-            this.f7137e.mo2388a(JSONUtils.toJson(audioEffectItem), z);
+            this.iSupportService.mo2388a(JSONUtils.toJson(audioEffectItem), z);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -430,7 +430,7 @@ public class Support {
     /* renamed from: v */
     public MediaItem m2454v() {
         try {
-            return this.f7137e.mo2373f();
+            return this.iSupportService.mo2373f();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -441,7 +441,7 @@ public class Support {
     public void m2496a(DownloadTaskInfo downloadTaskInfo) {
         try {
             if (m2452x()) {
-                this.f7137e.mo2391a(downloadTaskInfo);
+                this.iSupportService.mo2391a(downloadTaskInfo);
             } else {
                 this.f7141i.add(downloadTaskInfo);
             }
@@ -454,7 +454,7 @@ public class Support {
     public DownloadTaskInfo m2481b(DownloadTaskInfo downloadTaskInfo) {
         try {
             if (m2452x()) {
-                return this.f7137e.mo2381b(downloadTaskInfo);
+                return this.iSupportService.mo2381b(downloadTaskInfo);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -466,7 +466,7 @@ public class Support {
     public DownloadTaskInfo m2475c(DownloadTaskInfo downloadTaskInfo) {
         try {
             if (m2452x()) {
-                return this.f7137e.mo2377c(downloadTaskInfo);
+                return this.iSupportService.mo2377c(downloadTaskInfo);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -476,9 +476,9 @@ public class Support {
 
     /* renamed from: d */
     public int m2472d(DownloadTaskInfo downloadTaskInfo) {
-        if (this.f7137e != null) {
+        if (this.iSupportService != null) {
             try {
-                return this.f7137e.mo2375d(downloadTaskInfo);
+                return this.iSupportService.mo2375d(downloadTaskInfo);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -514,7 +514,7 @@ public class Support {
     /* renamed from: w */
     public long m2453w() {
         try {
-            return this.f7137e.mo2368k();
+            return this.iSupportService.mo2368k();
         } catch (Exception e) {
             e.printStackTrace();
             return 0L;
@@ -524,7 +524,7 @@ public class Support {
     /* renamed from: a */
     public void m2503a(long j) {
         try {
-            this.f7137e.mo2393a(j);
+            this.iSupportService.mo2393a(j);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -532,13 +532,13 @@ public class Support {
 
     /* renamed from: x */
     public boolean m2452x() {
-        return this.f7137e != null;
+        return this.iSupportService != null;
     }
 
     /* renamed from: a */
     public List<DownloadTaskInfo> m2487a(int[] iArr) {
         try {
-            return this.f7137e.mo2385a(iArr);
+            return this.iSupportService.mo2385a(iArr);
         } catch (Exception e) {
             e.printStackTrace();
             return new ArrayList();
@@ -548,7 +548,7 @@ public class Support {
     /* renamed from: b */
     public void m2484b(long j) {
         try {
-            this.f7137e.mo2382b(j);
+            this.iSupportService.mo2382b(j);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -557,7 +557,7 @@ public class Support {
     /* renamed from: y */
     public void m2451y() {
         try {
-            this.f7137e.mo2367l();
+            this.iSupportService.mo2367l();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -566,15 +566,15 @@ public class Support {
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
     public Intent m2490a(String str) {
-        return new Intent(this.f7135c, SupportService.class).putExtra("command", str);
+        return new Intent(this.context, SupportService.class).putExtra("command", str);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: c */
     public void m2477c(Intent intent) {
-        if (this.f7135c != null && !this.f7136d) {
-            this.f7136d = "exit_command".equals(intent.getStringExtra("command"));
-            this.f7135c.startService(intent);
+        if (this.context != null && !this.isExitCommand) {
+            this.isExitCommand = "exit_command".equals(intent.getStringExtra("command"));
+            this.context.startService(intent);
         }
     }
 

@@ -10,17 +10,17 @@ import java.util.List;
 public final class Manager {
 
     /* renamed from: a */
-    private static Manager f2313a = null;
+    private static Manager instance = null;
 
     /* renamed from: b */
     private List<ThreadPool> f2314b = new ArrayList();
 
     /* renamed from: a */
-    public static Manager m8744a() {
-        if (f2313a == null) {
-            f2313a = new Manager();
+    public static Manager getInstance() {
+        if (instance == null) {
+            instance = new Manager();
         }
-        return f2313a;
+        return instance;
     }
 
     /* renamed from: c */
@@ -58,14 +58,14 @@ public final class Manager {
     }
 
     /* renamed from: a */
-    public void m8740a(String str, TaskInfo taskInfo, Task.AbstractC0578a abstractC0578a) {
-        ThreadPool m8738c = m8738c(str);
-        if (m8738c == null) {
+    public void start(String str, TaskInfo taskInfo, Task.TaskCallback abstractC0578a) {
+        ThreadPool threadPool = m8738c(str);
+        if (threadPool == null) {
             throw new IllegalStateException(str + " not exist!");
         }
         Task task = new Task(taskInfo, abstractC0578a);
         taskInfo.setAttachTask(task);
-        m8738c.m8576a((Runnable) task);
+        threadPool.m8576a((Runnable) task);
     }
 
     /* renamed from: a */

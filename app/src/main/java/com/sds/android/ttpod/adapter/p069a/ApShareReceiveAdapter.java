@@ -76,7 +76,7 @@ public class ApShareReceiveAdapter extends ApShareBaseAdapter implements ShareIt
                     this.f3167e = null;
                     this.f3165c = TransmittableMediaItem.EnumC1381a.TRANSMIT_IDLE;
                 }
-                FileUtils.m8404h(transmittableMediaItem.m5772a().getLocalDataSource());
+                FileUtils.exists(transmittableMediaItem.m5772a().getLocalDataSource());
                 break;
             case TRANSMIT_FINISHED:
                 MessageDialog messageDialog = new MessageDialog(m7660a(), m7660a().getString(R.string.remove_confirm, FileUtils.getFilename(transmittableMediaItem.m5772a().getLocalDataSource())), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.adapter.a.c.1
@@ -84,7 +84,7 @@ public class ApShareReceiveAdapter extends ApShareBaseAdapter implements ShareIt
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void mo2038a(MessageDialog messageDialog2) {
                         transmittableMediaItem.m5768a(TransmittableMediaItem.EnumC1381a.TRANSMIT_IDLE);
-                        FileUtils.m8404h(transmittableMediaItem.m5772a().getLocalDataSource());
+                        FileUtils.exists(transmittableMediaItem.m5772a().getLocalDataSource());
                         CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, transmittableMediaItem.m5772a(), true));
                         CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, transmittableMediaItem.m5772a(), true));
                         transmittableMediaItem.m5771a(0);

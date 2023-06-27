@@ -73,16 +73,16 @@ public class PictureManagerAdapter extends BaseAdapter {
             PictureManagerAdapter.this.f3130h = true;
             final PictureDataItem pictureDataItem = (PictureDataItem) view.getTag();
             final PictureManagerViewHolder.PictureManagerSubLayoutViewHolder c0953a = (PictureManagerViewHolder.PictureManagerSubLayoutViewHolder) view.getTag(R.id.view_tag_view_holder);
-            LogUtils.debug("PictureManagerAdapter", "onClick item=%s", pictureDataItem.m2172d());
+            LogUtils.debug("PictureManagerAdapter", "onClick item=%s", pictureDataItem.getLocalLyricPath());
             if (pictureDataItem.f3145g) {
-                pictureDataItem.f3145g = FileUtils.m8404h(pictureDataItem.m2172d()) ? false : true;
+                pictureDataItem.f3145g = FileUtils.exists(pictureDataItem.getLocalLyricPath()) ? false : true;
                 c0953a.m7665a(pictureDataItem);
-                String str = TTPodConfig.m5289s() + File.separator + PictureManagerAdapter.this.f3126d + File.separator;
+                String str = TTPodConfig.getArtistPath() + File.separator + PictureManagerAdapter.this.f3126d + File.separator;
                 ArrayList<Integer> m2128b = PictureSearchTask.m2128b(str);
                 if (m2128b == null) {
                     m2128b = new ArrayList<>();
                 }
-                m2128b.add(Integer.valueOf(pictureDataItem.m2176a()));
+                m2128b.add(Integer.valueOf(pictureDataItem.getId()));
                 PictureSearchTask.m2134a(str, m2128b);
             } else if (!pictureDataItem.f3144f) {
                 OfflineModeUtils.m8255a(PictureManagerAdapter.this.context, new DialogInterface.OnClickListener() { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.3.1
@@ -111,15 +111,15 @@ public class PictureManagerAdapter extends BaseAdapter {
                         return null;
                     }
                     PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
-                    HttpRequest.Response m8708a = HttpRequest.m8708a(new HttpGet(pictureDataItem2.m2173c()), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
+                    HttpRequest.Response m8708a = HttpRequest.m8708a(new HttpGet(pictureDataItem2.getUrl()), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
                     InputStream m8688e = m8708a != null ? m8708a.getInputStream() : null;
                     if (m8688e != null) {
-                        String str = pictureDataItem2.m2172d() + ".tmp";
+                        String str = pictureDataItem2.getLocalLyricPath() + ".tmp";
                         if (FileUtils.m8420a(m8688e, str)) {
-                            FileUtils.m8410c(str, pictureDataItem2.m2172d());
+                            FileUtils.m8410c(str, pictureDataItem2.getLocalLyricPath());
                             return pictureDataItem2;
                         }
-                        FileUtils.m8404h(str);
+                        FileUtils.exists(str);
                         return pictureDataItem2;
                     }
                     return pictureDataItem2;
@@ -133,8 +133,8 @@ public class PictureManagerAdapter extends BaseAdapter {
                     if (PictureManagerAdapter.this.context != null && PictureManagerAdapter.this.mediaItem != null) {
                         PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
                         pictureDataItem2.f3144f = false;
-                        pictureDataItem2.f3145g = FileUtils.m8414b(pictureDataItem2.m2172d());
-                        PictureManagerAdapter.this.m7692a("download", PictureManagerAdapter.this.f3126d, pictureDataItem2.f3145g ? 1 : 2, pictureDataItem2.m2176a());
+                        pictureDataItem2.f3145g = FileUtils.m8414b(pictureDataItem2.getLocalLyricPath());
+                        PictureManagerAdapter.this.m7692a("download", PictureManagerAdapter.this.f3126d, pictureDataItem2.f3145g ? 1 : 2, pictureDataItem2.getId());
                         PictureManagerAdapter.this.notifyDataSetChanged();
                     }
                 }
@@ -187,7 +187,7 @@ public class PictureManagerAdapter extends BaseAdapter {
 
     @Override // android.widget.Adapter
     public long getItemId(int i) {
-        return getItem(i).m2176a();
+        return getItem(i).getId();
     }
 
     @Override // android.widget.Adapter
@@ -214,14 +214,14 @@ public class PictureManagerAdapter extends BaseAdapter {
         if (StringUtils.isEmpty(str)) {
             String artist = mediaItem.getArtist();
             if (TTTextUtils.isValidateMediaString(artist)) {
-                this.f3126d = FileUtils.m8397o(artist);
+                this.f3126d = FileUtils.removeWrongCharacter(artist);
             } else {
                 return;
             }
         } else {
             this.f3126d = str;
         }
-        if (!FileUtils.m8419a(TTPodConfig.m5289s() + File.separator + this.f3126d + File.separator + "result.xml")) {
+        if (!FileUtils.m8419a(TTPodConfig.getArtistPath() + File.separator + this.f3126d + File.separator + "result.xml")) {
             this.networkLoadView.setLoadState(NetworkLoadView.EnumC2205a.IDLE);
         } else {
             TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Void, ArrayList<PictureDataItem>>(null) { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.1
@@ -243,7 +243,7 @@ public class PictureManagerAdapter extends BaseAdapter {
                     if (PictureManagerAdapter.this.context == null || PictureManagerAdapter.this.mediaItem == null) {
                         return null;
                     }
-                    String str2 = TTPodConfig.m5289s() + File.separator + PictureManagerAdapter.this.f3126d + File.separator + "result.xml";
+                    String str2 = TTPodConfig.getArtistPath() + File.separator + PictureManagerAdapter.this.f3126d + File.separator + "result.xml";
                     try {
                         kXmlParser = new KXmlParser();
                         fileInputStream = new FileInputStream(str2);
@@ -304,8 +304,8 @@ public class PictureManagerAdapter extends BaseAdapter {
                     }
                     ArrayList<PictureDataItem> arrayList = new ArrayList<>();
                     for (ResultData resultData : m2139a) {
-                        if (resultData != null && resultData.m2179c() != null) {
-                            ResultData.Item[] m2179c = resultData.m2179c();
+                        if (resultData != null && resultData.getLyricArray() != null) {
+                            ResultData.Item[] m2179c = resultData.getLyricArray();
                             for (ResultData.Item item : m2179c) {
                                 if (item != null) {
                                     arrayList.add(new PictureDataItem(item));
@@ -392,14 +392,14 @@ public class PictureManagerAdapter extends BaseAdapter {
                                 ArrayList<ResultData> m2139a = PictureSearchTask.m2139a(kXmlParser, (MediaItem) null, 2, (String) null);
                                 int size = m2139a != null ? m2139a.size() : 0;
                                 if (size > 0) {
-                                    String m8397o = FileUtils.m8397o(str);
+                                    String m8397o = FileUtils.removeWrongCharacter(str);
                                     if (TTTextUtils.isValidateMediaString(m8397o)) {
                                         PictureManagerAdapter.this.f3126d = m8397o;
                                     } else {
-                                        PictureManagerAdapter.this.f3126d = FileUtils.m8397o(m2139a.get(0).m2181b());
+                                        PictureManagerAdapter.this.f3126d = FileUtils.removeWrongCharacter(m2139a.get(0).getArtist());
                                     }
                                     PictureSearchTask.m2127b(PictureManagerAdapter.this.mediaItem.getID(), PictureManagerAdapter.this.f3126d);
-                                    FileUtils.m8416a(trim, TTPodConfig.m5289s() + File.separator + PictureManagerAdapter.this.f3126d + "/result.xml");
+                                    FileUtils.m8416a(trim, TTPodConfig.getArtistPath() + File.separator + PictureManagerAdapter.this.f3126d + "/result.xml");
                                 }
                                 return Integer.valueOf(size);
                             }
@@ -470,12 +470,12 @@ public class PictureManagerAdapter extends BaseAdapter {
         private boolean f3145g;
 
         PictureDataItem(ResultData.Item item) {
-            super(item.m2174b(), item.m2173c(), item.m2172d(), item.m2176a());
+            super(item.getType(), item.getUrl(), item.getLocalLyricPath(), item.getId());
             int lastIndexOf;
-            if (this.f7294b != null && (lastIndexOf = this.f7294b.lastIndexOf(47)) > 0) {
-                this.f3143e = this.f7294b.substring(0, lastIndexOf) + "/144/192" + this.f7294b.substring(lastIndexOf);
+            if (this.url != null && (lastIndexOf = this.url.lastIndexOf(47)) > 0) {
+                this.f3143e = this.url.substring(0, lastIndexOf) + "/144/192" + this.url.substring(lastIndexOf);
             }
-            this.f3145g = FileUtils.m8414b(item.m2172d());
+            this.f3145g = FileUtils.m8414b(item.getLocalLyricPath());
         }
     }
 

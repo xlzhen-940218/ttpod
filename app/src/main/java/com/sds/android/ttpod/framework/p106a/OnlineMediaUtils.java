@@ -2,7 +2,7 @@ package com.sds.android.ttpod.framework.p106a;
 
 import com.sds.android.cloudapi.ttpod.data.AlbumItem;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
-import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaItemAPI;
+import com.sds.android.cloudapi.ttpod.api.OnlineMediaItemAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.request.RequestCallback;
@@ -97,8 +97,8 @@ public class OnlineMediaUtils {
                 break;
             }
         }
-        if (StringUtils.equals(mediaItem.getID(), Preferences.getMediaId()) && PlayStatus.STATUS_STOPPED != SupportFactory.m2397a(BaseApplication.getApplication()).m2463m()) {
-            if (PlayStatus.STATUS_PLAYING == SupportFactory.m2397a(BaseApplication.getApplication()).m2463m()) {
+        if (StringUtils.equals(mediaItem.getID(), Preferences.getMediaId()) && PlayStatus.STATUS_STOPPED != SupportFactory.getInstance(BaseApplication.getApplication()).m2463m()) {
+            if (PlayStatus.STATUS_PLAYING == SupportFactory.getInstance(BaseApplication.getApplication()).m2463m()) {
                 CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             }

@@ -42,8 +42,8 @@ public class UserInfoActivity extends SlidingClosableActivity {
     private static final int DEFAULT_START_YEAR = 1900;
     private static final String EMAIL_BIND_STATE = "1";
     private static final String KEY_REQUEST_CODE = "request_code";
-    public static final String LOCAL_AVATAR_IMAGE_PATH_FORMAT = TTPodConfig.m5298j() + File.separator + ".%d.avatar.jpg";
-    public static final String LOCAL_COVER_IMAGE_PATH_FORMAT = TTPodConfig.m5298j() + File.separator + ".%d.cover.jpg";
+    public static final String LOCAL_AVATAR_IMAGE_PATH_FORMAT = TTPodConfig.getCacheTmpPath() + File.separator + ".%d.avatar.jpg";
+    public static final String LOCAL_COVER_IMAGE_PATH_FORMAT = TTPodConfig.getCacheTmpPath() + File.separator + ".%d.cover.jpg";
     private static final int MAX_MONTH = 12;
     private static final int MAX_MONTH_DATA = 31;
     private static final int REQUEST_IMAGE_AVATAR = 2;

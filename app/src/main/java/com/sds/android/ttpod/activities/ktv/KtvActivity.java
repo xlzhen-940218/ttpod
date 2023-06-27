@@ -350,7 +350,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
     }
 
     private String getSavePath(String str, String str2) {
-        return TTPodConfig.m5285w() + File.separator + str2 + str.hashCode() + ".apk";
+        return TTPodConfig.getAppPath() + File.separator + str2 + str.hashCode() + ".apk";
     }
 
     public static boolean hasLocalMedia() {
@@ -386,7 +386,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
             public void run() {
                 KtvActivity.this.mIsStopDownloading = false;
                 if (FileUtils.m8419a(KtvActivity.this.mDownloadTaskInfo.getSavePath())) {
-                    FileUtils.m8404h(KtvActivity.this.mDownloadTaskInfo.getSavePath());
+                    FileUtils.exists(KtvActivity.this.mDownloadTaskInfo.getSavePath());
                 }
                 CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo));
                 while (!KtvActivity.this.mIsStopDownloading) {

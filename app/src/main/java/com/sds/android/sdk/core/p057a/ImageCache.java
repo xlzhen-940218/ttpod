@@ -70,7 +70,7 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
     public void m8802b(String str, String str2, int i, int i2) {
         if (!StringUtils.isEmpty(str)) {
             this.f2272a.remove(m8800c(str, str2, i, i2));
-            FileUtils.m8404h(this.f2273b.getAbsolutePath() + File.separator + m8808a(str, str2));
+            FileUtils.exists(this.f2273b.getAbsolutePath() + File.separator + m8808a(str, str2));
         }
     }
 
@@ -113,7 +113,7 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
         if (f < 0.05f || f > 0.8f) {
             throw new IllegalArgumentException("setMemCacheSizePercent - percent must be between0.05and0.8 (inclusive)");
         }
-        this.f2273b = FileUtils.m8406f(str);
+        this.f2273b = FileUtils.createFolder(str);
         if (this.f2273b == null) {
             this.f2273b = new File("");
         }

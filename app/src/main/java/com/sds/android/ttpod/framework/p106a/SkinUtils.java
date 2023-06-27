@@ -70,7 +70,7 @@ public class SkinUtils {
         Arrays.sort(list);
         if (list.length > 1) {
             for (int i = 0; i < list.length - 1; i++) {
-                FileUtils.m8404h(str + File.separator + list[i]);
+                FileUtils.exists(str + File.separator + list[i]);
             }
             str3 = list[list.length - 1];
         } else {
@@ -81,7 +81,7 @@ public class SkinUtils {
 
     /* renamed from: a */
     public static File[] m4650a() {
-        File file = new File(TTPodConfig.m5294n());
+        File file = new File(TTPodConfig.getSkinPath());
         if (!file.exists() || !file.isDirectory()) {
             return null;
         }

@@ -77,15 +77,15 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
         super(context, list);
         this.f3328a = new ArrayList();
         this.f3332h = str;
-        this.f3329e = OnlinePlayStatus.from(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+        this.f3329e = OnlinePlayStatus.from(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
         Long songID = Cache.getInstance().getCurrentPlayMediaItem().getSongID();
         this.f3330f = songID == null ? 0L : songID.longValue();
-        this.f3331g = Preferences.m2926bc();
+        this.f3331g = Preferences.getOnlineMediaListGroupName();
         Preferences.m3023a(context, PreferencesID.ONLINE_MEDIA_LIST_GROUP_NAME, new Preferences.InterfaceC2031a() { // from class: com.sds.android.ttpod.adapter.e.e.1
             @Override // com.sds.android.ttpod.framework.storage.environment.Preferences.InterfaceC2031a
             /* renamed from: a */
             public void mo2553a(PreferencesID preferencesID) {
-                PostListAdapter.this.f3331g = Preferences.m2926bc();
+                PostListAdapter.this.f3331g = Preferences.getOnlineMediaListGroupName();
                 PostListAdapter.this.f3330f = Cache.getInstance().getCurrentPlayMediaItem().getSongID().longValue();
             }
         });

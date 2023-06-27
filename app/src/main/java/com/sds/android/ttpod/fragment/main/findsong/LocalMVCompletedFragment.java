@@ -195,7 +195,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
 
     private ArrayList<MVOnlineData> readDownloadMvList() {
         ArrayList<MVOnlineData> arrayList = new ArrayList<>();
-        File file = new File(TTPodConfig.m5283y());
+        File file = new File(TTPodConfig.getMvPath());
         final String[] stringArray = getResources().getStringArray(R.array.mv_suffix);
         File[] listFiles = file.listFiles(new FileFilter() { // from class: com.sds.android.ttpod.fragment.main.findsong.LocalMVCompletedFragment.2
             @Override // java.io.FileFilter

@@ -145,7 +145,7 @@ public final class SupportModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     public void onCreate() {
         super.onCreate();
-        this.f6027d = SupportFactory.m2397a(sContext);
+        this.f6027d = SupportFactory.getInstance(sContext);
         this.f6027d.mo2497a(this.f6026c);
         Preferences.m3019a(PreferencesID.PLAY_MODE, this.f6028e);
     }
@@ -233,7 +233,7 @@ public final class SupportModule extends BaseModule {
             z = true;
         }
         if (!StringUtils.equals(str, MediaStorage.GROUP_ID_ONLINE_TEMPORARY)) {
-            Preferences.m2828t("");
+            Preferences.setOnlineMediaListGroupName("");
         }
         if (z) {
             CommandCenter.getInstance().m4595b(new Command(CommandID.PLAY_GROUP_CHANGED, new Object[0]), ModuleID.SUPPORT);

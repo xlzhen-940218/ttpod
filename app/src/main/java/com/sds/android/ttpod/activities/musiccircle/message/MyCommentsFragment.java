@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.Notice;
 import com.sds.android.cloudapi.ttpod.data.Post;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.cloudapi.ttpod.p055a.NoticeAPI;
+import com.sds.android.cloudapi.ttpod.api.NoticeAPI;
 import com.sds.android.cloudapi.ttpod.result.NoticeListResult;
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.Request;

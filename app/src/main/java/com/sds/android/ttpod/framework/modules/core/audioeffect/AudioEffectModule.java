@@ -6,8 +6,8 @@ import com.sds.android.cloudapi.ttpod.data.AudioEffectItem;
 import com.sds.android.cloudapi.ttpod.data.AudioEffectItemData;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.cloudapi.ttpod.p055a.CloudAudioEffectAPI;
-import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaItemAPI;
+import com.sds.android.cloudapi.ttpod.api.CloudAudioEffectAPI;
+import com.sds.android.cloudapi.ttpod.api.OnlineMediaItemAPI;
 import com.sds.android.cloudapi.ttpod.result.AudioEffectAddResult;
 import com.sds.android.cloudapi.ttpod.result.AudioEffectCommResult;
 import com.sds.android.cloudapi.ttpod.result.AudioEffectItemResult;
@@ -184,18 +184,18 @@ public class AudioEffectModule extends BaseModule {
 
     public void setLocalAudioEffectEnabled(Boolean bool) {
         if (bool.booleanValue()) {
-            SupportFactory.m2397a(BaseApplication.getApplication()).m2455u();
+            SupportFactory.getInstance(BaseApplication.getApplication()).m2455u();
         } else {
-            SupportFactory.m2397a(BaseApplication.getApplication()).m2456t();
+            SupportFactory.getInstance(BaseApplication.getApplication()).m2456t();
         }
     }
 
     public void setAudioEffectTryMode(Boolean bool) {
-        SupportFactory.m2397a(BaseApplication.getApplication()).m2492a(bool);
+        SupportFactory.getInstance(BaseApplication.getApplication()).m2492a(bool);
     }
 
     public void applyCloudAudioEffect(AudioEffectItem audioEffectItem, Boolean bool) {
-        SupportFactory.m2397a(BaseApplication.getApplication()).m2501a(audioEffectItem, bool.booleanValue());
+        SupportFactory.getInstance(BaseApplication.getApplication()).m2501a(audioEffectItem, bool.booleanValue());
     }
 
     public void setEqualizer(TTEqualizer.Settings settings) {
@@ -210,14 +210,14 @@ public class AudioEffectModule extends BaseModule {
 
     /* renamed from: a */
     private void m4376a(int i) {
-        SupportFactory.m2397a(BaseApplication.getApplication()).m2504a(i);
+        SupportFactory.getInstance(BaseApplication.getApplication()).m2504a(i);
         m4356g();
     }
 
     public TTEqualizer.Settings getEqualizer() {
         TTEqualizer.Settings settings;
         try {
-            AudioEffectParam m2457s = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s();
+            AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
             if (m2457s == null) {
                 settings = new TTEqualizer.Settings(EqualizerPreset.m4334b(), (short) 10, EqualizerPreset.m4333b(EqualizerPreset.m4334b()));
             } else {
@@ -235,7 +235,7 @@ public class AudioEffectModule extends BaseModule {
     }
 
     public void setAudioEffectReset() {
-        SupportFactory.m2397a(BaseApplication.getApplication()).m2461o();
+        SupportFactory.getInstance(BaseApplication.getApplication()).m2461o();
         m4356g();
     }
 
@@ -268,7 +268,7 @@ public class AudioEffectModule extends BaseModule {
         DebugUtils.m8426a(settings, "TTEqualizer.Settings");
         m4364b(settings.getName());
         String m4369a = m4369a(settings.getName());
-        FileUtils.m8404h(m4369a);
+        FileUtils.exists(m4369a);
         FileUtils.m8416a(settings.toString(), m4369a);
         CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_CUSTOM_EQUALIZER, settings), ModuleID.AUDIO_EFFECT);
     }
@@ -276,12 +276,12 @@ public class AudioEffectModule extends BaseModule {
     public void deleteCustomEqualizer(String str) {
         DebugUtils.m8426a(str, "equalizerName");
         m4364b(str);
-        FileUtils.m8404h(m4369a(str));
+        FileUtils.exists(m4369a(str));
     }
 
     /* renamed from: a */
     private String m4369a(String str) {
-        return TTPodConfig.m5286v() + File.separator + str + ".tteq";
+        return TTPodConfig.getEqualizerPath() + File.separator + str + ".tteq";
     }
 
     public void queryCustomEqualizerList() {
@@ -289,7 +289,7 @@ public class AudioEffectModule extends BaseModule {
             @Override // java.lang.Runnable
             public void run() {
                 ArrayList arrayList = new ArrayList();
-                File[] listFiles = new File(TTPodConfig.m5286v()).listFiles();
+                File[] listFiles = new File(TTPodConfig.getEqualizerPath()).listFiles();
                 if (listFiles != null) {
                     Arrays.sort(listFiles, new Comparator<File>() { // from class: com.sds.android.ttpod.framework.modules.core.audioeffect.c.6.1
                         @Override // java.util.Comparator
@@ -437,7 +437,7 @@ public class AudioEffectModule extends BaseModule {
     /* renamed from: h */
     public void m4355h() {
         m4354i();
-        File file = new File(TTPodConfig.m5303e());
+        File file = new File(TTPodConfig.getEffectPath());
         if (!file.exists()) {
             file.mkdirs();
         }
@@ -571,7 +571,7 @@ public class AudioEffectModule extends BaseModule {
                     @Override // java.lang.Runnable
                     public void run() {
                         for (Object privateEffectItem : list) {
-                            FileUtils.m8404h(((PrivateEffectItem)privateEffectItem).m4328c());
+                            FileUtils.exists(((PrivateEffectItem)privateEffectItem).m4328c());
                         }
                         CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_DELETE_PRIVATE_EFFECT_LIST, new Object[0]), ModuleID.AUDIO_EFFECT);
                     }
@@ -581,7 +581,7 @@ public class AudioEffectModule extends BaseModule {
                     @Override // java.lang.Runnable
                     public void run() {
                         int i = 0;
-                        File file = new File(TTPodConfig.m5303e());
+                        File file = new File(TTPodConfig.getEffectPath());
                         if (file.exists()) {
                             File[] listFiles = file.listFiles();
                             ArrayList arrayList = new ArrayList();
@@ -604,7 +604,7 @@ public class AudioEffectModule extends BaseModule {
                                             if (privateEffectItem.m4327d() == null) {
                                                 i = i2;
                                             } else if (StringUtils.equals(privateEffectItem.m4327d(), mediaItem.getLocalDataSource())) {
-                                                FileUtils.m8404h(privateEffectItem.m4328c());
+                                                FileUtils.exists(privateEffectItem.m4328c());
                                                 i = i2 + 1;
                                             }
                                             i4++;
@@ -614,7 +614,7 @@ public class AudioEffectModule extends BaseModule {
                                         i4++;
                                         i2 = i;
                                     }
-                                    FileUtils.m8404h(AudioEffectUtils.m4340a(mediaItem.getSongID(), mediaItem.getTitle(), mediaItem.getArtist()));
+                                    FileUtils.exists(AudioEffectUtils.m4340a(mediaItem.getSongID(), mediaItem.getTitle(), mediaItem.getArtist()));
                                     if (Cache.getInstance().getCurrentPlayMediaItem().equals(mediaItem)) {
                                         CommandCenter.getInstance().m4596b(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, true));
                                         CommandCenter.getInstance().m4603a(new Command(CommandID.UPDATE_AUDIO_EFFECT_INFO, new Object[0]), ModuleID.AUDIO_EFFECT, 500);

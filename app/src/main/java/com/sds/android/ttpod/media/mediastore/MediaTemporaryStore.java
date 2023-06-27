@@ -43,7 +43,7 @@ final class MediaTemporaryStore {
     /* JADX INFO: Access modifiers changed from: package-private */
     public void deleteGroup(String str) {
         this.mCacheMediaItems = null;
-        FileUtils.m8404h(buildCacheFileName(str));
+        FileUtils.exists(buildCacheFileName(str));
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */

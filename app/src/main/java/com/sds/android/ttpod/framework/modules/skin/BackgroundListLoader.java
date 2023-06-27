@@ -74,7 +74,7 @@ public class BackgroundListLoader implements Runnable {
     public static ArrayList<BackgroundItem> m3856a() {
         File[] listFiles;
         ArrayList<BackgroundItem> arrayList = new ArrayList<>();
-        File file = new File(TTPodConfig.m5293o());
+        File file = new File(TTPodConfig.getBkgsPath());
         if (file.exists() && file.isDirectory() && (listFiles = file.listFiles(new FilenameFilter() { // from class: com.sds.android.ttpod.framework.modules.skin.b.1
             @Override // java.io.FilenameFilter
             public boolean accept(File file2, String str) {

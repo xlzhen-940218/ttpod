@@ -349,7 +349,7 @@ public class AppWidgetGoLayout4x1 extends GoWidgetFrame implements View.OnLongCl
     }
 
     private void initSupport() {
-        this.mSupport = SupportFactory.m2397a(getContext());
+        this.mSupport = SupportFactory.getInstance(getContext());
         this.mSupport.mo2497a(this.mSupportCallback);
     }
 

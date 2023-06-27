@@ -99,7 +99,7 @@ public final class Register {
     /* renamed from: a */
     public static void m6402a(Context context) {
         if (EnvironmentUtils.AppConfig.getVerificationEnable() && EnvironmentUtils.AppConfig.getTestMode()) {
-            final String str = TTPodConfig.m5311B() + File.separator + "user_data.xml";
+            final String str = TTPodConfig.getTTPodPath() + File.separator + "user_data.xml";
             RegisterData m6396a = RegisterData.m6396a(str);
             String m8478c = StringUtils.isEmpty(EnvironmentUtils.DeviceConfig.getDeviceId()) ? EnvironmentUtils.DeviceConfig.getMacAddress() : EnvironmentUtils.DeviceConfig.getDeviceId();
             final String m6401a = m6401a(m8478c);

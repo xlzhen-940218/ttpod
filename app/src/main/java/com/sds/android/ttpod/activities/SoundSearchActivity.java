@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.voicedragon.musicclient.record.DoresoMusicTrack;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
-import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaSearchAPI;
+import com.sds.android.cloudapi.ttpod.api.OnlineMediaSearchAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.request.BaseResult;
@@ -120,7 +120,7 @@ public class SoundSearchActivity extends SlidingClosableActivity {
             }
         });
         this.mRecognizerHistory = new SoundSearchHistory(null);
-        if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+        if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
             Preferences.m3063I(true);
             CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
         } else {
@@ -140,7 +140,7 @@ public class SoundSearchActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onDestroy() {
         super.onDestroy();
-        if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED && Preferences.m2947ax()) {
+        if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED && Preferences.m2947ax()) {
             CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
         }
         this.mHandler.removeCallbacksAndMessages(null);

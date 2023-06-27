@@ -143,7 +143,7 @@ public class SkinInfoActivity extends ActionBarActivity {
     public void copyWithoutOverwriteExistFile(String str) {
         this.mDesSkinPath = getUniqueSkinFilePath(str);
         this.mDesFile = new File(this.mDesSkinPath);
-        FileUtils.m8406f(FileUtils.m8400l(this.mDesSkinPath));
+        FileUtils.createFolder(FileUtils.m8400l(this.mDesSkinPath));
         FileUtils.m8413b(this.mDesSkinPath, this.mSrcSkinPath);
     }
 
@@ -165,7 +165,7 @@ public class SkinInfoActivity extends ActionBarActivity {
     public void copyWithOverwriteExistFile(String str) {
         this.mDesSkinPath = str;
         this.mDesFile = new File(str);
-        FileUtils.m8406f(FileUtils.m8400l(this.mDesSkinPath));
+        FileUtils.createFolder(FileUtils.m8400l(this.mDesSkinPath));
         FileUtils.m8413b(this.mDesSkinPath, this.mSrcSkinPath);
     }
 
@@ -186,7 +186,7 @@ public class SkinInfoActivity extends ActionBarActivity {
     public void applySkinFileAsTTpodSkin() {
         String m8402j = FileUtils.getFilename(this.mSrcSkinPath);
         String m8400l = FileUtils.m8400l(this.mSrcSkinPath);
-        String m5294n = TTPodConfig.m5294n();
+        String m5294n = TTPodConfig.getSkinPath();
         final String str = m5294n + File.separator + m8402j;
         this.mDesFile = new File(str);
         if (m5294n.startsWith("/mnt") && !m8400l.startsWith("/mnt")) {

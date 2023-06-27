@@ -479,18 +479,18 @@ public class PopupsUtils {
                             while (i < size) {
                                 CheckableActionItem checkableActionItem = list.get(i);
                                 if (checkableActionItem.m7005e() == 0) {
-                                    FileUtils.m8415b(new File(TTPodConfig.m5299i()));
+                                    FileUtils.m8415b(new File(TTPodConfig.getCacheObjectPath()));
                                     z2 = true;
                                 } else if (1 == checkableActionItem.m7005e()) {
-                                    MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
-                                    FileUtils.m8417a(TTPodConfig.m5301g(), 0L, m3225N != null ? new String[]{TTPodConfig.m5310C(), TTPodConfig.m5308a(m3225N.getSongID())} : null);
+                                    MediaItem mediaItem = Cache.getInstance().getCurrentPlayMediaItem();
+                                    FileUtils.m8417a(TTPodConfig.getCacheMediaPath(), 0L, mediaItem != null ? new String[]{TTPodConfig.getAudioTmp(), TTPodConfig.getSongIdPath(mediaItem.getSongID())} : null);
                                     z2 = true;
                                 } else if (2 == checkableActionItem.m7005e()) {
-                                    FileUtils.m8415b(new File(TTPodConfig.m5287u()));
-                                    FileUtils.m8415b(new File(TTPodConfig.m5289s()));
+                                    FileUtils.m8415b(new File(TTPodConfig.getArtPath()));
+                                    FileUtils.m8415b(new File(TTPodConfig.getArtistPath()));
                                     z2 = true;
                                 } else if (3 == checkableActionItem.m7005e()) {
-                                    FileUtils.m8415b(new File(TTPodConfig.m5290r()));
+                                    FileUtils.m8415b(new File(TTPodConfig.getLyricPath()));
                                     z2 = true;
                                 } else {
                                     z2 = z3;

@@ -2,7 +2,7 @@ package com.sds.android.ttpod.component.landscape.p098b;
 
 import android.content.Context;
 import android.util.Xml;
-import com.sds.android.ttpod.component.landscape.p098b.BaseParticleSystem;
+
 import com.sds.android.ttpod.framework.TTPodConfig;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,7 +16,7 @@ import org.xmlpull.v1.XmlPullParser;
 public class TTPodParticleSystem extends ParticleSystemWithConfig {
 
     /* renamed from: n */
-    private static final String f4515n = TTPodConfig.m5284x() + File.separator + "ttpod_particle_effect_configuration.xml";
+    private static final String f4515n = TTPodConfig.getLandscapePath() + File.separator + "ttpod_particle_effect_configuration.xml";
 
     /* renamed from: o */
     private static final String f4516o = f4484g + "ttpod_particle_effect_configuration.xml";

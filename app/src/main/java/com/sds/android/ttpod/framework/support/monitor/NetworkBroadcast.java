@@ -20,10 +20,10 @@ public class NetworkBroadcast extends BroadcastReceiver {
     private static final String f7243a = NetworkBroadcast.class.getSimpleName();
 
     /* renamed from: b */
-    private SupportService f7244b;
+    private SupportService supportService;
 
     public NetworkBroadcast(SupportService supportService) {
-        this.f7244b = supportService;
+        this.supportService = supportService;
     }
 
     @Override // android.content.BroadcastReceiver
@@ -43,11 +43,11 @@ public class NetworkBroadcast extends BroadcastReceiver {
 
     /* renamed from: c */
     private void m2241c() {
-        if (this.f7244b != null) {
+        if (this.supportService != null) {
             String str = UnicomFlowUtil.m3947e() ? UnicomFlowModule.PROXY_WAP_HOST : UnicomFlowModule.PROXY_HOST;
             boolean m3948d = UnicomFlowUtil.m3948d();
             LogUtils.debug(f7243a, "network change check unicom flow status isUseProxy:" + m3948d);
-            this.f7244b.m2804a(str, UnicomFlowModule.HTTP_PROXY_PORT.intValue(), UnicomFlowModule.TCP_PROXY_PORT.intValue(), UnicomFlowModule.USERNAME, UnicomFlowModule.PASSWORD, m3948d);
+            this.supportService.m2804a(str, UnicomFlowModule.HTTP_PROXY_PORT.intValue(), UnicomFlowModule.TCP_PROXY_PORT.intValue(), UnicomFlowModule.USERNAME, UnicomFlowModule.PASSWORD, m3948d);
         }
     }
 

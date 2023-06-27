@@ -551,7 +551,7 @@ public final class MediaPlayerProxy {
         if (bufferedPercent <= 0 || (bufferedPercent * this.f7052s.duration()) / 100 >= i) {
             this.f7052s.setPosition(i);
             if (this.f7047n == PlayStatus.STATUS_PLAYING) {
-                this.f7035b.m2665a(Preferences.m2982aY() / 10, 1);
+                this.f7035b.m2665a(Preferences.getAudioFadeSeekLength() / 10, 1);
             }
         }
     }

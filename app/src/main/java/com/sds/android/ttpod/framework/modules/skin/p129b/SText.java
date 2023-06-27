@@ -15,119 +15,121 @@ import java.util.HashMap;
 public abstract class SText<T extends View> extends SComponent<T> {
 
     /* renamed from: c */
-    protected SFont f6497c;
+    protected SFont font;
 
     /* renamed from: d */
-    protected int f6498d;
+    protected int align;
 
     /* renamed from: e */
-    protected int f6499e;
+    protected int fontColor;
 
     /* renamed from: j */
-    protected int f6500j;
+    protected int fontColorPressed;
 
     /* renamed from: k */
-    protected int f6501k;
+    protected int fontColorDisable;
 
     /* renamed from: l */
-    protected int f6502l;
+    protected int fontColorSelected;
 
     /* renamed from: m */
-    protected int f6503m;
+    protected int fontColorFocused;
 
     /* renamed from: n */
-    protected int f6504n;
+    protected int fontShadowColor;
 
     /* renamed from: o */
-    protected float f6505o;
+    protected float fontShaowRadius;
 
     /* renamed from: p */
-    protected float f6506p;
+    protected float fontShaowDx;
 
     /* renamed from: q */
-    protected float f6507q;
+    protected float fontShaowDy;
 
     /* renamed from: r */
-    protected int f6508r;
+    protected int fadeEdgeLength;
 
     public SText(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, HashMap<String, SFont> hashMap2, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6431b = kXmlParser.getAttributeValue(null, "TextContent");
-        this.f6497c = m3769a(hashMap2, kXmlParser.getAttributeValue(null, "Font"), ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FontStyle"), -1), ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FontSize"), -1));
-        this.f6499e = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColor"), -1);
-        this.f6500j = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorPressed"), this.f6499e);
-        this.f6501k = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorDisable"), this.f6499e);
-        this.f6503m = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorFocused"), this.f6499e);
-        this.f6502l = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorSelected"), this.f6499e);
-        this.f6504n = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontShadowColor"), ViewCompat.MEASURED_STATE_MASK);
-        this.f6505o = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FontShadowRadius"), 0.0f);
-        this.f6506p = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FontShadowDx"), 0.0f);
-        this.f6507q = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FontShadowDy"), 0.0f);
-        this.f6508r = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "FadeEdgeLength"), 0);
-        String attributeValue = kXmlParser.getAttributeValue(null, "Align");
-        this.f6498d = 0;
-        if (attributeValue != null) {
-            if (attributeValue.equals("Center") || attributeValue.contains("Center|")) {
-                this.f6498d = 17;
+        this.name = kXmlParser.getAttributeValue(null, "TextContent");
+        this.font = getSFont(hashMap2, kXmlParser.getAttributeValue(null, "Font")
+                , ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FontStyle"), -1)
+                , ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FontSize"), -1));
+        this.fontColor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColor"), -1);
+        this.fontColorPressed = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorPressed"), this.fontColor);
+        this.fontColorDisable = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorDisable"), this.fontColor);
+        this.fontColorFocused = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorFocused"), this.fontColor);
+        this.fontColorSelected = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorSelected"), this.fontColor);
+        this.fontShadowColor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontShadowColor"), ViewCompat.MEASURED_STATE_MASK);
+        this.fontShaowRadius = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FontShadowRadius"), 0.0f);
+        this.fontShaowDx = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FontShadowDx"), 0.0f);
+        this.fontShaowDy = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FontShadowDy"), 0.0f);
+        this.fadeEdgeLength = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "FadeEdgeLength"), 0);
+        String align = kXmlParser.getAttributeValue(null, "Align");
+        this.align = 0;
+        if (align != null) {
+            if (align.equals("Center") || align.contains("Center|")) {
+                this.align = 17;
             } else {
-                if (attributeValue.contains("Left")) {
-                    this.f6498d = 3;
-                } else if (attributeValue.contains("Right")) {
-                    this.f6498d = 5;
+                if (align.contains("Left")) {
+                    this.align = 3;
+                } else if (align.contains("Right")) {
+                    this.align = 5;
                 } else {
-                    this.f6498d = 1;
+                    this.align = 1;
                 }
-                if (attributeValue.contains("Top")) {
-                    this.f6498d |= 48;
-                } else if (attributeValue.contains("Bottom")) {
-                    this.f6498d |= 80;
+                if (align.contains("Top")) {
+                    this.align |= 48;
+                } else if (align.contains("Bottom")) {
+                    this.align |= 80;
                 } else {
-                    this.f6498d |= 16;
+                    this.align |= 16;
                 }
             }
         }
-        if (this.f6498d == 0) {
-            this.f6498d = 17;
+        if (this.align == 0) {
+            this.align = 17;
         }
     }
 
     /* renamed from: a */
-    static SFont m3769a(HashMap<String, SFont> hashMap, String str, int i, int i2) {
+    static SFont getSFont(HashMap<String, SFont> hashMap, String str, int style, int size) {
         SFont sFont;
         if (hashMap == null || ((sFont = hashMap.get(str)) == null && (sFont = hashMap.get("Default")) == null)) {
             sFont = new SFont(str);
-        } else if (i >= 0 || i2 >= 0) {
+        } else if (style >= 0 || size >= 0) {
             sFont = new SFont(sFont);
         }
-        if (i < 0) {
-            i = sFont.f6452d;
+        if (style < 0) {
+            style = sFont.style;
         }
-        sFont.f6452d = i;
-        if (i2 < 0) {
-            i2 = sFont.f6451c;
+        sFont.style = style;
+        if (size < 0) {
+            size = sFont.size;
         }
-        sFont.f6451c = i2;
+        sFont.size = size;
         return sFont;
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
     public void m3770a(TextView textView, SkinCache skinCache) {
-        if (skinCache.getTypeFace(this.f6497c) != null) {
-            textView.setTypeface(skinCache.getTypeFace(this.f6497c));
+        if (skinCache.getTypeFace(this.font) != null) {
+            textView.setTypeface(skinCache.getTypeFace(this.font));
         }
-        if (this.f6499e == this.f6500j && this.f6499e == this.f6501k && this.f6499e == this.f6503m && this.f6499e == this.f6502l) {
-            textView.setTextColor(this.f6499e);
+        if (this.fontColor == this.fontColorPressed && this.fontColor == this.fontColorDisable && this.fontColor == this.fontColorFocused && this.fontColor == this.fontColorSelected) {
+            textView.setTextColor(this.fontColor);
         } else {
-            textView.setTextColor(new ColorStateList(new int[][]{ViewWrapper.f6593x, ViewWrapper.f6571b, ViewWrapper.f6573d, ViewWrapper.f6572c, ViewWrapper.f6570a}, new int[]{this.f6500j, this.f6499e, this.f6502l, this.f6503m, this.f6501k}));
+            textView.setTextColor(new ColorStateList(new int[][]{ViewWrapper.f6593x, ViewWrapper.f6571b, ViewWrapper.f6573d, ViewWrapper.f6572c, ViewWrapper.f6570a}, new int[]{this.fontColorPressed, this.fontColor, this.fontColorSelected, this.fontColorFocused, this.fontColorDisable}));
         }
-        textView.setTextSize(this.f6497c.f6451c);
-        if ((this.f6504n & ViewCompat.MEASURED_STATE_MASK) != 0) {
-            textView.setShadowLayer(this.f6505o, this.f6506p, this.f6507q, this.f6504n);
+        textView.setTextSize(this.font.size);
+        if ((this.fontShadowColor & ViewCompat.MEASURED_STATE_MASK) != 0) {
+            textView.setShadowLayer(this.fontShaowRadius, this.fontShaowDx, this.fontShaowDy, this.fontShadowColor);
         }
-        textView.setGravity(this.f6498d);
-        textView.setText(this.f6431b);
-        int m3704a = ValueParser.m3704a(this.f6508r, 0);
+        textView.setGravity(this.align);
+        textView.setText(this.name);
+        int m3704a = ValueParser.m3704a(this.fadeEdgeLength, 0);
         if (m3704a > 0) {
             textView.setHorizontalFadingEdgeEnabled(true);
             textView.setFadingEdgeLength(m3704a);

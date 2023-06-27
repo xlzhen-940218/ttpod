@@ -11,7 +11,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.data.RecommendPost;
-import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaItemAPI;
+import com.sds.android.cloudapi.ttpod.api.OnlineMediaItemAPI;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.request.Extra;
 import com.sds.android.ttpod.R;

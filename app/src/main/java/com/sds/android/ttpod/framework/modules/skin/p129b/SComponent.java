@@ -36,8 +36,8 @@ public abstract class SComponent<T extends View> extends SBase {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SBase
     /* renamed from: a */
-    public /* bridge */ /* synthetic */ String mo3794a() {
-        return super.mo3794a();
+    public /* bridge */ /* synthetic */ String getId() {
+        return super.getId();
     }
 
     public SComponent(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
@@ -127,7 +127,7 @@ public abstract class SComponent<T extends View> extends SBase {
     public void mo3775a(Context context, T t, SkinCache skinCache) {
         t.setEnabled(this.f6445h);
         t.setVisibility(this.f6444g);
-        t.setTag(this.f6430a);
+        t.setTag(this.id);
         t.setTag(R.id.tag_event_on_click, this.f6443f);
         t.setBackgroundDrawable(m3810d(context, skinCache));
     }

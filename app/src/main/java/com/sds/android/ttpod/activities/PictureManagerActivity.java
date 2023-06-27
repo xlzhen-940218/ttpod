@@ -80,7 +80,7 @@ public class PictureManagerActivity extends BaseActivity implements View.OnClick
         if (m3135a != null && !StringUtils.isEmpty(m3135a.getArtist())) {
             artist = m3135a.getArtist();
         }
-        String m8397o = FileUtils.m8397o(artist);
+        String m8397o = FileUtils.removeWrongCharacter(artist);
         this.mArtistEditText.setText(m8397o);
         this.mArtistEditText.setHint("请输入歌手名");
         this.mAdapter.m7694a(m3225N, m8397o);

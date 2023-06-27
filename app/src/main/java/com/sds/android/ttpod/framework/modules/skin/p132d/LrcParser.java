@@ -104,7 +104,7 @@ public class LrcParser extends LyricParser {
     /* renamed from: a */
     protected LrcSentence mo3623a(long j, String str) {
         LrcSentence lrcSentence = new LrcSentence();
-        lrcSentence.m3679a(j);
+        lrcSentence.setLrcTime(j);
         lrcSentence.m3677a(str);
         return lrcSentence;
     }
@@ -126,7 +126,7 @@ public class LrcParser extends LyricParser {
                 mo3622a = mo3622a(lrcSentence, lyric.mo3669f());
             }
             lrcSentence.mo3614b(mo3622a > 0 ? (int) mo3622a : 1);
-            lrcSentence.mo3639a(mo3668g);
+            lrcSentence.getLyricInfo(mo3668g);
         }
     }
 

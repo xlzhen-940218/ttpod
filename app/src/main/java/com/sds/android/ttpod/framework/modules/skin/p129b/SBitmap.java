@@ -30,8 +30,8 @@ public class SBitmap extends SBase {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SBase
     /* renamed from: a */
-    public /* bridge */ /* synthetic */ String mo3794a() {
-        return super.mo3794a();
+    public /* bridge */ /* synthetic */ String getId() {
+        return super.getId();
     }
 
     SBitmap() {

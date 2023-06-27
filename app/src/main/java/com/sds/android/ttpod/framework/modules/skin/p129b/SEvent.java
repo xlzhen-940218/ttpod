@@ -14,14 +14,14 @@ public final class SEvent extends SBase implements Container<SMotion> {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SBase
     /* renamed from: a */
-    public /* bridge */ /* synthetic */ String mo3794a() {
-        return super.mo3794a();
+    public /* bridge */ /* synthetic */ String getId() {
+        return super.getId();
     }
 
     public SEvent(KXmlParser kXmlParser) throws Exception {
         super(kXmlParser);
-        if (this.f6430a != null) {
-            this.f6449c = this.f6430a.split("\\|");
+        if (this.id != null) {
+            this.f6449c = this.id.split("\\|");
         }
     }
 

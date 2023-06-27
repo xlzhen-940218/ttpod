@@ -248,7 +248,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
     /* renamed from: a */
     private void m3521a(OnlineSkinItem onlineSkinItem) {
         Bitmap decodeFile;
-        String str = TTPodConfig.m5298j() + File.separator + FileUtils.getFilename(onlineSkinItem.getPictureUrl());
+        String str = TTPodConfig.getCacheTmpPath() + File.separator + FileUtils.getFilename(onlineSkinItem.getPictureUrl());
         if (m3519a(onlineSkinItem.getPictureUrl(), str) && (decodeFile = BitmapFactory.decodeFile(str)) != null) {
             ImageCacheUtils.m4747a(this.f6696e.getPath(), f6693a, f6694c, decodeFile);
         }

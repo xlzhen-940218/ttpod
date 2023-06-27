@@ -521,7 +521,7 @@ public class Preferences {
 
     /* renamed from: N */
     public static String m3054N() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.AUDIO_DOWNLOAD_FOLDER_PATH.name(), TTPodConfig.m5291q());
+        return AccessHelper.m3092a(preferencesContent, PreferencesID.AUDIO_DOWNLOAD_FOLDER_PATH.name(), TTPodConfig.getSongPath());
     }
 
     /* renamed from: b */
@@ -530,7 +530,7 @@ public class Preferences {
     }
 
     /* renamed from: O */
-    public static AutoDownloadNetworkType m3052O() {
+    public static AutoDownloadNetworkType getDownloadLyricNetWorkType() {
         return AutoDownloadNetworkType.values()[AccessHelper.m3098a(preferencesContent, PreferencesID.AUTO_DOWNLOAD_LYRIC_NETWORK.name(), AutoDownloadNetworkType.ALL.ordinal())];
     }
 
@@ -1243,8 +1243,8 @@ public class Preferences {
     }
 
     /* renamed from: aX */
-    public static String m2983aX() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.CACHED_MEDIA_FOLDER_PATH.name(), TTPodConfig.m5301g());
+    public static String getCacheMediaFolderPath() {
+        return AccessHelper.m3092a(preferencesContent, PreferencesID.CACHED_MEDIA_FOLDER_PATH.name(), TTPodConfig.getCacheMediaPath());
     }
 
     /* renamed from: s */
@@ -1253,7 +1253,7 @@ public class Preferences {
     }
 
     /* renamed from: aY */
-    public static int m2982aY() {
+    public static int getAudioFadeSeekLength() {
         return AccessHelper.m3098a(preferencesContent, PreferencesID.AUDIO_FADE_SEEK_LENGTH.name(), 500);
     }
 
@@ -1288,17 +1288,17 @@ public class Preferences {
     }
 
     /* renamed from: t */
-    public static void m2828t(String str) {
+    public static void setOnlineMediaListGroupName(String str) {
         AccessHelper.m3086b(preferencesContent, PreferencesID.ONLINE_MEDIA_LIST_GROUP_NAME.name(), str);
     }
 
     /* renamed from: bc */
-    public static String m2926bc() {
+    public static String getOnlineMediaListGroupName() {
         return AccessHelper.m3092a(preferencesContent, PreferencesID.ONLINE_MEDIA_LIST_GROUP_NAME.name(), "");
     }
 
     /* renamed from: bd */
-    public static int m2925bd() {
+    public static int getAppRuningState() {
         return AccessHelper.m3098a(preferencesContent, PreferencesID.APP_RUNNING_STATE.name(), 0);
     }
 

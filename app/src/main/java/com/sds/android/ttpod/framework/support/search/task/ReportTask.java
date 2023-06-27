@@ -103,7 +103,7 @@ public class ReportTask implements Runnable {
         arrayList.add(new BasicNameValuePair("ti", ""));
         arrayList.add(new BasicNameValuePair("ar", ""));
         m2119a(arrayList);
-        HashMap<String, Object> m8488e = EnvironmentUtils.C0603b.m8488e();
+        HashMap<String, Object> m8488e = EnvironmentUtils.UUIDConfig.m8488e();
         for (String str : m8488e.keySet()) {
             arrayList.add(new BasicNameValuePair(str, m8488e.get(str).toString()));
         }
@@ -117,7 +117,7 @@ public class ReportTask implements Runnable {
         arrayList.add(new BasicNameValuePair("level", String.valueOf(this.f7312b)));
         arrayList.add(new BasicNameValuePair("ar", ""));
         m2119a(arrayList);
-        HashMap<String, Object> m8488e = EnvironmentUtils.C0603b.m8488e();
+        HashMap<String, Object> m8488e = EnvironmentUtils.UUIDConfig.m8488e();
         for (String str : m8488e.keySet()) {
             arrayList.add(new BasicNameValuePair(str, m8488e.get(str).toString()));
         }

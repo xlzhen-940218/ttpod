@@ -36,7 +36,7 @@ public final class ImageCacheUtils {
 
     /* renamed from: a */
     public static void m4757a() {
-        f5631a = ImageCache.m8814a(0.05f, TTPodConfig.m5300h());
+        f5631a = ImageCache.m8814a(0.05f, TTPodConfig.getCacheImagePath());
         f5632b = new C1780b();
     }
 

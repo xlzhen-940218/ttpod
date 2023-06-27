@@ -39,7 +39,7 @@ public class TTTextUtils {
     }
 
     public static boolean isValidateMediaString(CharSequence charSequence) {
-        return (TextUtils.isEmpty(charSequence) || TextUtils.equals("<unknown>", charSequence) || TextUtils.equals("unknown", charSequence)) ? false : true;
+        return !TextUtils.isEmpty(charSequence) && !TextUtils.equals("<unknown>", charSequence) && !TextUtils.equals("unknown", charSequence);
     }
 
     public static String decryptLyricKey(String str, String str2, int i) {

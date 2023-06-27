@@ -64,7 +64,7 @@ public class OnlineMediaItemUtils {
     public static String m4688a(OnlineMediaItem onlineMediaItem, OnlineMediaItem.Url url) {
         DebugUtils.m8426a(onlineMediaItem, "onlineMediaItem");
         DebugUtils.m8426a(url, "url");
-        return Preferences.m3054N() + File.separator + FileUtils.m8397o(onlineMediaItem.getArtist() + " - " + onlineMediaItem.getTitle() + "." + url.getFormat());
+        return Preferences.m3054N() + File.separator + FileUtils.removeWrongCharacter(onlineMediaItem.getArtist() + " - " + onlineMediaItem.getTitle() + "." + url.getFormat());
     }
 
     /* renamed from: a */

@@ -8,10 +8,10 @@ import java.io.Serializable;
 abstract class SBase implements Serializable {
 
     /* renamed from: a */
-    protected String f6430a;
+    protected String id;
 
     /* renamed from: b */
-    protected String f6431b;
+    protected String name;
 
     /* JADX INFO: Access modifiers changed from: package-private */
     public SBase() {
@@ -19,12 +19,12 @@ abstract class SBase implements Serializable {
 
     /* JADX INFO: Access modifiers changed from: package-private */
     public SBase(KXmlParser kXmlParser) {
-        this.f6430a = kXmlParser.getAttributeValue(null, "ID");
-        this.f6431b = kXmlParser.getAttributeValue(null, "Name");
+        this.id = kXmlParser.getAttributeValue(null, "ID");
+        this.name = kXmlParser.getAttributeValue(null, "Name");
     }
 
     /* renamed from: a */
-    public String mo3794a() {
-        return this.f6430a;
+    public String getId() {
+        return this.id;
     }
 }

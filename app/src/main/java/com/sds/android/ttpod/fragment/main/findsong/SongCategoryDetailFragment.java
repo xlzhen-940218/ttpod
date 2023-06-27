@@ -102,7 +102,7 @@ public class SongCategoryDetailFragment extends SceneRecommendFragment {
             }
             this.mOnlineMediaListFragment.onThemeChanged();
             hideListFootLoadView();
-            updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+            updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
             showSecondLoadView();
         }
     }
@@ -140,7 +140,7 @@ public class SongCategoryDetailFragment extends SceneRecommendFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
     public void doStatisticMediaClick(MediaItem mediaItem) {
         super.doStatisticMediaClick(mediaItem);
-        Preferences.m2828t(OnlinePlayingGroupUtils.m6913a(this.mSubCategoryData));
+        Preferences.setOnlineMediaListGroupName(OnlinePlayingGroupUtils.m6913a(this.mSubCategoryData));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment

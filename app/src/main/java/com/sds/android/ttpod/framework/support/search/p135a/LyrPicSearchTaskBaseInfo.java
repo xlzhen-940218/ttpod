@@ -11,10 +11,10 @@ import java.util.List;
 public abstract class LyrPicSearchTaskBaseInfo {
 
     /* renamed from: c */
-    private String f7274c;
+    private String title;
 
     /* renamed from: d */
-    private String f7275d;
+    private String singer;
 
     /* renamed from: e */
     private boolean f7276e;
@@ -32,7 +32,7 @@ public abstract class LyrPicSearchTaskBaseInfo {
     private Object f7273b = null;
 
     /* renamed from: f */
-    private boolean f7277f = false;
+    private boolean auto = false;
 
     /* renamed from: g */
     private String f7278g = "";
@@ -41,16 +41,16 @@ public abstract class LyrPicSearchTaskBaseInfo {
     private String f7279h = "";
 
     /* renamed from: i */
-    private int f7280i = EnvironmentUtils.DeviceConfig.m8476d();
+    private int f7280i = EnvironmentUtils.DeviceConfig.hasNetwork();
 
     /* renamed from: k */
-    private MediaItem f7282k = null;
+    private MediaItem mediaItem = null;
 
     /* renamed from: j */
-    private String[] f7281j = null;
+    private String[] songInfo = null;
 
     /* renamed from: d */
-    public abstract SearchTaskType mo2186d();
+    public abstract SearchTaskType getSearchTaskType();
 
     /* renamed from: a */
     public boolean m2211a() {
@@ -83,13 +83,13 @@ public abstract class LyrPicSearchTaskBaseInfo {
     }
 
     /* renamed from: e */
-    public boolean m2198e() {
-        return this.f7277f;
+    public boolean isAuto() {
+        return this.auto;
     }
 
     /* renamed from: d */
-    public void m2199d(boolean z) {
-        this.f7277f = z;
+    public void setAuto(boolean z) {
+        this.auto = z;
     }
 
     /* renamed from: f */
@@ -113,41 +113,41 @@ public abstract class LyrPicSearchTaskBaseInfo {
     }
 
     /* renamed from: h */
-    public String[] m2195h() {
-        if (this.f7281j == null) {
-            this.f7281j = m2191l();
+    public String[] getSongInfo() {
+        if (this.songInfo == null) {
+            this.songInfo = buildSongInfo();
         }
-        return this.f7281j;
+        return this.songInfo;
     }
 
     /* renamed from: i */
-    public MediaItem m2194i() {
-        return this.f7282k;
+    public MediaItem getMediaItem() {
+        return this.mediaItem;
     }
 
     /* renamed from: a */
-    public void m2210a(MediaItem mediaItem) {
-        this.f7282k = mediaItem;
+    public void setMediaItem(MediaItem mediaItem) {
+        this.mediaItem = mediaItem;
     }
 
     /* renamed from: j */
-    public String m2193j() {
-        return this.f7274c;
+    public String getTitle() {
+        return this.title;
     }
 
     /* renamed from: c */
-    public void m2202c(String str) {
-        this.f7274c = str;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /* renamed from: k */
-    public String m2192k() {
-        return this.f7275d;
+    public String getSinger() {
+        return this.singer;
     }
 
     /* renamed from: d */
-    public void m2200d(String str) {
-        this.f7275d = str;
+    public void setSinger(String singer) {
+        this.singer = singer;
     }
 
     /* renamed from: a */
@@ -156,27 +156,27 @@ public abstract class LyrPicSearchTaskBaseInfo {
     }
 
     /* renamed from: l */
-    private String[] m2191l() {
+    private String[] buildSongInfo() {
         String localDataSource;
-        String str;
-        String str2;
+        String dirPath;
+        String songSuffix;
         String str3;
         String str4 = null;
-        if (this.f7282k == null || this.f7282k.getLocalDataSource() == null) {
+        if (this.mediaItem == null || this.mediaItem.getLocalDataSource() == null) {
             return null;
         }
-        int lastIndexOf = this.f7282k.getLocalDataSource().lastIndexOf(124);
+        int lastIndexOf = this.mediaItem.getLocalDataSource().lastIndexOf(124);
         if (lastIndexOf > 0) {
             int i = lastIndexOf + 1;
-            localDataSource = this.f7282k.getLocalDataSource().substring(0, lastIndexOf);
-            str4 = this.f7282k.getLocalDataSource().substring(i);
+            localDataSource = this.mediaItem.getLocalDataSource().substring(0, lastIndexOf);
+            str4 = this.mediaItem.getLocalDataSource().substring(i);
         } else {
-            localDataSource = this.f7282k.getLocalDataSource();
+            localDataSource = this.mediaItem.getLocalDataSource();
         }
-        String str5 = "";
+        String songSingerName = "";
         if (localDataSource == null) {
-            str = localDataSource;
-            str2 = "";
+            dirPath = localDataSource;
+            songSuffix = "";
         } else {
             int lastIndexOf2 = localDataSource.lastIndexOf(File.separatorChar) + 1;
             if (lastIndexOf2 > 0) {
@@ -188,16 +188,16 @@ public abstract class LyrPicSearchTaskBaseInfo {
             }
             int lastIndexOf3 = localDataSource.lastIndexOf(46);
             if (lastIndexOf3 <= 0) {
-                str = str3;
-                str5 = localDataSource;
-                str2 = "";
+                dirPath = str3;
+                songSingerName = localDataSource;
+                songSuffix = "";
             } else {
                 String substring2 = localDataSource.substring(lastIndexOf3 + 1);
-                str = str3;
-                str5 = localDataSource.substring(0, lastIndexOf3);
-                str2 = substring2;
+                dirPath = str3;
+                songSingerName = localDataSource.substring(0, lastIndexOf3);
+                songSuffix = substring2;
             }
         }
-        return new String[]{str, str5, str2, str4};
+        return new String[]{dirPath, songSingerName, songSuffix, str4};
     }
 }

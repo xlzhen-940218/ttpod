@@ -38,7 +38,7 @@ public class SkinItem implements Serializable {
     public SkinItem(OnlineSkinItem onlineSkinItem) {
         this.f6658a = 4;
         this.title = onlineSkinItem.getName();
-        this.path = TTPodConfig.m5294n() + File.separator + onlineSkinItem.getName() + ".tsk";
+        this.path = TTPodConfig.getSkinPath() + File.separator + onlineSkinItem.getName() + ".tsk";
         this.brand = onlineSkinItem.getAuthor();
         this.version = onlineSkinItem.getVersionNumber();
         this.onlineSkinItem = onlineSkinItem;
@@ -48,7 +48,7 @@ public class SkinItem implements Serializable {
     public SkinItem(SkinItem skinItem) {
         this.f6658a = 0;
         this.title = skinItem.m3565g();
-        this.path = TTPodConfig.m5294n() + File.separator + skinItem.m3565g() + ".tsk";
+        this.path = TTPodConfig.getSkinPath() + File.separator + skinItem.m3565g() + ".tsk";
         this.brand = skinItem.m3569c();
         this.version = skinItem.m3568d();
         this.f6664g = skinItem.m3567e();

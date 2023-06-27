@@ -59,7 +59,7 @@ public class ThemeActivity extends BaseActivity {
         map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.m8375a(cls, "updateTaskState", DownloadTaskInfo.class));
         map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_ERROR, ReflectUtils.m8375a(cls, "updateAddDownloadTaskError", DownloadTaskInfo.class));
         map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_DATABASE, ReflectUtils.m8375a(cls, "updateAddDownloadTaskDatabase", DownloadTaskInfo.class));
-        map.put(CommandID.DOWNLOAD_TASK_FAILED, ReflectUtils.m8375a(cls, "onDownloadTaskFailed", DownloadTaskInfo.class, Task.EnumC0579b.class));
+        map.put(CommandID.DOWNLOAD_TASK_FAILED, ReflectUtils.m8375a(cls, "onDownloadTaskFailed", DownloadTaskInfo.class, Task.ErrorCodeType.class));
         map.put(CommandID.UPDATE_COMMON_UPGRADE_INFO, ReflectUtils.m8375a(cls, "updateCommonUpgradeInfo", CommonResult.class));
         map.put(CommandID.UPDATE_SMART_UPDATE_INFO, ReflectUtils.m8375a(cls, "updateSmartUpgradeInfo", VersionUpdateData.class));
         map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_LIST_ERROR, ReflectUtils.m8375a(cls, "updateAddDownloadTaskListError", List.class));
@@ -111,7 +111,7 @@ public class ThemeActivity extends BaseActivity {
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(MessageDialog messageDialog2) {
-                    FileUtils.m8404h(downloadTaskInfo.getSavePath());
+                    FileUtils.exists(downloadTaskInfo.getSavePath());
                     CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
                 }
             }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
@@ -140,7 +140,7 @@ public class ThemeActivity extends BaseActivity {
         }
     }
 
-    public void onDownloadTaskFailed(DownloadTaskInfo downloadTaskInfo, Task.EnumC0579b enumC0579b) {
+    public void onDownloadTaskFailed(DownloadTaskInfo downloadTaskInfo, Task.ErrorCodeType enumC0579b) {
         int i;
         switch (enumC0579b) {
             case FILE_CREATION:

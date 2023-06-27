@@ -237,6 +237,6 @@ public class BaseApplication extends MultiDexApplication {
     /* renamed from: p */
     private void m4622p() {
         TTPodUser m2954aq = Preferences.m2954aq();
-        EnvironmentUtils.C0603b.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
+        EnvironmentUtils.UUIDConfig.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
     }
 }

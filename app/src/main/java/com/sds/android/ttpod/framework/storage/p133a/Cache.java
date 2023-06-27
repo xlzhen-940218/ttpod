@@ -53,7 +53,7 @@ public final class Cache {
 
     /* renamed from: T */
     private void init() {
-        this.objectCache = ObjectCache.getInstance(0.05f, TTPodConfig.m5299i());
+        this.objectCache = ObjectCache.getInstance(0.05f, TTPodConfig.getCacheObjectPath());
     }
 
     /* renamed from: b */

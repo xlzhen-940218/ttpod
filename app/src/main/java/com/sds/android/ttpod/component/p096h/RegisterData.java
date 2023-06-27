@@ -74,7 +74,7 @@ public final class RegisterData {
     /* renamed from: a */
     public void m6397a() {
         FileOutputStream fileOutputStream;
-        FileUtils.m8406f(FileUtils.m8400l(f4307e));
+        FileUtils.createFolder(FileUtils.m8400l(f4307e));
         XmlSerializer newSerializer = Xml.newSerializer();
         try {
             fileOutputStream = new FileOutputStream(new File(f4307e));

@@ -8,7 +8,6 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.base.SlidingClosableActivity;
 import com.sds.android.ttpod.activities.mediascan.setting.MediaScanSettingActivity;
 import com.sds.android.ttpod.framework.TTPodConfig;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.utils.EntryUtils;
 
@@ -90,7 +89,7 @@ public class MediaScanActivity extends SlidingClosableActivity {
                     return;
                 case 2:
                     if (intent.getBooleanExtra(MediaScanWifiActivity.KEY_WIFI_UPLOAD, false)) {
-                        String[] strArr = {TTPodConfig.m5296l()};
+                        String[] strArr = {TTPodConfig.getMyMusicsPath()};
                         Intent intent3 = new Intent(this, MediaScanAnimationActivity.class);
                         intent3.putExtra(MediaScanAnimationActivity.KEY_SCAN_FILES, strArr);
                         startActivity(intent3);

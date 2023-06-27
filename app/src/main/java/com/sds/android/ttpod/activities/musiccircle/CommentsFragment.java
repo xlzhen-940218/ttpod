@@ -15,7 +15,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.sds.android.cloudapi.ttpod.data.Comment;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.cloudapi.ttpod.p055a.PostAPI;
+import com.sds.android.cloudapi.ttpod.api.PostAPI;
 import com.sds.android.cloudapi.ttpod.result.CommentListResult;
 import com.sds.android.cloudapi.ttpod.result.CommentResult;
 import com.sds.android.sdk.lib.request.BaseResult;

@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 import com.sds.android.cloudapi.ttpod.data.Post;
-import com.sds.android.cloudapi.ttpod.p055a.OnlineMediaItemAPI;
+import com.sds.android.cloudapi.ttpod.api.OnlineMediaItemAPI;
 import com.sds.android.cloudapi.ttpod.result.OnlineMediaItemsResult;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.ttpod.R;

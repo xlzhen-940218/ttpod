@@ -137,7 +137,7 @@ public class FindSongBaseViewFragment extends BaseFragment {
     }
 
     private void preLoadSongListDataInWIFI() {
-        if (EnvironmentUtils.DeviceConfig.m8476d() == 2) {
+        if (EnvironmentUtils.DeviceConfig.hasNetwork() == 2) {
             CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, getNeedPreLoadSongListIds(), getRequestIdForCommandParallel()));
         }
     }

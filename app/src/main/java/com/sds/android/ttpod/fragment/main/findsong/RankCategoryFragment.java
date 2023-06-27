@@ -98,8 +98,8 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setPage(SPage.PAGE_ONLINE_RANK);
-        this.mActiveChannelTitle = Preferences.m2926bc();
-        if (!StringUtils.isEmpty(this.mActiveChannelTitle) && OnlinePlayingGroupUtils.m6912a(this.mActiveChannelTitle) && SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+        this.mActiveChannelTitle = Preferences.getOnlineMediaListGroupName();
+        if (!StringUtils.isEmpty(this.mActiveChannelTitle) && OnlinePlayingGroupUtils.m6912a(this.mActiveChannelTitle) && SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
             this.mCurrentChannelState = 2;
         }
     }
@@ -224,7 +224,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
                 CommandCenter.getInstance().m4596b(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             case 3:
-                CommandCenter.getInstance().execute(new Command(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
+                CommandCenter.getInstance().execute(new Command(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
                 return;
             default:
                 return;
@@ -251,11 +251,11 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
     }
 
     public void playMediaChanged() {
-        if (!StringUtils.equals(Preferences.m2926bc(), this.mActiveChannelTitle)) {
+        if (!StringUtils.equals(Preferences.getOnlineMediaListGroupName(), this.mActiveChannelTitle)) {
             this.mActiveChannelTitle = "";
         }
         if (isAdded()) {
-            updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+            updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
         }
     }
 
@@ -264,7 +264,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
             switch (playStatus) {
                 case STATUS_PLAYING:
                     this.mCurrentChannelState = 2;
-                    this.mActiveChannelTitle = Preferences.m2926bc();
+                    this.mActiveChannelTitle = Preferences.getOnlineMediaListGroupName();
                     break;
                 case STATUS_PAUSED:
                     this.mCurrentChannelState = 3;

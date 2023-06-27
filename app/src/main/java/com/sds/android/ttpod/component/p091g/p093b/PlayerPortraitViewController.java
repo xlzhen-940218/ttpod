@@ -119,7 +119,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* renamed from: M */
     public LyricView m6464M() {
         LyricView F = this.f4294aa != null ? this.f4294aa.m6547F() : null;
-        return F != null ? F : this.f4198J;
+        return F != null ? F : this.lyricView;
     }
 
     /* renamed from: k */
@@ -145,7 +145,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
             if (c != null) {
                 ViewEventController[] viewEventControllerArr = new ViewEventController[4];
                 for (SPanel sPanel : c) {
-                    String mo3794a = sPanel.mo3794a();
+                    String mo3794a = sPanel.getId();
                     if (ThemeElement.PANEL_COMMON.equals(mo3794a)) {
                         mainPanelViewController = this;
                     } else if ("Main".equals(mo3794a)) {

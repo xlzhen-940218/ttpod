@@ -18,7 +18,7 @@ public class AudioEffectUtils {
         String title = mediaItem.getTitle();
         String artist = mediaItem.getArtist();
         Long songID = mediaItem.getSongID();
-        StringBuilder sb = new StringBuilder(TTPodConfig.m5303e());
+        StringBuilder sb = new StringBuilder(TTPodConfig.getEffectPath());
         sb.append(File.separator);
         if (songID != null) {
             sb.append(songID).append(".");
@@ -45,7 +45,7 @@ public class AudioEffectUtils {
 
     /* renamed from: a */
     public static String m4340a(Long l, String str, String str2) {
-        StringBuilder sb = new StringBuilder(TTPodConfig.m5302f());
+        StringBuilder sb = new StringBuilder(TTPodConfig.getCacheEffectPath());
         sb.append(File.separator);
         if (l != null) {
             sb.append(l).append(".");
@@ -56,7 +56,7 @@ public class AudioEffectUtils {
 
     /* renamed from: b */
     public static String m4338b(Long l, String str, String str2) {
-        StringBuilder sb = new StringBuilder(TTPodConfig.m5303e());
+        StringBuilder sb = new StringBuilder(TTPodConfig.getEffectPath());
         sb.append(File.separator).append(l).append(".").append(str).append(".").append(str2).append(".ttce");
         return sb.toString();
     }

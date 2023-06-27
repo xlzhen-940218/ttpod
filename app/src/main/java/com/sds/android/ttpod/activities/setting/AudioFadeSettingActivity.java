@@ -46,7 +46,7 @@ public class AudioFadeSettingActivity extends SlidingClosableActivity {
         super.onCreate(bundle);
         setContentView(R.layout.activity_setting_audio_fade);
         SettingUtils.m7778a(this);
-        this.mFadeSettingCard = new SettingCard(this, new SettingItem[]{new SettingItem(0, 0, (int) R.string.setting_audio_fade_while_changing_media, (Preferences.m2985aV() / ONE_MILLIONSECOND) + getString(R.string.setting_audio_fade_length_unit_second), (int) R.drawable.img_setting_right_arrow), new SettingItem(2, 0, (int) R.string.setting_audio_fade_play_pause, (Preferences.m2984aW() / ONE_MILLIONSECOND) + getString(R.string.setting_audio_fade_length_unit_second), (int) R.drawable.img_setting_right_arrow), new SettingItem(3, 0, (int) R.string.setting_audio_fade_seek, (Preferences.m2982aY() / ONE_MILLIONSECOND) + getString(R.string.setting_audio_fade_length_unit_second), (int) R.drawable.img_setting_right_arrow)}, R.string.setting_audio_fade_in_out_time, this.mOnItemClickListener);
+        this.mFadeSettingCard = new SettingCard(this, new SettingItem[]{new SettingItem(0, 0, (int) R.string.setting_audio_fade_while_changing_media, (Preferences.m2985aV() / ONE_MILLIONSECOND) + getString(R.string.setting_audio_fade_length_unit_second), (int) R.drawable.img_setting_right_arrow), new SettingItem(2, 0, (int) R.string.setting_audio_fade_play_pause, (Preferences.m2984aW() / ONE_MILLIONSECOND) + getString(R.string.setting_audio_fade_length_unit_second), (int) R.drawable.img_setting_right_arrow), new SettingItem(3, 0, (int) R.string.setting_audio_fade_seek, (Preferences.getAudioFadeSeekLength() / ONE_MILLIONSECOND) + getString(R.string.setting_audio_fade_length_unit_second), (int) R.drawable.img_setting_right_arrow)}, R.string.setting_audio_fade_in_out_time, this.mOnItemClickListener);
         ((ViewGroup) findViewById(R.id.setting_card_container_audio_fade)).addView(this.mFadeSettingCard.m6992e());
     }
 
@@ -65,7 +65,7 @@ public class AudioFadeSettingActivity extends SlidingClosableActivity {
                 m2982aY = Preferences.m2984aW();
                 break;
             case 3:
-                m2982aY = Preferences.m2982aY();
+                m2982aY = Preferences.getAudioFadeSeekLength();
                 break;
         }
         SeekBarDialog seekBarDialog = new SeekBarDialog(this, 0, m2982aY, MAXPROGRESS, 100, getString(R.string.setting_audio_fade_length_unit_second), new BaseDialog.InterfaceC1064a<SeekBarDialog>() { // from class: com.sds.android.ttpod.activities.setting.AudioFadeSettingActivity.2

@@ -1,6 +1,6 @@
 package com.sds.android.ttpod.share.p136a;
 
-import com.sds.android.cloudapi.ttpod.p055a.PostAPI;
+import com.sds.android.cloudapi.ttpod.api.PostAPI;
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.ttpod.share.ShareInfo;
 

@@ -19,7 +19,7 @@ public class OnlineCategoryListDownloader extends OnlineListDownloader {
     public void run() {
         String str = this.f6539a + ".tmp";
         if (m3719a(this.f6540b, str) && !TextUtils.isEmpty(this.f6539a)) {
-            FileUtils.m8404h(this.f6539a);
+            FileUtils.exists(this.f6539a);
         }
         FileUtils.m8410c(str, this.f6539a);
         CommandCenter.getInstance().m4595b(new Command(this.f6541c, new Object[0]), ModuleID.SKIN);

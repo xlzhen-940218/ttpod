@@ -18,10 +18,10 @@ public class DownloadStateReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (Action.DOWNLOAD_TASK_STATE_CHANGED.equals(intent.getAction())) {
             DownloadTaskInfo downloadTaskInfo = (DownloadTaskInfo) intent.getParcelableExtra("download_task");
-            Task.EnumC0579b enumC0579b = null;
+            Task.ErrorCodeType enumC0579b = null;
             int intExtra = intent.getIntExtra("download_error", -1);
             if (intExtra != -1) {
-                enumC0579b = Task.EnumC0579b.values()[intExtra];
+                enumC0579b = Task.ErrorCodeType.values()[intExtra];
             }
             CommandCenter.getInstance().m4595b(new Command(CommandID.DOWNLOAD_STATE_CHANGED, downloadTaskInfo, enumC0579b), ModuleID.MONITOR);
         }

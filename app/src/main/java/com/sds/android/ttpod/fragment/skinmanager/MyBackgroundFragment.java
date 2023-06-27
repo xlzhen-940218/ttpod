@@ -45,7 +45,7 @@ import java.util.Queue;
 /* loaded from: classes.dex */
 public class MyBackgroundFragment extends BackgroundBaseFragment implements EditModeToggle, IThemeEditable, IThemeEditable.InterfaceC1333a {
     private static final String KEY_REQUEST_CODE = "request_code";
-    public static final String LOCAL_BACKGROUND_IMAGE_PATH_FORMAT = TTPodConfig.m5293o() + File.separator + "users-%d.jpg";
+    public static final String LOCAL_BACKGROUND_IMAGE_PATH_FORMAT = TTPodConfig.getBkgsPath() + File.separator + "users-%d.jpg";
     private static final int REQUEST_IMAGE_BACKGROUND = 1;
     private Activity mActivity;
     private int mCachedRequestCode;

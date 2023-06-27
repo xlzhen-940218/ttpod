@@ -181,7 +181,7 @@ public final class MiniLyricManager {
 
     /* renamed from: b */
     public void m2337b(boolean z) {
-        f7187a.m2311a(z, true);
+        f7187a.lockStateNotification(z, true);
         if (!f7187a.m2304c()) {
             if (z) {
                 m2340a(false);

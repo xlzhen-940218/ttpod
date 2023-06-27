@@ -52,23 +52,23 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
 
     @Override // com.sds.android.ttpod.framework.support.search.task.LyrPicBaseSearchTask
     /* renamed from: a */
-    protected void mo2132a(List<ResultData> list) {
+    protected void startDownloadLyric(List<ResultData> list) {
         if (list == null || list.isEmpty()) {
-            m2164a(SearchManager.f7252b);
+            m2164a(SearchManager.SEARCH_ONLINE_FAILURE);
             return;
         }
-        ResultData.Item[] m2179c = list.get(0).m2179c();
+        ResultData.Item[] m2179c = list.get(0).getLyricArray();
         int length = (!PlatformUtils.m4656a() || m2179c == null) ? 1 : m2179c.length;
         if (m2179c == null) {
             length = 0;
         }
-        int m8476d = EnvironmentUtils.DeviceConfig.m8476d();
+        int m8476d = EnvironmentUtils.DeviceConfig.hasNetwork();
         int m3005aB = Preferences.m3005aB();
         int m3004aC = Preferences.m3004aC();
         if (m8476d != 2) {
             m3005aB = m3004aC;
         }
-        ArrayList<Integer> m2128b = m2128b(TTPodConfig.m5289s() + File.separator + FileUtils.m8397o(mo2131b().m2194i().getArtist()) + File.separator);
+        ArrayList<Integer> m2128b = m2128b(TTPodConfig.getArtistPath() + File.separator + FileUtils.removeWrongCharacter(getLyricSearchTaskInfo().getMediaItem().getArtist()) + File.separator);
         int i = 0;
         int i2 = 0;
         boolean z = false;
@@ -76,15 +76,15 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             ResultData.Item item = m2179c[i2];
             i2++;
             i++;
-            if (m2128b == null || !m2128b.contains(Integer.valueOf(item.m2176a()))) {
-                if (!FileUtils.m8414b(item.m2172d())) {
+            if (m2128b == null || !m2128b.contains(Integer.valueOf(item.getId()))) {
+                if (!FileUtils.m8414b(item.getLocalLyricPath())) {
                     z = i2 >= length || i >= m3005aB;
-                    m2163a(item, z);
+                    downloadLyric(item, z);
                 }
             }
         }
         if (!z) {
-            m2164a(SearchManager.f7251a);
+            m2164a(SearchManager.SEARCH_ONLINE_FINISHED);
         }
     }
 
@@ -112,8 +112,8 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         ByteArrayInputStream byteArrayInputStream = null;
         KXmlParser kXmlParser = null;
         ArrayList<ResultData> arrayList2 = null;
-        MediaItem i3 = mo2131b().m2194i();
-        String mo2137a = mo2137a(i3);
+        MediaItem i3 = getLyricSearchTaskInfo().getMediaItem();
+        String mo2137a = getMediaItem(i3);
         if (mo2137a != null) {
             String m8403i = FileUtils.m8403i(mo2137a);
             Object m8346a = StringUtils.isEmpty(m8403i);
@@ -139,7 +139,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                     }
                     try {
                         kXmlParser.setInput(byteArrayInputStream, "UTF-8");
-                        arrayList2 = m2139a(kXmlParser, i3, mo2131b().m2185l(), this.f7309b);
+                        arrayList2 = m2139a(kXmlParser, i3, getLyricSearchTaskInfo().m2185l(), this.f7309b);
                         m8346a = byteArrayInputStream;
                         if (byteArrayInputStream != null) {
                             try {
@@ -164,23 +164,23 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                             }
                         }
                         if (arrayList2 != null) {
-                            ResultData.Item[] m2179c = arrayList2.get(0).m2179c();
+                            ResultData.Item[] m2179c = arrayList2.get(0).getLyricArray();
                             i = m2179c == null ? m2179c.length : 0;
-                            int m8476d = EnvironmentUtils.DeviceConfig.m8476d();
+                            int m8476d = EnvironmentUtils.DeviceConfig.hasNetwork();
                             if (i != 0) {
                             }
                             return true;
                         }
                         i = 0;
-                        int m8476d2 = EnvironmentUtils.DeviceConfig.m8476d();
+                        int m8476d2 = EnvironmentUtils.DeviceConfig.hasNetwork();
                         if (i != 0) {
                         }
                         return true;
                     }
                     if (arrayList2 != null && !arrayList2.isEmpty()) {
-                        ResultData.Item[] m2179c2 = arrayList2.get(0).m2179c();
+                        ResultData.Item[] m2179c2 = arrayList2.get(0).getLyricArray();
                         i = m2179c2 == null ? m2179c2.length : 0;
-                        int m8476d22 = EnvironmentUtils.DeviceConfig.m8476d();
+                        int m8476d22 = EnvironmentUtils.DeviceConfig.hasNetwork();
                         if (i != 0 || m8476d22 == -1) {
                             return true;
                         }
@@ -188,7 +188,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                         int size = arrayList != null ? arrayList.size() : 0;
                         boolean z = size >= m3005aB || size >= i;
                         if (!z) {
-                            String str = TTPodConfig.m5289s() + File.separator + FileUtils.m8397o(i3.getArtist()) + File.separator;
+                            String str = TTPodConfig.getArtistPath() + File.separator + FileUtils.removeWrongCharacter(i3.getArtist()) + File.separator;
                             ArrayList<Integer> m2128b = m2128b(str);
                             if (m2128b != null) {
                                 Iterator<Integer> it = m2128b.iterator();
@@ -210,7 +210,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             }
         }
         i = 0;
-        int m8476d222 = EnvironmentUtils.DeviceConfig.m8476d();
+        int m8476d222 = EnvironmentUtils.DeviceConfig.hasNetwork();
         if (i != 0) {
         }
         return true;
@@ -313,10 +313,10 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
 
     @Override // com.sds.android.ttpod.framework.support.search.task.LyrPicBaseSearchTask
     /* renamed from: a */
-    protected String mo2137a(MediaItem mediaItem) {
+    protected String getMediaItem(MediaItem mediaItem) {
         String m2124d = m2124d(mediaItem.getID());
         if (StringUtils.isEmpty(m2124d)) {
-            m2124d = FileUtils.m8397o(mediaItem.getArtist());
+            m2124d = FileUtils.removeWrongCharacter(mediaItem.getArtist());
         }
         if (!TTTextUtils.isValidateMediaString(m2124d)) {
             m2124d = null;
@@ -324,16 +324,16 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         if (StringUtils.isEmpty(m2124d)) {
             return null;
         }
-        return TTPodConfig.m5289s() + File.separator + m2124d + File.separator + "result.xml";
+        return TTPodConfig.getArtistPath() + File.separator + m2124d + File.separator + "result.xml";
     }
 
     @Override // com.sds.android.ttpod.framework.support.search.task.LyrPicBaseSearchTask
     /* renamed from: a */
     protected ArrayList<ResultData> mo2140a(KXmlParser kXmlParser) throws Exception {
-        MediaItem i = mo2131b().m2194i();
-        ArrayList<ResultData> m2139a = m2139a(kXmlParser, i, mo2131b().m2185l(), this.f7309b);
+        MediaItem i = getLyricSearchTaskInfo().getMediaItem();
+        ArrayList<ResultData> m2139a = m2139a(kXmlParser, i, getLyricSearchTaskInfo().m2185l(), this.f7309b);
         if (StringUtils.isEmpty(this.f7309b) && m2139a != null && !m2139a.isEmpty() && !TTTextUtils.isValidateMediaString(i.getArtist())) {
-            this.f7309b = m2139a.get(0).m2181b();
+            this.f7309b = m2139a.get(0).getArtist();
             m2127b(i.getID(), this.f7309b);
         }
         return m2139a;
@@ -375,14 +375,14 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             if (str != null) {
                 m8397o = str;
             } else {
-                m8397o = mediaItem != null ? FileUtils.m8397o(mediaItem.getArtist()) : null;
+                m8397o = mediaItem != null ? FileUtils.removeWrongCharacter(mediaItem.getArtist()) : null;
             }
             if (!TTTextUtils.isValidateMediaString(m8397o)) {
                 str2 = null;
                 str3 = null;
                 resultData = null;
             } else {
-                str2 = TTPodConfig.m5289s() + File.separator + FileUtils.m8397o(m8397o) + File.separator;
+                str2 = TTPodConfig.getArtistPath() + File.separator + FileUtils.removeWrongCharacter(m8397o) + File.separator;
                 str3 = m8397o;
                 resultData = null;
             }
@@ -392,13 +392,13 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                     case 2:
                         if ("tt_songinfo".equals(kXmlParser.getName())) {
                             resultData = new ResultData();
-                            resultData.f7288a = kXmlParser.getAttributeValue(null, "title");
-                            resultData.f7289b = FileUtils.m8397o(kXmlParser.getAttributeValue(null, "artist"));
-                            resultData.f7290c = kXmlParser.getAttributeValue(null, "album");
-                            resultData.f7291d = kXmlParser.getAttributeValue(null, "allname");
+                            resultData.title = kXmlParser.getAttributeValue(null, "title");
+                            resultData.artist = FileUtils.removeWrongCharacter(kXmlParser.getAttributeValue(null, "artist"));
+                            resultData.album = kXmlParser.getAttributeValue(null, "album");
+                            resultData.allname = kXmlParser.getAttributeValue(null, "allname");
                             if (str3 == null) {
-                                String str8 = resultData.f7289b;
-                                str4 = TTPodConfig.m5289s() + File.separator + str8 + File.separator;
+                                String str8 = resultData.artist;
+                                str4 = TTPodConfig.getArtistPath() + File.separator + str8 + File.separator;
                                 str5 = str8;
                                 resultData2 = resultData;
                                 break;
@@ -449,8 +449,8 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                             int size = arrayList.size();
                             if (size > 0) {
                                 Collections.sort(arrayList);
-                                resultData.f7292e = new ResultData.Item[size];
-                                arrayList.toArray(resultData.f7292e);
+                                resultData.lyricArray = new ResultData.Item[size];
+                                arrayList.toArray(resultData.lyricArray);
                                 arrayList.clear();
                             }
                             arrayList2.add(resultData);
@@ -501,16 +501,16 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
 
     @Override // com.sds.android.ttpod.framework.support.search.task.LyrPicBaseSearchTask
     /* renamed from: a */
-    protected String mo2142a() {
-        return m2138a(mo2131b());
+    protected String buildUrl() {
+        return m2138a(getLyricSearchTaskInfo());
     }
 
     /* renamed from: a */
     public static String m2138a(PictureSearchTaskInfo pictureSearchTaskInfo) {
         StringBuilder sb = new StringBuilder();
         try {
-            MediaItem i = pictureSearchTaskInfo.m2194i();
-            boolean e = pictureSearchTaskInfo.m2198e();
+            MediaItem i = pictureSearchTaskInfo.getMediaItem();
+            boolean e = pictureSearchTaskInfo.isAuto();
             sb.append("http://picdown.ttpod.cn/picsearch?");
             String artist = i.getArtist();
             if (e && !TextUtils.isEmpty(pictureSearchTaskInfo.m2196g())) {
@@ -521,18 +521,18 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             }
             sb.append("artist=");
             sb.append(URLEncoder.encode(artist, "UTF-8"));
-            pictureSearchTaskInfo.m2200d(artist);
+            pictureSearchTaskInfo.setSinger(artist);
             String title = i.getTitle();
             sb.append("&title=");
             sb.append(URLEncoder.encode(title, "UTF-8"));
-            pictureSearchTaskInfo.m2202c(title);
+            pictureSearchTaskInfo.setTitle(title);
             if (!i.isOnline()) {
                 sb.append("&filename=");
-                sb.append(URLEncoder.encode(pictureSearchTaskInfo.m2195h()[1], "UTF-8"));
+                sb.append(URLEncoder.encode(pictureSearchTaskInfo.getSongInfo()[1], "UTF-8"));
             }
             if (!i.isOnline()) {
                 sb.append("&mediatype=");
-                sb.append(URLEncoder.encode(pictureSearchTaskInfo.m2195h()[2], "UTF-8"));
+                sb.append(URLEncoder.encode(pictureSearchTaskInfo.getSongInfo()[2], "UTF-8"));
             }
             sb.append("&x=");
             sb.append(DisplayUtils.m7225c());
@@ -550,7 +550,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             sb.append("&auto=");
             sb.append(1);
             sb.append("&s=");
-            sb.append(EnvironmentUtils.C0603b.m8494b());
+            sb.append(EnvironmentUtils.UUIDConfig.m8494b());
         } catch (Exception e2) {
             e2.printStackTrace();
         }
@@ -578,15 +578,15 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
     /* renamed from: a */
     protected ArrayList<String> mo2135a(String str, String str2) {
         ArrayList<String> arrayList;
-        MediaItem i = mo2131b().m2194i();
+        MediaItem i = getLyricSearchTaskInfo().getMediaItem();
         String m2124d = m2124d(i.getID());
         if (StringUtils.isEmpty(m2124d)) {
-            m2124d = FileUtils.m8397o(i.getArtist());
+            m2124d = FileUtils.removeWrongCharacter(i.getArtist());
             if (!TTTextUtils.isValidateMediaString(m2124d)) {
                 return null;
             }
         }
-        File[] listFiles = new File(TTPodConfig.m5289s() + File.separator + m2124d).listFiles(new FilenameFilter() { // from class: com.sds.android.ttpod.framework.support.search.task.c.1
+        File[] listFiles = new File(TTPodConfig.getArtistPath() + File.separator + m2124d).listFiles(new FilenameFilter() { // from class: com.sds.android.ttpod.framework.support.search.task.c.1
             @Override // java.io.FilenameFilter
             public boolean accept(File file, String str3) {
                 String lowerCase = str3.toLowerCase();
@@ -615,7 +615,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.support.search.task.LyrPicBaseSearchTask
     /* renamed from: f */
-    public PictureSearchTaskInfo mo2131b() {
+    public PictureSearchTaskInfo getLyricSearchTaskInfo() {
         return this.f7308a;
     }
 
@@ -636,7 +636,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         if (StringUtils.isEmpty(localDataSource)) {
             return null;
         }
-        String str = TTPodConfig.m5288t() + File.separator + LyrPicFileNameUtils.m3889a(localDataSource);
+        String str = TTPodConfig.getCacheEmbedPath() + File.separator + LyrPicFileNameUtils.m3889a(localDataSource);
         if (!m2125c(str)) {
             File file = new File(str);
             if ((!file.exists() || file.delete()) && (createMediaTag = MediaTag.createMediaTag(localDataSource, true)) != null) {

@@ -2,7 +2,7 @@ package com.sds.android.ttpod.framework.modules.p124f;
 
 import android.util.LongSparseArray;
 import com.sds.android.cloudapi.ttpod.data.MessageCollectItem;
-import com.sds.android.cloudapi.ttpod.p055a.MessageCollectAPI;
+import com.sds.android.cloudapi.ttpod.api.MessageCollectAPI;
 import com.sds.android.cloudapi.ttpod.result.MessageCollectListResult;
 import com.sds.android.sdk.lib.request.BaseResult;
 import java.util.Iterator;

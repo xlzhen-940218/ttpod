@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import com.sds.android.cloudapi.ttpod.data.PrivateMessageContent;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
-import com.sds.android.cloudapi.ttpod.p055a.PrivateMessageAPI;
+import com.sds.android.cloudapi.ttpod.api.PrivateMessageAPI;
 import com.sds.android.sdk.lib.request.BaseResult;
 import com.sds.android.sdk.lib.request.Request;
 import com.sds.android.sdk.lib.request.RequestCallback;

@@ -52,7 +52,7 @@ public class CategoryListLoader implements Runnable {
     static {
         f6598c = !CategoryListLoader.class.desiredAssertionStatus();
         f6599d = "category_list" + File.separator;
-        f6596a = TTPodConfig.m5294n() + File.separator + "category_skin.json";
+        f6596a = TTPodConfig.getSkinPath() + File.separator + "category_skin.json";
         f6597b = TTPodConfig.m5295m() + File.separator + "category_bkg.json";
     }
 

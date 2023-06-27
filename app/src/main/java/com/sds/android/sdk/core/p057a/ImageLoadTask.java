@@ -75,7 +75,7 @@ public final class ImageLoadTask {
             if (m8795a(this.f2280d.m8784b(), str) && FileUtils.m8410c(str, this.f2280d.m8782d())) {
                 m8797a();
             } else {
-                FileUtils.m8404h(str);
+                FileUtils.exists(str);
             }
         } catch (Exception e) {
             e.printStackTrace();

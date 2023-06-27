@@ -2,11 +2,11 @@ package com.sds.android.ttpod.framework.modules.p111c;
 
 import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
 import com.sds.android.cloudapi.ttpod.data.FeedbackMessage;
-import com.sds.android.cloudapi.ttpod.p055a.FeedbackAPI;
-import com.sds.android.cloudapi.ttpod.p056b.GetFeedbackMessageResult;
-import com.sds.android.cloudapi.ttpod.p056b.GetFeedbackResult;
-import com.sds.android.cloudapi.ttpod.p056b.PostFeedbackMessageResult;
-import com.sds.android.cloudapi.ttpod.p056b.PostFeedbackResult;
+import com.sds.android.cloudapi.ttpod.api.FeedbackAPI;
+import com.sds.android.cloudapi.ttpod.feedback.GetFeedbackMessageResult;
+import com.sds.android.cloudapi.ttpod.feedback.GetFeedbackResult;
+import com.sds.android.cloudapi.ttpod.feedback.PostFeedbackMessageResult;
+import com.sds.android.cloudapi.ttpod.feedback.PostFeedbackResult;
 import com.sds.android.sdk.lib.p060b.RequestRest;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;

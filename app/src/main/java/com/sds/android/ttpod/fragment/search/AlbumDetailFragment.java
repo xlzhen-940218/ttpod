@@ -33,8 +33,6 @@ import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -238,7 +236,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadFinished() {
         super.onLoadFinished();
-        updatePlayStatus(SupportFactory.m2397a(BaseApplication.getApplication()).m2463m());
+        updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -354,6 +352,6 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public boolean isPlayingItem() {
-        return OnlinePlayingGroupUtils.m6911a(Preferences.m2926bc(), this.mAlbumItem);
+        return OnlinePlayingGroupUtils.m6911a(Preferences.getOnlineMediaListGroupName(), this.mAlbumItem);
     }
 }

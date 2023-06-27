@@ -3,7 +3,7 @@ package com.sds.android.ttpod.framework.modules.core.p113b;
 import android.os.Handler;
 import android.os.SystemClock;
 
-import com.sds.android.cloudapi.ttpod.p055a.GlobalAPI;
+import com.sds.android.cloudapi.ttpod.api.GlobalAPI;
 import com.sds.android.cloudapi.ttpod.result.GlobalResult;
 import com.sds.android.cloudapi.ttpod.result.OperatorPageResult;
 
@@ -59,7 +59,7 @@ public class GlobalModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     public void onCreate() {
         super.onCreate();
-        SupportFactory.m2397a(sContext).mo2497a(this.f5929e);
+        SupportFactory.getInstance(sContext).mo2497a(this.f5929e);
         if (Preferences.m2818w()) {
             m4292d();
         }
@@ -155,7 +155,7 @@ public class GlobalModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     public void onPreDestroy() {
         super.onPreDestroy();
-        SupportFactory.m2397a(sContext).m2482b(this.f5929e);
+        SupportFactory.getInstance(sContext).m2482b(this.f5929e);
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
@@ -182,7 +182,7 @@ public class GlobalModule extends BaseModule {
             return ErrCode.ErrArgument;
         }
         this.f5926b = true;
-        SupportFactory.m2397a(sContext).m2484b(num.intValue() * 60000);
+        SupportFactory.getInstance(sContext).m2484b(num.intValue() * 60000);
         this.f5928d = SystemClock.elapsedRealtime() + (num.intValue() * 60000);
         Preferences.m3026a(num.intValue());
         CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_SLEEP_MODE, new Object[0]), ModuleID.GLOBAL);
@@ -199,7 +199,7 @@ public class GlobalModule extends BaseModule {
         this.f5926b = false;
         this.f5928d = 0L;
         LogUtils.error(f5925a, "stopSleepMode");
-        SupportFactory.m2397a(sContext).m2451y();
+        SupportFactory.getInstance(sContext).m2451y();
         CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_SLEEP_MODE, new Object[0]), ModuleID.GLOBAL);
     }
 

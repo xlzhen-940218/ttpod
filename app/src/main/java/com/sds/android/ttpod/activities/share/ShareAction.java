@@ -16,7 +16,7 @@ import java.io.File;
 public class ShareAction implements IShareAction {
 
     /* renamed from: a */
-    private static final String f3018a = TTPodConfig.m5298j() + File.separator + "Player.jpg";
+    private static final String f3018a = TTPodConfig.getCacheTmpPath() + File.separator + "Player.jpg";
 
     /* renamed from: b */
     private static Activity f3019b;

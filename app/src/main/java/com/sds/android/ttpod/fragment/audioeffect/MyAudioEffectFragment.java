@@ -155,8 +155,8 @@ public class MyAudioEffectFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void getCurrentMediaItemAndEffect() {
         this.mCurrentMediaItem = Cache.getInstance().getCurrentPlayMediaItem();
-        if (SupportFactory.m2397a(BaseApplication.getApplication()).m2457s() != null) {
-            this.mUsedEffect = SupportFactory.m2397a(BaseApplication.getApplication()).m2457s().m4420h();
+        if (SupportFactory.getInstance(BaseApplication.getApplication()).m2457s() != null) {
+            this.mUsedEffect = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s().m4420h();
         }
     }
 
@@ -394,7 +394,7 @@ public class MyAudioEffectFragment extends BaseFragment {
                     this.mSelectItem = -1;
                 }
             }
-            if (i != this.mSelectItem || SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+            if (i != this.mSelectItem || SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
                 c1407a.f4982i.setBackgroundResource(R.drawable.recommand_list_hit_xml);
             } else {
                 c1407a.f4982i.setBackgroundResource(R.drawable.myeffect_pause);
@@ -429,7 +429,7 @@ public class MyAudioEffectFragment extends BaseFragment {
                 MyAudioEffectFragment.this.mHandler.postDelayed(this.mUpdateRunnable, z ? 2100L : 0L);
                 return;
             }
-            PlayStatus m2463m = SupportFactory.m2397a(BaseApplication.getApplication()).m2463m();
+            PlayStatus m2463m = SupportFactory.getInstance(BaseApplication.getApplication()).m2463m();
             if (m2463m == PlayStatus.STATUS_PAUSED) {
                 CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
             } else if (m2463m == PlayStatus.STATUS_PLAYING) {

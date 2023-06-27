@@ -134,17 +134,17 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                     throw new IllegalArgumentException("actionData must be Integer");
                 }
                 if (i == 15) {
-                    this.f5127a = Integer.valueOf((this.f5127a == null ? SupportFactory.m2397a(BaseApplication.getApplication()).m2465k() : this.f5127a).intValue() + ((Number) obj).intValue());
+                    this.f5127a = Integer.valueOf((this.f5127a == null ? SupportFactory.getInstance(BaseApplication.getApplication()).m2465k() : this.f5127a).intValue() + ((Number) obj).intValue());
                     this.f5127a = Integer.valueOf(Math.min(Math.max(0, this.f5127a.intValue()), Cache.getInstance().getCurrentPlayMediaItem().getDuration().intValue()));
                 } else {
                     this.f5127a = Integer.valueOf(((Number) obj).intValue());
                 }
-                this.f5128b.mo6459a(this.f5127a.intValue(), SupportFactory.m2397a(BaseApplication.getApplication()).m2464l());
+                this.f5128b.mo6459a(this.f5127a.intValue(), SupportFactory.getInstance(BaseApplication.getApplication()).m2464l());
                 break;
             case 18:
-                if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
+                if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
                     CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
-                } else if (SupportFactory.m2397a(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_STOPPED) {
+                } else if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_STOPPED) {
                     CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
                 }
                 //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_PLAY, SPage.PAGE_PORTRAIT_PLAYER, SPage.PAGE_NONE);
@@ -267,7 +267,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
     /* renamed from: c */
     public void m5671c() {
         if (this.f5128b != null && this.f5127a == null) {
-            this.f5128b.mo6459a(SupportFactory.m2397a(BaseApplication.getApplication()).m2465k().intValue(), Cache.getInstance().getCurrentPlayMediaItem().isOnline() ? SupportFactory.m2397a(BaseApplication.getApplication()).m2464l() : 0.0f);
+            this.f5128b.mo6459a(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue(), Cache.getInstance().getCurrentPlayMediaItem().isOnline() ? SupportFactory.getInstance(BaseApplication.getApplication()).m2464l() : 0.0f);
         }
     }
 

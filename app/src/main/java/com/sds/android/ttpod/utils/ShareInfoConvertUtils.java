@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class ShareInfoConvertUtils {
 
     /* renamed from: a */
-    private static final String f2517a = TTPodConfig.m5298j() + File.separator + "Player.jpg";
+    private static final String f2517a = TTPodConfig.getCacheTmpPath() + File.separator + "Player.jpg";
 
     /* renamed from: a */
     public static ShareInfo m8237a(MediaItem mediaItem, Bitmap bitmap) {
