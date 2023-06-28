@@ -25,8 +25,8 @@ public class SIcon extends SImage<Icon> {
 
     public SIcon(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6454e = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "StateNum"), 1);
-        this.f6455j = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "CurrentState"), 0);
+        this.f6454e = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "StateNum"), 1);
+        this.f6455j = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "CurrentState"), 0);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
@@ -38,7 +38,7 @@ public class SIcon extends SImage<Icon> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public void mo3775a(Context context, Icon icon, SkinCache skinCache) {
+    public void setBackground(Context context, Icon icon, SkinCache skinCache) {
         if (this.f6454e > 0) {
             Resources resources = context.getResources();
             DrawableCreator m3594a = skinCache.m3594a(this.f6456c);
@@ -60,6 +60,6 @@ public class SIcon extends SImage<Icon> {
             }
         }
         icon.setScaleType(m3797a(this.f6457d));
-        super.mo3775a(context, icon, skinCache);
+        super.setBackground(context, icon, skinCache);
     }
 }

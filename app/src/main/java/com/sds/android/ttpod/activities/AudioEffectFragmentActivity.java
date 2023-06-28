@@ -83,7 +83,7 @@ public class AudioEffectFragmentActivity extends SlidingPagerActivity {
         CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
         this.mPagerTitle.setShouldExpand(true);
         setTitle(getString(R.string.audio_effect));
-        this.mPagerTitle.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#222222")));
+        this.mPagerTitle.setBackground(new ColorDrawable(Color.parseColor("#222222")));
         this.mPagerTitle.setTextColor(Color.parseColor("#ffffff"));
         this.mPagerTitle.setIndicatorColorResource(R.color.effect_blue);
         this.mPagerTitle.setIndicatorHeight(DisplayUtils.m7229a(4));

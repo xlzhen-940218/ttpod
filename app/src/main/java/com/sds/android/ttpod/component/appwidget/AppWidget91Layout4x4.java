@@ -244,17 +244,17 @@ public class AppWidget91Layout4x4 extends AppWidget91Base {
                 this.mImageButtonPlayNext.setImageResource(R.drawable.img_appwidget_play_next);
             }
             if (FileUtils.m8414b(this.mTheme91Path + PATH_BG_BUTTONS)) {
-                this.mLayoutButtons.setBackgroundDrawable(getDrawableFromPath(this.mTheme91Path + PATH_BG_BUTTONS));
+                this.mLayoutButtons.setBackground(getDrawableFromPath(this.mTheme91Path + PATH_BG_BUTTONS));
             } else {
                 this.mLayoutButtons.setBackgroundResource(R.drawable.img_background_appwidget91_buttons);
             }
             if (FileUtils.m8414b(this.mTheme91Path + PATH_BG_TIME)) {
-                this.mTextViewTime.setBackgroundDrawable(getDrawableFromPath(this.mTheme91Path + PATH_BG_TIME));
+                this.mTextViewTime.setBackground(getDrawableFromPath(this.mTheme91Path + PATH_BG_TIME));
             } else {
                 this.mTextViewTime.setBackgroundResource(R.drawable.img_background_appwidget91_time);
             }
             if (FileUtils.m8414b(this.mTheme91Path + PATH_BG)) {
-                this.mLayoutBackground.setBackgroundDrawable(getDrawableFromPath(this.mTheme91Path + PATH_BG));
+                this.mLayoutBackground.setBackground(getDrawableFromPath(this.mTheme91Path + PATH_BG));
             } else {
                 this.mLayoutBackground.setBackgroundResource(R.drawable.img_background_appwidget91);
             }

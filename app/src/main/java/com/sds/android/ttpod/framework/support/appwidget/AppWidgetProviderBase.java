@@ -48,12 +48,12 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
     private static Runnable f7125e = new Runnable() { // from class: com.sds.android.ttpod.framework.support.appwidget.AppWidgetProviderBase.2
         @Override // java.lang.Runnable
         public void run() {
-            Player m2611e = Player.m2611e();
+            Player m2611e = Player.getInstance();
             if (m2611e.m2604h() != PlayStatus.STATUS_PLAYING) {
                 boolean unused = AppWidgetProviderBase.f7122a = false;
                 return;
             }
-            MediaItem m2606g = m2611e.m2606g();
+            MediaItem m2606g = m2611e.getMediaItem();
             if (m2606g == null || m2606g.isNull()) {
                 boolean unused2 = AppWidgetProviderBase.f7122a = false;
                 return;
@@ -110,7 +110,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
     public static void m2535b() {
         C2060a[] c2060aArr;
         android.appwidget.AppWidgetManager appWidgetManager = android.appwidget.AppWidgetManager.getInstance(BaseApplication.getApplication());
-        MediaItem m2606g = Player.m2611e().m2606g();
+        MediaItem m2606g = Player.getInstance().getMediaItem();
         Bitmap m8445a = BitmapUtils.m8445a(Preferences.m3014a(m2606g), DisplayUtils.m7229a(200));
         for (C2060a c2060a : f7123c) {
             RemoteViews remoteViews = new RemoteViews(BaseApplication.getApplication().getPackageName(), c2060a.f7128a);
@@ -133,11 +133,11 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
 
     /* renamed from: a */
     private static void m2547a(RemoteViews remoteViews) {
-        MediaItem m2606g = Player.m2611e().m2606g();
+        MediaItem m2606g = Player.getInstance().getMediaItem();
         if (m2606g != null && !m2606g.isNull()) {
             m2540a(remoteViews, m2606g.getArtist(), m2606g.getAlbum(), m2606g.getTitle());
         }
-        m2542a(remoteViews, Player.m2611e().m2604h());
+        m2542a(remoteViews, Player.getInstance().m2604h());
         m2543a(remoteViews, Preferences.m2862l());
         m2539a(remoteViews, Preferences.m2838r());
     }

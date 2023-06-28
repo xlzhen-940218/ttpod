@@ -18,8 +18,8 @@ public abstract class SImage<T extends View> extends SComponent<T> {
 
     public SImage(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6456c = m3813a(hashMap, kXmlParser, "Icon");
-        this.f6457d = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "ScaleType"), 0);
+        this.f6456c = getSBitmap(hashMap, kXmlParser, "Icon");
+        this.f6457d = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "ScaleType"), 0);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */

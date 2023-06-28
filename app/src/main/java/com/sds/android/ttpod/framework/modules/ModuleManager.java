@@ -212,14 +212,14 @@ public final class ModuleManager {
     }
 
     /* renamed from: b */
-    public void m4111b() {
+    public void onAllPreDestroy() {
         for (BaseModule baseModule : this.moduleIdModuleMaps.values()) {
             baseModule.onPreDestroy();
         }
     }
 
     /* renamed from: c */
-    public void m4108c() {
+    public void unInitModule() {
         DebugUtils.m8427a();
         this.f6096d.removeMessages(1);
         LogUtils.debug("ModuleManager", "unInitModule search lookLyricPic");

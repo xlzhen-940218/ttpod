@@ -303,7 +303,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
             if (SDKVersionUtils.m8367g()) {
                 this.mLockScreenLayout.setBackground(drawable);
             } else {
-                this.mLockScreenLayout.setBackgroundDrawable(drawable);
+                this.mLockScreenLayout.setBackground(drawable);
             }
         } catch (Throwable th) {
             th.printStackTrace();
@@ -336,7 +336,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         this.mLyricView.setDefaultColorHighlight(-1);
         this.mLyricView.setColorHighlight(-1);
         this.mLyricView.setFadeEdgeLength(DisplayUtils.m7229a(22));
-        int m3048Q = Preferences.m3048Q();
+        int m3048Q = Preferences.getLyricFontSize();
         this.mLyricView.m3459b(0, this.mLyricView.getDefaultFontSizeHighlight() + m3048Q);
         this.mLyricView.m3482a(0, (m3048Q + this.mLyricView.getDefaultFontSizeNormal()) - 3.0f);
     }

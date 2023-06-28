@@ -457,14 +457,11 @@ public class HttpRequest {
 
         /* renamed from: i */
         private long initDate() {
-            Header[] m8689d = getHeaders();
-            int length = m8689d.length;
+            Header[] headers = getHeaders();
+            int length = headers.length;
             int i = 0;
-            while (true) {
-                if (i >= length) {
-                    break;
-                }
-                Header header = m8689d[i];
+            while (i < length) {
+                Header header = headers[i];
                 if (header == null || !"Date".equals(header.getName())) {
                     i++;
                 } else {

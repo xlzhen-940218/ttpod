@@ -91,7 +91,7 @@ public class MediaPickerActivity extends SlidingClosableActivity implements Them
     }
 
     /* loaded from: classes.dex */
-    public static class MediaPickerFragment extends MediaListFragment implements IEditAble.InterfaceC1677a {
+    public static class MediaPickerFragment extends MediaListFragment implements IEditAble.EditRequestListener {
         private ActionBarController.C1070a mSelectAction;
 
         @Override // com.sds.android.ttpod.fragment.main.list.MediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment, com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment

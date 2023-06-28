@@ -266,7 +266,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     private String normalLyricText;
 
     /* renamed from: m */
-    private long f6806m;
+    private long playingTime;
 
     /* renamed from: n */
     private int textColor;
@@ -531,7 +531,7 @@ public class LyricView extends View implements OnMeasureTextListener {
             public void handleMessage(Message message) {
                 switch (message.what) {
                     case 1:
-                        LyricView.this.m3461b(message.arg1);
+                        LyricView.this.setTextSize(message.arg1);
                         return;
                     case 2:
                         try {
@@ -669,7 +669,7 @@ public class LyricView extends View implements OnMeasureTextListener {
             public void handleMessage(Message message) {
                 switch (message.what) {
                     case 1:
-                        LyricView.this.m3461b(message.arg1);
+                        LyricView.this.setTextSize(message.arg1);
                         return;
                     case 2:
                         try {
@@ -752,7 +752,7 @@ public class LyricView extends View implements OnMeasureTextListener {
 
     public void setLyric(Lyric lyric) {
         if (this.state != 0 || lyric == null || !lyric.equals(this.lyric)) {
-            this.f6806m = 0L;
+            this.playingTime = 0L;
             this.handler.removeMessages(3);
             this.handler.removeMessages(4);
             this.handler.sendMessageDelayed(this.handler.obtainMessage(4, lyric), 0L);
@@ -872,7 +872,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     */
     private boolean m3420n() {
         boolean z = false;
-        int mo3628a = this.formattedLyric.mo3628a(this.f6806m);
+        int mo3628a = this.formattedLyric.mo3628a(this.playingTime);
         if (mo3628a < 0) {
             this.f6742I = 0;
             this.f6743J = 1;
@@ -886,11 +886,11 @@ public class LyricView extends View implements OnMeasureTextListener {
             return false;
         }
         this.f6757Z = (mo3628a & 1) == 0;
-        Sentence mo3629a = this.formattedLyric.mo3629a(mo3628a);
+        Sentence mo3629a = this.formattedLyric.getLrcLineIndex(mo3628a);
         int mo3636f = mo3629a.mo3636f();
-        int mo3637e = (int) (this.f6806m - mo3629a.mo3637e());
+        int mo3637e = (int) (this.playingTime - mo3629a.mo3637e());
         int mo3611c = mo3629a.mo3611c(mo3637e);
-        if (mo3629a.mo3635g().length() == 0 && mo3636f >= 7000) {
+        if (mo3629a.getCurrentLrcText().length() == 0 && mo3636f >= 7000) {
             int i = ((mo3636f - mo3637e) / 1000) + 1;
             if (i >= this.f6791aw.length) {
                 i = 0;
@@ -959,18 +959,18 @@ public class LyricView extends View implements OnMeasureTextListener {
         int i;
         int i2;
         boolean z;
-        int mo3628a = this.formattedLyric.mo3628a(this.f6806m);
+        int mo3628a = this.formattedLyric.mo3628a(this.playingTime);
         this.f6742I = mo3628a;
         this.f6745L = 0;
-        Sentence mo3629a = this.formattedLyric.mo3629a(mo3628a);
-        int i3 = (int) this.f6806m;
+        Sentence mo3629a = this.formattedLyric.getLrcLineIndex(mo3628a);
+        int i3 = (int) this.playingTime;
         if (mo3628a >= 0) {
-            int mo3638b = mo3629a.mo3638b();
+            int mo3638b = mo3629a.getIndex();
             mo3637e = mo3629a.mo3636f();
-            i = (int) (this.f6806m - mo3629a.mo3637e());
+            i = (int) (this.playingTime - mo3629a.mo3637e());
             i2 = mo3638b;
         } else {
-            mo3637e = (int) this.formattedLyric.mo3629a(0).mo3637e();
+            mo3637e = (int) this.formattedLyric.getLrcLineIndex(0).mo3637e();
             i = i3;
             i2 = -1;
         }
@@ -990,7 +990,7 @@ public class LyricView extends View implements OnMeasureTextListener {
             int i6 = i5 - this.f6739F;
             this.f6742I--;
             i4--;
-            if (i2 == this.formattedLyric.mo3629a(this.f6742I).mo3638b()) {
+            if (i2 == this.formattedLyric.getLrcLineIndex(this.f6742I).getIndex()) {
                 this.f6745L++;
                 i5 = i6;
             } else {
@@ -1118,12 +1118,12 @@ public class LyricView extends View implements OnMeasureTextListener {
         return Math.min(this.textSizeHighlight, this.textSizeNormal);
     }
 
-    public void setPlayingTime(long j) {
-        if (!this.screenOfOrOn && j != this.f6806m && !this.f6792ax) {
-            if (j < 10) {
-                j = 10;
+    public void setPlayingTime(long playingTime) {
+        if (!this.screenOfOrOn && playingTime != this.playingTime && !this.f6792ax) {
+            if (playingTime < 10) {
+                playingTime = 10;
             }
-            this.f6806m = j;
+            this.playingTime = playingTime;
             if (this.formattedLyric != null && !this.handler.hasMessages(5)) {
                 this.handler.sendEmptyMessage(5);
             }
@@ -1132,7 +1132,7 @@ public class LyricView extends View implements OnMeasureTextListener {
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
-    public void m3461b(float f) {
+    public void setTextSize(float f) {
         boolean z = true;
         float m3449c = applyDimension(2, f);
         boolean z2 = false;
@@ -1150,7 +1150,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         }
     }
 
-    public void setTextSize(float f) {
+    public void postTextSize(float f) {
         this.handler.removeMessages(1);
         this.handler.sendMessage(this.handler.obtainMessage(1, (int) f, 0));
     }
@@ -1304,7 +1304,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     }
 
     private String getCurPlayTimeStr() {
-        int i = (int) (this.f6806m / 1000);
+        int i = (int) (this.playingTime / 1000);
         int i2 = i / 60;
         return String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i - (i2 * 60)));
     }
@@ -1426,18 +1426,18 @@ public class LyricView extends View implements OnMeasureTextListener {
 
     /* renamed from: c */
     private void m3448c(Canvas canvas) {
-        int i;
+        int index;
         int i2;
         TextPaint textPaint;
         int i3;
         int i4 = this.f6742I;
         int i5 = this.f6744K;
-        int mo3630a = this.formattedLyric.mo3630a();
-        int mo3625b = this.formattedLyric.mo3625b();
-        if (mo3625b < 0) {
-            i = -1;
+        int lrcLineSize = this.formattedLyric.getLrcLineSize();
+        int lrcLineIndex = this.formattedLyric.getLrcLineIndex();
+        if (lrcLineIndex < 0) {
+            index = -1;
         } else {
-            i = this.formattedLyric.mo3629a(mo3625b).mo3638b();
+            index = this.formattedLyric.getLrcLineIndex(lrcLineIndex).getIndex();
         }
         if (this.fadeEdgeLength <= 0 || this.lyricDisplayEnum != LyricDisplayEnum.Normal) {
             i2 = 0;
@@ -1445,17 +1445,17 @@ public class LyricView extends View implements OnMeasureTextListener {
             i2 = canvas.saveLayer(this.f6751R.left, 0.0f, this.f6751R.right, getHeight(), null, Canvas.ALL_SAVE_FLAG);
         }
         int i6 = 0;
-        while (i6 < this.f6737D && i4 < mo3630a) {
+        while (i6 < this.f6737D && i4 < lrcLineSize) {
             if (i4 >= 0) {
-                Sentence sentence = this.formattedLyric.mo3629a(i4);
-                int mo3638b = sentence.mo3638b();
-                String mo3635g = sentence.mo3635g();
+                Sentence sentence = this.formattedLyric.getLrcLineIndex(i4);
+                int sentenceIndex = sentence.getIndex();
+                String mo3635g = sentence.getCurrentLrcText();
                 if (mo3635g.length() != 0) {
                     this.f6751R.bottom = i5;
                     this.f6751R.top = i5 - this.f6739F;
                     int color = this.textColor;
                     int mo3640a = sentence.mo3640a();
-                    if (i4 == mo3625b) {
+                    if (i4 == lrcLineIndex) {
                         if (this.kalaok) {
                             m3478a(canvas, mo3635g, mo3640a);
                         } else {
@@ -1466,17 +1466,17 @@ public class LyricView extends View implements OnMeasureTextListener {
                             m3457b(canvas, mo3635g, this.highlightTextPaint, nextColor, mo3640a);
                         }
                     } else if (this.lyricDisplayEnum == LyricDisplayEnum.Single) {
-                        if (i4 == mo3625b - 1) {
+                        if (i4 == lrcLineIndex - 1) {
                             m3457b(canvas, mo3635g, this.normalTextPaint, this.prevTextColor, mo3640a);
                         }
                     } else {
                         TextPaint textPaint2 = this.normalTextPaint;
-                        if (mo3638b == i - 1) {
+                        if (sentenceIndex == index - 1) {
                             color = this.f6745L == 0 ? this.prevTextColor : this.textColor;
                         }
-                        if (mo3638b == i) {
+                        if (sentenceIndex == index) {
                             if (this.kalaok) {
-                                i3 = i4 < mo3625b ? this.colorHighlight : this.textColor;
+                                i3 = i4 < lrcLineIndex ? this.colorHighlight : this.textColor;
                             } else {
                                 i3 = this.f6745L == 0 ? this.currentColor : this.colorHighlight;
                             }
@@ -1518,9 +1518,9 @@ public class LyricView extends View implements OnMeasureTextListener {
             z4 = true;
             z = false;
         }
-        int mo3630a = this.formattedLyric.mo3630a();
+        int mo3630a = this.formattedLyric.getLrcLineSize();
         if (this.f6742I < mo3630a) {
-            Sentence mo3629a = this.formattedLyric.mo3629a(this.f6742I);
+            Sentence mo3629a = this.formattedLyric.getLrcLineIndex(this.f6742I);
             this.f6751R.set(this.f6755V);
             int mo3640a = mo3629a.mo3640a();
             int i = mo3640a - this.f6734A;
@@ -1537,7 +1537,7 @@ public class LyricView extends View implements OnMeasureTextListener {
                     this.f6751R.left -= i;
                 }
             }
-            m3475a(canvas, z4, mo3629a.mo3635g(), true, z);
+            m3475a(canvas, z4, mo3629a.getCurrentLrcText(), true, z);
             this.f6776ah = this.f6742I;
         }
         boolean z5 = !this.f6757Z;
@@ -1549,7 +1549,7 @@ public class LyricView extends View implements OnMeasureTextListener {
             z3 = false;
         }
         if (this.f6743J < mo3630a) {
-            Sentence mo3629a2 = this.formattedLyric.mo3629a(this.f6743J);
+            Sentence mo3629a2 = this.formattedLyric.getLrcLineIndex(this.f6743J);
             this.f6751R.set(this.f6756W);
             int mo3640a2 = mo3629a2.mo3640a() - this.f6734A;
             if (this.f6785aq < 0) {
@@ -1567,7 +1567,7 @@ public class LyricView extends View implements OnMeasureTextListener {
                     this.f6751R.left -= mo3640a2;
                 }
             }
-            m3475a(canvas, z2, mo3629a2.mo3635g(), false, z3);
+            m3475a(canvas, z2, mo3629a2.getCurrentLrcText(), false, z3);
             this.f6777ai = this.f6743J;
         }
         this.f6778aj = this.f6757Z;
@@ -1885,16 +1885,16 @@ public class LyricView extends View implements OnMeasureTextListener {
         if (this.formattedLyric != null) {
             this.f6792ax = true;
             this.f6794az = i;
-            this.f6759aA = this.formattedLyric.mo3625b();
+            this.f6759aA = this.formattedLyric.getLrcLineIndex();
             this.f6760aB = this.f6747N;
             if (!this.slowScroll) {
-                int i4 = (int) this.f6806m;
+                int i4 = (int) this.playingTime;
                 if (this.f6759aA >= 0) {
-                    Sentence mo3629a = this.formattedLyric.mo3629a(this.f6759aA);
-                    i2 = (int) (this.f6806m - mo3629a.mo3637e());
+                    Sentence mo3629a = this.formattedLyric.getLrcLineIndex(this.f6759aA);
+                    i2 = (int) (this.playingTime - mo3629a.mo3637e());
                     i3 = mo3629a.mo3636f();
                 } else {
-                    int mo3637e = (int) this.formattedLyric.mo3629a(0).mo3637e();
+                    int mo3637e = (int) this.formattedLyric.getLrcLineIndex(0).mo3637e();
                     if (mo3637e < 1) {
                         i2 = i4;
                     } else {
@@ -1940,11 +1940,11 @@ public class LyricView extends View implements OnMeasureTextListener {
             }
             i2 = i9;
         }
-        int mo3630a = this.formattedLyric.mo3630a();
+        int mo3630a = this.formattedLyric.getLrcLineSize();
         if (mo3630a > 0 && i2 >= -1 && i2 < mo3630a) {
             int i14 = i4 - i10;
             if (i2 == -1) {
-                int mo3637e2 = (int) this.formattedLyric.mo3629a(0).mo3637e();
+                int mo3637e2 = (int) this.formattedLyric.getLrcLineIndex(0).mo3637e();
                 if (mo3637e2 < 1) {
                     mo3637e = 0;
                     mo3636f = 1;
@@ -1953,15 +1953,15 @@ public class LyricView extends View implements OnMeasureTextListener {
                     mo3637e = 0;
                 }
             } else {
-                Sentence mo3629a = this.formattedLyric.mo3629a(i2);
+                Sentence mo3629a = this.formattedLyric.getLrcLineIndex(i2);
                 mo3636f = mo3629a.mo3636f();
                 mo3637e = mo3629a.mo3637e();
             }
-            this.f6806m = mo3637e + ((mo3636f * i14) / this.f6739F);
-            if (this.f6806m < 10) {
-                this.f6806m = 10L;
-            } else if (this.f6806m > this.lyric.mo3669f()) {
-                this.f6806m = this.lyric.mo3669f();
+            this.playingTime = mo3637e + ((mo3636f * i14) / this.f6739F);
+            if (this.playingTime < 10) {
+                this.playingTime = 10L;
+            } else if (this.playingTime > this.lyric.mo3669f()) {
+                this.playingTime = this.lyric.mo3669f();
             }
             m3444c(false);
         }
@@ -1981,7 +1981,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         this.f6792ax = false;
         invalidate();
         if (this.touchListener != null) {
-            this.touchListener.mo3408a(this.f6806m);
+            this.touchListener.mo3408a(this.playingTime);
         }
     }
 
@@ -2011,7 +2011,8 @@ public class LyricView extends View implements OnMeasureTextListener {
             if (this.f6824b == null) {
                 return null;
             }
-            return this.f6824b.mo3631a(LyricView.this.lyricDisplayEnum == LyricDisplayEnum.MTV ? 2 : 1, LyricView.this.f6734A, LyricView.this);
+            return this.f6824b.mo3631a(LyricView.this.lyricDisplayEnum == LyricDisplayEnum.MTV ? 2 : 1
+                    , LyricView.this.f6734A, LyricView.this);
         }
 
         @Override // android.os.AsyncTask
@@ -2024,7 +2025,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         /* renamed from: a */
         public void onPostExecute(FormattedLyric formattedLyric) {
             if (LyricView.this.f6762aE == this.f6825c) {
-                if (formattedLyric == null || formattedLyric.mo3630a() <= 0) {
+                if (formattedLyric == null || formattedLyric.getLrcLineSize() <= 0) {
                     LyricView.this.handler.sendMessageDelayed(LyricView.this.handler.obtainMessage(3, 7, 0), 0L);
                     return;
                 }

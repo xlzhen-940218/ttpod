@@ -19,13 +19,13 @@ public class MediaSelector {
     private List<String> f7075a;
 
     /* renamed from: c */
-    private MediaItem f7077c;
+    private MediaItem mediaItem;
 
     /* renamed from: f */
     private Context f7080f;
 
     /* renamed from: b */
-    private String f7076b = Preferences.getLocalGroupId();
+    private String localGroupId = Preferences.getLocalGroupId();
 
     /* renamed from: d */
     private ArrayList<String> f7078d = new ArrayList<>();
@@ -48,29 +48,29 @@ public class MediaSelector {
     /* renamed from: f */
     private void m2651f() {
         if (!m2650g()) {
-            this.f7076b = MediaStorage.GROUP_ID_ALL_LOCAL;
+            this.localGroupId = MediaStorage.GROUP_ID_ALL_LOCAL;
             Preferences.m2894d(MediaStorage.GROUP_ID_ALL_LOCAL);
             Preferences.getMediaId("");
         }
-        this.f7075a = MediaStorage.queryMediaIDs(this.f7080f, this.f7076b, Preferences.m2860l(this.f7076b));
+        this.f7075a = MediaStorage.queryMediaIDs(this.f7080f, this.localGroupId, Preferences.m2860l(this.localGroupId));
         String m2854n = Preferences.getMediaId();
         if (!StringUtils.isEmpty(m2854n)) {
-            this.f7077c = MediaStorage.queryMediaItem(this.f7080f, this.f7076b, m2854n);
+            this.mediaItem = MediaStorage.queryMediaItem(this.f7080f, this.localGroupId, m2854n);
         }
         Preferences.m3019a(PreferencesID.PLAY_MODE, this.f7079e);
     }
 
     /* renamed from: g */
     private boolean m2650g() {
-        return MediaStorage.isGroupExisted(this.f7080f, this.f7076b) && !MediaStorage.queryMediaIDs(this.f7080f, this.f7076b, Preferences.m2860l(this.f7076b)).isEmpty();
+        return MediaStorage.isGroupExisted(this.f7080f, this.localGroupId) && !MediaStorage.queryMediaIDs(this.f7080f, this.localGroupId, Preferences.m2860l(this.localGroupId)).isEmpty();
     }
 
     /* renamed from: a */
     public void m2657a(String str, String str2) {
-        if (!StringUtils.equals(this.f7076b, str)) {
+        if (!StringUtils.equals(this.localGroupId, str)) {
             this.f7078d.clear();
         }
-        this.f7077c = MediaStorage.queryMediaItem(this.f7080f, str, Preferences.getMediaId());
+        this.mediaItem = MediaStorage.queryMediaItem(this.f7080f, str, Preferences.getMediaId());
         this.f7075a = MediaStorage.queryMediaIDs(this.f7080f, m2658a(str) ? MediaStorage.GROUP_ID_FAV_LOCAL : str, Preferences.m2860l(str));
         if (m2658a(str) && !this.f7075a.isEmpty() && !this.f7075a.contains(str2)) {
             str2 = this.f7075a.get(0);
@@ -79,7 +79,7 @@ public class MediaSelector {
         if (m2658a(str) && !this.f7075a.isEmpty() && !this.f7075a.contains(str2)) {
             str2 = this.f7075a.get(0);
         }
-        this.f7076b = str;
+        this.localGroupId = str;
         Preferences.m2894d(str);
         Preferences.getMediaId(str2);
         if (Preferences.m2862l() == PlayMode.SHUFFLE) {
@@ -102,25 +102,25 @@ public class MediaSelector {
 
     /* renamed from: a */
     public int m2662a() {
-        if (this.f7077c != null) {
-            return this.f7075a.indexOf(this.f7077c.getID());
+        if (this.mediaItem != null) {
+            return this.f7075a.indexOf(this.mediaItem.getID());
         }
         return 0;
     }
 
     /* renamed from: b */
-    public MediaItem m2655b() {
-        String m2854n = Preferences.getMediaId();
-        this.f7076b = Preferences.getLocalGroupId();
-        if (this.f7077c != null && (!StringUtils.equals(this.f7077c.getID(), m2854n) || !StringUtils.equals(this.f7077c.getGroupID(), this.f7076b))) {
-            this.f7077c = MediaStorage.queryMediaItem(this.f7080f, this.f7076b, m2854n);
+    public MediaItem getMediaItem() {
+        String mediaId = Preferences.getMediaId();
+        this.localGroupId = Preferences.getLocalGroupId();
+        if (this.mediaItem != null && (!StringUtils.equals(this.mediaItem.getID(), mediaId) || !StringUtils.equals(this.mediaItem.getGroupID(), this.localGroupId))) {
+            this.mediaItem = MediaStorage.queryMediaItem(this.f7080f, this.localGroupId, mediaId);
         }
-        return this.f7077c;
+        return this.mediaItem;
     }
 
     /* renamed from: a */
     public void m2659a(MediaItem mediaItem) {
-        this.f7077c = mediaItem;
+        this.mediaItem = mediaItem;
     }
 
     /* renamed from: c */
@@ -140,7 +140,7 @@ public class MediaSelector {
 
     /* renamed from: a */
     private void m2656a(boolean z, boolean z2) {
-        String id = this.f7077c == null ? "" : this.f7077c.getID();
+        String id = this.mediaItem == null ? "" : this.mediaItem.getID();
         if (this.f7075a == null || this.f7075a.size() <= 0) {
             id = null;
         } else {
@@ -203,7 +203,7 @@ public class MediaSelector {
             }
         }
         Preferences.getMediaId(id);
-        this.f7077c = MediaStorage.queryMediaItem(this.f7080f, this.f7076b, id);
+        this.mediaItem = MediaStorage.queryMediaItem(this.f7080f, this.localGroupId, id);
     }
 
     /* renamed from: a */

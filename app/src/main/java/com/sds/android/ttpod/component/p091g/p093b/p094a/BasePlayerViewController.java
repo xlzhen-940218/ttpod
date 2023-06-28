@@ -37,7 +37,7 @@ public abstract class BasePlayerViewController extends ViewEventController {
     protected LineVisualization f4185c;
 
     /* renamed from: a */
-    public abstract View mo6461a();
+    public abstract View getMultiScreenLayout();
 
     public BasePlayerViewController(Context context, String str) {
         super(context, str);
@@ -72,19 +72,19 @@ public abstract class BasePlayerViewController extends ViewEventController {
                 this.f4184b = null;
             }
         }
-        this.f4229l = null;
-        this.f4230m = null;
-        this.f4234q = null;
-        this.f4199K = null;
+        this.menuButton = null;
+        this.listButton = null;
+        this.playerButton = null;
+        this.visualizationView = null;
         super.mo6441b();
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: r */
-    public void mo6404r() {
+    public void onPanelShow() {
         if (!m6549z()) {
             this.f4180Z = true;
-            super.mo6404r();
+            super.onPanelShow();
             m6559A();
         }
     }
@@ -92,7 +92,7 @@ public abstract class BasePlayerViewController extends ViewEventController {
     /* renamed from: A */
     protected void m6559A() {
         if (this.f4185c == null) {
-            this.f4185c = this.f4199K;
+            this.f4185c = this.visualizationView;
         }
         if (this.f4185c != null) {
             if (this.f4184b == null || this.f4184b.isInterrupted()) {
@@ -128,17 +128,17 @@ public abstract class BasePlayerViewController extends ViewEventController {
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: q */
-    public void mo6410q() {
+    public void onPanelDisappear() {
         if (m6549z()) {
             this.f4180Z = false;
-            super.mo6410q();
+            super.onPanelDisappear();
         }
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: C */
     public boolean m6557C() {
-        return !this.f4182aa && m6526d(this.f4185c) && this.f4185c.isEnabled();
+        return !this.f4182aa && viewVisible(this.f4185c) && this.f4185c.isEnabled();
     }
 
     /* renamed from: c */
@@ -149,7 +149,7 @@ public abstract class BasePlayerViewController extends ViewEventController {
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController
     /* renamed from: e */
     public int mo6467e() {
-        View mo6461a = mo6461a();
+        View mo6461a = getMultiScreenLayout();
         if (mo6461a == null) {
             return 0;
         }
@@ -159,7 +159,7 @@ public abstract class BasePlayerViewController extends ViewEventController {
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController
     /* renamed from: f */
     public int mo6466f() {
-        View mo6461a = mo6461a();
+        View mo6461a = getMultiScreenLayout();
         if (mo6461a == null) {
             return 0;
         }

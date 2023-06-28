@@ -109,7 +109,7 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
         SPlayerView m3852a;
         Drawable m3595a = this.sSkinInfo != null ? skinCache.m3595a(context.getResources(), this.sSkinInfo.background) : null;
         if (!m3850a(m3595a) && (m3852a = m3852a(i)) != null) {
-            m3595a = m3852a.m3810d(context, skinCache);
+            m3595a = m3852a.getDrawable(context, skinCache);
         }
         if (m3595a != null) {
             return m3595a.getConstantState().newDrawable();

@@ -45,7 +45,7 @@ public class FindSongBannerFragment extends FindSongBaseViewFragment {
     private ImageView createClickView() {
         ImageView imageView = new ImageView(getActivity());
         imageView.setLayoutParams(new RelativeLayout.LayoutParams(-1, (int) (DisplayUtils.m7225c() * 0.2d)));
-        imageView.setBackgroundDrawable(getResources().getDrawable(R.drawable.grid_view_item_click_bg));
+        imageView.setBackground(getResources().getDrawable(R.drawable.grid_view_item_click_bg));
         imageView.getBackground().setAlpha(50);
         imageView.setOnClickListener(createItemOnClickListener(0));
         return imageView;
@@ -57,7 +57,7 @@ public class FindSongBannerFragment extends FindSongBaseViewFragment {
         layoutParams.addRule(11);
         layoutParams.addRule(10);
         imageView.setLayoutParams(layoutParams);
-        imageView.setBackgroundDrawable(getResources().getDrawable(R.drawable.banner_close_button_click_bg));
+        imageView.setBackground(getResources().getDrawable(R.drawable.banner_close_button_click_bg));
         imageView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.findsong.FindSongBannerFragment.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {

@@ -223,30 +223,30 @@ public abstract class ViewEventController extends ViewController implements Even
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
-    public void mo6448a(MediaItem mediaItem) {
-        super.mo6448a(mediaItem);
+    public void onMetaChange(MediaItem mediaItem) {
+        super.onMetaChange(mediaItem);
         mo6434b("OnMetaChange");
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: r */
-    public void mo6404r() {
-        super.mo6404r();
+    public void onPanelShow() {
+        super.onPanelShow();
         mo6434b("OnPanelShow");
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: q */
-    public void mo6410q() {
-        super.mo6410q();
+    public void onPanelDisappear() {
+        super.onPanelDisappear();
         mo6434b("OnPanelDisappear");
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
-    public void mo6449a(PlayMode playMode) {
-        if (m6544I() != playMode) {
-            super.mo6449a(playMode);
+    public void onPlayModeChange(PlayMode playMode) {
+        if (getPlayMode() != playMode) {
+            super.onPlayModeChange(playMode);
             mo6434b("OnPlayModeChange");
         }
     }
@@ -283,9 +283,9 @@ public abstract class ViewEventController extends ViewController implements Even
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: b */
-    public void mo6437b(View view) {
-        m6540a(view, view.getTag(R.id.tag_event_on_click) != null);
-        super.mo6437b(view);
+    public void initSetView(View view) {
+        setRepeatListener(view, view.getTag(R.id.tag_event_on_click) != null);
+        super.initSetView(view);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController

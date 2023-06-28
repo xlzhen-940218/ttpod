@@ -28,8 +28,8 @@ public abstract class SComponentView extends SBaseView<ViewGroup, SComponent> im
     @SuppressLint("ResourceType")
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SBaseView, com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public void mo3775a(Context context, ViewGroup viewGroup, SkinCache skinCache) {
-        super.mo3775a(context, viewGroup, skinCache);
+    public void setBackground(Context context, ViewGroup viewGroup, SkinCache skinCache) {
+        super.setBackground(context, viewGroup, skinCache);
         if (this.f6434e != null) {
             for (SComponent sComponent : (SComponent[]) this.f6434e) {
                 View m3811c = sComponent.m3811c(context, skinCache);

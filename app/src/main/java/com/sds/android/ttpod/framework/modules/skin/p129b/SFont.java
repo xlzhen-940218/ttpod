@@ -27,8 +27,8 @@ public class SFont extends SBase {
         super(kXmlParser);
         this.size = 15;
         this.style = 0;
-        this.size = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "Size"), this.size);
-        this.style = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "Style"), this.style);
+        this.size = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "Size"), this.size);
+        this.style = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "Style"), this.style);
         this.familyName = kXmlParser.getAttributeValue(null, "FamilyName");
     }
 

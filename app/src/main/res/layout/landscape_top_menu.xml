@@ -1,8 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:background="@drawable/img_landscape_menu_top_bg" android:visibility="gone" android:clickable="true" android:layout_width="match_parent" android:layout_height="wrap_content">
-    <ImageView android:id="@+id/icon_small_volume" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="48dp" android:src="@drawable/img_small_volume_landscape" android:layout_alignParentLeft="true" android:layout_centerVertical="true"/>
-    <com.sds.android.ttpod.framework.modules.skin.view.SeekBarExpansion android:id="@+id/seekbar_volume_landscape" android:paddingLeft="30dp" android:paddingRight="30dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:progressDrawable="@drawable/xml_seekbar_volume_landscape" android:thumb="@drawable/xml_seekbar_thumb_volume_landscape" android:thumbOffset="27dp" android:layout_toLeftOf="@+id/icon_big_volume" android:layout_toRightOf="@+id/icon_small_volume" android:layout_centerVertical="true"/>
-    <ImageView android:id="@+id/icon_big_volume" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="20dp" android:src="@drawable/img_big_volume_landscape" android:layout_toLeftOf="@+id/divider" android:layout_centerVertical="true"/>
-    <View android:id="@+id/divider" android:background="@drawable/img_landscape_boundary_line" android:layout_width="2dp" android:layout_height="match_parent" android:layout_marginTop="5dp" android:layout_marginBottom="10dp" android:layout_toLeftOf="@+id/icon_locker"/>
-    <com.sds.android.ttpod.component.landscape.LandscapeLockerIcon android:id="@+id/icon_locker" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15dp" android:layout_marginRight="40dp" android:layout_alignParentRight="true" android:layout_centerVertical="true"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/img_landscape_menu_top_bg"
+    android:clickable="true"
+    android:visibility="gone">
+
+    <ImageView
+        android:id="@+id/icon_small_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="48dp"
+        android:src="@drawable/img_small_volume_landscape" />
+
+    <com.sds.android.ttpod.framework.modules.skin.view.SeekBarExpansion
+        android:id="@+id/seekbar_volume_landscape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/icon_big_volume"
+        android:layout_toRightOf="@+id/icon_small_volume"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:progressDrawable="@drawable/xml_seekbar_volume_landscape"
+        android:thumb="@drawable/xml_seekbar_thumb_volume_landscape"
+        android:thumbOffset="27dp" />
+
+    <ImageView
+        android:id="@+id/icon_big_volume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/divider"
+        android:src="@drawable/img_big_volume_landscape" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toLeftOf="@+id/icon_locker"
+        android:background="@drawable/img_landscape_boundary_line" />
+
+    <com.sds.android.ttpod.component.landscape.LandscapeLockerIcon
+        android:id="@+id/icon_locker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="40dp" />
 </RelativeLayout>

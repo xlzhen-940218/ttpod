@@ -96,7 +96,7 @@ public final class MiniLyricManager {
         }
         String stringExtra = intent.getStringExtra("command");
         if ("start_mini_lyric_command".equals(stringExtra)) {
-            m2341a(Preferences.m2935b(Player.m2611e().m2606g()));
+            m2341a(Preferences.m2935b(Player.getInstance().getMediaItem()));
         } else if ("stop_mini_lyric_command".equals(stringExtra)) {
             m2336c();
         } else {
@@ -108,7 +108,7 @@ public final class MiniLyricManager {
     /* renamed from: b */
     public void m2339b() {
         if (f7187a != null) {
-            f7187a.m2319a(Player.m2611e().m2602i());
+            f7187a.m2319a(Player.getInstance().m2602i());
         }
     }
 
@@ -131,7 +131,7 @@ public final class MiniLyricManager {
 
     /* renamed from: a */
     public void m2341a(String str) {
-        if (PlayStatus.STATUS_PLAYING == Player.m2611e().m2604h() && Preferences.m2838r() && BaseApplication.getApplication().m4627k()) {
+        if (PlayStatus.STATUS_PLAYING == Player.getInstance().m2604h() && Preferences.m2838r() && BaseApplication.getApplication().m4627k()) {
             LogUtils.error("MiniLyricManager", "lyricPath = " + str);
             m2338b(str);
         }
@@ -193,9 +193,9 @@ public final class MiniLyricManager {
 
     /* renamed from: f */
     public void m2331f() {
-        LogUtils.debug("MiniLyricManager", "PlayStatus = " + Player.m2611e().m2604h());
-        if (PlayStatus.STATUS_PLAYING == Player.m2611e().m2604h()) {
-            f7188b.m2341a(Preferences.m2935b(Player.m2611e().m2606g()));
+        LogUtils.debug("MiniLyricManager", "PlayStatus = " + Player.getInstance().m2604h());
+        if (PlayStatus.STATUS_PLAYING == Player.getInstance().m2604h()) {
+            f7188b.m2341a(Preferences.m2935b(Player.getInstance().getMediaItem()));
         } else {
             f7188b.m2336c();
         }

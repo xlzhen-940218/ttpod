@@ -80,7 +80,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
                 MediaButtonReceiver.m2252b();
             } else if (preferencesID == PreferencesID.IS_SHOW_DESKTOP_LYRIC_ENABLED) {
                 if (Preferences.m2838r()) {
-                    MiniLyricManager.m2344a().m2341a(Preferences.m2935b(Player.m2611e().m2606g()));
+                    MiniLyricManager.m2344a().m2341a(Preferences.m2935b(Player.getInstance().getMediaItem()));
                 } else {
                     MiniLyricManager.m2344a().m2336c();
                 }
@@ -138,7 +138,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         this.f6997f.m2439a();
         //OnlineMediaStatistic.m5045a(Preferences.m2928ba());
         m2771p();
-        MediaItem m2606g = Player.m2611e().m2606g();
+        MediaItem m2606g = Player.getInstance().getMediaItem();
         if (m2606g != null) {
             m2792b(m2606g);
         }
@@ -156,7 +156,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
 
     /* renamed from: a */
     private void m2809a(Intent intent) {
-        if (!m2795b(intent) && !Player.m2611e().m2635a(intent) && !AppWidgetManager.m2557a().m2556a(intent) && !MiniLyricManager.m2344a().m2343a(intent)) {
+        if (!m2795b(intent) && !Player.getInstance().m2635a(intent) && !AppWidgetManager.m2557a().m2556a(intent) && !MiniLyricManager.m2344a().m2343a(intent)) {
             SearchManager.m2232a().m2231a(intent);
         }
     }
@@ -176,8 +176,8 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         UnicomFlowUtil.m3938n();
         LogUtils.error("SupportService", "handle intent exit");
         m2776k();
-        if (Player.m2611e().m2604h() != PlayStatus.STATUS_STOPPED) {
-            Player.m2611e().m2594m();
+        if (Player.getInstance().m2604h() != PlayStatus.STATUS_STOPPED) {
+            Player.getInstance().m2594m();
         }
         this.f6997f.m2424b();
         sendBroadcast(new Intent(Action.EXIT));
@@ -189,7 +189,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         if (m2784d(intent)) {
             String stringExtra = intent.getStringExtra("command");
             if (StringUtils.equals(stringExtra, "play_pause_command")) {
-                PlayStatus m2604h = Player.m2611e().m2604h();
+                PlayStatus m2604h = Player.getInstance().m2604h();
                 if (m2604h == PlayStatus.STATUS_PLAYING) {
                     //LocalStatistic.m5095k();
                     //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_NOTIFY_PAUSE.getValue(), SPage.PAGE_SETTING_NOTIFICATION.getValue(), SPage.PAGE_NONE.getValue()).post();
@@ -233,10 +233,10 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
 
     /* renamed from: p */
     private void m2771p() {
-        Player.m2611e().m2636a(getApplication());
-        Player.m2611e().m2633a((Player.InterfaceC2055b) this);
-        Player.m2611e().m2632a((Player.InterfaceC2056c) this);
-        Player.m2611e().m2634a((Player.InterfaceC2054a) this);
+        Player.getInstance().m2636a(getApplication());
+        Player.getInstance().m2633a((Player.InterfaceC2055b) this);
+        Player.getInstance().m2632a((Player.InterfaceC2056c) this);
+        Player.getInstance().m2634a((Player.InterfaceC2054a) this);
         SearchManager.m2232a().m2230a(this);
         AppWidgetManager.m2557a().m2555b();
         MiniLyricManager.m2344a().m2334d();
@@ -270,10 +270,10 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         SearchManager.m2232a().m2222b();
         MiniLyricManager.m2344a().m2332e();
         AppWidgetManager.m2557a().m2554c();
-        Player.m2611e().m2632a((Player.InterfaceC2056c) null);
-        Player.m2611e().m2633a((Player.InterfaceC2055b) null);
-        Player.m2611e().m2634a((Player.InterfaceC2054a) null);
-        Player.m2611e().m2608f();
+        Player.getInstance().m2632a((Player.InterfaceC2056c) null);
+        Player.getInstance().m2633a((Player.InterfaceC2055b) null);
+        Player.getInstance().m2634a((Player.InterfaceC2054a) null);
+        Player.getInstance().m2608f();
     }
 
     @Override // com.sds.android.ttpod.framework.support.p134a.Player.InterfaceC2055b
@@ -297,15 +297,15 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     private void m2792b(MediaItem mediaItem) {
         Bundle bundle = new Bundle();
         bundle.putParcelable("mediaItem", mediaItem);
-        sendBroadcast(new Intent(Action.PLAY_MEDIA_CHANGED).putExtra("song_title", mediaItem != null ? mediaItem.getTitle() : "").putExtra("play_status", Player.m2611e().m2604h().ordinal()).putExtras(bundle));
+        sendBroadcast(new Intent(Action.PLAY_MEDIA_CHANGED).putExtra("song_title", mediaItem != null ? mediaItem.getTitle() : "").putExtra("play_status", Player.getInstance().m2604h().ordinal()).putExtras(bundle));
     }
 
     @Override // com.sds.android.ttpod.framework.support.p134a.Player.InterfaceC2056c
     /* renamed from: a */
     public void mo2558a() {
         LogUtils.debug("SupportService", "onPlayStatusChanged");
-        MediaItem m2606g = Player.m2611e().m2606g();
-        sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", Player.m2611e().m2604h().ordinal()).putExtra("song_title", m2606g != null ? m2606g.getTitle() : ""));
+        MediaItem m2606g = Player.getInstance().getMediaItem();
+        sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", Player.getInstance().m2604h().ordinal()).putExtra("song_title", m2606g != null ? m2606g.getTitle() : ""));
         m2769r();
     }
 
@@ -318,79 +318,79 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: c */
     public void m2789c() {
-        Player.m2611e().m2594m();
+        Player.getInstance().m2594m();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: d */
     public int m2785d() {
-        return Player.m2611e().m2604h().ordinal();
+        return Player.getInstance().m2604h().ordinal();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: e */
     public int m2782e() {
-        return Player.m2611e().m2602i();
+        return Player.getInstance().m2602i();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: f */
     public float m2781f() {
-        return Player.m2611e().m2600j();
+        return Player.getInstance().m2600j();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: b */
     public void m2797b(int i) {
-        Player.m2611e().m2620b(i);
+        Player.getInstance().m2620b(i);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: g */
     public int m2780g() {
-        return Player.m2611e().m2598k();
+        return Player.getInstance().m2598k();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
     public boolean m2799a(int[] iArr, int i) {
-        return Player.m2611e().m2622a(iArr, i);
+        return Player.getInstance().m2622a(iArr, i);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
     public boolean m2798a(short[] sArr, int i) {
-        return Player.m2611e().m2621a(sArr, i);
+        return Player.getInstance().m2621a(sArr, i);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: h */
     public String m2779h() {
-        return Player.m2611e().m2596l();
+        return Player.getInstance().m2596l();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: i */
     public void m2778i() {
-        Player.m2611e().m2588p();
+        Player.getInstance().m2588p();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: j */
     public void m2777j() {
-        Player.m2611e().m2587q();
+        Player.getInstance().m2587q();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
     public void m2801a(boolean z) {
-        Player.m2611e().m2626a(Boolean.valueOf(z));
+        Player.getInstance().m2626a(Boolean.valueOf(z));
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
     public void m2802a(String str, boolean z) {
-        Player.m2611e().m2623a(str, z);
+        Player.getInstance().m2623a(str, z);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
@@ -453,13 +453,13 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: l */
     public String m2775l() {
-        return Player.m2611e().m2590o();
+        return Player.getInstance().m2590o();
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: m */
     public MediaItem m2774m() {
-        return Player.m2611e().m2606g();
+        return Player.getInstance().getMediaItem();
     }
 
     /* renamed from: a */
@@ -470,7 +470,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
             HttpRequest.m8715a(str, i, str2, str3);
         }
         HttpRequest.m8705a(z);
-        Player.m2611e().m2625a(str, i2, UnicomFlowUtil.m3953a(str2, str3), z);
+        Player.getInstance().m2625a(str, i2, UnicomFlowUtil.m3953a(str2, str3), z);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
@@ -492,11 +492,11 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: r */
     public void m2769r() {
-        if (Player.m2611e().m2604h() == PlayStatus.STATUS_PAUSED && !Preferences.m2986aU()) {
+        if (Player.getInstance().m2604h() == PlayStatus.STATUS_PAUSED && !Preferences.m2986aU()) {
             m4620a(15121720);
             return;
         }
-        MediaItem m2606g = Player.m2611e().m2606g();
+        MediaItem m2606g = Player.getInstance().getMediaItem();
         if (m2606g != null) {
             m4619a(15121720, m2803a((String) null, m2606g));
         }
@@ -504,7 +504,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
 
     /* renamed from: s */
     private void m2768s() {
-        MediaItem m2606g = Player.m2611e().m2606g();
+        MediaItem m2606g = Player.getInstance().getMediaItem();
         if (m2606g != null) {
             String title = m2606g.getTitle();
             String artist = m2606g.getArtist();
@@ -546,7 +546,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
                     th = th2;
                     th.printStackTrace();
                     Notification m4692a = NotificationUtils.m4692a(BaseApplication.getApplication()
-                            , Player.m2611e().m2604h(), mediaItem.getTitle()
+                            , Player.getInstance().m2604h(), mediaItem.getTitle()
                             , TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist())
                             , TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum())
                             , bitmap, PendingIntent.getActivity(this, 0
@@ -562,7 +562,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
             bitmap = null;
             th = th3;
         }
-        Notification notification = NotificationUtils.m4692a(BaseApplication.getApplication(), Player.m2611e().m2604h(), mediaItem.getTitle(), TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist()), TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum()), bitmap, PendingIntent.getActivity(this, 0, new Intent(Action.START_ENTRY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        Notification notification = NotificationUtils.m4692a(BaseApplication.getApplication(), Player.getInstance().m2604h(), mediaItem.getTitle(), TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist()), TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum()), bitmap, PendingIntent.getActivity(this, 0, new Intent(Action.START_ENTRY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 , PendingIntent.FLAG_IMMUTABLE), pendingIntent4, pendingIntent3, pendingIntent2, pendingIntent);
         notification.flags |= 32;
         notification.tickerText = str;

@@ -392,14 +392,14 @@ public final class SearchManager {
                     if ((searchStatus == SearchStatus.SEARCH_LOCAL_FINISHED || searchStatus == SearchStatus.SEARCH_DOWNLOAD_FINISHED) && (stringArrayListExtra = intent.getStringArrayListExtra("download_result_list")) != null && !stringArrayListExtra.isEmpty()) {
                         if ("picture_type".equals(stringExtra)) {
                             SearchManager.this.mediaId = intent.getStringExtra("media_id") + stringArrayListExtra.get(0);
-                            MediaItem mediaItem = Player.m2611e().m2606g();
+                            MediaItem mediaItem = Player.getInstance().getMediaItem();
                             if (mediaItem != null && StringUtils.equals(mediaItem.getID(), stringExtra2)) {
                                 Preferences.m3011a(stringArrayListExtra.get(0), mediaItem);
                             }
                             SearchManager.this.f7256f.mo2190b();
                         } else if ("lyric_type".equals(stringExtra)) {
                             String str = stringArrayListExtra.get(0);
-                            MediaItem m2606g2 = Player.m2611e().m2606g();
+                            MediaItem m2606g2 = Player.getInstance().getMediaItem();
                             if (m2606g2 != null && StringUtils.equals(m2606g2.getID(), stringExtra2)) {
                                 Preferences.m2932b(str, m2606g2);
                                 MiniLyricManager.m2344a().m2331f();

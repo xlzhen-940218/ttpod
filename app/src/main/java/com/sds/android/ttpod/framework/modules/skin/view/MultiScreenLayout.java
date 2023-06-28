@@ -295,7 +295,7 @@ public class MultiScreenLayout extends SkinAbsoluteLayout {
     }
 
     @Override // android.view.View
-    public void setBackgroundDrawable(Drawable drawable) {
+    public void setBackground(Drawable drawable) {
         this.f6841o.m3394a(drawable);
         setWillNotDraw(drawable == null);
     }
@@ -553,7 +553,7 @@ public class MultiScreenLayout extends SkinAbsoluteLayout {
             if (this.f6844c == null) {
                 this.f6844c = new TransitionDrawable();
                 this.f6844c.m3709a(true);
-                MultiScreenLayout.super.setBackgroundDrawable(this.f6844c);
+                MultiScreenLayout.super.setBackground(this.f6844c);
             }
             if (MultiScreenLayout.this.getGlobalVisibleRect(this.f6851j)) {
                 this.f6844c.m3710a(drawable);

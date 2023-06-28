@@ -54,7 +54,7 @@ public class IconTextView extends View {
     private Drawable f3592i;
 
     /* renamed from: j */
-    private TextPaint f3593j;
+    private TextPaint textPaint;
 
     /* renamed from: k */
     private boolean f3594k;
@@ -63,13 +63,13 @@ public class IconTextView extends View {
     private int f3595l;
 
     /* renamed from: m */
-    private String f3596m;
+    private String selectedText;
 
     /* renamed from: n */
     private ColorStateList f3597n;
 
     /* renamed from: o */
-    private String f3598o;
+    private String unselectedText;
 
     /* renamed from: p */
     private ColorStateList f3599p;
@@ -173,9 +173,9 @@ public class IconTextView extends View {
         }
         this.f3587d = new Matrix();
         this.f3588e = ImageView.ScaleType.FIT_CENTER;
-        this.f3593j = new TextPaint(1);
-        this.f3593j.setTextAlign(Paint.Align.CENTER);
-        this.f3593j.setTypeface(DisplayUtils.m7230a());
+        this.textPaint = new TextPaint(1);
+        this.textPaint.setTextAlign(Paint.Align.CENTER);
+        this.textPaint.setTypeface(DisplayUtils.m7230a());
         if (textColor == null) {
             textColor = ColorStateList.valueOf(-65281);
         }
@@ -191,7 +191,7 @@ public class IconTextView extends View {
     }
 
     public void setText(String str) {
-        this.f3596m = str;
+        this.selectedText = str;
         this.drawable = null;
         this.f3592i = null;
         requestLayout();
@@ -204,8 +204,8 @@ public class IconTextView extends View {
 
     /* renamed from: a */
     public void m7209a(String str, String str2) {
-        this.f3596m = str;
-        this.f3598o = str2;
+        this.selectedText = str;
+        this.unselectedText = str2;
         this.drawable = null;
         this.f3592i = null;
         requestLayout();
@@ -267,7 +267,7 @@ public class IconTextView extends View {
             }
             invalidate();
         }
-        this.f3596m = null;
+        this.selectedText = null;
     }
 
     /* renamed from: a */
@@ -303,7 +303,7 @@ public class IconTextView extends View {
 
     /* renamed from: a */
     private boolean m7218a() {
-        return StringUtils.isEmpty(this.f3596m) && StringUtils.isEmpty(this.f3598o);
+        return StringUtils.isEmpty(this.selectedText) && StringUtils.isEmpty(this.unselectedText);
     }
 
     /* renamed from: a */
@@ -316,16 +316,16 @@ public class IconTextView extends View {
             canvas.clipRect(paddingLeft, getPaddingTop(), paddingLeft + width, height);
         }
         if (!StringUtils.isEmpty(this.bkgText)) {
-            this.f3593j.setColor(this.bkgTextColor);
-            canvas.drawText(this.bkgText, (width >> 1) + paddingLeft, height - this.f3595l, this.f3593j);
+            this.textPaint.setColor(this.bkgTextColor);
+            canvas.drawText(this.bkgText, (width >> 1) + paddingLeft, height - this.f3595l, this.textPaint);
         }
         ColorStateList colorStateList = (this.f3603t && this.f3604u && this.f3599p != null) ? this.f3599p : this.f3597n;
-        this.f3593j.setColor(colorStateList.getColorForState(getDrawableState(), colorStateList.getDefaultColor()));
-        String str = (this.f3603t && this.f3604u) ? this.f3598o : this.f3596m;
+        this.textPaint.setColor(colorStateList.getColorForState(getDrawableState(), colorStateList.getDefaultColor()));
+        String str = (this.f3603t && this.f3604u) ? this.unselectedText : this.selectedText;
         if (str == null) {
             str = "";
         }
-        canvas.drawText(str, paddingLeft + (width >> 1), height - this.f3595l, this.f3593j);
+        canvas.drawText(str, paddingLeft + (width >> 1), height - this.f3595l, this.textPaint);
         if (this.f3594k) {
             canvas.restore();
         }
@@ -376,13 +376,13 @@ public class IconTextView extends View {
     }
 
     private void setTextSize(float f) {
-        this.f3593j.setTextSize(f);
+        this.textPaint.setTextSize(f);
     }
 
     /* renamed from: b */
     private void m7207b() {
         int height = (getHeight() - getPaddingTop()) - getPaddingBottom();
-        Paint.FontMetrics fontMetrics = this.f3593j.getFontMetrics();
+        Paint.FontMetrics fontMetrics = this.textPaint.getFontMetrics();
         this.f3595l = (int) (((height - (fontMetrics.bottom - fontMetrics.top)) / 2.0f) + fontMetrics.bottom + 0.5f);
     }
 
@@ -487,13 +487,13 @@ public class IconTextView extends View {
         int paddingTop = getPaddingTop();
         int paddingBottom = getPaddingBottom();
         if (mode != 1073741824) {
-            int max2 = Math.max((this.f3593j != null ? (int) (this.f3593j.measureText(this.f3596m) + 0.5f) : 0) + paddingRight + paddingLeft, getSuggestedMinimumWidth());
+            int max2 = Math.max((this.textPaint != null ? (int) (this.textPaint.measureText(this.selectedText) + 0.5f) : 0) + paddingRight + paddingLeft, getSuggestedMinimumWidth());
             size = mode == Integer.MIN_VALUE ? Math.min(size, max2) : max2;
         }
         if (mode2 == 1073741824) {
             max = size2;
         } else {
-            max = Math.max(paddingTop + paddingBottom + (this.f3593j != null ? (int) (this.f3593j.getTextSize() + 0.5f) : 0), getSuggestedMinimumHeight());
+            max = Math.max(paddingTop + paddingBottom + (this.textPaint != null ? (int) (this.textPaint.getTextSize() + 0.5f) : 0), getSuggestedMinimumHeight());
             if (mode2 == Integer.MIN_VALUE) {
                 max = Math.min(max, size2);
             }

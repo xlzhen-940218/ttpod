@@ -64,7 +64,7 @@ public class SLyricShow extends SText {
             this.align = 1;
         }
         this.mode = kXmlParser.getAttributeValue(null, "Mode");
-        int fontSizeSelected = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FontSizeSelected"), this.font.size);
+        int fontSizeSelected = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "FontSizeSelected"), this.font.size);
         if (fontSizeSelected > 0) {
             this.fontSizeSelected = fontSizeSelected;
         }

@@ -15,124 +15,124 @@ import com.sds.android.ttpod.framework.storage.environment.Preferences;
 public class LyricToolMenu extends PopupWindow {
 
     /* renamed from: a */
-    private View.OnClickListener f4278a;
+    private View.OnClickListener setOnClickListener;
 
     /* renamed from: b */
-    private ImageView f4279b;
+    private ImageView slowDownView;
 
     /* renamed from: c */
-    private ImageView f4280c;
+    private ImageView resetView;
 
     /* renamed from: d */
-    private ImageView f4281d;
+    private ImageView slowUpView;
 
     /* renamed from: e */
-    private ImageView f4282e;
+    private ImageView fontEdit;
 
     /* renamed from: f */
-    private ImageView f4283f;
+    private ImageView colorEdit;
 
     /* renamed from: g */
-    private ImageView f4284g;
+    private ImageView switchTrcView;
 
     /* renamed from: h */
-    private ImageView f4285h;
+    private ImageView deleteLyricView;
 
     /* renamed from: i */
-    private InterfaceC1231a f4286i;
+    private Callback callback;
 
     /* renamed from: j */
-    private View f4287j;
+    private View parent;
 
     /* renamed from: k */
-    private Context f4288k;
+    private Context context;
 
     /* compiled from: LyricToolMenu.java */
     /* renamed from: com.sds.android.ttpod.component.g.b.b.c$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC1231a {
+    public interface Callback {
         /* renamed from: a */
-        void mo6455a(View view, int i);
+        void setFont(View view, int i);
 
         /* renamed from: b */
-        void mo6436b(View view, int i);
+        void setColor(View view, int i);
 
         /* renamed from: b */
-        void mo6433b(boolean z);
+        void kalaOkEnabled(boolean z);
 
         /* renamed from: s */
-        void mo6409s();
+        void slowUp();
 
         /* renamed from: t */
-        void mo6408t();
+        void slowDown();
 
         /* renamed from: u */
-        void mo6407u();
+        void reset();
 
         /* renamed from: v */
-        void mo6406v();
+        void deleteLyric();
     }
 
     /* renamed from: a */
-    public void m6483a(int i) {
-        this.f4284g.setVisibility(i);
+    public void setVisibility(int visibility) {
+        this.switchTrcView.setVisibility(visibility);
     }
 
     /* renamed from: a */
-    public void m6481a(InterfaceC1231a interfaceC1231a) {
-        this.f4286i = interfaceC1231a;
+    public void setCallback(Callback callback) {
+        this.callback = callback;
     }
 
     public LyricToolMenu(Context context, int i, int i2) {
         super(View.inflate(context, R.layout.popups_lyric_tool_menu, null), i, i2, true);
-        this.f4278a = new View.OnClickListener() { // from class: com.sds.android.ttpod.component.g.b.b.c.1
+        this.setOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.component.g.b.b.c.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (LyricToolMenu.this.f4286i != null) {
-                    if (view == LyricToolMenu.this.f4279b) {
-                        LyricToolMenu.this.f4286i.mo6408t();
-                    } else if (view == LyricToolMenu.this.f4280c) {
-                        LyricToolMenu.this.f4286i.mo6407u();
-                    } else if (view == LyricToolMenu.this.f4281d) {
-                        LyricToolMenu.this.f4286i.mo6409s();
-                    } else if (view != LyricToolMenu.this.f4282e) {
-                        if (view != LyricToolMenu.this.f4283f) {
-                            if (view != LyricToolMenu.this.f4284g) {
-                                if (view == LyricToolMenu.this.f4285h) {
-                                    LyricToolMenu.this.f4286i.mo6406v();
+                if (LyricToolMenu.this.callback != null) {
+                    if (view == LyricToolMenu.this.slowDownView) {
+                        LyricToolMenu.this.callback.slowDown();
+                    } else if (view == LyricToolMenu.this.resetView) {
+                        LyricToolMenu.this.callback.reset();
+                    } else if (view == LyricToolMenu.this.slowUpView) {
+                        LyricToolMenu.this.callback.slowUp();
+                    } else if (view != LyricToolMenu.this.fontEdit) {
+                        if (view != LyricToolMenu.this.colorEdit) {
+                            if (view != LyricToolMenu.this.switchTrcView) {
+                                if (view == LyricToolMenu.this.deleteLyricView) {
+                                    LyricToolMenu.this.callback.deleteLyric();
                                     return;
                                 }
                                 return;
                             }
-                            boolean m3046R = Preferences.m3046R();
-                            Drawable drawable = LyricToolMenu.this.f4288k.getResources().getDrawable(!m3046R ? R.drawable.img_lyric_kala_off : R.drawable.img_lyric_kala_on);
-                            PopupsUtils.m6721a(LyricToolMenu.this.f4288k.getString(m3046R ? R.string.kara_ok_off : R.string.kara_ok_on));
-                            LyricToolMenu.this.f4284g.setImageDrawable(drawable);
-                            LyricToolMenu.this.f4286i.mo6433b(!m3046R);
-                            Preferences.m2812y(m3046R ? false : true);
+                            boolean kalaOkEnabled = Preferences.kalaOkEnabled();
+                            Drawable drawable = LyricToolMenu.this.context.getResources().getDrawable(!kalaOkEnabled ? R.drawable.img_lyric_kala_off : R.drawable.img_lyric_kala_on);
+                            PopupsUtils.m6721a(LyricToolMenu.this.context.getString(kalaOkEnabled ? R.string.kara_ok_off : R.string.kara_ok_on));
+                            LyricToolMenu.this.switchTrcView.setImageDrawable(drawable);
+                            LyricToolMenu.this.callback.kalaOkEnabled(!kalaOkEnabled);
+                            Preferences.m2812y(kalaOkEnabled ? false : true);
                             return;
                         }
                         int[] iArr = {0, 0};
-                        LyricToolMenu.this.f4283f.getLocationOnScreen(iArr);
-                        LyricToolMenu.this.f4286i.mo6436b(LyricToolMenu.this.f4287j, iArr[1]);
+                        LyricToolMenu.this.colorEdit.getLocationOnScreen(iArr);
+                        LyricToolMenu.this.callback.setColor(LyricToolMenu.this.parent, iArr[1]);
                     } else {
                         int[] iArr2 = {0, 0};
-                        LyricToolMenu.this.f4282e.getLocationOnScreen(iArr2);
-                        LyricToolMenu.this.f4286i.mo6455a(LyricToolMenu.this.f4287j, iArr2[1]);
+                        LyricToolMenu.this.fontEdit.getLocationOnScreen(iArr2);
+                        LyricToolMenu.this.callback.setFont(LyricToolMenu.this.parent, iArr2[1]);
                     }
                 }
             }
         };
-        this.f4279b = null;
-        this.f4280c = null;
-        this.f4281d = null;
-        this.f4282e = null;
-        this.f4283f = null;
-        this.f4284g = null;
-        this.f4285h = null;
-        this.f4286i = null;
-        this.f4287j = null;
-        this.f4288k = context;
+        this.slowDownView = null;
+        this.resetView = null;
+        this.slowUpView = null;
+        this.fontEdit = null;
+        this.colorEdit = null;
+        this.switchTrcView = null;
+        this.deleteLyricView = null;
+        this.callback = null;
+        this.parent = null;
+        this.context = context;
         setAnimationStyle(R.style.Dialog_Window_Push_Anim);
         setBackgroundDrawable(new ColorDrawable(0));
         View contentView = getContentView();
@@ -144,26 +144,27 @@ public class LyricToolMenu extends PopupWindow {
     /* renamed from: a */
     private void m6482a(Context context, View view) {
         view.setFocusableInTouchMode(true);
-        this.f4279b = (ImageView) view.findViewById(R.id.lyric_slow_down);
-        this.f4280c = (ImageView) view.findViewById(R.id.lyric_reset);
-        this.f4281d = (ImageView) view.findViewById(R.id.lyric_slow_up);
-        this.f4282e = (ImageView) view.findViewById(R.id.lyric_font_edit);
-        this.f4283f = (ImageView) view.findViewById(R.id.lyric_color_edit);
-        this.f4284g = (ImageView) view.findViewById(R.id.lyric_switch_trc);
-        this.f4285h = (ImageView) view.findViewById(R.id.iv_delete_lyric);
-        this.f4279b.setOnClickListener(this.f4278a);
-        this.f4280c.setOnClickListener(this.f4278a);
-        this.f4281d.setOnClickListener(this.f4278a);
-        this.f4282e.setOnClickListener(this.f4278a);
-        this.f4283f.setOnClickListener(this.f4278a);
-        this.f4284g.setOnClickListener(this.f4278a);
-        this.f4285h.setOnClickListener(this.f4278a);
-        this.f4284g.setImageDrawable(context.getResources().getDrawable(Preferences.m3046R() ? R.drawable.img_lyric_kala_off : R.drawable.img_lyric_kala_on));
+        this.slowDownView = (ImageView) view.findViewById(R.id.lyric_slow_down);
+        this.resetView = (ImageView) view.findViewById(R.id.lyric_reset);
+        this.slowUpView = (ImageView) view.findViewById(R.id.lyric_slow_up);
+        this.fontEdit = (ImageView) view.findViewById(R.id.lyric_font_edit);
+        this.colorEdit = (ImageView) view.findViewById(R.id.lyric_color_edit);
+        this.switchTrcView = (ImageView) view.findViewById(R.id.lyric_switch_trc);
+        this.deleteLyricView = (ImageView) view.findViewById(R.id.iv_delete_lyric);
+        this.slowDownView.setOnClickListener(this.setOnClickListener);
+        this.resetView.setOnClickListener(this.setOnClickListener);
+        this.slowUpView.setOnClickListener(this.setOnClickListener);
+        this.fontEdit.setOnClickListener(this.setOnClickListener);
+        this.colorEdit.setOnClickListener(this.setOnClickListener);
+        this.switchTrcView.setOnClickListener(this.setOnClickListener);
+        this.deleteLyricView.setOnClickListener(this.setOnClickListener);
+        this.switchTrcView.setImageDrawable(context.getResources().getDrawable(Preferences.kalaOkEnabled()
+                ? R.drawable.img_lyric_kala_off : R.drawable.img_lyric_kala_on));
     }
 
     @Override // android.widget.PopupWindow
-    public void showAtLocation(View view, int i, int i2, int i3) {
-        super.showAtLocation(view, i, i2, i3);
-        this.f4287j = view;
+    public void showAtLocation(View parent, int gravity, int x, int y) {
+        super.showAtLocation(parent, gravity, x, y);
+        this.parent = parent;
     }
 }

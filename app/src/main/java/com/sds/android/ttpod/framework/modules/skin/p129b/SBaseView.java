@@ -23,14 +23,14 @@ public abstract class SBaseView<T extends View, E> extends SComponent<T> impleme
 
     public SBaseView(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6432c = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "Transform"), -1);
+        this.f6432c = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "Transform"), -1);
         if (this.f6432c < 0) {
             this.f6432c = "Landscape".equals(this.id) ? 1 : 0;
         }
         if (this.id == null || "Landscape".equals(this.id) || "Portrait".equals(this.id) || "Portait".equals(this.id)) {
             this.id = "Player";
         }
-        this.f6433d = ValueParser.m3698a(kXmlParser.getAttributeValue(null, "FullScreen"), false);
+        this.f6433d = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "FullScreen"), false);
     }
 
     /* renamed from: b */
@@ -41,12 +41,12 @@ public abstract class SBaseView<T extends View, E> extends SComponent<T> impleme
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public void mo3775a(Context context, T t, SkinCache skinCache) {
-        t.setEnabled(this.f6445h);
-        t.setVisibility(this.f6444g);
+    public void setBackground(Context context, T t, SkinCache skinCache) {
+        t.setEnabled(this.enable);
+        t.setVisibility(this.visibility);
         t.setTag(this.id);
-        Drawable d = m3810d(context, skinCache);
-        t.setBackgroundDrawable(d);
+        Drawable d = getDrawable(context, skinCache);
+        t.setBackground(d);
         if (d == null) {
             t.setWillNotDraw(true);
         }

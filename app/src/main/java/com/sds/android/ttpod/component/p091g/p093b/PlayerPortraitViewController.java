@@ -41,50 +41,50 @@ import java.util.Iterator;
 
 /* renamed from: com.sds.android.ttpod.component.g.b.e */
 /* loaded from: classes.dex */
-public class PlayerPortraitViewController extends BasePlayerViewController implements LyricColorPanel.InterfaceC1226b, LyricFontPanel.InterfaceC1229a, LyricToolMenu.InterfaceC1231a, MultiScreenLayout.InterfaceC2002b {
+public class PlayerPortraitViewController extends BasePlayerViewController implements LyricColorPanel.LyricColorCallback, LyricFontPanel.LyricFontPanelCallback, LyricToolMenu.Callback, MultiScreenLayout.InterfaceC2002b {
 
     /* renamed from: Y */
-    private ArrayList<Icon> f4291Y;
+    private ArrayList<Icon> icons;
 
     /* renamed from: Z */
-    private int f4292Z;
+    private int lastDisplayPanelId;
 
     /* renamed from: a */
-    private ArrayList<ViewEventController> f4293a;
+    private ArrayList<ViewEventController> viewEventControllers;
 
     /* renamed from: aa */
-    private ViewEventController f4294aa;
+    private ViewEventController currentViewEventController;
 
     /* renamed from: ab */
-    private MultiScreenLayout f4295ab;
+    private MultiScreenLayout multiScreenLayout;
 
     /* renamed from: ac */
     private boolean f4296ac;
 
     /* renamed from: ad */
-    private LyricToolMenu f4297ad;
+    private LyricToolMenu lyricToolMenu;
 
     /* renamed from: ae */
-    private LyricColorPanel f4298ae;
+    private LyricColorPanel lyricColorPanel;
 
     /* renamed from: af */
-    private LyricFontPanel f4299af;
+    private LyricFontPanel lyricFontPanel;
 
     /* renamed from: b */
-    private SparseIntArray f4300b;
+    private SparseIntArray controllerNameArray;
 
     public PlayerPortraitViewController(Context context, SkinCache skinCache) {
         super(context, "Player");
-        this.f4293a = new ArrayList<>(4);
-        this.f4300b = new SparseIntArray(4);
-        this.f4291Y = new ArrayList<>(4);
-        this.f4292Z = 0;
+        this.viewEventControllers = new ArrayList<>(4);
+        this.controllerNameArray = new SparseIntArray(4);
+        this.icons = new ArrayList<>(4);
+        this.lastDisplayPanelId = 0;
         this.f4296ac = true;
         m6458a(context, skinCache);
-        m6440b(Preferences.m3040U());
-        this.f4297ad = new LyricToolMenu(context, m6418k(60), -1);
-        this.f4297ad.m6481a(this);
-        this.f4297ad.setOnDismissListener(new PopupWindow.OnDismissListener() { // from class: com.sds.android.ttpod.component.g.b.e.1
+        setPlayLastDisplayPanelId(Preferences.getPlayLastDisplayPanelId());
+        this.lyricToolMenu = new LyricToolMenu(context, applyDimension(60), -1);
+        this.lyricToolMenu.setCallback(this);
+        this.lyricToolMenu.setOnDismissListener(new PopupWindow.OnDismissListener() { // from class: com.sds.android.ttpod.component.g.b.e.1
             @Override // android.widget.PopupWindow.OnDismissListener
             public void onDismiss() {
                 if (PlayerPortraitViewController.this.m6464M() != null) {
@@ -92,16 +92,16 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
                 }
             }
         });
-        int m6418k = this.f4223f.getResources().getDisplayMetrics().widthPixels - m6418k(60);
-        this.f4298ae = new LyricColorPanel(context, m6418k, -2);
-        this.f4298ae.m6508a(this);
-        this.f4299af = new LyricFontPanel(context, m6418k, m6418k(72));
-        this.f4299af.m6494a(this);
+        int m6418k = this.context.getResources().getDisplayMetrics().widthPixels - applyDimension(60);
+        this.lyricColorPanel = new LyricColorPanel(context, m6418k, -2);
+        this.lyricColorPanel.m6508a(this);
+        this.lyricFontPanel = new LyricFontPanel(context, m6418k, applyDimension(72));
+        this.lyricFontPanel.m6494a(this);
     }
 
     /* renamed from: j */
     private void m6420j(int i) {
-        PopupsUtils.m6721a(this.f4223f.getString(i > 0 ? R.string.lyric_delay : R.string.lyric_forward) + Math.abs(i / 1000.0f) + this.f4223f.getString(R.string.second));
+        PopupsUtils.m6721a(this.context.getString(i > 0 ? R.string.lyric_delay : R.string.lyric_forward) + Math.abs(i / 1000.0f) + this.context.getString(R.string.second));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -118,13 +118,13 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: M */
     public LyricView m6464M() {
-        LyricView F = this.f4294aa != null ? this.f4294aa.m6547F() : null;
-        return F != null ? F : this.lyricView;
+        LyricView currentLyricView = this.currentViewEventController != null ? this.currentViewEventController.getLyricShowView() : null;
+        return currentLyricView != null ? currentLyricView : this.lyricShowView;
     }
 
     /* renamed from: k */
-    private int m6418k(int i) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, i, this.f4223f.getResources().getDisplayMetrics());
+    private int applyDimension(int number) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, number, this.context.getResources().getDisplayMetrics());
     }
 
     /* renamed from: a */
@@ -202,7 +202,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* renamed from: a */
     public void mo6452a(SkinEventHandler skinEventHandler) {
         super.mo6452a(skinEventHandler);
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6452a(skinEventHandler);
         }
@@ -211,7 +211,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a_ */
     public void mo6442a_(int i) {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6442a_(i);
         }
@@ -220,9 +220,9 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: b */
-    public void mo6437b(View view) {
+    public void initSetView(View view) {
         Object tag;
-        super.mo6437b(view);
+        super.initSetView(view);
         if ((view instanceof Icon) && (tag = view.getTag()) != null) {
             if ("MainIcon".equals(tag)) {
                 view.setTag(R.id.tag_event_on_click, "Main");
@@ -236,8 +236,8 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
                 return;
             }
             view.setTag("NavigationIcon");
-            m6540a(view, true);
-            this.f4291Y.add((Icon) view);
+            setRepeatListener(view, true);
+            this.icons.add((Icon) view);
         }
     }
 
@@ -245,43 +245,43 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* renamed from: b */
     public void mo6441b() {
         super.mo6441b();
-        if (this.f4295ab != null) {
-            Preferences.m2897d(m6425g());
-            this.f4295ab.setScreenChangeListener(null);
-            this.f4295ab.removeAllViews();
-            this.f4295ab.setMaxScreen(1);
+        if (this.multiScreenLayout != null) {
+            Preferences.m2897d(getLastDisplayPanelId());
+            this.multiScreenLayout.setScreenChangeListener(null);
+            this.multiScreenLayout.removeAllViews();
+            this.multiScreenLayout.setMaxScreen(1);
         }
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6441b();
         }
-        this.f4293a.clear();
-        this.f4300b.clear();
-        this.f4291Y.clear();
-        this.f4297ad.dismiss();
-        this.f4298ae.dismiss();
-        this.f4299af.dismiss();
+        this.viewEventControllers.clear();
+        this.controllerNameArray.clear();
+        this.icons.clear();
+        this.lyricToolMenu.dismiss();
+        this.lyricColorPanel.dismiss();
+        this.lyricFontPanel.dismiss();
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.BasePlayerViewController
     /* renamed from: c */
     public void mo6432c() {
-        PopupsUtils.m6723a(this.f4297ad);
-        PopupsUtils.m6723a(this.f4298ae);
-        PopupsUtils.m6723a(this.f4299af);
+        PopupsUtils.m6723a(this.lyricToolMenu);
+        PopupsUtils.m6723a(this.lyricColorPanel);
+        PopupsUtils.m6723a(this.lyricFontPanel);
     }
 
     /* renamed from: a */
     public void m6454a(ViewEventController viewEventController) {
-        m6460a(this.f4293a.size(), viewEventController);
+        m6460a(this.viewEventControllers.size(), viewEventController);
     }
 
     /* renamed from: a */
     public void m6460a(int i, ViewEventController viewEventController) {
-        this.f4293a.add(i, viewEventController);
-        String E = viewEventController == null ? null : viewEventController.m6548E();
+        this.viewEventControllers.add(i, viewEventController);
+        String E = viewEventController == null ? null : viewEventController.getControllerName();
         if (E != null) {
-            this.f4300b.put(E.hashCode(), i);
+            this.controllerNameArray.put(E.hashCode(), i);
         }
     }
 
@@ -296,10 +296,10 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
                 if (ThemeElement.PANEL_COMMON.equals(substring)) {
                     return super.mo6445a(substring2);
                 }
-                Iterator<ViewEventController> it = this.f4293a.iterator();
+                Iterator<ViewEventController> it = this.viewEventControllers.iterator();
                 while (it.hasNext()) {
                     ViewEventController next = it.next();
-                    if (substring.equals(next.m6548E())) {
+                    if (substring.equals(next.getControllerName())) {
                         return next.mo6445a(substring2);
                     }
                 }
@@ -313,7 +313,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController
     /* renamed from: b */
     public void mo6434b(String str) {
-        if (!TextUtils.isEmpty(str) && this.f4293a != null) {
+        if (!TextUtils.isEmpty(str) && this.viewEventControllers != null) {
             int lastIndexOf = str.lastIndexOf(46);
             if (lastIndexOf > 0) {
                 String substring = str.substring(0, lastIndexOf);
@@ -322,10 +322,10 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
                     super.mo6434b(substring2);
                     return;
                 }
-                Iterator<ViewEventController> it = this.f4293a.iterator();
+                Iterator<ViewEventController> it = this.viewEventControllers.iterator();
                 while (it.hasNext()) {
                     ViewEventController next = it.next();
-                    if (substring.equals(next.m6548E())) {
+                    if (substring.equals(next.getControllerName())) {
                         next.mo6434b(substring2);
                         return;
                     }
@@ -341,29 +341,29 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     }
 
     /* renamed from: g */
-    public int m6425g() {
-        return this.f4292Z;
+    public int getLastDisplayPanelId() {
+        return this.lastDisplayPanelId;
     }
 
     /* renamed from: b */
-    public void m6440b(int i) {
-        if (this.f4295ab != null && i >= 0 && i < this.f4295ab.getChildCount()) {
-            m6416l(i);
-            this.f4295ab.m3406a(i);
+    public void setPlayLastDisplayPanelId(int id) {
+        if (this.multiScreenLayout != null && id >= 0 && id < this.multiScreenLayout.getChildCount()) {
+            setLastDisplayPanelId(id);
+            this.multiScreenLayout.m3406a(id);
         }
     }
 
     /* renamed from: l */
-    private void m6416l(int i) {
-        this.f4292Z = i;
-        this.f4294aa = m6431c(i);
+    private void setLastDisplayPanelId(int id) {
+        this.lastDisplayPanelId = id;
+        this.currentViewEventController = getCurrentViewEventController(id);
         m6462O();
         m6463N();
     }
 
     /* renamed from: N */
     private void m6463N() {
-        String E = this.f4294aa == null ? null : this.f4294aa.m6548E();
+        String E = this.currentViewEventController == null ? null : this.currentViewEventController.getControllerName();
         if ("Visual".equals(E)) {
             //LocalStatistic.m5134aT();
         } else if ("Lyric".equals(E)) {
@@ -373,8 +373,8 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
 
     /* renamed from: O */
     private void m6462O() {
-        String E = this.f4294aa == null ? null : this.f4294aa.m6548E();
-        Iterator<Icon> it = this.f4291Y.iterator();
+        String E = this.currentViewEventController == null ? null : this.currentViewEventController.getControllerName();
+        Iterator<Icon> it = this.icons.iterator();
         while (it.hasNext()) {
             Icon next = it.next();
             boolean equals = TextUtils.equals(E, String.valueOf(next.getTag(R.id.tag_event_on_click)));
@@ -384,8 +384,8 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     }
 
     /* renamed from: c */
-    public ViewEventController m6431c(int i) {
-        int size = this.f4293a.size();
+    public ViewEventController getCurrentViewEventController(int i) {
+        int size = this.viewEventControllers.size();
         if (this.f4296ac) {
             if (i < 0) {
                 i = size - 1;
@@ -396,44 +396,44 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
         if (i < 0 || i >= size) {
             return null;
         }
-        return this.f4293a.get(i);
+        return this.viewEventControllers.get(i);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
-    public void mo6459a(long j, float f) {
-        if (this.f4293a != null) {
-            Iterator<ViewEventController> it = this.f4293a.iterator();
+    public void mo6459a(long playingTime, float progress) {
+        if (this.viewEventControllers != null) {
+            Iterator<ViewEventController> it = this.viewEventControllers.iterator();
             while (it.hasNext()) {
-                it.next().mo6459a(j, f);
+                it.next().mo6459a(playingTime, progress);
             }
         }
-        super.mo6459a(j, f);
+        super.mo6459a(playingTime, progress);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
-    public void mo6448a(MediaItem mediaItem) {
-        super.mo6448a(mediaItem);
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+    public void onMetaChange(MediaItem mediaItem) {
+        super.onMetaChange(mediaItem);
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
-            it.next().mo6448a(mediaItem);
+            it.next().onMetaChange(mediaItem);
         }
-        if (this.f4297ad.isShowing()) {
-            this.f4297ad.dismiss();
+        if (this.lyricToolMenu.isShowing()) {
+            this.lyricToolMenu.dismiss();
         }
-        if (this.f4299af.isShowing()) {
-            this.f4299af.dismiss();
+        if (this.lyricFontPanel.isShowing()) {
+            this.lyricFontPanel.dismiss();
         }
-        if (this.f4298ae.isShowing()) {
-            this.f4298ae.dismiss();
+        if (this.lyricColorPanel.isShowing()) {
+            this.lyricColorPanel.dismiss();
         }
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
     public void mo6447a(MediaItem mediaItem, Bitmap bitmap, Lyric lyric) {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6447a(mediaItem, bitmap, lyric);
         }
@@ -443,7 +443,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: d */
     public void mo6428d(int i) {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6428d(i);
         }
@@ -453,7 +453,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
     public void mo6446a(PlayStatus playStatus) {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6446a(playStatus);
         }
@@ -464,7 +464,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* renamed from: a */
     public void mo6443a(boolean z) {
         super.mo6443a(z);
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6443a(z);
         }
@@ -473,7 +473,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: h */
     public void mo6423h() {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6423h();
         }
@@ -483,7 +483,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: i */
     public void mo6422i() {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6422i();
         }
@@ -493,7 +493,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: j */
     public void mo6421j() {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6421j();
         }
@@ -503,7 +503,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: k */
     public void mo6419k() {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6419k();
         }
@@ -513,7 +513,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: l */
     public void mo6417l() {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6417l();
         }
@@ -523,7 +523,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: m */
     public void mo6415m() {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6415m();
         }
@@ -533,7 +533,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
     public void mo6451a(Lyric lyric) {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6451a(lyric);
         }
@@ -543,7 +543,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
     public void mo6457a(Bitmap bitmap) {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6457a(bitmap);
         }
@@ -554,7 +554,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: b */
     public void mo6438b(Bitmap bitmap) {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6438b(bitmap);
         }
@@ -564,15 +564,15 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
 
     /* renamed from: c */
     private void m6430c(Bitmap bitmap) {
-        if (this.f4295ab != null) {
-            this.f4295ab.setSecondBackgroundBitmap(bitmap);
+        if (this.multiScreenLayout != null) {
+            this.multiScreenLayout.setSecondBackgroundBitmap(bitmap);
         }
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: n */
     public void mo6413n() {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6413n();
         }
@@ -582,7 +582,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: o */
     public void mo6412o() {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6412o();
         }
@@ -592,7 +592,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: p */
     public void mo6411p() {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6411p();
         }
@@ -602,16 +602,16 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* renamed from: a */
     private void m6450a(MultiScreenLayout multiScreenLayout, boolean z) {
         if (multiScreenLayout != null) {
-            if (multiScreenLayout != this.f4295ab || z) {
-                m6444a(m6546G(), multiScreenLayout, -1);
-                multiScreenLayout.setMaxScreen(this.f4293a.size());
-                Iterator<ViewEventController> it = this.f4293a.iterator();
+            if (multiScreenLayout != this.multiScreenLayout || z) {
+                m6444a(getViews(), multiScreenLayout, -1);
+                multiScreenLayout.setMaxScreen(this.viewEventControllers.size());
+                Iterator<ViewEventController> it = this.viewEventControllers.iterator();
                 int i = 0;
                 while (it.hasNext()) {
                     ViewEventController next = it.next();
                     next.m6545H();
                     int i2 = i + 1;
-                    m6444a(next.m6546G(), multiScreenLayout, i);
+                    m6444a(next.getViews(), multiScreenLayout, i);
                     next.mo6403b_();
                     if (next instanceof PanelViewController) {
                         ((PanelViewController) next).m6470a(this);
@@ -621,12 +621,12 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
                     }
                     i = i2;
                 }
-                this.f4295ab = multiScreenLayout;
-                m6540a((View) this.f4295ab, true);
+                this.multiScreenLayout = multiScreenLayout;
+                setRepeatListener((View) this.multiScreenLayout, true);
                 m6545H();
                 mo6403b_();
-                this.f4295ab.setScreenChangeListener(this);
-                this.f4295ab.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                this.multiScreenLayout.setScreenChangeListener(this);
+                this.multiScreenLayout.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             }
         }
     }
@@ -636,10 +636,11 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     public void mo6456a(View view) {
         Object tag;
         int i;
-        if ("NavigationIcon".equals(view.getTag()) && (tag = view.getTag(R.id.tag_event_on_click)) != null && (i = this.f4300b.get(tag.hashCode(), -1)) >= 0) {
-            m6440b(i);
-        } else if ((view == this.f4295ab || view == this.f4200L) && this.f4294aa != null) {
-            this.f4294aa.mo6456a(view);
+        if ("NavigationIcon".equals(view.getTag()) && (tag = view.getTag(R.id.tag_event_on_click)) != null
+                && (i = this.controllerNameArray.get(tag.hashCode(), -1)) >= 0) {
+            setPlayLastDisplayPanelId(i);
+        } else if ((view == this.multiScreenLayout || view == this.albumCoverAnimTransView) && this.currentViewEventController != null) {
+            this.currentViewEventController.mo6456a(view);
         } else {
             super.mo6456a(view);
         }
@@ -647,8 +648,8 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.BasePlayerViewController
     /* renamed from: a */
-    public View mo6461a() {
-        return this.f4295ab;
+    public View getMultiScreenLayout() {
+        return this.multiScreenLayout;
     }
 
     /* renamed from: a */
@@ -678,17 +679,17 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* renamed from: a */
     public void mo3376a(int i, int i2) {
         if (i != i2) {
-            int size = this.f4293a.size();
-            int width = this.f4295ab.getWidth();
+            int size = this.viewEventControllers.size();
+            int width = this.multiScreenLayout.getWidth();
             for (int i3 = 0; i3 < size; i3++) {
-                this.f4293a.get(i3).m6512i((i3 - i) * width);
+                this.viewEventControllers.get(i3).m6512i((i3 - i) * width);
             }
-            m6416l(i);
+            setLastDisplayPanelId(i);
             if (i2 >= 0 && i2 < size) {
-                this.f4293a.get(i2).mo6410q();
+                this.viewEventControllers.get(i2).onPanelDisappear();
             }
-            if (this.f4294aa != null) {
-                this.f4294aa.mo6404r();
+            if (this.currentViewEventController != null) {
+                this.currentViewEventController.onPanelShow();
             }
         }
         if (m6557C()) {
@@ -698,11 +699,11 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
-    public void mo6449a(PlayMode playMode) {
-        super.mo6449a(playMode);
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+    public void onPlayModeChange(PlayMode playMode) {
+        super.onPlayModeChange(playMode);
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
-            it.next().mo6449a(playMode);
+            it.next().onPlayModeChange(playMode);
         }
     }
 
@@ -710,7 +711,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* renamed from: b */
     public void mo6439b(int i, int i2) {
         super.mo6439b(i, i2);
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().mo6439b(i, i2);
         }
@@ -718,23 +719,23 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.BasePlayerViewController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: q */
-    public void mo6410q() {
-        super.mo6410q();
-        mo6461a().setKeepScreenOn(false);
+    public void onPanelDisappear() {
+        super.onPanelDisappear();
+        getMultiScreenLayout().setKeepScreenOn(false);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.BasePlayerViewController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: r */
-    public void mo6404r() {
-        super.mo6404r();
-        mo6461a().setKeepScreenOn(Preferences.m2811z());
+    public void onPanelShow() {
+        super.onPanelShow();
+        getMultiScreenLayout().setKeepScreenOn(Preferences.m2811z());
         m6463N();
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricFontPanel.InterfaceC1229a
     /* renamed from: e */
-    public void mo6427e(int i) {
-        Iterator<ViewEventController> it = this.f4293a.iterator();
+    public void onDismiss(int i) {
+        Iterator<ViewEventController> it = this.viewEventControllers.iterator();
         while (it.hasNext()) {
             it.next().m6523h(i);
         }
@@ -743,74 +744,74 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricToolMenu.InterfaceC1231a
     /* renamed from: s */
-    public void mo6409s() {
+    public void slowUp() {
         m6414m(-500);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricToolMenu.InterfaceC1231a
     /* renamed from: t */
-    public void mo6408t() {
+    public void slowDown() {
         m6414m(500);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricToolMenu.InterfaceC1231a
     /* renamed from: u */
-    public void mo6407u() {
+    public void reset() {
         m6414m(0);
         PopupsUtils.m6760a((int) R.string.lyric_reset);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricToolMenu.InterfaceC1231a
     /* renamed from: a */
-    public void mo6455a(View view, int i) {
-        this.f4299af.showAtLocation(view, 49, -40, i);
+    public void setFont(View view, int i) {
+        this.lyricFontPanel.showAtLocation(view, 49, -40, i);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricToolMenu.InterfaceC1231a
     /* renamed from: b */
-    public void mo6436b(View view, int i) {
-        this.f4298ae.showAtLocation(view, 49, -40, i);
+    public void setColor(View view, int i) {
+        this.lyricColorPanel.showAtLocation(view, 49, -40, i);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricToolMenu.InterfaceC1231a
     /* renamed from: b */
-    public void mo6433b(boolean z) {
+    public void kalaOkEnabled(boolean z) {
         Preferences.m2812y(z);
-        if (this.f4294aa instanceof LyricPanelViewController) {
+        if (this.currentViewEventController instanceof LyricPanelViewController) {
             m6464M().setKalaOK(z);
         }
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricToolMenu.InterfaceC1231a
     /* renamed from: v */
-    public void mo6406v() {
-        this.f4224g.mo3717a(32, null);
+    public void deleteLyric() {
+        this.skinEventHandler.mo3717a(32, null);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricColorPanel.InterfaceC1226b
     /* renamed from: f */
-    public void mo6426f(int i) {
-        Preferences.m2942b(i);
+    public void onItemClick(int i) {
+        Preferences.setLyricHighlightColor(i);
         mo6428d(i);
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p095b.LyricFontPanel.InterfaceC1229a
     /* renamed from: g */
-    public void mo6424g(int i) {
-        if (this.f4294aa != null) {
-            this.f4294aa.m6523h(i);
+    public void onTouch(int i) {
+        if (this.currentViewEventController != null) {
+            this.currentViewEventController.m6523h(i);
         }
     }
 
     /* renamed from: w */
     public void m6405w() {
-        if (this.f4295ab != null) {
-            if (this.f4294aa instanceof LyricPanelViewController) {
-                this.f4297ad.m6483a(0);
+        if (this.multiScreenLayout != null) {
+            if (this.currentViewEventController instanceof LyricPanelViewController) {
+                this.lyricToolMenu.setVisibility(0);
             } else {
-                this.f4297ad.m6483a(4);
+                this.lyricToolMenu.setVisibility(4);
             }
-            this.f4297ad.showAtLocation(this.f4295ab, 21, 0, 0);
+            this.lyricToolMenu.showAtLocation(this.multiScreenLayout, 21, 0, 0);
         }
     }
 

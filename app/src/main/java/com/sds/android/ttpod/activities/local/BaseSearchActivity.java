@@ -112,7 +112,7 @@ public abstract class BaseSearchActivity extends SlidingClosableActivity impleme
         ThemeManager.m3269a(this.mSearchResultListView, ThemeElement.BACKGROUND_MASK);
         ThemeManager.m3269a(this.mSearchResultListView, ThemeElement.COMMON_SEPARATOR);
         ThemeManager.m3269a(findViewById(R.id.search_screen_layout), ThemeElement.BACKGROUND_MASK);
-        getRootView().setBackgroundDrawable(ThemeUtils.m8182a());
+        getRootView().setBackground(ThemeUtils.m8182a());
         this.mSearchResultListView.setOnTouchListener(new View.OnTouchListener() { // from class: com.sds.android.ttpod.activities.local.BaseSearchActivity.5
             @Override // android.view.View.OnTouchListener
             public boolean onTouch(View view, MotionEvent motionEvent) {

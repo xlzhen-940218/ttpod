@@ -206,7 +206,7 @@ public class ThemeManager {
         if (view == null || drawable == null) {
             LogUtils.error("ThemeManager", "ThemeManager.setViewBackground view or background drawable is null");
         } else {
-            view.setBackgroundDrawable(drawable);
+            view.setBackground(drawable);
         }
     }
 
@@ -215,9 +215,9 @@ public class ThemeManager {
         if (view != null && drawable != null) {
             ClipBitmapDrawable m3256c = m3256c(view, drawable);
             if (m3256c != null) {
-                view.setBackgroundDrawable(m3256c);
+                view.setBackground(m3256c);
             } else {
-                view.setBackgroundDrawable(drawable);
+                view.setBackground(drawable);
             }
         }
     }

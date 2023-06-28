@@ -141,7 +141,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
     private void initBackground() {
         Drawable m8182a = ThemeUtils.m8182a();
         if (m8182a != null) {
-            findViewById(R.id.layout_bkg_ktv).setBackgroundDrawable(m8182a.getConstantState().newDrawable());
+            findViewById(R.id.layout_bkg_ktv).setBackground(m8182a.getConstantState().newDrawable());
         }
     }
 

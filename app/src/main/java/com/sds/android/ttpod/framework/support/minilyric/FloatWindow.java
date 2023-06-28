@@ -16,16 +16,16 @@ import java.lang.ref.WeakReference;
 public class FloatWindow {
 
     /* renamed from: a */
-    private final Context f7158a;
+    private final Context context;
 
     /* renamed from: b */
-    private final WindowManager f7159b;
+    private final WindowManager windowManager;
 
     /* renamed from: c */
     private boolean f7160c;
 
     /* renamed from: d */
-    private View f7161d;
+    private View floatWindow;
 
     /* renamed from: e */
     private View f7162e;
@@ -64,7 +64,7 @@ public class FloatWindow {
     private int f7173p;
 
     /* renamed from: q */
-    private final Handler f7174q;
+    private final Handler handler;
 
     /* renamed from: r */
     private InterfaceC2071a f7175r;
@@ -105,7 +105,7 @@ public class FloatWindow {
         this.f7165h = true;
         this.f7166i = false;
         this.f7167j = true;
-        this.f7174q = new Handler(Looper.getMainLooper());
+        this.handler = new Handler(Looper.getMainLooper());
         this.f7176s = false;
         this.f7181x = new ViewTreeObserver.OnScrollChangedListener() { // from class: com.sds.android.ttpod.framework.support.minilyric.FloatWindow.1
             @Override // android.view.ViewTreeObserver.OnScrollChangedListener
@@ -128,8 +128,8 @@ public class FloatWindow {
                 FloatWindow.this.m2347f();
             }
         };
-        this.f7158a = context;
-        this.f7159b = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        this.context = context;
+        this.windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
     }
 
     public FloatWindow() {
@@ -145,7 +145,7 @@ public class FloatWindow {
         this.f7165h = true;
         this.f7166i = false;
         this.f7167j = true;
-        this.f7174q = new Handler(Looper.getMainLooper());
+        this.handler = new Handler(Looper.getMainLooper());
         this.f7176s = false;
         this.f7181x = new ViewTreeObserver.OnScrollChangedListener() { // from class: com.sds.android.ttpod.framework.support.minilyric.FloatWindow.1
             @Override // android.view.ViewTreeObserver.OnScrollChangedListener
@@ -168,8 +168,8 @@ public class FloatWindow {
                 FloatWindow.this.m2347f();
             }
         };
-        this.f7158a = view.getContext();
-        this.f7159b = (WindowManager) this.f7158a.getSystemService(Context.WINDOW_SERVICE);
+        this.context = view.getContext();
+        this.windowManager = (WindowManager) this.context.getSystemService(Context.WINDOW_SERVICE);
         m2361a(view);
         m2356b(i);
         m2365a(i2);
@@ -179,7 +179,7 @@ public class FloatWindow {
     /* renamed from: a */
     public void m2361a(View view) {
         if (!m2366a()) {
-            this.f7161d = view;
+            this.floatWindow = view;
         }
     }
 
@@ -217,7 +217,7 @@ public class FloatWindow {
 
     /* renamed from: b */
     public void m2357b() {
-        this.f7174q.post(this.f7182y);
+        this.handler.post(this.f7182y);
     }
 
     /* renamed from: d */
@@ -266,10 +266,10 @@ public class FloatWindow {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: e */
     public void m2348e() {
-        if (!m2366a() && this.f7161d != null) {
+        if (!m2366a() && this.floatWindow != null) {
             this.f7160c = true;
             WindowManager.LayoutParams m2350d = m2350d();
-            this.f7162e = this.f7161d;
+            this.f7162e = this.floatWindow;
             if (this.f7177t == 0) {
                 this.f7177t = 83;
             }
@@ -277,10 +277,10 @@ public class FloatWindow {
             m2350d.x = this.f7178u;
             m2350d.y = this.f7179v;
             if (this.f7162e.getParent() != null) {
-                this.f7159b.removeView(this.f7162e);
+                this.windowManager.removeView(this.f7162e);
             }
             try {
-                this.f7159b.addView(this.f7162e, m2350d);
+                this.windowManager.addView(this.f7162e, m2350d);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -293,9 +293,9 @@ public class FloatWindow {
         if (m2366a() && this.f7162e != null) {
             m2346g();
             if (this.f7162e.getParent() != null) {
-                this.f7159b.removeView(this.f7162e);
-                if (this.f7162e != this.f7161d && (this.f7162e instanceof ViewGroup)) {
-                    ((ViewGroup) this.f7162e).removeView(this.f7161d);
+                this.windowManager.removeView(this.f7162e);
+                if (this.f7162e != this.floatWindow && (this.f7162e instanceof ViewGroup)) {
+                    ((ViewGroup) this.f7162e).removeView(this.floatWindow);
                 }
             }
             this.f7162e = null;
@@ -308,7 +308,7 @@ public class FloatWindow {
 
     /* renamed from: c */
     public void m2353c() {
-        this.f7174q.post(this.f7183z);
+        this.handler.post(this.f7183z);
     }
 
     /* renamed from: a */
@@ -338,7 +338,7 @@ public class FloatWindow {
             this.f7173p = i4;
             m2365a(i4);
         }
-        if (m2366a() && this.f7161d != null && (layoutParams = (WindowManager.LayoutParams) this.f7162e.getLayoutParams()) != null) {
+        if (m2366a() && this.floatWindow != null && (layoutParams = (WindowManager.LayoutParams) this.f7162e.getLayoutParams()) != null) {
             int i5 = this.f7168k < 0 ? this.f7168k : this.f7170m;
             if (i3 != -1 && layoutParams.width != i5) {
                 this.f7170m = i5;
@@ -366,7 +366,7 @@ public class FloatWindow {
                 z2 = z;
             }
             if (m2358a(z2, layoutParams)) {
-                this.f7159b.updateViewLayout(this.f7162e, layoutParams);
+                this.windowManager.updateViewLayout(this.f7162e, layoutParams);
             }
         }
     }

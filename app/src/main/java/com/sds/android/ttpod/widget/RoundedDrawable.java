@@ -34,7 +34,7 @@ public class RoundedDrawable extends Drawable {
     private final int f8360g;
 
     /* renamed from: i */
-    private final Paint f8362i;
+    private final Paint strokePaint;
 
     /* renamed from: a */
     private final RectF f8354a = new RectF();
@@ -52,19 +52,19 @@ public class RoundedDrawable extends Drawable {
     private final Matrix f8363j = new Matrix();
 
     /* renamed from: k */
-    private float f8364k = 0.0f;
+    private float cornerRadius = 0.0f;
 
     /* renamed from: l */
-    private boolean f8365l = false;
+    private boolean oval = false;
 
     /* renamed from: m */
-    private float f8366m = 0.0f;
+    private float imageBorderWidth = 0.0f;
 
     /* renamed from: n */
-    private ColorStateList f8367n = ColorStateList.valueOf(ViewCompat.MEASURED_STATE_MASK);
+    private ColorStateList imageBorderColor = ColorStateList.valueOf(ViewCompat.MEASURED_STATE_MASK);
 
     /* renamed from: o */
-    private ImageView.ScaleType f8368o = ImageView.ScaleType.FIT_CENTER;
+    private ImageView.ScaleType scaleType = ImageView.ScaleType.FIT_CENTER;
 
     public RoundedDrawable(Bitmap bitmap) {
         this.f8359f = bitmap.getWidth();
@@ -77,11 +77,11 @@ public class RoundedDrawable extends Drawable {
         this.f8358e.setAntiAlias(true);
         this.f8358e.setFilterBitmap(true);
         this.f8358e.setShader(this.f8357d);
-        this.f8362i = new Paint();
-        this.f8362i.setStyle(Paint.Style.STROKE);
-        this.f8362i.setAntiAlias(true);
-        this.f8362i.setColor(this.f8367n.getColorForState(getState(), ViewCompat.MEASURED_STATE_MASK));
-        this.f8362i.setStrokeWidth(this.f8366m);
+        this.strokePaint = new Paint();
+        this.strokePaint.setStyle(Paint.Style.STROKE);
+        this.strokePaint.setAntiAlias(true);
+        this.strokePaint.setColor(this.imageBorderColor.getColorForState(getState(), ViewCompat.MEASURED_STATE_MASK));
+        this.strokePaint.setStrokeWidth(this.imageBorderWidth);
     }
 
     /* renamed from: a */
@@ -132,14 +132,14 @@ public class RoundedDrawable extends Drawable {
 
     @Override // android.graphics.drawable.Drawable
     public boolean isStateful() {
-        return this.f8367n.isStateful();
+        return this.imageBorderColor.isStateful();
     }
 
     @Override // android.graphics.drawable.Drawable
     protected boolean onStateChange(int[] iArr) {
-        int colorForState = this.f8367n.getColorForState(iArr, 0);
-        if (this.f8362i.getColor() != colorForState) {
-            this.f8362i.setColor(colorForState);
+        int colorForState = this.imageBorderColor.getColorForState(iArr, 0);
+        if (this.strokePaint.getColor() != colorForState) {
+            this.strokePaint.setColor(colorForState);
             return true;
         }
         return super.onStateChange(iArr);
@@ -192,16 +192,16 @@ public class RoundedDrawable extends Drawable {
         float width;
         float f;
         float f2 = 0.0f;
-        switch (C22861.f8369a[this.f8368o.ordinal()]) {
+        switch (C22861.f8369a[this.scaleType.ordinal()]) {
             case 1:
                 this.f8361h.set(this.f8354a);
-                this.f8361h.inset(this.f8366m / 2.0f, this.f8366m / 2.0f);
+                this.f8361h.inset(this.imageBorderWidth / 2.0f, this.imageBorderWidth / 2.0f);
                 this.f8363j.reset();
                 this.f8363j.setTranslate((int) (((this.f8361h.width() - this.f8359f) * 0.5f) + 0.5f), (int) (((this.f8361h.height() - this.f8360g) * 0.5f) + 0.5f));
                 break;
             case 2:
                 this.f8361h.set(this.f8354a);
-                this.f8361h.inset(this.f8366m / 2.0f, this.f8366m / 2.0f);
+                this.f8361h.inset(this.imageBorderWidth / 2.0f, this.imageBorderWidth / 2.0f);
                 this.f8363j.reset();
                 if (this.f8359f * this.f8361h.height() > this.f8361h.width() * this.f8360g) {
                     width = this.f8361h.height() / this.f8360g;
@@ -212,7 +212,7 @@ public class RoundedDrawable extends Drawable {
                     f2 = (this.f8361h.height() - (this.f8360g * width)) * 0.5f;
                 }
                 this.f8363j.setScale(width, width);
-                this.f8363j.postTranslate(((int) (f + 0.5f)) + this.f8366m, ((int) (f2 + 0.5f)) + this.f8366m);
+                this.f8363j.postTranslate(((int) (f + 0.5f)) + this.imageBorderWidth, ((int) (f2 + 0.5f)) + this.imageBorderWidth);
                 break;
             case 3:
                 this.f8363j.reset();
@@ -225,7 +225,7 @@ public class RoundedDrawable extends Drawable {
                 this.f8363j.postTranslate((int) (((this.f8354a.width() - (this.f8359f * min)) * 0.5f) + 0.5f), (int) (((this.f8354a.height() - (this.f8360g * min)) * 0.5f) + 0.5f));
                 this.f8361h.set(this.f8356c);
                 this.f8363j.mapRect(this.f8361h);
-                this.f8361h.inset(this.f8366m / 2.0f, this.f8366m / 2.0f);
+                this.f8361h.inset(this.imageBorderWidth / 2.0f, this.imageBorderWidth / 2.0f);
                 this.f8363j.setRectToRect(this.f8356c, this.f8361h, Matrix.ScaleToFit.FILL);
                 break;
             case 4:
@@ -233,26 +233,26 @@ public class RoundedDrawable extends Drawable {
                 this.f8361h.set(this.f8356c);
                 this.f8363j.setRectToRect(this.f8356c, this.f8354a, Matrix.ScaleToFit.CENTER);
                 this.f8363j.mapRect(this.f8361h);
-                this.f8361h.inset(this.f8366m / 2.0f, this.f8366m / 2.0f);
+                this.f8361h.inset(this.imageBorderWidth / 2.0f, this.imageBorderWidth / 2.0f);
                 this.f8363j.setRectToRect(this.f8356c, this.f8361h, Matrix.ScaleToFit.FILL);
                 break;
             case 5:
                 this.f8361h.set(this.f8356c);
                 this.f8363j.setRectToRect(this.f8356c, this.f8354a, Matrix.ScaleToFit.END);
                 this.f8363j.mapRect(this.f8361h);
-                this.f8361h.inset(this.f8366m / 2.0f, this.f8366m / 2.0f);
+                this.f8361h.inset(this.imageBorderWidth / 2.0f, this.imageBorderWidth / 2.0f);
                 this.f8363j.setRectToRect(this.f8356c, this.f8361h, Matrix.ScaleToFit.FILL);
                 break;
             case 6:
                 this.f8361h.set(this.f8356c);
                 this.f8363j.setRectToRect(this.f8356c, this.f8354a, Matrix.ScaleToFit.START);
                 this.f8363j.mapRect(this.f8361h);
-                this.f8361h.inset(this.f8366m / 2.0f, this.f8366m / 2.0f);
+                this.f8361h.inset(this.imageBorderWidth / 2.0f, this.imageBorderWidth / 2.0f);
                 this.f8363j.setRectToRect(this.f8356c, this.f8361h, Matrix.ScaleToFit.FILL);
                 break;
             case 7:
                 this.f8361h.set(this.f8354a);
-                this.f8361h.inset(this.f8366m / 2.0f, this.f8366m / 2.0f);
+                this.f8361h.inset(this.imageBorderWidth / 2.0f, this.imageBorderWidth / 2.0f);
                 this.f8363j.reset();
                 this.f8363j.setRectToRect(this.f8356c, this.f8361h, Matrix.ScaleToFit.FILL);
                 break;
@@ -270,18 +270,18 @@ public class RoundedDrawable extends Drawable {
 
     @Override // android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
-        if (this.f8365l) {
-            if (this.f8366m > 0.0f) {
+        if (this.oval) {
+            if (this.imageBorderWidth > 0.0f) {
                 canvas.drawOval(this.f8355b, this.f8358e);
-                canvas.drawOval(this.f8361h, this.f8362i);
+                canvas.drawOval(this.f8361h, this.strokePaint);
                 return;
             }
             canvas.drawOval(this.f8355b, this.f8358e);
-        } else if (this.f8366m > 0.0f) {
-            canvas.drawRoundRect(this.f8355b, Math.max(this.f8364k, 0.0f), Math.max(this.f8364k, 0.0f), this.f8358e);
-            canvas.drawRoundRect(this.f8361h, this.f8364k, this.f8364k, this.f8362i);
+        } else if (this.imageBorderWidth > 0.0f) {
+            canvas.drawRoundRect(this.f8355b, Math.max(this.cornerRadius, 0.0f), Math.max(this.cornerRadius, 0.0f), this.f8358e);
+            canvas.drawRoundRect(this.f8361h, this.cornerRadius, this.cornerRadius, this.strokePaint);
         } else {
-            canvas.drawRoundRect(this.f8355b, this.f8364k, this.f8364k, this.f8358e);
+            canvas.drawRoundRect(this.f8355b, this.cornerRadius, this.cornerRadius, this.f8358e);
         }
     }
 
@@ -325,41 +325,41 @@ public class RoundedDrawable extends Drawable {
     }
 
     /* renamed from: a */
-    public RoundedDrawable m1245a(float f) {
-        this.f8364k = f;
+    public RoundedDrawable setCornerRadius(float cornerRadius) {
+        this.cornerRadius = cornerRadius;
         return this;
     }
 
     /* renamed from: b */
-    public RoundedDrawable m1238b(float f) {
-        this.f8366m = f;
-        this.f8362i.setStrokeWidth(this.f8366m);
+    public RoundedDrawable setImageBorderWidth(float f) {
+        this.imageBorderWidth = f;
+        this.strokePaint.setStrokeWidth(this.imageBorderWidth);
         return this;
     }
 
     /* renamed from: a */
-    public RoundedDrawable m1244a(ColorStateList colorStateList) {
-        if (colorStateList == null) {
-            colorStateList = ColorStateList.valueOf(0);
+    public RoundedDrawable setImageBorderColor(ColorStateList imageBorderColor) {
+        if (imageBorderColor == null) {
+            imageBorderColor = ColorStateList.valueOf(0);
         }
-        this.f8367n = colorStateList;
-        this.f8362i.setColor(this.f8367n.getColorForState(getState(), ViewCompat.MEASURED_STATE_MASK));
+        this.imageBorderColor = imageBorderColor;
+        this.strokePaint.setColor(this.imageBorderColor.getColorForState(getState(), ViewCompat.MEASURED_STATE_MASK));
         return this;
     }
 
     /* renamed from: a */
-    public RoundedDrawable m1240a(boolean z) {
-        this.f8365l = z;
+    public RoundedDrawable setOval(boolean oval) {
+        this.oval = oval;
         return this;
     }
 
     /* renamed from: a */
-    public RoundedDrawable m1241a(ImageView.ScaleType scaleType) {
+    public RoundedDrawable setScaleType(ImageView.ScaleType scaleType) {
         if (scaleType == null) {
             scaleType = ImageView.ScaleType.FIT_CENTER;
         }
-        if (this.f8368o != scaleType) {
-            this.f8368o = scaleType;
+        if (this.scaleType != scaleType) {
+            this.scaleType = scaleType;
             m1239b();
         }
         return this;

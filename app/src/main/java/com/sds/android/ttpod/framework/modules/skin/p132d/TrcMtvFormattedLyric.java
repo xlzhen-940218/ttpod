@@ -26,7 +26,7 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public Sentence mo3629a(int i) {
+    public Sentence getLrcLineIndex(int i) {
         if (i < 0) {
             return null;
         }
@@ -35,7 +35,7 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public int mo3630a() {
+    public int getLrcLineSize() {
         return this.f6638c.size();
     }
 
@@ -56,7 +56,7 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
             } else {
                 int f = trcSentence.mo3636f();
                 LrcSentence b2 = this.f6636a.m3687b(i3 + 1);
-                if (trcSentence.mo3635g().length() > 0) {
+                if (trcSentence.getCurrentLrcText().length() > 0) {
                     m3626a(trcSentence);
                     f = (int) (b2.m3676d() - (trcSentence.m3676d() + trcSentence.m3608i()));
                 }
@@ -66,7 +66,7 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
                 } else {
                     i = i2;
                 }
-                if (b2.mo3635g().length() > 0) {
+                if (b2.getCurrentLrcText().length() > 0) {
                     if (i >= 7000) {
                         m3627a(j, i);
                     }
@@ -84,7 +84,7 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
     private void m3626a(TrcSentence trcSentence) {
         TrcSentence trcSentence2 = new TrcSentence(trcSentence);
         this.f6638c.add(trcSentence2);
-        trcSentence2.m3680a(this.f6637b.mo3467a(trcSentence.mo3635g()));
+        trcSentence2.m3680a(this.f6637b.mo3467a(trcSentence.getCurrentLrcText()));
         trcSentence2.m3618a(this.f6637b);
     }
 
@@ -104,7 +104,7 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: b */
-    public int mo3625b() {
+    public int getLrcLineIndex() {
         return this.f6639d;
     }
 

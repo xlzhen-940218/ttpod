@@ -72,13 +72,13 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = ValueParser.m3696b(simpleStringSplitter.next(), 0);
+            iArr[i4] = ValueParser.parseCommon(simpleStringSplitter.next(), 0);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3696b(simpleStringSplitter.next(), 0);
+            iArr[i2] = ValueParser.parseCommon(simpleStringSplitter.next(), 0);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
@@ -118,18 +118,18 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = ValueParser.m3696b(simpleStringSplitter.next(), 0);
+            iArr[i4] = ValueParser.parseCommon(simpleStringSplitter.next(), 0);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3696b(simpleStringSplitter.next(), 0);
+            iArr[i2] = ValueParser.parseCommon(simpleStringSplitter.next(), 0);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 0);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 0);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
@@ -145,18 +145,18 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = ValueParser.m3696b(simpleStringSplitter.next(), 0);
+            iArr[i4] = ValueParser.parseCommon(simpleStringSplitter.next(), 0);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3696b(simpleStringSplitter.next(), 0);
+            iArr[i2] = ValueParser.parseCommon(simpleStringSplitter.next(), 0);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 0);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 0);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
@@ -172,18 +172,18 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = ValueParser.m3702a(simpleStringSplitter.next(), 0);
+            iArr[i4] = ValueParser.parseInt(simpleStringSplitter.next(), 0);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
@@ -199,7 +199,7 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = ValueParser.m3702a(simpleStringSplitter.next(), 1);
+            iArr[i4] = ValueParser.parseInt(simpleStringSplitter.next(), 1);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
@@ -216,7 +216,7 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = ValueParser.m3702a(simpleStringSplitter.next(), 1);
+            iArr[i4] = ValueParser.parseInt(simpleStringSplitter.next(), 1);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
@@ -233,23 +233,23 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.0f) * 100.0f);
+            iArr[i4] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 1.0f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 1.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
@@ -265,43 +265,43 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.0f) * 100.0f);
+            iArr[i4] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 1.0f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 1.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.0f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 1.0f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 1.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.5f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.5f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.5f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.5f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
@@ -317,33 +317,33 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.0f) * 100.0f);
+            iArr[i4] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 180.0f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 180.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.5f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.5f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.5f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.5f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
@@ -359,38 +359,38 @@ public class EventCompiler {
         iArr[i3] = 0;
         if (simpleStringSplitter.hasNext()) {
             i2 = i4 + 1;
-            iArr[i4] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.0f) * 100.0f);
+            iArr[i4] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
         } else {
             i2 = i4;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 180.0f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 180.0f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.5f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.5f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.5f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.5f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = (int) (ValueParser.m3703a(simpleStringSplitter.next(), 0.5f) * 100.0f);
+            iArr[i2] = (int) (ValueParser.parseFloat(simpleStringSplitter.next(), 0.5f) * 100.0f);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }
         if (simpleStringSplitter.hasNext()) {
-            iArr[i2] = ValueParser.m3702a(simpleStringSplitter.next(), 500);
+            iArr[i2] = ValueParser.parseInt(simpleStringSplitter.next(), 500);
             iArr[i3] = iArr[i3] + 1;
             i2++;
         }

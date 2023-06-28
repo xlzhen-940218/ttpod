@@ -143,7 +143,7 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
 
     /* renamed from: a */
     public void m7200a(int i) {
-        this.f3607a.setBackgroundDrawable(new ColorDrawable(i));
+        this.f3607a.setBackground(new ColorDrawable(i));
     }
 
     /* renamed from: a */

@@ -366,7 +366,7 @@ public class MyAudioEffectFragment extends BaseFragment {
         @Override // com.sds.android.ttpod.fragment.audioeffect.BaseEffectListFragment, com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
         public void onViewCreated(View view, Bundle bundle) {
             super.onViewCreated(view, bundle);
-            this.mListView.setBackgroundDrawable(getResources().getDrawable(R.color.effect_section_background));
+            this.mListView.setBackground(getResources().getDrawable(R.color.effect_section_background));
             this.mListView.setDivider(getResources().getDrawable(R.color.effect_section_background));
             this.mListView.setDividerHeight(DisplayUtils.m7229a(12));
         }

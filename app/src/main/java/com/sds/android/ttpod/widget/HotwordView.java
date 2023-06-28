@@ -249,7 +249,7 @@ public class HotwordView extends ViewGroup {
         ThemeManager.m3269a(view, ThemeElement.SONG_LIST_ITEM_TEXT);
         Drawable backgroundDrawable = getBackgroundDrawable();
         if (backgroundDrawable != null) {
-            view.setBackgroundDrawable(backgroundDrawable);
+            view.setBackground(backgroundDrawable);
         } else {
             ThemeManager.m3269a(view, ThemeElement.TILE_MASK);
         }

@@ -282,7 +282,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
         this.mLyricView.setDefaultFontSizeHighlight(18.0f);
         this.mLyricView.setDefaultFontSizeNormal(14.0f);
         this.mLyricView.setDisplayMode(LyricView.LyricDisplayEnum.Normal);
-        this.mLyricView.setTextSize(14.0f);
+        this.mLyricView.postTextSize(14.0f);
         this.mLyricView.setTextSizeHighlight(18.0f);
         this.mLyricView.setKalaOK(false);
         this.mLyricView.setSlowScroll(true);

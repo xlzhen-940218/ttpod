@@ -26,13 +26,13 @@ public class LrcMtvFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public int mo3630a() {
+    public int getLrcLineSize() {
         return this.f6615c.size();
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public Sentence mo3629a(int i) {
+    public Sentence getLrcLineIndex(int i) {
         if (i < 0) {
             return null;
         }
@@ -53,7 +53,7 @@ public class LrcMtvFormattedLyric implements FormattedLyric {
         int i3 = 0;
         while (i2 < mo3672b) {
             LrcSentence m3687b = this.f6613a.m3687b(i2);
-            if (i2 == mo3672b - 1 || m3687b.mo3635g().length() > 0) {
+            if (i2 == mo3672b - 1 || m3687b.getCurrentLrcText().length() > 0) {
                 m3684a(m3687b);
                 int i4 = i3;
                 j = j2;
@@ -63,7 +63,7 @@ public class LrcMtvFormattedLyric implements FormattedLyric {
                     j2 = m3687b.m3676d();
                 }
                 int mo3636f = i3 + m3687b.mo3636f();
-                if (this.f6613a.m3687b(i2 + 1).mo3635g().length() > 0) {
+                if (this.f6613a.m3687b(i2 + 1).getCurrentLrcText().length() > 0) {
                     if (mo3636f >= 7000) {
                         m3685a(j2, mo3636f);
                     }
@@ -87,7 +87,7 @@ public class LrcMtvFormattedLyric implements FormattedLyric {
     private void m3684a(LrcSentence lrcSentence) {
         LrcSentence lrcSentence2 = new LrcSentence(lrcSentence);
         this.f6615c.add(lrcSentence2);
-        lrcSentence2.m3680a(this.f6614b.mo3467a(lrcSentence.mo3635g()));
+        lrcSentence2.m3680a(this.f6614b.mo3467a(lrcSentence.getCurrentLrcText()));
     }
 
     /* renamed from: a */
@@ -113,7 +113,7 @@ public class LrcMtvFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: b */
-    public int mo3625b() {
+    public int getLrcLineIndex() {
         return this.f6616d;
     }
 }

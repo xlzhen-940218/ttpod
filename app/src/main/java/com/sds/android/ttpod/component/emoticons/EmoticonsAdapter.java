@@ -57,10 +57,10 @@ public class EmoticonsAdapter extends BaseAdapter {
             imageView = (ImageView) view.getTag();
         }
         if (chatEmoji.m6648b() == R.drawable.xml_musiccircle_emoticons_delete) {
-            view.setBackgroundDrawable(null);
+            view.setBackground(null);
             imageView.setImageResource(chatEmoji.m6648b());
         } else if (TextUtils.isEmpty(chatEmoji.m6651a())) {
-            view.setBackgroundDrawable(null);
+            view.setBackground(null);
             imageView.setImageDrawable(null);
         } else {
             imageView.setTag(chatEmoji);

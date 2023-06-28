@@ -38,8 +38,8 @@ public class SAnalyzer extends SComponent<LineVisualization> {
 
     public SAnalyzer(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6409c = m3813a(hashMap, kXmlParser, "LineIcon");
-        this.f6410d = m3813a(hashMap, kXmlParser, "DotIcon");
+        this.f6409c = getSBitmap(hashMap, kXmlParser, "LineIcon");
+        this.f6410d = getSBitmap(hashMap, kXmlParser, "DotIcon");
         this.f6411e = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "BarColorBot"), -7829368);
         this.f6412j = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "BarColorTop"), -1);
         this.f6413k = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "BarColorSpire"), 47871);
@@ -63,8 +63,8 @@ public class SAnalyzer extends SComponent<LineVisualization> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo3775a(Context context, LineVisualization lineVisualization, SkinCache skinCache) {
-        super.mo3775a(context,  lineVisualization, skinCache);
+    public void setBackground(Context context, LineVisualization lineVisualization, SkinCache skinCache) {
+        super.setBackground(context,  lineVisualization, skinCache);
         lineVisualization.m3355a(this.f6414l, this.f6415m);
         Resources resources = context.getResources();
         if (this.f6409c != null) {
@@ -101,11 +101,11 @@ public class SAnalyzer extends SComponent<LineVisualization> {
 
         public C1979a(KXmlParser kXmlParser, int i) {
             super(kXmlParser, i);
-            this.f6419d = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "LineWidth"), -1);
-            this.f6420e = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "DotHeight"), -1);
-            this.f6418c = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "LineDivideWidth"), 2);
-            this.f6416a = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "ReflectionHeight"), -1);
-            this.f6417b = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "DivideHeight"), 2);
+            this.f6419d = ValueParser.parseCommon(kXmlParser.getAttributeValue(null, "LineWidth"), -1);
+            this.f6420e = ValueParser.parseCommon(kXmlParser.getAttributeValue(null, "DotHeight"), -1);
+            this.f6418c = ValueParser.parseCommon(kXmlParser.getAttributeValue(null, "LineDivideWidth"), 2);
+            this.f6416a = ValueParser.parseCommon(kXmlParser.getAttributeValue(null, "ReflectionHeight"), -1);
+            this.f6417b = ValueParser.parseCommon(kXmlParser.getAttributeValue(null, "DivideHeight"), 2);
         }
 
         /* renamed from: f */

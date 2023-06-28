@@ -259,10 +259,7 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
         return RoundedDrawable.m1242a(drawable);
     }
 
-    @Override // android.view.View
-    public void setBackground(Drawable drawable) {
-        setBackgroundDrawable(drawable);
-    }
+
 
     /* renamed from: b */
     private void m1564b() {
@@ -293,16 +290,20 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
                 }
                 return;
             }
-            ((RoundedDrawable) drawable).m1241a(this.scaleType).m1245a(this.corner_radius == 0.0f ? getHeight() / 2 : this.corner_radius).m1238b(this.Image_border_width).m1244a(this.Image_border_color).m1240a(this.oval);
+            ((RoundedDrawable) drawable).setScaleType(this.scaleType)
+                    .setCornerRadius(this.corner_radius == 0.0f ? getHeight() / 2 : this.corner_radius)
+                    .setImageBorderWidth(this.Image_border_width)
+                    .setImageBorderColor(this.Image_border_color)
+                    .setOval(this.oval);
         }
     }
 
     @Override // android.view.View
     @Deprecated
-    public void setBackgroundDrawable(Drawable drawable) {
+    public void setBackground(Drawable drawable) {
         this.f7886j = drawable;
         m1565a(true);
-        super.setBackgroundDrawable(this.f7886j);
+        super.setBackground(this.f7886j);
     }
 
     public float getmCornerRadius() {

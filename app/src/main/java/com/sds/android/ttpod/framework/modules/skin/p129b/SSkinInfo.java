@@ -80,7 +80,7 @@ public class SSkinInfo implements Serializable {
         this.webpage = kXmlParser.getAttributeValue(null, "WebPage");
         this.background = kXmlParser.getAttributeValue(null, "Background");
         this.preview = kXmlParser.getAttributeValue(null, "Preview");
-        this.loaderVersion = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "LoaderVer"), 0);
+        this.loaderVersion = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "LoaderVer"), 0);
     }
 
     public SSkinInfo(SSkinInfo sSkinInfo) {

@@ -31,8 +31,8 @@ public class SComponentGroup extends SComponent<ViewGroup> implements Container<
     @SuppressLint("ResourceType")
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo3775a(Context context, ViewGroup viewGroup, SkinCache skinCache) {
-        super.mo3775a(context, viewGroup, skinCache);
+    public void setBackground(Context context, ViewGroup viewGroup, SkinCache skinCache) {
+        super.setBackground(context, viewGroup, skinCache);
         SkinAbsoluteLayout skinAbsoluteLayout = (SkinAbsoluteLayout) viewGroup;
         if (this.f6447c != null) {
             for (SComponent sComponent : this.f6447c) {

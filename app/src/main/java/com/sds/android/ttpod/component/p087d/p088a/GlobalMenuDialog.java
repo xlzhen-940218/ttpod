@@ -304,7 +304,7 @@ public class GlobalMenuDialog extends Dialog {
                 m3265a = new ColorDrawable(this.f3915f.getResources().getColor(R.color.slide_menu_background));
             }
         }
-        this.f3913d.setBackgroundDrawable(m3265a);
+        this.f3913d.setBackground(m3265a);
     }
 
     /* renamed from: c */

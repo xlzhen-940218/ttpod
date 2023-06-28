@@ -43,7 +43,7 @@ public class ListPopupWindow extends PopupWindow {
     public ListPopupWindow(Context context, int i, int i2) {
         super(View.inflate(context, i, null), -2, -2, true);
         setWindowLayoutMode(0, -2);
-        setAnimationStyle(16973826);
+        setAnimationStyle(android.R.style.Animation_Dialog);
         setBackgroundDrawable(new ColorDrawable(0));
         View contentView = getContentView();
         if (contentView != null) {

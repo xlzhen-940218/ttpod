@@ -21,8 +21,8 @@ public class PlayingPanelViewController extends PanelViewController {
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: r */
-    public void mo6404r() {
-        super.mo6404r();
+    public void onPanelShow() {
+        super.onPanelShow();
         CommandCenter.getInstance().execute(new Command(CommandID.NOTIFY_PLAYING_PANEL_ON_SHOW, new Object[0]));
     }
 }

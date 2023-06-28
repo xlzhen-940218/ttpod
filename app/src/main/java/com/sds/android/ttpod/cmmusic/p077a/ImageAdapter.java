@@ -57,7 +57,7 @@ public class ImageAdapter extends PagerAdapter {
             @Override // com.sds.android.ttpod.cmmusic.p081e.AsyncImageLoader.InterfaceC1029a
             /* renamed from: a */
             public void mo7300a(Drawable drawable, String str) {
-                imageView.setBackgroundDrawable(drawable);
+                imageView.setBackground(drawable);
                 imageView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.cmmusic.a.b.1.1
                     @Override // android.view.View.OnClickListener
                     public void onClick(View view) {

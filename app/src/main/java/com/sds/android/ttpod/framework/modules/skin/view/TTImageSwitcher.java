@@ -81,9 +81,9 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
                     LogUtils.debug("TTImageSwitcher", "handleMessage lookLyricPic USE_SINGLE_BITMAP bitmap width=%d height=%d", Integer.valueOf(bitmap != null ? bitmap.getWidth() : -1), Integer.valueOf(bitmap != null ? bitmap.getHeight() : -1));
                     View nextView = TTImageSwitcher.this.getNextView();
                     if (bitmap == null) {
-                        nextView.setBackgroundDrawable(TTImageSwitcher.this.f6922i);
+                        nextView.setBackground(TTImageSwitcher.this.f6922i);
                     } else {
-                        nextView.setBackgroundDrawable(new ClipBitmapDrawable(TTImageSwitcher.this.getResources(), bitmap));
+                        nextView.setBackground(new ClipBitmapDrawable(TTImageSwitcher.this.getResources(), bitmap));
                     }
                     TTImageSwitcher.this.showNext();
                 }
@@ -143,9 +143,9 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
         }
         View nextView = getNextView();
         if (this.f6921h < size) {
-            nextView.setBackgroundDrawable(new ClipBitmapDrawable(getResources(), this.f6920g.get(this.f6921h)));
+            nextView.setBackground(new ClipBitmapDrawable(getResources(), this.f6920g.get(this.f6921h)));
         } else {
-            nextView.setBackgroundDrawable(this.f6922i);
+            nextView.setBackground(this.f6922i);
         }
         showNext();
     }

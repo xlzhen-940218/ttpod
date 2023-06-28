@@ -39,7 +39,7 @@ public class HelpFeedbackActivity extends SlidingPagerActivity {
     private void initView() {
         SettingUtils.m7778a(this);
         getRootView().setBackgroundResource(17170443);
-        this.mPagerTitle.setBackgroundDrawable(getResources().getDrawable(R.drawable.xml_background_tab_feedback));
+        this.mPagerTitle.setBackground(getResources().getDrawable(R.drawable.xml_background_tab_feedback));
         this.mPagerTitle.setTextColor(getResources().getColorStateList(R.drawable.xml_tab_text_feedback));
         this.mPagerTitle.setIndicatorColorResource(R.color.tab_indicator_feedback_selected);
         this.mPagerTitle.setUnderlineColorResource(R.color.tab_indicator_feedback_normal);

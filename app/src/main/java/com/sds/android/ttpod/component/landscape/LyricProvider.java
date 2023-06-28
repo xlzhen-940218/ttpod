@@ -98,8 +98,8 @@ public class LyricProvider {
     public void m6129a(long j) {
         if (this.f4587b != null && j >= 0) {
             int mo3628a = this.f4587b.mo3628a(j);
-            Sentence mo3629a = this.f4587b.mo3629a(mo3628a);
-            String mo3635g = mo3629a == null ? "" : mo3629a.mo3635g();
+            Sentence mo3629a = this.f4587b.getLrcLineIndex(mo3628a);
+            String mo3635g = mo3629a == null ? "" : mo3629a.getCurrentLrcText();
             if (this.f4591f != mo3628a) {
                 m6125a(mo3635g, null, (float) j, true);
             } else {

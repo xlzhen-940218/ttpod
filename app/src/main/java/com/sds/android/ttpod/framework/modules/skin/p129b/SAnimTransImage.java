@@ -27,8 +27,8 @@ public class SAnimTransImage extends SImage<View> {
 
     public SAnimTransImage(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6456c = m3813a(hashMap, kXmlParser, "DefaultImage");
-        this.f6457d = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "ScaleType"), 1);
+        this.f6456c = getSBitmap(hashMap, kXmlParser, "DefaultImage");
+        this.f6457d = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "ScaleType"), 1);
         this.f6421e = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "ReflectionMaskStartColor"), 0);
         this.f6422j = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "ReflectionMaskEndColor"), 0);
     }
@@ -48,8 +48,8 @@ public class SAnimTransImage extends SImage<View> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public void mo3775a(Context context, View view, SkinCache skinCache) {
-        super.mo3775a(context,  view, skinCache);
+    public void setBackground(Context context, View view, SkinCache skinCache) {
+        super.setBackground(context,  view, skinCache);
         if (view instanceof AnimTransView) {
             AnimTransView animTransView = (AnimTransView) view;
             animTransView.setDefaultImageDrawable(skinCache.m3596a(context.getResources(), this.f6456c));
@@ -88,9 +88,9 @@ public class SAnimTransImage extends SImage<View> {
 
         public C1980a(KXmlParser kXmlParser, int i) {
             super(kXmlParser, i);
-            this.f6423a = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "ReflectionHeight"), 0);
-            this.f6424b = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "DivideHeight"), 0);
-            this.f6425c = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "SwitchAnimation"), 1);
+            this.f6423a = ValueParser.parseCommon(kXmlParser.getAttributeValue(null, "ReflectionHeight"), 0);
+            this.f6424b = ValueParser.parseCommon(kXmlParser.getAttributeValue(null, "DivideHeight"), 0);
+            this.f6425c = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "SwitchAnimation"), 1);
         }
     }
 }

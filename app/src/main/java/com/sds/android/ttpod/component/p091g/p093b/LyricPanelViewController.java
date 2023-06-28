@@ -29,36 +29,36 @@ public class LyricPanelViewController extends PanelViewController implements Lyr
     /* renamed from: b_ */
     public void mo6403b_() {
         super.mo6403b_();
-        if (this.lyricView != null) {
-            m6540a((View) this.lyricView, true);
-            this.f4253b = this.lyricView.getAlign();
-            this.lyricView.setEnabled(true);
-            this.lyricView.setTouchListener(this);
+        if (this.lyricShowView != null) {
+            setRepeatListener((View) this.lyricShowView, true);
+            this.f4253b = this.lyricShowView.getAlign();
+            this.lyricShowView.setEnabled(true);
+            this.lyricShowView.setTouchListener(this);
         }
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.view.LyricView.InterfaceC1998c
     /* renamed from: a */
     public void mo3408a(long j) {
-        if (this.f4224g != null) {
-            this.f4224g.mo3717a(14, Long.valueOf(j));
-            this.f4224g.mo3717a(4, null);
+        if (this.skinEventHandler != null) {
+            this.skinEventHandler.mo3717a(14, Long.valueOf(j));
+            this.skinEventHandler.mo3717a(4, null);
         }
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.view.LyricView.InterfaceC1998c
     /* renamed from: a */
     public void mo3409a(int i) {
-        if (this.f4224g != null) {
-            this.f4224g.mo3717a(8, null);
+        if (this.skinEventHandler != null) {
+            this.skinEventHandler.mo3717a(8, null);
         }
     }
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: b */
     public void mo6441b() {
-        if (this.lyricView != null) {
-            this.lyricView.setTouchListener(null);
+        if (this.lyricShowView != null) {
+            this.lyricShowView.setTouchListener(null);
         }
         super.mo6441b();
     }
@@ -68,16 +68,16 @@ public class LyricPanelViewController extends PanelViewController implements Lyr
     public void mo6447a(MediaItem mediaItem, Bitmap bitmap, Lyric lyric) {
         super.mo6447a(mediaItem, bitmap, lyric);
         m6510b(Preferences.m3044S());
-        m6523h(Preferences.m3048Q());
+        m6523h(Preferences.getLyricFontSize());
     }
 
     /* renamed from: b */
     private void m6510b(int i) {
-        if (this.lyricView != null) {
+        if (this.lyricShowView != null) {
             if (i < 0) {
-                this.lyricView.setAlign(this.f4253b);
+                this.lyricShowView.setAlign(this.f4253b);
             } else {
-                this.lyricView.setAlign(Paint.Align.values()[i]);
+                this.lyricShowView.setAlign(Paint.Align.values()[i]);
             }
         }
     }
@@ -96,8 +96,8 @@ public class LyricPanelViewController extends PanelViewController implements Lyr
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
     /* renamed from: a */
-    public void mo6511a(Object obj, TTPodButton tTPodButton) {
-        super.mo6511a(obj, tTPodButton);
+    public void initTTPodButtonView(Object obj, TTPodButton tTPodButton) {
+        super.initTTPodButtonView(obj, tTPodButton);
         if ("LyricAdjustButton".equals(obj)) {
             this.f4252a = tTPodButton;
             this.f4252a.setContentDescription("play_page_lyric_adjust");

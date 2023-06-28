@@ -7,7 +7,7 @@ public interface IEditAble {
     /* compiled from: IEditAble.java */
     /* renamed from: com.sds.android.ttpod.fragment.main.list.a$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC1677a {
+    public interface EditRequestListener {
         void onAddToRequested();
 
         void onRemoveRequested();

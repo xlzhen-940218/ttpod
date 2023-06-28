@@ -17,7 +17,7 @@ public class TrcFormattedLyric extends LrcFormattedLyric {
             super.mo3634a(lrcSentence, i);
             return;
         }
-        String g = trcSentence.mo3635g();
+        String g = trcSentence.getCurrentLrcText();
         long d = trcSentence.m3676d();
         int f = trcSentence.mo3636f();
         int mo3467a = this.f6608c.mo3467a(g);

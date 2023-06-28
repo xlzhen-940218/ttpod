@@ -538,8 +538,8 @@ public class LandscapeFragment extends BasePlayerFragment {
             updatePlayStatus(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m());
             this.mLyricView = (LyricView) this.mOldLandScapeView.findViewById(R.id.lyricview_landscape_old);
             this.mLyricView.setTouchListener(this.mLyricTouchListener);
-            this.mLyricView.setKalaOK(Preferences.m3046R());
-            this.mLyricView.setColorHighlight(Preferences.m3050P());
+            this.mLyricView.setKalaOK(Preferences.kalaOkEnabled());
+            this.mLyricView.setColorHighlight(Preferences.getLyricHighlightColor());
             this.mLyricView.setLyric(getCurrentLyric());
             this.mLyricView.setPlayingTime(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
             this.mLyricView.setOnClickListener(this.mClickListener);

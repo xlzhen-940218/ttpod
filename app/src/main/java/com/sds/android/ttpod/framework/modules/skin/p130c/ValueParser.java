@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /* loaded from: classes.dex */
 public final class ValueParser {
     /* renamed from: a */
-    public static int m3702a(String str, int i) {
+    public static int parseInt(String str, int i) {
         if (str != null) {
             try {
                 str = str.trim();
@@ -31,7 +31,7 @@ public final class ValueParser {
     }
 
     /* renamed from: a */
-    public static float m3703a(String str, float f) {
+    public static float parseFloat(String str, float f) {
         try {
             return Float.parseFloat(str);
         } catch (Exception e) {
@@ -41,33 +41,33 @@ public final class ValueParser {
     }
 
     /* renamed from: b */
-    public static int m3696b(String str, int i) {
-        int m3702a;
-        int i2 = 1;
+    public static int parseCommon(String str, int number) {
+        int result;
+        int type = 1;
         if (!TextUtils.isEmpty(str)) {
             String lowerCase = str.trim().trim().toLowerCase();
             if (lowerCase.endsWith("dp")) {
-                m3702a = m3699a(lowerCase, "dp", i);
+                result = parseInt(lowerCase, "dp", number);
             } else if (lowerCase.endsWith("dip")) {
-                m3702a = m3699a(lowerCase, "dip", i);
+                result = parseInt(lowerCase, "dip", number);
             } else if (lowerCase.endsWith("px")) {
-                m3702a = m3699a(lowerCase, "px", i);
-                i2 = 0;
+                result = parseInt(lowerCase, "px", number);
+                type = 0;
             } else if (lowerCase.endsWith("%")) {
-                i2 = 2;
-                m3702a = m3699a(lowerCase, "%", i);
+                type = 2;
+                result = parseInt(lowerCase, "%", number);
             } else {
-                m3702a = m3702a(lowerCase, i);
-                i2 = 0;
+                result = parseInt(lowerCase, number);
+                type = 0;
             }
-            return (m3702a & 65535) | (i2 << 16);
+            return (result & 65535) | (type << 16);
         }
-        return i;
+        return number;
     }
 
     /* renamed from: a */
-    private static int m3699a(String str, String str2, int i) {
-        return m3702a(str.substring(0, str.length() - str2.length()), i);
+    private static int parseInt(String str, String str2, int i) {
+        return parseInt(str.substring(0, str.length() - str2.length()), i);
     }
 
     /* renamed from: a */
@@ -89,38 +89,38 @@ public final class ValueParser {
     }
 
     /* renamed from: a */
-    public static Rect m3701a(String str, Rect rect) {
-        int i;
-        int i2;
-        int i3;
-        int i4 = 0;
+    public static Rect xmlToRect(String str, Rect rect) {
+        int right;
+        int top;
+        int left;
+        int bottom = 0;
         if (!TextUtils.isEmpty(str)) {
             String trim = str.trim();
             if (rect != null) {
-                i3 = rect.left;
-                i2 = rect.top;
-                i = rect.right;
-                i4 = rect.bottom;
+                left = rect.left;
+                top = rect.top;
+                right = rect.right;
+                bottom = rect.bottom;
             } else {
-                i = 0;
-                i2 = 0;
-                i3 = 0;
+                right = 0;
+                top = 0;
+                left = 0;
             }
             TextUtils.SimpleStringSplitter simpleStringSplitter = new TextUtils.SimpleStringSplitter(' ');
             simpleStringSplitter.setString(trim);
             if (simpleStringSplitter.hasNext()) {
-                i3 = m3696b(simpleStringSplitter.next(), i3);
+                left = parseCommon(simpleStringSplitter.next(), left);
             }
             if (simpleStringSplitter.hasNext()) {
-                i2 = m3696b(simpleStringSplitter.next(), i2);
+                top = parseCommon(simpleStringSplitter.next(), top);
             }
             if (simpleStringSplitter.hasNext()) {
-                i = m3696b(simpleStringSplitter.next(), i);
+                right = parseCommon(simpleStringSplitter.next(), right);
             }
             if (simpleStringSplitter.hasNext()) {
-                i4 = m3696b(simpleStringSplitter.next(), i4);
+                bottom = parseCommon(simpleStringSplitter.next(), bottom);
             }
-            return new Rect(i3, i2, i, i4);
+            return new Rect(left, top, right, bottom);
         }
         return rect;
     }
@@ -132,7 +132,7 @@ public final class ValueParser {
             simpleStringSplitter.setString(str);
             int i2 = 0;
             while (simpleStringSplitter.hasNext()) {
-                i2 = (i2 << 8) | m3702a(simpleStringSplitter.next(), (int) ViewCompat.MEASURED_STATE_MASK);
+                i2 = (i2 << 8) | parseInt(simpleStringSplitter.next(), (int) ViewCompat.MEASURED_STATE_MASK);
             }
             return (16777215 & i2) | (ViewCompat.MEASURED_STATE_MASK - (i2 & ViewCompat.MEASURED_STATE_MASK));
         }
@@ -140,7 +140,7 @@ public final class ValueParser {
     }
 
     /* renamed from: a */
-    public static int[] m3697a(String str, int[] iArr) {
+    public static int[] stringToIntArray(String str, int[] iArr) {
         if (str != null) {
             TextUtils.SimpleStringSplitter simpleStringSplitter = new TextUtils.SimpleStringSplitter(',');
             simpleStringSplitter.setString(str);
@@ -160,7 +160,7 @@ public final class ValueParser {
     }
 
     /* renamed from: a */
-    public static Layout.Alignment m3700a(String str, Layout.Alignment alignment) {
+    public static Layout.Alignment stringToAlign(String str, Layout.Alignment alignment) {
         if ("Center".equals(str)) {
             return Layout.Alignment.ALIGN_CENTER;
         }
@@ -174,13 +174,13 @@ public final class ValueParser {
     }
 
     /* renamed from: a */
-    public static boolean m3698a(String str, boolean z) {
+    public static boolean stringToBoolean(String str, boolean z) {
         if ("false".equalsIgnoreCase(str)) {
             return false;
         }
         if ("true".equalsIgnoreCase(str)) {
             return true;
         }
-        return m3702a(str, z ? 1 : 0) == 1;
+        return parseInt(str, z ? 1 : 0) == 1;
     }
 }

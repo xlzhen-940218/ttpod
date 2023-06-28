@@ -60,7 +60,7 @@ public class LrcSentence implements Sentence {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: b */
-    public int mo3638b() {
+    public int getIndex() {
         return this.index;
     }
 
@@ -113,7 +113,7 @@ public class LrcSentence implements Sentence {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: g */
-    public String mo3635g() {
+    public String getCurrentLrcText() {
         return this.lrcText;
     }
 

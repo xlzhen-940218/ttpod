@@ -20,8 +20,8 @@ public class SPlaylistView extends SComponentView {
 
     public SPlaylistView(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6474j = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "AnimationInStyle"), 0);
-        this.f6475k = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "AnimationOutStyle"), 0);
+        this.f6474j = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "AnimationInStyle"), 0);
+        this.f6475k = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "AnimationOutStyle"), 0);
     }
 
     /* renamed from: e */

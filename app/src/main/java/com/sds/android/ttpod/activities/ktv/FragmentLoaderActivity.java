@@ -45,7 +45,7 @@ public class FragmentLoaderActivity extends SlidingClosableActivity {
             frameLayout.setId(R.id.layout_primary);
             Drawable m8182a = ThemeUtils.m8182a();
             if (m8182a != null) {
-                frameLayout.setBackgroundDrawable(m8182a);
+                frameLayout.setBackground(m8182a);
             }
             setContentView(frameLayout);
             File file = new File(getFilesDir(), FOLDER_APK + File.separator + "Ktv.apk");

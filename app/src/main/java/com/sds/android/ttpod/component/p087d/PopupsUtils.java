@@ -87,7 +87,7 @@ public class PopupsUtils {
     private static WaitingDialog f4018b;
 
     /* renamed from: c */
-    private static PopupWindow f4019c;
+    private static PopupWindow popupWindow;
 
     /* renamed from: d */
     private static Context f4020d;
@@ -1085,73 +1085,73 @@ public class PopupsUtils {
     }
 
     /* renamed from: a */
-    public static void m6742a(Context context, View view, final IEditAble.InterfaceC1677a interfaceC1677a) {
+    public static void m6742a(Context context, View view, final IEditAble.EditRequestListener editRequestListener) {
         if (context != null && view != null) {
-            DebugUtils.m8422b(f4019c, "mEditPanel");
-            DebugUtils.m8426a(interfaceC1677a, "editRequestListener");
-            View inflate = View.inflate(context, R.layout.list_media_edit_footer, null);
-            inflate.setClickable(true);
+            DebugUtils.m8422b(popupWindow, "mEditPanel");
+            DebugUtils.m8426a(editRequestListener, "editRequestListener");
+            View listMediaEditFooterView = View.inflate(context, R.layout.list_media_edit_footer, null);
+            listMediaEditFooterView.setClickable(true);
             View.OnClickListener onClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.component.d.d.13
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view2) {
                     switch (view2.getId()) {
                         case R.id.btn_send /* 2131230855 */:
                             //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_SEND, SPage.PAGE_NONE);
-                            interfaceC1677a.onSendToRequested();
+                            editRequestListener.onSendToRequested();
                             return;
                         case R.id.btn_remove /* 2131231668 */:
                             //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_REMOVE, SPage.PAGE_NONE);
-                            interfaceC1677a.onRemoveRequested();
+                            editRequestListener.onRemoveRequested();
                             return;
                         case R.id.btn_add /* 2131231669 */:
                             //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_ADD, SPage.PAGE_NONE);
-                            interfaceC1677a.onAddToRequested();
+                            editRequestListener.onAddToRequested();
                             return;
                         default:
                             return;
                     }
                 }
             };
-            inflate.findViewById(R.id.btn_remove).setOnClickListener(onClickListener);
-            inflate.findViewById(R.id.btn_add).setOnClickListener(onClickListener);
-            inflate.findViewById(R.id.btn_send).setOnClickListener(onClickListener);
-            f4019c = new PopupWindow(inflate, view.getWidth(), context.getResources().getDimensionPixelSize(R.dimen.playcontrol_bar_height), false);
-            f4019c.setAnimationStyle(R.style.DialogWindowAnim);
-            f4019c.update();
-            f4019c.showAtLocation(view, 80, 0, 0);
+            listMediaEditFooterView.findViewById(R.id.btn_remove).setOnClickListener(onClickListener);
+            listMediaEditFooterView.findViewById(R.id.btn_add).setOnClickListener(onClickListener);
+            listMediaEditFooterView.findViewById(R.id.btn_send).setOnClickListener(onClickListener);
+            popupWindow = new PopupWindow(listMediaEditFooterView, view.getWidth(), context.getResources().getDimensionPixelSize(R.dimen.playcontrol_bar_height), false);
+            popupWindow.setAnimationStyle(R.style.DialogWindowAnim);
+            popupWindow.update();
+            popupWindow.showAtLocation(view, 80, 0, 0);
         }
     }
 
     /* renamed from: a */
     public static void m6743a(Context context, View view, final IThemeEditable.InterfaceC1333a interfaceC1333a) {
         if (context != null && view != null) {
-            View inflate = View.inflate(context, R.layout.list_theme_edit_footer, null);
-            inflate.setClickable(true);
-            inflate.findViewById(R.id.btn_remove).setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.component.d.d.14
+            View listThemeEditFooterView = View.inflate(context, R.layout.list_theme_edit_footer, null);
+            listThemeEditFooterView.setClickable(true);
+            listThemeEditFooterView.findViewById(R.id.btn_remove).setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.component.d.d.14
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view2) {
                     interfaceC1333a.onRemoveRequested();
                 }
             });
-            ThemeManager.m3269a(inflate, ThemeElement.SUB_BAR_BACKGROUND);
-            ThemeManager.m3269a(inflate.findViewById(R.id.delete_textView), ThemeElement.SUB_BAR_TEXT);
-            ThemeUtils.m8173a((IconTextView) inflate.findViewById(R.id.delete_iconTextView), ThemeElement.SUB_BAR_TEXT);
-            f4019c = new PopupWindow(inflate, view.getWidth(), context.getResources().getDimensionPixelSize(R.dimen.playcontrol_bar_height), false);
-            f4019c.update();
-            f4019c.showAtLocation(view, 80, 0, 0);
+            ThemeManager.m3269a(listThemeEditFooterView, ThemeElement.SUB_BAR_BACKGROUND);
+            ThemeManager.m3269a(listThemeEditFooterView.findViewById(R.id.delete_textView), ThemeElement.SUB_BAR_TEXT);
+            ThemeUtils.m8173a((IconTextView) listThemeEditFooterView.findViewById(R.id.delete_iconTextView), ThemeElement.SUB_BAR_TEXT);
+            popupWindow = new PopupWindow(listThemeEditFooterView, view.getWidth(), context.getResources().getDimensionPixelSize(R.dimen.playcontrol_bar_height), false);
+            popupWindow.update();
+            popupWindow.showAtLocation(view, 80, 0, 0);
         }
     }
 
     /* renamed from: b */
     public static boolean m6716b() {
-        return f4019c != null && f4019c.isShowing();
+        return popupWindow != null && popupWindow.isShowing();
     }
 
     /* renamed from: c */
     public static void m6706c() {
         if (m6716b()) {
-            f4019c.dismiss();
-            f4019c = null;
+            popupWindow.dismiss();
+            popupWindow = null;
         }
     }
 

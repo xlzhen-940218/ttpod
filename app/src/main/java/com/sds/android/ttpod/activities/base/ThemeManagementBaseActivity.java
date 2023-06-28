@@ -129,7 +129,7 @@ public abstract class ThemeManagementBaseActivity extends SlidingPagerActivity i
 
     public void updateBackground(Drawable drawable) {
         if (drawable != null) {
-            getRootView().setBackgroundDrawable(drawable);
+            getRootView().setBackground(drawable);
         }
     }
 

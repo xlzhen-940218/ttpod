@@ -25,7 +25,7 @@ public class AbsolutePlayerViewController extends BasePlayerViewController {
 
     @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.BasePlayerViewController
     /* renamed from: a */
-    public View mo6461a() {
+    public View getMultiScreenLayout() {
         return this.f4177a;
     }
 

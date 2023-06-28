@@ -170,14 +170,14 @@ public class BaseApplication extends MultiDexApplication {
     /* renamed from: b */
     public void mo4636b() {
         if (m4631g()) {
-            ModuleManager.getInstance().m4111b();
+            ModuleManager.getInstance().onAllPreDestroy();
             com.sds.android.ttpod.framework.base.ActivityManager.m4618a().m4616b();
             //SEngine.instance();
             //SEngine.unbindFromService(this);
             new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.BaseApplication.2
                 @Override // java.lang.Runnable
                 public void run() {
-                    ModuleManager.getInstance().m4108c();
+                    ModuleManager.getInstance().unInitModule();
                     //UmengStatisticUtils.m4864c(BaseApplication.getApplication());
                     Process.killProcess(Process.myPid());
                 }

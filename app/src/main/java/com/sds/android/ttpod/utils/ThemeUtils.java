@@ -185,7 +185,7 @@ public class ThemeUtils {
     /* renamed from: a */
     public static void m8180a(View view, Drawable drawable) {
         if (view != null) {
-            view.setBackgroundDrawable(drawable);
+            view.setBackground(drawable);
         }
     }
 
@@ -196,7 +196,7 @@ public class ThemeUtils {
         if (m3265a == null) {
             m3265a = new ColorDrawable(ThemeFramework.C2014c.m3304a("#000000 0"));
         }
-        seekBar.setBackgroundDrawable(m3265a);
+        seekBar.setBackground(m3265a);
         Drawable m3265a2 = ThemeManager.m3265a(ThemeElement.COMMON_PROGRESS_DRAWABLE);
         if (m3265a2 == null) {
             m3265a2 = new ColorDrawable(ThemeFramework.C2014c.m3304a("#4eccf6 80"));

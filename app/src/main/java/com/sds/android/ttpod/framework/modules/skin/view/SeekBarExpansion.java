@@ -18,19 +18,19 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 /* loaded from: classes.dex */
-public class SeekBarExpansion extends SeekBar {
+public class SeekBarExpansion extends androidx.appcompat.widget.AppCompatSeekBar {
 
     /* renamed from: a */
-    private int f6854a;
+    private int orientation;
 
     /* renamed from: b */
-    private boolean f6855b;
+    private boolean dragChangeProgressOnly;
 
     /* renamed from: c */
-    private SeekBar.OnSeekBarChangeListener f6856c;
+    private SeekBar.OnSeekBarChangeListener onSeekBarChangeListener;
 
     /* renamed from: d */
-    private C2004a f6857d;
+    private ThumbDrawable thumbDrawable;
 
     public SeekBarExpansion(Context context) {
         super(context);
@@ -45,17 +45,17 @@ public class SeekBarExpansion extends SeekBar {
     }
 
     @Override // android.view.View
-    public void setPadding(int i, int i2, int i3, int i4) {
-        if (this.f6854a == 1) {
-            super.setPadding(i2, i, i4, i3);
+    public void setPadding(int left, int top, int right, int bottom) {
+        if (this.orientation == 1) {
+            super.setPadding(top, left, bottom, right);
         } else {
-            super.setPadding(i, i2, i3, i4);
+            super.setPadding(left, top, right, bottom);
         }
     }
 
     @Override // android.widget.AbsSeekBar, android.widget.ProgressBar, android.view.View
     protected synchronized void onDraw(Canvas canvas) {
-        if (this.f6854a == 1) {
+        if (this.orientation == 1) {
             canvas.rotate(-90.0f);
             canvas.translate(-getHeight(), 0.0f);
         }
@@ -65,14 +65,14 @@ public class SeekBarExpansion extends SeekBar {
     @Override // android.widget.AbsSeekBar, android.widget.ProgressBar, android.view.View
     protected synchronized void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
-        if (this.f6854a == 1) {
-            setMeasuredDimension(Math.max(getMeasuredWidth(), this.f6857d == null ? 0 : this.f6857d.getIntrinsicWidth()) + getPaddingTop() + getPaddingBottom(), getMeasuredHeight());
+        if (this.orientation == 1) {
+            setMeasuredDimension(Math.max(getMeasuredWidth(), this.thumbDrawable == null ? 0 : this.thumbDrawable.getIntrinsicWidth()) + getPaddingTop() + getPaddingBottom(), getMeasuredHeight());
         }
     }
 
-    public void setOrientation(int i) {
-        if (this.f6854a != i) {
-            this.f6854a = i;
+    public void setOrientation(int orientation) {
+        if (this.orientation != orientation) {
+            this.orientation = orientation;
             int paddingLeft = getPaddingLeft();
             int paddingTop = getPaddingTop();
             int paddingRight = getPaddingRight();
@@ -85,16 +85,16 @@ public class SeekBarExpansion extends SeekBar {
     }
 
     public int getOrientation() {
-        return this.f6854a;
+        return this.orientation;
     }
 
     @Override // android.widget.AbsSeekBar, android.widget.ProgressBar, android.view.View
-    protected void onSizeChanged(int i, int i2, int i3, int i4) {
-        if (this.f6854a != 1) {
-            i2 = i;
-            i = i2;
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        if (this.orientation != 1) {
+            h = w;
+            w = h;
         }
-        super.onSizeChanged(i2, i, i3, i4);
+        super.onSizeChanged(h, w, oldw, oldh);
         int paddingTop = getPaddingTop();
         int paddingBottom = getPaddingBottom();
         int paddingLeft = getPaddingLeft();
@@ -105,60 +105,60 @@ public class SeekBarExpansion extends SeekBar {
         }
         Drawable progressDrawable = getProgressDrawable();
         if (progressDrawable != null) {
-            progressDrawable.setBounds(0, 0, (i2 - paddingLeft) - paddingRight, (i - paddingTop) - paddingBottom);
+            progressDrawable.setBounds(0, 0, (h - paddingLeft) - paddingRight, (w - paddingTop) - paddingBottom);
         }
-        if (this.f6857d != null) {
-            this.f6857d.m3368a(i2, i);
+        if (this.thumbDrawable != null) {
+            this.thumbDrawable.m3368a(h, w);
         }
     }
 
     @Override // android.widget.SeekBar
     public void setOnSeekBarChangeListener(SeekBar.OnSeekBarChangeListener onSeekBarChangeListener) {
         super.setOnSeekBarChangeListener(onSeekBarChangeListener);
-        this.f6856c = onSeekBarChangeListener;
+        this.onSeekBarChangeListener = onSeekBarChangeListener;
     }
 
     /* renamed from: a */
-    private boolean m3374a(MotionEvent motionEvent) {
+    private boolean isTouchThumb(MotionEvent motionEvent) {
         int x;
         int y;
         int action = motionEvent.getAction();
-        C2004a c2004a = this.f6857d;
-        if ((action == 0 || action == 1) && c2004a != null) {
-            if (this.f6854a == 1) {
+
+        if ((action == 0 || action == 1) && thumbDrawable != null) {
+            if (this.orientation == 1) {
                 x = getHeight() - ((int) motionEvent.getY());
                 y = (int) motionEvent.getX();
             } else {
                 x = (int) motionEvent.getX();
                 y = (int) motionEvent.getY();
             }
-            return c2004a.getBounds().contains(x, y);
+            return thumbDrawable.getBounds().contains(x, y);
         }
         return true;
     }
 
     @Override // android.widget.AbsSeekBar, android.view.View
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled() && (!this.f6855b || isPressed() || m3374a(motionEvent))) {
-            if (this.f6854a == 1) {
+        if (isEnabled() && (!this.dragChangeProgressOnly || isPressed() || isTouchThumb(motionEvent))) {
+            if (this.orientation == 1) {
                 switch (motionEvent.getAction()) {
                     case 0:
                         setPressed(true);
-                        m3375a();
-                        m3370b(motionEvent);
+                        onStartTrackingTouch();
+                        setPosition(motionEvent);
                         return true;
                     case 1:
-                        m3370b(motionEvent);
-                        m3371b();
+                        setPosition(motionEvent);
+                        onStopTrackingTouch();
                         setPressed(false);
                         invalidate();
                         return true;
                     case 2:
-                        m3370b(motionEvent);
-                        m3369c();
+                        setPosition(motionEvent);
+                        requestDisallowInterceptTouchEvent();
                         return true;
                     case 3:
-                        m3371b();
+                        onStopTrackingTouch();
                         setPressed(false);
                         invalidate();
                         return true;
@@ -172,39 +172,39 @@ public class SeekBarExpansion extends SeekBar {
     }
 
     /* renamed from: b */
-    private void m3370b(MotionEvent motionEvent) {
-        float f;
+    private void setPosition(MotionEvent motionEvent) {
+        float position;
         int height = getHeight();
         int paddingTop = getPaddingTop();
         int paddingBottom = getPaddingBottom();
         int i = (height - paddingTop) - paddingBottom;
         int y = height - ((int) motionEvent.getY());
         if (y < paddingTop) {
-            f = 0.0f;
+            position = 0.0f;
         } else if (y > height - paddingBottom) {
-            f = 1.0f;
+            position = 1.0f;
         } else {
-            f = (y - paddingTop) / i;
+            position = (y - paddingTop) / i;
         }
-        setProgress((int) ((f * getMax()) + 0.0f));
+        setProgress((int) ((position * getMax()) + 0.0f));
     }
 
     /* renamed from: a */
-    private void m3375a() {
-        if (this.f6856c != null) {
-            this.f6856c.onStartTrackingTouch(this);
+    private void onStartTrackingTouch() {
+        if (this.onSeekBarChangeListener != null) {
+            this.onSeekBarChangeListener.onStartTrackingTouch(this);
         }
     }
 
     /* renamed from: b */
-    private void m3371b() {
-        if (this.f6856c != null) {
-            this.f6856c.onStopTrackingTouch(this);
+    private void onStopTrackingTouch() {
+        if (this.onSeekBarChangeListener != null) {
+            this.onSeekBarChangeListener.onStopTrackingTouch(this);
         }
     }
 
     /* renamed from: c */
-    private void m3369c() {
+    private void requestDisallowInterceptTouchEvent() {
         ViewParent parent = getParent();
         if (parent != null) {
             parent.requestDisallowInterceptTouchEvent(true);
@@ -212,16 +212,18 @@ public class SeekBarExpansion extends SeekBar {
     }
 
     @Override // android.widget.AbsSeekBar
-    public void setThumb(Drawable drawable) {
-        if (this.f6857d == null || this.f6857d.f6861b != drawable) {
-            this.f6857d = new C2004a(drawable);
-            super.setThumb(this.f6857d);
-            setThumbOffset(Math.max(0, this.f6857d != null ? this.f6857d.getIntrinsicWidth() : 0) >> 1);
+    public void setThumb(Drawable thumb) {
+        if(thumb == null)
+            return;
+        if (this.thumbDrawable == null || this.thumbDrawable.drawable != thumb) {
+            this.thumbDrawable = new ThumbDrawable(thumb);
+            super.setThumb(this.thumbDrawable);
+            setThumbOffset(Math.max(0, this.thumbDrawable != null ? this.thumbDrawable.getIntrinsicWidth() : 0) >> 1);
         }
     }
 
-    public void setDragChangeProgressOnly(boolean z) {
-        this.f6855b = z;
+    public void setDragChangeProgressOnly(boolean dragChangeProgressOnly) {
+        this.dragChangeProgressOnly = dragChangeProgressOnly;
     }
 
     @Override // android.widget.AbsSeekBar, android.view.View
@@ -241,157 +243,157 @@ public class SeekBarExpansion extends SeekBar {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: com.sds.android.ttpod.framework.modules.skin.view.SeekBarExpansion$a */
     /* loaded from: classes.dex */
-    public class C2004a extends Drawable {
+    public class ThumbDrawable extends Drawable {
 
         /* renamed from: b */
-        private Drawable f6861b;
+        private Drawable drawable;
 
         /* renamed from: c */
-        private int f6862c;
+        private int intrinsicHeight;
 
         /* renamed from: d */
-        private int f6863d;
+        private int intrinsicWidth;
 
-        public C2004a(Drawable drawable) {
-            this.f6861b = drawable;
-            this.f6862c = this.f6861b.getIntrinsicHeight();
-            this.f6863d = this.f6861b.getIntrinsicWidth();
+        public ThumbDrawable(Drawable drawable) {
+            this.drawable = drawable;
+            this.intrinsicHeight = this.drawable.getIntrinsicHeight();
+            this.intrinsicWidth = this.drawable.getIntrinsicWidth();
         }
 
         /* renamed from: a */
         void m3368a(int i, int i2) {
-            int intrinsicWidth = this.f6861b.getIntrinsicWidth();
-            int intrinsicHeight = this.f6861b.getIntrinsicHeight();
-            this.f6862c = Math.min(i2, intrinsicHeight);
-            this.f6863d = (int) (intrinsicWidth * (this.f6862c / intrinsicHeight));
-            this.f6863d = Math.min(this.f6863d, this.f6862c);
+            int intrinsicWidth = this.drawable.getIntrinsicWidth();
+            int intrinsicHeight = this.drawable.getIntrinsicHeight();
+            this.intrinsicHeight = Math.min(i2, intrinsicHeight);
+            this.intrinsicWidth = (int) (intrinsicWidth * (this.intrinsicHeight / intrinsicHeight));
+            this.intrinsicWidth = Math.min(this.intrinsicWidth, this.intrinsicHeight);
             Rect bounds = getBounds();
-            setBounds(bounds.left, bounds.top, bounds.left + this.f6863d, bounds.top + this.f6862c);
+            setBounds(bounds.left, bounds.top, bounds.left + this.intrinsicWidth, bounds.top + this.intrinsicHeight);
         }
 
         @Override // android.graphics.drawable.Drawable
         public void draw(Canvas canvas) {
-            this.f6861b.draw(canvas);
+            this.drawable.draw(canvas);
         }
 
         @Override // android.graphics.drawable.Drawable
         public int getOpacity() {
-            return this.f6861b.getOpacity();
+            return this.drawable.getOpacity();
         }
 
         @Override // android.graphics.drawable.Drawable
         public void setAlpha(int i) {
-            this.f6861b.setAlpha(i);
+            this.drawable.setAlpha(i);
         }
 
         @Override // android.graphics.drawable.Drawable
         public void setColorFilter(ColorFilter colorFilter) {
-            this.f6861b.setColorFilter(colorFilter);
+            this.drawable.setColorFilter(colorFilter);
         }
 
         @Override // android.graphics.drawable.Drawable
         public void clearColorFilter() {
-            this.f6861b.clearColorFilter();
+            this.drawable.clearColorFilter();
         }
 
         @Override // android.graphics.drawable.Drawable
         public Drawable.Callback getCallback() {
-            return this.f6861b.getCallback();
+            return this.drawable.getCallback();
         }
 
         @Override // android.graphics.drawable.Drawable
         public int getChangingConfigurations() {
-            return this.f6861b.getChangingConfigurations();
+            return this.drawable.getChangingConfigurations();
         }
 
         @Override // android.graphics.drawable.Drawable
         public Drawable.ConstantState getConstantState() {
-            return this.f6861b.getConstantState();
+            return this.drawable.getConstantState();
         }
 
         @Override // android.graphics.drawable.Drawable
         public Drawable getCurrent() {
-            return this.f6861b.getCurrent();
+            return this.drawable.getCurrent();
         }
 
         @Override // android.graphics.drawable.Drawable
         public int getIntrinsicHeight() {
-            return this.f6862c;
+            return this.intrinsicHeight;
         }
 
         @Override // android.graphics.drawable.Drawable
         public int getIntrinsicWidth() {
-            return this.f6863d;
+            return this.intrinsicWidth;
         }
 
         @Override // android.graphics.drawable.Drawable
         public int getMinimumHeight() {
-            return this.f6861b.getMinimumHeight();
+            return this.drawable.getMinimumHeight();
         }
 
         @Override // android.graphics.drawable.Drawable
         public int getMinimumWidth() {
-            return this.f6861b.getMinimumWidth();
+            return this.drawable.getMinimumWidth();
         }
 
         @Override // android.graphics.drawable.Drawable
         public boolean getPadding(Rect rect) {
-            return this.f6861b.getPadding(rect);
+            return this.drawable.getPadding(rect);
         }
 
         @Override // android.graphics.drawable.Drawable
         public int[] getState() {
-            return this.f6861b.getState();
+            return this.drawable.getState();
         }
 
         @Override // android.graphics.drawable.Drawable
         public Region getTransparentRegion() {
-            return this.f6861b.getTransparentRegion();
+            return this.drawable.getTransparentRegion();
         }
 
         @Override // android.graphics.drawable.Drawable
         public void inflate(Resources resources, XmlPullParser xmlPullParser, AttributeSet attributeSet) throws XmlPullParserException, IOException {
-            this.f6861b.inflate(resources, xmlPullParser, attributeSet);
+            this.drawable.inflate(resources, xmlPullParser, attributeSet);
         }
 
         @Override // android.graphics.drawable.Drawable
         public void invalidateSelf() {
-            this.f6861b.invalidateSelf();
+            this.drawable.invalidateSelf();
         }
 
         @Override // android.graphics.drawable.Drawable
         public boolean isStateful() {
-            return this.f6861b.isStateful();
+            return this.drawable.isStateful();
         }
 
         @Override // android.graphics.drawable.Drawable
         public void jumpToCurrentState() {
-            this.f6861b.jumpToCurrentState();
+            this.drawable.jumpToCurrentState();
         }
 
         @Override // android.graphics.drawable.Drawable
         public Drawable mutate() {
-            return this.f6861b.mutate();
+            return this.drawable.mutate();
         }
 
         @Override // android.graphics.drawable.Drawable
         public void scheduleSelf(Runnable runnable, long j) {
-            this.f6861b.scheduleSelf(runnable, j);
+            this.drawable.scheduleSelf(runnable, j);
         }
 
         @Override // android.graphics.drawable.Drawable
         public void setBounds(int i, int i2, int i3, int i4) {
             int height;
-            if (SeekBarExpansion.this.f6854a == 1) {
+            if (SeekBarExpansion.this.orientation == 1) {
                 int max = SeekBarExpansion.this.getMax();
-                i = (int) ((max > 0 ? SeekBarExpansion.this.getProgress() / max : 0.0f) * ((SeekBarExpansion.this.getThumbOffset() << 1) + (((SeekBarExpansion.this.getHeight() - SeekBarExpansion.this.getPaddingLeft()) - SeekBarExpansion.this.getPaddingRight()) - this.f6863d)));
-                i3 = i + this.f6863d;
-                height = (((SeekBarExpansion.this.getWidth() - SeekBarExpansion.this.getPaddingTop()) - SeekBarExpansion.this.getPaddingBottom()) - this.f6862c) / 2;
+                i = (int) ((max > 0 ? SeekBarExpansion.this.getProgress() / max : 0.0f) * ((SeekBarExpansion.this.getThumbOffset() << 1) + (((SeekBarExpansion.this.getHeight() - SeekBarExpansion.this.getPaddingLeft()) - SeekBarExpansion.this.getPaddingRight()) - this.intrinsicWidth)));
+                i3 = i + this.intrinsicWidth;
+                height = (((SeekBarExpansion.this.getWidth() - SeekBarExpansion.this.getPaddingTop()) - SeekBarExpansion.this.getPaddingBottom()) - this.intrinsicHeight) / 2;
             } else {
-                height = (((SeekBarExpansion.this.getHeight() - SeekBarExpansion.this.getPaddingTop()) - SeekBarExpansion.this.getPaddingBottom()) - this.f6862c) / 2;
+                height = (((SeekBarExpansion.this.getHeight() - SeekBarExpansion.this.getPaddingTop()) - SeekBarExpansion.this.getPaddingBottom()) - this.intrinsicHeight) / 2;
             }
-            int i5 = this.f6862c + height;
-            this.f6861b.setBounds(i, height, i3, i5);
+            int i5 = this.intrinsicHeight + height;
+            this.drawable.setBounds(i, height, i3, i5);
             super.setBounds(i, height, i3, i5);
         }
 
@@ -402,49 +404,49 @@ public class SeekBarExpansion extends SeekBar {
 
         @Override // android.graphics.drawable.Drawable
         public void setChangingConfigurations(int i) {
-            this.f6861b.setChangingConfigurations(i);
+            this.drawable.setChangingConfigurations(i);
         }
 
         @Override // android.graphics.drawable.Drawable
         public void setColorFilter(int i, PorterDuff.Mode mode) {
-            this.f6861b.setColorFilter(i, mode);
+            this.drawable.setColorFilter(i, mode);
         }
 
         @Override // android.graphics.drawable.Drawable
         public void setDither(boolean z) {
-            this.f6861b.setDither(z);
+            this.drawable.setDither(z);
         }
 
         @Override // android.graphics.drawable.Drawable
         public void setFilterBitmap(boolean z) {
-            this.f6861b.setFilterBitmap(z);
+            this.drawable.setFilterBitmap(z);
         }
 
         @Override // android.graphics.drawable.Drawable
         public boolean setState(int[] iArr) {
-            return this.f6861b.setState(iArr);
+            return this.drawable.setState(iArr);
         }
 
         @Override // android.graphics.drawable.Drawable
         public boolean setVisible(boolean z, boolean z2) {
-            return this.f6861b.setVisible(z, z2);
+            return this.drawable.setVisible(z, z2);
         }
 
         @Override // android.graphics.drawable.Drawable
         public void unscheduleSelf(Runnable runnable) {
-            this.f6861b.unscheduleSelf(runnable);
+            this.drawable.unscheduleSelf(runnable);
         }
 
         public boolean equals(Object obj) {
-            return this.f6861b.equals(obj);
+            return this.drawable.equals(obj);
         }
 
         public int hashCode() {
-            return this.f6861b.hashCode();
+            return this.drawable.hashCode();
         }
 
         public String toString() {
-            return this.f6861b.toString();
+            return this.drawable.toString();
         }
     }
 }

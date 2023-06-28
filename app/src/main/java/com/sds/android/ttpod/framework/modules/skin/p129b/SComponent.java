@@ -17,19 +17,19 @@ import java.util.HashMap;
 public abstract class SComponent<T extends View> extends SBase {
 
     /* renamed from: c */
-    private SkinLayoutParams f6442c;
+    private SkinLayoutParams skinLayoutParams;
 
     /* renamed from: f */
-    protected String f6443f;
+    protected String onClick;
 
     /* renamed from: g */
-    protected int f6444g;
+    protected int visibility;
 
     /* renamed from: h */
-    protected boolean f6445h;
+    protected boolean enable;
 
     /* renamed from: i */
-    protected SBitmap f6446i;
+    protected SBitmap background;
 
     /* renamed from: b */
     abstract T mo3771b(Context context, SkinCache skinCache);
@@ -42,18 +42,18 @@ public abstract class SComponent<T extends View> extends SBase {
 
     public SComponent(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser);
-        this.f6442c = mo3772a(kXmlParser, i);
-        if (this.f6442c == null) {
+        this.skinLayoutParams = mo3772a(kXmlParser, i);
+        if (this.skinLayoutParams == null) {
             throw new NullPointerException("SkinLayoutParams cannot be null.");
         }
-        this.f6444g = ValueParser.m3698a(kXmlParser.getAttributeValue(null, "Visable"), true) ? 0 : 4;
-        this.f6445h = ValueParser.m3698a(kXmlParser.getAttributeValue(null, "Enable"), true);
-        this.f6443f = kXmlParser.getAttributeValue(null, "OnClick");
-        String attributeValue = kXmlParser.getAttributeValue(null, "BackgroundColor");
-        if (attributeValue == null) {
-            this.f6446i = m3813a(hashMap, kXmlParser, "Background");
+        this.visibility = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "Visable"), true) ? 0 : 4;
+        this.enable = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "Enable"), true);
+        this.onClick = kXmlParser.getAttributeValue(null, "OnClick");
+        String backgroundColor = kXmlParser.getAttributeValue(null, "BackgroundColor");
+        if (backgroundColor == null) {
+            this.background = getSBitmap(hashMap, kXmlParser, "Background");
         } else {
-            this.f6446i = new SBitmap(attributeValue);
+            this.background = new SBitmap(backgroundColor);
         }
     }
 
@@ -63,41 +63,42 @@ public abstract class SComponent<T extends View> extends SBase {
     }
 
     /* renamed from: a */
-    public static SBitmap m3813a(HashMap<String, SBitmap> hashMap, KXmlParser kXmlParser, String str) {
-        String attributeValue = kXmlParser.getAttributeValue(null, str);
-        if (TextUtils.isEmpty(attributeValue)) {
-            attributeValue = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Normal" + str));
+    public static SBitmap getSBitmap(HashMap<String, SBitmap> hashMap, KXmlParser kXmlParser, String str) {
+        String normal = kXmlParser.getAttributeValue(null, str);
+        if (TextUtils.isEmpty(normal)) {
+            normal = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Normal" + str));
         }
-        String m3812a = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Pressed" + str));
-        String m3812a2 = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Disable" + str));
-        String m3812a3 = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Selected" + str));
-        String m3812a4 = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Focused" + str));
-        if (TextUtils.isEmpty(attributeValue) && TextUtils.isEmpty(m3812a) && TextUtils.isEmpty(m3812a2) && TextUtils.isEmpty(m3812a3) && TextUtils.isEmpty(m3812a4)) {
+        String pressed = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Pressed" + str));
+        String disable = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Disable" + str));
+        String selected = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Selected" + str));
+        String focused = m3812a(hashMap, kXmlParser.getAttributeValue(null, "Focused" + str));
+        if (TextUtils.isEmpty(normal) && TextUtils.isEmpty(pressed) && TextUtils.isEmpty(disable)
+                && TextUtils.isEmpty(selected) && TextUtils.isEmpty(focused)) {
             return null;
         }
-        if (TextUtils.isEmpty(attributeValue)) {
-            attributeValue = "#FF000000";
+        if (TextUtils.isEmpty(normal)) {
+            normal = "#FF000000";
         }
-        SBitmap sBitmap = new SBitmap(attributeValue);
-        if (!TextUtils.isEmpty(m3812a)) {
-            sBitmap.m3826b(m3812a);
+        SBitmap sBitmap = new SBitmap(normal);
+        if (!TextUtils.isEmpty(pressed)) {
+            sBitmap.setPoressed(pressed);
         }
-        if (!TextUtils.isEmpty(m3812a3)) {
-            sBitmap.m3820e(m3812a3);
+        if (!TextUtils.isEmpty(selected)) {
+            sBitmap.setChecked(selected);
         }
-        if (!TextUtils.isEmpty(m3812a4)) {
-            sBitmap.m3822d(m3812a4);
+        if (!TextUtils.isEmpty(focused)) {
+            sBitmap.setFocused(focused);
         }
-        if (!TextUtils.isEmpty(m3812a2)) {
-            sBitmap.m3824c(attributeValue);
-            sBitmap.m3828a(m3812a2);
+        if (!TextUtils.isEmpty(disable)) {
+            sBitmap.setEnabled(normal);
+            sBitmap.setEmpty(disable);
         }
         sBitmap.m3827b();
-        if (!sBitmap.m3816i() && hashMap != null && hashMap.containsKey(attributeValue)) {
-            return hashMap.get(attributeValue);
+        if (!sBitmap.m3816i() && hashMap != null && hashMap.containsKey(normal)) {
+            return hashMap.get(normal);
         }
-        if (sBitmap.m3816i() && TextUtils.isEmpty(sBitmap.m3823d())) {
-            sBitmap.m3828a(attributeValue);
+        if (sBitmap.m3816i() && TextUtils.isEmpty(sBitmap.getEmpty())) {
+            sBitmap.setEmpty(normal);
         }
         return sBitmap;
     }
@@ -109,7 +110,7 @@ public abstract class SComponent<T extends View> extends SBase {
         }
         SBitmap sBitmap = hashMap.get(str);
         if (sBitmap != null) {
-            return sBitmap.m3825c();
+            return sBitmap.getFile();
         }
         return str;
     }
@@ -117,23 +118,23 @@ public abstract class SComponent<T extends View> extends SBase {
     /* renamed from: c */
     public T m3811c(Context context, SkinCache skinCache) {
         T mo3771b = mo3771b(context, skinCache);
-        mo3771b.setLayoutParams(this.f6442c);
-        mo3775a(context, mo3771b, skinCache);
+        mo3771b.setLayoutParams(this.skinLayoutParams);
+        setBackground(context, mo3771b, skinCache);
         return mo3771b;
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
-    public void mo3775a(Context context, T t, SkinCache skinCache) {
-        t.setEnabled(this.f6445h);
-        t.setVisibility(this.f6444g);
+    public void setBackground(Context context, T t, SkinCache skinCache) {
+        t.setEnabled(this.enable);
+        t.setVisibility(this.visibility);
         t.setTag(this.id);
-        t.setTag(R.id.tag_event_on_click, this.f6443f);
-        t.setBackgroundDrawable(m3810d(context, skinCache));
+        t.setTag(R.id.tag_event_on_click, this.onClick);
+        t.setBackground(getDrawable(context, skinCache));
     }
 
     /* renamed from: d */
-    public Drawable m3810d(Context context, SkinCache skinCache) {
-        return skinCache.m3596a(context.getResources(), this.f6446i);
+    public Drawable getDrawable(Context context, SkinCache skinCache) {
+        return skinCache.m3596a(context.getResources(), this.background);
     }
 }

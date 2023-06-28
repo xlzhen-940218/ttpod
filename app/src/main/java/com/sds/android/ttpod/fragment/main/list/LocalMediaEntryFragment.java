@@ -46,7 +46,7 @@ import java.util.Collection;
 import java.util.List;
 
 /* loaded from: classes.dex */
-public class LocalMediaEntryFragment extends SlidingClosableFragment implements IEditAble.InterfaceC1677a {
+public class LocalMediaEntryFragment extends SlidingClosableFragment implements IEditAble.EditRequestListener {
     private static final LongSparseArray<ActionPage> ACTION_PAGE_MAP = new LongSparseArray<>();
     public static final long ID_FRAGMENT_ALBUM = 2;
     public static final long ID_FRAGMENT_ALL = 0;

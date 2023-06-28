@@ -122,7 +122,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
                 }
             };
             this.mViewController.mo6452a(new DefaultSkinEventHandler(this, this.mViewController));
-            View mo6461a = this.mViewController.mo6461a();
+            View mo6461a = this.mViewController.getMultiScreenLayout();
             View findViewWithTag = mo6461a.findViewWithTag("WindowTitle");
             if (findViewWithTag instanceof TextView) {
                 findViewWithTag.setId(R.id.textview_playing);
@@ -173,7 +173,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
     public void onResume() {
         super.onResume();
         if (this.mViewController != null) {
-            this.mViewController.mo6404r();
+            this.mViewController.onPanelShow();
         }
     }
 
@@ -182,7 +182,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
     public void onPause() {
         super.onPause();
         if (this.mViewController != null) {
-            this.mViewController.mo6410q();
+            this.mViewController.onPanelDisappear();
         }
     }
 
@@ -228,7 +228,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
             this.mImageViewPlayMode.setImageResource(i);
         }
         if (this.mViewController != null) {
-            this.mViewController.mo6449a(playMode);
+            this.mViewController.onPlayModeChange(playMode);
         }
     }
 
@@ -256,7 +256,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
         PlayMode m2862l = Preferences.m2862l();
         updatePlayMode(m2862l);
         if (this.mViewController != null) {
-            this.mViewController.mo6449a(m2862l);
+            this.mViewController.onPlayModeChange(m2862l);
         }
     }
 
@@ -268,7 +268,7 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
 
     public void updatePlayMediaInfo() {
         if (this.mViewController != null) {
-            this.mViewController.mo6448a(Cache.getInstance().getCurrentPlayMediaItem());
+            this.mViewController.onMetaChange(Cache.getInstance().getCurrentPlayMediaItem());
             this.mViewController.mo6459a(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue(), SupportFactory.getInstance(BaseApplication.getApplication()).m2464l());
         }
     }

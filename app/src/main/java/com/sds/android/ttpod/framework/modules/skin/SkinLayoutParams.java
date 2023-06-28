@@ -16,7 +16,7 @@ public class SkinLayoutParams extends ViewGroup.MarginLayoutParams {
     private int f6666a;
 
     /* renamed from: b */
-    private int f6667b;
+    private int zOrder;
 
     /* renamed from: c */
     private int f6668c;
@@ -31,22 +31,22 @@ public class SkinLayoutParams extends ViewGroup.MarginLayoutParams {
     private int f6671f;
 
     /* renamed from: g */
-    private int f6672g;
+    private int left;
 
     /* renamed from: h */
-    private int f6673h;
+    private int top;
 
     /* renamed from: i */
-    private int f6674i;
+    private int paddingLeft;
 
     /* renamed from: j */
-    private int f6675j;
+    private int paddingRight;
 
     /* renamed from: k */
-    private int f6676k;
+    private int paddingTop;
 
     /* renamed from: l */
-    private int f6677l;
+    private int paddingBottom;
 
     /* renamed from: m */
     private int f6678m;
@@ -88,16 +88,16 @@ public class SkinLayoutParams extends ViewGroup.MarginLayoutParams {
         super(0, 0);
         this.f6666a = 0;
         this.f6678m = -1;
-        Rect m3701a = ValueParser.m3701a(kXmlParser.getAttributeValue(null, "Position"), (Rect) null);
-        if (m3701a != null) {
-            this.f6672g = m3701a.left;
-            this.f6673h = m3701a.top;
-            this.width = m3701a.right;
-            this.height = m3701a.bottom;
+        Rect position = ValueParser.xmlToRect(kXmlParser.getAttributeValue(null, "Position"), (Rect) null);
+        if (position != null) {
+            this.left = position.left;
+            this.top = position.top;
+            this.width = position.right;
+            this.height = position.bottom;
         }
-        String attributeValue = kXmlParser.getAttributeValue(null, "PositionAnchor");
-        if (attributeValue != null) {
-            String trim = attributeValue.trim();
+        String positionAnchor = kXmlParser.getAttributeValue(null, "PositionAnchor");
+        if (positionAnchor != null) {
+            String trim = positionAnchor.trim();
             if (trim.equals("Center") || trim.contains("Center|") || trim.contains("Center ")) {
                 this.f6666a = 1;
             } else {
@@ -113,23 +113,23 @@ public class SkinLayoutParams extends ViewGroup.MarginLayoutParams {
                 }
             }
         }
-        Rect m3701a2 = ValueParser.m3701a(kXmlParser.getAttributeValue(null, "Padding"), (Rect) null);
+        Rect rect = ValueParser.xmlToRect(kXmlParser.getAttributeValue(null, "Padding"), (Rect) null);
         if (i > 0) {
-            if (m3701a2 != null) {
-                this.f6674i = m3701a2.left;
-                this.f6676k = m3701a2.top;
-                this.f6675j = m3701a2.right;
-                this.f6677l = m3701a2.bottom;
+            if (rect != null) {
+                this.paddingLeft = rect.left;
+                this.paddingTop = rect.top;
+                this.paddingRight = rect.right;
+                this.paddingBottom = rect.bottom;
             }
-            m3701a2 = ValueParser.m3701a(kXmlParser.getAttributeValue(null, "Margin"), (Rect) null);
+            rect = ValueParser.xmlToRect(kXmlParser.getAttributeValue(null, "Margin"), (Rect) null);
         }
-        if (m3701a2 != null) {
-            this.leftMargin = m3701a2.left;
-            this.topMargin = m3701a2.top;
-            this.rightMargin = m3701a2.right;
-            this.bottomMargin = m3701a2.bottom;
+        if (rect != null) {
+            this.leftMargin = rect.left;
+            this.topMargin = rect.top;
+            this.rightMargin = rect.right;
+            this.bottomMargin = rect.bottom;
         }
-        this.f6667b = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "ZOrder"), 0);
+        this.zOrder = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "ZOrder"), 0);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -137,8 +137,8 @@ public class SkinLayoutParams extends ViewGroup.MarginLayoutParams {
     public void mo3558a(View view, int i, int i2) {
         int i3;
         int i4;
-        m3561a(ValueParser.m3704a(this.f6672g, i));
-        m3555b(ValueParser.m3704a(this.f6673h, i2));
+        m3561a(ValueParser.m3704a(this.left, i));
+        m3555b(ValueParser.m3704a(this.top, i2));
         m3552c(m3556b() + ValueParser.m3704a(this.width, i));
         m3550d(m3553c() + ValueParser.m3704a(this.height, i2));
         int m3562a = m3562a();
@@ -165,7 +165,7 @@ public class SkinLayoutParams extends ViewGroup.MarginLayoutParams {
         m3555b(m3553c() + ValueParser.m3704a(this.topMargin, i2));
         m3552c(m3551d() - ValueParser.m3704a(this.rightMargin, i));
         m3550d(m3549e() - ValueParser.m3704a(this.bottomMargin, i2));
-        view.setPadding(ValueParser.m3704a(this.f6674i, m3551d), ValueParser.m3704a(this.f6676k, m3549e), ValueParser.m3704a(this.f6675j, m3551d), ValueParser.m3704a(this.f6677l, m3549e));
+        view.setPadding(ValueParser.m3704a(this.paddingLeft, m3551d), ValueParser.m3704a(this.paddingTop, m3549e), ValueParser.m3704a(this.paddingRight, m3551d), ValueParser.m3704a(this.paddingBottom, m3549e));
         if (this.f6678m >= 0) {
             m3560a(this.f6678m * i, 0);
         }
@@ -218,7 +218,7 @@ public class SkinLayoutParams extends ViewGroup.MarginLayoutParams {
 
     /* renamed from: f */
     public int m3547f() {
-        return this.f6667b;
+        return this.zOrder;
     }
 
     /* renamed from: g */

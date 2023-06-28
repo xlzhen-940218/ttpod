@@ -22,8 +22,8 @@ public class SButton extends SImage<TTPodButton> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public void mo3775a(Context context, TTPodButton tTPodButton, SkinCache skinCache) {
-        super.mo3775a(context,tTPodButton, skinCache);
+    public void setBackground(Context context, TTPodButton tTPodButton, SkinCache skinCache) {
+        super.setBackground(context,tTPodButton, skinCache);
         tTPodButton.setImageDrawable(skinCache.m3596a(context.getResources(), this.f6456c));
         tTPodButton.setScaleType(m3797a(this.f6457d));
     }

@@ -178,8 +178,8 @@ public class FoldableItemLayout extends FrameLayout {
         private C2264a(FoldableItemLayout foldableItemLayout) {
             super(foldableItemLayout.getContext());
             foldableItemLayout.addView(this, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            setBackgroundDrawable(foldableItemLayout.getBackground());
-            foldableItemLayout.setBackgroundDrawable(null);
+            setBackground(foldableItemLayout.getBackground());
+            foldableItemLayout.setBackground(null);
             setWillNotDraw(false);
         }
 

@@ -54,18 +54,18 @@ public abstract class SText<T extends View> extends SComponent<T> {
         super(kXmlParser, hashMap, i);
         this.name = kXmlParser.getAttributeValue(null, "TextContent");
         this.font = getSFont(hashMap2, kXmlParser.getAttributeValue(null, "Font")
-                , ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FontStyle"), -1)
-                , ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FontSize"), -1));
+                , ValueParser.parseInt(kXmlParser.getAttributeValue(null, "FontStyle"), -1)
+                , ValueParser.parseInt(kXmlParser.getAttributeValue(null, "FontSize"), -1));
         this.fontColor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColor"), -1);
         this.fontColorPressed = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorPressed"), this.fontColor);
         this.fontColorDisable = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorDisable"), this.fontColor);
         this.fontColorFocused = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorFocused"), this.fontColor);
         this.fontColorSelected = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorSelected"), this.fontColor);
         this.fontShadowColor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontShadowColor"), ViewCompat.MEASURED_STATE_MASK);
-        this.fontShaowRadius = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FontShadowRadius"), 0.0f);
-        this.fontShaowDx = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FontShadowDx"), 0.0f);
-        this.fontShaowDy = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FontShadowDy"), 0.0f);
-        this.fadeEdgeLength = ValueParser.m3696b(kXmlParser.getAttributeValue(null, "FadeEdgeLength"), 0);
+        this.fontShaowRadius = ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "FontShadowRadius"), 0.0f);
+        this.fontShaowDx = ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "FontShadowDx"), 0.0f);
+        this.fontShaowDy = ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "FontShadowDy"), 0.0f);
+        this.fadeEdgeLength = ValueParser.parseCommon(kXmlParser.getAttributeValue(null, "FadeEdgeLength"), 0);
         String align = kXmlParser.getAttributeValue(null, "Align");
         this.align = 0;
         if (align != null) {

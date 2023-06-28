@@ -62,7 +62,7 @@ public final class FastSwitchSupport extends Support {
         }
         Iterator<SupportCallback> it = this.f7138f.iterator();
         while (it.hasNext()) {
-            it.next().mo2446a(this.f7003k.m2655b());
+            it.next().mo2446a(this.f7003k.getMediaItem());
         }
         m2477c(m2490a("start_command").putExtras(m2766A()));
     }
@@ -98,7 +98,7 @@ public final class FastSwitchSupport extends Support {
         m2764z();
         Iterator<SupportCallback> it = this.f7138f.iterator();
         while (it.hasNext()) {
-            it.next().mo2446a(this.f7003k.m2655b());
+            it.next().mo2446a(this.f7003k.getMediaItem());
         }
         this.f7005m.removeCallbacks(this.f7006n);
         this.f7005m.postDelayed(this.f7006n, 300L);
@@ -111,7 +111,7 @@ public final class FastSwitchSupport extends Support {
         m2764z();
         Iterator<SupportCallback> it = this.f7138f.iterator();
         while (it.hasNext()) {
-            it.next().mo2446a(this.f7003k.m2655b());
+            it.next().mo2446a(this.f7003k.getMediaItem());
         }
         this.f7005m.removeCallbacks(this.f7006n);
         this.f7005m.postDelayed(this.f7006n, 300L);
@@ -148,7 +148,7 @@ public final class FastSwitchSupport extends Support {
     /* renamed from: A */
     public Bundle m2766A() {
         Bundle bundle = new Bundle();
-        bundle.putParcelable("mediaItem", this.f7003k.m2655b());
+        bundle.putParcelable("mediaItem", this.f7003k.getMediaItem());
         return bundle;
     }
 }

@@ -100,7 +100,7 @@ public class UnderlineIndicator extends View {
             setFadeLength(obtainStyledAttributes.getInteger(R.styleable.UnderlineIndicator_fadeLength, integer2));
             Drawable drawable = obtainStyledAttributes.getDrawable(R.styleable.UnderlineIndicator_android_background);
             if (drawable != null) {
-                setBackgroundDrawable(drawable);
+                setBackground(drawable);
             }
             obtainStyledAttributes.recycle();
             this.f3543i = ViewConfigurationCompat.getScaledPagingTouchSlop(ViewConfiguration.get(context));

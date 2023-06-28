@@ -32,10 +32,10 @@ public class SPlayerView extends SBaseView<MultiScreenLayout, SPanel> {
         this.f6471k = false;
         this.f6472l = false;
         this.f6473m = 0;
-        this.f6470j = ValueParser.m3698a(kXmlParser.getAttributeValue(null, "EnableBounce"), this.f6470j);
-        this.f6471k = ValueParser.m3698a(kXmlParser.getAttributeValue(null, "EnableArtistBackground"), this.f6471k);
-        this.f6472l = ValueParser.m3698a(kXmlParser.getAttributeValue(null, "EnableBackgroundOffset"), this.f6472l);
-        this.f6473m = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "ArtistBackgroundRadius"), this.f6473m);
+        this.f6470j = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "EnableBounce"), this.f6470j);
+        this.f6471k = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "EnableArtistBackground"), this.f6471k);
+        this.f6472l = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "EnableBackgroundOffset"), this.f6472l);
+        this.f6473m = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "ArtistBackgroundRadius"), this.f6473m);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
@@ -47,14 +47,14 @@ public class SPlayerView extends SBaseView<MultiScreenLayout, SPanel> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SBaseView, com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public void mo3775a(Context context, MultiScreenLayout multiScreenLayout, SkinCache skinCache) {
+    public void setBackground(Context context, MultiScreenLayout multiScreenLayout, SkinCache skinCache) {
         multiScreenLayout.setTag(this.id);
         multiScreenLayout.setEnableBackgroundOffset(this.f6472l);
         multiScreenLayout.setEnableBoundaryBounce(this.f6470j);
         multiScreenLayout.setEnableSecondBackground(this.f6471k);
         multiScreenLayout.setSecondBackgroundBlurRadius(this.f6473m);
-        Drawable d = m3810d(context, skinCache);
-        multiScreenLayout.setBackgroundDrawable(d);
+        Drawable d = getDrawable(context, skinCache);
+        multiScreenLayout.setBackground(d);
         if (d != null) {
             if (!(d instanceof ColorDrawable)) {
                 multiScreenLayout.setDrawingCacheBackgroundColor(ViewCompat.MEASURED_STATE_MASK);

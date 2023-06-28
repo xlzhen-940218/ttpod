@@ -46,10 +46,10 @@ public class SizeChangeableListView extends ListView {
     }
 
     @Override // android.view.View
-    public void setBackgroundDrawable(Drawable drawable) {
+    public void setBackground(Drawable drawable) {
         if ((drawable instanceof BitmapDrawable) && !(drawable instanceof ClipBitmapDrawable)) {
             drawable = new ClipBitmapDrawable(getResources(), ((BitmapDrawable) drawable).getBitmap());
         }
-        super.setBackgroundDrawable(drawable);
+        super.setBackground(drawable);
     }
 }

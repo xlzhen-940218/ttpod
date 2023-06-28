@@ -25,7 +25,7 @@ public final class AccessHelper {
     private static C2030a f6986a;
 
     /* renamed from: b */
-    private static Context f6987b = null;
+    private static Context context = null;
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* compiled from: AccessHelper.java */
@@ -84,21 +84,21 @@ public final class AccessHelper {
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
     public static void m3103a(Context context) {
-        f6987b = context;
+        AccessHelper.context = context;
     }
 
     /* renamed from: a */
-    private static Uri m3100a(String str, String str2) {
-        return Uri.parse(str + str2);
+    private static Uri parse(String scheme, String host) {
+        return Uri.parse(scheme + host);
     }
 
     /* renamed from: a */
-    private static String m3104a() {
+    private static String getStringName() {
         return EnvironmentContentProvider.EnumC2029a.STRING.name();
     }
 
     /* renamed from: b */
-    private static String m3089b() {
+    private static String getSetName() {
         return EnvironmentContentProvider.EnumC2029a.SET.name();
     }
 
@@ -106,7 +106,8 @@ public final class AccessHelper {
     /* renamed from: a */
     public static boolean m3096a(String str, String str2, Boolean bool) {
         try {
-            Cursor query = f6987b.getContentResolver().query(m3100a(str, str2), null, m3104a(), null, null);
+            Cursor query = context.getContentResolver().query(parse(str, str2)
+                    , null, getStringName(), null, null);
             if (query != null) {
                 if (query.moveToNext()) {
                     bool = Boolean.valueOf(query.getString(0));
@@ -125,7 +126,7 @@ public final class AccessHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(str2, bool.toString());
         try {
-            f6987b.getContentResolver().update(m3100a(str, str2), contentValues, m3104a(), null);
+            context.getContentResolver().update(parse(str, str2), contentValues, getStringName(), null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,9 +134,9 @@ public final class AccessHelper {
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
-    public static String m3092a(String content, String uri, String str3) {
+    public static String query(String content, String uri, String str3) {
         try {
-            Cursor query = f6987b.getContentResolver().query(m3100a(content, uri), null, m3104a(), null, null);
+            Cursor query = context.getContentResolver().query(parse(content, uri), null, getStringName(), null, null);
             if (query != null) {
                 if (query.moveToNext()) {
                     str3 = query.getString(0);
@@ -154,7 +155,7 @@ public final class AccessHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(str2, str3);
         try {
-            f6987b.getContentResolver().update(m3100a(str, str2), contentValues, m3104a(), null);
+            context.getContentResolver().update(parse(str, str2), contentValues, getStringName(), null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -162,19 +163,20 @@ public final class AccessHelper {
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
-    public static int m3098a(String str, String str2, int i) {
+    public static int queryId(String scheme, String host, int id) {
         try {
-            Cursor query = f6987b.getContentResolver().query(m3100a(str, str2), null, m3104a(), null, null);
+            Cursor query = context.getContentResolver().query(parse(scheme, host), null
+                    , getStringName(), null, null);
             if (query != null) {
                 if (query.moveToNext()) {
-                    i = query.getInt(0);
+                    id = query.getInt(0);
                 }
                 query.close();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return i;
+        return id;
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
@@ -183,7 +185,7 @@ public final class AccessHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(str2, num.toString());
         try {
-            f6987b.getContentResolver().update(m3100a(str, str2), contentValues, m3104a(), null);
+            context.getContentResolver().update(parse(str, str2), contentValues, getStringName(), null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -193,7 +195,7 @@ public final class AccessHelper {
     /* renamed from: a */
     public static long m3097a(String str, String str2, long j) {
         try {
-            Cursor query = f6987b.getContentResolver().query(m3100a(str, str2), null, m3104a(), null, null);
+            Cursor query = context.getContentResolver().query(parse(str, str2), null, getStringName(), null, null);
             if (query != null) {
                 if (query.moveToNext()) {
                     j = query.getLong(0);
@@ -212,7 +214,7 @@ public final class AccessHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(str2, l.toString());
         try {
-            f6987b.getContentResolver().update(m3100a(str, str2), contentValues, m3104a(), null);
+            context.getContentResolver().update(parse(str, str2), contentValues, getStringName(), null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -224,7 +226,7 @@ public final class AccessHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(str2, f.toString());
         try {
-            f6987b.getContentResolver().update(m3100a(str, str2), contentValues, m3104a(), null);
+            context.getContentResolver().update(parse(str, str2), contentValues, getStringName(), null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -234,7 +236,7 @@ public final class AccessHelper {
     /* renamed from: a */
     public static float m3099a(String str, String str2, float f) {
         try {
-            Cursor query = f6987b.getContentResolver().query(m3100a(str, str2), null, m3104a(), null, null);
+            Cursor query = context.getContentResolver().query(parse(str, str2), null, getStringName(), null, null);
             if (query != null) {
                 if (query.moveToNext()) {
                     f = query.getFloat(0);
@@ -252,7 +254,7 @@ public final class AccessHelper {
     public static Set<String> m3091a(String str, String str2, Set<String> set) {
         Exception e;
         try {
-            Cursor query = f6987b.getContentResolver().query(m3100a(str, str2), null, m3089b(), null, null);
+            Cursor query = context.getContentResolver().query(parse(str, str2), null, getSetName(), null, null);
             if (query != null) {
                 if (query.moveToNext()) {
                     int columnCount = query.getColumnCount();
@@ -283,7 +285,7 @@ public final class AccessHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(str2, m3090a(set));
         try {
-            f6987b.getContentResolver().update(m3100a(str, str2), contentValues, m3089b(), null);
+            context.getContentResolver().update(parse(str, str2), contentValues, getSetName(), null);
         } catch (Exception e) {
             e.printStackTrace();
         }

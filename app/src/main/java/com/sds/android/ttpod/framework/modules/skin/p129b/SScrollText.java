@@ -20,7 +20,7 @@ public class SScrollText extends SText<AutoScrollableTextView> {
 
     public SScrollText(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, HashMap<String, SFont> hashMap2, int i) {
         super(kXmlParser, hashMap, hashMap2, i);
-        this.f6476s = ValueParser.m3698a(kXmlParser.getAttributeValue(null, "AutoScroll"), true);
+        this.f6476s = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "AutoScroll"), true);
         this.f6477t = kXmlParser.getAttributeValue(null, "TextContent");
     }
 
@@ -34,7 +34,7 @@ public class SScrollText extends SText<AutoScrollableTextView> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public void mo3775a(Context context, AutoScrollableTextView autoScrollableTextView, SkinCache skinCache) {
+    public void setBackground(Context context, AutoScrollableTextView autoScrollableTextView, SkinCache skinCache) {
         autoScrollableTextView.setAutoScrollable(this.f6476s);
         m3770a(autoScrollableTextView, skinCache);
         autoScrollableTextView.setFocusable(true);
@@ -46,6 +46,6 @@ public class SScrollText extends SText<AutoScrollableTextView> {
         } else {
             autoScrollableTextView.setEllipsize(null);
         }
-        super.mo3775a(context, autoScrollableTextView, skinCache);
+        super.setBackground(context, autoScrollableTextView, skinCache);
     }
 }

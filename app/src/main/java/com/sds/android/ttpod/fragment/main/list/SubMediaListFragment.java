@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /* loaded from: classes.dex */
-public class SubMediaListFragment extends SlidingClosableFragment implements IEditAble.InterfaceC1677a {
+public class SubMediaListFragment extends SlidingClosableFragment implements IEditAble.EditRequestListener {
     public static final String KEY_GROUP_NAME = "group_name";
     private MediaListFragment mMediaListFragment;
     private ActionBarController.InterfaceC1072b mOnActionClickListener = new ActionBarController.InterfaceC1072b() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.1

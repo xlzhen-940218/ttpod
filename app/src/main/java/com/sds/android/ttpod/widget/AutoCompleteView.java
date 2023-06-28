@@ -129,7 +129,7 @@ public class AutoCompleteView extends PopupWindow {
         if (z) {
             View view = new View(this.f8065c);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, this.f8072j);
-            view.setBackgroundDrawable(this.f8071i);
+            view.setBackground(this.f8071i);
             this.f8064b.addView(view, layoutParams);
         }
         TextView textView = new TextView(this.f8065c);

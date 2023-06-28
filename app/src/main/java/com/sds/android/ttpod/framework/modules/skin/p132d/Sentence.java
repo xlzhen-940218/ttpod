@@ -10,7 +10,7 @@ public interface Sentence extends Comparable<Sentence> {
     void getLyricInfo(LyricInfo lyricInfo);
 
     /* renamed from: b */
-    int mo3638b();
+    int getIndex();
 
     /* renamed from: c */
     int mo3611c(int i);
@@ -22,5 +22,5 @@ public interface Sentence extends Comparable<Sentence> {
     int mo3636f();
 
     /* renamed from: g */
-    String mo3635g();
+    String getCurrentLrcText();
 }

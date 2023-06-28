@@ -120,7 +120,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     public void resumeRefresh() {
         if (this.mViewController != null) {
             this.mViewController.m6550y();
-            this.mViewController.mo6404r();
+            this.mViewController.onPanelShow();
         }
         LogUtils.error("Sun Hao", "ProtraitPlayerFragment resumeRefresh");
         startUpdatePlayPosition();
@@ -129,7 +129,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     public void pauseRefresh() {
         if (this.mViewController != null) {
             this.mViewController.m6551x();
-            this.mViewController.mo6410q();
+            this.mViewController.onPanelDisappear();
         }
         stopUpdatePlayPosition();
     }
@@ -138,7 +138,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     public void onResume() {
         super.onResume();
         if (this.mViewController != null && getUserVisibleHint()) {
-            this.mViewController.mo6404r();
+            this.mViewController.onPanelShow();
         }
         startUpdatePlayPosition();
     }
@@ -147,8 +147,8 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     public void onPause() {
         super.onPause();
         if (this.mViewController != null && getUserVisibleHint()) {
-            this.mViewController.mo6410q();
-            Preferences.m2897d(this.mViewController.m6425g());
+            this.mViewController.onPanelDisappear();
+            Preferences.m2897d(this.mViewController.getLastDisplayPanelId());
         }
         stopUpdatePlayPosition();
     }
@@ -206,7 +206,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
             this.mViewController = new PlayerPortraitViewController(getActivity(), skinCache);
             this.mViewController.mo6452a(getSkinEventHandler());
             this.mSkinEventHandler.m5674a(this.mViewController);
-            View mo6461a = this.mViewController.mo6461a();
+            View mo6461a = this.mViewController.getMultiScreenLayout();
             frameLayout.removeAllViews();
             if (mo6461a != null) {
                 frameLayout.addView(mo6461a);
@@ -233,7 +233,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                     PortraitPlayerFragment.this.mViewController.mo6439b(audioManager.getStreamVolume(3), audioManager.getStreamMaxVolume(3));
                     PortraitPlayerFragment.this.initViewController();
                     if (PortraitPlayerFragment.this.getUserVisibleHint()) {
-                        PortraitPlayerFragment.this.mViewController.mo6404r();
+                        PortraitPlayerFragment.this.mViewController.onPanelShow();
                     }
                 }
             });
@@ -273,7 +273,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                     LogUtils.debug(TAG, "PortraitPlayerFragment.updateBackground skin cache is null!");
                 }
             }
-            this.mViewController.mo6461a().setBackgroundDrawable(drawable);
+            this.mViewController.getMultiScreenLayout().setBackground(drawable);
         }
     }
 
@@ -434,7 +434,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     @Override // com.sds.android.ttpod.fragment.main.BasePlayerFragment
     public void updatePlayMediaInfo() {
         if (this.mViewController != null) {
-            this.mViewController.mo6448a(Cache.getInstance().getCurrentPlayMediaItem());
+            this.mViewController.onMetaChange(Cache.getInstance().getCurrentPlayMediaItem());
             this.mViewController.mo6459a(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue(), SupportFactory.getInstance(BaseApplication.getApplication()).m2464l());
         }
     }
@@ -449,7 +449,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     public void updatePlayMode() {
         if (this.mViewController != null) {
-            this.mViewController.mo6449a(Preferences.m2862l());
+            this.mViewController.onPlayModeChange(Preferences.m2862l());
         }
     }
 
@@ -487,15 +487,15 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
-    public void setUserVisibleHint(boolean z) {
-        super.setUserVisibleHint(z);
-        if (z) {
+    public void setUserVisibleHint(boolean userVisibleHint) {
+        super.setUserVisibleHint(userVisibleHint);
+        if (userVisibleHint) {
             if (this.mViewController != null) {
-                this.mViewController.mo6404r();
+                this.mViewController.onPanelShow();
                 getView().requestLayout();
             }
         } else if (this.mViewController != null) {
-            this.mViewController.mo6410q();
+            this.mViewController.onPanelDisappear();
         }
     }
 
@@ -517,13 +517,13 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
             this.mSkinEventHandler = new DefaultSkinEventHandler(getActivity(), this.mViewController) { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.4
                 @Override // com.sds.android.ttpod.fragment.main.DefaultSkinEventHandler, com.sds.android.ttpod.framework.modules.skin.p130c.SkinEventHandler
                 /* renamed from: a */
-                public boolean mo3717a(int i, Object obj) {
+                public boolean mo3717a(int actionId, Object obj) {
                     SPlaylistView m3842b;
-                    if (super.mo3717a(i, obj)) {
+                    if (super.mo3717a(actionId, obj)) {
                         return true;
                     }
                     Object parent = PortraitPlayerFragment.this.getParent();
-                    switch (i) {
+                    switch (actionId) {
                         case 1:
                             if (parent instanceof OnClosePlayerPanelRequestListener) {
                                 ((OnClosePlayerPanelRequestListener) parent).onClosePlayerPanelRequested();
@@ -661,7 +661,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     public void tryShowLyricMenu() {
         final MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
-            PopupsUtils.m6725a(getActivity(), "Lyric".equals(this.mViewController.m6431c(this.mViewController.m6425g()).m6548E()) ? new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_search, (int) R.string.search_lyric), new ActionItem(1, (int) R.drawable.img_contextmenu_remove, (int) R.string.delete_lyric), new ActionItem(2, (int) R.drawable.img_contextmenu_adjust_lyric, (int) R.string.adjust_lyric), new ActionItem(3, (int) R.drawable.img_contextmenu_error_report, (int) R.string.report_lyric_error)} : new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_search, (int) R.string.search_lyric), new ActionItem(1, (int) R.drawable.img_contextmenu_remove, (int) R.string.delete_lyric), new ActionItem(3, (int) R.drawable.img_contextmenu_error_report, (int) R.string.report_lyric_error)}, m3225N.getTitle(), new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.7
+            PopupsUtils.m6725a(getActivity(), "Lyric".equals(this.mViewController.getCurrentViewEventController(this.mViewController.getLastDisplayPanelId()).getControllerName()) ? new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_search, (int) R.string.search_lyric), new ActionItem(1, (int) R.drawable.img_contextmenu_remove, (int) R.string.delete_lyric), new ActionItem(2, (int) R.drawable.img_contextmenu_adjust_lyric, (int) R.string.adjust_lyric), new ActionItem(3, (int) R.drawable.img_contextmenu_error_report, (int) R.string.report_lyric_error)} : new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_search, (int) R.string.search_lyric), new ActionItem(1, (int) R.drawable.img_contextmenu_remove, (int) R.string.delete_lyric), new ActionItem(3, (int) R.drawable.img_contextmenu_error_report, (int) R.string.report_lyric_error)}, m3225N.getTitle(), new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.7
                 @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
                 /* renamed from: a */
                 public void mo5409a(ActionItem actionItem, int i) {

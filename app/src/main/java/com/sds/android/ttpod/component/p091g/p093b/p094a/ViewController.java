@@ -40,70 +40,70 @@ import java.util.concurrent.TimeUnit;
 public class ViewController {
 
     /* renamed from: A */
-    protected TextView f4189A;
+    protected TextView albumView;
 
     /* renamed from: B */
-    protected TextView f4190B;
+    protected TextView artistView;
 
     /* renamed from: C */
-    protected TextView f4191C;
+    protected TextView durationView;
 
     /* renamed from: D */
-    protected TextView f4192D;
+    protected TextView lapseView;
 
     /* renamed from: E */
-    protected TextView f4193E;
+    protected TextView lapseDuration;
 
     /* renamed from: F */
-    protected TextView f4194F;
+    protected TextView bitrateView;
 
     /* renamed from: G */
-    protected TextView f4195G;
+    protected TextView sampleRateView;
 
     /* renamed from: H */
-    protected SeekBar f4196H;
+    protected SeekBar audioProgressSeekbar;
 
     /* renamed from: I */
-    protected SeekBar f4197I;
+    protected SeekBar volumeSeekView;
 
     /* renamed from: J */
-    protected LyricView lyricView;
+    protected LyricView lyricShowView;
 
     /* renamed from: K */
-    protected LineVisualization f4199K;
+    protected LineVisualization visualizationView;
 
     /* renamed from: L */
-    protected AnimTransView f4200L;
+    protected AnimTransView albumCoverAnimTransView;
 
     /* renamed from: M */
-    protected TTImageSwitcher f4201M;
+    protected TTImageSwitcher albumCoverSwitcher;
 
     /* renamed from: N */
-    protected Icon f4202N;
+    protected Icon repeatIcon;
 
     /* renamed from: O */
-    protected Icon f4203O;
+    protected Icon sleepIcon;
 
     /* renamed from: P */
-    protected Icon f4204P;
+    protected Icon volumeIcon;
 
     /* renamed from: Q */
-    protected Icon f4205Q;
+    protected Icon eqIcon;
 
     /* renamed from: R */
-    protected Icon f4206R;
+    protected Icon infoIcon;
 
     /* renamed from: S */
-    protected Icon f4207S;
+    protected Icon favoriteIcon;
 
     /* renamed from: T */
-    protected AnimationImageView f4208T;
+    protected AnimationImageView netSearchingView;
 
     /* renamed from: U */
     protected PlayStatus f4209U;
 
     /* renamed from: V */
-    protected PlayMode f4210V;
+    protected PlayMode playMode;
 
     /* renamed from: W */
     private Lyric f4211W;
@@ -115,70 +115,70 @@ public class ViewController {
     private Bitmap f4220c;
 
     /* renamed from: d */
-    protected String f4221d;
+    protected String controllerName;
 
     /* renamed from: f */
-    protected Context f4223f;
+    protected Context context;
 
     /* renamed from: g */
-    protected SkinEventHandler f4224g;
+    protected SkinEventHandler skinEventHandler;
 
     /* renamed from: h */
-    protected TTPodButton f4225h;
+    protected TTPodButton playButton;
 
     /* renamed from: i */
-    protected TTPodButton f4226i;
+    protected TTPodButton nextSongButton;
 
     /* renamed from: j */
-    protected TTPodButton f4227j;
+    protected TTPodButton prevSongButton;
 
     /* renamed from: k */
-    protected TTPodButton f4228k;
+    protected TTPodButton pauseButton;
 
     /* renamed from: l */
-    protected TTPodButton f4229l;
+    protected TTPodButton menuButton;
 
     /* renamed from: m */
-    protected TTPodButton f4230m;
+    protected TTPodButton listButton;
 
     /* renamed from: n */
-    protected TTPodButton f4231n;
+    protected TTPodButton moreButton;
 
     /* renamed from: o */
-    protected TTPodButton f4232o;
+    protected TTPodButton playlistButton;
 
     /* renamed from: p */
-    protected TTPodButton f4233p;
+    protected TTPodButton clearProcessButton;
 
     /* renamed from: q */
-    protected TTPodButton f4234q;
+    protected TTPodButton playerButton;
 
     /* renamed from: r */
-    protected TTPodButton f4235r;
+    protected TTPodButton shareButton;
 
     /* renamed from: s */
-    protected TTPodButton f4236s;
+    protected TTPodButton addToButton;
 
     /* renamed from: t */
-    protected TTPodButton f4237t;
+    protected TTPodButton ringtoneButton;
 
     /* renamed from: u */
-    protected TTPodButton f4238u;
+    protected TTPodButton removeButton;
 
     /* renamed from: v */
-    protected TTPodButton f4239v;
+    protected TTPodButton sendButton;
 
     /* renamed from: w */
-    protected TTPodButton f4240w;
+    protected TTPodButton changeSkinButton;
 
     /* renamed from: x */
-    protected TTPodButton f4241x;
+    protected TTPodButton infoButton;
 
     /* renamed from: y */
-    protected TTPodButton f4242y;
+    protected TTPodButton eqButton;
 
     /* renamed from: z */
-    protected TextView f4243z;
+    protected TextView titleView;
 
     /* renamed from: a */
     private final StringBuilder f4215a = new StringBuilder();
@@ -187,13 +187,13 @@ public class ViewController {
     private final Rect f4219b = new Rect();
 
     /* renamed from: X */
-    private ArrayList<AutoScrollableTextView> f4212X = new ArrayList<>();
+    private ArrayList<AutoScrollableTextView> autoScrollableTextViews = new ArrayList<>();
 
     /* renamed from: Y */
     private boolean f4213Y = false;
 
     /* renamed from: Z */
-    private boolean f4214Z = false;
+    private boolean audioProgressSeekbarTouch = false;
 
     /* renamed from: aa */
     private final View$OnClickListenerC1222a f4216aa = new View$OnClickListenerC1222a();
@@ -202,21 +202,21 @@ public class ViewController {
     private boolean f4218ac = false;
 
     /* renamed from: e */
-    protected HashMap<String, View> f4222e = new HashMap<>();
+    protected HashMap<String, View> keyViewMaps = new HashMap<>();
 
     public ViewController(Context context, String str) {
-        this.f4221d = str;
-        this.f4223f = context;
+        this.controllerName = str;
+        this.context = context;
     }
 
     /* renamed from: E */
-    public String m6548E() {
-        return this.f4221d;
+    public String getControllerName() {
+        return this.controllerName;
     }
 
     /* renamed from: a */
     public View mo6445a(String str) {
-        return this.f4222e.get(str);
+        return this.keyViewMaps.get(str);
     }
 
     /* renamed from: c */
@@ -225,100 +225,102 @@ public class ViewController {
             if (view.getTag() == null) {
                 m6524e(view);
             }
-            this.f4222e.put(view.getTag().toString(), view);
+            this.keyViewMaps.put(view.getTag().toString(), view);
         }
     }
 
     /* renamed from: F */
-    public LyricView m6547F() {
-        return this.lyricView;
+    public LyricView getLyricShowView() {
+        return this.lyricShowView;
     }
 
     /* renamed from: G */
-    public Collection<View> m6546G() {
-        return this.f4222e.values();
+    public Collection<View> getViews() {
+        return this.keyViewMaps.values();
     }
 
     /* renamed from: H */
     public void m6545H() {
-        this.f4212X.clear();
-        for (View view : m6546G()) {
-            mo6437b(view);
+        this.autoScrollableTextViews.clear();
+        for (View view : getViews()) {
+            initSetView(view);
         }
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
-    public void mo6511a(Object obj, TTPodButton tTPodButton) {
+    public void initTTPodButtonView(Object obj, TTPodButton tTPodButton) {
         if ("PlayButton".equals(obj)) {
-            this.f4225h = tTPodButton;
-            this.f4225h.setContentDescription("play_page_play");
+            this.playButton = tTPodButton;
+            this.playButton.setContentDescription("play_page_play");
         } else if ("PauseButton".equals(obj)) {
-            this.f4228k = tTPodButton;
-            this.f4228k.setContentDescription("play_page_pause");
-            this.f4228k.setVisibility(View.INVISIBLE);
+            this.pauseButton = tTPodButton;
+            this.pauseButton.setContentDescription("play_page_pause");
+            this.pauseButton.setVisibility(View.INVISIBLE);
         } else if ("PrevSongButton".equals(obj)) {
-            this.f4227j = tTPodButton;
-            this.f4227j.setContentDescription("play_page_play_pre");
+            this.prevSongButton = tTPodButton;
+            this.prevSongButton.setContentDescription("play_page_play_pre");
         } else if ("NextSongButton".equals(obj)) {
-            this.f4226i = tTPodButton;
-            this.f4226i.setContentDescription("play_page_play_next");
+            this.nextSongButton = tTPodButton;
+            this.nextSongButton.setContentDescription("play_page_play_next");
         } else if ("MenuButton".equals(obj)) {
-            this.f4229l = tTPodButton;
+            this.menuButton = tTPodButton;
         } else if ("ListButton".equals(obj)) {
-            this.f4230m = tTPodButton;
-            this.f4230m.setContentDescription("play_page_back");
+            this.listButton = tTPodButton;
+            this.listButton.setContentDescription("play_page_back");
         } else if ("PlayerButton".equals(obj)) {
-            this.f4234q = tTPodButton;
+            this.playerButton = tTPodButton;
         } else if ("ShareButton".equals(obj)) {
-            this.f4235r = tTPodButton;
-            this.f4235r.setContentDescription("play_page_share");
+            this.shareButton = tTPodButton;
+            this.shareButton.setContentDescription("play_page_share");
         } else if ("AddToButton".equals(obj)) {
-            this.f4236s = tTPodButton;
+            this.addToButton = tTPodButton;
         } else if ("RemoveButton".equals(obj)) {
-            this.f4238u = tTPodButton;
+            this.removeButton = tTPodButton;
         } else if ("RingtoneButton".equals(obj)) {
-            this.f4237t = tTPodButton;
+            this.ringtoneButton = tTPodButton;
         } else if ("SendButton".equals(obj)) {
-            this.f4239v = tTPodButton;
+            this.sendButton = tTPodButton;
         } else if ("ChangeSkinButton".equals(obj)) {
-            this.f4240w = tTPodButton;
+            this.changeSkinButton = tTPodButton;
         } else if ("InfoButton".equals(obj)) {
-            this.f4241x = tTPodButton;
+            this.infoButton = tTPodButton;
         } else if ("EqButton".equals(obj)) {
-            this.f4242y = tTPodButton;
+            this.eqButton = tTPodButton;
         } else if ("MoreButton".equals(obj)) {
-            this.f4231n = tTPodButton;
+            this.moreButton = tTPodButton;
         } else if ("PlaylistButton".equals(obj)) {
-            this.f4232o = tTPodButton;
+            this.playlistButton = tTPodButton;
         } else if ("ClearProcess".equals(obj)) {
-            this.f4233p = tTPodButton;
+            this.clearProcessButton = tTPodButton;
         }
-        m6540a((View) tTPodButton, true);
+        setRepeatListener((View) tTPodButton, true);
     }
 
     /* renamed from: a */
     protected void m6536a(Object obj, TextView textView) {
         if ("Title".equals(obj)) {
-            this.f4243z = textView;
+            this.titleView = textView;
         } else if ("Duration".equals(obj)) {
-            this.f4191C = textView;
+            this.durationView = textView;
         } else if ("Lapse".equals(obj)) {
-            this.f4192D = textView;
+            this.lapseView = textView;
         } else if ("LapseDuration".equals(obj)) {
-            this.f4193E = textView;
+            this.lapseDuration = textView;
         } else if ("Album".equals(obj)) {
-            this.f4189A = textView;
+            this.albumView = textView;
         } else if ("Artist".equals(obj)) {
-            this.f4190B = textView;
+            this.artistView = textView;
         } else if ("BitRate".equals(obj)) {
-            this.f4194F = textView;
+            this.bitrateView = textView;
         } else if ("SampleRate".equals(obj)) {
-            this.f4195G = textView;
+            this.sampleRateView = textView;
         } else if (textView instanceof AutoScrollableTextView) {
             AutoScrollableTextView autoScrollableTextView = (AutoScrollableTextView) textView;
-            if (autoScrollableTextView.m3491a("Title") || autoScrollableTextView.m3491a("Artist") || autoScrollableTextView.m3491a("Album")) {
-                this.f4212X.add(autoScrollableTextView);
+            if (autoScrollableTextView.m3491a("Title")
+                    || autoScrollableTextView.m3491a("Artist")
+                    || autoScrollableTextView.m3491a("Album")) {
+                this.autoScrollableTextViews.add(autoScrollableTextView);
             }
         }
     }
@@ -326,66 +328,66 @@ public class ViewController {
     /* renamed from: a */
     protected void m6535a(Object obj, Icon icon) {
         if ("RepeatIcon".equals(obj)) {
-            this.f4202N = icon;
-            this.f4202N.setContentDescription("play_page_play_mode");
+            this.repeatIcon = icon;
+            this.repeatIcon.setContentDescription("play_page_play_mode");
         } else if ("SleepIcon".equals(obj)) {
-            this.f4203O = icon;
+            this.sleepIcon = icon;
         } else if ("VolumeIcon".equals(obj)) {
-            this.f4204P = icon;
+            this.volumeIcon = icon;
         } else if ("EQ".equals(obj)) {
-            this.f4205Q = icon;
+            this.eqIcon = icon;
         } else if ("Info".equals(obj)) {
-            this.f4206R = icon;
+            this.infoIcon = icon;
         } else if ("FavouriteIcon".equals(obj) || "FavoriteIcon".equals(obj)) {
-            this.f4207S = icon;
-            this.f4207S.setContentDescription("play_page_favorite");
+            this.favoriteIcon = icon;
+            this.favoriteIcon.setContentDescription("play_page_favorite");
         } else {
             return;
         }
-        m6540a((View) icon, true);
+        setRepeatListener((View) icon, true);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: b */
-    public void mo6437b(View view) {
+    public void initSetView(View view) {
         Object tag = view.getTag();
         if (view instanceof TTPodButton) {
-            mo6511a(tag, (TTPodButton) view);
+            initTTPodButtonView(tag, (TTPodButton) view);
         } else if (view instanceof TextView) {
             m6536a(tag, (TextView) view);
         } else if (view instanceof SeekBar) {
             if ("Guage".equals(tag)) {
-                this.f4196H = (SeekBar) view;
-                this.f4196H.setContentDescription("play_page_progress_bar");
+                this.audioProgressSeekbar = (SeekBar) view;
+                this.audioProgressSeekbar.setContentDescription("play_page_progress_bar");
             } else if ("Volume".equals(tag)) {
-                this.f4197I = (SeekBar) view;
+                this.volumeSeekView = (SeekBar) view;
             }
         } else if (view instanceof Icon) {
             m6535a(tag, (Icon) view);
         } else if ("AlbumCover".equals(tag)) {
             if (view instanceof TTImageSwitcher) {
-                this.f4201M = (TTImageSwitcher) view;
-                m6540a((View) this.f4201M, true);
+                this.albumCoverSwitcher = (TTImageSwitcher) view;
+                setRepeatListener((View) this.albumCoverSwitcher, true);
             } else if (view instanceof AnimTransView) {
-                this.f4200L = (AnimTransView) view;
-                m6540a((View) this.f4200L, true);
+                this.albumCoverAnimTransView = (AnimTransView) view;
+                setRepeatListener((View) this.albumCoverAnimTransView, true);
             }
         } else if (view instanceof LyricView) {
             if ("LyricShow".equals(tag)) {
-                this.lyricView = (LyricView) view;
+                this.lyricShowView = (LyricView) view;
             }
         } else if (view instanceof AnimationImageView) {
             if ("NetSearching".equals(tag)) {
-                this.f4208T = (AnimationImageView) view;
+                this.netSearchingView = (AnimationImageView) view;
             }
         } else if (view instanceof LineVisualization) {
             if ("Visualization".equals(tag)) {
-                this.f4199K = (LineVisualization) view;
+                this.visualizationView = (LineVisualization) view;
             }
         } else if (view instanceof ViewGroup) {
             ViewGroup viewGroup = (ViewGroup) view;
             for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
-                mo6437b(viewGroup.getChildAt(childCount));
+                initSetView(viewGroup.getChildAt(childCount));
             }
         }
     }
@@ -395,46 +397,46 @@ public class ViewController {
         SeekBar.OnSeekBarChangeListener onSeekBarChangeListener = new SeekBar.OnSeekBarChangeListener() { // from class: com.sds.android.ttpod.component.g.b.a.b.1
             @Override // android.widget.SeekBar.OnSeekBarChangeListener
             public void onStopTrackingTouch(SeekBar seekBar) {
-                if (seekBar == ViewController.this.f4196H) {
-                    if (ViewController.this.f4224g != null) {
-                        ViewController.this.f4224g.mo3717a(4, null);
+                if (seekBar == ViewController.this.audioProgressSeekbar) {
+                    if (ViewController.this.skinEventHandler != null) {
+                        ViewController.this.skinEventHandler.mo3717a(4, null);
                     }
-                    ViewController.this.f4214Z = false;
+                    ViewController.this.audioProgressSeekbarTouch = false;
                 }
             }
 
             @Override // android.widget.SeekBar.OnSeekBarChangeListener
             public void onStartTrackingTouch(SeekBar seekBar) {
-                if (seekBar == ViewController.this.f4196H) {
-                    ViewController.this.f4214Z = true;
+                if (seekBar == ViewController.this.audioProgressSeekbar) {
+                    ViewController.this.audioProgressSeekbarTouch = true;
                 }
             }
 
             @Override // android.widget.SeekBar.OnSeekBarChangeListener
             public void onProgressChanged(SeekBar seekBar, int i, boolean z) {
-                if (ViewController.this.f4224g != null) {
-                    if (seekBar == ViewController.this.f4197I) {
-                        ViewController.this.f4224g.mo3717a(10, Integer.valueOf(i));
-                    } else if (seekBar == ViewController.this.f4196H && ViewController.this.f4214Z) {
-                        ViewController.this.f4224g.mo3717a(14, Integer.valueOf(i));
+                if (ViewController.this.skinEventHandler != null) {
+                    if (seekBar == ViewController.this.volumeSeekView) {
+                        ViewController.this.skinEventHandler.mo3717a(10, Integer.valueOf(i));
+                    } else if (seekBar == ViewController.this.audioProgressSeekbar && ViewController.this.audioProgressSeekbarTouch) {
+                        ViewController.this.skinEventHandler.mo3717a(14, Integer.valueOf(i));
                     }
                 }
             }
         };
-        if (this.f4196H != null) {
-            this.f4196H.setOnSeekBarChangeListener(onSeekBarChangeListener);
+        if (this.audioProgressSeekbar != null) {
+            this.audioProgressSeekbar.setOnSeekBarChangeListener(onSeekBarChangeListener);
         }
-        if (this.f4197I != null) {
-            this.f4197I.setOnSeekBarChangeListener(onSeekBarChangeListener);
-            if (this.f4204P != null) {
-                this.f4197I.setVisibility(View.INVISIBLE);
+        if (this.volumeSeekView != null) {
+            this.volumeSeekView.setOnSeekBarChangeListener(onSeekBarChangeListener);
+            if (this.volumeIcon != null) {
+                this.volumeSeekView.setVisibility(View.INVISIBLE);
             }
         }
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
-    public void m6540a(View view, boolean z) {
+    public void setRepeatListener(View view, boolean z) {
         if (z) {
             view.setOnClickListener(this.f4216aa);
             if (view instanceof TTPodButton) {
@@ -451,86 +453,86 @@ public class ViewController {
     /* renamed from: a */
     public void mo6456a(View view) {
         int i = 0;
-        if (this.f4224g != null) {
-            if (view == this.f4225h) {
+        if (this.skinEventHandler != null) {
+            if (view == this.playButton) {
                 i = 18;
-            } else if (view == this.f4228k) {
+            } else if (view == this.pauseButton) {
                 i = 19;
-            } else if (view == this.f4226i) {
+            } else if (view == this.nextSongButton) {
                 i = 20;
-            } else if (view == this.f4227j) {
+            } else if (view == this.prevSongButton) {
                 i = 21;
-            } else if (view == this.f4242y || view == this.f4205Q) {
+            } else if (view == this.eqButton || view == this.eqIcon) {
                 i = 22;
-            } else if (view == this.f4241x || view == this.f4206R) {
+            } else if (view == this.infoButton || view == this.infoIcon) {
                 i = 23;
-            } else if (view == this.f4236s) {
+            } else if (view == this.addToButton) {
                 i = 24;
-            } else if (view == this.f4239v) {
+            } else if (view == this.sendButton) {
                 i = 26;
-            } else if (view == this.f4238u) {
+            } else if (view == this.removeButton) {
                 i = 27;
-            } else if (view == this.f4240w) {
+            } else if (view == this.changeSkinButton) {
                 i = 30;
-            } else if (view == this.f4237t) {
+            } else if (view == this.ringtoneButton) {
                 i = 28;
-            } else if (view == this.f4204P) {
-                if (this.f4197I != null) {
-                    if (this.f4197I.getVisibility() == View.VISIBLE) {
-                        this.f4197I.setVisibility(View.INVISIBLE);
-                        this.f4204P.setState(0);
+            } else if (view == this.volumeIcon) {
+                if (this.volumeSeekView != null) {
+                    if (this.volumeSeekView.getVisibility() == View.VISIBLE) {
+                        this.volumeSeekView.setVisibility(View.INVISIBLE);
+                        this.volumeIcon.setState(0);
                         i = -1;
                     } else {
-                        this.f4197I.setVisibility(View.VISIBLE);
-                        this.f4204P.setState(1);
+                        this.volumeSeekView.setVisibility(View.VISIBLE);
+                        this.volumeIcon.setState(1);
                         i = -1;
                     }
                 }
                 i = -1;
-            } else if (view == this.f4203O) {
+            } else if (view == this.sleepIcon) {
                 i = 5;
-            } else if (view == this.f4202N) {
+            } else if (view == this.repeatIcon) {
                 this.f4213Y = true;
                 i = 6;
-            } else if (view != this.f4229l) {
-                if (view == this.f4230m) {
+            } else if (view != this.menuButton) {
+                if (view == this.listButton) {
                     i = 1;
-                } else if (view == this.f4234q) {
+                } else if (view == this.playerButton) {
                     i = 2;
-                } else if (view == this.f4235r) {
+                } else if (view == this.shareButton) {
                     i = 25;
-                } else if (view == this.f4207S) {
+                } else if (view == this.favoriteIcon) {
                     i = 11;
-                } else if (view == this.f4232o) {
+                } else if (view == this.playlistButton) {
                     i = 3;
-                } else if (view == this.f4233p) {
+                } else if (view == this.clearProcessButton) {
                     i = 33;
                 } else {
-                    if (view == this.f4231n || view == this.lyricView || (view instanceof MultiScreenLayout) || view == this.f4199K || view == this.f4201M || (view instanceof TTImageSwitcher) || view == this.f4200L || (view instanceof AnimTransView)) {
+                    if (view == this.moreButton || view == this.lyricShowView || (view instanceof MultiScreenLayout) || view == this.visualizationView || view == this.albumCoverSwitcher || (view instanceof TTImageSwitcher) || view == this.albumCoverAnimTransView || (view instanceof AnimTransView)) {
                         i = 29;
                     }
                     i = -1;
                 }
             }
             if (-1 != i) {
-                this.f4224g.mo3717a(i, null);
+                this.skinEventHandler.mo3717a(i, null);
             }
         }
     }
 
     /* renamed from: c */
     protected void m6528c(View view, int i) {
-        if (view == this.f4226i) {
+        if (view == this.nextSongButton) {
             if (i == -1) {
-                this.f4224g.mo3717a(4, null);
+                this.skinEventHandler.mo3717a(4, null);
             } else {
-                this.f4224g.mo3717a(15, Long.valueOf(Math.min(15000L, m6541a(this.f4226i.getRepeatInterval(), i))));
+                this.skinEventHandler.mo3717a(15, Long.valueOf(Math.min(15000L, m6541a(this.nextSongButton.getRepeatInterval(), i))));
             }
-        } else if (view == this.f4227j) {
+        } else if (view == this.prevSongButton) {
             if (i == -1) {
-                this.f4224g.mo3717a(4, null);
+                this.skinEventHandler.mo3717a(4, null);
             } else {
-                this.f4224g.mo3717a(15, Long.valueOf(-Math.min(15000L, m6541a(this.f4227j.getRepeatInterval(), i))));
+                this.skinEventHandler.mo3717a(15, Long.valueOf(-Math.min(15000L, m6541a(this.prevSongButton.getRepeatInterval(), i))));
             }
         }
     }
@@ -549,32 +551,34 @@ public class ViewController {
     }
 
     /* renamed from: a */
-    public void mo6459a(long j, float f) {
-        if (m6526d(this.f4196H) && !this.f4214Z) {
-            this.f4196H.setProgress((int) j);
-            this.f4196H.setSecondaryProgress((int) (this.f4196H.getMax() * f));
+    public void mo6459a(long playingTime, float progress) {
+        if (viewVisible(this.audioProgressSeekbar) && !this.audioProgressSeekbarTouch) {
+            this.audioProgressSeekbar.setProgress((int) playingTime);
+            this.audioProgressSeekbar.setSecondaryProgress((int) (this.audioProgressSeekbar.getMax() * progress));
         }
-        if (m6526d(this.f4192D) || m6526d(this.f4193E)) {
-            String formatElapsedTime = DateUtils.formatElapsedTime(this.f4215a, TimeUnit.SECONDS.convert(j, TimeUnit.MILLISECONDS));
-            if (m6526d(this.f4192D) && !TextUtils.equals(formatElapsedTime, this.f4192D.getText())) {
-                this.f4192D.setText(formatElapsedTime);
+        if (viewVisible(this.lapseView) || viewVisible(this.lapseDuration)) {
+            String formatElapsedTime = DateUtils.formatElapsedTime(this.f4215a, TimeUnit.SECONDS.convert(playingTime, TimeUnit.MILLISECONDS));
+            if (viewVisible(this.lapseView) && !TextUtils.equals(formatElapsedTime, this.lapseView.getText())) {
+                this.lapseView.setText(formatElapsedTime);
             }
-            if (this.f4217ab != null && m6526d(this.f4193E)) {
+            if (this.f4217ab != null && viewVisible(this.lapseDuration)) {
                 String str = formatElapsedTime + " - " + this.f4217ab;
-                if (!TextUtils.equals(str, this.f4193E.getText())) {
-                    this.f4193E.setText(str);
+                if (!TextUtils.equals(str, this.lapseDuration.getText())) {
+                    this.lapseDuration.setText(str);
                 }
             }
         }
-        if (m6526d(this.lyricView)) {
-            this.lyricView.setPlayingTime(j);
+        if (viewVisible(this.lyricShowView)) {
+            this.lyricShowView.setPlayingTime(playingTime);
         }
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: d */
-    public boolean m6526d(View view) {
-        return view != null && view.getVisibility() == View.VISIBLE && view.getWidth() > 0 && view.getHeight() > 0 && view.getGlobalVisibleRect(this.f4219b);
+    public boolean viewVisible(View view) {
+        return view != null && view.getVisibility() == View.VISIBLE
+                && view.getWidth() > 0 && view.getHeight() > 0
+                /*&& view.getGlobalVisibleRect(this.f4219b)*/;
     }
 
     /* renamed from: a */
@@ -587,26 +591,26 @@ public class ViewController {
 
     /* renamed from: b */
     private void m6531b(PlayStatus playStatus) {
-        if (this.f4225h != null) {
-            this.f4225h.setVisibility(PlayStatus.STATUS_PLAYING == playStatus ? View.INVISIBLE : View.VISIBLE);
+        if (this.playButton != null) {
+            this.playButton.setVisibility(PlayStatus.STATUS_PLAYING == playStatus ? View.INVISIBLE : View.VISIBLE);
         }
-        if (this.f4228k != null) {
-            this.f4228k.setVisibility(PlayStatus.STATUS_PLAYING != playStatus ? View.INVISIBLE : View.VISIBLE);
+        if (this.pauseButton != null) {
+            this.pauseButton.setVisibility(PlayStatus.STATUS_PLAYING != playStatus ? View.INVISIBLE : View.VISIBLE);
         }
     }
 
     /* renamed from: a_ */
     public void mo6442a_(int i) {
-        if (this.lyricView != null) {
-            this.lyricView.m3431g();
+        if (this.lyricShowView != null) {
+            this.lyricShowView.m3431g();
         }
     }
 
     /* renamed from: a */
-    public void mo6449a(PlayMode playMode) {
-        this.f4210V = playMode;
-        if (this.f4202N != null) {
-            this.f4202N.setState(playMode.ordinal());
+    public void onPlayModeChange(PlayMode playMode) {
+        this.playMode = playMode;
+        if (this.repeatIcon != null) {
+            this.repeatIcon.setState(playMode.ordinal());
         }
         if (this.f4213Y) {
             this.f4213Y = false;
@@ -614,20 +618,20 @@ public class ViewController {
     }
 
     /* renamed from: a */
-    public void mo6448a(MediaItem mediaItem) {
+    public void onMetaChange(MediaItem mediaItem) {
         m6537a(mediaItem, false);
     }
 
     /* renamed from: a */
     public void mo6443a(boolean z) {
-        if (this.f4207S != null) {
-            this.f4207S.setState(z ? 1 : 0);
+        if (this.favoriteIcon != null) {
+            this.favoriteIcon.setState(z ? 1 : 0);
         }
     }
 
     /* renamed from: I */
-    public PlayMode m6544I() {
-        return this.f4210V;
+    public PlayMode getPlayMode() {
+        return this.playMode;
     }
 
     /* renamed from: a */
@@ -636,41 +640,41 @@ public class ViewController {
         m6532b(mediaItem);
         m6534b(mediaItem.getDuration().intValue());
         mo6443a(mediaItem.getFav());
-        if (z && this.lyricView != null) {
+        if (z && this.lyricShowView != null) {
             String m3193b = Cache.getInstance().m3193b(mediaItem);
-            boolean m3453b = this.lyricView.m3453b(m3193b);
+            boolean m3453b = this.lyricShowView.m3453b(m3193b);
             LogUtils.debug("ViewController", "looklyricloading updateView %s want setState equalLyricFile=%b cachePath=%s", getClass().getSimpleName(), Boolean.valueOf(m3453b), m3193b);
             if (!m3453b) {
-                this.lyricView.setState(1);
+                this.lyricShowView.setState(1);
             }
         }
     }
 
     /* renamed from: b */
     private void m6532b(MediaItem mediaItem) {
-        if (this.f4195G != null) {
-            this.f4195G.setText(String.format("%.1f", Float.valueOf(mediaItem.getSampleRate().intValue() / 1000.0f)));
+        if (this.sampleRateView != null) {
+            this.sampleRateView.setText(String.format("%.1f", Float.valueOf(mediaItem.getSampleRate().intValue() / 1000.0f)));
         }
-        if (this.f4194F != null) {
-            this.f4194F.setText(String.valueOf(mediaItem.getBitRate()));
+        if (this.bitrateView != null) {
+            this.bitrateView.setText(String.valueOf(mediaItem.getBitRate()));
         }
     }
 
     /* renamed from: c */
     private void m6527c(MediaItem mediaItem) {
-        CharSequence validateString = TTTextUtils.validateString(this.f4223f, mediaItem.getTitle());
-        CharSequence validateString2 = TTTextUtils.validateString(this.f4223f, mediaItem.getArtist());
-        CharSequence validateString3 = TTTextUtils.validateString(this.f4223f, mediaItem.getAlbum());
-        if (this.f4243z != null) {
-            this.f4243z.setText(validateString);
+        CharSequence validateString = TTTextUtils.validateString(this.context, mediaItem.getTitle());
+        CharSequence validateString2 = TTTextUtils.validateString(this.context, mediaItem.getArtist());
+        CharSequence validateString3 = TTTextUtils.validateString(this.context, mediaItem.getAlbum());
+        if (this.titleView != null) {
+            this.titleView.setText(validateString);
         }
-        if (this.f4190B != null) {
-            this.f4190B.setText(validateString2);
+        if (this.artistView != null) {
+            this.artistView.setText(validateString2);
         }
-        if (this.f4189A != null) {
-            this.f4189A.setText(validateString3);
+        if (this.albumView != null) {
+            this.albumView.setText(validateString3);
         }
-        Iterator<AutoScrollableTextView> it = this.f4212X.iterator();
+        Iterator<AutoScrollableTextView> it = this.autoScrollableTextViews.iterator();
         while (it.hasNext()) {
             it.next().m3490a("Title", validateString, "Artist", validateString2, "Album", validateString3);
         }
@@ -678,12 +682,12 @@ public class ViewController {
 
     /* renamed from: b */
     private void m6534b(int i) {
-        if (this.f4196H != null) {
-            this.f4196H.setMax(i);
+        if (this.audioProgressSeekbar != null) {
+            this.audioProgressSeekbar.setMax(i);
         }
         this.f4217ab = DateUtils.formatElapsedTime(this.f4215a, TimeUnit.SECONDS.convert(i, TimeUnit.MILLISECONDS));
-        if (this.f4191C != null) {
-            this.f4191C.setText(this.f4217ab);
+        if (this.durationView != null) {
+            this.durationView.setText(this.f4217ab);
         }
     }
 
@@ -695,14 +699,14 @@ public class ViewController {
     /* renamed from: a */
     public void mo6447a(MediaItem mediaItem, Bitmap bitmap, Lyric lyric) {
         m6537a(mediaItem, true);
-        if (this.lyricView != null) {
-            this.lyricView.setFadeColor(Preferences.m3042T());
-            this.lyricView.setKalaOK(Preferences.m3046R());
-            this.lyricView.setMtvPositionDown(true);
-            if (this.lyricView.getDisplayMode() != LyricView.LyricDisplayEnum.MTV || !this.lyricView.getColorBySkin()) {
-                this.lyricView.setColorHighlight(Preferences.m3050P());
+        if (this.lyricShowView != null) {
+            this.lyricShowView.setFadeColor(Preferences.m3042T());
+            this.lyricShowView.setKalaOK(Preferences.kalaOkEnabled());
+            this.lyricShowView.setMtvPositionDown(true);
+            if (this.lyricShowView.getDisplayMode() != LyricView.LyricDisplayEnum.MTV || !this.lyricShowView.getColorBySkin()) {
+                this.lyricShowView.setColorHighlight(Preferences.getLyricHighlightColor());
             }
-            m6523h(Preferences.m3048Q());
+            m6523h(Preferences.getLyricFontSize());
         }
         if (this.f4220c != bitmap) {
             mo6457a(bitmap);
@@ -715,25 +719,25 @@ public class ViewController {
 
     /* renamed from: d */
     public void mo6428d(int i) {
-        if (this.lyricView != null) {
-            if (this.lyricView.getDisplayMode() != LyricView.LyricDisplayEnum.MTV || !this.lyricView.getColorBySkin()) {
-                this.lyricView.setColorHighlight(i);
+        if (this.lyricShowView != null) {
+            if (this.lyricShowView.getDisplayMode() != LyricView.LyricDisplayEnum.MTV || !this.lyricShowView.getColorBySkin()) {
+                this.lyricShowView.setColorHighlight(i);
             }
         }
     }
 
     /* renamed from: h */
     public void m6523h(int i) {
-        if (this.lyricView != null) {
-            this.lyricView.m3459b(0, this.lyricView.getDefaultFontSizeHighlight() + i);
-            this.lyricView.m3482a(0, this.lyricView.getDefaultFontSizeNormal() + i);
+        if (this.lyricShowView != null) {
+            this.lyricShowView.m3459b(0, this.lyricShowView.getDefaultFontSizeHighlight() + i);
+            this.lyricShowView.m3482a(0, this.lyricShowView.getDefaultFontSizeNormal() + i);
         }
     }
 
     /* renamed from: d */
     public void m6525d(boolean z) {
-        if (this.f4203O != null) {
-            this.f4203O.setState(z ? 1 : 0);
+        if (this.sleepIcon != null) {
+            this.sleepIcon.setState(z ? 1 : 0);
         }
     }
 
@@ -744,59 +748,59 @@ public class ViewController {
 
     /* renamed from: m */
     public void mo6415m() {
-        if (this.lyricView != null) {
-            this.lyricView.setState(2);
+        if (this.lyricShowView != null) {
+            this.lyricShowView.setState(2);
         }
     }
 
     /* renamed from: h */
     public void mo6423h() {
         m6533b((Lyric) null);
-        if (this.lyricView != null) {
-            this.lyricView.setState(4);
+        if (this.lyricShowView != null) {
+            this.lyricShowView.setState(4);
         }
     }
 
     /* renamed from: j */
     public void mo6421j() {
-        if (this.lyricView != null) {
-            this.lyricView.setState(5);
+        if (this.lyricShowView != null) {
+            this.lyricShowView.setState(5);
         }
     }
 
     /* renamed from: k */
     public void mo6419k() {
-        if (this.lyricView != null) {
-            this.lyricView.setState(6);
+        if (this.lyricShowView != null) {
+            this.lyricShowView.setState(6);
         }
     }
 
     /* renamed from: l */
     public void mo6417l() {
-        if (this.lyricView != null) {
-            this.lyricView.setState(1);
+        if (this.lyricShowView != null) {
+            this.lyricShowView.setState(1);
         }
     }
 
     /* renamed from: i */
     public void mo6422i() {
-        if (this.lyricView != null) {
-            this.lyricView.setState(8);
+        if (this.lyricShowView != null) {
+            this.lyricShowView.setState(8);
         }
     }
 
     /* renamed from: b */
     private void m6533b(Lyric lyric) {
         this.f4211W = lyric;
-        if (this.lyricView != null) {
-            this.lyricView.setLyric(lyric);
-            this.lyricView.setPlayingTime(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
+        if (this.lyricShowView != null) {
+            this.lyricShowView.setLyric(lyric);
+            this.lyricShowView.setPlayingTime(SupportFactory.getInstance(BaseApplication.getApplication()).m2465k().intValue());
         }
     }
 
     /* renamed from: a */
     public void mo6457a(Bitmap bitmap) {
-        if (this.f4201M != null || this.f4200L != null) {
+        if (this.albumCoverSwitcher != null || this.albumCoverAnimTransView != null) {
             Object[] objArr = new Object[2];
             objArr[0] = Boolean.valueOf(bitmap != null);
             objArr[1] = getClass().getSimpleName();
@@ -807,11 +811,11 @@ public class ViewController {
 
     /* renamed from: b */
     public void mo6438b(Bitmap bitmap) {
-        if (this.f4201M != null) {
-            this.f4201M.setImageBitmap(bitmap);
+        if (this.albumCoverSwitcher != null) {
+            this.albumCoverSwitcher.setImageBitmap(bitmap);
         }
-        if (this.f4200L != null) {
-            this.f4200L.setImageBitmapDelay(bitmap);
+        if (this.albumCoverAnimTransView != null) {
+            this.albumCoverAnimTransView.setImageBitmapDelay(bitmap);
         }
     }
 
@@ -830,72 +834,72 @@ public class ViewController {
     /* renamed from: c */
     private void m6530c(Bitmap bitmap) {
         this.f4220c = bitmap;
-        if (this.f4201M != null) {
-            this.f4201M.setImageBitmap(bitmap);
+        if (this.albumCoverSwitcher != null) {
+            this.albumCoverSwitcher.setImageBitmap(bitmap);
         }
-        if (this.f4200L != null) {
-            this.f4200L.setImageBitmapDelay(bitmap);
+        if (this.albumCoverAnimTransView != null) {
+            this.albumCoverAnimTransView.setImageBitmapDelay(bitmap);
         }
     }
 
     /* renamed from: b */
     public void mo6439b(int i, int i2) {
-        if (this.f4197I != null) {
-            this.f4197I.setMax(i2);
-            this.f4197I.setProgress(i);
+        if (this.volumeSeekView != null) {
+            this.volumeSeekView.setMax(i2);
+            this.volumeSeekView.setProgress(i);
         }
     }
 
     /* renamed from: r */
-    public void mo6404r() {
+    public void onPanelShow() {
     }
 
     /* renamed from: q */
-    public void mo6410q() {
+    public void onPanelDisappear() {
     }
 
     /* renamed from: b */
     public void mo6441b() {
-        this.f4225h = null;
-        this.f4228k = null;
-        this.f4227j = null;
-        this.f4226i = null;
-        this.f4243z = null;
-        this.f4191C = null;
-        this.f4192D = null;
-        this.f4193E = null;
-        this.f4196H = null;
-        this.f4202N = null;
-        this.f4203O = null;
-        this.f4205Q = null;
-        this.lyricView = null;
-        this.f4200L = null;
-        this.f4201M = null;
-        this.f4224g = null;
+        this.playButton = null;
+        this.pauseButton = null;
+        this.prevSongButton = null;
+        this.nextSongButton = null;
+        this.titleView = null;
+        this.durationView = null;
+        this.lapseView = null;
+        this.lapseDuration = null;
+        this.audioProgressSeekbar = null;
+        this.repeatIcon = null;
+        this.sleepIcon = null;
+        this.eqIcon = null;
+        this.lyricShowView = null;
+        this.albumCoverAnimTransView = null;
+        this.albumCoverSwitcher = null;
+        this.skinEventHandler = null;
     }
 
     /* renamed from: a */
     public void mo6452a(SkinEventHandler skinEventHandler) {
-        this.f4224g = skinEventHandler;
+        this.skinEventHandler = skinEventHandler;
     }
 
     /* renamed from: K */
     public LineVisualization m6542K() {
-        return this.f4199K;
+        return this.visualizationView;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* compiled from: ViewController.java */
     /* renamed from: com.sds.android.ttpod.component.g.b.a.b$a */
     /* loaded from: classes.dex */
-    public final class View$OnClickListenerC1222a implements View.OnClickListener, TTPodButton.InterfaceC2007a {
+    public final class View$OnClickListenerC1222a implements View.OnClickListener, TTPodButton.RepeatListener {
         private View$OnClickListenerC1222a() {
         }
 
         @Override // com.sds.android.ttpod.framework.modules.skin.view.TTPodButton.InterfaceC2007a
         /* renamed from: a */
-        public void mo3357a(View view, long j, int i) {
-            ViewController.this.m6528c(view, i);
+        public void onClick(View view, long differenceTime, int clickCount) {
+            ViewController.this.m6528c(view, clickCount);
         }
 
         @Override // android.view.View.OnClickListener

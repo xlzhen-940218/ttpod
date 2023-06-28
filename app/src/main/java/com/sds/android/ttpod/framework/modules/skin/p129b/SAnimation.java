@@ -18,26 +18,26 @@ import java.util.HashMap;
 public class SAnimation extends SImage<AnimationImageView> {
 
     /* renamed from: e */
-    private int f6426e;
+    private int frameNum;
 
     /* renamed from: j */
-    private float f6427j;
+    private float frameRate;
 
     /* renamed from: k */
-    private boolean f6428k;
+    private boolean repeat;
 
     /* renamed from: l */
-    private SBitmap f6429l;
+    private SBitmap staticIcon;
 
     public SAnimation(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6426e = ValueParser.m3702a(kXmlParser.getAttributeValue(null, "FrameNum"), 1);
-        this.f6427j = ValueParser.m3703a(kXmlParser.getAttributeValue(null, "FrameRate"), 5.0f);
-        if (this.f6427j <= 0.0f) {
-            this.f6427j = 5.0f;
+        this.frameNum = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "FrameNum"), 1);
+        this.frameRate = ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "FrameRate"), 5.0f);
+        if (this.frameRate <= 0.0f) {
+            this.frameRate = 5.0f;
         }
-        this.f6428k = ValueParser.m3698a(kXmlParser.getAttributeValue(null, "Repeat"), true);
-        this.f6429l = m3813a(hashMap, kXmlParser, "StaticIcon");
+        this.repeat = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "Repeat"), true);
+        this.staticIcon = getSBitmap(hashMap, kXmlParser, "StaticIcon");
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
@@ -46,23 +46,23 @@ public class SAnimation extends SImage<AnimationImageView> {
         AnimationImageView animation = new AnimationImageView(context);
         Resources resources = context.getResources();
         animation.setScaleType(m3797a(this.f6457d));
-        animation.setImageDrawable(skinCache.m3596a(resources, this.f6429l));
-        if (this.f6426e > 0) {
+        animation.setImageDrawable(skinCache.m3596a(resources, this.staticIcon));
+        if (this.frameNum > 0) {
             DrawableCreator m3594a = skinCache.m3594a(this.f6456c);
             AnimationDrawable animationDrawable = new AnimationDrawable();
-            int i = (int) (1000.0f / this.f6427j);
-            if (this.f6426e > 1 && m3594a != null && (m3594a instanceof BitmapDrawableCreator)) {
+            int i = (int) (1000.0f / this.frameRate);
+            if (this.frameNum > 1 && m3594a != null && (m3594a instanceof BitmapDrawableCreator)) {
                 Bitmap m3761a = ((BitmapDrawableCreator) m3594a).m3761a();
                 if (m3761a != null) {
-                    int width = m3761a.getWidth() / this.f6426e;
+                    int width = m3761a.getWidth() / this.frameNum;
                     int height = m3761a.getHeight();
                     int i2 = 0;
-                    for (int i3 = 0; i3 < this.f6426e; i3++) {
+                    for (int i3 = 0; i3 < this.frameNum; i3++) {
                         int i4 = i2 + width;
                         animationDrawable.addFrame(new ClipBitmapDrawable(resources, m3761a, i2, 0, i4, height), i);
                         i2 = i4;
                     }
-                    animationDrawable.setOneShot(this.f6428k ? false : true);
+                    animationDrawable.setOneShot(this.repeat ? false : true);
                 }
             } else {
                 if (m3594a != null) {
@@ -79,8 +79,8 @@ public class SAnimation extends SImage<AnimationImageView> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public void mo3775a(Context context, AnimationImageView animation, SkinCache skinCache) {
-        super.mo3775a(context, animation, skinCache);
+    public void setBackground(Context context, AnimationImageView animation, SkinCache skinCache) {
+        super.setBackground(context, animation, skinCache);
         animation.setDrawingCacheEnabled(false);
     }
 }

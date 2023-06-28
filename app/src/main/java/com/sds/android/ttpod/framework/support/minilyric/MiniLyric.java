@@ -236,7 +236,7 @@ public class MiniLyric implements View.OnTouchListener {
         this.lyricView.setTypefaceHighlight(create);
         this.lyricView.setTypefaceNormal(create);
         this.lyricView.setKalaOK(true);
-        this.lyricView.setTextSize(Preferences.m3030Z());
+        this.lyricView.postTextSize(Preferences.m3030Z());
         m2322a(4);
         this.lyricView.setEnabled(true);
         this.lyricView.setClickable(true);
@@ -675,7 +675,7 @@ public class MiniLyric implements View.OnTouchListener {
             LogUtils.debug("minilyric", "fontZoomOut fontSize=" + i);
             Preferences.m2891e(i);
             m2303c(i);
-            this.lyricView.setTextSize(i);
+            this.lyricView.postTextSize(i);
         }
     }
 
@@ -688,7 +688,7 @@ public class MiniLyric implements View.OnTouchListener {
             Preferences.m2891e(i);
             m2303c(i);
             if (this.lyricView != null) {
-                this.lyricView.setTextSize(i);
+                this.lyricView.postTextSize(i);
             }
         }
     }

@@ -47,12 +47,12 @@ public class SceneFactory {
         if (attributeValue != null && (m3586c = skinCache.m3586c(attributeValue)) != null) {
             snowSceneRenderer.m6625a(m3586c);
         }
-        snowSceneRenderer.m6629a(ValueParser.m3703a(kXmlParser.getAttributeValue(null, "WindSpeed"), snowSceneRenderer.m6613h()));
-        snowSceneRenderer.m6622b(ValueParser.m3703a(kXmlParser.getAttributeValue(null, "Gravity"), snowSceneRenderer.m6612i()));
-        snowSceneRenderer.m6619c(ValueParser.m3703a(kXmlParser.getAttributeValue(null, "MinStartXSpeed"), snowSceneRenderer.m6623b()), ValueParser.m3703a(kXmlParser.getAttributeValue(null, "MaxStartXSpeed"), snowSceneRenderer.m6620c()));
-        snowSceneRenderer.m6621b(ValueParser.m3703a(kXmlParser.getAttributeValue(null, "MinStartYSpeed"), snowSceneRenderer.m6618d()), ValueParser.m3703a(kXmlParser.getAttributeValue(null, "MaxStartYSpeed"), snowSceneRenderer.m6616e()));
-        snowSceneRenderer.m6628a(ValueParser.m3703a(kXmlParser.getAttributeValue(null, "MinStartZ"), snowSceneRenderer.m6615f()), ValueParser.m3703a(kXmlParser.getAttributeValue(null, "MaxStartZ"), snowSceneRenderer.m6614g()));
-        snowSceneRenderer.m6626a(ValueParser.m3702a(kXmlParser.getAttributeValue(null, "SnowNumber"), snowSceneRenderer.m6630a()));
+        snowSceneRenderer.m6629a(ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "WindSpeed"), snowSceneRenderer.m6613h()));
+        snowSceneRenderer.m6622b(ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "Gravity"), snowSceneRenderer.m6612i()));
+        snowSceneRenderer.m6619c(ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "MinStartXSpeed"), snowSceneRenderer.m6623b()), ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "MaxStartXSpeed"), snowSceneRenderer.m6620c()));
+        snowSceneRenderer.m6621b(ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "MinStartYSpeed"), snowSceneRenderer.m6618d()), ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "MaxStartYSpeed"), snowSceneRenderer.m6616e()));
+        snowSceneRenderer.m6628a(ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "MinStartZ"), snowSceneRenderer.m6615f()), ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "MaxStartZ"), snowSceneRenderer.m6614g()));
+        snowSceneRenderer.m6626a(ValueParser.parseInt(kXmlParser.getAttributeValue(null, "SnowNumber"), snowSceneRenderer.m6630a()));
         return snowSceneRenderer;
     }
 }

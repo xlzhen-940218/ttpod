@@ -137,7 +137,7 @@ public final class DownloadTaskFacade {
                     m4712a.setSongID(m2400d.getFileId());
                     m2429a(m4712a);
                     if (StringUtils.equals(MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.getLocalGroupId()) || StringUtils.equals(DownloadUtils.m4762a(m2400d), Preferences.getLocalGroupId())) {
-                        Player.m2611e().m2624a(Preferences.getLocalGroupId(), (String) null);
+                        Player.getInstance().m2624a(Preferences.getLocalGroupId(), (String) null);
                     }
                 }
             }

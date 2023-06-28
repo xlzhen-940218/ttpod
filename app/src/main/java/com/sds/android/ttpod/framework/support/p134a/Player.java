@@ -44,10 +44,10 @@ import java.io.File;
 public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScreenMonitor.InterfaceC2082a, CallMonitor.InterfaceC2086a {
 
     /* renamed from: e */
-    private static final String f7086e = TTPodConfig.getCacheMediaPath();
+    private static final String CACHE_MEDIA_PATH = TTPodConfig.getCacheMediaPath();
 
     /* renamed from: s */
-    private static Player f7087s = null;
+    private static Player instance = null;
 
     /* renamed from: a */
     private InterfaceC2055b f7088a;
@@ -59,31 +59,31 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     private InterfaceC2054a f7090c;
 
     /* renamed from: d */
-    private long f7091d;
+    private long currentTimeMillis;
 
     /* renamed from: i */
-    private HeadsetPlugMonitor f7095i;
+    private HeadsetPlugMonitor headsetPlugMonitor;
 
     /* renamed from: j */
-    private CallMonitor f7096j;
+    private CallMonitor callMonitor;
 
     /* renamed from: k */
-    private LockScreenMonitor f7097k;
+    private LockScreenMonitor lockScreenMonitor;
 
     /* renamed from: l */
-    private PlayStatus f7098l;
+    private PlayStatus playStatus;
 
     /* renamed from: m */
-    private MediaPlayerProxy f7099m;
+    private MediaPlayerProxy mediaPlayerProxy;
 
     /* renamed from: n */
-    private PowerManager.WakeLock f7100n;
+    private PowerManager.WakeLock wakeLock;
 
     /* renamed from: o */
-    private MediaSelector f7101o;
+    private MediaSelector mediaSelector;
 
     /* renamed from: p */
-    private AudioEffectLoader f7102p;
+    private AudioEffectLoader audioEffectLoader;
 
     /* renamed from: q */
     private int f7103q;
@@ -98,7 +98,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     private String f7093g = null;
 
     /* renamed from: h */
-    private String f7094h = "";
+    private String cacheMediaPath = "";
 
     /* renamed from: t */
     private boolean f7105t = false;
@@ -107,7 +107,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     private boolean f7106u = false;
 
     /* renamed from: v */
-    private Context f7107v = null;
+    private Context context = null;
 
     /* renamed from: w */
     private MediaPlayerProxy.InterfaceC2042a f7108w = new MediaPlayerProxy.InterfaceC2042a() { // from class: com.sds.android.ttpod.framework.support.a.f.2
@@ -135,10 +135,10 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                     OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a(onlineMediaItem, EnvironmentUtils.DeviceConfig.hasNetwork());
                     if (m4689a != null) {
                         try {
-                            Player.this.f7099m.m2707b();
-                            Player.this.f7099m.m2711a(m4689a.getUrl(), TTPodConfig.getAudioTmp(), m4716a.getSongID());
+                            Player.this.mediaPlayerProxy.m2707b();
+                            Player.this.mediaPlayerProxy.m2711a(m4689a.getUrl(), TTPodConfig.getAudioTmp(), m4716a.getSongID());
                         } catch (Exception e) {
-                            Player.this.m2613d(-100);
+                            Player.this.processPlayError(-100);
                         }
                     }
                 }
@@ -147,7 +147,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(OnlineMediaItemsResult onlineMediaItemsResult) {
-                Player.this.m2613d(-100);
+                Player.this.processPlayError(-100);
             }
         };
 
@@ -155,34 +155,34 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         /* renamed from: a */
         public void mo2576a() {
             Player.this.f7103q = 0;
-            MediaItem m2606g = Player.this.m2606g();
+            MediaItem m2606g = Player.this.getMediaItem();
             if (m2606g != null && m2606g.getStartTime().intValue() != 0) {
-                Player.this.f7099m.m2726a(m2606g.getStartTime().intValue(), m2606g.getStartTime().intValue() + m2606g.getDuration().intValue());
+                Player.this.mediaPlayerProxy.m2726a(m2606g.getStartTime().intValue(), m2606g.getStartTime().intValue() + m2606g.getDuration().intValue());
             }
-            int m2640H = Player.this.m2640H();
+            int m2640H = Player.this.getMediaItemId();
             if (m2640H != 0) {
-                Player.this.f7099m.m2727a(m2640H);
+                Player.this.mediaPlayerProxy.m2727a(m2640H);
             }
             if (!EffectDetect.usingAudioPlus()) {
-                boolean m2743c = Player.this.f7102p.m2743c();
-                Player.this.f7102p.m2751a(false);
-                Player.this.f7102p.m2754a((Boolean) false);
-                Player.this.f7102p.m2746b((Boolean) false);
-                Player.this.f7102p.m2755a(m2606g, 0);
-                Player.this.f7102p.m2754a(Boolean.valueOf(m2743c));
+                boolean m2743c = Player.this.audioEffectLoader.m2743c();
+                Player.this.audioEffectLoader.m2751a(false);
+                Player.this.audioEffectLoader.m2754a((Boolean) false);
+                Player.this.audioEffectLoader.m2746b((Boolean) false);
+                Player.this.audioEffectLoader.m2755a(m2606g, 0);
+                Player.this.audioEffectLoader.m2754a(Boolean.valueOf(m2743c));
             } else {
                 int audioSessionId = TTAudioTrack.audioSessionId();
                 Preferences.m2829t(audioSessionId);
                 Intent intent = new Intent("android.media.action.OPEN_AUDIO_EFFECT_CONTROL_SESSION");
                 intent.putExtra("android.media.extra.AUDIO_SESSION", audioSessionId);
-                intent.putExtra("android.media.extra.PACKAGE_NAME", Player.this.f7107v.getPackageName());
-                Player.this.f7107v.sendBroadcast(intent);
+                intent.putExtra("android.media.extra.PACKAGE_NAME", Player.this.context.getPackageName());
+                Player.this.context.sendBroadcast(intent);
             }
-            if (Player.this.f7096j.m2239a(Player.this.f7107v)) {
-                Player.this.f7099m.m2698d();
+            if (Player.this.callMonitor.m2239a(Player.this.context)) {
+                Player.this.mediaPlayerProxy.m2698d();
                 return;
             }
-            Player.this.f7098l = PlayStatus.STATUS_PLAYING;
+            Player.this.playStatus = PlayStatus.STATUS_PLAYING;
         }
 
         @Override // com.sds.android.ttpod.framework.support.p134a.MediaPlayerProxy.InterfaceC2044c
@@ -206,7 +206,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         public void mo2568d() {
             //new //SSystemEvent("SYS_PLAY", "next").append("type", "system").post();
             Player.this.m2637K();
-            Player.this.f7101o.m2652e();
+            Player.this.mediaSelector.m2652e();
             Player.this.m2638J();
             Player.this.m2592n();
         }
@@ -215,14 +215,14 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         /* renamed from: a */
         public void mo2574a(int i, int i2, MediaPlayerNotificationInfo mediaPlayerNotificationInfo) {
             LogUtils.error("Player", "onError:" + i);
-            MediaItem m2606g = Player.this.m2606g();
+            MediaItem m2606g = Player.this.getMediaItem();
             DebugUtils.m8426a(m2606g, "playingMediaItem");
             if (m2606g != null) {
                 if (!m2606g.isOnline() || !StringUtils.isEmpty(m2606g.getLocalDataSource())) {
-                    Player.this.m2613d(i);
+                    Player.this.processPlayError(i);
                     //ErrorStatistic.m5244a(i);
                 } else if (EnvironmentUtils.DeviceConfig.hasNetwork() == -1) {
-                    Player.this.m2613d(-34);
+                    Player.this.processPlayError(-34);
                 } else if (!m2575a(i) || Player.this.f7104r >= 5) {
                     String str = "";
                     String str2 = "";
@@ -231,8 +231,8 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                         str2 = mediaPlayerNotificationInfo.getIP();
                     }
                     if (-12 == i) {
-                        Player.this.m2613d(i);
-                        long m8469a = EnvironmentUtils.C0605d.m8469a(new File(Player.f7086e));
+                        Player.this.processPlayError(i);
+                        long m8469a = EnvironmentUtils.C0605d.m8469a(new File(Player.CACHE_MEDIA_PATH));
                         //ErrorStatistic.m5240a(str, m8469a, m2564h());
                         //new //SSystemEvent("SYS_PLAY", "error").append("uri", str).append("storage_state", m2564h()).append("usable_space", Long.valueOf(m8469a)).append("error_code", Integer.valueOf(i)).post();
                         return;
@@ -240,7 +240,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                     if (-34 != i) {
                         i2 = i;
                     }
-                    Player.this.m2613d(i2);
+                    Player.this.processPlayError(i2);
                     //ErrorStatistic.m5241a(str, i2, str2);
                 } else {
                     m2572a(m2606g.getSongID());
@@ -257,7 +257,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                 return "/sdcard/ttpod not exist";
             }
             if (FileUtils.isDir(TTPodConfig.getCachePath())) {
-                if (!FileUtils.isDir(Player.f7086e)) {
+                if (!FileUtils.isDir(Player.CACHE_MEDIA_PATH)) {
                     return "/sdcard/ttpod/cache/media not exist";
                 }
                 return "/sdcard/ttpod/cache/media exist";
@@ -285,10 +285,10 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         /* renamed from: a */
         public void m2571a(String str) {
             try {
-                MediaItem m2655b = Player.this.f7101o.m2655b();
+                MediaItem m2655b = Player.this.mediaSelector.getMediaItem();
                 if (m2655b != null && !StringUtils.equals(str, m2655b.getExtra())) {
                     m2655b.setExtra(str);
-                    MediaStorage.updateMediaItem(Player.this.f7107v, m2655b);
+                    MediaStorage.updateMediaItem(Player.this.context, m2655b);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -298,16 +298,16 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         @Override // com.sds.android.ttpod.framework.support.p134a.MediaPlayerProxy.InterfaceC2044c
         /* renamed from: e */
         public void mo2567e() {
-            if (System.currentTimeMillis() - Player.this.f7091d > 4000) {
-                Player.this.f7091d = System.currentTimeMillis();
-                Player.this.f7107v.sendBroadcast(new Intent(Action.PLAY_BUFFERING_STARTED));
+            if (System.currentTimeMillis() - Player.this.currentTimeMillis > 4000) {
+                Player.this.currentTimeMillis = System.currentTimeMillis();
+                Player.this.context.sendBroadcast(new Intent(Action.PLAY_BUFFERING_STARTED));
             }
         }
 
         @Override // com.sds.android.ttpod.framework.support.p134a.MediaPlayerProxy.InterfaceC2044c
         /* renamed from: f */
         public void mo2566f() {
-            Player.this.f7107v.sendBroadcast(new Intent(Action.PLAY_BUFFERING_DONE));
+            Player.this.context.sendBroadcast(new Intent(Action.PLAY_BUFFERING_DONE));
         }
 
         @Override // com.sds.android.ttpod.framework.support.p134a.MediaPlayerProxy.InterfaceC2044c
@@ -315,7 +315,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         public void mo2565g() {
             MediaItem m2606g;
             String m5310C = TTPodConfig.getAudioTmp();
-            if (FileUtils.m8419a(m5310C) && (m2606g = Player.this.m2606g()) != null && m2606g.isOnline()) {
+            if (FileUtils.m8419a(m5310C) && (m2606g = Player.this.getMediaItem()) != null && m2606g.isOnline()) {
                 FileUtils.m8413b(TTPodConfig.getSongIdPath(m2606g.getSongID()), m5310C);
             }
         }
@@ -326,7 +326,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         @Override // com.sds.android.ttpod.framework.support.p134a.MediaPlayerProxy.InterfaceC2043b
         /* renamed from: a */
         public void mo2561a(int i) {
-            MediaItem m2606g = Player.this.m2606g();
+            MediaItem m2606g = Player.this.getMediaItem();
             if (m2606g != null && m2606g.getStartTime() != null && m2606g.getStartTime().intValue() == 0) {
                 Player.this.m2610e(i);
             }
@@ -382,7 +382,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     /* renamed from: a */
     public void m2625a(String str, int i, String str2, boolean z) {
         LogUtils.debug("Player", "unicom flow setProxyServerParameter ip:" + str + " port:" + i + " authenkey:" + str2 + " useProxy:" + z);
-        this.f7099m.m2713a(str, i, str2, z);
+        this.mediaPlayerProxy.m2713a(str, i, str2, z);
     }
 
     /* renamed from: a */
@@ -391,7 +391,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             throw new NullPointerException("intent should not be null!");
         }
         String stringExtra = intent.getStringExtra("command");
-        MediaItem m2655b = this.f7101o.m2655b();
+        MediaItem m2655b = this.mediaSelector.getMediaItem();
         if ("start_command".equals(stringExtra)) {
             if (m2655b != null) {
                 if (m2655b.isOnline()) {
@@ -402,7 +402,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             } else {
                 m2642F();
             }
-            this.f7102p.m2755a(this.f7101o.m2655b(), 0);
+            this.audioEffectLoader.m2755a(this.mediaSelector.getMediaItem(), 0);
         } else if ("previous_command".equals(stringExtra)) {
             if (m2655b != null && m2655b.isOnline()) {
                 //OnlineMediaStatistic.m5041b(m2655b.getSongID().longValue(), 1);
@@ -422,11 +422,11 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             MediaItem mediaItem = (MediaItem) intent.getExtras().get("mediaItem");
             if (mediaItem != null) {
                 m2641G();
-                this.f7101o.m2659a(mediaItem);
+                this.mediaSelector.m2659a(mediaItem);
                 m2638J();
             }
             if (!StringUtils.isEmpty(intent.getStringExtra("group")) || !StringUtils.isEmpty(intent.getStringExtra("media_source"))) {
-                this.f7101o.m2657a(intent.getStringExtra("group"), intent.getStringExtra("media_source"));
+                this.mediaSelector.m2657a(intent.getStringExtra("group"), intent.getStringExtra("media_source"));
             }
             m2592n();
         } else if ("sync_command".equals(stringExtra)) {
@@ -437,11 +437,11 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                 EnvironmentUtils.UUIDConfig.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
             }
             MediaItem mediaItem2 = (MediaItem) intent.getExtras().get("mediaItem");
-            if ((mediaItem2 != null && !mediaItem2.equals(this.f7101o.m2655b())) || !StringUtils.equals(Preferences.getLocalGroupId(), stringExtra2)) {
-                this.f7101o.m2659a(mediaItem2);
+            if ((mediaItem2 != null && !mediaItem2.equals(this.mediaSelector.getMediaItem())) || !StringUtils.equals(Preferences.getLocalGroupId(), stringExtra2)) {
+                this.mediaSelector.m2659a(mediaItem2);
                 m2638J();
             }
-            this.f7101o.m2657a(stringExtra2, stringExtra3 == null ? Preferences.getMediaId() : stringExtra3);
+            this.mediaSelector.m2657a(stringExtra2, stringExtra3 == null ? Preferences.getMediaId() : stringExtra3);
         } else if ("play_pause_command".equals(stringExtra)) {
             m2645C();
         } else if ("stop_command".equals(stringExtra)) {
@@ -467,7 +467,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         if (!StringUtils.equals(Preferences.getLocalGroupId(), str)) {
             m2638J();
         }
-        MediaSelector mediaSelector = this.f7101o;
+        MediaSelector mediaSelector = this.mediaSelector;
         if (str2 == null) {
             str2 = Preferences.getMediaId();
         }
@@ -476,58 +476,58 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
 
     /* renamed from: s */
     private void m2585s() {
-        this.f7095i = new HeadsetPlugMonitor();
-        this.f7095i.m2260a(this);
-        this.f7107v.registerReceiver(this.f7095i, HeadsetPlugMonitor.m2261a());
-        this.f7096j = new CallMonitor();
-        this.f7096j.m2238a(this.f7107v, this);
-        this.f7097k = new LockScreenMonitor(this);
-        this.f7107v.registerReceiver(this.f7097k, LockScreenMonitor.m2256a());
+        this.headsetPlugMonitor = new HeadsetPlugMonitor();
+        this.headsetPlugMonitor.m2260a(this);
+        this.context.registerReceiver(this.headsetPlugMonitor, HeadsetPlugMonitor.m2261a());
+        this.callMonitor = new CallMonitor();
+        this.callMonitor.m2238a(this.context, this);
+        this.lockScreenMonitor = new LockScreenMonitor(this);
+        this.context.registerReceiver(this.lockScreenMonitor, LockScreenMonitor.m2256a());
         MediaButtonReceiver.m2252b();
     }
 
     /* renamed from: t */
     private void m2584t() {
-        this.f7095i.m2260a((HeadsetPlugMonitor.InterfaceC2081a) null);
-        this.f7107v.unregisterReceiver(this.f7095i);
-        this.f7096j.m2238a(this.f7107v, (CallMonitor.InterfaceC2086a) null);
-        this.f7107v.unregisterReceiver(this.f7097k);
+        this.headsetPlugMonitor.m2260a((HeadsetPlugMonitor.InterfaceC2081a) null);
+        this.context.unregisterReceiver(this.headsetPlugMonitor);
+        this.callMonitor.m2238a(this.context, (CallMonitor.InterfaceC2086a) null);
+        this.context.unregisterReceiver(this.lockScreenMonitor);
     }
 
     /* renamed from: e */
-    public static Player m2611e() {
+    public static Player getInstance() {
         synchronized (Player.class) {
-            if (f7087s == null) {
-                f7087s = new Player();
+            if (instance == null) {
+                instance = new Player();
             }
         }
-        return f7087s;
+        return instance;
     }
 
     /* renamed from: a */
     public void m2636a(Context context) {
-        this.f7107v = context;
-        this.f7099m = new MediaPlayerProxy(context);
-        this.f7099m.m2721a(this.f7109x);
-        this.f7099m.m2723a(this.f7108w);
-        this.f7099m.m2722a(this.f7110y);
-        this.f7101o = new MediaSelector(context);
-        this.f7102p = new AudioEffectLoader(context, this.f7099m);
-        this.f7102p.m2755a(m2606g(), 0);
+        this.context = context;
+        this.mediaPlayerProxy = new MediaPlayerProxy(context);
+        this.mediaPlayerProxy.m2721a(this.f7109x);
+        this.mediaPlayerProxy.m2723a(this.f7108w);
+        this.mediaPlayerProxy.m2722a(this.f7110y);
+        this.mediaSelector = new MediaSelector(context);
+        this.audioEffectLoader = new AudioEffectLoader(context, this.mediaPlayerProxy);
+        this.audioEffectLoader.m2755a(getMediaItem(), 0);
         m2585s();
     }
 
     /* renamed from: f */
     public void m2608f() {
-        this.f7099m.m2721a((MediaPlayerProxy.InterfaceC2044c) null);
-        this.f7099m.m2723a((MediaPlayerProxy.InterfaceC2042a) null);
-        this.f7099m.m2722a((MediaPlayerProxy.InterfaceC2043b) null);
-        this.f7099m.m2681i();
+        this.mediaPlayerProxy.m2721a((MediaPlayerProxy.InterfaceC2044c) null);
+        this.mediaPlayerProxy.m2723a((MediaPlayerProxy.InterfaceC2042a) null);
+        this.mediaPlayerProxy.m2722a((MediaPlayerProxy.InterfaceC2043b) null);
+        this.mediaPlayerProxy.m2681i();
         if (EffectDetect.usingAudioPlus()) {
             Intent intent = new Intent("android.media.action.CLOSE_AUDIO_EFFECT_CONTROL_SESSION");
             intent.putExtra("android.media.extra.AUDIO_SESSION", TTAudioTrack.audioSessionId());
-            intent.putExtra("android.media.extra.PACKAGE_NAME", this.f7107v.getPackageName());
-            this.f7107v.sendBroadcast(intent);
+            intent.putExtra("android.media.extra.PACKAGE_NAME", this.context.getPackageName());
+            this.context.sendBroadcast(intent);
         }
         m2584t();
     }
@@ -535,92 +535,92 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: u */
     public void m2583u() {
-        if (this.f7100n == null) {
-            this.f7100n = ((PowerManager) this.f7107v.getSystemService("power")).newWakeLock(1, getClass().getName());
-            this.f7100n.acquire();
+        if (this.wakeLock == null) {
+            this.wakeLock = ((PowerManager) this.context.getSystemService(Context.POWER_SERVICE)).newWakeLock(1, getClass().getName());
+            this.wakeLock.acquire();
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: v */
     public void m2582v() {
-        if (this.f7100n != null) {
-            this.f7100n.release();
-            this.f7100n = null;
+        if (this.wakeLock != null) {
+            this.wakeLock.release();
+            this.wakeLock = null;
         }
     }
 
     /* renamed from: g */
-    public MediaItem m2606g() {
-        return this.f7101o.m2655b();
+    public MediaItem getMediaItem() {
+        return this.mediaSelector.getMediaItem();
     }
 
     /* renamed from: h */
     public PlayStatus m2604h() {
-        return this.f7099m.m2690f();
+        return this.mediaPlayerProxy.getPlayStatus();
     }
 
     /* renamed from: i */
     public int m2602i() {
-        return this.f7099m.m2690f() == PlayStatus.STATUS_STOPPED ? m2640H() : this.f7099m.m2687g();
+        return this.mediaPlayerProxy.getPlayStatus() == PlayStatus.STATUS_STOPPED ? getMediaItemId() : this.mediaPlayerProxy.m2687g();
     }
 
     /* renamed from: j */
     public float m2600j() {
-        return this.f7099m.m2684h();
+        return this.mediaPlayerProxy.m2684h();
     }
 
     /* renamed from: b */
     public void m2620b(int i) {
-        if (this.f7099m.m2690f() == PlayStatus.STATUS_STOPPED && m2606g() != null) {
+        if (this.mediaPlayerProxy.getPlayStatus() == PlayStatus.STATUS_STOPPED && getMediaItem() != null) {
             Preferences.getPositionInfo(Preferences.getMediaId() + File.pathSeparator + i);
         } else {
-            this.f7099m.m2727a(i);
+            this.mediaPlayerProxy.m2727a(i);
         }
     }
 
     /* renamed from: k */
     public int m2598k() {
-        return this.f7101o.m2662a();
+        return this.mediaSelector.m2662a();
     }
 
     /* renamed from: a */
     public boolean m2622a(int[] iArr, int i) {
-        return this.f7099m.m2709a(iArr, i);
+        return this.mediaPlayerProxy.m2709a(iArr, i);
     }
 
     /* renamed from: a */
     public boolean m2621a(short[] sArr, int i) {
-        return this.f7099m.m2708a(sArr, i);
+        return this.mediaPlayerProxy.m2708a(sArr, i);
     }
 
     /* renamed from: l */
     public String m2596l() {
-        return this.f7102p.m2740d();
+        return this.audioEffectLoader.m2740d();
     }
 
     /* renamed from: w */
     private void m2581w() {
-        this.f7101o.m2655b();
-        this.f7102p.m2755a((MediaItem) null, 8);
+        this.mediaSelector.getMediaItem();
+        this.audioEffectLoader.m2755a((MediaItem) null, 8);
     }
 
     /* renamed from: x */
     private void m2580x() {
-        this.f7101o.m2655b();
-        this.f7102p.m2738e();
+        this.mediaSelector.getMediaItem();
+        this.audioEffectLoader.m2738e();
     }
 
     /* renamed from: c */
     private void m2616c(int i) {
-        this.f7101o.m2655b();
-        this.f7102p.m2755a((MediaItem) null, i);
+        this.mediaSelector.getMediaItem();
+        this.audioEffectLoader.m2755a((MediaItem) null, i);
     }
 
     /* renamed from: m */
     public void m2594m() {
         m2639I();
-        this.f7099m.m2707b();
+        this.mediaPlayerProxy.m2707b();
         m2637K();
     }
 
@@ -632,7 +632,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     /* renamed from: z */
     private void m2578z() {
         if (this.f7093g == null) {
-            this.f7093g = this.f7092f + File.separator + f7086e.substring(f7086e.indexOf("ttpod"));
+            this.f7093g = this.f7092f + File.separator + CACHE_MEDIA_PATH.substring(CACHE_MEDIA_PATH.indexOf("ttpod"));
             FileUtils.createFolder(this.f7093g);
         }
     }
@@ -643,34 +643,34 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         MediaButtonReceiver.m2254a();
         this.f7104r = 0;
         try {
-            this.f7099m.m2707b();
-            MediaItem m2606g = m2606g();
+            this.mediaPlayerProxy.m2707b();
+            MediaItem m2606g = getMediaItem();
             if (m2606g != null) {
                 String localDataSource = m2606g.getLocalDataSource();
-                if (StringUtils.isEmpty(localDataSource) && m2606g.getSongID().longValue() > 0 && (queryMediaItemBySongID = MediaStorage.queryMediaItemBySongID(this.f7107v, MediaStorage.GROUP_ID_ALL_LOCAL, m2606g.getSongID())) != null) {
+                if (StringUtils.isEmpty(localDataSource) && m2606g.getSongID().longValue() > 0 && (queryMediaItemBySongID = MediaStorage.queryMediaItemBySongID(this.context, MediaStorage.GROUP_ID_ALL_LOCAL, m2606g.getSongID())) != null) {
                     localDataSource = queryMediaItemBySongID.getLocalDataSource();
                 }
                 if (FileUtils.m8414b(localDataSource)) {
-                    this.f7099m.m2712a(localDataSource, (Long) null);
+                    this.mediaPlayerProxy.m2712a(localDataSource, (Long) null);
                     //LocalMediaStatistic.m5199a(localDataSource, System.nanoTime());
                     //new //SSystemEvent("SYS_PLAY", "start").append("play_type", "local").append("song_id", localDataSource).post();
                 } else {
                     if (m2606g.isOnline()) {
                         m2627a(m2606g);
                     } else if (m2606g.getID().equals(SecurityUtils.C0610b.m8361a(m2606g.getExtra()))) {
-                        this.f7099m.m2711a(m2606g.getExtra(), TTPodConfig.getAudioTmp(), (Long) null);
+                        this.mediaPlayerProxy.m2711a(m2606g.getExtra(), TTPodConfig.getAudioTmp(), (Long) null);
                     } else {
-                        m2613d(-99);
+                        processPlayError(-99);
                     }
-                    final String m2730a = this.f7099m.m2730a();
+                    final String m2730a = this.mediaPlayerProxy.m2730a();
                     TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.support.a.f.1
                         @Override // java.lang.Runnable
                         public void run() {
-                            long m8405g = FileUtils.m8405g(Player.f7086e);
-                            if (m8405g > 209715200 || EnvironmentUtils.C0605d.m8469a(new File(Player.f7086e)) <= 52428800) {
+                            long m8405g = FileUtils.m8405g(Player.CACHE_MEDIA_PATH);
+                            if (m8405g > 209715200 || EnvironmentUtils.C0605d.m8469a(new File(Player.CACHE_MEDIA_PATH)) <= 52428800) {
                                 long j = m8405g - 41943040;
                                 long j2 = j > 0 ? j : 0L;
-                                String str = Player.f7086e;
+                                String str = Player.CACHE_MEDIA_PATH;
                                 if (j2 <= 209715200) {
                                     j2 = 209715200;
                                 }
@@ -682,7 +682,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             } else {
                 m2582v();
                 LogUtils.debug("Player", "PLAYLIST_IS_EMPTY");
-                this.f7107v.sendBroadcast(new Intent(Action.PLAYLIST_IS_EMPTY));
+                this.context.sendBroadcast(new Intent(Action.PLAYLIST_IS_EMPTY));
             }
             this.f7105t = true;
         } catch (Exception e) {
@@ -710,7 +710,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             //OnlineMediaStatistic.m5039b(longValue, true);
             //SSystemEvent.append("play_type", "cache").post();
             try {
-                this.f7099m.m2712a(str2, mediaItem.getSongID());
+                this.mediaPlayerProxy.m2712a(str2, mediaItem.getSongID());
                 return;
             } catch (Exception e) {
                 LogUtils.error("Player", "processPlayError above MAX_ERROR_COUNT");
@@ -719,30 +719,30 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             }
         }
         if (m2579y()) {
-            this.f7092f = EnvironmentUtils.C0605d.m8460d(this.f7107v);
+            this.f7092f = EnvironmentUtils.C0605d.m8460d(this.context);
             if (SDKVersionUtils.m8365i()) {
-                this.f7092f = EnvironmentUtils.C0605d.m8470a(this.f7107v, EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
+                this.f7092f = EnvironmentUtils.C0605d.m8470a(this.context, EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
             }
             if (StringUtils.isEmpty(this.f7092f)) {
-                this.f7107v.sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", PlayStatus.STATUS_ERROR.ordinal()).putExtra("play_error_code", -5000));
+                this.context.sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", PlayStatus.STATUS_ERROR.ordinal()).putExtra("play_error_code", -5000));
                 return;
             } else {
                 m2578z();
                 str = this.f7093g;
             }
         } else {
-            str = f7086e;
+            str = CACHE_MEDIA_PATH;
         }
-        if (!str.equals(this.f7094h)) {
-            this.f7094h = str;
-            Preferences.m2836r(str);
+        if (!str.equals(this.cacheMediaPath)) {
+            this.cacheMediaPath = str;
+            Preferences.setCacheMediaFolderPath(str);
         }
         //OnlineMediaStatistic.m5039b(longValue, false);
         //SSystemEvent.append("play_type", "online").post();
         OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a((OnlineMediaItem) JSONUtils.fromJson(mediaItem.getExtra(), OnlineMediaItem.class), EnvironmentUtils.DeviceConfig.hasNetwork());
         if (m4689a != null) {
             try {
-                this.f7099m.m2711a(m4689a.getUrl(), TTPodConfig.getAudioTmp(), mediaItem.getSongID());
+                this.mediaPlayerProxy.m2711a(m4689a.getUrl(), TTPodConfig.getAudioTmp(), mediaItem.getSongID());
             } catch (Exception e2) {
                 LogUtils.error("Player", "processPlayError above MAX_ERROR_COUNT");
                 e2.printStackTrace();
@@ -750,16 +750,16 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             m2610e((int) DateTimeUtils.m3746a(m4689a.getDuration()));
             return;
         }
-        m2613d(-100);
+        processPlayError(-100);
     }
 
     /* renamed from: A */
     private void m2647A() {
         try {
-            MediaItem m2655b = this.f7101o.m2655b();
+            MediaItem m2655b = this.mediaSelector.getMediaItem();
             if (!m2655b.isOnline()) {
                 m2655b.setErrorStatus(1);
-                MediaStorage.updateMediaItem(this.f7107v, m2655b);
+                MediaStorage.updateMediaItem(this.context, m2655b);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -768,36 +768,36 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: d */
-    public void m2613d(int i) {
+    public void processPlayError(int i) {
         LogUtils.error("Player", "processPlayError");
         if (this.f7103q < 5) {
             this.f7103q++;
             //new //SSystemEvent("SYS_PLAY", "next").append("type", "system").post();
-            this.f7107v.startService(new Intent(this.f7107v, SupportService.class).putExtra("command", "next_command"));
+            this.context.startService(new Intent(this.context, SupportService.class).putExtra("command", "next_command"));
         } else {
             m2582v();
             LogUtils.error("Player", "processPlayError above MAX_ERROR_COUNT");
         }
         Preferences.getPositionInfo("");
         m2647A();
-        this.f7107v.sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", PlayStatus.STATUS_ERROR.ordinal()).putExtra("play_error_code", i));
+        this.context.sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", PlayStatus.STATUS_ERROR.ordinal()).putExtra("play_error_code", i));
     }
 
     /* renamed from: B */
     private void m2646B() {
         if (this.f7105t) {
-            this.f7099m.m2702c();
+            this.mediaPlayerProxy.m2702c();
         }
     }
 
     /* renamed from: C */
     private void m2645C() {
-        PlayStatus m2690f = this.f7099m.m2690f();
+        PlayStatus m2690f = this.mediaPlayerProxy.getPlayStatus();
         if (m2690f == PlayStatus.STATUS_PLAYING) {
             m2646B();
         } else if (m2690f == PlayStatus.STATUS_PAUSED) {
             m2644D();
-        } else if (m2606g() == null) {
+        } else if (getMediaItem() == null) {
             m2642F();
         } else {
             m2592n();
@@ -807,13 +807,13 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     /* renamed from: D */
     private void m2644D() {
         this.f7106u = false;
-        this.f7099m.m2694e();
+        this.mediaPlayerProxy.m2694e();
     }
 
     /* renamed from: E */
     private void m2643E() {
         m2641G();
-        this.f7101o.m2654c();
+        this.mediaSelector.m2654c();
         m2638J();
         m2592n();
     }
@@ -821,29 +821,29 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     /* renamed from: F */
     private void m2642F() {
         m2641G();
-        this.f7101o.m2653d();
+        this.mediaSelector.m2653d();
         m2638J();
         m2592n();
     }
 
     /* renamed from: G */
     private void m2641G() {
-        if (this.f7101o.m2655b() != null) {
+        if (this.mediaSelector.getMediaItem() != null) {
             Preferences.getPositionInfo("");
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: H */
-    public int m2640H() {
-        if (m2606g() != null) {
-            String m2850o = Preferences.getPositionInfo();
-            String str = m2606g().getID() + File.pathSeparator;
-            if (StringUtils.isEmpty(m2850o) || !m2850o.startsWith(str)) {
+    public int getMediaItemId() {
+        if (getMediaItem() != null) {
+            String positionInfo = Preferences.getPositionInfo();
+            String idPath = getMediaItem().getID() + File.pathSeparator;
+            if (StringUtils.isEmpty(positionInfo) || !positionInfo.startsWith(idPath)) {
                 return 0;
             }
             try {
-                return Integer.valueOf(m2850o.substring(str.length())).intValue();
+                return Integer.valueOf(positionInfo.substring(idPath.length())).intValue();
             } catch (Exception e) {
                 return 0;
             }
@@ -854,19 +854,19 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: I */
     public void m2639I() {
-        if (m2606g() != null) {
-            Preferences.getPositionInfo(m2606g().getID() + File.pathSeparator + m2602i());
+        if (getMediaItem() != null) {
+            Preferences.getPositionInfo(getMediaItem().getID() + File.pathSeparator + m2602i());
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: e */
     public void m2610e(int i) {
-        m2606g().setDuration(Integer.valueOf(i));
+        getMediaItem().setDuration(Integer.valueOf(i));
         Intent intent = new Intent(Action.UPDATE_MEDIA_DURATION);
-        intent.putExtra("media_id", m2606g().getID());
+        intent.putExtra("media_id", getMediaItem().getID());
         intent.putExtra("media_duration", i);
-        this.f7107v.sendBroadcast(intent);
+        this.context.sendBroadcast(intent);
     }
 
     @Override // com.sds.android.ttpod.framework.support.monitor.HeadsetPlugMonitor.InterfaceC2081a
@@ -877,7 +877,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             this.f7106u = true;
             m2646B();
         }
-        this.f7107v.sendBroadcast(new Intent(Action.PLAY_HEADSET_UNPLUG));
+        this.context.sendBroadcast(new Intent(Action.PLAY_HEADSET_UNPLUG));
         MediaButtonReceiver.m2254a();
     }
 
@@ -886,16 +886,16 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     public void mo2257d() {
         this.f7106u = false;
         //StatisticUtils.m4909a("startup", "headset", "plugged", 1L);
-        if (this.f7096j.m2239a(this.f7107v)) {
+        if (this.callMonitor.m2239a(this.context)) {
             if (Preferences.m2830t()) {
-                PlayStatus m2690f = this.f7099m.m2690f();
+                PlayStatus m2690f = this.mediaPlayerProxy.getPlayStatus();
                 if (m2690f == PlayStatus.STATUS_PAUSED) {
                     m2644D();
                 } else if (m2690f != PlayStatus.STATUS_PLAYING) {
                     m2592n();
                 }
             }
-            this.f7107v.sendBroadcast(new Intent(Action.PLAY_HEADSET_PLUG));
+            this.context.sendBroadcast(new Intent(Action.PLAY_HEADSET_PLUG));
         }
         MediaButtonReceiver.m2254a();
     }
@@ -903,18 +903,18 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     @Override // com.sds.android.ttpod.framework.support.monitor.CallMonitor.InterfaceC2086a
     /* renamed from: a */
     public void mo2234a() {
-        if (this.f7098l == PlayStatus.STATUS_PLAYING && !this.f7106u) {
+        if (this.playStatus == PlayStatus.STATUS_PLAYING && !this.f7106u) {
             m2644D();
         }
-        this.f7098l = null;
+        this.playStatus = null;
     }
 
     @Override // com.sds.android.ttpod.framework.support.monitor.CallMonitor.InterfaceC2086a
     /* renamed from: b */
     public void mo2233b() {
-        if (this.f7098l == null) {
-            this.f7098l = this.f7099m.m2690f();
-            if (this.f7098l == PlayStatus.STATUS_PLAYING) {
+        if (this.playStatus == null) {
+            this.playStatus = this.mediaPlayerProxy.getPlayStatus();
+            if (this.playStatus == PlayStatus.STATUS_PLAYING) {
                 m2646B();
             }
         }
@@ -922,42 +922,42 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
 
     /* renamed from: o */
     public String m2590o() {
-        return this.f7102p.m2763a();
+        return this.audioEffectLoader.m2763a();
     }
 
     /* renamed from: p */
     public void m2588p() {
-        this.f7102p.m2755a(m2606g(), 0);
+        this.audioEffectLoader.m2755a(getMediaItem(), 0);
     }
 
     /* renamed from: q */
     public void m2587q() {
-        this.f7102p.m2750b();
+        this.audioEffectLoader.m2750b();
     }
 
     /* renamed from: a */
     public void m2626a(Boolean bool) {
-        this.f7102p.m2754a(bool);
+        this.audioEffectLoader.m2754a(bool);
     }
 
     /* renamed from: a */
     public void m2623a(String str, boolean z) {
         AudioEffectItem audioEffectItem = (AudioEffectItem) JSONUtils.fromJson(str, AudioEffectItem.class);
         if (audioEffectItem != null) {
-            this.f7102p.m2759a(audioEffectItem, z);
+            this.audioEffectLoader.m2759a(audioEffectItem, z);
         }
     }
 
     @Override // com.sds.android.ttpod.framework.support.monitor.LockScreenMonitor.InterfaceC2082a
     /* renamed from: a */
     public void mo2255a(int i) {
-        this.f7099m.m2685g(i == 1);
+        this.mediaPlayerProxy.m2685g(i == 1);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: J */
     public void m2638J() {
-        MediaItem m2606g = m2606g();
+        MediaItem m2606g = getMediaItem();
         if (this.f7088a != null) {
             this.f7088a.mo2559a(m2606g);
         }
@@ -970,13 +970,13 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         if (this.f7089b != null) {
             this.f7089b.mo2558a();
         }
-        m2617b(m2606g());
+        m2617b(getMediaItem());
     }
 
     /* renamed from: b */
     private void m2617b(MediaItem mediaItem) {
         if (SDKVersionUtils.checkVersionThanAndroid11() && mediaItem != null) {
-            this.f7107v.sendStickyBroadcast(new Intent("com.android.music.metachanged").putExtra("id", mediaItem.getID()).putExtra("artist", mediaItem.getArtist()).putExtra("album", mediaItem.getAlbum()).putExtra("track", mediaItem.getTitle()).putExtra("playing", this.f7099m.m2690f() == PlayStatus.STATUS_PLAYING).putExtra("isfavorite", mediaItem.getFav()));
+            this.context.sendStickyBroadcast(new Intent("com.android.music.metachanged").putExtra("id", mediaItem.getID()).putExtra("artist", mediaItem.getArtist()).putExtra("album", mediaItem.getAlbum()).putExtra("track", mediaItem.getTitle()).putExtra("playing", this.mediaPlayerProxy.getPlayStatus() == PlayStatus.STATUS_PLAYING).putExtra("isfavorite", mediaItem.getFav()));
         }
     }
 }

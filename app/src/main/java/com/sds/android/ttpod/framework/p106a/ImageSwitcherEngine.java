@@ -39,7 +39,7 @@ public class ImageSwitcherEngine {
         @Override // android.os.Handler
         public void handleMessage(Message message) {
             if (message.what == 2) {
-                if (!BaseApplication.getApplication().m4627k() && ImageSwitcherEngine.this.f5646e && Player.m2611e().m2604h() == PlayStatus.STATUS_PLAYING) {
+                if (!BaseApplication.getApplication().m4627k() && ImageSwitcherEngine.this.f5646e && Player.getInstance().m2604h() == PlayStatus.STATUS_PLAYING) {
                     ImageSwitcherEngine.this.m4720g();
                 }
                 ImageSwitcherEngine.this.m4719h();

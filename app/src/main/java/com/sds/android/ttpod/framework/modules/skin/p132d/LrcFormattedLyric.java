@@ -30,7 +30,7 @@ public class LrcFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public Sentence mo3629a(int i) {
+    public Sentence getLrcLineIndex(int i) {
         if (i < 0) {
             return null;
         }
@@ -39,7 +39,7 @@ public class LrcFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public int mo3630a() {
+    public int getLrcLineSize() {
         return this.lrcLineList.size();
     }
 
@@ -70,7 +70,7 @@ public class LrcFormattedLyric implements FormattedLyric {
     /* renamed from: a */
     public void mo3634a(LrcSentence lrcSentence, int i) {
         int m3692a;
-        String mo3635g = lrcSentence.mo3635g();
+        String mo3635g = lrcSentence.getCurrentLrcText();
         long m3676d = lrcSentence.m3676d();
         int mo3636f = lrcSentence.mo3636f();
         int mo3467a = this.f6608c.mo3467a(mo3635g);
@@ -220,7 +220,7 @@ public class LrcFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: b */
-    public int mo3625b() {
+    public int getLrcLineIndex() {
         return this.f6610e;
     }
 

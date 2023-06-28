@@ -100,7 +100,7 @@ public final class MediaPlayerProxy {
     private String f7046m = "";
 
     /* renamed from: n */
-    private PlayStatus f7047n = PlayStatus.STATUS_STOPPED;
+    private PlayStatus playStatus = PlayStatus.STATUS_STOPPED;
 
     /* renamed from: t */
     private volatile TTEffectHandle f7053t = null;
@@ -120,7 +120,7 @@ public final class MediaPlayerProxy {
                     return;
                 case 2:
                     LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_PLAY");
-                    MediaPlayerProxy.this.f7047n = PlayStatus.STATUS_PLAYING;
+                    MediaPlayerProxy.this.playStatus = PlayStatus.STATUS_PLAYING;
                     MediaPlayerProxy.this.m2729a(Preferences.m2956ao());
                     if (MediaPlayerProxy.this.f7057x != null) {
                         MediaPlayerProxy.this.f7057x.mo2570b();
@@ -258,7 +258,7 @@ public final class MediaPlayerProxy {
     private MediaPlayer.OnCompletionListener f7031C = new MediaPlayer.OnCompletionListener() { // from class: com.sds.android.ttpod.framework.support.a.b.3
         @Override // android.media.MediaPlayer.OnCompletionListener
         public void onCompletion(MediaPlayer mediaPlayer) {
-            MediaPlayerProxy.this.f7047n = PlayStatus.STATUS_STOPPED;
+            MediaPlayerProxy.this.playStatus = PlayStatus.STATUS_STOPPED;
             if (MediaPlayerProxy.this.f7057x != null) {
                 MediaPlayerProxy.this.f7057x.mo2568d();
             }
@@ -276,7 +276,7 @@ public final class MediaPlayerProxy {
     private MediaPlayer.OnErrorListener f7033E = new MediaPlayer.OnErrorListener() { // from class: com.sds.android.ttpod.framework.support.a.b.5
         @Override // android.media.MediaPlayer.OnErrorListener
         public boolean onError(MediaPlayer mediaPlayer, int i, int i2) {
-            MediaPlayerProxy.this.f7047n = PlayStatus.STATUS_STOPPED;
+            MediaPlayerProxy.this.playStatus = PlayStatus.STATUS_STOPPED;
             if (MediaPlayerProxy.this.f7057x != null) {
                 MediaPlayerProxy.this.f7057x.mo2574a(i, 0, null);
                 return true;
@@ -461,16 +461,16 @@ public final class MediaPlayerProxy {
             }
             //new //SSystemEvent("SYS_PLAY", "stop").append("song_id", this.f7048o).append("buffer_size", Integer.valueOf(this.f7052s.getBufferSize())).append("time_played", Integer.valueOf(m2687g() / 1000)).append("play_type", this.f7046m).post();
         }
-        if (PlayStatus.STATUS_PLAYING == this.f7047n || (this.f7052s instanceof TTMediaPlayer)) {
+        if (PlayStatus.STATUS_PLAYING == this.playStatus || (this.f7052s instanceof TTMediaPlayer)) {
             this.f7052s.stop();
         }
-        this.f7047n = PlayStatus.STATUS_STOPPED;
+        this.playStatus = PlayStatus.STATUS_STOPPED;
     }
 
     /* renamed from: c */
     public void m2702c() {
         this.f7052s.pause();
-        this.f7047n = PlayStatus.STATUS_PAUSED;
+        this.playStatus = PlayStatus.STATUS_PAUSED;
         if (this.f7057x != null) {
             this.f7057x.mo2569c();
         }
@@ -487,7 +487,7 @@ public final class MediaPlayerProxy {
     public void m2679j() {
         this.f7052s.pause();
         if (this.f7052s == this.f7051r && this.f7057x != null) {
-            this.f7047n = PlayStatus.STATUS_PAUSED;
+            this.playStatus = PlayStatus.STATUS_PAUSED;
             this.f7057x.mo2569c();
         }
     }
@@ -496,7 +496,7 @@ public final class MediaPlayerProxy {
     public void m2698d() {
         this.f7052s.play();
         if (this.f7052s == this.f7051r) {
-            this.f7047n = PlayStatus.STATUS_PLAYING;
+            this.playStatus = PlayStatus.STATUS_PLAYING;
             if (this.f7057x != null) {
                 this.f7057x.mo2570b();
             }
@@ -519,14 +519,14 @@ public final class MediaPlayerProxy {
     public void m2677k() {
         this.f7052s.resume();
         if (this.f7052s == this.f7051r && this.f7057x != null) {
-            this.f7047n = PlayStatus.STATUS_PLAYING;
+            this.playStatus = PlayStatus.STATUS_PLAYING;
             this.f7057x.mo2570b();
         }
     }
 
     /* renamed from: f */
-    public PlayStatus m2690f() {
-        return this.f7047n;
+    public PlayStatus getPlayStatus() {
+        return this.playStatus;
     }
 
     /* renamed from: g */
@@ -539,7 +539,7 @@ public final class MediaPlayerProxy {
 
     /* renamed from: h */
     public float m2684h() {
-        if (this.f7047n == PlayStatus.STATUS_PLAYING || this.f7047n == PlayStatus.STATUS_PAUSED) {
+        if (this.playStatus == PlayStatus.STATUS_PLAYING || this.playStatus == PlayStatus.STATUS_PAUSED) {
             return this.f7052s.getBufferPercent();
         }
         return 0.0f;
@@ -550,7 +550,7 @@ public final class MediaPlayerProxy {
         int bufferedPercent = this.f7052s.bufferedPercent();
         if (bufferedPercent <= 0 || (bufferedPercent * this.f7052s.duration()) / 100 >= i) {
             this.f7052s.setPosition(i);
-            if (this.f7047n == PlayStatus.STATUS_PLAYING) {
+            if (this.playStatus == PlayStatus.STATUS_PLAYING) {
                 this.f7035b.m2665a(Preferences.getAudioFadeSeekLength() / 10, 1);
             }
         }
@@ -642,7 +642,7 @@ public final class MediaPlayerProxy {
     /* renamed from: p */
     public void m2669p() {
         LogUtils.debug("statistic_MediaPlayerProxy", "MEDIA_COMPLETE");
-        this.f7047n = PlayStatus.STATUS_STOPPED;
+        this.playStatus = PlayStatus.STATUS_STOPPED;
         if (this.f7049p != null) {
             //OnlineMediaStatistic.m5048a(this.f7049p.longValue(), true);
             //new //SSystemEvent("SYS_PLAY", "complete").append("song_id", this.f7049p).append("play_type", this.f7046m).post();
@@ -658,7 +658,7 @@ public final class MediaPlayerProxy {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m2725a(int i, int i2, MediaPlayerNotificationInfo mediaPlayerNotificationInfo) {
-        this.f7047n = PlayStatus.STATUS_STOPPED;
+        this.playStatus = PlayStatus.STATUS_STOPPED;
         if (this.f7048o.startsWith("/")) {
             this.f7036c = this.f7052s.getPosition();
             this.f7052s = m2682h(true);
@@ -787,7 +787,7 @@ public final class MediaPlayerProxy {
 
     /* renamed from: a */
     public void m2729a(float f) {
-        if (this.f7047n != PlayStatus.STATUS_STOPPED) {
+        if (this.playStatus != PlayStatus.STATUS_STOPPED) {
             this.f7052s.setChannelBalance(f);
         }
         this.f7044k = 1.0f - f;

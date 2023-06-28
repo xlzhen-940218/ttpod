@@ -53,7 +53,7 @@ public class Preferences {
 
     /* renamed from: b */
     public static String m2944b() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.KTV_URL_DOMAIN.name(), (String) null);
+        return AccessHelper.query(preferencesContent, PreferencesID.KTV_URL_DOMAIN.name(), (String) null);
     }
 
     /* renamed from: a */
@@ -63,7 +63,7 @@ public class Preferences {
 
     /* renamed from: c */
     public static String m2904c() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.KTV_CHECK_CODE.name(), (String) null);
+        return AccessHelper.query(preferencesContent, PreferencesID.KTV_CHECK_CODE.name(), (String) null);
     }
 
     /* renamed from: b */
@@ -73,7 +73,7 @@ public class Preferences {
 
     /* renamed from: d */
     public static String m2898d() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.KTV_ROOM_INFO.name(), (String) null);
+        return AccessHelper.query(preferencesContent, PreferencesID.KTV_ROOM_INFO.name(), (String) null);
     }
 
     /* renamed from: a */
@@ -210,7 +210,7 @@ public class Preferences {
 
     /* renamed from: l */
     public static PlayMode m2862l() {
-        return PlayMode.values()[AccessHelper.m3098a(preferencesContent, PreferencesID.PLAY_MODE.name(), PlayMode.REPEAT.ordinal())];
+        return PlayMode.values()[AccessHelper.queryId(preferencesContent, PreferencesID.PLAY_MODE.name(), PlayMode.REPEAT.ordinal())];
     }
 
     /* renamed from: a */
@@ -220,7 +220,7 @@ public class Preferences {
 
     /* renamed from: m */
     public static String getLocalGroupId() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.PLAYING_GROUPID.name(), MediaStorage.GROUP_ID_ALL_LOCAL);
+        return AccessHelper.query(preferencesContent, PreferencesID.PLAYING_GROUPID.name(), MediaStorage.GROUP_ID_ALL_LOCAL);
     }
 
     /* renamed from: d */
@@ -230,7 +230,7 @@ public class Preferences {
 
     /* renamed from: n */
     public static String getMediaId() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.PLAYING_MEDIAID.name(), (String) null);
+        return AccessHelper.query(preferencesContent, PreferencesID.PLAYING_MEDIAID.name(), (String) null);
     }
 
     /* renamed from: e */
@@ -240,7 +240,7 @@ public class Preferences {
 
     /* renamed from: o */
     public static String getPositionInfo() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.LAST_PLAY_POSITION_INFO.name(), "");
+        return AccessHelper.query(preferencesContent, PreferencesID.LAST_PLAY_POSITION_INFO.name(), "");
     }
 
     /* renamed from: f */
@@ -255,7 +255,7 @@ public class Preferences {
 
     /* renamed from: p */
     public static int m2846p() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.SLEEP_DELAY_TIME.name(), 30);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.SLEEP_DELAY_TIME.name(), 30);
     }
 
     /* renamed from: f */
@@ -345,7 +345,7 @@ public class Preferences {
 
     /* renamed from: x */
     public static ShakeSensitivityType m2815x() {
-        return ShakeSensitivityType.values()[AccessHelper.m3098a(preferencesContent, PreferencesID.SHAKE_PLAY_SENSITIVITY.name(), ShakeSensitivityType.EASY_SHAKE.ordinal())];
+        return ShakeSensitivityType.values()[AccessHelper.queryId(preferencesContent, PreferencesID.SHAKE_PLAY_SENSITIVITY.name(), ShakeSensitivityType.EASY_SHAKE.ordinal())];
     }
 
     /* renamed from: o */
@@ -455,7 +455,7 @@ public class Preferences {
 
     /* renamed from: I */
     public static AudioQuality m3064I() {
-        int m3098a = AccessHelper.m3098a(preferencesContent, PreferencesID.AUDITION_QUALITY_2G.name(), AudioQuality.COMPRESSED.ordinal());
+        int m3098a = AccessHelper.queryId(preferencesContent, PreferencesID.AUDITION_QUALITY_2G.name(), AudioQuality.COMPRESSED.ordinal());
         if (m3098a == AudioQuality.LOSSLESS.ordinal()) {
             m3098a--;
         }
@@ -469,7 +469,7 @@ public class Preferences {
 
     /* renamed from: J */
     public static AudioQuality m3062J() {
-        int m3098a = AccessHelper.m3098a(preferencesContent, PreferencesID.AUDITION_QUALITY_3G.name(), AudioQuality.STANDARD.ordinal());
+        int m3098a = AccessHelper.queryId(preferencesContent, PreferencesID.AUDITION_QUALITY_3G.name(), AudioQuality.STANDARD.ordinal());
         if (m3098a == AudioQuality.LOSSLESS.ordinal()) {
             m3098a--;
         }
@@ -483,7 +483,7 @@ public class Preferences {
 
     /* renamed from: K */
     public static AudioQuality m3060K() {
-        int m3098a = AccessHelper.m3098a(preferencesContent, PreferencesID.AUDITION_QUALITY_WIFI.name(), AudioQuality.STANDARD.ordinal());
+        int m3098a = AccessHelper.queryId(preferencesContent, PreferencesID.AUDITION_QUALITY_WIFI.name(), AudioQuality.STANDARD.ordinal());
         return (m3098a == AudioQuality.COMPRESSED.ordinal() || m3098a == AudioQuality.STANDARD.ordinal() || m3098a == AudioQuality.SUPER.ordinal()) ? AudioQuality.values()[m3098a] : AudioQuality.STANDARD;
     }
 
@@ -494,7 +494,7 @@ public class Preferences {
 
     /* renamed from: L */
     public static AudioQuality m3058L() {
-        int m3098a = AccessHelper.m3098a(preferencesContent, PreferencesID.AUTO_DOWNLOAD_AUDIO_QUALITY.name(), AudioQuality.UNDEFINED.ordinal());
+        int m3098a = AccessHelper.queryId(preferencesContent, PreferencesID.AUTO_DOWNLOAD_AUDIO_QUALITY.name(), AudioQuality.UNDEFINED.ordinal());
         return (m3098a == AudioQuality.UNDEFINED.ordinal() || m3098a == AudioQuality.COMPRESSED.ordinal() || m3098a == AudioQuality.STANDARD.ordinal() || m3098a == AudioQuality.SUPER.ordinal() || m3098a == AudioQuality.LOSSLESS.ordinal()) ? AudioQuality.values()[m3098a] : AudioQuality.STANDARD;
     }
 
@@ -505,7 +505,7 @@ public class Preferences {
 
     /* renamed from: M */
     public static AudioQuality m3056M() {
-        int m3098a = AccessHelper.m3098a(preferencesContent, PreferencesID.ALBUM_DOWNLOAD_AUDIO_QUALITY.name(), AudioQuality.LOSSLESS.ordinal());
+        int m3098a = AccessHelper.queryId(preferencesContent, PreferencesID.ALBUM_DOWNLOAD_AUDIO_QUALITY.name(), AudioQuality.LOSSLESS.ordinal());
         return (m3098a == AudioQuality.COMPRESSED.ordinal() || m3098a == AudioQuality.STANDARD.ordinal() || m3098a == AudioQuality.SUPER.ordinal() || m3098a == AudioQuality.LOSSLESS.ordinal()) ? AudioQuality.values()[m3098a] : AudioQuality.LOSSLESS;
     }
 
@@ -521,7 +521,7 @@ public class Preferences {
 
     /* renamed from: N */
     public static String m3054N() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.AUDIO_DOWNLOAD_FOLDER_PATH.name(), TTPodConfig.getSongPath());
+        return AccessHelper.query(preferencesContent, PreferencesID.AUDIO_DOWNLOAD_FOLDER_PATH.name(), TTPodConfig.getSongPath());
     }
 
     /* renamed from: b */
@@ -531,32 +531,32 @@ public class Preferences {
 
     /* renamed from: O */
     public static AutoDownloadNetworkType getDownloadLyricNetWorkType() {
-        return AutoDownloadNetworkType.values()[AccessHelper.m3098a(preferencesContent, PreferencesID.AUTO_DOWNLOAD_LYRIC_NETWORK.name(), AutoDownloadNetworkType.ALL.ordinal())];
+        return AutoDownloadNetworkType.values()[AccessHelper.queryId(preferencesContent, PreferencesID.AUTO_DOWNLOAD_LYRIC_NETWORK.name(), AutoDownloadNetworkType.ALL.ordinal())];
     }
 
     /* renamed from: b */
-    public static void m2942b(int i) {
+    public static void setLyricHighlightColor(int i) {
         AccessHelper.m3094a(preferencesContent, PreferencesID.LYRIC_HIGHLIGHT_COLOR.name(), Integer.valueOf(i));
     }
 
     /* renamed from: P */
-    public static int m3050P() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.LYRIC_HIGHLIGHT_COLOR.name(), -1);
+    public static int getLyricHighlightColor() {
+        return AccessHelper.queryId(preferencesContent, PreferencesID.LYRIC_HIGHLIGHT_COLOR.name(), -1);
     }
 
     /* renamed from: c */
-    public static void m2903c(int i) {
-        AccessHelper.m3086b(preferencesContent, PreferencesID.LYRIC_FONT_SIZE.name(), i + "");
+    public static void setLyricFontSize(int lyricFontSize) {
+        AccessHelper.m3086b(preferencesContent, PreferencesID.LYRIC_FONT_SIZE.name(), lyricFontSize + "");
     }
 
     /* renamed from: Q */
-    public static int m3048Q() {
-        String m3092a = AccessHelper.m3092a(preferencesContent, PreferencesID.LYRIC_FONT_SIZE.name(), "");
-        if (m3092a == null || m3092a.length() <= 0) {
+    public static int getLyricFontSize() {
+        String fontSize = AccessHelper.query(preferencesContent, PreferencesID.LYRIC_FONT_SIZE.name(), "");
+        if (fontSize == null || fontSize.length() <= 0) {
             return 0;
         }
         try {
-            return Integer.parseInt(m3092a);
+            return Integer.parseInt(fontSize);
         } catch (NumberFormatException e) {
             e.printStackTrace();
             return 0;
@@ -564,7 +564,7 @@ public class Preferences {
     }
 
     /* renamed from: R */
-    public static boolean m3046R() {
+    public static boolean kalaOkEnabled() {
         return AccessHelper.m3096a(preferencesContent, PreferencesID.LYRIC_KALA_OK_ENABLED.name(), (Boolean) false);
     }
 
@@ -575,7 +575,7 @@ public class Preferences {
 
     /* renamed from: S */
     public static int m3044S() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.LYRIC_ALIGNMENT.name(), -1);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.LYRIC_ALIGNMENT.name(), -1);
     }
 
     /* renamed from: T */
@@ -584,8 +584,8 @@ public class Preferences {
     }
 
     /* renamed from: U */
-    public static int m3040U() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.PLAYER_LAST_DISPLAY_PANEL.name(), 1);
+    public static int getPlayLastDisplayPanelId() {
+        return AccessHelper.queryId(preferencesContent, PreferencesID.PLAYER_LAST_DISPLAY_PANEL.name(), 1);
     }
 
     /* renamed from: d */
@@ -600,7 +600,7 @@ public class Preferences {
 
     /* renamed from: V */
     public static String m3038V() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.SKIN_PATH.name(), (String) null);
+        return AccessHelper.query(preferencesContent, PreferencesID.SKIN_PATH.name(), (String) null);
     }
 
     /* renamed from: W */
@@ -615,7 +615,7 @@ public class Preferences {
 
     /* renamed from: X */
     public static String m3034X() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.BACKGROUND_PATH.name(), "follow_skin");
+        return AccessHelper.query(preferencesContent, PreferencesID.BACKGROUND_PATH.name(), "follow_skin");
     }
 
     /* renamed from: Y */
@@ -625,7 +625,7 @@ public class Preferences {
 
     /* renamed from: Z */
     public static int m3030Z() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.MINI_LYRIC_FONT_SIZE.name(), 20);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.MINI_LYRIC_FONT_SIZE.name(), 20);
     }
 
     /* renamed from: e */
@@ -645,7 +645,7 @@ public class Preferences {
 
     /* renamed from: ab */
     public static int m2978ab() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.MINI_LYRIC_COLOR_STYLE.name(), 20);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.MINI_LYRIC_COLOR_STYLE.name(), 20);
     }
 
     /* renamed from: f */
@@ -660,7 +660,7 @@ public class Preferences {
 
     /* renamed from: ac */
     public static int m2976ac() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.MINI_LYRIC_Y_POSITION.name(), DisplayUtils.m7224d() >> 2);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.MINI_LYRIC_Y_POSITION.name(), DisplayUtils.m7224d() >> 2);
     }
 
     /* renamed from: ad */
@@ -690,12 +690,12 @@ public class Preferences {
 
     /* renamed from: af */
     public static int m2970af() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.CURRENT_REVERB_NUM.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.CURRENT_REVERB_NUM.name(), 0);
     }
 
     /* renamed from: ag */
     public static String m2968ag() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.EQUALIZER_SETTING.name(), (String) null);
+        return AccessHelper.query(preferencesContent, PreferencesID.EQUALIZER_SETTING.name(), (String) null);
     }
 
     /* renamed from: j */
@@ -705,7 +705,7 @@ public class Preferences {
 
     /* renamed from: ah */
     public static String m2966ah() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.CUSTOM_EQUALIZER_SETTING.name(), (String) null);
+        return AccessHelper.query(preferencesContent, PreferencesID.CUSTOM_EQUALIZER_SETTING.name(), (String) null);
     }
 
     /* renamed from: k */
@@ -715,7 +715,7 @@ public class Preferences {
 
     /* renamed from: ai */
     public static int m2964ai() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.REVERB_PRESET.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.REVERB_PRESET.name(), 0);
     }
 
     /* renamed from: i */
@@ -725,7 +725,7 @@ public class Preferences {
 
     /* renamed from: aj */
     public static int m2962aj() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.BASSBOOST_STRENGTH.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.BASSBOOST_STRENGTH.name(), 0);
     }
 
     /* renamed from: j */
@@ -755,7 +755,7 @@ public class Preferences {
 
     /* renamed from: am */
     public static int m2958am() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.TREBLEBOOST_STRENGTH.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.TREBLEBOOST_STRENGTH.name(), 0);
     }
 
     /* renamed from: k */
@@ -765,7 +765,7 @@ public class Preferences {
 
     /* renamed from: an */
     public static int m2957an() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.VIRTUALIZER_STRENGTH.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.VIRTUALIZER_STRENGTH.name(), 0);
     }
 
     /* renamed from: l */
@@ -817,7 +817,7 @@ public class Preferences {
         } else if (str.startsWith(MediaStorage.GROUP_ID_ALBUM_PREFIX)) {
             str2 = "track";
         }
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.SORT_ORDER_PREFIX.name() + str, str2);
+        return AccessHelper.query(preferencesContent, PreferencesID.SORT_ORDER_PREFIX.name() + str, str2);
     }
 
     /* renamed from: ap */
@@ -832,7 +832,7 @@ public class Preferences {
 
     /* renamed from: aq */
     public static TTPodUser m2954aq() {
-        String m3092a = AccessHelper.m3092a(preferencesContent, PreferencesID.USER_INFO.name(), (String) null);
+        String m3092a = AccessHelper.query(preferencesContent, PreferencesID.USER_INFO.name(), (String) null);
         if (StringUtils.isEmpty(m3092a)) {
             return null;
         }
@@ -856,7 +856,7 @@ public class Preferences {
 
     /* renamed from: as */
     public static String m2952as() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.IGNORE_UPDATE_VERSION.name(), "1.0.0");
+        return AccessHelper.query(preferencesContent, PreferencesID.IGNORE_UPDATE_VERSION.name(), "1.0.0");
     }
 
     /* renamed from: at */
@@ -871,7 +871,7 @@ public class Preferences {
 
     /* renamed from: au */
     public static int m2950au() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.LANDSCAPE_EFFECT_INDEX.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.LANDSCAPE_EFFECT_INDEX.name(), 0);
     }
 
     /* renamed from: m */
@@ -911,7 +911,7 @@ public class Preferences {
 
     /* renamed from: ay */
     public static String m2946ay() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.PUSH_CLIENT_ID_LAST_RECORDED_TIME.name(), (String) null);
+        return AccessHelper.query(preferencesContent, PreferencesID.PUSH_CLIENT_ID_LAST_RECORDED_TIME.name(), (String) null);
     }
 
     /* renamed from: m */
@@ -921,7 +921,7 @@ public class Preferences {
 
     /* renamed from: az */
     public static String m2945az() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.PUSH_CLIENT_ID.name(), (String) null);
+        return AccessHelper.query(preferencesContent, PreferencesID.PUSH_CLIENT_ID.name(), (String) null);
     }
 
     /* renamed from: n */
@@ -946,12 +946,12 @@ public class Preferences {
 
     /* renamed from: aB */
     public static int m3005aB() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.IMAGE_DOWN_AMOUNT_WIFI.name(), 5);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.IMAGE_DOWN_AMOUNT_WIFI.name(), 5);
     }
 
     /* renamed from: aC */
     public static int m3004aC() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.IMAGE_DOWN_AMOUNT_2G.name(), 2);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.IMAGE_DOWN_AMOUNT_2G.name(), 2);
     }
 
     /* renamed from: n */
@@ -976,7 +976,7 @@ public class Preferences {
 
     /* renamed from: aE */
     public static String m3002aE() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.LATEST_UPDATE_VERSION.name(), FeedbackItem.STATUS_WAITING);
+        return AccessHelper.query(preferencesContent, PreferencesID.LATEST_UPDATE_VERSION.name(), FeedbackItem.STATUS_WAITING);
     }
 
     /* renamed from: o */
@@ -991,7 +991,7 @@ public class Preferences {
 
     /* renamed from: aF */
     public static String m3001aF() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.APP_VERSION.name(), "");
+        return AccessHelper.query(preferencesContent, PreferencesID.APP_VERSION.name(), "");
     }
 
     /* renamed from: aG */
@@ -1006,7 +1006,7 @@ public class Preferences {
 
     /* renamed from: aH */
     public static String m2999aH() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.INSTALL_INFO.name(), "");
+        return AccessHelper.query(preferencesContent, PreferencesID.INSTALL_INFO.name(), "");
     }
 
     /* renamed from: M */
@@ -1148,7 +1148,7 @@ public class Preferences {
     /* renamed from: a */
     public static String m3014a(MediaItem mediaItem) {
         if (mediaItem != null && !mediaItem.isNull()) {
-            String m3092a = AccessHelper.m3092a(preferencesContent, PreferencesID.CURRENT_ARTIST_BITMAP_PATH.name(), "");
+            String m3092a = AccessHelper.query(preferencesContent, PreferencesID.CURRENT_ARTIST_BITMAP_PATH.name(), "");
             if (m3092a.startsWith(mediaItem.getID())) {
                 return m3092a.substring(mediaItem.getID().length());
             }
@@ -1166,7 +1166,7 @@ public class Preferences {
     /* renamed from: b */
     public static String m2935b(MediaItem mediaItem) {
         if (mediaItem != null && !mediaItem.isNull()) {
-            String m3092a = AccessHelper.m3092a(preferencesContent, PreferencesID.CURRENT_LYRIC_PATH.name(), "");
+            String m3092a = AccessHelper.query(preferencesContent, PreferencesID.CURRENT_LYRIC_PATH.name(), "");
             if (m3092a.startsWith(mediaItem.getID())) {
                 return m3092a.substring(mediaItem.getID().length());
             }
@@ -1176,7 +1176,7 @@ public class Preferences {
 
     /* renamed from: aR */
     public static int m2989aR() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.NOTIFICATION_PRIORITY.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.NOTIFICATION_PRIORITY.name(), 0);
     }
 
     /* renamed from: p */
@@ -1224,7 +1224,7 @@ public class Preferences {
 
     /* renamed from: aV */
     public static int m2985aV() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.AUDIO_FADE_LENGTH.name(), 500);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.AUDIO_FADE_LENGTH.name(), 500);
     }
 
     /* renamed from: r */
@@ -1234,17 +1234,17 @@ public class Preferences {
 
     /* renamed from: aW */
     public static int m2984aW() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.AUDIO_FADE_PALY_PAUSE_LENGTH.name(), 500);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.AUDIO_FADE_PALY_PAUSE_LENGTH.name(), 500);
     }
 
     /* renamed from: r */
-    public static void m2836r(String str) {
+    public static void setCacheMediaFolderPath(String str) {
         AccessHelper.m3086b(preferencesContent, PreferencesID.CACHED_MEDIA_FOLDER_PATH.name(), str);
     }
 
     /* renamed from: aX */
     public static String getCacheMediaFolderPath() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.CACHED_MEDIA_FOLDER_PATH.name(), TTPodConfig.getCacheMediaPath());
+        return AccessHelper.query(preferencesContent, PreferencesID.CACHED_MEDIA_FOLDER_PATH.name(), TTPodConfig.getCacheMediaPath());
     }
 
     /* renamed from: s */
@@ -1254,12 +1254,12 @@ public class Preferences {
 
     /* renamed from: aY */
     public static int getAudioFadeSeekLength() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.AUDIO_FADE_SEEK_LENGTH.name(), 500);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.AUDIO_FADE_SEEK_LENGTH.name(), 500);
     }
 
     /* renamed from: aZ */
     public static int m2981aZ() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.AUDIO_SESSION_ID.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.AUDIO_SESSION_ID.name(), 0);
     }
 
     /* renamed from: t */
@@ -1274,7 +1274,7 @@ public class Preferences {
 
     /* renamed from: ba */
     public static String m2928ba() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.ONLINE_ORIGIN.name(), "");
+        return AccessHelper.query(preferencesContent, PreferencesID.ONLINE_ORIGIN.name(), "");
     }
 
     /* renamed from: bb */
@@ -1294,12 +1294,12 @@ public class Preferences {
 
     /* renamed from: bc */
     public static String getOnlineMediaListGroupName() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.ONLINE_MEDIA_LIST_GROUP_NAME.name(), "");
+        return AccessHelper.query(preferencesContent, PreferencesID.ONLINE_MEDIA_LIST_GROUP_NAME.name(), "");
     }
 
     /* renamed from: bd */
     public static int getAppRuningState() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.APP_RUNNING_STATE.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.APP_RUNNING_STATE.name(), 0);
     }
 
     /* renamed from: u */
@@ -1329,7 +1329,7 @@ public class Preferences {
 
     /* renamed from: bg */
     public static String m2922bg() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.HOMEPAGE_ELEMENT_SETTING.name(), "");
+        return AccessHelper.query(preferencesContent, PreferencesID.HOMEPAGE_ELEMENT_SETTING.name(), "");
     }
 
     /* renamed from: u */
@@ -1419,7 +1419,7 @@ public class Preferences {
 
     /* renamed from: bo */
     public static int m2914bo() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.MV_CHECK_TYPE.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.MV_CHECK_TYPE.name(), 0);
     }
 
     /* renamed from: bp */
@@ -1494,7 +1494,7 @@ public class Preferences {
 
     /* renamed from: bw */
     public static int m2906bw() {
-        return AccessHelper.m3098a(preferencesContent, PreferencesID.LAST_OPEN_RECOMMEND_PAGE_TIME.name(), 0);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.LAST_OPEN_RECOMMEND_PAGE_TIME.name(), 0);
     }
 
     /* renamed from: a */
@@ -1522,12 +1522,12 @@ public class Preferences {
     /* renamed from: a */
     public static String m3016a(GroupType groupType) {
         String m2936b = m2936b(groupType);
-        return m2936b != null ? AccessHelper.m3092a(preferencesContent, PreferencesID.GROUP_SORT_ORDER_PREFIX.name() + m2936b, "") : "";
+        return m2936b != null ? AccessHelper.query(preferencesContent, PreferencesID.GROUP_SORT_ORDER_PREFIX.name() + m2936b, "") : "";
     }
 
     /* renamed from: bx */
     public static String m2905bx() {
-        return AccessHelper.m3092a(preferencesContent, PreferencesID.LAST_CMMUSIC_INIT_SUCCESS_IMSI.name(), "");
+        return AccessHelper.query(preferencesContent, PreferencesID.LAST_CMMUSIC_INIT_SUCCESS_IMSI.name(), "");
     }
 
     /* renamed from: v */

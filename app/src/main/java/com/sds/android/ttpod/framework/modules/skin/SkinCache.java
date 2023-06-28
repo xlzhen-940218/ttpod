@@ -153,14 +153,14 @@ public class SkinCache extends SkinReader {
         if (sBitmap != null) {
             if (sBitmap.m3816i()) {
                 StateListDrawableCreator stateListDrawableCreator = new StateListDrawableCreator();
-                stateListDrawableCreator.m3715a(ViewWrapper.f6593x, m3588b(sBitmap.m3821e()));
-                stateListDrawableCreator.m3715a(ViewWrapper.f6571b, m3588b(sBitmap.m3819f()));
-                stateListDrawableCreator.m3715a(ViewWrapper.f6573d, m3588b(sBitmap.m3817h()));
-                stateListDrawableCreator.m3715a(ViewWrapper.f6572c, m3588b(sBitmap.m3818g()));
-                stateListDrawableCreator.m3715a(ViewWrapper.f6570a, m3588b(sBitmap.m3823d()));
+                stateListDrawableCreator.m3715a(ViewWrapper.f6593x, m3588b(sBitmap.getPressed()));
+                stateListDrawableCreator.m3715a(ViewWrapper.f6571b, m3588b(sBitmap.getEnabled()));
+                stateListDrawableCreator.m3715a(ViewWrapper.f6573d, m3588b(sBitmap.getChecked()));
+                stateListDrawableCreator.m3715a(ViewWrapper.f6572c, m3588b(sBitmap.getFocused()));
+                stateListDrawableCreator.m3715a(ViewWrapper.f6570a, m3588b(sBitmap.getEmpty()));
                 return stateListDrawableCreator;
             }
-            return m3588b(sBitmap.m3825c());
+            return m3588b(sBitmap.getFile());
         }
         return null;
     }
@@ -195,12 +195,12 @@ public class SkinCache extends SkinReader {
                     TextUtils.SimpleStringSplitter simpleStringSplitter = new TextUtils.SimpleStringSplitter(',');
                     simpleStringSplitter.setString(str2);
                     if (simpleStringSplitter.hasNext()) {
-                        bitmapDrawableCreator.m3759a(ValueParser.m3702a(simpleStringSplitter.next(), -1), simpleStringSplitter.hasNext() ? ValueParser.m3702a(simpleStringSplitter.next(), -1) : -1);
+                        bitmapDrawableCreator.m3759a(ValueParser.parseInt(simpleStringSplitter.next(), -1), simpleStringSplitter.hasNext() ? ValueParser.parseInt(simpleStringSplitter.next(), -1) : -1);
                     }
                 }
                 colorDrawableCreator = bitmapDrawableCreator;
             } else {
-                colorDrawableCreator = new ColorDrawableCreator(ValueParser.m3697a(str3, (int[]) null), ValueParser.m3702a(str2, 0));
+                colorDrawableCreator = new ColorDrawableCreator(ValueParser.stringToIntArray(str3, (int[]) null), ValueParser.parseInt(str2, 0));
             }
             this.f6646c.put(str, colorDrawableCreator);
             return colorDrawableCreator;

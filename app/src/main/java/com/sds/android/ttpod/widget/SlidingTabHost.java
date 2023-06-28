@@ -683,8 +683,8 @@ public class SlidingTabHost extends HorizontalScrollView {
     }
 
     @Override // android.view.View
-    public void setBackgroundDrawable(Drawable drawable) {
-        super.setBackgroundDrawable(drawable);
+    public void setBackground(Drawable drawable) {
+        super.setBackground(drawable);
     }
 
     public int getTabBackground() {

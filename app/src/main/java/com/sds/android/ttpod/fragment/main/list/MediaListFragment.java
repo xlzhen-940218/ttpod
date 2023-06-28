@@ -57,7 +57,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     private static final int COLOR_DOWNLOAD_ERROR = -383198;
     private static final ArrayList<C1657a> GROUP_PAGE_LIST = new ArrayList<>();
     private static final String TAG = "MediaListFragment";
-    private IEditAble.InterfaceC1677a mEditRequestListener;
+    private EditRequestListener mEditRequestListener;
     private boolean mNeedCountStastic;
     private String mOrderBy;
     private String mPlayingGroupID;
@@ -113,7 +113,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
         }
     }
 
-    public void setEditRequestListener(IEditAble.InterfaceC1677a interfaceC1677a) {
+    public void setEditRequestListener(EditRequestListener interfaceC1677a) {
         this.mEditRequestListener = interfaceC1677a;
     }
 
