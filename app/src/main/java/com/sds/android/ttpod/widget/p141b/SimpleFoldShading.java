@@ -13,7 +13,7 @@ public class SimpleFoldShading implements FoldShading {
     private final Paint f8239a = new Paint();
 
     public SimpleFoldShading() {
-        this.f8239a.setColor(ViewCompat.MEASURED_STATE_MASK);
+        this.f8239a.setColor(0xff000000);
     }
 
     @Override // com.sds.android.ttpod.widget.p141b.FoldShading

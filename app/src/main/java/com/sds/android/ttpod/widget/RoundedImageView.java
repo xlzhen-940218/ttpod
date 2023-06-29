@@ -63,7 +63,7 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
         super(context);
         this.corner_radius = 0.0f;
         this.Image_border_width = 0.0f;
-        this.Image_border_color = ColorStateList.valueOf(ViewCompat.MEASURED_STATE_MASK);
+        this.Image_border_color = ColorStateList.valueOf(0xff000000);
         this.oval = false;
         this.mutate_background = false;
         this.scaleType = ImageView.ScaleType.FIT_CENTER;
@@ -73,7 +73,7 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
         super(context, attributeSet);
         this.corner_radius = 0.0f;
         this.Image_border_width = 0.0f;
-        this.Image_border_color = ColorStateList.valueOf(ViewCompat.MEASURED_STATE_MASK);
+        this.Image_border_color = ColorStateList.valueOf(0xff000000);
         this.oval = false;
         this.mutate_background = false;
         this.scaleType = ImageView.ScaleType.FIT_CENTER;
@@ -84,7 +84,7 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
         super(context, attributeSet, i);
         this.corner_radius = 0.0f;
         this.Image_border_width = 0.0f;
-        this.Image_border_color = ColorStateList.valueOf(ViewCompat.MEASURED_STATE_MASK);
+        this.Image_border_color = ColorStateList.valueOf(0xff000000);
         this.oval = false;
         this.mutate_background = false;
         this.scaleType = ImageView.ScaleType.FIT_CENTER;
@@ -110,7 +110,7 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
         }
         this.Image_border_color = obtainStyledAttributes.getColorStateList(R.styleable.RoundedImageView_Image_border_color);
         if (this.Image_border_color == null) {
-            this.Image_border_color = ColorStateList.valueOf(ViewCompat.MEASURED_STATE_MASK);
+            this.Image_border_color = ColorStateList.valueOf(0xff000000);
         }
         this.mutate_background = obtainStyledAttributes.getBoolean(R.styleable.RoundedImageView_mutate_background, false);
         this.oval = obtainStyledAttributes.getBoolean(R.styleable.RoundedImageView_oval, false);
@@ -124,7 +124,7 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
         super(context);
         this.corner_radius = 0.0f;
         this.Image_border_width = 0.0f;
-        this.Image_border_color = ColorStateList.valueOf(ViewCompat.MEASURED_STATE_MASK);
+        this.Image_border_color = ColorStateList.valueOf(0xff000000);
         this.oval = false;
         this.mutate_background = false;
         this.scaleType = ImageView.ScaleType.FIT_CENTER;
@@ -354,7 +354,7 @@ public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageVi
     public void setBorderColor(ColorStateList colorStateList) {
         if (!this.Image_border_color.equals(colorStateList)) {
             if (colorStateList == null) {
-                colorStateList = ColorStateList.valueOf(ViewCompat.MEASURED_STATE_MASK);
+                colorStateList = ColorStateList.valueOf(0xff000000);
             }
             this.Image_border_color = colorStateList;
             m1564b();

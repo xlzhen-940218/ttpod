@@ -100,7 +100,7 @@ public class RoundRectImageView extends androidx.appcompat.widget.AppCompatImage
             this.f7872a.inset(i, i);
             int i2 = this.cornerLength - (i * 2);
             paint.setAntiAlias(true);
-            paint.setColor(ViewCompat.MEASURED_STATE_MASK);
+            paint.setColor(0xff000000);
             float width = this.cornerLength == -1 ? this.f7872a.width() : i2;
             float height = this.cornerLength == -1 ? this.f7872a.height() : i2;
             canvas.drawRoundRect(this.f7872a, width, height, paint);

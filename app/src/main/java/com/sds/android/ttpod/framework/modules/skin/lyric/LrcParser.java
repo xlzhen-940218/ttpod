@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import com.sds.android.ttpod.framework.modules.skin.p130c.DateTimeUtils;
 
@@ -16,8 +16,8 @@ public class LrcParser extends LyricParser {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.LyricParser
     /* renamed from: a */
-    protected Lyric getLyric(String str) {
-        return new LrcLyric(str);
+    protected Lyric getLyric(String lyricPath) {
+        return new LrcLyric(lyricPath);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.LyricParser
@@ -73,8 +73,8 @@ public class LrcParser extends LyricParser {
         } else if (trim.equalsIgnoreCase("offset")) {
             try {
                 long parseLong = Long.parseLong(trim2);
-                lyricInfo.setOffset(parseLong);
-                lyricInfo.setCurrent(parseLong);
+                lyricInfo.setOffsetTime(parseLong);
+                lyricInfo.setCurrentTime(parseLong);
                 return true;
             } catch (NumberFormatException e) {
                 e.printStackTrace();
@@ -82,7 +82,7 @@ public class LrcParser extends LyricParser {
             }
         } else if (trim.equalsIgnoreCase("total")) {
             try {
-                lyricInfo.setTotal(Math.max(0L, Long.parseLong(trim2)));
+                lyricInfo.setTotalTime(Math.max(0L, Long.parseLong(trim2)));
                 return true;
             } catch (NumberFormatException e2) {
                 e2.printStackTrace();
@@ -104,8 +104,8 @@ public class LrcParser extends LyricParser {
     /* renamed from: a */
     protected LrcSentence mo3623a(long j, String str) {
         LrcSentence lrcSentence = new LrcSentence();
-        lrcSentence.setLrcTime(j);
-        lrcSentence.m3677a(str);
+        lrcSentence.setStartTime(j);
+        lrcSentence.setLrcText(str);
         return lrcSentence;
     }
 
@@ -125,7 +125,7 @@ public class LrcParser extends LyricParser {
             } else {
                 mo3622a = mo3622a(lrcSentence, lyric.getLrcLastTime());
             }
-            lrcSentence.mo3614b(mo3622a > 0 ? (int) mo3622a : 1);
+            lrcSentence.setDuration(mo3622a > 0 ? (int) mo3622a : 1);
             lrcSentence.setLyricInfo(mo3668g);
         }
     }

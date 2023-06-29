@@ -155,10 +155,10 @@ public class AutoScrollableTextView extends androidx.appcompat.widget.AppCompatC
                     int length2 = spannableStringBuilder.length();
                     if (str2 != null) {
                         if ("Color".equals(trim)) {
-                            standard = new ForegroundColorSpan(ValueParser.m3695c(str2, getCurrentTextColor()));
+                            standard = new ForegroundColorSpan(ValueParser.parseColor(str2, getCurrentTextColor()));
                         } else if ("Size".equals(trim)) {
                             int textSize = (int) getTextSize();
-                            standard = new AbsoluteSizeSpan(ValueParser.m3704a(ValueParser.parseCommon(str2, textSize), textSize));
+                            standard = new AbsoluteSizeSpan(ValueParser.getSize(ValueParser.parseCommon(str2, textSize), textSize));
                         } else {
                             standard = "Align".equals(trim) ? new AlignmentSpan.Standard(ValueParser.stringToAlign(str2, Layout.Alignment.ALIGN_NORMAL)) : null;
                         }

@@ -22,7 +22,6 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import androidx.core.view.ViewCompat;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
@@ -33,11 +32,11 @@ import android.view.ViewConfiguration;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric;
-import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
-import com.sds.android.ttpod.framework.modules.skin.p132d.LyricInfo;
-import com.sds.android.ttpod.framework.modules.skin.p132d.OnMeasureTextListener;
-import com.sds.android.ttpod.framework.modules.skin.p132d.Sentence;
+import com.sds.android.ttpod.framework.modules.skin.lyric.FormattedLyric;
+import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
+import com.sds.android.ttpod.framework.modules.skin.lyric.LyricInfo;
+import com.sds.android.ttpod.framework.modules.skin.lyric.OnMeasureTextListener;
+import com.sds.android.ttpod.framework.modules.skin.lyric.Sentence;
 import java.io.File;
 
 @SuppressLint({"HandlerLeak"})
@@ -74,7 +73,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     private int f6741H;
 
     /* renamed from: I */
-    private int f6742I;
+    private int lrcLineIndex;
 
     /* renamed from: J */
     private int f6743J;
@@ -107,7 +106,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     private Rect currentPlayTimeRect;
 
     /* renamed from: T */
-    private int f6753T;
+    private int currentTextWidth;
 
     /* renamed from: U */
     private int fadeEdgeLength;
@@ -125,7 +124,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     private Context context;
 
     /* renamed from: aA */
-    private int f6759aA;
+    private int currentLrcIndex;
 
     /* renamed from: aB */
     private int f6760aB;
@@ -137,7 +136,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     private int f6762aE;
 
     /* renamed from: aF */
-    private boolean f6763aF;
+    private boolean mtvOrSingle;
 
     /* renamed from: aG */
     private boolean colorBySkin;
@@ -149,10 +148,10 @@ public class LyricView extends View implements OnMeasureTextListener {
     private TextPaint strokeTextPaint;
 
     /* renamed from: aJ */
-    private boolean f6767aJ;
+    private boolean registerScreenOnOffBroadcastReceiver;
 
     /* renamed from: aK */
-    private BroadcastReceiver broadcastReceiver;
+    private BroadcastReceiver screenOnOffBroadcastReceiver;
 
     /* renamed from: aa */
     private int f6769aa;
@@ -221,7 +220,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     private LinearGradient gradientUGuest;
 
     /* renamed from: aw */
-    private String[] f6791aw;
+    private String[] countDownTexts;
 
     /* renamed from: ax */
     private boolean f6792ax;
@@ -337,13 +336,13 @@ public class LyricView extends View implements OnMeasureTextListener {
     }
 
     /* renamed from: b */
-    public boolean m3462b() {
-        return this.f6763aF;
+    public boolean getMtvOrSingle() {
+        return this.mtvOrSingle;
     }
 
     /* renamed from: c */
-    public void m3451c() {
-        this.f6763aF = true;
+    public void setMtvOrSingle() {
+        this.mtvOrSingle = true;
     }
 
     /* renamed from: d */
@@ -372,7 +371,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         if (this.lyric == null || this.formattedLyric == null) {
             return 0;
         }
-        int mo3674a = this.lyric.mo3674a(i);
+        int mo3674a = this.lyric.next(i);
         m3444c(true);
         return mo3674a;
     }
@@ -396,7 +395,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     /* renamed from: f */
     public void m3434f() {
         if (this.lyric != null && this.formattedLyric != null) {
-            this.lyric.mo3675a();
+            this.lyric.syncToCurrent();
             m3444c(true);
         }
     }
@@ -414,13 +413,13 @@ public class LyricView extends View implements OnMeasureTextListener {
         sb.append(System.identityHashCode(this));
         sb.append(' ');
         switch (getVisibility()) {
-            case 0:
+            case VISIBLE:
                 sb.append('V');
                 break;
-            case 4:
+            case INVISIBLE:
                 sb.append('I');
                 break;
-            case 8:
+            case GONE:
                 sb.append('G');
                 break;
             default:
@@ -524,7 +523,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         this.f6756W = new Rect();
         this.mtvStroke = true;
         this.mtvGradient = true;
-        this.f6791aw = new String[]{"", "●", "●●", "●●●", "●●●●", "●●●●●"};
+        this.countDownTexts = new String[]{"", "●", "●●", "●●●", "●●●●", "●●●●●"};
         this.f6792ax = false;
         this.handler = new Handler(Looper.getMainLooper()) { // from class: com.sds.android.ttpod.framework.modules.skin.view.LyricView.1
             @Override // android.os.Handler
@@ -574,8 +573,8 @@ public class LyricView extends View implements OnMeasureTextListener {
                                 LyricView.this.lyricStatusText = "unknow state";
                                 break;
                         }
-                        LyricView.this.m3452b(true);
-                        LyricView.this.m3452b(false);
+                        LyricView.this.imageRecycle(true);
+                        LyricView.this.imageRecycle(false);
                         LyricView.this.m3438d(true);
                         return;
                     case 4:
@@ -596,9 +595,9 @@ public class LyricView extends View implements OnMeasureTextListener {
         this.strokeTextPaint = new TextPaint();
         this.strokeTextPaint.setColor(-1);
         this.strokeTextPaint.setStyle(Paint.Style.STROKE);
-        this.f6767aJ = false;
-        this.broadcastReceiver = new BroadcastReceiver() { // from class: com.sds.android.ttpod.framework.modules.skin.view.LyricView.2
-            @Override // android.content.BroadcastReceiver
+        this.registerScreenOnOffBroadcastReceiver = false;
+        this.screenOnOffBroadcastReceiver = new BroadcastReceiver() {
+            @Override
             public void onReceive(Context context2, Intent intent) {
                 String action = intent.getAction();
                 if ("android.intent.action.SCREEN_OFF".equals(action)) {
@@ -662,7 +661,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         this.f6756W = new Rect();
         this.mtvStroke = true;
         this.mtvGradient = true;
-        this.f6791aw = new String[]{"", "●", "●●", "●●●", "●●●●", "●●●●●"};
+        this.countDownTexts = new String[]{"", "●", "●●", "●●●", "●●●●", "●●●●●"};
         this.f6792ax = false;
         this.handler = new Handler(Looper.getMainLooper()) { // from class: com.sds.android.ttpod.framework.modules.skin.view.LyricView.1
             @Override // android.os.Handler
@@ -712,8 +711,8 @@ public class LyricView extends View implements OnMeasureTextListener {
                                 LyricView.this.lyricStatusText = "unknow state";
                                 break;
                         }
-                        LyricView.this.m3452b(true);
-                        LyricView.this.m3452b(false);
+                        LyricView.this.imageRecycle(true);
+                        LyricView.this.imageRecycle(false);
                         LyricView.this.m3438d(true);
                         return;
                     case 4:
@@ -734,8 +733,8 @@ public class LyricView extends View implements OnMeasureTextListener {
         this.strokeTextPaint = new TextPaint();
         this.strokeTextPaint.setColor(-1);
         this.strokeTextPaint.setStyle(Paint.Style.STROKE);
-        this.f6767aJ = false;
-        this.broadcastReceiver = new BroadcastReceiver() { // from class: com.sds.android.ttpod.framework.modules.skin.view.LyricView.2
+        this.registerScreenOnOffBroadcastReceiver = false;
+        this.screenOnOffBroadcastReceiver = new BroadcastReceiver() { // from class: com.sds.android.ttpod.framework.modules.skin.view.LyricView.2
             @Override // android.content.BroadcastReceiver
             public void onReceive(Context context2, Intent intent) {
                 String action = intent.getAction();
@@ -766,7 +765,7 @@ public class LyricView extends View implements OnMeasureTextListener {
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
-    public void m3452b(boolean z) {
+    public void imageRecycle(boolean z) {
         if (z) {
             if (this.f6772ad != null) {
                 this.f6772ad.recycle();
@@ -794,8 +793,8 @@ public class LyricView extends View implements OnMeasureTextListener {
     public void m3423k() {
         if (getWidth() != 0 && getHeight() != 0) {
             this.f6746M = -1;
-            m3452b(true);
-            m3452b(false);
+            imageRecycle(true);
+            imageRecycle(false);
             if (this.lyricDisplayEnum == LyricDisplayEnum.MTV) {
                 m3415s();
             } else {
@@ -874,7 +873,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         boolean z = false;
         int mo3628a = this.formattedLyric.getIndexByLrcTime(this.playingTime);
         if (mo3628a < 0) {
-            this.f6742I = 0;
+            this.lrcLineIndex = 0;
             this.f6743J = 1;
             this.f6784ap = -1;
             this.f6785aq = -1;
@@ -886,13 +885,13 @@ public class LyricView extends View implements OnMeasureTextListener {
             return false;
         }
         this.f6757Z = (mo3628a & 1) == 0;
-        Sentence mo3629a = this.formattedLyric.getLrcLineIndex(mo3628a);
-        int mo3636f = mo3629a.mo3636f();
-        int mo3637e = (int) (this.playingTime - mo3629a.mo3637e());
+        Sentence mo3629a = this.formattedLyric.getCurrentIndex(mo3628a);
+        int mo3636f = mo3629a.getDuration();
+        int mo3637e = (int) (this.playingTime - mo3629a.getNextTime());
         int mo3611c = mo3629a.mo3611c(mo3637e);
         if (mo3629a.getCurrentLrcText().length() == 0 && mo3636f >= 7000) {
             int i = ((mo3636f - mo3637e) / 1000) + 1;
-            if (i >= this.f6791aw.length) {
+            if (i >= this.countDownTexts.length) {
                 i = 0;
             }
             if (this.f6757Z && i != this.f6784ap) {
@@ -916,7 +915,7 @@ public class LyricView extends View implements OnMeasureTextListener {
                 this.f6743J = mo3628a <= 2 ? 1 : mo3628a - 1;
                 return true;
             } else {
-                this.f6742I = mo3628a > 2 ? mo3628a - 1 : 0;
+                this.lrcLineIndex = mo3628a > 2 ? mo3628a - 1 : 0;
                 return true;
             }
         }
@@ -938,14 +937,14 @@ public class LyricView extends View implements OnMeasureTextListener {
     private void m3464a(boolean z, int i) {
         if (z) {
             if (this.f6757Z) {
-                this.f6742I = i;
+                this.lrcLineIndex = i;
             } else {
                 this.f6743J = i;
             }
         } else if (this.f6757Z) {
             this.f6743J = i;
         } else {
-            this.f6742I = i;
+            this.lrcLineIndex = i;
         }
     }
 
@@ -960,17 +959,17 @@ public class LyricView extends View implements OnMeasureTextListener {
         int i2;
         boolean z;
         int mo3628a = this.formattedLyric.getIndexByLrcTime(this.playingTime);
-        this.f6742I = mo3628a;
+        this.lrcLineIndex = mo3628a;
         this.f6745L = 0;
-        Sentence mo3629a = this.formattedLyric.getLrcLineIndex(mo3628a);
+        Sentence mo3629a = this.formattedLyric.getCurrentIndex(mo3628a);
         int i3 = (int) this.playingTime;
         if (mo3628a >= 0) {
             int mo3638b = mo3629a.getIndex();
-            mo3637e = mo3629a.mo3636f();
-            i = (int) (this.playingTime - mo3629a.mo3637e());
+            mo3637e = mo3629a.getDuration();
+            i = (int) (this.playingTime - mo3629a.getNextTime());
             i2 = mo3638b;
         } else {
-            mo3637e = (int) this.formattedLyric.getLrcLineIndex(0).mo3637e();
+            mo3637e = (int) this.formattedLyric.getCurrentIndex(0).getNextTime();
             i = i3;
             i2 = -1;
         }
@@ -986,11 +985,11 @@ public class LyricView extends View implements OnMeasureTextListener {
         }
         int i4 = this.f6737D >> 1;
         int i5 = this.f6747N;
-        while (i4 > 0 && this.f6742I > 0) {
+        while (i4 > 0 && this.lrcLineIndex > 0) {
             int i6 = i5 - this.f6739F;
-            this.f6742I--;
+            this.lrcLineIndex--;
             i4--;
-            if (i2 == this.formattedLyric.getLrcLineIndex(this.f6742I).getIndex()) {
+            if (i2 == this.formattedLyric.getCurrentIndex(this.lrcLineIndex).getIndex()) {
                 this.f6745L++;
                 i5 = i6;
             } else {
@@ -1004,7 +1003,7 @@ public class LyricView extends View implements OnMeasureTextListener {
                 this.f6746M = mo3611c;
                 z = true;
                 if (this.f6744K == i5 || z) {
-                    if (this.f6742I >= 0) {
+                    if (this.lrcLineIndex >= 0) {
                         if (this.fadeColor && i >= 0 && i < 1000) {
                             if (mo3637e >= 1000) {
                                 mo3637e = 1000;
@@ -1028,7 +1027,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         z = z2;
         if (this.f6744K == i5) {
         }
-        if (this.f6742I >= 0) {
+        if (this.lrcLineIndex >= 0) {
         }
         this.f6744K = i5;
         return true;
@@ -1077,12 +1076,12 @@ public class LyricView extends View implements OnMeasureTextListener {
             this.f6777ai = -1;
             this.f6776ah = -1;
         }
-        m3418p();
+        setTextAlign();
         postInvalidate();
     }
 
     /* renamed from: p */
-    private void m3418p() {
+    private void setTextAlign() {
         if (this.lyricDisplayEnum != LyricDisplayEnum.MTV) {
             this.normalTextPaint.setTextAlign(this.align);
             this.highlightTextPaint.setTextAlign(this.align);
@@ -1200,9 +1199,9 @@ public class LyricView extends View implements OnMeasureTextListener {
     }
 
     /* renamed from: a */
-    public void m3484a(float f, float f2, float f3, int i) {
-        this.normalTextPaint.setShadowLayer(f, f2, f3, i);
-        this.highlightTextPaint.setShadowLayer(f, f2, f3, i);
+    public void setShadowLayer(float radius, float dx, float dy, int shadowColor) {
+        this.normalTextPaint.setShadowLayer(radius, dx, dy, shadowColor);
+        this.highlightTextPaint.setShadowLayer(radius, dx, dy, shadowColor);
         m3438d(true);
     }
 
@@ -1222,8 +1221,8 @@ public class LyricView extends View implements OnMeasureTextListener {
         this.currentPlayTimeRect.left = this.f6751R.left;
         this.currentPlayTimeRect.bottom = this.f6736C - ((int) applyDimension(1, 1.0f));
         this.currentPlayTimeRect.top = this.currentPlayTimeRect.bottom - this.f6739F;
-        this.f6753T = measureLrcTextWidth("00:00");
-        this.currentPlayTimeRect.right = this.currentPlayTimeRect.left + 20 + this.f6753T;
+        this.currentTextWidth = measureLrcTextWidth("00:00");
+        this.currentPlayTimeRect.right = this.currentPlayTimeRect.left + 20 + this.currentTextWidth;
     }
 
     /* renamed from: r */
@@ -1246,7 +1245,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         }
         this.f6740G = ((this.f6739F - i) >> 1) + ((int) fontMetrics.bottom);
         this.f6741H = ((this.f6739F - i2) >> 1) + ((int) fontMetrics2.bottom);
-        m3418p();
+        setTextAlign();
     }
 
     /* renamed from: s */
@@ -1300,13 +1299,13 @@ public class LyricView extends View implements OnMeasureTextListener {
         String curPlayTimeStr = getCurPlayTimeStr();
         this.highlightTextPaint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(curPlayTimeStr, this.currentPlayTimeRect.centerX(), this.currentPlayTimeRect.bottom - this.f6741H, this.highlightTextPaint);
-        m3418p();
+        setTextAlign();
     }
 
     private String getCurPlayTimeStr() {
-        int i = (int) (this.playingTime / 1000);
-        int i2 = i / 60;
-        return String.format("%02d:%02d", Integer.valueOf(i2), Integer.valueOf(i - (i2 * 60)));
+        int playTimeSecond = (int) (this.playingTime / 1000);
+        int playTimeMinute = playTimeSecond / 60;
+        return String.format("%02d:%02d", Integer.valueOf(playTimeMinute), Integer.valueOf(playTimeSecond - (playTimeMinute * 60)));
     }
 
     /* renamed from: b */
@@ -1430,14 +1429,14 @@ public class LyricView extends View implements OnMeasureTextListener {
         int i2;
         TextPaint textPaint;
         int i3;
-        int i4 = this.f6742I;
+        int i4 = this.lrcLineIndex;
         int i5 = this.f6744K;
         int lrcLineSize = this.formattedLyric.getLrcLineSize();
-        int lrcLineIndex = this.formattedLyric.getLrcLineIndex();
+        int lrcLineIndex = this.formattedLyric.getCurrentIndex();
         if (lrcLineIndex < 0) {
             index = -1;
         } else {
-            index = this.formattedLyric.getLrcLineIndex(lrcLineIndex).getIndex();
+            index = this.formattedLyric.getCurrentIndex(lrcLineIndex).getIndex();
         }
         if (this.fadeEdgeLength <= 0 || this.lyricDisplayEnum != LyricDisplayEnum.Normal) {
             i2 = 0;
@@ -1447,7 +1446,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         int i6 = 0;
         while (i6 < this.f6737D && i4 < lrcLineSize) {
             if (i4 >= 0) {
-                Sentence sentence = this.formattedLyric.getLrcLineIndex(i4);
+                Sentence sentence = this.formattedLyric.getCurrentIndex(i4);
                 int sentenceIndex = sentence.getIndex();
                 String mo3635g = sentence.getCurrentLrcText();
                 if (mo3635g.length() != 0) {
@@ -1496,10 +1495,10 @@ public class LyricView extends View implements OnMeasureTextListener {
         if (this.fadeEdgeLength > 0 && this.lyricDisplayEnum == LyricDisplayEnum.Normal) {
             Paint paint = new Paint(1);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, this.fadeEdgeLength, 0, (int) ViewCompat.MEASURED_STATE_MASK, Shader.TileMode.CLAMP));
+            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, this.fadeEdgeLength, 0, (int) 0xff000000, Shader.TileMode.CLAMP));
             canvas.drawRect(this.f6751R.left, 0.0f, this.f6751R.right, this.fadeEdgeLength, paint);
             int height = getHeight();
-            paint.setShader(new LinearGradient(0.0f, height - this.fadeEdgeLength, 0.0f, height, (int) ViewCompat.MEASURED_STATE_MASK, 0, Shader.TileMode.CLAMP));
+            paint.setShader(new LinearGradient(0.0f, height - this.fadeEdgeLength, 0.0f, height, (int) 0xff000000, 0, Shader.TileMode.CLAMP));
             canvas.drawRect(this.f6751R.left, height - this.fadeEdgeLength, this.f6751R.right, height, paint);
             paint.setXfermode(null);
             canvas.restoreToCount(i2);
@@ -1512,15 +1511,15 @@ public class LyricView extends View implements OnMeasureTextListener {
         boolean z2;
         boolean z3;
         boolean z4 = this.f6757Z;
-        if (this.f6757Z || this.f6742I >= this.f6743J) {
+        if (this.f6757Z || this.lrcLineIndex >= this.f6743J) {
             z = true;
         } else {
             z4 = true;
             z = false;
         }
         int mo3630a = this.formattedLyric.getLrcLineSize();
-        if (this.f6742I < mo3630a) {
-            Sentence mo3629a = this.formattedLyric.getLrcLineIndex(this.f6742I);
+        if (this.lrcLineIndex < mo3630a) {
+            Sentence mo3629a = this.formattedLyric.getCurrentIndex(this.lrcLineIndex);
             this.f6751R.set(this.f6755V);
             int mo3640a = mo3629a.getLrcTextWidth();
             int i = mo3640a - this.width;
@@ -1538,10 +1537,10 @@ public class LyricView extends View implements OnMeasureTextListener {
                 }
             }
             m3475a(canvas, z4, mo3629a.getCurrentLrcText(), true, z);
-            this.f6776ah = this.f6742I;
+            this.f6776ah = this.lrcLineIndex;
         }
         boolean z5 = !this.f6757Z;
-        if (!this.f6757Z || this.f6742I <= this.f6743J) {
+        if (!this.f6757Z || this.lrcLineIndex <= this.f6743J) {
             z2 = z5;
             z3 = true;
         } else {
@@ -1549,7 +1548,7 @@ public class LyricView extends View implements OnMeasureTextListener {
             z3 = false;
         }
         if (this.f6743J < mo3630a) {
-            Sentence mo3629a2 = this.formattedLyric.getLrcLineIndex(this.f6743J);
+            Sentence mo3629a2 = this.formattedLyric.getCurrentIndex(this.f6743J);
             this.f6751R.set(this.f6756W);
             int mo3640a2 = mo3629a2.getLrcTextWidth() - this.width;
             if (this.f6785aq < 0) {
@@ -1563,7 +1562,7 @@ public class LyricView extends View implements OnMeasureTextListener {
                         }
                         this.f6751R.left -= mo3640a2;
                     }
-                } else if (this.f6742I > this.f6743J) {
+                } else if (this.lrcLineIndex > this.f6743J) {
                     this.f6751R.left -= mo3640a2;
                 }
             }
@@ -1574,10 +1573,10 @@ public class LyricView extends View implements OnMeasureTextListener {
     }
 
     /* renamed from: a */
-    private void m3466a(String str, int i, int i2, Canvas canvas, TextPaint textPaint) {
+    private void m3466a(String text, int x, int y, Canvas canvas, TextPaint textPaint) {
         Paint.Style style = textPaint.getStyle();
         textPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawText(str, i, i2, textPaint);
+        canvas.drawText(text, x, y, textPaint);
         textPaint.setStyle(style);
     }
 
@@ -1588,8 +1587,8 @@ public class LyricView extends View implements OnMeasureTextListener {
         Canvas canvas3;
         Canvas canvas4;
         Canvas canvas5 = null;
-        if (z2 && (this.f6776ah != this.f6742I || (this.f6757Z && !this.f6778aj))) {
-            m3452b(true);
+        if (z2 && (this.f6776ah != this.lrcLineIndex || (this.f6757Z && !this.f6778aj))) {
+            imageRecycle(true);
             int mo3467a = measureLrcTextWidth(str) + 12;
             try {
                 this.f6772ad = Bitmap.createBitmap(mo3467a, this.f6739F, Bitmap.Config.ARGB_8888);
@@ -1610,7 +1609,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         } else if (z2 || (this.f6777ai == this.f6743J && (this.f6757Z || !this.f6778aj))) {
             canvas = null;
         } else {
-            m3452b(false);
+            imageRecycle(false);
             int mo3467a2 = measureLrcTextWidth(str) + 12;
             try {
                 this.f6774af = Bitmap.createBitmap(mo3467a2, this.f6739F, Bitmap.Config.ARGB_8888);
@@ -1638,13 +1637,13 @@ public class LyricView extends View implements OnMeasureTextListener {
     }
 
     /* renamed from: a */
-    private void m3476a(Canvas canvas, String str, boolean playing, int i, int i2, boolean selected, boolean z3) {
+    private void m3476a(Canvas canvas, String text, boolean playing, int x, int i2, boolean selected, boolean z3) {
         LinearGradient linearGradient;
         TextPaint textPaint = playing ? this.highlightTextPaint : this.normalTextPaint;
-        int i3 = i2 - (playing ? this.f6741H : this.f6740G);
+        int y = i2 - (playing ? this.f6741H : this.f6740G);
         if (this.mtvStroke) {
             textPaint.setColor(selected ? this.colorStrokeSelected : this.colorStrokeNormal);
-            m3466a(str, i, i3, canvas, textPaint);
+            m3466a(text, x, y, canvas, textPaint);
         }
         textPaint.setColor(selected ? this.colorHighlight : this.textColor);
         if (this.mtvGradient) {
@@ -1655,7 +1654,7 @@ public class LyricView extends View implements OnMeasureTextListener {
             }
             textPaint.setShader(linearGradient);
         }
-        canvas.drawText(str, i, i3, textPaint);
+        canvas.drawText(text, x, y, textPaint);
         if (this.mtvGradient) {
             textPaint.setShader(null);
         }
@@ -1678,7 +1677,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         int i = z2 ? this.f6784ap : this.f6785aq;
         if (i >= 0) {
             z4 = false;
-            str2 = this.f6791aw[i];
+            str2 = this.countDownTexts[i];
         } else {
             str2 = str;
             z4 = z;
@@ -1852,7 +1851,7 @@ public class LyricView extends View implements OnMeasureTextListener {
                         int abs2 = Math.abs(y - this.upY);
                         if (abs2 > abs && abs2 > dp4) {
                             m3442d(y);
-                            m3412v();
+                            requestDisallowInterceptTouchEvent();
                             z = true;
                             break;
                         }
@@ -1872,29 +1871,29 @@ public class LyricView extends View implements OnMeasureTextListener {
     }
 
     /* renamed from: v */
-    private void m3412v() {
+    private void requestDisallowInterceptTouchEvent() {
         if (getParent() != null) {
             getParent().requestDisallowInterceptTouchEvent(true);
         }
     }
 
     /* renamed from: d */
-    private void m3442d(int i) {
+    private void m3442d(int upY) {
         int i2;
         int i3 = 1;
         if (this.formattedLyric != null) {
             this.f6792ax = true;
-            this.upY = i;
-            this.f6759aA = this.formattedLyric.getLrcLineIndex();
+            this.upY = upY;
+            this.currentLrcIndex = this.formattedLyric.getCurrentIndex();
             this.f6760aB = this.f6747N;
             if (!this.slowScroll) {
                 int i4 = (int) this.playingTime;
-                if (this.f6759aA >= 0) {
-                    Sentence mo3629a = this.formattedLyric.getLrcLineIndex(this.f6759aA);
-                    i2 = (int) (this.playingTime - mo3629a.mo3637e());
-                    i3 = mo3629a.mo3636f();
+                if (this.currentLrcIndex >= 0) {
+                    Sentence mo3629a = this.formattedLyric.getCurrentIndex(this.currentLrcIndex);
+                    i2 = (int) (this.playingTime - mo3629a.getNextTime());
+                    i3 = mo3629a.getDuration();
                 } else {
-                    int mo3637e = (int) this.formattedLyric.getLrcLineIndex(0).mo3637e();
+                    int mo3637e = (int) this.formattedLyric.getCurrentIndex(0).getNextTime();
                     if (mo3637e < 1) {
                         i2 = i4;
                     } else {
@@ -1918,7 +1917,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         }
         int i3 = i - this.upY;
         int i4 = this.f6735B - i3;
-        int i5 = this.f6759aA;
+        int i5 = this.currentLrcIndex;
         int i6 = this.f6760aB;
         int i7 = this.f6739F + i6;
         int i8 = i3 / this.f6739F;
@@ -1944,7 +1943,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         if (mo3630a > 0 && i2 >= -1 && i2 < mo3630a) {
             int i14 = i4 - i10;
             if (i2 == -1) {
-                int mo3637e2 = (int) this.formattedLyric.getLrcLineIndex(0).mo3637e();
+                int mo3637e2 = (int) this.formattedLyric.getCurrentIndex(0).getNextTime();
                 if (mo3637e2 < 1) {
                     mo3637e = 0;
                     mo3636f = 1;
@@ -1953,9 +1952,9 @@ public class LyricView extends View implements OnMeasureTextListener {
                     mo3637e = 0;
                 }
             } else {
-                Sentence mo3629a = this.formattedLyric.getLrcLineIndex(i2);
-                mo3636f = mo3629a.mo3636f();
-                mo3637e = mo3629a.mo3637e();
+                Sentence mo3629a = this.formattedLyric.getCurrentIndex(i2);
+                mo3636f = mo3629a.getDuration();
+                mo3637e = mo3629a.getNextTime();
             }
             this.playingTime = mo3637e + ((mo3636f * i14) / this.f6739F);
             if (this.playingTime < 10) {
@@ -2043,15 +2042,15 @@ public class LyricView extends View implements OnMeasureTextListener {
         super.onAttachedToWindow();
         IntentFilter intentFilter = new IntentFilter("android.intent.action.SCREEN_OFF");
         intentFilter.addAction("android.intent.action.SCREEN_ON");
-        getContext().registerReceiver(this.broadcastReceiver, intentFilter);
-        this.f6767aJ = true;
+        getContext().registerReceiver(this.screenOnOffBroadcastReceiver, intentFilter);
+        this.registerScreenOnOffBroadcastReceiver = true;
     }
 
     @Override // android.view.View
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        if (this.f6767aJ) {
-            getContext().unregisterReceiver(this.broadcastReceiver);
+        if (this.registerScreenOnOffBroadcastReceiver) {
+            getContext().unregisterReceiver(this.screenOnOffBroadcastReceiver);
         }
     }
 

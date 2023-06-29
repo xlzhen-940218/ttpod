@@ -273,7 +273,7 @@ public final class ThemeModule extends BaseModule {
         int m7225c = DisplayUtils.m7225c() / 3;
         ColorDrawable colorDrawable = (ColorDrawable) drawable;
         if (drawable == null) {
-            ColorDrawable colorDrawable2 = new ColorDrawable(ViewCompat.MEASURED_STATE_MASK);
+            ColorDrawable colorDrawable2 = new ColorDrawable(0xff000000);
             colorDrawable2.setBounds(0, 0, m7225c, m7225c);
             colorDrawable = colorDrawable2;
         }

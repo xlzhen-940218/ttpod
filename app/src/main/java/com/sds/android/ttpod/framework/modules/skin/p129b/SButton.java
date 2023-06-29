@@ -24,7 +24,7 @@ public class SButton extends SImage<TTPodButton> {
     /* renamed from: a */
     public void setBackground(Context context, TTPodButton tTPodButton, SkinCache skinCache) {
         super.setBackground(context,tTPodButton, skinCache);
-        tTPodButton.setImageDrawable(skinCache.m3596a(context.getResources(), this.f6456c));
-        tTPodButton.setScaleType(m3797a(this.f6457d));
+        tTPodButton.setImageDrawable(skinCache.m3596a(context.getResources(), this.icon));
+        tTPodButton.setScaleType(getScaleType(this.scaleType));
     }
 }

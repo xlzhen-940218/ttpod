@@ -11,20 +11,20 @@ import java.util.HashMap;
 public abstract class SImage<T extends View> extends SComponent<T> {
 
     /* renamed from: c */
-    SBitmap f6456c;
+    SBitmap icon;
 
     /* renamed from: d */
-    int f6457d;
+    int scaleType;
 
     public SImage(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6456c = getSBitmap(hashMap, kXmlParser, "Icon");
-        this.f6457d = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "ScaleType"), 0);
+        this.icon = getSBitmap(hashMap, kXmlParser, "Icon");
+        this.scaleType = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "ScaleType"), 0);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
-    public ImageView.ScaleType m3797a(int i) {
+    public ImageView.ScaleType getScaleType(int i) {
         switch (i) {
             case 1:
                 return ImageView.ScaleType.FIT_CENTER;

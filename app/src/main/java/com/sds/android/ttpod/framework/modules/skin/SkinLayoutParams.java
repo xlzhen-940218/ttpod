@@ -137,10 +137,10 @@ public class SkinLayoutParams extends ViewGroup.MarginLayoutParams {
     public void mo3558a(View view, int i, int i2) {
         int i3;
         int i4;
-        m3561a(ValueParser.m3704a(this.left, i));
-        m3555b(ValueParser.m3704a(this.top, i2));
-        m3552c(m3556b() + ValueParser.m3704a(this.width, i));
-        m3550d(m3553c() + ValueParser.m3704a(this.height, i2));
+        m3561a(ValueParser.getSize(this.left, i));
+        m3555b(ValueParser.getSize(this.top, i2));
+        m3552c(m3556b() + ValueParser.getSize(this.width, i));
+        m3550d(m3553c() + ValueParser.getSize(this.height, i2));
         int m3562a = m3562a();
         int m3551d = m3551d() - m3556b();
         int m3549e = m3549e() - m3553c();
@@ -161,11 +161,11 @@ public class SkinLayoutParams extends ViewGroup.MarginLayoutParams {
         }
         view.setTag(R.id.tag_layout_offset, new int[]{i3, i4});
         m3560a(i3, i4);
-        m3561a(m3556b() + ValueParser.m3704a(this.leftMargin, i));
-        m3555b(m3553c() + ValueParser.m3704a(this.topMargin, i2));
-        m3552c(m3551d() - ValueParser.m3704a(this.rightMargin, i));
-        m3550d(m3549e() - ValueParser.m3704a(this.bottomMargin, i2));
-        view.setPadding(ValueParser.m3704a(this.paddingLeft, m3551d), ValueParser.m3704a(this.paddingTop, m3549e), ValueParser.m3704a(this.paddingRight, m3551d), ValueParser.m3704a(this.paddingBottom, m3549e));
+        m3561a(m3556b() + ValueParser.getSize(this.leftMargin, i));
+        m3555b(m3553c() + ValueParser.getSize(this.topMargin, i2));
+        m3552c(m3551d() - ValueParser.getSize(this.rightMargin, i));
+        m3550d(m3549e() - ValueParser.getSize(this.bottomMargin, i2));
+        view.setPadding(ValueParser.getSize(this.paddingLeft, m3551d), ValueParser.getSize(this.paddingTop, m3549e), ValueParser.getSize(this.paddingRight, m3551d), ValueParser.getSize(this.paddingBottom, m3549e));
         if (this.f6678m >= 0) {
             m3560a(this.f6678m * i, 0);
         }

@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,7 +32,7 @@ public class LrcMtvFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public Sentence getLrcLineIndex(int i) {
+    public Sentence getCurrentIndex(int i) {
         if (i < 0) {
             return null;
         }
@@ -47,36 +47,36 @@ public class LrcMtvFormattedLyric implements FormattedLyric {
             return null;
         }
         int mo3672b = this.lrcLyric.getLrcLineListSize();
-        long j2 = 0;
+        long startTime = 0;
         this.lrcLineList = new ArrayList<>(mo3672b);
         int i2 = 0;
         int i3 = 0;
         while (i2 < mo3672b) {
-            LrcSentence m3687b = this.lrcLyric.getLrcLine(i2);
-            if (i2 == mo3672b - 1 || m3687b.getCurrentLrcText().length() > 0) {
-                m3684a(m3687b);
+            LrcSentence lrcLine = this.lrcLyric.getLrcLine(i2);
+            if (i2 == mo3672b - 1 || lrcLine.getCurrentLrcText().length() > 0) {
+                m3684a(lrcLine);
                 int i4 = i3;
-                j = j2;
+                j = startTime;
                 i = i4;
             } else {
                 if (i3 == 0) {
-                    j2 = m3687b.getTimeStamp();
+                    startTime = lrcLine.getTimeStamp();
                 }
-                int mo3636f = i3 + m3687b.mo3636f();
+                int duration = i3 + lrcLine.getDuration();
                 if (this.lrcLyric.getLrcLine(i2 + 1).getCurrentLrcText().length() > 0) {
-                    if (mo3636f >= 7000) {
-                        m3685a(j2, mo3636f);
+                    if (duration >= 7000) {
+                        addEmpty(startTime, duration);
                     }
-                    j = j2;
+                    j = startTime;
                     i = 0;
                 } else {
-                    j = j2;
-                    i = mo3636f;
+                    j = startTime;
+                    i = duration;
                 }
             }
             i2++;
             int i5 = i;
-            j2 = j;
+            startTime = j;
             i3 = i5;
         }
         LyricUtils.setLyricInfoToLyricLineList(this.lrcLineList, this.lrcLyric.getLyricInfo());
@@ -91,8 +91,8 @@ public class LrcMtvFormattedLyric implements FormattedLyric {
     }
 
     /* renamed from: a */
-    private void m3685a(long j, int i) {
-        this.lrcLineList.add(new LrcSentence(j, "", i, 0, 0));
+    private void addEmpty(long startTime, int duration) {
+        this.lrcLineList.add(new LrcSentence(startTime, "", duration, 0, 0));
     }
 
     public String toString() {
@@ -113,7 +113,7 @@ public class LrcMtvFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: b */
-    public int getLrcLineIndex() {
+    public int getCurrentIndex() {
         return this.index;
     }
 }

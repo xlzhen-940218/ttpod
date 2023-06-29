@@ -130,7 +130,7 @@ public class SSlide extends SComponent<SeekBarExpansion> {
             super.mo3558a(view, i, i2);
             int d = m3551d() - m3556b();
             int e = m3549e() - m3553c();
-            view.setPadding(view.getPaddingLeft() + ValueParser.m3704a(this.f6493b, d), view.getPaddingTop() + ValueParser.m3704a(this.f6494c, e), ValueParser.m3704a(this.f6495d, d) + view.getPaddingRight(), ValueParser.m3704a(this.f6496e, e) + view.getPaddingBottom());
+            view.setPadding(view.getPaddingLeft() + ValueParser.getSize(this.f6493b, d), view.getPaddingTop() + ValueParser.getSize(this.f6494c, e), ValueParser.getSize(this.f6495d, d) + view.getPaddingRight(), ValueParser.getSize(this.f6496e, e) + view.getPaddingBottom());
         }
     }
 }

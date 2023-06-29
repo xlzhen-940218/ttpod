@@ -41,10 +41,10 @@ public class SLyricShow extends SText {
     public SLyricShow(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, HashMap<String, SFont> hashMap2, int i) {
         super(kXmlParser, hashMap, hashMap2, i);
         this.fontSizeSelected = 15;
-        this.fadeColor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FadeColor"), 0);
-        this.fontColorUp = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorUp"), 0);
-        this.fontColorUpSelected = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorUpSelected"), 0);
-        this.strokeCOlor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "StrokeColor"), 0);
+        this.fadeColor = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FadeColor"), 0);
+        this.fontColorUp = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontColorUp"), 0);
+        this.fontColorUpSelected = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontColorUpSelected"), 0);
+        this.strokeCOlor = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "StrokeColor"), 0);
         String fadeEdge = kXmlParser.getAttributeValue(null, "FadeEdge");
         if (fadeEdge != null) {
             if (fadeEdge.contains("Vertical")) {
@@ -84,9 +84,9 @@ public class SLyricShow extends SText {
         lyricView.setDefaultColorHighlight(this.fontColorSelected);
         lyricView.setColorHighlight(this.fontColorSelected);
         if ((this.fontShadowColor >> 24) != 0) {
-            lyricView.m3484a(this.fontShaowRadius, this.fontShaowDx, this.fontShaowDy, this.fontShadowColor);
+            lyricView.setShadowLayer(this.fontShaowRadius, this.fontShaowDx, this.fontShaowDy, this.fontShadowColor);
         }
-        int m3704a = ValueParser.m3704a(this.fadeEdgeLength, 0);
+        int m3704a = ValueParser.getSize(this.fadeEdgeLength, 0);
         if (m3704a > 0) {
             lyricView.setFadeEdgeLength(m3704a);
         }
@@ -104,10 +104,10 @@ public class SLyricShow extends SText {
             } else {
                 lyricView.setColorStrokeNormal(this.strokeCOlor);
             }
-            lyricView.m3451c();
+            lyricView.setMtvOrSingle();
         } else if ("Single".equalsIgnoreCase(this.mode)) {
             lyricView.setDisplayMode(LyricView.LyricDisplayEnum.Single);
-            lyricView.m3451c();
+            lyricView.setMtvOrSingle();
         }
         if (this.font.size > 2) {
             lyricView.setTextSizeHighlight(this.fontSizeSelected);

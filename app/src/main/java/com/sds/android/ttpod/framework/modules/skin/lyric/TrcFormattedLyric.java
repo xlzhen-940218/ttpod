@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.d.n */
 /* loaded from: classes.dex */
@@ -19,7 +19,7 @@ public class TrcFormattedLyric extends LrcFormattedLyric {
         }
         String g = trcSentence.getCurrentLrcText();
         long d = trcSentence.getTimeStamp();
-        int f = trcSentence.mo3636f();
+        int f = trcSentence.getDuration();
         int mo3467a = this.onMeasureTextListener.measureLrcTextWidth(g);
         if (mo3467a <= this.width) {
             m3632a(g, d, 0, i, f, true, mo3467a);
@@ -66,9 +66,9 @@ public class TrcFormattedLyric extends LrcFormattedLyric {
         if (i5 <= 0) {
             i5 = 1;
         }
-        trcSentence.mo3614b(i5);
+        trcSentence.setDuration(i5);
         if (m3617a[1] > 0) {
-            trcSentence.m3677a(str.substring(1));
+            trcSentence.setLrcText(str.substring(1));
         }
         trcSentence.m3618a(this.onMeasureTextListener);
         this.lrcLineList.add(trcSentence);

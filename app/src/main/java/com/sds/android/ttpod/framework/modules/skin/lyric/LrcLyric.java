@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
@@ -55,13 +55,13 @@ public class LrcLyric implements Lyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: a */
-    public int mo3674a(int i) {
+    public int next(int i) {
         return this.lyricInfo.next(i);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: a */
-    public int mo3675a() {
+    public int syncToCurrent() {
         return this.lyricInfo.syncToCurrent();
     }
 
@@ -77,14 +77,14 @@ public class LrcLyric implements Lyric {
         Throwable th;
         boolean z2 = true;
         if (this.lyricInfo.syncToOffset()) {
-            String m3666a = this.lyricInfo.getLyricPath();
-            if (z && !LyricUtils.isEmpty(m3666a)) {
-                FileUtils.exists(m3666a);
+            String lyricPath = this.lyricInfo.getLyricPath();
+            if (z && !LyricUtils.isEmpty(lyricPath)) {
+                FileUtils.exists(lyricPath);
                 FileOutputStream fileOutputStream2 = null;
                 try {
-                    fileOutputStream = new FileOutputStream(m3666a);
+                    fileOutputStream = new FileOutputStream(lyricPath);
                     try {
-                        fileOutputStream.write(LyricConst.utf8);
+                        fileOutputStream.write(LyricConst.UTF_8);
                         fileOutputStream.write(toString().getBytes(StandardCharsets.UTF_8));
                         fileOutputStream.flush();
                         if (fileOutputStream != null) {
@@ -157,19 +157,19 @@ public class LrcLyric implements Lyric {
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: d */
     public long getOffset() {
-        return this.lyricInfo.getOffset();
+        return this.lyricInfo.getOffsetTime();
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: e */
     public long getCurrent() {
-        return this.lyricInfo.getCurrent();
+        return this.lyricInfo.getCurrentTime();
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: f */
     public long getLrcLastTime() {
-        long total = this.lyricInfo.getTotal();
+        long total = this.lyricInfo.getTotalTime();
         if (total == 0 && getLrcLineListSize() > 0) {
             return this.lrcLineList.get(getLrcLineListSize() - 1).getTimeStamp() + 5000;
         }

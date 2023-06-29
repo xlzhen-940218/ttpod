@@ -3,7 +3,6 @@ package com.sds.android.ttpod.component.p091g.p093b;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Looper;
-import androidx.core.view.ViewCompat;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
 import android.util.TypedValue;
@@ -26,7 +25,7 @@ import com.sds.android.ttpod.framework.modules.skin.p129b.SEvent;
 import com.sds.android.ttpod.framework.modules.skin.p129b.SPanel;
 import com.sds.android.ttpod.framework.modules.skin.p129b.SPlayerView;
 import com.sds.android.ttpod.framework.modules.skin.p130c.SkinEventHandler;
-import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
+import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.modules.skin.view.Icon;
 import com.sds.android.ttpod.framework.modules.skin.view.LyricView;
 import com.sds.android.ttpod.framework.modules.skin.view.MultiScreenLayout;
@@ -139,7 +138,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
         LogUtils.debug("PlayerPortraitViewController", "create player views.");
         if (m3852a != null) {
             MultiScreenLayout multiScreenLayout = (MultiScreenLayout) m3852a.m3811c(context, skinCache);
-            multiScreenLayout.setDrawingCacheBackgroundColor(ViewCompat.MEASURED_STATE_MASK);
+            multiScreenLayout.setDrawingCacheBackgroundColor(0xff000000);
             m6552c(m3852a.m3830b());
             SPanel[] c = m3852a.m3829c();
             if (c != null) {

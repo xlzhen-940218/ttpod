@@ -57,7 +57,7 @@ public class SPlayerView extends SBaseView<MultiScreenLayout, SPanel> {
         multiScreenLayout.setBackground(d);
         if (d != null) {
             if (!(d instanceof ColorDrawable)) {
-                multiScreenLayout.setDrawingCacheBackgroundColor(ViewCompat.MEASURED_STATE_MASK);
+                multiScreenLayout.setDrawingCacheBackgroundColor(0xff000000);
                 return;
             }
             return;

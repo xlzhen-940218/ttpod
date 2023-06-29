@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.d.o */
 /* loaded from: classes.dex */

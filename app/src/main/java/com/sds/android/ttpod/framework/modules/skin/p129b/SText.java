@@ -1,7 +1,6 @@
 package com.sds.android.ttpod.framework.modules.skin.p129b;
 
 import android.content.res.ColorStateList;
-import androidx.core.view.ViewCompat;
 import android.view.View;
 import android.widget.TextView;
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
@@ -56,12 +55,12 @@ public abstract class SText<T extends View> extends SComponent<T> {
         this.font = getSFont(hashMap2, kXmlParser.getAttributeValue(null, "Font")
                 , ValueParser.parseInt(kXmlParser.getAttributeValue(null, "FontStyle"), -1)
                 , ValueParser.parseInt(kXmlParser.getAttributeValue(null, "FontSize"), -1));
-        this.fontColor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColor"), -1);
-        this.fontColorPressed = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorPressed"), this.fontColor);
-        this.fontColorDisable = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorDisable"), this.fontColor);
-        this.fontColorFocused = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorFocused"), this.fontColor);
-        this.fontColorSelected = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontColorSelected"), this.fontColor);
-        this.fontShadowColor = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "FontShadowColor"), ViewCompat.MEASURED_STATE_MASK);
+        this.fontColor = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontColor"), -1);
+        this.fontColorPressed = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontColorPressed"), this.fontColor);
+        this.fontColorDisable = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontColorDisable"), this.fontColor);
+        this.fontColorFocused = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontColorFocused"), this.fontColor);
+        this.fontColorSelected = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontColorSelected"), this.fontColor);
+        this.fontShadowColor = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontShadowColor"), 0xff000000);
         this.fontShaowRadius = ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "FontShadowRadius"), 0.0f);
         this.fontShaowDx = ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "FontShadowDx"), 0.0f);
         this.fontShaowDy = ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "FontShadowDy"), 0.0f);
@@ -124,12 +123,12 @@ public abstract class SText<T extends View> extends SComponent<T> {
             textView.setTextColor(new ColorStateList(new int[][]{ViewWrapper.f6593x, ViewWrapper.f6571b, ViewWrapper.f6573d, ViewWrapper.f6572c, ViewWrapper.f6570a}, new int[]{this.fontColorPressed, this.fontColor, this.fontColorSelected, this.fontColorFocused, this.fontColorDisable}));
         }
         textView.setTextSize(this.font.size);
-        if ((this.fontShadowColor & ViewCompat.MEASURED_STATE_MASK) != 0) {
+        if ((this.fontShadowColor & 0xff000000) != 0) {
             textView.setShadowLayer(this.fontShaowRadius, this.fontShaowDx, this.fontShaowDy, this.fontShadowColor);
         }
         textView.setGravity(this.align);
         textView.setText(this.name);
-        int m3704a = ValueParser.m3704a(this.fadeEdgeLength, 0);
+        int m3704a = ValueParser.getSize(this.fadeEdgeLength, 0);
         if (m3704a > 0) {
             textView.setHorizontalFadingEdgeEnabled(true);
             textView.setFadingEdgeLength(m3704a);

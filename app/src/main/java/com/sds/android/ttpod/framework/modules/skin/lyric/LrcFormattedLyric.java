@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -30,7 +30,7 @@ public class LrcFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public Sentence getLrcLineIndex(int i) {
+    public Sentence getCurrentIndex(int i) {
         if (i < 0) {
             return null;
         }
@@ -72,7 +72,7 @@ public class LrcFormattedLyric implements FormattedLyric {
         int m3692a;
         String mo3635g = lrcSentence.getCurrentLrcText();
         long m3676d = lrcSentence.getTimeStamp();
-        int mo3636f = lrcSentence.mo3636f();
+        int mo3636f = lrcSentence.getDuration();
         int mo3467a = this.onMeasureTextListener.measureLrcTextWidth(mo3635g);
         if (mo3467a <= this.width) {
             mo3633a(mo3635g, m3676d, mo3636f, i, mo3467a);
@@ -220,7 +220,7 @@ public class LrcFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: b */
-    public int getLrcLineIndex() {
+    public int getCurrentIndex() {
         return this.index;
     }
 

@@ -11,7 +11,7 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.component.p091g.p092a.AnimationCommand;
 import com.sds.android.ttpod.component.p091g.p092a.EventCallback;
 import com.sds.android.ttpod.component.p091g.p092a.EventExecutor;
-import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
+import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.support.p134a.PlayMode;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.media.player.PlayStatus;

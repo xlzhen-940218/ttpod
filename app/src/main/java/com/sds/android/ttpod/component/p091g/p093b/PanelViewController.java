@@ -60,7 +60,7 @@ public class PanelViewController extends ViewEventController {
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: d */
     public void m6468d() {
-        if (this.lyricShowView != null && !this.lyricShowView.m3462b()) {
+        if (this.lyricShowView != null && !this.lyricShowView.getMtvOrSingle()) {
             this.lyricShowView.setDisplayMode(LyricView.LyricDisplayEnum.Single);
             this.lyricShowView.setSlowScroll(false);
         }

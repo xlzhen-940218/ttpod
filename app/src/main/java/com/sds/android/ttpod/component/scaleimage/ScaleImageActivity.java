@@ -102,7 +102,7 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
         this.mStartIndex = intent.getIntExtra(KEY_START_INDEX, 0);
         this.mPageShow.setText("1/" + this.mPicList.size());
         this.mViewPager.setPageMargin(Math.round(getResources().getDisplayMetrics().density * 40.0f));
-        this.mViewPager.setPageMarginDrawable(new ColorDrawable(ViewCompat.MEASURED_STATE_MASK));
+        this.mViewPager.setPageMarginDrawable(new ColorDrawable(0xff000000));
         this.mPagerAdapter = new C1324a();
         this.mViewPager.setAdapter(this.mPagerAdapter);
         this.mViewPager.setOnPageChangeListener(this.mPageChangeListener);
@@ -440,7 +440,7 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
         public Object mo5855a(View view, int i) {
             final ImageViewTouch imageViewTouch = new ImageViewTouch(ScaleImageActivity.this);
             imageViewTouch.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            imageViewTouch.setBackgroundColor(ViewCompat.MEASURED_STATE_MASK);
+            imageViewTouch.setBackgroundColor(0xff000000);
             imageViewTouch.setFocusableInTouchMode(true);
             String str = (String) ScaleImageActivity.this.mPicList.get(i);
             imageViewTouch.setTag(str);

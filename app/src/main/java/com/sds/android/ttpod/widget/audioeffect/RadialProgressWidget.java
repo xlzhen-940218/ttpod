@@ -217,10 +217,10 @@ public class RadialProgressWidget extends View {
         this.f8179q = 240;
         this.f8180r = new Paint(1);
         this.f8181s = Color.parseColor("#FF636363");
-        this.borderColor = ViewCompat.MEASURED_STATE_MASK;
+        this.borderColor = 0xff000000;
         this.f8183u = -1;
         this.f8184v = -1;
-        this.ringShadowColor = ViewCompat.MEASURED_STATE_MASK;
+        this.ringShadowColor = 0xff000000;
         this.borderWidth = 5.0f;
         this.f8187y = 2.0f;
         this.f8188z = null;
@@ -248,11 +248,11 @@ public class RadialProgressWidget extends View {
             TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.RadialProgressWidget, i, 0);
             pointerResource = obtainStyledAttributes.getResourceId(R.styleable.RadialProgressWidget_pointerResource, R.drawable.img_radial_progress_pointer);
             backgroundResource = obtainStyledAttributes.getResourceId(R.styleable.RadialProgressWidget_backgroundResource, R.drawable.img_radial_progress_bg);
-            this.ringShadowColor = obtainStyledAttributes.getColor(R.styleable.RadialProgressWidget_ringShadowColor, ViewCompat.MEASURED_STATE_MASK);
+            this.ringShadowColor = obtainStyledAttributes.getColor(R.styleable.RadialProgressWidget_ringShadowColor, 0xff000000);
             this.ringDoubleColor = obtainStyledAttributes.getColor(R.styleable.RadialProgressWidget_ringDoubleColor, Color.parseColor("#222222"));
             this.ringDoubleWidth = obtainStyledAttributes.getFloat(R.styleable.RadialProgressWidget_ringDoubleWidth, 2.0f);
             this.borderWidth = obtainStyledAttributes.getFloat(R.styleable.RadialProgressWidget_radialBorderWidth, 5.0f);
-            this.borderColor = obtainStyledAttributes.getColor(R.styleable.RadialProgressWidget_borderColor, ViewCompat.MEASURED_STATE_MASK);
+            this.borderColor = obtainStyledAttributes.getColor(R.styleable.RadialProgressWidget_borderColor, 0xff000000);
             this.ringDoubleInsideExtendValue = obtainStyledAttributes.getInteger(R.styleable.RadialProgressWidget_ringDoubleInsideExtendValue, 4);
             this.ringDoubleOutsideExtendValue = obtainStyledAttributes.getInteger(R.styleable.RadialProgressWidget_ringDoubleOutsideExtendValue, 2);
             this.radialTextBackground = obtainStyledAttributes.getResourceId(R.styleable.RadialProgressWidget_radialTextBackground, 0);

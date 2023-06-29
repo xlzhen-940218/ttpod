@@ -56,7 +56,7 @@ public class EqualizerBaseWaveView extends RelativeLayout {
         super(context, attributeSet);
         this.waveShadowColor = -16711936;
         this.waveShadowRadius = 5.0f;
-        this.waveColor = ViewCompat.MEASURED_STATE_MASK;
+        this.waveColor = 0xff000000;
         this.waveStrokeWidth = 3;
         this.f8111a = new float[10];
         this.f8112b = new PointF[10];
@@ -73,7 +73,7 @@ public class EqualizerBaseWaveView extends RelativeLayout {
         super(context, attributeSet, i);
         this.waveShadowColor = -16711936;
         this.waveShadowRadius = 5.0f;
-        this.waveColor = ViewCompat.MEASURED_STATE_MASK;
+        this.waveColor = 0xff000000;
         this.waveStrokeWidth = 3;
         this.f8111a = new float[10];
         this.f8112b = new PointF[10];

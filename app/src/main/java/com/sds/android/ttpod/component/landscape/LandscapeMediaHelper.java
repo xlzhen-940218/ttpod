@@ -6,7 +6,7 @@ import android.util.TypedValue;
 
 import com.sds.android.ttpod.component.landscape.p098b.Scene;
 import com.sds.android.ttpod.framework.base.BaseApplication;
-import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
+import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.media.player.PlayStatus;

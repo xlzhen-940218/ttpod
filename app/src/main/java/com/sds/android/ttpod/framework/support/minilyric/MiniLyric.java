@@ -27,7 +27,7 @@ import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
-import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
+import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.modules.skin.view.LyricView;
 import com.sds.android.ttpod.framework.p106a.NotificationUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;

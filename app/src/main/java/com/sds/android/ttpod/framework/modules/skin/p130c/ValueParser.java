@@ -1,7 +1,6 @@
 package com.sds.android.ttpod.framework.modules.skin.p130c;
 
 import android.graphics.Rect;
-import androidx.core.view.ViewCompat;
 import android.text.Layout;
 import android.text.TextUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
@@ -71,7 +70,7 @@ public final class ValueParser {
     }
 
     /* renamed from: a */
-    public static int m3704a(int i, int i2) {
+    public static int getSize(int i, int i2) {
         int m3705a = m3705a(i);
         switch (((-65536) & i) >> 16) {
             case 1:
@@ -126,15 +125,15 @@ public final class ValueParser {
     }
 
     /* renamed from: c */
-    public static int m3695c(String str, int i) {
+    public static int parseColor(String str, int i) {
         if (str != null) {
             TextUtils.SimpleStringSplitter simpleStringSplitter = new TextUtils.SimpleStringSplitter(' ');
             simpleStringSplitter.setString(str);
             int i2 = 0;
             while (simpleStringSplitter.hasNext()) {
-                i2 = (i2 << 8) | parseInt(simpleStringSplitter.next(), (int) ViewCompat.MEASURED_STATE_MASK);
+                i2 = (i2 << 8) | parseInt(simpleStringSplitter.next(), (int) 0xff000000);
             }
-            return (16777215 & i2) | (ViewCompat.MEASURED_STATE_MASK - (i2 & ViewCompat.MEASURED_STATE_MASK));
+            return (16777215 & i2) | (0xff000000 - (i2 & 0xff000000));
         }
         return i;
     }
@@ -146,7 +145,7 @@ public final class ValueParser {
             simpleStringSplitter.setString(str);
             ArrayList arrayList = new ArrayList();
             while (simpleStringSplitter.hasNext()) {
-                arrayList.add(Integer.valueOf(m3695c(simpleStringSplitter.next(), 0)));
+                arrayList.add(Integer.valueOf(parseColor(simpleStringSplitter.next(), 0)));
             }
             int size = arrayList.size();
             if (size > 0) {

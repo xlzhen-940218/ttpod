@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class TrcParser extends LrcParser {
 
     /* renamed from: a */
-    private static final Pattern f6640a = Pattern.compile("<(\\d+?)>");
+    private static final Pattern PATTERN = Pattern.compile("<(\\d+?)>");
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.LrcParser, com.sds.android.ttpod.framework.modules.skin.p132d.LyricParser
     /* renamed from: a */
@@ -23,9 +23,9 @@ public class TrcParser extends LrcParser {
     /* renamed from: b */
     public TrcSentence mo3623a(long j, String str) {
         TrcSentence trcSentence = new TrcSentence();
-        trcSentence.setLrcTime(j);
+        trcSentence.setStartTime(j);
         StringBuilder sb = new StringBuilder();
-        Matcher matcher = f6640a.matcher(str);
+        Matcher matcher = PATTERN.matcher(str);
         int i = 0;
         int i2 = 0;
         while (matcher.find()) {
@@ -47,9 +47,9 @@ public class TrcParser extends LrcParser {
             trcSentence.m3616a(new TrcTimeRegion(substring2.length(), i2));
         }
         if (trcSentence.m3609h() == null) {
-            trcSentence.m3677a(str);
+            trcSentence.setLrcText(str);
         } else {
-            trcSentence.m3677a(sb.toString());
+            trcSentence.setLrcText(sb.toString());
         }
         return trcSentence;
     }
@@ -68,7 +68,7 @@ public class TrcParser extends LrcParser {
         }
         Iterator<TrcTimeRegion> it = m3609h.iterator();
         while (it.hasNext()) {
-            j2 += it.next().m3603c();
+            j2 += it.next().getDuration();
         }
         return j2;
     }

@@ -40,11 +40,11 @@ public class SAnalyzer extends SComponent<LineVisualization> {
         super(kXmlParser, hashMap, i);
         this.f6409c = getSBitmap(hashMap, kXmlParser, "LineIcon");
         this.f6410d = getSBitmap(hashMap, kXmlParser, "DotIcon");
-        this.f6411e = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "BarColorBot"), -7829368);
-        this.f6412j = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "BarColorTop"), -1);
-        this.f6413k = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "BarColorSpire"), 47871);
-        this.f6414l = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "ReflectionMaskStartColor"), 553648127);
-        this.f6415m = ValueParser.m3695c(kXmlParser.getAttributeValue(null, "ReflectionMaskEndColor"), 1895825407);
+        this.f6411e = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "BarColorBot"), -7829368);
+        this.f6412j = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "BarColorTop"), -1);
+        this.f6413k = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "BarColorSpire"), 47871);
+        this.f6414l = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "ReflectionMaskStartColor"), 553648127);
+        this.f6415m = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "ReflectionMaskEndColor"), 1895825407);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
@@ -110,27 +110,27 @@ public class SAnalyzer extends SComponent<LineVisualization> {
 
         /* renamed from: f */
         public int m3837f(int i) {
-            return this.f6416a == -1 ? ValueParser.m3704a(i, i) / 3 : ValueParser.m3704a(this.f6416a, i);
+            return this.f6416a == -1 ? ValueParser.getSize(i, i) / 3 : ValueParser.getSize(this.f6416a, i);
         }
 
         /* renamed from: g */
         public int m3836g(int i) {
-            return ValueParser.m3704a(this.f6417b, i);
+            return ValueParser.getSize(this.f6417b, i);
         }
 
         /* renamed from: h */
         public int m3835h(int i) {
-            return ValueParser.m3704a(this.f6418c, i);
+            return ValueParser.getSize(this.f6418c, i);
         }
 
         /* renamed from: i */
         public int m3834i(int i) {
-            return this.f6419d == -1 ? ValueParser.m3704a(i, i) / 128 : ValueParser.m3704a(this.f6419d, i);
+            return this.f6419d == -1 ? ValueParser.getSize(i, i) / 128 : ValueParser.getSize(this.f6419d, i);
         }
 
         /* renamed from: j */
         public int m3833j(int i) {
-            return ValueParser.m3704a(this.f6420e, i);
+            return ValueParser.getSize(this.f6420e, i);
         }
     }
 }

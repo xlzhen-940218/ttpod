@@ -19,7 +19,7 @@ public class SimpleFloatViewController implements FloatViewController {
     private ImageView f8089b;
 
     /* renamed from: c */
-    private int f8090c = ViewCompat.MEASURED_STATE_MASK;
+    private int f8090c = 0xff000000;
 
     /* renamed from: d */
     private ListView f8091d;

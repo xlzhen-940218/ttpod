@@ -1,17 +1,17 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.d.f */
 /* loaded from: classes.dex */
 public class LrcSentence implements Sentence {
 
     /* renamed from: a */
-    protected int f6618a;
+    protected int duration;
 
     /* renamed from: b */
     protected String lrcText;
 
     /* renamed from: c */
-    private long lrcTime;
+    private long startTime;
 
     /* renamed from: d */
     private int index;
@@ -26,8 +26,8 @@ public class LrcSentence implements Sentence {
     }
 
     public LrcSentence(LrcSentence lrcSentence) {
-        this.lrcTime = lrcSentence.lrcTime;
-        this.f6618a = lrcSentence.f6618a;
+        this.startTime = lrcSentence.startTime;
+        this.duration = lrcSentence.duration;
         this.lrcText = lrcSentence.lrcText;
         this.index = lrcSentence.index;
         this.lrcTextWidth = lrcSentence.lrcTextWidth;
@@ -39,12 +39,12 @@ public class LrcSentence implements Sentence {
         this.lyricInfo = lyricInfo;
     }
 
-    public LrcSentence(long lrcTime, String lrcText, int i, int index, int i3) {
-        this.lrcTime = lrcTime;
-        this.f6618a = i < 1 ? 1 : i;
+    public LrcSentence(long startTime, String lrcText, int duration, int index, int lrcTextWidth) {
+        this.startTime = startTime;
+        this.duration = duration < 1 ? 1 : duration;
         this.lrcText = lrcText;
         this.index = index;
-        this.lrcTextWidth = i3;
+        this.lrcTextWidth = lrcTextWidth;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
@@ -70,45 +70,47 @@ public class LrcSentence implements Sentence {
     }
 
     public String toString() {
-        long abs = Math.abs(this.lrcTime);
-        long j = abs / 1000;
-        long j2 = j / 60;
-        return String.format("[%s%02d:%02d.%03d]%s\n", this.lrcTime < 0 ? "-" : "", Long.valueOf(j2), Long.valueOf(j - (j2 * 60)), Long.valueOf(abs - (j * 1000)), getLrcText());
+        long abs = Math.abs(this.startTime);
+        long second = abs / 1000;
+        long minute = second / 60;
+        return String.format("[%s%02d:%02d.%03d]%s\n", this.startTime < 0 ? "-" : ""
+                , Long.valueOf(minute), Long.valueOf(second - (minute * 60))
+                , Long.valueOf(abs - (second * 1000)), getLrcText());
     }
 
     /* renamed from: a */
-    public void setLrcTime(long lrcTime) {
-        this.lrcTime = lrcTime;
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
     }
 
     /* renamed from: b */
-    public void mo3614b(int i) {
-        if (i < 1) {
-            i = 1;
+    public void setDuration(int duration) {
+        if (duration < 1) {
+            duration = 1;
         }
-        this.f6618a = i;
+        this.duration = duration;
     }
 
     /* renamed from: a */
-    public void m3677a(String str) {
-        this.lrcText = str;
+    public void setLrcText(String lrcText) {
+        this.lrcText = lrcText;
     }
 
     /* renamed from: d */
     public long getTimeStamp() {
-        return this.lrcTime;
+        return this.startTime;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: e */
-    public long mo3637e() {
-        return (this.lyricInfo != null ? this.lyricInfo.getCurrent() : 0L) + this.lrcTime;
+    public long getNextTime() {
+        return (this.lyricInfo != null ? this.lyricInfo.getCurrentTime() : 0L) + this.startTime;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: f */
-    public int mo3636f() {
-        return this.f6618a;
+    public int getDuration() {
+        return this.duration;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
@@ -120,7 +122,7 @@ public class LrcSentence implements Sentence {
     @Override // java.lang.Comparable
     /* renamed from: a */
     public int compareTo(Sentence sentence) {
-        return (int) (mo3637e() - sentence.mo3637e());
+        return (int) (getNextTime() - sentence.getNextTime());
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
@@ -129,6 +131,6 @@ public class LrcSentence implements Sentence {
         if (LyricUtils.isEmpty(this.lrcText)) {
             return 0;
         }
-        return (this.lrcTextWidth * i) / this.f6618a;
+        return (this.lrcTextWidth * i) / this.duration;
     }
 }

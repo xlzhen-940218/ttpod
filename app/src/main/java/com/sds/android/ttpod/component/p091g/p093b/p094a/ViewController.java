@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.modules.skin.p130c.SkinEventHandler;
-import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
+import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.modules.skin.view.AnimTransView;
 import com.sds.android.ttpod.framework.modules.skin.view.AnimationImageView;
 import com.sds.android.ttpod.framework.modules.skin.view.AutoScrollableTextView;

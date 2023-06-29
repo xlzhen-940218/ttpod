@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import java.util.List;
 /* loaded from: classes.dex */
 public interface Lyric {
     /* renamed from: a */
-    int mo3675a();
+    int syncToCurrent();
 
     /* renamed from: a */
-    int mo3674a(int i);
+    int next(int i);
 
     /* renamed from: a */
     FormattedLyric getFormatterLyric(int lyricDisplayEnum, int width, OnMeasureTextListener onMeasureTextListener);

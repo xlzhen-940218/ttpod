@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,11 +21,11 @@ public class TrcSentence extends LrcSentence {
 
     public TrcSentence(TrcSentence trcSentence) {
         super(trcSentence);
-        this.trcTimeRegionArrayList = (ArrayList) m3615a(trcSentence.trcTimeRegionArrayList);
+        this.trcTimeRegionArrayList = (ArrayList) cloneData(trcSentence.trcTimeRegionArrayList);
     }
 
     /* renamed from: a */
-    private static <T> List<T> m3615a(List<T> list) {
+    private static <T> List<T> cloneData(List<T> list) {
         if (list != null) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -40,8 +40,8 @@ public class TrcSentence extends LrcSentence {
         return null;
     }
 
-    public TrcSentence(long j, String str, int i, int i2, int i3) {
-        super(j, str, i, i2, i3);
+    public TrcSentence(long startTime, String lrcText, int duration, int index, int lrcTextWidth) {
+        super(startTime, lrcText, duration, index, lrcTextWidth);
     }
 
     /* renamed from: h */
@@ -59,7 +59,7 @@ public class TrcSentence extends LrcSentence {
 
     /* renamed from: i */
     public int m3608i() {
-        return this.trcTimeRegionArrayList == null ? this.f6618a : m3607j();
+        return this.trcTimeRegionArrayList == null ? this.duration : m3607j();
     }
 
     /* renamed from: j */
@@ -69,7 +69,7 @@ public class TrcSentence extends LrcSentence {
         while (true) {
             int i2 = i;
             if (it.hasNext()) {
-                i = it.next().m3603c() + i2;
+                i = it.next().getDuration() + i2;
             } else {
                 return i2;
             }
@@ -92,8 +92,8 @@ public class TrcSentence extends LrcSentence {
         int i = 0;
         while (it.hasNext()) {
             TrcTimeRegion next = it.next();
-            int m3604b = next.m3604b() + i;
-            sb.append(String.format("<%d>%s", Integer.valueOf(next.m3603c()), this.lrcText.substring(i, m3604b)));
+            int m3604b = next.getCharsCount() + i;
+            sb.append(String.format("<%d>%s", Integer.valueOf(next.getDuration()), this.lrcText.substring(i, m3604b)));
             i = m3604b;
         }
         return sb.toString();
@@ -113,13 +113,13 @@ public class TrcSentence extends LrcSentence {
         while (true) {
             int i4 = i2;
             if (it.hasNext()) {
-                TrcTimeRegion next = it.next();
-                int m3603c = next.m3603c();
-                if (i <= i3 + m3603c) {
-                    return i4 + ((next.m3606a() * (i - i3)) / m3603c);
+                TrcTimeRegion trcTimeRegion = it.next();
+                int nextDuration = trcTimeRegion.getDuration();
+                if (i <= i3 + nextDuration) {
+                    return i4 + ((trcTimeRegion.getTextWidth() * (i - i3)) / nextDuration);
                 }
-                i3 += m3603c;
-                i2 = next.m3606a() + i4;
+                i3 += nextDuration;
+                i2 = trcTimeRegion.getTextWidth() + i4;
             } else {
                 return i4;
             }
@@ -144,8 +144,8 @@ public class TrcSentence extends LrcSentence {
                 break;
             }
             TrcTimeRegion next = it.next();
-            int m3604b = next.m3604b();
-            i4 = next.m3603c();
+            int m3604b = next.getCharsCount();
+            i4 = next.getDuration();
             int i11 = m3604b == 0 ? i10 : (i10 + m3604b) - 1;
             if (i >= i10 && i8 <= i11) {
                 if (m3604b > 0) {
@@ -204,8 +204,8 @@ public class TrcSentence extends LrcSentence {
             int i = 0;
             while (it.hasNext()) {
                 TrcTimeRegion next = it.next();
-                int m3604b = next.m3604b() + i;
-                next.m3605a(onMeasureTextListener.measureLrcTextWidth(this.lrcText.substring(i, m3604b)));
+                int m3604b = next.getCharsCount() + i;
+                next.setTextWidth(onMeasureTextListener.measureLrcTextWidth(this.lrcText.substring(i, m3604b)));
                 i = m3604b;
             }
         }
@@ -213,19 +213,19 @@ public class TrcSentence extends LrcSentence {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.LrcSentence
     /* renamed from: b */
-    public void mo3614b(int i) {
-        super.mo3614b(i);
+    public void setDuration(int duration) {
+        super.setDuration(duration);
         if (this.trcTimeRegionArrayList != null && !this.trcTimeRegionArrayList.isEmpty()) {
             int size = this.trcTimeRegionArrayList.size();
             int i2 = 0;
             int i3 = 0;
             while (i2 < size) {
-                int m3603c = i3 + this.trcTimeRegionArrayList.get(i2).m3603c();
-                if (m3603c <= this.f6618a) {
+                int m3603c = i3 + this.trcTimeRegionArrayList.get(i2).getDuration();
+                if (m3603c <= this.duration) {
                     i2++;
                     i3 = m3603c;
                 } else {
-                    m3613b(i2, this.f6618a - i3);
+                    m3613b(i2, this.duration - i3);
                     return;
                 }
             }
@@ -238,12 +238,12 @@ public class TrcSentence extends LrcSentence {
         int i4 = 0;
         for (int size = this.trcTimeRegionArrayList.size() - 1; size >= i; size--) {
             TrcTimeRegion trcTimeRegion = this.trcTimeRegionArrayList.get(size);
-            i4 += trcTimeRegion.m3606a();
-            i3 += trcTimeRegion.m3604b();
+            i4 += trcTimeRegion.getTextWidth();
+            i3 += trcTimeRegion.getCharsCount();
             this.trcTimeRegionArrayList.remove(size);
         }
         TrcTimeRegion trcTimeRegion2 = new TrcTimeRegion(i3, i2);
-        trcTimeRegion2.m3605a(i4);
+        trcTimeRegion2.setTextWidth(i4);
         this.trcTimeRegionArrayList.add(trcTimeRegion2);
     }
 }

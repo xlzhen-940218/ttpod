@@ -157,7 +157,7 @@ public class ThemeFramework {
                 return m3301b(str);
             } catch (Exception e) {
                 e.printStackTrace();
-                return ViewCompat.MEASURED_STATE_MASK;
+                return 0xff000000;
             }
         }
 

@@ -3,10 +3,10 @@ package com.sds.android.ttpod.component.landscape;
 import android.content.Context;
 import android.text.TextPaint;
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric;
-import com.sds.android.ttpod.framework.modules.skin.p132d.Lyric;
-import com.sds.android.ttpod.framework.modules.skin.p132d.OnMeasureTextListener;
-import com.sds.android.ttpod.framework.modules.skin.p132d.Sentence;
+import com.sds.android.ttpod.framework.modules.skin.lyric.FormattedLyric;
+import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
+import com.sds.android.ttpod.framework.modules.skin.lyric.OnMeasureTextListener;
+import com.sds.android.ttpod.framework.modules.skin.lyric.Sentence;
 
 /* renamed from: com.sds.android.ttpod.component.landscape.g */
 /* loaded from: classes.dex */
@@ -98,7 +98,7 @@ public class LyricProvider {
     public void m6129a(long j) {
         if (this.f4587b != null && j >= 0) {
             int mo3628a = this.f4587b.getIndexByLrcTime(j);
-            Sentence mo3629a = this.f4587b.getLrcLineIndex(mo3628a);
+            Sentence mo3629a = this.f4587b.getCurrentIndex(mo3628a);
             String mo3635g = mo3629a == null ? "" : mo3629a.getCurrentLrcText();
             if (this.f4591f != mo3628a) {
                 m6125a(mo3635g, null, (float) j, true);

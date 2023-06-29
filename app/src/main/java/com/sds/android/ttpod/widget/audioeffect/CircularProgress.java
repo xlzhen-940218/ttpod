@@ -92,7 +92,7 @@ public class CircularProgress extends View {
             }
             this.text_size = obtainStyledAttributes.getFloat(R.styleable.CircularProgress_text_size, 7.0f);
             this.text_color = obtainStyledAttributes.getColor(R.styleable.CircularProgress_text_color, -1);
-            this.border_color = obtainStyledAttributes.getColor(R.styleable.CircularProgress_border_color, ViewCompat.MEASURED_STATE_MASK);
+            this.border_color = obtainStyledAttributes.getColor(R.styleable.CircularProgress_border_color, 0xff000000);
             this.border_width = obtainStyledAttributes.getFloat(R.styleable.CircularProgress_border_width, 5.0f);
             this.show_text = obtainStyledAttributes.getBoolean(R.styleable.CircularProgress_show_text, true);
             obtainStyledAttributes.recycle();
@@ -108,7 +108,7 @@ public class CircularProgress extends View {
         super(context, attributeSet);
         this.background_resource = R.drawable.effect_circle_green_small;
         this.f8097f = new Paint(1);
-        this.border_color = ViewCompat.MEASURED_STATE_MASK;
+        this.border_color = 0xff000000;
         this.f8102k = 0.0f;
         this.text_color = Color.parseColor("#FFFFFF");
         this.f8104m = new Rect();
@@ -121,7 +121,7 @@ public class CircularProgress extends View {
         super(context, attributeSet, i);
         this.background_resource = R.drawable.effect_circle_green_small;
         this.f8097f = new Paint(1);
-        this.border_color = ViewCompat.MEASURED_STATE_MASK;
+        this.border_color = 0xff000000;
         this.f8102k = 0.0f;
         this.text_color = Color.parseColor("#FFFFFF");
         this.f8104m = new Rect();

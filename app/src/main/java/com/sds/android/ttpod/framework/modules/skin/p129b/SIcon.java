@@ -41,7 +41,7 @@ public class SIcon extends SImage<Icon> {
     public void setBackground(Context context, Icon icon, SkinCache skinCache) {
         if (this.f6454e > 0) {
             Resources resources = context.getResources();
-            DrawableCreator m3594a = skinCache.m3594a(this.f6456c);
+            DrawableCreator m3594a = skinCache.m3594a(this.icon);
             if (this.f6454e > 1 && m3594a != null && (m3594a instanceof BitmapDrawableCreator)) {
                 Bitmap m3761a = ((BitmapDrawableCreator) m3594a).m3761a();
                 if (m3761a != null) {
@@ -56,10 +56,10 @@ public class SIcon extends SImage<Icon> {
                     }
                 }
             } else {
-                icon.m3488a(skinCache.m3596a(resources, this.f6456c));
+                icon.m3488a(skinCache.m3596a(resources, this.icon));
             }
         }
-        icon.setScaleType(m3797a(this.f6457d));
+        icon.setScaleType(getScaleType(this.scaleType));
         super.setBackground(context, icon, skinCache);
     }
 }

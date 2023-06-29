@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import com.sds.android.ttpod.framework.p106a.CodeIdentifyInputStreamReader;
 import java.io.BufferedReader;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 public abstract class LyricParser {
 
     /* renamed from: a */
-    private static final HashMap<String, Class<? extends LyricParser>> f6634a = new HashMap<>();
+    private static final HashMap<String, Class<? extends LyricParser>> lrcTrcClassMaps = new HashMap<>();
 
     /* renamed from: a */
     protected abstract Lyric getLyric(String str);
@@ -24,26 +24,26 @@ public abstract class LyricParser {
     protected abstract void mo3649a(Lyric lyric, String str) throws Exception;
 
     static {
-        f6634a.put("lrc", LrcParser.class);
-        f6634a.put("trc", TrcParser.class);
+        lrcTrcClassMaps.put("lrc", LrcParser.class);
+        lrcTrcClassMaps.put("trc", TrcParser.class);
     }
 
     /* renamed from: b */
     public static Lyric m3647b(String str) {
         try {
-            return f6634a.get(m3645d(str)).newInstance().m3646c(str);
+            return lrcTrcClassMaps.get(getName(str)).newInstance().m3646c(str);
         } catch (Exception e) {
             return null;
         }
     }
 
     /* renamed from: d */
-    private static String m3645d(String str) {
-        int lastIndexOf = str.lastIndexOf(".");
+    private static String getName(String lyricPath) {
+        int lastIndexOf = lyricPath.lastIndexOf(".");
         if (lastIndexOf <= -1) {
             return "";
         }
-        return str.substring(lastIndexOf + 1);
+        return lyricPath.substring(lastIndexOf + 1);
     }
 
     /* JADX WARN: Removed duplicated region for block: B:35:0x0034 A[EXC_TOP_SPLITTER, SYNTHETIC] */
@@ -51,13 +51,13 @@ public abstract class LyricParser {
     /*
         Code decompiled incorrectly, please refer to instructions dump.
     */
-    protected final Lyric m3646c(String str) {
+    protected final Lyric m3646c(String lyricPath) {
         BufferedReader bufferedReader;
         Throwable th;
         Exception e;
         Lyric lyric = null;
         try {
-            bufferedReader = new BufferedReader(new CodeIdentifyInputStreamReader(new FileInputStream(str)));
+            bufferedReader = new BufferedReader(new CodeIdentifyInputStreamReader(new FileInputStream(lyricPath)));
         } catch (Exception e1) {
             e = e1;
             bufferedReader = null;
@@ -70,7 +70,7 @@ public abstract class LyricParser {
         }
         try {
             try {
-                lyric = m3648a(bufferedReader, str);
+                lyric = m3648a(bufferedReader, lyricPath);
                 if (bufferedReader != null) {
                     try {
                         bufferedReader.close();
@@ -105,8 +105,8 @@ public abstract class LyricParser {
     }
 
     /* renamed from: a */
-    public final Lyric m3648a(BufferedReader bufferedReader, String str) throws Exception {
-        Lyric mo3621a = getLyric(str);
+    public final Lyric m3648a(BufferedReader bufferedReader, String lyricPath) throws Exception {
+        Lyric mo3621a = getLyric(lyricPath);
         while (true) {
             String readLine = bufferedReader.readLine();
             if (readLine != null) {

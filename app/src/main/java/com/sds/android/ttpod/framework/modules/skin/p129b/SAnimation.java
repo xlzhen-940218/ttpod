@@ -45,10 +45,10 @@ public class SAnimation extends SImage<AnimationImageView> {
     public AnimationImageView mo3771b(Context context, SkinCache skinCache) {
         AnimationImageView animation = new AnimationImageView(context);
         Resources resources = context.getResources();
-        animation.setScaleType(m3797a(this.f6457d));
+        animation.setScaleType(getScaleType(this.scaleType));
         animation.setImageDrawable(skinCache.m3596a(resources, this.staticIcon));
         if (this.frameNum > 0) {
-            DrawableCreator m3594a = skinCache.m3594a(this.f6456c);
+            DrawableCreator m3594a = skinCache.m3594a(this.icon);
             AnimationDrawable animationDrawable = new AnimationDrawable();
             int i = (int) (1000.0f / this.frameRate);
             if (this.frameNum > 1 && m3594a != null && (m3594a instanceof BitmapDrawableCreator)) {

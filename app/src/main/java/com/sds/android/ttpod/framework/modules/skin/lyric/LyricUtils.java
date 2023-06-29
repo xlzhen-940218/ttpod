@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +22,7 @@ public final class LyricUtils {
 
     /* renamed from: a */
     public static int getIndex(List<? extends Sentence> list, long lrcTime) {
-        LRC_SENTENCE.setLrcTime(lrcTime);
+        LRC_SENTENCE.setStartTime(lrcTime);
         int index = Collections.binarySearch(list, LRC_SENTENCE);
         if (index < 0) {
             index = (-index) - 2;

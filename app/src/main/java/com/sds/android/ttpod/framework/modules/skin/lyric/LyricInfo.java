@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import android.text.TextUtils;
 
@@ -24,13 +24,13 @@ public final class LyricInfo {
     private String lyricPath;
 
     /* renamed from: f */
-    private long offset;
+    private long offsetTime;
 
     /* renamed from: g */
-    private long current;
+    private long currentTime;
 
     /* renamed from: h */
-    private long total;
+    private long totalTime;
 
     /* renamed from: i */
     private long lyricLastModified;
@@ -40,9 +40,9 @@ public final class LyricInfo {
                 + (((this.byName == null ? 0 : this.byName.hashCode())
                 + (((this.singer == null ? 0 : this.singer.hashCode())
                 + (((this.album == null ? 0 : this.album.hashCode()) + 31) * 31)) * 31)) * 31)) * 31)
-                + ((int) (this.offset ^ (this.offset >>> 1)))) * 31)
+                + ((int) (this.offsetTime ^ (this.offsetTime >>> 1)))) * 31)
                 + (this.title != null ? this.title.hashCode() : 0)) * 31)
-                + ((int) (this.total ^ (this.total >>> 1)))) * 31)
+                + ((int) (this.totalTime ^ (this.totalTime >>> 1)))) * 31)
                 + ((int) (this.lyricLastModified ^ (this.lyricLastModified >>> 1)));
     }
 
@@ -56,9 +56,9 @@ public final class LyricInfo {
         LyricInfo lyricInfo = (LyricInfo) obj;
         if (TextUtils.equals(this.title, lyricInfo.title) && TextUtils.equals(this.singer, lyricInfo.singer)
                 && TextUtils.equals(this.album, lyricInfo.album) && TextUtils.equals(this.byName, lyricInfo.byName)
-                && TextUtils.equals(this.lyricPath, lyricInfo.lyricPath) && this.offset == lyricInfo.offset
+                && TextUtils.equals(this.lyricPath, lyricInfo.lyricPath) && this.offsetTime == lyricInfo.offsetTime
                 && this.lyricLastModified == lyricInfo.lyricLastModified) {
-            return this.total == lyricInfo.total;
+            return this.totalTime == lyricInfo.totalTime;
         }
         return false;
     }
@@ -93,11 +93,11 @@ public final class LyricInfo {
         if (!LyricUtils.isEmpty(this.byName)) {
             stringBuilder.append(String.format("[by:%s]\n", this.byName));
         }
-        if (this.offset != 0) {
-            stringBuilder.append(String.format("[offset:%d]\n", Long.valueOf(this.offset)));
+        if (this.offsetTime != 0) {
+            stringBuilder.append(String.format("[offset:%d]\n", Long.valueOf(this.offsetTime)));
         }
-        if (this.total != 0) {
-            stringBuilder.append(String.format("[total:%d]\n", Long.valueOf(this.total)));
+        if (this.totalTime != 0) {
+            stringBuilder.append(String.format("[total:%d]\n", Long.valueOf(this.totalTime)));
         }
         return stringBuilder.toString();
     }
@@ -123,54 +123,54 @@ public final class LyricInfo {
     }
 
     /* renamed from: a */
-    public void setOffset(long offset) {
-        this.offset = offset;
+    public void setOffsetTime(long offsetTime) {
+        this.offsetTime = offsetTime;
     }
 
     /* renamed from: b */
-    public void setCurrent(long current) {
-        this.current = current;
+    public void setCurrentTime(long currentTime) {
+        this.currentTime = currentTime;
     }
 
     /* renamed from: c */
-    public void setTotal(long total) {
-        this.total = total;
+    public void setTotalTime(long totalTime) {
+        this.totalTime = totalTime;
     }
 
     /* renamed from: c */
-    public long getOffset() {
-        return this.offset;
+    public long getOffsetTime() {
+        return this.offsetTime;
     }
 
     /* renamed from: d */
-    public long getCurrent() {
-        return this.current;
+    public long getCurrentTime() {
+        return this.currentTime;
     }
 
     /* renamed from: e */
-    public long getTotal() {
-        return this.total;
+    public long getTotalTime() {
+        return this.totalTime;
     }
 
     /* renamed from: a */
     public int next(int i) {
-        this.current += i;
-        return (int) (this.current - this.offset);
+        this.currentTime += i;
+        return (int) (this.currentTime - this.offsetTime);
     }
 
     /* renamed from: f */
     public boolean syncToOffset() {
-        boolean z = this.offset != this.current;
+        boolean z = this.offsetTime != this.currentTime;
         if (z) {
-            this.offset = this.current;
+            this.offsetTime = this.currentTime;
         }
         return z;
     }
 
     /* renamed from: g */
     public int syncToCurrent() {
-        int i = (int) (this.offset - this.current);
-        this.current = this.offset;
+        int i = (int) (this.offsetTime - this.currentTime);
+        this.currentTime = this.offsetTime;
         return i;
     }
 }

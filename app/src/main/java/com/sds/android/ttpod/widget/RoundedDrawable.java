@@ -61,7 +61,7 @@ public class RoundedDrawable extends Drawable {
     private float imageBorderWidth = 0.0f;
 
     /* renamed from: n */
-    private ColorStateList imageBorderColor = ColorStateList.valueOf(ViewCompat.MEASURED_STATE_MASK);
+    private ColorStateList imageBorderColor = ColorStateList.valueOf(0xff000000);
 
     /* renamed from: o */
     private ImageView.ScaleType scaleType = ImageView.ScaleType.FIT_CENTER;
@@ -80,7 +80,7 @@ public class RoundedDrawable extends Drawable {
         this.strokePaint = new Paint();
         this.strokePaint.setStyle(Paint.Style.STROKE);
         this.strokePaint.setAntiAlias(true);
-        this.strokePaint.setColor(this.imageBorderColor.getColorForState(getState(), ViewCompat.MEASURED_STATE_MASK));
+        this.strokePaint.setColor(this.imageBorderColor.getColorForState(getState(), 0xff000000));
         this.strokePaint.setStrokeWidth(this.imageBorderWidth);
     }
 
@@ -343,7 +343,7 @@ public class RoundedDrawable extends Drawable {
             imageBorderColor = ColorStateList.valueOf(0);
         }
         this.imageBorderColor = imageBorderColor;
-        this.strokePaint.setColor(this.imageBorderColor.getColorForState(getState(), ViewCompat.MEASURED_STATE_MASK));
+        this.strokePaint.setColor(this.imageBorderColor.getColorForState(getState(), 0xff000000));
         return this;
     }
 

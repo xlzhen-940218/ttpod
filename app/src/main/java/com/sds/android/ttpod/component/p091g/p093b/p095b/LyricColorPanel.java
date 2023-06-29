@@ -100,7 +100,7 @@ public class LyricColorPanel extends PopupWindow {
 
         private LyricColorGridAdapter() {
             this.lyricColors = new int[]{R.drawable.img_lyric_color_0, R.drawable.img_lyric_color_1, R.drawable.img_lyric_color_2, R.drawable.img_lyric_color_3, R.drawable.img_lyric_color_4, R.drawable.img_lyric_color_5, R.drawable.img_lyric_color_6, R.drawable.img_lyric_color_7, R.drawable.img_lyric_color_8, R.drawable.img_lyric_color_9, R.drawable.img_lyric_color_10, R.drawable.img_lyric_color_11, R.drawable.img_lyric_color_12, R.drawable.img_lyric_color_13, R.drawable.img_lyric_color_14};
-            this.highlightColors = new int[]{-1, -7085825, -2337006, -14374431, -6220011, -16351165, -48547, -18174, -6655249, -10253556, -1441626, -231769, -2, -13893882, ViewCompat.MEASURED_STATE_MASK};
+            this.highlightColors = new int[]{-1, -7085825, -2337006, -14374431, -6220011, -16351165, -48547, -18174, -6655249, -10253556, -1441626, -231769, -2, -13893882, 0xff000000};
             this.colorText = new int[]{R.string.defaultColor, R.string.cyan, R.string.october, R.string.blue, R.string.sangria, R.string.viridian, R.string.pink, R.string.lemon, R.string.amethyst, R.string.emerald, R.string.deeppink, R.string.lightpink, R.string.white, R.string.green, R.string.black};
             this.position = 0;
         }

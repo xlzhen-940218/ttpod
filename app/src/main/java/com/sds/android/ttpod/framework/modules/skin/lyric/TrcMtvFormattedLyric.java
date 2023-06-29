@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p132d;
+package com.sds.android.ttpod.framework.modules.skin.lyric;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,54 +8,54 @@ import java.util.Iterator;
 public class TrcMtvFormattedLyric implements FormattedLyric {
 
     /* renamed from: a */
-    private final TrcLyric f6636a;
+    private final TrcLyric trcLyric;
 
     /* renamed from: b */
-    private final OnMeasureTextListener f6637b;
+    private final OnMeasureTextListener onMeasureTextListener;
 
     /* renamed from: c */
-    private ArrayList<TrcSentence> f6638c;
+    private ArrayList<TrcSentence> trcLineList;
 
     /* renamed from: d */
-    private int f6639d;
+    private int index;
 
     public TrcMtvFormattedLyric(TrcLyric trcLyric, int i, OnMeasureTextListener onMeasureTextListener) {
-        this.f6636a = trcLyric;
-        this.f6637b = onMeasureTextListener;
+        this.trcLyric = trcLyric;
+        this.onMeasureTextListener = onMeasureTextListener;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public Sentence getLrcLineIndex(int i) {
+    public Sentence getCurrentIndex(int i) {
         if (i < 0) {
             return null;
         }
-        return this.f6638c.get(i);
+        return this.trcLineList.get(i);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
     public int getLrcLineSize() {
-        return this.f6638c.size();
+        return this.trcLineList.size();
     }
 
     /* renamed from: c */
     public FormattedLyric m3624c() {
         int i;
-        if (this.f6636a == null) {
+        if (this.trcLyric == null) {
             return null;
         }
-        int b = this.f6636a.getLrcLineListSize();
+        int b = this.trcLyric.getLrcLineListSize();
         long j = 0;
         int i2 = 0;
-        this.f6638c = new ArrayList<>(b);
+        this.trcLineList = new ArrayList<>(b);
         for (int i3 = 0; i3 < b; i3++) {
-            TrcSentence trcSentence = (TrcSentence) this.f6636a.getLrcLine(i3);
+            TrcSentence trcSentence = (TrcSentence) this.trcLyric.getLrcLine(i3);
             if (i3 == b - 1) {
                 m3626a(trcSentence);
             } else {
-                int f = trcSentence.mo3636f();
-                LrcSentence b2 = this.f6636a.getLrcLine(i3 + 1);
+                int f = trcSentence.getDuration();
+                LrcSentence b2 = this.trcLyric.getLrcLine(i3 + 1);
                 if (trcSentence.getCurrentLrcText().length() > 0) {
                     m3626a(trcSentence);
                     f = (int) (b2.getTimeStamp() - (trcSentence.getTimeStamp() + trcSentence.m3608i()));
@@ -68,7 +68,7 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
                 }
                 if (b2.getCurrentLrcText().length() > 0) {
                     if (i >= 7000) {
-                        m3627a(j, i);
+                        addEmpty(j, i);
                     }
                     i2 = 0;
                 } else {
@@ -76,26 +76,26 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
                 }
             }
         }
-        LyricUtils.setLyricInfoToLyricLineList(this.f6638c, this.f6636a.getLyricInfo());
+        LyricUtils.setLyricInfoToLyricLineList(this.trcLineList, this.trcLyric.getLyricInfo());
         return this;
     }
 
     /* renamed from: a */
     private void m3626a(TrcSentence trcSentence) {
         TrcSentence trcSentence2 = new TrcSentence(trcSentence);
-        this.f6638c.add(trcSentence2);
-        trcSentence2.setLrcTextWidth(this.f6637b.measureLrcTextWidth(trcSentence.getCurrentLrcText()));
-        trcSentence2.m3618a(this.f6637b);
+        this.trcLineList.add(trcSentence2);
+        trcSentence2.setLrcTextWidth(this.onMeasureTextListener.measureLrcTextWidth(trcSentence.getCurrentLrcText()));
+        trcSentence2.m3618a(this.onMeasureTextListener);
     }
 
     /* renamed from: a */
-    private void m3627a(long j, int i) {
-        this.f6638c.add(new TrcSentence(j, "", i, 0, 0));
+    private void addEmpty(long startTime, int duration) {
+        this.trcLineList.add(new TrcSentence(startTime, "", duration, 0, 0));
     }
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        Iterator<TrcSentence> it = this.f6638c.iterator();
+        Iterator<TrcSentence> it = this.trcLineList.iterator();
         while (it.hasNext()) {
             sb.append(it.next().toString());
         }
@@ -104,14 +104,14 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: b */
-    public int getLrcLineIndex() {
-        return this.f6639d;
+    public int getCurrentIndex() {
+        return this.index;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
     public int getIndexByLrcTime(long j) {
-        this.f6639d = LyricUtils.getIndex(this.f6638c, j);
-        return this.f6639d;
+        this.index = LyricUtils.getIndex(this.trcLineList, j);
+        return this.index;
     }
 }
