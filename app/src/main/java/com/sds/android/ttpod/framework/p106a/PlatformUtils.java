@@ -11,7 +11,7 @@ public class PlatformUtils {
 
     static {
         f5686a = false;
-        if (!SDKVersionUtils.m8368f()) {
+        if (!SDKVersionUtils.sdkThan14()) {
             f5686a = true;
         }
     }

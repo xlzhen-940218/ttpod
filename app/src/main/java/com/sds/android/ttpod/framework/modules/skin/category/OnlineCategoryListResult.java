@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p128a;
+package com.sds.android.ttpod.framework.modules.skin.category;
 
 
 import com.google.gson.annotations.SerializedName;
@@ -13,28 +13,28 @@ public class OnlineCategoryListResult extends BaseResult implements Serializable
     @SerializedName(value = "data")
 
     /* renamed from: a */
-    private ArrayList<CategoryItem> f6397a;
+    private ArrayList<CategoryItem> data;
     @SerializedName(value = "ctime")
 
     /* renamed from: b */
-    private long f6398b;
+    private long ctime;
     @SerializedName(value = "extra")
 
     /* renamed from: c */
-    private OnlineSkinListResult.OnlineThemeListExtra f6399c;
+    private OnlineSkinListResult.OnlineThemeListExtra extra;
 
     /* renamed from: a */
-    public ArrayList<CategoryItem> m3859a() {
-        return this.f6397a;
+    public ArrayList<CategoryItem> getData() {
+        return this.data;
     }
 
     /* renamed from: b */
-    public long m3858b() {
-        return this.f6398b;
+    public long getCTime() {
+        return this.ctime;
     }
 
     /* renamed from: c */
-    public String m3857c() {
-        return this.f6399c.getPicUrl();
+    public String getPicUrl() {
+        return this.extra.getPicUrl();
     }
 }

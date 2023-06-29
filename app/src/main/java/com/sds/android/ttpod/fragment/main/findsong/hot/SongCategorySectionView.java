@@ -34,7 +34,7 @@ public class SongCategorySectionView extends SimpleSongView {
     /* renamed from: a */
     public void mo1547a(Context context) {
         super.mo1547a(context);
-        int m7229a = DisplayUtils.m7229a(8);
+        int m7229a = DisplayUtils.dp2px(8);
         this.f7928b.setPadding(0, 0, 0, 0);
         ViewGroup.LayoutParams layoutParams = this.f7928b.getLayoutParams();
         if (layoutParams instanceof ViewGroup.MarginLayoutParams) {

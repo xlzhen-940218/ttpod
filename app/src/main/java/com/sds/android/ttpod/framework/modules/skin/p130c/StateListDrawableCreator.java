@@ -11,41 +11,41 @@ import java.util.Iterator;
 public class StateListDrawableCreator extends DrawableCreator {
 
     /* renamed from: a */
-    private final ArrayList<C1983a> f6543a = new ArrayList<>();
+    private final ArrayList<StateDrawableCreator> stateDrawableCreators = new ArrayList<>();
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.DrawableCreator
     /* renamed from: a */
-    public Drawable mo3716a(Resources resources) {
+    public Drawable getDrawable(Resources resources) {
         StateListDrawable stateListDrawable = new StateListDrawable();
-        Iterator<C1983a> it = this.f6543a.iterator();
+        Iterator<StateDrawableCreator> it = this.stateDrawableCreators.iterator();
         while (it.hasNext()) {
-            C1983a next = it.next();
-            stateListDrawable.addState(next.f6544a, next.f6545b.mo3716a(resources));
+            StateDrawableCreator next = it.next();
+            stateListDrawable.addState(next.states, next.drawableCreator.getDrawable(resources));
         }
         return stateListDrawable;
     }
 
     /* renamed from: a */
-    public void m3715a(int[] iArr, DrawableCreator drawableCreator) {
-        if (iArr != null && drawableCreator != null) {
-            this.f6543a.add(new C1983a(iArr, drawableCreator));
+    public void addStateDrawableCreator(int[] states, DrawableCreator drawableCreator) {
+        if (states != null && drawableCreator != null) {
+            this.stateDrawableCreators.add(new StateDrawableCreator(states, drawableCreator));
         }
     }
 
     /* compiled from: StateListDrawableCreator.java */
     /* renamed from: com.sds.android.ttpod.framework.modules.skin.c.l$a */
     /* loaded from: classes.dex */
-    private static final class C1983a {
+    private static final class StateDrawableCreator {
 
         /* renamed from: a */
-        private int[] f6544a;
+        private int[] states;
 
         /* renamed from: b */
-        private DrawableCreator f6545b;
+        private DrawableCreator drawableCreator;
 
-        private C1983a(int[] iArr, DrawableCreator drawableCreator) {
-            this.f6544a = iArr;
-            this.f6545b = drawableCreator;
+        private StateDrawableCreator(int[] states, DrawableCreator drawableCreator) {
+            this.states = states;
+            this.drawableCreator = drawableCreator;
         }
     }
 }

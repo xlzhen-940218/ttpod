@@ -535,9 +535,9 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                 sb.append(URLEncoder.encode(pictureSearchTaskInfo.getSongInfo()[2], "UTF-8"));
             }
             sb.append("&x=");
-            sb.append(DisplayUtils.m7225c());
+            sb.append(DisplayUtils.getWidth());
             sb.append("&y=");
-            sb.append(DisplayUtils.m7224d());
+            sb.append(DisplayUtils.getHeight());
             if (i.isOnline()) {
                 sb.append("&song_id=");
                 sb.append(i.getSongID());

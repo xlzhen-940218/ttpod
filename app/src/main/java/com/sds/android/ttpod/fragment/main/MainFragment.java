@@ -30,7 +30,7 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeFramework;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.ActionPage;
 import com.sds.android.ttpod.framework.p106a.p107a.SAction;
@@ -294,7 +294,7 @@ public class MainFragment extends ActionBarFragment {
                 m7190b.setImageDrawable(null);
                 BitmapDrawable bitmapDrawable = (BitmapDrawable) ThemeManager.m3265a(ThemeElement.SETTING_AVATAR_IMAGE);
                 if (bitmapDrawable != null) {
-                    m7190b.setImageDrawable(new BitmapDrawable(getResources(), C1780b.m4785a(bitmapDrawable.getBitmap(), m3285g, false)));
+                    m7190b.setImageDrawable(new BitmapDrawable(getResources(), BitmapUtils.m4785a(bitmapDrawable.getBitmap(), m3285g, false)));
                 } else {
                     m7190b.setText(R.string.icon_avatar_hollow);
                     ThemeUtils.m8173a(m7190b, ThemeElement.TOP_BAR_TEXT);
@@ -306,7 +306,7 @@ public class MainFragment extends ActionBarFragment {
                 @Override // com.sds.android.ttpod.framework.p106a.ImageCacheUtils.InterfaceC1786a
                 /* renamed from: a */
                 public Bitmap mo4732a(Bitmap bitmap) {
-                    return C1780b.m4785a(bitmap, m3285g, false);
+                    return BitmapUtils.m4785a(bitmap, m3285g, false);
                 }
             });
             actionBarController.m7193a((CharSequence) m2954aq.getNickName());

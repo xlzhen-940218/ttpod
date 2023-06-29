@@ -19,7 +19,7 @@ public class BitmapUtils {
     private BitmapFactory.Options f2465b;
 
     /* renamed from: c */
-    private boolean f2466c = SDKVersionUtils.m8369e();
+    private boolean f2466c = SDKVersionUtils.sdkThan13();
 
     /* renamed from: d */
     private boolean f2467d = false;
@@ -205,7 +205,7 @@ public class BitmapUtils {
             LogUtils.debug("BitmapUtils", String.format("cropBitmapToSquare bitmapW=%d H=%d squareLen=%d scale=%f", Integer.valueOf(bitmap.getWidth()), Integer.valueOf(bitmap.getHeight()), Integer.valueOf(i), Float.valueOf(min2)));
             try {
                 Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, min, min, matrix, true);
-                if (SDKVersionUtils.m8370d()) {
+                if (SDKVersionUtils.sdkThan12()) {
                     createBitmap.setHasAlpha(bitmap.hasAlpha());
                     return createBitmap;
                 }
@@ -287,7 +287,7 @@ public class BitmapUtils {
         if (bitmap == null) {
             throw new IllegalArgumentException("bitmap must be not null!");
         }
-        return SDKVersionUtils.m8370d() ? bitmap.getByteCount() : bitmap.getRowBytes() * bitmap.getHeight();
+        return SDKVersionUtils.sdkThan12() ? bitmap.getByteCount() : bitmap.getRowBytes() * bitmap.getHeight();
     }
 
     /* renamed from: a */

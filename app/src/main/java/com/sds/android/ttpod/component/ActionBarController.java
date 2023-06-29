@@ -161,7 +161,7 @@ public final class ActionBarController implements ThemeManager.InterfaceC2019b {
         this.f3620n = z;
         ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) this.f3615i.getLayoutParams();
         if (z) {
-            int m7229a = DisplayUtils.m7229a(8);
+            int m7229a = DisplayUtils.dp2px(8);
             marginLayoutParams.leftMargin = m7229a;
             marginLayoutParams.rightMargin = (m7229a >> 2) * 3;
         } else {

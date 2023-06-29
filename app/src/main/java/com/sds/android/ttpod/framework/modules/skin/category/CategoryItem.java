@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p128a;
+package com.sds.android.ttpod.framework.modules.skin.category;
 
 
 import com.google.gson.annotations.SerializedName;
@@ -11,56 +11,56 @@ public class CategoryItem implements Serializable, Comparable<CategoryItem> {
     @SerializedName(value = "id")
 
     /* renamed from: a */
-    private int f6392a;
+    private int id;
     @SerializedName(value = "name")
 
     /* renamed from: b */
-    private String f6393b;
+    private String name;
     @SerializedName(value = "orderNum")
 
     /* renamed from: c */
-    private int f6394c;
+    private int orderNum;
     @SerializedName(value = "recommendPicUrl")
 
     /* renamed from: d */
-    private String f6395d;
+    private String recommendPicUrl;
 
     /* renamed from: e */
-    private String f6396e;
+    private String picUrl;
 
     /* renamed from: a */
-    public int m3867a() {
-        return this.f6392a;
+    public int getId() {
+        return this.id;
     }
 
     /* renamed from: b */
-    public String m3863b() {
-        return this.f6393b;
+    public String getName() {
+        return this.name;
     }
 
     /* renamed from: c */
-    public int m3862c() {
-        return this.f6394c;
+    public int getOrderNum() {
+        return this.orderNum;
     }
 
     /* renamed from: d */
-    public String m3861d() {
-        return this.f6395d;
+    public String getRecommendPicUrl() {
+        return this.recommendPicUrl;
     }
 
     /* renamed from: e */
-    public String m3860e() {
-        return this.f6396e;
+    public String getPicUrl() {
+        return this.picUrl;
     }
 
     /* renamed from: a */
-    public void m3864a(String str) {
-        this.f6396e = str;
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
     }
 
     @Override // java.lang.Comparable
     /* renamed from: a */
     public int compareTo(CategoryItem categoryItem) {
-        return m3862c() - categoryItem.m3862c();
+        return getOrderNum() - categoryItem.getOrderNum();
     }
 }

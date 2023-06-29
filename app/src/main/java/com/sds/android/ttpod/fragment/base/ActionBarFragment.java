@@ -236,7 +236,7 @@ public abstract class ActionBarFragment extends BaseFragment implements OnDropdo
             }
         };
         if (collection != null && !collection.isEmpty()) {
-            if (SDKVersionUtils.checkVersionThanAndroid11()) {
+            if (SDKVersionUtils.sdkThan11()) {
                 arrayAdapter.addAll(collection);
             } else {
                 for (ActionItem actionItem : collection) {
@@ -289,7 +289,7 @@ public abstract class ActionBarFragment extends BaseFragment implements OnDropdo
             }
         };
         if (collection != null && !collection.isEmpty()) {
-            if (SDKVersionUtils.checkVersionThanAndroid11()) {
+            if (SDKVersionUtils.sdkThan11()) {
                 arrayAdapter.addAll(collection);
             } else {
                 for (ActionItem actionItem : collection) {

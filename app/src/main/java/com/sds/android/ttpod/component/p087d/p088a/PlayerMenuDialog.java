@@ -19,8 +19,6 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.common.widget.IconTextView;
 import com.sds.android.ttpod.component.p085b.ActionItem;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import java.util.ArrayList;
@@ -137,7 +135,7 @@ public class PlayerMenuDialog extends Dialog {
         Window window = getWindow();
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.gravity = Gravity.BOTTOM;
-        attributes.width = DisplayUtils.m7225c();
+        attributes.width = DisplayUtils.getWidth();
         window.setAttributes(attributes);
         window.setWindowAnimations(R.style.Dialog_Window_Anim);
         MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();

@@ -175,7 +175,7 @@ public class IconTextView extends View {
         this.f3588e = ImageView.ScaleType.FIT_CENTER;
         this.textPaint = new TextPaint(1);
         this.textPaint.setTextAlign(Paint.Align.CENTER);
-        this.textPaint.setTypeface(DisplayUtils.m7230a());
+        this.textPaint.setTypeface(DisplayUtils.getIconFontTTF());
         if (textColor == null) {
             textColor = ColorStateList.valueOf(-65281);
         }
@@ -542,21 +542,21 @@ public class IconTextView extends View {
 
     @Override // android.view.View
     public void startAnimation(Animation animation) {
-        if (DisplayUtils.m7220h() > 160) {
+        if (DisplayUtils.getDpi() > 160) {
             super.startAnimation(animation);
         }
     }
 
     @Override // android.view.View
     public void clearAnimation() {
-        if (DisplayUtils.m7220h() > 160) {
+        if (DisplayUtils.getDpi() > 160) {
             super.clearAnimation();
         }
     }
 
     @Override // android.view.View
     public void setAnimation(Animation animation) {
-        if (DisplayUtils.m7220h() > 160) {
+        if (DisplayUtils.getDpi() > 160) {
             super.setAnimation(animation);
         }
     }

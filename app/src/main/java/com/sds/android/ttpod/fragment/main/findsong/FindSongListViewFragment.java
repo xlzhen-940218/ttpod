@@ -36,7 +36,7 @@ public class FindSongListViewFragment extends FindSongBaseViewFragment implement
     @Override // androidx.fragment.app.Fragment
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         if (this.mFindSongListViewContainer == null) {
-            int m7229a = DisplayUtils.m7229a(8);
+            int m7229a = DisplayUtils.dp2px(8);
             this.mFindSongListViewContainer = (ViewGroup) layoutInflater.inflate(R.layout.find_song_title_bar, (ViewGroup) null);
             this.mFindSongListViewContainer.removeAllViews();
             this.mFindSongListViewContainer.setPadding(m7229a, 0, m7229a, m7229a);
@@ -51,7 +51,7 @@ public class FindSongListViewFragment extends FindSongBaseViewFragment implement
         this.mListView.addHeaderView(new View(getActivity()));
         this.mListView.setLayoutParams(new LinearLayout.LayoutParams(-1, FindSongConfig.C0627b.m8273a(getModuleData().getDataList().size())));
         this.mListView.setDivider(new ColorDrawable(0));
-        this.mListView.setDividerHeight(DisplayUtils.m7229a(1));
+        this.mListView.setDividerHeight(DisplayUtils.dp2px(1));
         this.mListView.setHeaderDividersEnabled(false);
         this.mListView.setFooterDividersEnabled(false);
         this.mListView.setFadingEdgeLength(0);
@@ -114,7 +114,7 @@ public class FindSongListViewFragment extends FindSongBaseViewFragment implement
 
         /* renamed from: a */
         private void m5647a(C1520a c1520a, int i) {
-            int m7229a = DisplayUtils.m7229a(75);
+            int m7229a = DisplayUtils.dp2px(75);
             ImageCacheUtils.m4752a(c1520a.f5153b, FindSongListViewFragment.this.getItemData(i).getPicUrl(), m7229a, m7229a, (int) R.drawable.img_music_default_icon);
             c1520a.f5154c.setText(FindSongListViewFragment.this.getItemData(i).getName());
             c1520a.f5155d.setText(FindSongListViewFragment.this.getItemData(i).getDesc());
@@ -133,8 +133,8 @@ public class FindSongListViewFragment extends FindSongBaseViewFragment implement
 
         /* renamed from: b */
         private void m5646b() {
-            if (SDKVersionUtils.checkVersionThanAndroid11()) {
-                FindSongListViewFragment.this.mListView.setDivider(m5649a(ThemeManager.m3265a(ThemeElement.COMMON_SEPARATOR), DisplayUtils.m7229a(85), 0));
+            if (SDKVersionUtils.sdkThan11()) {
+                FindSongListViewFragment.this.mListView.setDivider(m5649a(ThemeManager.m3265a(ThemeElement.COMMON_SEPARATOR), DisplayUtils.dp2px(85), 0));
                 FindSongListViewFragment.this.mListView.setDividerHeight(1);
                 FindSongListViewFragment.this.mListView.setHeaderDividersEnabled(true);
                 FindSongListViewFragment.this.mListView.setFooterDividersEnabled(true);

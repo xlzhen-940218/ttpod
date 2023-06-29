@@ -126,14 +126,14 @@ public class PopupsUtils {
     /* renamed from: a */
     public static void m6749a(Context context) {
         f4017a = Toast.makeText(context, "", Toast.LENGTH_LONG);
-        if (SDKVersionUtils.checkVersionThanAndroid11()) {
+        if (SDKVersionUtils.sdkThan11()) {
             f4020d = context;
         }
     }
 
     /* renamed from: a */
     public static void m6721a(String str) {
-        if (SDKVersionUtils.checkVersionThanAndroid11()) {
+        if (SDKVersionUtils.sdkThan11()) {
             f4017a.cancel();
             f4017a = Toast.makeText(f4020d, "", Toast.LENGTH_LONG);
         }

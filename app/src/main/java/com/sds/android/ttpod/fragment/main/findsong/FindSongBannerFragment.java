@@ -21,7 +21,7 @@ public class FindSongBannerFragment extends FindSongBaseViewFragment {
     @Override // androidx.fragment.app.Fragment
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         if (this.mFindSongBannerViewContainer == null) {
-            int m7229a = DisplayUtils.m7229a(8);
+            int m7229a = DisplayUtils.dp2px(8);
             this.mFindSongBannerViewContainer = (ViewGroup) layoutInflater.inflate(R.layout.layout_null_relative_layout, (ViewGroup) null);
             this.mFindSongBannerViewContainer.setPadding(m7229a, m7229a, m7229a, m7229a);
             this.mFindSongBannerViewContainer.addView(createBannerView());
@@ -33,8 +33,8 @@ public class FindSongBannerFragment extends FindSongBaseViewFragment {
 
     private RoundedImageView createBannerView() {
         RoundedImageView roundedImageView = new RoundedImageView(getActivity());
-        roundedImageView.setCornerRadius(DisplayUtils.m7229a(4));
-        int m7225c = DisplayUtils.m7225c();
+        roundedImageView.setCornerRadius(DisplayUtils.dp2px(4));
+        int m7225c = DisplayUtils.getWidth();
         int i = (int) (m7225c * 0.2d);
         roundedImageView.setLayoutParams(new LinearLayout.LayoutParams(-1, i));
         roundedImageView.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -44,7 +44,7 @@ public class FindSongBannerFragment extends FindSongBaseViewFragment {
 
     private ImageView createClickView() {
         ImageView imageView = new ImageView(getActivity());
-        imageView.setLayoutParams(new RelativeLayout.LayoutParams(-1, (int) (DisplayUtils.m7225c() * 0.2d)));
+        imageView.setLayoutParams(new RelativeLayout.LayoutParams(-1, (int) (DisplayUtils.getWidth() * 0.2d)));
         imageView.setBackground(getResources().getDrawable(R.drawable.grid_view_item_click_bg));
         imageView.getBackground().setAlpha(50);
         imageView.setOnClickListener(createItemOnClickListener(0));

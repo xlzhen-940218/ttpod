@@ -72,7 +72,7 @@ public class SLyricShow extends SText {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: b */
-    public View mo3771b(Context context, SkinCache skinCache) {
+    public View getIcon(Context context, SkinCache skinCache) {
         LyricView lyricView = new LyricView(context);
         Typeface m3593a = skinCache.getTypeFace(this.font);
         if (m3593a != null) {

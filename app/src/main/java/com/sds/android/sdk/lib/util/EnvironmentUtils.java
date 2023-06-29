@@ -108,7 +108,7 @@ public class EnvironmentUtils {
     @TargetApi(11)
     /* renamed from: g */
     private static void m8517g() {
-        if (SDKVersionUtils.checkVersionThanAndroid11()) {
+        if (SDKVersionUtils.sdkThan11()) {
             try {
                 Method method = AsyncTask.class.getMethod("setDefaultExecutor", Executor.class);
                 @SuppressLint("SoonBlockedPrivateApi") Field declaredField = ThreadPoolExecutor.class.getDeclaredField("defaultHandler");
@@ -147,7 +147,7 @@ public class EnvironmentUtils {
 
         /* renamed from: a */
         public static long m8469a(File file) {
-            if (SDKVersionUtils.m8372b()) {
+            if (SDKVersionUtils.sdkThan9()) {
                 return file.getUsableSpace();
             }
             StatFs statFs = new StatFs(file.getPath());
@@ -156,7 +156,7 @@ public class EnvironmentUtils {
 
         /* renamed from: a */
         public static File m8471a(Context context) {
-            File externalCacheDir = SDKVersionUtils.m8373a() ? context.getExternalCacheDir() : null;
+            File externalCacheDir = SDKVersionUtils.sdkThan8() ? context.getExternalCacheDir() : null;
             if (externalCacheDir == null) {
                 externalCacheDir = new File(Environment.getExternalStorageDirectory().getPath() + ("/Android/data/" + context.getPackageName() + "/cache/"));
             }
@@ -205,7 +205,7 @@ public class EnvironmentUtils {
             if (StringUtils.isEmpty(m8460d) || !FileUtils.m8419a(m8460d)) {
                 return EnvironmentUtils.sdcardPath + File.separator + MediaStoreOld.AUTHORITY;
             }
-            if (SDKVersionUtils.m8365i()) {
+            if (SDKVersionUtils.sdkThan19()) {
                 return EnvironmentUtils.externalPath;
             }
             return m8460d + File.separator + MediaStoreOld.AUTHORITY;
@@ -309,7 +309,7 @@ public class EnvironmentUtils {
         /* renamed from: g */
         private static String m8457g(Context context) throws Exception {
             String[] strArr;
-            if (SDKVersionUtils.checkVersionThanAndroid11()) {
+            if (SDKVersionUtils.sdkThan11()) {
                 StorageManager storageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
                 for (String str : (String[]) storageManager.getClass().getMethod("getVolumePaths", null)
                         .invoke(storageManager, null)) {

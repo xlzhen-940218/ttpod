@@ -143,7 +143,7 @@ public abstract class BaseDialog extends Dialog {
 
     /* renamed from: b */
     private boolean m7256b() {
-        return !SDKVersionUtils.m8368f();
+        return !SDKVersionUtils.sdkThan14();
     }
 
     /* renamed from: c */

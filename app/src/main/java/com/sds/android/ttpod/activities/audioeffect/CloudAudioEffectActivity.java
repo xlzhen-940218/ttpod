@@ -50,7 +50,7 @@ public class CloudAudioEffectActivity extends SlidingPagerActivity {
         this.mPagerTitle.setBackground(new ColorDrawable(Color.parseColor("#222222")));
         this.mPagerTitle.setTextColor(Color.parseColor("#ffffff"));
         this.mPagerTitle.setIndicatorColorResource(R.color.effect_blue);
-        this.mPagerTitle.setIndicatorHeight(DisplayUtils.m7229a(4));
+        this.mPagerTitle.setIndicatorHeight(DisplayUtils.dp2px(4));
         initActionBar();
         initFirstInto();
         this.mPagerTitle.setOnPageChangeListener(this);

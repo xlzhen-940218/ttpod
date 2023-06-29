@@ -28,7 +28,7 @@ import com.sds.android.ttpod.framework.modules.skin.view.AnimTransView;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeFramework;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -296,7 +296,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
         if (cornerRadius != 0) {
             AnimTransView animTransView = this.mArtistFrameView.getAnimTransView();
             int dimension = ((int) getResources().getDimension(R.dimen.playcontrol_bar_background_height)) - (animTransView.getPaddingRight() + animTransView.getPaddingLeft());
-            return C1780b.m4785a(C1780b.m4784a(C1780b.m4786a(bitmap, dimension, dimension, false), true), cornerRadius, true);
+            return BitmapUtils.m4785a(BitmapUtils.m4784a(BitmapUtils.m4786a(bitmap, dimension, dimension, false), true), cornerRadius, true);
         }
         return bitmap;
     }
@@ -309,7 +309,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
             this.mThemeArtsDrawable = getResources().getDrawable(R.drawable.img_artist_default);
         }
         int dimension = (int) getResources().getDimension(R.dimen.playcontrol_bar_height);
-        this.mSongImage.setImageBitmap(cropRoundedBitmap(C1780b.m4781a(this.mThemeArtsDrawable, dimension, dimension)));
+        this.mSongImage.setImageBitmap(cropRoundedBitmap(BitmapUtils.m4781a(this.mThemeArtsDrawable, dimension, dimension)));
     }
 
     public void pictureDeleted(MediaItem mediaItem) {

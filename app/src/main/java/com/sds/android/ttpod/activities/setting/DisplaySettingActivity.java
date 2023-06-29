@@ -108,10 +108,10 @@ public class DisplaySettingActivity extends SlidingClosableActivity {
             m6747a.m7261a(R.string.set_at_once, new BaseDialog.InterfaceC1064a<OptionalDialog>() { // from class: com.sds.android.ttpod.activities.setting.DisplaySettingActivity.2
                 /* renamed from: a */
                 private Intent m7817a() {
-                    if (SDKVersionUtils.m8372b()) {
+                    if (SDKVersionUtils.sdkThan9()) {
                         return new Intent("android.settings.APPLICATION_DETAILS_SETTINGS", Uri.parse("package:" + EnvironmentUtils.m8526a()));
                     }
-                    if (SDKVersionUtils.m8373a()) {
+                    if (SDKVersionUtils.sdkThan8()) {
                         Intent intent = new Intent("android.intent.action.VIEW");
                         intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
                         intent.putExtra("pkg", EnvironmentUtils.m8526a());

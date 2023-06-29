@@ -62,7 +62,7 @@ public class PackHandleProxy extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: b */
-    public byte[] mo3753b(String str) throws IOException {
-        return this.packHandle.mo3753b(str);
+    public byte[] loadTskResource(String resName) throws IOException {
+        return this.packHandle.loadTskResource(resName);
     }
 }

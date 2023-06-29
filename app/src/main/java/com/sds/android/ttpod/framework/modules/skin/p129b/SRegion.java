@@ -16,7 +16,7 @@ public class SRegion extends SComponent {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: b */
-    View mo3771b(Context context, SkinCache skinCache) {
+    View getIcon(Context context, SkinCache skinCache) {
         return new FrameLayout(context);
     }
 }

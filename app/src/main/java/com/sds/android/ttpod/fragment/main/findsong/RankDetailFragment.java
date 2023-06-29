@@ -251,7 +251,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
         public void mo5586a(MusicRank musicRank) {
             this.f5229c.setText(musicRank.getDetail());
             this.f5228b.setText(musicRank.getTime());
-            ImageCacheUtils.m4752a(this.f5227a, StringUtils.isEmpty(musicRank.getBigPicUrl()) ? musicRank.getPicUrl() : musicRank.getBigPicUrl(), DisplayUtils.m7225c(), DisplayUtils.m7224d() / 2, (int) R.drawable.img_background_ttpod_music_large_logo);
+            ImageCacheUtils.m4752a(this.f5227a, StringUtils.isEmpty(musicRank.getBigPicUrl()) ? musicRank.getPicUrl() : musicRank.getBigPicUrl(), DisplayUtils.getWidth(), DisplayUtils.getHeight() / 2, (int) R.drawable.img_background_ttpod_music_large_logo);
         }
 
         /* renamed from: a */

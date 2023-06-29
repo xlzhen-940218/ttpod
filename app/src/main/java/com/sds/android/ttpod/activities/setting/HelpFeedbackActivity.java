@@ -44,7 +44,7 @@ public class HelpFeedbackActivity extends SlidingPagerActivity {
         this.mPagerTitle.setIndicatorColorResource(R.color.tab_indicator_feedback_selected);
         this.mPagerTitle.setUnderlineColorResource(R.color.tab_indicator_feedback_normal);
         this.mPagerTitle.setUnderlineHeight(1);
-        this.mPagerTitle.setIndicatorHeight(DisplayUtils.m7229a(2));
+        this.mPagerTitle.setIndicatorHeight(DisplayUtils.dp2px(2));
     }
 
     @Override // com.sds.android.ttpod.activities.base.SlidingPagerActivity

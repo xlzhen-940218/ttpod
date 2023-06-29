@@ -27,7 +27,7 @@ public class BitmapDrawableCreator extends DrawableCreator {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.DrawableCreator
     /* renamed from: a */
-    public Drawable mo3716a(Resources resources) {
+    public Drawable getDrawable(Resources resources) {
         Bitmap bitmap = this.f6509a;
         if (bitmap != null) {
             byte[] ninePatchChunk = bitmap.getNinePatchChunk();

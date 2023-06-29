@@ -122,7 +122,7 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
 
     /* renamed from: a */
     private void m8813a(int i) {
-        if (!SDKVersionUtils.m8370d()) {
+        if (!SDKVersionUtils.sdkThan12()) {
             i = 1024;
         }
         this.f2272a = new LruCache<String, Bitmap>(i / 1024) { // from class: com.sds.android.sdk.core.a.b.1

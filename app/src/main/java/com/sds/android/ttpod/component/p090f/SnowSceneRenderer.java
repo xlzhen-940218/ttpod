@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLUtils;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -81,7 +81,7 @@ public class SnowSceneRenderer implements GLSurfaceView.Renderer {
     private void m6611j() {
         try {
             InputStream open = this.f4146p.getAssets().open("scene/snow_flake.png");
-            this.f4132b = new C1780b().m4780a(open);
+            this.f4132b = new BitmapUtils().m4780a(open);
             try {
                 open.close();
             } catch (Exception e) {

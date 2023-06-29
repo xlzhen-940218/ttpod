@@ -98,7 +98,7 @@ public class EmoticonsLayout extends RelativeLayout implements AdapterView.OnIte
                 EmoticonsLayout.this.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                 int height = slidingClosableRelativeLayout.getHeight();
                 int height2 = slidingClosableRelativeLayout.getHeight();
-                EmoticonsLayout.this.f4079b = new Rect(0, height2 - DisplayUtils.m7229a((int) 190), height, height2);
+                EmoticonsLayout.this.f4079b = new Rect(0, height2 - DisplayUtils.dp2px((int) 190), height, height2);
             }
         });
     }
@@ -161,7 +161,7 @@ public class EmoticonsLayout extends RelativeLayout implements AdapterView.OnIte
             gridView.setNumColumns(7);
             gridView.setBackgroundColor(0);
             gridView.setHorizontalSpacing(1);
-            gridView.setVerticalSpacing(DisplayUtils.m7229a(15));
+            gridView.setVerticalSpacing(DisplayUtils.dp2px(15));
             gridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
             gridView.setCacheColorHint(0);
             gridView.setPadding(5, 0, 5, 0);

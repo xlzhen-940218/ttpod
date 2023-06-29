@@ -10,69 +10,69 @@ import android.util.DisplayMetrics;
 public class DisplayUtils {
 
     /* renamed from: a */
-    private static DisplayMetrics f3578a = null;
+    private static DisplayMetrics displayMetrics = null;
 
     /* renamed from: b */
-    private static Configuration f3579b = null;
+    private static Configuration configuration = null;
 
     /* renamed from: c */
-    private static Typeface f3580c;
+    private static Typeface iconFontTTF;
 
     /* renamed from: d */
-    private static Typeface f3581d;
+    private static Typeface uniSansLightTTF;
 
     /* renamed from: a */
-    public static void m7228a(Context context) {
-        f3578a = context.getResources().getDisplayMetrics();
-        f3579b = context.getResources().getConfiguration();
-        f3580c = Typeface.createFromAsset(context.getAssets(), "fonts/IconFont.ttf");
-        f3581d = Typeface.createFromAsset(context.getAssets(), "fonts/Uni Sans Light.ttf");
+    public static void init(Context context) {
+        displayMetrics = context.getResources().getDisplayMetrics();
+        configuration = context.getResources().getConfiguration();
+        iconFontTTF = Typeface.createFromAsset(context.getAssets(), "fonts/IconFont.ttf");
+        uniSansLightTTF = Typeface.createFromAsset(context.getAssets(), "fonts/Uni Sans Light.ttf");
     }
 
     /* renamed from: a */
-    public static void m7227a(Context context, Configuration configuration) {
-        f3578a = context.getResources().getDisplayMetrics();
-        f3579b = configuration;
+    public static void setConfiguration(Context context, Configuration configuration) {
+        displayMetrics = context.getResources().getDisplayMetrics();
+        DisplayUtils.configuration = configuration;
     }
 
     /* renamed from: a */
-    public static Typeface m7230a() {
-        return f3580c;
+    public static Typeface getIconFontTTF() {
+        return iconFontTTF;
     }
 
     /* renamed from: b */
-    public static Typeface m7226b() {
-        return f3581d;
+    public static Typeface getUniSansLightTTF() {
+        return uniSansLightTTF;
     }
 
     /* renamed from: c */
-    public static int m7225c() {
-        return f3578a.widthPixels;
+    public static int getWidth() {
+        return displayMetrics.widthPixels;
     }
 
     /* renamed from: d */
-    public static int m7224d() {
-        return f3578a.heightPixels;
+    public static int getHeight() {
+        return displayMetrics.heightPixels;
     }
 
     /* renamed from: e */
-    public static float m7223e() {
-        return f3578a.density;
+    public static float getDensity() {
+        return displayMetrics.density;
     }
 
     /* renamed from: f */
-    public static int m7222f() {
-        return f3578a.densityDpi;
+    public static int getDensityDpi() {
+        return displayMetrics.densityDpi;
     }
 
     /* renamed from: a */
-    public static int m7229a(int i) {
-        return (int) ((i > 0 ? 0.5f : -0.5f) + (f3578a.density * i));
+    public static int dp2px(int dp) {
+        return (int) ((dp > 0 ? 0.5f : -0.5f) + (displayMetrics.density * dp));
     }
 
     /* renamed from: g */
-    public static String m7221g() {
-        switch (m7220h()) {
+    public static String getDpiName() {
+        switch (getDpi()) {
             case 120:
                 return "_ldpi";
             case 160:
@@ -89,8 +89,8 @@ public class DisplayUtils {
     }
 
     /* renamed from: h */
-    public static int m7220h() {
-        int i = f3578a.densityDpi;
+    public static int getDpi() {
+        int i = displayMetrics.densityDpi;
         if (i <= 120) {
             return 120;
         }

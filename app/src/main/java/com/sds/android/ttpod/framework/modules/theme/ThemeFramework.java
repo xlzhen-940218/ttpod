@@ -10,13 +10,12 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.graphics.drawable.StateListDrawable;
-import androidx.core.view.ViewCompat;
 import android.util.StateSet;
 import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.modules.skin.SkinCache;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -242,7 +241,7 @@ public class ThemeFramework {
         /* renamed from: d */
         private int m3299d(String str) {
             try {
-                return DisplayUtils.m7229a(Integer.parseInt(str));
+                return DisplayUtils.dp2px(Integer.parseInt(str));
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 return -2;
@@ -337,9 +336,9 @@ public class ThemeFramework {
 
         /* renamed from: j */
         private static String m3274j() {
-            String m7221g = DisplayUtils.m7221g();
+            String m7221g = DisplayUtils.getDpiName();
             if ("_xhdpi".equals(m7221g)) {
-                return m7221g + (((double) DisplayUtils.m7223e()) > 2.0d ? FeedbackItem.STATUS_SOLVED : "1");
+                return m7221g + (((double) DisplayUtils.getDensity()) > 2.0d ? FeedbackItem.STATUS_SOLVED : "1");
             }
             return m7221g;
         }
@@ -571,7 +570,7 @@ public class ThemeFramework {
         private HashMap<String, C2017f> f6942e = new HashMap<>();
 
         /* renamed from: f */
-        private C1780b f6943f = new C1780b();
+        private BitmapUtils f6943f = new BitmapUtils();
 
         /* renamed from: c */
         private C2015d f6940c = new C2015d();
@@ -641,7 +640,7 @@ public class ThemeFramework {
 
         /* renamed from: a */
         Bitmap m3318a(String str) {
-            Bitmap m3586c = this.f6941d != null ? this.f6941d.m3586c('/' + str) : null;
+            Bitmap m3586c = this.f6941d != null ? this.f6941d.loadTskBitmap('/' + str) : null;
             if (m3586c == null) {
                 InputStream m3309d = m3309d("theme/" + str);
                 try {

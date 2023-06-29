@@ -166,9 +166,9 @@ public class BoostFragment extends BaseFragment {
     }
 
     private void initViews() {
-        int m7225c = DisplayUtils.m7225c();
-        int m7229a = (int) ((m7225c - DisplayUtils.m7229a(8)) * 0.5f);
-        int m7229a2 = (int) ((m7225c - DisplayUtils.m7229a(8)) * 0.5f);
+        int m7225c = DisplayUtils.getWidth();
+        int m7229a = (int) ((m7225c - DisplayUtils.dp2px(8)) * 0.5f);
+        int m7229a2 = (int) ((m7225c - DisplayUtils.dp2px(8)) * 0.5f);
         this.mButtonBass = (RadialProgressWidget) this.mRootView.findViewById(R.id.rotatebutton_bass_boost);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(m7229a, m7229a);
         RelativeLayout.LayoutParams layoutParams2 = new RelativeLayout.LayoutParams(m7229a2, m7229a2);

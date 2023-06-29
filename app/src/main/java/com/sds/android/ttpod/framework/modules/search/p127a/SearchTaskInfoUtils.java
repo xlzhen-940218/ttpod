@@ -30,8 +30,8 @@ public class SearchTaskInfoUtils {
         PictureSearchTaskInfo pictureSearchTaskInfo = new PictureSearchTaskInfo();
         pictureSearchTaskInfo.setMediaItem(mediaItem);
         pictureSearchTaskInfo.m2209a((Object) mediaItem);
-        pictureSearchTaskInfo.m2188b(DisplayUtils.m7225c());
-        pictureSearchTaskInfo.m2187c(DisplayUtils.m7224d());
+        pictureSearchTaskInfo.m2188b(DisplayUtils.getWidth());
+        pictureSearchTaskInfo.m2187c(DisplayUtils.getHeight());
         if ("artist".equals(mediaItem.getArtist())) {
             pictureSearchTaskInfo.m2189a(2);
         } else if ("album".equals(mediaItem.getAlbum())) {

@@ -396,7 +396,7 @@ public class NewAlbumFragment extends SlidingClosableFragment {
                 ImageView imageView = c1533a.f5181e;
                 if (imageView.getTag(R.id.view_bind_data) != firstPublishAlbumData.getPicUrl()) {
                     imageView.setTag(R.id.view_bind_data, firstPublishAlbumData.getPicUrl());
-                    int m7225c = DisplayUtils.m7225c() / 2;
+                    int m7225c = DisplayUtils.getWidth() / 2;
                     ImageCacheUtils.m4752a(imageView, firstPublishAlbumData.getPicUrl(), m7225c, m7225c, (int) R.drawable.img_background_song_publish);
                     return;
                 }

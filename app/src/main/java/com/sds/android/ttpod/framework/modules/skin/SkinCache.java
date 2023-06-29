@@ -23,7 +23,7 @@ import com.sds.android.ttpod.framework.modules.skin.p130c.DrawableCreator;
 import com.sds.android.ttpod.framework.modules.skin.p130c.StateListDrawableCreator;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ValueParser;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ViewWrapper;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,13 +35,13 @@ import java.util.HashMap;
 public class SkinCache extends SkinReader {
 
     /* renamed from: a */
-    private HashMap<String, Bitmap> f6645a = new HashMap<>();
+    private HashMap<String, Bitmap> imageBitMaps = new HashMap<>();
 
     /* renamed from: c */
-    private HashMap<String, DrawableCreator> f6646c = new HashMap<>();
+    private HashMap<String, DrawableCreator> imageDrawableCreatorMaps = new HashMap<>();
 
     /* renamed from: d */
-    private HashMap<String, Typeface> f6647d = new HashMap<>();
+    private HashMap<String, Typeface> typefaceMaps = new HashMap<>();
 
     /* renamed from: e */
     private String path = null;
@@ -117,7 +117,7 @@ public class SkinCache extends SkinReader {
     /* renamed from: a */
     public Typeface getTypeFace(SFont sFont) {
         String str;
-        if (sFont == null || this.f6647d == null) {
+        if (sFont == null || this.typefaceMaps == null) {
             return null;
         }
         String m3801b = sFont.getFamilyName();
@@ -127,7 +127,7 @@ public class SkinCache extends SkinReader {
         } else {
             str = m3801b + max;
         }
-        Typeface typeface = this.f6647d.get(str);
+        Typeface typeface = this.typefaceMaps.get(str);
         if (typeface == null) {
             if (m3801b != null) {
                 if (m3801b.startsWith("file://")) {
@@ -137,7 +137,7 @@ public class SkinCache extends SkinReader {
                 typeface = Typeface.create(m3801b, max);
             }
             if (typeface != null) {
-                this.f6647d.put(str, typeface);
+                this.typefaceMaps.put(str, typeface);
                 if (max != typeface.getStyle()) {
                     return Typeface.create(typeface, max);
                 }
@@ -153,28 +153,28 @@ public class SkinCache extends SkinReader {
         if (sBitmap != null) {
             if (sBitmap.m3816i()) {
                 StateListDrawableCreator stateListDrawableCreator = new StateListDrawableCreator();
-                stateListDrawableCreator.m3715a(ViewWrapper.f6593x, m3588b(sBitmap.getPressed()));
-                stateListDrawableCreator.m3715a(ViewWrapper.f6571b, m3588b(sBitmap.getEnabled()));
-                stateListDrawableCreator.m3715a(ViewWrapper.f6573d, m3588b(sBitmap.getChecked()));
-                stateListDrawableCreator.m3715a(ViewWrapper.f6572c, m3588b(sBitmap.getFocused()));
-                stateListDrawableCreator.m3715a(ViewWrapper.f6570a, m3588b(sBitmap.getEmpty()));
+                stateListDrawableCreator.addStateDrawableCreator(ViewWrapper.PRESSED_ENABLED_STATE_SET, getDrawableCreator(sBitmap.getPressed()));
+                stateListDrawableCreator.addStateDrawableCreator(ViewWrapper.ENABLED_STATE_SET, getDrawableCreator(sBitmap.getEnabled()));
+                stateListDrawableCreator.addStateDrawableCreator(ViewWrapper.SELECTED_STATE_SET, getDrawableCreator(sBitmap.getChecked()));
+                stateListDrawableCreator.addStateDrawableCreator(ViewWrapper.FOCUSED_STATE_SET, getDrawableCreator(sBitmap.getFocused()));
+                stateListDrawableCreator.addStateDrawableCreator(ViewWrapper.EMPTY_STATE_SET, getDrawableCreator(sBitmap.getEmpty()));
                 return stateListDrawableCreator;
             }
-            return m3588b(sBitmap.getFile());
+            return getDrawableCreator(sBitmap.getFile());
         }
         return null;
     }
 
     /* JADX WARN: Multi-variable type inference failed */
     /* renamed from: b */
-    public final DrawableCreator m3588b(String str) {
+    public final DrawableCreator getDrawableCreator(String str) {
         String str2;
         String str3;
         DrawableCreator colorDrawableCreator;
-        if (str == null || this.f6646c == null) {
+        if (str == null || this.imageDrawableCreatorMaps == null) {
             return null;
         }
-        DrawableCreator drawableCreator = this.f6646c.get(str);
+        DrawableCreator drawableCreator = this.imageDrawableCreatorMaps.get(str);
         if (drawableCreator == null) {
             int lastIndexOf = str.lastIndexOf(124);
             if (lastIndexOf > 0) {
@@ -184,12 +184,12 @@ public class SkinCache extends SkinReader {
                 str2 = null;
                 str3 = str;
             }
-            Bitmap bitmap = this.f6645a.get(str3);
+            Bitmap bitmap = this.imageBitMaps.get(str3);
             if (bitmap == null) {
-                bitmap = m3586c(str3);
+                bitmap = loadTskBitmap(str3);
             }
             if (bitmap != null) {
-                this.f6645a.put(str3, bitmap);
+                this.imageBitMaps.put(str3, bitmap);
                 BitmapDrawableCreator bitmapDrawableCreator = new BitmapDrawableCreator(bitmap);
                 if (str2 != null) {
                     TextUtils.SimpleStringSplitter simpleStringSplitter = new TextUtils.SimpleStringSplitter(',');
@@ -202,7 +202,7 @@ public class SkinCache extends SkinReader {
             } else {
                 colorDrawableCreator = new ColorDrawableCreator(ValueParser.stringToIntArray(str3, (int[]) null), ValueParser.parseInt(str2, 0));
             }
-            this.f6646c.put(str, colorDrawableCreator);
+            this.imageDrawableCreatorMaps.put(str, colorDrawableCreator);
             return colorDrawableCreator;
         }
         return drawableCreator;
@@ -212,64 +212,64 @@ public class SkinCache extends SkinReader {
     public final Drawable m3596a(Resources resources, SBitmap sBitmap) {
         DrawableCreator m3594a = m3594a(sBitmap);
         if (m3594a != null) {
-            return m3594a.mo3716a(resources);
+            return m3594a.getDrawable(resources);
         }
         return null;
     }
 
     /* renamed from: a */
     public final Drawable m3595a(Resources resources, String str) {
-        DrawableCreator m3588b = m3588b(str);
+        DrawableCreator m3588b = getDrawableCreator(str);
         if (m3588b != null) {
-            return m3588b.mo3716a(resources);
+            return m3588b.getDrawable(resources);
         }
         return null;
     }
 
     /* renamed from: c */
-    public Bitmap m3586c(String str) {
+    public Bitmap loadTskBitmap(String name) {
         String str2;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPurgeable = true;
         options.inInputShareable = true;
-        if (str.startsWith("file://")) {
-            return BitmapFactory.decodeFile(str.substring("file://".length()), options);
+        if (name.startsWith("file://")) {
+            return BitmapFactory.decodeFile(name.substring("file://".length()), options);
         }
-        if (str.startsWith("assets://")) {
+        if (name.startsWith("assets://")) {
             throw new UnsupportedOperationException("not support yet");
         }
         if (this.packHandle == null || !this.packHandle.streamNotNull()) {
             return null;
         }
-        int indexOf = str.indexOf(File.separatorChar);
-        options.inTargetDensity = DisplayUtils.m7222f();
+        int indexOf = name.indexOf(File.separatorChar);
+        options.inTargetDensity = DisplayUtils.getDensityDpi();
         options.inScaled = true;
-        options.inDensity = DisplayUtils.m7220h();
-        String m7221g = DisplayUtils.m7221g();
+        options.inDensity = DisplayUtils.getDpi();
+        String dpiName = DisplayUtils.getDpiName();
         if (indexOf >= 0) {
-            str2 = "/" + m7221g + str;
+            str2 = "/" + dpiName + name;
         } else {
-            str2 = str + m7221g;
+            str2 = name + dpiName;
         }
-        Bitmap m3591a = m3591a(str2, options);
-        if (m3591a == null) {
-            return m3591a(str, options);
+        Bitmap bitmap = loadTskBitmap(str2, options);
+        if (bitmap == null) {
+            return loadTskBitmap(name, options);
         }
-        return m3591a;
+        return bitmap;
     }
 
     /* renamed from: a */
-    public Bitmap m3591a(String str, BitmapFactory.Options options) {
+    public Bitmap loadTskBitmap(String resource, BitmapFactory.Options options) {
         Bitmap bitmap = null;
         try {
-            byte[] mo3753b = this.packHandle.mo3753b(str);
-            if (mo3753b != null) {
+            byte[] bytes = this.packHandle.loadTskResource(resource);
+            if (bytes != null) {
                 options.inJustDecodeBounds = true;
-                BitmapFactory.decodeByteArray(mo3753b, 0, mo3753b.length, options);
-                if (C1780b.m4782a(options, DisplayUtils.m7225c(), DisplayUtils.m7224d())) {
-                    bitmap = BitmapFactory.decodeByteArray(mo3753b, 0, mo3753b.length, options);
-                    if (SDKVersionUtils.m8370d()) {
-                        bitmap.setHasAlpha(C1780b.m4773b(options) ? false : true);
+                BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
+                if (BitmapUtils.scaleBitmap(options, DisplayUtils.getWidth(), DisplayUtils.getHeight())) {
+                    bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
+                    if (SDKVersionUtils.sdkThan12()) {
+                        bitmap.setHasAlpha(!BitmapUtils.isNotPng(options));
                     }
                 }
             }
@@ -281,7 +281,7 @@ public class SkinCache extends SkinReader {
 
     /* renamed from: d */
     public byte[] m3584d(String str) throws IOException {
-        return this.packHandle.mo3753b(str);
+        return this.packHandle.loadTskResource(str);
     }
 
     /* renamed from: e */
@@ -331,9 +331,9 @@ public class SkinCache extends SkinReader {
 
     /* renamed from: i */
     public void clear() {
-        this.f6645a.clear();
-        this.f6646c.clear();
-        this.f6647d.clear();
+        this.imageBitMaps.clear();
+        this.imageDrawableCreatorMaps.clear();
+        this.typefaceMaps.clear();
         this.path = null;
         this.serializableSkin = null;
         this.f6650g = null;
@@ -350,7 +350,7 @@ public class SkinCache extends SkinReader {
         if (!m3581g()) {
             return null;
         }
-        Bitmap m3586c = m3586c("/background.jpg");
+        Bitmap m3586c = loadTskBitmap("/background.jpg");
         if (m3586c == null) {
             bitmapDrawable = getSerializableSkin().m3851a(context, this, 0);
         } else {

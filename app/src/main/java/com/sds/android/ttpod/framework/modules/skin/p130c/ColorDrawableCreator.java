@@ -22,7 +22,7 @@ public class ColorDrawableCreator extends DrawableCreator {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.DrawableCreator
     /* renamed from: a */
-    public Drawable mo3716a(Resources resources) {
+    public Drawable getDrawable(Resources resources) {
         return (this.f6528b == null || this.f6527a.length <= 1) ? new ColorDrawable(this.f6527a[0]) : new GradientDrawable(this.f6528b, this.f6527a);
     }
 

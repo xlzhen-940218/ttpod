@@ -44,7 +44,7 @@ public final class ViewUtils {
 
     /* renamed from: a */
     public static void m4639a(View view) {
-        if (view != null && view.getBackground() != null && !SDKVersionUtils.m8368f()) {
+        if (view != null && view.getBackground() != null && !SDKVersionUtils.sdkThan14()) {
             view.getBackground().setCallback(null);
         }
     }

@@ -73,7 +73,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
     public void onPostViewCreated(View view, Bundle bundle) {
         super.onPostViewCreated(view, bundle);
         String m3164g = Cache.getInstance().m3164g();
-        flushArtistBitmap(ImageCacheUtils.m4745a(m3164g, DisplayUtils.m7225c(), DisplayUtils.m7224d(), true), m3164g);
+        flushArtistBitmap(ImageCacheUtils.m4745a(m3164g, DisplayUtils.getWidth(), DisplayUtils.getHeight(), true), m3164g);
     }
 
     public void playMediaChanged() {

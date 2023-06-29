@@ -41,7 +41,7 @@ public class SAnimTransImage extends SImage<View> {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: b */
-    public View mo3771b(Context context, SkinCache skinCache) {
+    public View getIcon(Context context, SkinCache skinCache) {
         return "AlbumCover".equals(this.id) ? new TTImageSwitcher(context) : new AnimTransView(context);
     }
 
@@ -62,7 +62,7 @@ public class SAnimTransImage extends SImage<View> {
         tTImageSwitcher.setDefaultImageDrawable(skinCache.m3596a(context.getResources(), this.icon));
         tTImageSwitcher.setFactory(tTImageSwitcher);
         tTImageSwitcher.setAllowStart(Preferences.m3003aD());
-        if (SDKVersionUtils.m8368f()) {
+        if (SDKVersionUtils.sdkThan14()) {
             Animation loadAnimation = AnimationUtils.loadAnimation(context, android.R.anim.fade_in);
             loadAnimation.setDuration(1000L);
             tTImageSwitcher.setInAnimation(loadAnimation);

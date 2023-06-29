@@ -92,7 +92,7 @@ public class BackgroundItem implements Serializable {
     public BackgroundItem(OnlineSkinItem onlineSkinItem) {
         this.f6929c = onlineSkinItem.getName() + ".jpg";
         this.f6930d = EnumC2011a.ONLINE_BACKGROUND;
-        this.f6927a = TTPodConfig.m5295m() + File.separator + this.f6929c;
+        this.f6927a = TTPodConfig.getBkgs() + File.separator + this.f6929c;
         this.f6934h = onlineSkinItem;
         this.f6936j = onlineSkinItem.getDateCreated();
     }
@@ -161,7 +161,7 @@ public class BackgroundItem implements Serializable {
     /* renamed from: a */
     public void m3332a(String str) {
         this.f6929c = str + ".jpg";
-        this.f6927a = TTPodConfig.m5295m() + File.separator + this.f6929c;
+        this.f6927a = TTPodConfig.getBkgs() + File.separator + this.f6929c;
     }
 
     /* renamed from: i */

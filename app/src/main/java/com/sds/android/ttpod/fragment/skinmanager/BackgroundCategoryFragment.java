@@ -11,7 +11,7 @@ import com.sds.android.ttpod.activities.BackgroundActivity;
 import com.sds.android.ttpod.fragment.skinmanager.base.BaseCategoryFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.modules.skin.p128a.CategoryItem;
+import com.sds.android.ttpod.framework.modules.skin.category.CategoryItem;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 
@@ -60,8 +60,8 @@ public class BackgroundCategoryFragment extends BaseCategoryFragment {
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseCategoryFragment
     protected void startActivity(CategoryItem categoryItem) {
         Intent intent = new Intent(getActivity(), BackgroundActivity.class);
-        intent.putExtra("id", categoryItem.m3867a());
-        intent.putExtra("name", categoryItem.m3863b());
+        intent.putExtra("id", categoryItem.getId());
+        intent.putExtra("name", categoryItem.getName());
         getActivity().startActivity(intent);
         //ThemeStatistic.m4890e(categoryItem.m3863b());
     }

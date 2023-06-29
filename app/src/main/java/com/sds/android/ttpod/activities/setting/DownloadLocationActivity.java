@@ -45,7 +45,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 String m3054N = Preferences.m3054N();
-                if (SDKVersionUtils.m8365i()) {
+                if (SDKVersionUtils.sdkThan19()) {
                     m3054N = TTPodConfig.getSongPath();
                 }
                 DownloadLocationActivity.this.startActivityForResult(new Intent(DownloadLocationActivity.this, FilePickerActivity.class).putExtra(FilePickerActivity.KEY_EXTRA_PATH, m3054N).putExtra(FilePickerActivity.KEY_EXTRA_CHOICE_MODE, 1).putExtra(FilePickerActivity.KEY_EXTRA_NEW_FOLDER, true).putExtra(FilePickerActivity.KEY_EXTRA_SHOW_FILE_TYPE, 2), 0);
@@ -72,7 +72,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         try {
             if (StringUtils.isEmpty(m8460d) || m8467b.equals(m8460d) || !checkSDCardPath(m8467b) || !checkSDCardPath(m8460d)) {
                 this.mExtensionCardPath = "";
-            } else if (SDKVersionUtils.m8372b() && Environment.isExternalStorageRemovable() && FileUtils.m8408d(EnvironmentUtils.C0605d.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
+            } else if (SDKVersionUtils.sdkThan9() && Environment.isExternalStorageRemovable() && FileUtils.m8408d(EnvironmentUtils.C0605d.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
                 this.mStandardCardPath = EnvironmentUtils.C0605d.m8460d(this);
                 this.mExtensionCardPath = EnvironmentUtils.C0605d.getSdcardPath();
             }
@@ -138,7 +138,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    if (SDKVersionUtils.m8365i() && Preferences.m2911br()) {
+                    if (SDKVersionUtils.sdkThan19() && Preferences.m2911br()) {
                         PopupsUtils.m6747a(DownloadLocationActivity.this, (int) R.string.never_show_again, "通知", DownloadLocationActivity.this.getString(R.string.download_chose_tip_info), (BaseDialog.InterfaceC1064a<OptionalDialog>) null).m7254b(R.string.i_known, new BaseDialog.InterfaceC1064a<OptionalDialog>() { // from class: com.sds.android.ttpod.activities.setting.DownloadLocationActivity.3.1
                             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                             /* renamed from: a  reason: avoid collision after fix types in other method */
@@ -158,7 +158,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
 
     private String getWritableBasePath(String str) {
         String str2 = str + File.separator + "ttpod";
-        if (SDKVersionUtils.m8365i() && this.mExtensionCardPath.equals(str) && !this.mExtensionCardPath.equals(EnvironmentUtils.C0605d.getSdcardPath())) {
+        if (SDKVersionUtils.sdkThan19() && this.mExtensionCardPath.equals(str) && !this.mExtensionCardPath.equals(EnvironmentUtils.C0605d.getSdcardPath())) {
             str2 = EnvironmentUtils.C0605d.m8470a(this, EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
         }
         if (!FileUtils.isDir(str2)) {

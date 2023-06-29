@@ -109,7 +109,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 if (!MyBackgroundFragment.this.isInEditMode()) {
-                    MyBackgroundFragment.this.getPickImageHelper().m7711a(MyBackgroundFragment.this, MyBackgroundFragment.this.getString(R.string.add_background), 1, DisplayUtils.m7225c(), DisplayUtils.m7224d());
+                    MyBackgroundFragment.this.getPickImageHelper().m7711a(MyBackgroundFragment.this, MyBackgroundFragment.this.getString(R.string.add_background), 1, DisplayUtils.getWidth(), DisplayUtils.getHeight());
                     //ThemeStatistic.m4881k();
                     return;
                 }
@@ -120,7 +120,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
                 if (!MyBackgroundFragment.this.isInEditMode()) {
-                    MyBackgroundFragment.this.getPickImageHelper().m7708b(MyBackgroundFragment.this, MyBackgroundFragment.this.getString(R.string.add_background), 1, DisplayUtils.m7225c(), DisplayUtils.m7224d());
+                    MyBackgroundFragment.this.getPickImageHelper().m7708b(MyBackgroundFragment.this, MyBackgroundFragment.this.getString(R.string.add_background), 1, DisplayUtils.getWidth(), DisplayUtils.getHeight());
                     //ThemeStatistic.m4880l();
                     return;
                 }

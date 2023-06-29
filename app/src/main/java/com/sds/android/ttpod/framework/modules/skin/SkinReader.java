@@ -93,7 +93,7 @@ public class SkinReader {
         bArr = null;
         for (String str : m3529a(File.separatorChar + "skin")) {
             try {
-                bArr = this.packHandle.mo3753b(str);
+                bArr = this.packHandle.loadTskResource(str);
                 if (bArr != null) {
                     break;
                 }
@@ -108,8 +108,8 @@ public class SkinReader {
 
     /* renamed from: a */
     private String[] m3529a(String str) {
-        String m7221g = DisplayUtils.m7221g();
-        return new String[]{str + DisplayUtils.m7225c() + "x" + DisplayUtils.m7224d() + ".xml", str + DisplayUtils.m7222f() + ".xml", str + m7221g + ".xml", File.separatorChar + m7221g + File.separatorChar + "skin.xml", File.separatorChar + "skin.xml"};
+        String m7221g = DisplayUtils.getDpiName();
+        return new String[]{str + DisplayUtils.getWidth() + "x" + DisplayUtils.getHeight() + ".xml", str + DisplayUtils.getDensityDpi() + ".xml", str + m7221g + ".xml", File.separatorChar + m7221g + File.separatorChar + "skin.xml", File.separatorChar + "skin.xml"};
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

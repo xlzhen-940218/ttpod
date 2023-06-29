@@ -61,7 +61,7 @@ public class SSlide extends SComponent<SeekBarExpansion> {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public SeekBarExpansion mo3771b(Context context, SkinCache skinCache) {
+    public SeekBarExpansion getIcon(Context context, SkinCache skinCache) {
         return new SeekBarExpansion(context);
     }
 

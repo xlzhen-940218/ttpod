@@ -38,8 +38,8 @@ public class TTPodConfig {
             FileUtils.createFolder(getCacheEmbedPath());
             FileUtils.createFolder(getCacheEffectPath());
             FileUtils.createFolder(getEffectPath());
-            FileUtils.createFolder(m5295m());
-            FileUtils.createFile(m5295m() + File.separator + ".nomedia");
+            FileUtils.createFolder(getBkgs());
+            FileUtils.createFile(getBkgs() + File.separator + ".nomedia");
             FileUtils.createFolder(getTTPodLog());
         }
     }
@@ -105,7 +105,7 @@ public class TTPodConfig {
     }
 
     /* renamed from: m */
-    public static String m5295m() {
+    public static String getBkgs() {
         return ttpodPath + File.separator + "bkgs";
     }
 

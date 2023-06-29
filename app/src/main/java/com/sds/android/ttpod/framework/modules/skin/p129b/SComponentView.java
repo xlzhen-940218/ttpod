@@ -18,7 +18,7 @@ public abstract class SComponentView extends SBaseView<ViewGroup, SComponent> im
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public abstract ViewGroup mo3771b(Context context, SkinCache skinCache);
+    public abstract ViewGroup getIcon(Context context, SkinCache skinCache);
 
     public SComponentView(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);

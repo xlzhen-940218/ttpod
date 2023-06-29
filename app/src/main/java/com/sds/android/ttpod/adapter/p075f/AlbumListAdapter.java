@@ -71,7 +71,7 @@ public class AlbumListAdapter extends BaseAdapter {
         }
         C0999a c0999a = (C0999a) view.getTag();
         AlbumItem albumItem = this.f3386a.get(i);
-        ImageCacheUtils.m4752a(c0999a.f3389b, albumItem.getPic200(), DisplayUtils.m7229a(50), DisplayUtils.m7229a(50), (int) R.drawable.img_album_list_item_cover_default);
+        ImageCacheUtils.m4752a(c0999a.f3389b, albumItem.getPic200(), DisplayUtils.dp2px(50), DisplayUtils.dp2px(50), (int) R.drawable.img_album_list_item_cover_default);
         c0999a.f3390c.setText((i + 1) + "." + albumItem.getName());
         c0999a.f3391d.setText(albumItem.getSingerName() + " " + albumItem.getPublishTime());
         c0999a.m3250a(ThemeUtils.m8163b());

@@ -18,20 +18,20 @@ import java.util.HashMap;
 public class SIcon extends SImage<Icon> {
 
     /* renamed from: e */
-    private int f6454e;
+    private int stateNum;
 
     /* renamed from: j */
-    private int f6455j;
+    private int currentState;
 
     public SIcon(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, int i) {
         super(kXmlParser, hashMap, i);
-        this.f6454e = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "StateNum"), 1);
-        this.f6455j = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "CurrentState"), 0);
+        this.stateNum = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "StateNum"), 1);
+        this.currentState = ValueParser.parseInt(kXmlParser.getAttributeValue(null, "CurrentState"), 0);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public Icon mo3771b(Context context, SkinCache skinCache) {
+    public Icon getIcon(Context context, SkinCache skinCache) {
         return new Icon(context);
     }
 
@@ -39,17 +39,17 @@ public class SIcon extends SImage<Icon> {
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
     public void setBackground(Context context, Icon icon, SkinCache skinCache) {
-        if (this.f6454e > 0) {
+        if (this.stateNum > 0) {
             Resources resources = context.getResources();
             DrawableCreator m3594a = skinCache.m3594a(this.icon);
-            if (this.f6454e > 1 && m3594a != null && (m3594a instanceof BitmapDrawableCreator)) {
+            if (this.stateNum > 1 && m3594a != null && (m3594a instanceof BitmapDrawableCreator)) {
                 Bitmap m3761a = ((BitmapDrawableCreator) m3594a).m3761a();
                 if (m3761a != null) {
                     BitmapDrawable bitmapDrawable = new BitmapDrawable(resources, m3761a);
-                    int intrinsicWidth = bitmapDrawable.getIntrinsicWidth() / this.f6454e;
+                    int intrinsicWidth = bitmapDrawable.getIntrinsicWidth() / this.stateNum;
                     int intrinsicHeight = bitmapDrawable.getIntrinsicHeight();
                     int i = 0;
-                    for (int i2 = 0; i2 < this.f6454e; i2++) {
+                    for (int i2 = 0; i2 < this.stateNum; i2++) {
                         int i3 = i + intrinsicWidth;
                         icon.m3488a(new ClipBitmapDrawable(resources, m3761a, i, 0, i3, intrinsicHeight));
                         i = i3;

@@ -39,7 +39,7 @@ public class FavoriteUtils {
         imageView2.setImageResource(R.drawable.img_favorite_large);
         if (f2495a == null) {
             f2495a = (AnimationSet) AnimationUtils.loadAnimation(m4614c, R.anim.scale_in_out_addfavorite);
-        } else if (SDKVersionUtils.m8373a()) {
+        } else if (SDKVersionUtils.sdkThan8()) {
             f2495a.cancel();
         }
         f2495a.setAnimationListener(new Animation.AnimationListener() { // from class: com.sds.android.ttpod.a.g.1
@@ -79,7 +79,7 @@ public class FavoriteUtils {
 
     /* renamed from: b */
     public static void m8282b(MediaItem mediaItem, boolean z) {
-        if (f2495a != null && SDKVersionUtils.m8373a()) {
+        if (f2495a != null && SDKVersionUtils.sdkThan8()) {
             f2495a.cancel();
         }
         PopupsUtils.m6721a(BaseApplication.getApplication().getString(R.string.favorite_canceled));

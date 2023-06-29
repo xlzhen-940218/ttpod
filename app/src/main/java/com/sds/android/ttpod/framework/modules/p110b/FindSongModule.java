@@ -179,7 +179,7 @@ public class FindSongModule extends BaseModule {
             @Override // java.lang.Thread, java.lang.Runnable
             public void run() {
                 Bitmap decodeFile = BitmapFactory.decodeFile(TTPodConfig.getMvCachePath() + File.separator + (FileUtils.m8401k(str) + ".jpg"));
-                if (decodeFile == null && SDKVersionUtils.m8373a()) {
+                if (decodeFile == null && SDKVersionUtils.sdkThan8()) {
                     decodeFile = ThumbnailUtils.createVideoThumbnail(str, 3);
                 }
                 CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MV_THUMBNAIL, str, decodeFile), ModuleID.FIND_SONG);

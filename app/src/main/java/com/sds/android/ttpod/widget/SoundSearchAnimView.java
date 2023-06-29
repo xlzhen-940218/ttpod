@@ -123,7 +123,7 @@ public class SoundSearchAnimView extends View {
     /* renamed from: a */
     private void m1455a(Canvas canvas, int i, int i2, int i3, int i4, int i5, int i6) {
         this.f8032b.setColor(Color.argb(i6, 135, 206, 250));
-        int m7229a = DisplayUtils.m7229a(i3);
+        int m7229a = DisplayUtils.dp2px(i3);
         canvas.drawArc(new RectF(i - m7229a, i2 - m7229a, i + m7229a, m7229a + i2), i4, i5, true, this.f8032b);
     }
 }

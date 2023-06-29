@@ -234,7 +234,7 @@ public class SearchFragment extends SlidingClosableFragment {
         HotWords hotWords = this.mHotwords.get(i);
         textView.setText(hotWords.getWord());
         view.setTag(hotWords.getWord());
-        ImageCacheUtils.m4751a((ImageView) view.findViewById(R.id.channel_img), hotWords.getPictureUrl(), DisplayUtils.m7225c() / 4, DisplayUtils.m7225c() / 4, (int) R.drawable.img_imageview_hotword_default_icon, (int) R.anim.scale_in);
+        ImageCacheUtils.m4751a((ImageView) view.findViewById(R.id.channel_img), hotWords.getPictureUrl(), DisplayUtils.getWidth() / 4, DisplayUtils.getWidth() / 4, (int) R.drawable.img_imageview_hotword_default_icon, (int) R.anim.scale_in);
     }
 
     /* JADX INFO: Access modifiers changed from: private */

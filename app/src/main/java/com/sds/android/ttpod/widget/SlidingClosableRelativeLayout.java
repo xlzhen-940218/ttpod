@@ -474,10 +474,10 @@ public class SlidingClosableRelativeLayout extends RelativeLayout {
                 for (int i = 0; i < childCount; i++) {
                     View childAt = getChildAt(i);
                     if (childAt.getVisibility() != View.GONE) {
-                        if (SDKVersionUtils.m8365i()) {
+                        if (SDKVersionUtils.sdkThan19()) {
                             childAt.setDrawingCacheEnabled(z);
                         } else {
-                            if (SDKVersionUtils.checkVersionThanAndroid11()) {
+                            if (SDKVersionUtils.sdkThan11()) {
                                 z2 = !childAt.isHardwareAccelerated();
                             } else {
                                 z2 = false;

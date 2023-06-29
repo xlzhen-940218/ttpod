@@ -63,7 +63,7 @@ public class BaseApplication extends MultiDexApplication {
         }
         Preferences.m3024a(this);
         BaseModule.setContext(this);
-        DisplayUtils.m7228a(this);
+        DisplayUtils.init(this);
         TTPodConfig.m5307a(true);
         application = this;
         f5694b = m4625m();

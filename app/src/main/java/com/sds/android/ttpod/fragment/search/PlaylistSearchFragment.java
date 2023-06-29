@@ -153,7 +153,7 @@ public class PlaylistSearchFragment extends BaseSearchFragment {
             }
             C1722b c1722b2 = (C1722b) view.getTag();
             PlaylistResult.PlaylistItem playlistItem = PlaylistSearchFragment.this.mPlaylist.get(i);
-            ImageCacheUtils.m4752a(c1722b2.f5478b, playlistItem.getPicUrl(), DisplayUtils.m7229a(50), DisplayUtils.m7229a(50), (int) R.drawable.img_album_list_item_cover_default);
+            ImageCacheUtils.m4752a(c1722b2.f5478b, playlistItem.getPicUrl(), DisplayUtils.dp2px(50), DisplayUtils.dp2px(50), (int) R.drawable.img_album_list_item_cover_default);
             c1722b2.f5479c.setText(Html.fromHtml(playlistItem.getTitle()));
             c1722b2.f5480d.setText(PlaylistSearchFragment.this.getString(R.string.search_song_unit, Integer.valueOf(playlistItem.getSongListSize())));
             c1722b2.f5481e.setVisibility(View.VISIBLE);

@@ -43,7 +43,7 @@ public abstract class GridListAdapter<D> extends BaseListAdapter<D> {
         gridViewHolder.name.setText(mo5568b(d2));
         gridViewHolder.number.setText(mo5566c(d2));
         m7606a(gridViewHolder.playIcon, (D) d2);
-        ImageCacheUtils.m4752a(gridViewHolder.image, mo5565d(d2), DisplayUtils.m7225c() / 2, DisplayUtils.m7224d() / 4, (int) R.drawable.img_music_default_icon);
+        ImageCacheUtils.m4752a(gridViewHolder.image, mo5565d(d2), DisplayUtils.getWidth() / 2, DisplayUtils.getHeight() / 4, (int) R.drawable.img_music_default_icon);
     }
 
     /* renamed from: a */

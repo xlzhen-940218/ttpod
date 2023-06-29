@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import androidx.collection.SparseArrayCompat;
-import androidx.core.view.ViewCompat;
+
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -155,7 +155,7 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
     }
 
     private void setupOnTouchListeners(View view) {
-        if (SDKVersionUtils.m8370d()) {
+        if (SDKVersionUtils.sdkThan12()) {
             this.myOnScaleGestureListener = new C1327c();
             this.mScaleGestureDetector = new ImageScaleGestureDetector(this, this.myOnScaleGestureListener);
         }
@@ -167,7 +167,7 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
                 if (!ScaleImageActivity.this.mOnScale && !ScaleImageActivity.this.mOnPagerScoll) {
                     ScaleImageActivity.this.mGestureDetector.onTouchEvent(motionEvent);
                 }
-                if (SDKVersionUtils.m8370d() && (!ScaleImageActivity.this.mOnPagerScoll || ScaleImageActivity.this.myOnScaleGestureListener.f4825e)) {
+                if (SDKVersionUtils.sdkThan12() && (!ScaleImageActivity.this.mOnPagerScoll || ScaleImageActivity.this.myOnScaleGestureListener.f4825e)) {
                     ScaleImageActivity.this.mScaleGestureDetector.m5846a(motionEvent);
                 }
                 ImageViewTouch currentImageView = ScaleImageActivity.this.getCurrentImageView();

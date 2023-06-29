@@ -56,7 +56,7 @@ public class SAnalyzer extends SComponent<LineVisualization> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public LineVisualization mo3771b(Context context, SkinCache skinCache) {
+    public LineVisualization getIcon(Context context, SkinCache skinCache) {
         return new LineVisualization(context);
     }
 

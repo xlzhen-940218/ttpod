@@ -12,7 +12,7 @@ public final class ClipboardUtils {
     @SuppressLint({"NewApi"})
     /* renamed from: a */
     public static void m8306a(Context context, CharSequence charSequence) {
-        if (SDKVersionUtils.checkVersionThanAndroid11()) {
+        if (SDKVersionUtils.sdkThan11()) {
             ((ClipboardManager) context.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("ttpodImei", charSequence));
         } else {
             ((android.text.ClipboardManager) context.getSystemService("clipboard")).setText(charSequence);

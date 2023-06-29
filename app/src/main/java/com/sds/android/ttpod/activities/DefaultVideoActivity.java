@@ -161,7 +161,7 @@ public class DefaultVideoActivity extends BaseActivity implements MediaControlle
         this.mBufferingAnimation.startAnimation(AnimationUtils.loadAnimation(this, R.anim.unlimited_rotate));
         this.mBufferingPercentage.setVisibility(View.VISIBLE);
         this.mVideoView.mo1690a(this.mPositionWhenPaused);
-        if (SDKVersionUtils.m8369e()) {
+        if (SDKVersionUtils.sdkThan13()) {
             this.mVideoView.m1858d();
         }
     }

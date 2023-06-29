@@ -44,7 +44,7 @@ public class SceneFactory {
         Bitmap m3586c;
         SnowSceneRenderer snowSceneRenderer = new SnowSceneRenderer(context);
         String attributeValue = kXmlParser.getAttributeValue(null, "SnowTexture");
-        if (attributeValue != null && (m3586c = skinCache.m3586c(attributeValue)) != null) {
+        if (attributeValue != null && (m3586c = skinCache.loadTskBitmap(attributeValue)) != null) {
             snowSceneRenderer.m6625a(m3586c);
         }
         snowSceneRenderer.m6629a(ValueParser.parseFloat(kXmlParser.getAttributeValue(null, "WindSpeed"), snowSceneRenderer.m6613h()));

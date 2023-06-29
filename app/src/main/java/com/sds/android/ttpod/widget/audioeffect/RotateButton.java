@@ -14,7 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewParent;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 
 /* loaded from: classes.dex */
 public class RotateButton extends View {
@@ -234,8 +234,8 @@ public class RotateButton extends View {
             }
         });
         setLongClickable(true);
-        C1780b c1780b = new C1780b();
-        c1780b.m4776a(false);
+        BitmapUtils c1780b = new BitmapUtils();
+        c1780b.setNewSDK(false);
         Resources resources = getResources();
         m1387b(c1780b.m4790a(resources, R.drawable.img_background_effect_rotatebutton_normal), c1780b.m4790a(resources, R.drawable.img_background_effect_rotatebutton_pressed));
         m1393a(c1780b.m4790a(resources, R.drawable.img_background_effect_rotatebutton_indicator_normal), c1780b.m4790a(resources, R.drawable.img_background_effect_rotatebutton_indicator_pressed));

@@ -326,7 +326,7 @@ public class SearchModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public synchronized Bitmap m3919a(String str) {
-        return ImageCacheUtils.m4745a(str, DisplayUtils.m7225c(), DisplayUtils.m7224d(), false);
+        return ImageCacheUtils.m4745a(str, DisplayUtils.getWidth(), DisplayUtils.getHeight(), false);
     }
 
     public void playMediaChanged() {

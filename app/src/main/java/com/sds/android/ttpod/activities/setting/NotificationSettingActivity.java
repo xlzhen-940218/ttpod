@@ -12,7 +12,6 @@ import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.component.p085b.CheckableActionItem;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.component.p087d.p088a.SingleChoiceListDialog;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 
@@ -86,7 +85,7 @@ public class NotificationSettingActivity extends SlidingClosableActivity {
         CheckableSettingItem checkableSettingItem = new CheckableSettingItem(2, 0, R.string.setting_notification_prev, 0, 0, Preferences.m2988aS());
         CheckableSettingItem checkableSettingItem2 = new CheckableSettingItem(3, 0, R.string.setting_notification_close, 0, 0, Preferences.m2988aS());
         CheckableSettingItem checkableSettingItem3 = new CheckableSettingItem(4, 0, R.string.setting_notification_hide_while_pausing, 0, 0, !Preferences.m2986aU());
-        return SDKVersionUtils.m8367g() ? new SettingItem[]{settingItem, checkableSettingItem, checkableSettingItem2, checkableSettingItem3} : SDKVersionUtils.m8368f() ? new SettingItem[]{checkableSettingItem, checkableSettingItem2, checkableSettingItem3} : new SettingItem[]{checkableSettingItem3};
+        return SDKVersionUtils.sdkThan16() ? new SettingItem[]{settingItem, checkableSettingItem, checkableSettingItem2, checkableSettingItem3} : SDKVersionUtils.sdkThan14() ? new SettingItem[]{checkableSettingItem, checkableSettingItem2, checkableSettingItem3} : new SettingItem[]{checkableSettingItem3};
     }
 
     /* JADX INFO: Access modifiers changed from: private */

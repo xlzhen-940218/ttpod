@@ -84,7 +84,7 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
         init();
         load();
         UnicomFlowUtil.m3950b(getActivity());
-        inflate.setPadding(0, 0, 0, DisplayUtils.m7229a(50));
+        inflate.setPadding(0, 0, 0, DisplayUtils.dp2px(50));
         return inflate;
     }
 

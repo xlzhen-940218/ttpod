@@ -378,7 +378,7 @@ public class MiniLyric implements View.OnTouchListener {
     /* renamed from: c */
     private void m2303c(int i) {
         DisplayMetrics displayMetrics = this.context.getResources().getDisplayMetrics();
-        int m7229a = DisplayUtils.m7229a((int) ((Math.max(displayMetrics.scaledDensity / displayMetrics.density, 1.0f) * 84.0f) - ((28 - i) * 3)));
+        int m7229a = DisplayUtils.dp2px((int) ((Math.max(displayMetrics.scaledDensity / displayMetrics.density, 1.0f) * 84.0f) - ((28 - i) * 3)));
         this.lyricView.getLayoutParams().height = m7229a;
         this.settingImageView.getLayoutParams().height = m7229a;
         this.previousButton.getLayoutParams().height = m7229a;
@@ -395,7 +395,7 @@ public class MiniLyric implements View.OnTouchListener {
         LogUtils.debug("minilyric", "setDisplayMode fontSize=" + m3030Z);
         switch (i) {
             case 3:
-                this.lyricView.setLayoutParams(new FrameLayout.LayoutParams(-2, DisplayUtils.m7229a(40 - (28 - m3030Z))));
+                this.lyricView.setLayoutParams(new FrameLayout.LayoutParams(-2, DisplayUtils.dp2px(40 - (28 - m3030Z))));
                 this.lyricView.setDisplayMode(LyricView.LyricDisplayEnum.Single);
                 return;
             case 4:
@@ -509,7 +509,7 @@ public class MiniLyric implements View.OnTouchListener {
                     m2305b(true, true);
                     int i2 = this.f7202d.f7236c - rawY;
                     this.f7201c.f7236c = this.f7203e.f7236c + i2;
-                    int m7224d = DisplayUtils.m7224d() - this.miniLyricView.getHeight();
+                    int m7224d = DisplayUtils.getHeight() - this.miniLyricView.getHeight();
                     if (this.f7201c.f7236c < 0) {
                         this.f7201c.f7236c = 0;
                     } else if (this.f7201c.f7236c > m7224d) {
@@ -613,7 +613,7 @@ public class MiniLyric implements View.OnTouchListener {
     private void m2281p() {
         if (this.miniLyricSettingView.getVisibility() != View.VISIBLE) {
             this.miniLyricSettingView.setVisibility(View.VISIBLE);
-            int m7224d = DisplayUtils.m7224d() - this.lyricView.getHeight();
+            int m7224d = DisplayUtils.getHeight() - this.lyricView.getHeight();
             this.miniLyricView.setVisibility(View.INVISIBLE);
             this.f7204f = this.f7201c.f7236c > (m7224d >> 1);
             this.miniLyricView.removeView(this.miniLyricSettingView);
@@ -777,7 +777,7 @@ public class MiniLyric implements View.OnTouchListener {
         } else {
             string = BaseApplication.getApplication().getString(R.string.mini_lyric_click_lock);
             string2 = BaseApplication.getApplication().getString(R.string.mini_lyric_unlocked);
-            int i2 = SDKVersionUtils.checkVersionThanAndroid11() ? R.drawable.img_button_minilyric_unlock_ics : R.drawable.img_button_minilyric_unlocked;
+            int i2 = SDKVersionUtils.sdkThan11() ? R.drawable.img_button_minilyric_unlock_ics : R.drawable.img_button_minilyric_unlocked;
             intent.putExtra("is_locked", true);
             i = i2;
         }

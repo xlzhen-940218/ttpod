@@ -49,9 +49,9 @@ public class SingerHeader {
     /* renamed from: a */
     public void m5472a() {
         if (this.f5338f != null) {
-            int m7225c = DisplayUtils.m7225c();
+            int m7225c = DisplayUtils.getWidth();
             ImageCacheUtils.m4740b(this.f5334b, this.f5338f, m7225c, (int) (m7225c / 2.13f), R.drawable.img_background_ttpod_music_large_logo, 60);
-            int m7229a = DisplayUtils.m7229a(64);
+            int m7229a = DisplayUtils.dp2px(64);
             ImageCacheUtils.m4752a(this.f5335c, this.f5338f, m7229a, m7229a, (int) R.drawable.img_avatar_default);
         }
     }

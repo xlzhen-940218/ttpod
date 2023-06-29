@@ -290,7 +290,7 @@ public class AZSideBar extends View implements AbsListView.OnScrollListener, The
             if (z) {
                 return m3254c.getDefaultColor();
             }
-            return m3254c.getColorForState(ViewWrapper.f6573d, 1);
+            return m3254c.getColorForState(ViewWrapper.SELECTED_STATE_SET, 1);
         }
         return 1;
     }
@@ -423,7 +423,7 @@ public class AZSideBar extends View implements AbsListView.OnScrollListener, The
     private void m1913a(String str, int i, boolean z) {
         if (this.f7456a == null) {
             WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams(VersionUpdateConst.UPDATE_HIAPK_TYPE, 920);
-            int m7229a = DisplayUtils.m7229a(80);
+            int m7229a = DisplayUtils.dp2px(80);
             layoutParams.gravity = Gravity.CENTER;
             layoutParams.height = m7229a;
             layoutParams.width = m7229a;

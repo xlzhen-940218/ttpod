@@ -26,86 +26,86 @@ import java.util.Locale;
 /* compiled from: BitmapUtils.java */
 /* renamed from: com.sds.android.ttpod.framework.a.b */
 /* loaded from: classes.dex */
-public class C1780b {
+public class BitmapUtils {
 
     /* renamed from: b */
-    private BitmapFactory.Options f5623b;
+    private BitmapFactory.Options options;
 
     /* renamed from: c */
-    private boolean f5624c = SDKVersionUtils.m8369e();
+    private boolean newSDK = SDKVersionUtils.sdkThan13();
 
     /* renamed from: d */
-    private boolean f5625d = false;
+    private boolean isOldOptions = false;
 
     /* renamed from: a */
-    private BitmapFactory.Options f5622a = m4775b();
+    private BitmapFactory.Options newOptions = getOptions();
 
     /* renamed from: a */
-    public void m4776a(boolean z) {
-        this.f5624c = z;
+    public void setNewSDK(boolean newSDK) {
+        this.newSDK = newSDK;
     }
 
     /* renamed from: b */
-    private BitmapFactory.Options m4775b() {
+    private BitmapFactory.Options getOptions() {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inPurgeable = true;
         options.inInputShareable = true;
-        options.inDither = this.f5624c;
+        options.inDither = this.newSDK;
         return options;
     }
 
     /* renamed from: b */
-    private void m4772b(boolean z) {
-        if (z && this.f5623b != null) {
-            this.f5623b.requestCancelDecode();
+    private void setNewOptions(boolean cancelDecode) {
+        if (cancelDecode && this.options != null) {
+            this.options.requestCancelDecode();
         }
-        this.f5623b = m4771c();
-        this.f5625d = false;
+        this.options = cloneNewOptions();
+        this.isOldOptions = false;
     }
 
     /* renamed from: c */
-    private BitmapFactory.Options m4771c() {
+    private BitmapFactory.Options cloneNewOptions() {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inDither = this.f5622a.inDither;
-        options.inJustDecodeBounds = this.f5622a.inJustDecodeBounds;
-        options.inPreferredConfig = this.f5622a.inPreferredConfig;
-        options.inDensity = this.f5622a.inDensity;
-        options.inInputShareable = this.f5622a.inInputShareable;
-        options.inTempStorage = this.f5622a.inTempStorage;
-        options.inTargetDensity = this.f5622a.inTargetDensity;
-        options.inScreenDensity = this.f5622a.inScreenDensity;
-        options.inSampleSize = this.f5622a.inSampleSize;
-        options.inPurgeable = this.f5622a.inPurgeable;
+        options.inDither = this.newOptions.inDither;
+        options.inJustDecodeBounds = this.newOptions.inJustDecodeBounds;
+        options.inPreferredConfig = this.newOptions.inPreferredConfig;
+        options.inDensity = this.newOptions.inDensity;
+        options.inInputShareable = this.newOptions.inInputShareable;
+        options.inTempStorage = this.newOptions.inTempStorage;
+        options.inTargetDensity = this.newOptions.inTargetDensity;
+        options.inScreenDensity = this.newOptions.inScreenDensity;
+        options.inSampleSize = this.newOptions.inSampleSize;
+        options.inPurgeable = this.newOptions.inPurgeable;
         return options;
     }
 
     /* renamed from: a */
-    public BitmapFactory.Options m4792a() {
-        return this.f5622a;
+    public BitmapFactory.Options getNewOptions() {
+        return this.newOptions;
     }
 
     /* renamed from: a */
     public Bitmap m4779a(String str, int i, int i2) {
-        return m4778a(str, i, i2, false);
+        return decodeBitmap(str, i, i2, false);
     }
 
     /* renamed from: a */
-    public Bitmap m4778a(String str, int i, int i2, boolean z) {
+    public Bitmap decodeBitmap(String filePath, int width, int height, boolean cancelDecode) {
         try {
-            if (!TextUtils.isEmpty(str) && i > 0 && i2 > 0) {
-                m4772b(z);
-                this.f5623b.inJustDecodeBounds = true;
-                BitmapFactory.decodeFile(str, this.f5623b);
-                if (m4782a(this.f5623b, i, i2)) {
+            if (!TextUtils.isEmpty(filePath) && width > 0 && height > 0) {
+                setNewOptions(cancelDecode);
+                this.options.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(filePath, this.options);
+                if (scaleBitmap(this.options, width, height)) {
                     if (m4769d()) {
-                        m4783a(this.f5623b);
+                        m4783a(this.options);
                     }
-                    LogUtils.debug("BitmapUtils", "decodeBitmap, filePath: " + str);
-                    return m4788a(BitmapFactory.decodeFile(str, this.f5623b));
+                    LogUtils.debug("BitmapUtils", "decodeBitmap, filePath: " + filePath);
+                    return m4788a(BitmapFactory.decodeFile(filePath, this.options));
                 }
             }
         } catch (OutOfMemoryError e) {
-            LogUtils.debug("BitmapUtils", "decodeBitmap OutOfMemoryError filePath=" + str);
+            LogUtils.debug("BitmapUtils", "decodeBitmap OutOfMemoryError filePath=" + filePath);
         }
         return null;
     }
@@ -115,8 +115,8 @@ public class C1780b {
         if (bitmap == null) {
             return null;
         }
-        if (SDKVersionUtils.m8370d()) {
-            bitmap.setHasAlpha(!m4773b(this.f5623b));
+        if (SDKVersionUtils.sdkThan12()) {
+            bitmap.setHasAlpha(!isNotPng(this.options));
             return bitmap;
         }
         return bitmap;
@@ -124,16 +124,16 @@ public class C1780b {
 
     /* renamed from: d */
     private boolean m4769d() {
-        return this.f5623b.inPreferredConfig == Bitmap.Config.ARGB_8888 && !this.f5624c;
+        return this.options.inPreferredConfig == Bitmap.Config.ARGB_8888 && !this.newSDK;
     }
 
     /* renamed from: a */
-    public static boolean m4782a(BitmapFactory.Options options, int i, int i2) {
+    public static boolean scaleBitmap(BitmapFactory.Options options, int width, int height) {
         if (!options.inJustDecodeBounds || options.outHeight <= 0 || options.outWidth <= 0) {
             return false;
         }
-        if (options.outWidth > (i << 1) || options.outHeight > (i2 << 1)) {
-            options.inSampleSize = Math.max(options.outWidth / i, options.outHeight / i2);
+        if (options.outWidth > (width << 1) || options.outHeight > (height << 1)) {
+            options.inSampleSize = Math.max(options.outWidth / width, options.outHeight / height);
         }
         options.inJustDecodeBounds = false;
         return true;
@@ -144,7 +144,7 @@ public class C1780b {
         if (TextUtils.isEmpty(options.outMimeType)) {
             return false;
         }
-        if (m4773b(options)) {
+        if (isNotPng(options)) {
             options.inPreferredConfig = Bitmap.Config.RGB_565;
             options.inDither = false;
         } else {
@@ -154,23 +154,23 @@ public class C1780b {
     }
 
     /* renamed from: b */
-    public static boolean m4773b(BitmapFactory.Options options) {
+    public static boolean isNotPng(BitmapFactory.Options options) {
         String str = options.outMimeType;
-        return (TextUtils.isEmpty(str) || str.toLowerCase(Locale.US).endsWith("png")) ? false : true;
+        return !TextUtils.isEmpty(str) && !str.toLowerCase(Locale.US).endsWith("png");
     }
 
     /* renamed from: a */
     public Bitmap m4790a(Resources resources, int i) {
         if (i != 0) {
-            m4772b(false);
+            setNewOptions(false);
             if (m4769d()) {
-                this.f5623b.inJustDecodeBounds = true;
-                BitmapFactory.decodeResource(resources, i, this.f5623b);
-                m4783a(this.f5623b);
-                this.f5623b.inJustDecodeBounds = false;
+                this.options.inJustDecodeBounds = true;
+                BitmapFactory.decodeResource(resources, i, this.options);
+                m4783a(this.options);
+                this.options.inJustDecodeBounds = false;
             }
             try {
-                return m4788a(BitmapFactory.decodeResource(resources, i, this.f5623b));
+                return m4788a(BitmapFactory.decodeResource(resources, i, this.options));
             } catch (OutOfMemoryError e) {
                 e.printStackTrace();
             }
@@ -182,14 +182,14 @@ public class C1780b {
     public Bitmap m4789a(Resources resources, int i, int i2, int i3) {
         if (i != 0 && i3 > 0 && i2 > 0) {
             try {
-                m4772b(false);
-                this.f5623b.inJustDecodeBounds = true;
-                BitmapFactory.decodeResource(resources, i, this.f5623b);
-                if (m4782a(this.f5623b, i2, i3)) {
+                setNewOptions(false);
+                this.options.inJustDecodeBounds = true;
+                BitmapFactory.decodeResource(resources, i, this.options);
+                if (scaleBitmap(this.options, i2, i3)) {
                     if (m4769d()) {
-                        m4783a(this.f5623b);
+                        m4783a(this.options);
                     }
-                    return m4788a(BitmapFactory.decodeResource(resources, i, this.f5623b));
+                    return m4788a(BitmapFactory.decodeResource(resources, i, this.options));
                 }
             } catch (Throwable th) {
                 th.printStackTrace();
@@ -201,17 +201,17 @@ public class C1780b {
     /* renamed from: a */
     public Bitmap m4780a(InputStream inputStream) {
         if (inputStream != null) {
-            if (!this.f5625d) {
-                m4772b(false);
+            if (!this.isOldOptions) {
+                setNewOptions(false);
                 if (m4769d()) {
-                    this.f5623b.inJustDecodeBounds = true;
-                    BitmapFactory.decodeStream(inputStream, null, this.f5623b);
-                    m4783a(this.f5623b);
-                    this.f5623b.inJustDecodeBounds = false;
+                    this.options.inJustDecodeBounds = true;
+                    BitmapFactory.decodeStream(inputStream, null, this.options);
+                    m4783a(this.options);
+                    this.options.inJustDecodeBounds = false;
                 }
             }
             try {
-                return m4788a(BitmapFactory.decodeStream(inputStream, null, this.f5623b));
+                return m4788a(BitmapFactory.decodeStream(inputStream, null, this.options));
             } catch (OutOfMemoryError e) {
                 e.printStackTrace();
                 return null;
@@ -231,7 +231,7 @@ public class C1780b {
         matrix.setScale(min2, min2);
         LogUtils.debug("BitmapUtils", String.format("cropBitmapToSquare bitmapW=%d H=%d squareLen=%d scale=%f", Integer.valueOf(bitmap.getWidth()), Integer.valueOf(bitmap.getHeight()), Integer.valueOf(i), Float.valueOf(min2)));
         Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, min, min, matrix, true);
-        if (SDKVersionUtils.m8370d()) {
+        if (SDKVersionUtils.sdkThan12()) {
             createBitmap.setHasAlpha(bitmap.hasAlpha());
             return createBitmap;
         }
@@ -556,7 +556,7 @@ public class C1780b {
         Bitmap bitmap2;
         Throwable th;
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
-        if (!SDKVersionUtils.checkVersionThanAndroid11()) {
+        if (!SDKVersionUtils.sdkThan11()) {
             config = Bitmap.Config.ARGB_4444;
         }
         try {

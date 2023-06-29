@@ -54,7 +54,7 @@ public class TTPodApplication extends BaseApplication {
 
     @Override // android.app.Application, android.content.ComponentCallbacks
     public void onConfigurationChanged(Configuration configuration) {
-        DisplayUtils.m7227a(this, configuration);
+        DisplayUtils.setConfiguration(this, configuration);
         super.onConfigurationChanged(configuration);
     }
 

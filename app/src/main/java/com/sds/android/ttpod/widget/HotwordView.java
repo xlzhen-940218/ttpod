@@ -27,7 +27,7 @@ import java.util.List;
 public class HotwordView extends ViewGroup {
 
     /* renamed from: a */
-    private static final int f7704a = DisplayUtils.m7229a(4);
+    private static final int f7704a = DisplayUtils.dp2px(4);
 
     /* renamed from: b */
     private int f7705b;

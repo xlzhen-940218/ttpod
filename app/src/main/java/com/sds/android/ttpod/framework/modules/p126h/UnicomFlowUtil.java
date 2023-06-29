@@ -59,7 +59,7 @@ public class UnicomFlowUtil {
     /* renamed from: a */
     public static String m3953a(String str, String str2) {
         try {
-            if (!SDKVersionUtils.m8373a()) {
+            if (!SDKVersionUtils.sdkThan8()) {
                 return "MzAwMDAwNDU1MDpCREFBQUQ5QjczOUQzQjNG";
             }
             return Base64.encodeToString((str + ":" + str2).getBytes(), 0).trim();

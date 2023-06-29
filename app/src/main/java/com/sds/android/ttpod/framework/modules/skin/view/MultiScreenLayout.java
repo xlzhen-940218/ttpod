@@ -20,7 +20,7 @@ import com.sds.android.ttpod.framework.modules.skin.SkinLayoutParams;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ClipBitmapDrawable;
 import com.sds.android.ttpod.framework.modules.skin.p130c.MovableBitmapDrawable;
 import com.sds.android.ttpod.framework.modules.skin.p130c.TransitionDrawable;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 
 /* loaded from: classes.dex */
 public class MultiScreenLayout extends SkinAbsoluteLayout {
@@ -509,7 +509,7 @@ public class MultiScreenLayout extends SkinAbsoluteLayout {
                             /* renamed from: a */
                             public Bitmap doInBackground(Object... objArr) {
                                 try {
-                                    return C1780b.m4791a(MultiScreenLayout.this.getContext(), bitmap, C2000a.this.f6850i);
+                                    return BitmapUtils.m4791a(MultiScreenLayout.this.getContext(), bitmap, C2000a.this.f6850i);
                                 } catch (Throwable th) {
                                     th.printStackTrace();
                                     return null;

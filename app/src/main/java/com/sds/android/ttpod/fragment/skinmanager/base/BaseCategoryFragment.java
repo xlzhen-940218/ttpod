@@ -19,7 +19,7 @@ import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.modules.skin.p128a.CategoryItem;
+import com.sds.android.ttpod.framework.modules.skin.category.CategoryItem;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.widget.StateView;
 import java.util.ArrayList;
@@ -138,7 +138,7 @@ public abstract class BaseCategoryFragment extends BaseFragment implements Adapt
         private final float f5542e = 0.5f;
 
         /* renamed from: f */
-        private final int f5543f = DisplayUtils.m7225c() / 2;
+        private final int f5543f = DisplayUtils.getWidth() / 2;
 
         /* renamed from: g */
         private final int f5544g = (int) ((this.f5543f * 0.6f) + 0.5f);
@@ -203,14 +203,14 @@ public abstract class BaseCategoryFragment extends BaseFragment implements Adapt
         private View m5354a(View view, int i) {
             CategoryViewHolder categoryViewHolder = (CategoryViewHolder) view.getTag();
             CategoryItem item = getItem(i);
-            categoryViewHolder.m5391b().setText(item.m3863b());
+            categoryViewHolder.m5391b().setText(item.getName());
             m5352a(item, categoryViewHolder.m5392a());
             return view;
         }
 
         /* renamed from: a */
         private void m5352a(CategoryItem categoryItem, ImageView imageView) {
-            String m3860e = categoryItem.m3860e();
+            String m3860e = categoryItem.getPicUrl();
             Bitmap m4748a = ImageCacheUtils.m4748a(m3860e, this.f5543f, this.f5544g);
             if (m4748a != null) {
                 imageView.setImageBitmap(m4748a);

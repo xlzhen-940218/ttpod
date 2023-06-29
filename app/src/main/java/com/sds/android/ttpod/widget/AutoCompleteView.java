@@ -21,7 +21,7 @@ import java.util.List;
 public class AutoCompleteView extends PopupWindow {
 
     /* renamed from: a */
-    private static final int f8063a = DisplayUtils.m7229a(240);
+    private static final int f8063a = DisplayUtils.dp2px(240);
 
     /* renamed from: b */
     private ViewGroup f8064b;

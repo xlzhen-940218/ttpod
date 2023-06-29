@@ -348,7 +348,7 @@ public class FoldableItemLayout extends FrameLayout {
             } else if (f3 > 0.0f) {
                 f2 = f3;
             }
-            if (SDKVersionUtils.checkVersionThanAndroid11()) {
+            if (SDKVersionUtils.sdkThan11()) {
                 setRotationX(f2);
             }
             this.f8263k = z ? 0 : 4;
@@ -360,7 +360,7 @@ public class FoldableItemLayout extends FrameLayout {
         /* JADX INFO: Access modifiers changed from: private */
         /* renamed from: b */
         public void m1341b(float f) {
-            if (SDKVersionUtils.checkVersionThanAndroid11()) {
+            if (SDKVersionUtils.sdkThan11()) {
                 setScaleX(f);
                 setScaleY(f);
             }
@@ -369,7 +369,7 @@ public class FoldableItemLayout extends FrameLayout {
         /* JADX INFO: Access modifiers changed from: private */
         /* renamed from: a */
         public void m1351a(float f, float f2) {
-            if (SDKVersionUtils.checkVersionThanAndroid11()) {
+            if (SDKVersionUtils.sdkThan11()) {
                 setTranslationY((int) ((f * f2) + 0.5f));
             }
             int height = getHeight() / 2;

@@ -49,7 +49,7 @@ public class SettingCard extends Card {
     /* renamed from: g */
     private View m7795g() {
         View inflate = View.inflate(m6993d(), R.layout.activity_setting_divider, null);
-        inflate.setPadding(DisplayUtils.m7229a(8), 0, 0, 0);
+        inflate.setPadding(DisplayUtils.dp2px(8), 0, 0, 0);
         return inflate;
     }
 
@@ -223,8 +223,8 @@ public class SettingCard extends Card {
                 this.f3004f.setVisibility(View.INVISIBLE);
                 this.f3003e.setVisibility(View.VISIBLE);
                 ViewGroup.LayoutParams layoutParams = this.f3003e.getLayoutParams();
-                layoutParams.height = DisplayUtils.m7229a(30);
-                layoutParams.width = DisplayUtils.m7229a(48);
+                layoutParams.height = DisplayUtils.dp2px(30);
+                layoutParams.width = DisplayUtils.dp2px(48);
                 this.f3003e.setLayoutParams(layoutParams);
                 this.f3003e.setImageResource(((Checkable) settingItem).isChecked() ? R.drawable.icon_setting_checked : R.drawable.icon_setting_uncheck);
                 this.f3003e.setContentDescription("" + settingItem.m7005e());

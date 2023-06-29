@@ -7,7 +7,7 @@ import com.sds.android.ttpod.activities.SkinCategoryDetailActivity;
 import com.sds.android.ttpod.fragment.skinmanager.base.BaseCategoryFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.modules.skin.p128a.CategoryItem;
+import com.sds.android.ttpod.framework.modules.skin.category.CategoryItem;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -37,8 +37,8 @@ public class ThemeCategoryFragment extends BaseCategoryFragment {
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseCategoryFragment
     protected void startActivity(CategoryItem categoryItem) {
         Intent intent = new Intent(getActivity(), SkinCategoryDetailActivity.class);
-        intent.putExtra("id", categoryItem.m3867a());
-        intent.putExtra("name", categoryItem.m3863b());
+        intent.putExtra("id", categoryItem.getId());
+        intent.putExtra("name", categoryItem.getName());
         getActivity().startActivity(intent);
         //ThemeStatistic.m4892d(categoryItem.m3863b());
     }

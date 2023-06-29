@@ -111,7 +111,7 @@ public class EntryActivity extends BaseActivity {
         if (FileUtils.m8414b(str)) {
             WebView webView = new WebView(this);
             webView.getSettings().setJavaScriptEnabled(true);
-            if (SDKVersionUtils.checkVersionThanAndroid11()) {
+            if (SDKVersionUtils.sdkThan11()) {
                 webView.setLayerType(1, null);
             }
             webView.setBackgroundColor(0);

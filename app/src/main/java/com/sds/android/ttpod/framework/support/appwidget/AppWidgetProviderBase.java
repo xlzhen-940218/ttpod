@@ -111,7 +111,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
         C2060a[] c2060aArr;
         android.appwidget.AppWidgetManager appWidgetManager = android.appwidget.AppWidgetManager.getInstance(BaseApplication.getApplication());
         MediaItem m2606g = Player.getInstance().getMediaItem();
-        Bitmap m8445a = BitmapUtils.m8445a(Preferences.m3014a(m2606g), DisplayUtils.m7229a(200));
+        Bitmap m8445a = BitmapUtils.m8445a(Preferences.m3014a(m2606g), DisplayUtils.dp2px(200));
         for (C2060a c2060a : f7123c) {
             RemoteViews remoteViews = new RemoteViews(BaseApplication.getApplication().getPackageName(), c2060a.f7128a);
             try {
@@ -214,7 +214,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
     /* renamed from: a */
     private static String m2537a(String str) {
         String str2 = TTPodConfig.getCacheTmpPath() + File.separator + "albumCoverFileTmp";
-        Bitmap m8445a = BitmapUtils.m8445a(str, DisplayUtils.m7229a(200));
+        Bitmap m8445a = BitmapUtils.m8445a(str, DisplayUtils.dp2px(200));
         if (m8445a != null) {
             BitmapUtils.m8450a(m8445a, str2);
             m8445a.recycle();
@@ -245,7 +245,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), i);
         AppWidgetPreference m2525a = AppWidgetPreference.m2525a();
         try {
-            m2544a(remoteViews, BitmapUtils.m8445a(m2525a.m2513e(), DisplayUtils.m7229a(200)));
+            m2544a(remoteViews, BitmapUtils.m8445a(m2525a.m2513e(), DisplayUtils.dp2px(200)));
         } catch (Exception e) {
             String m2537a = m2537a(m2525a.m2513e());
             LogUtils.error("AppWidgetProviderBase", "setAlbumCoverToRemoteView e albumCoverFile = " + m2537a);

@@ -13,7 +13,7 @@ public class Icon extends androidx.appcompat.widget.AppCompatImageView {
     private int state;
 
     /* renamed from: b */
-    private Vector<Drawable> f6731b;
+    private Vector<Drawable> stateImageVector;
 
     /* renamed from: c */
     private StateChangedListener stateChangedListener;
@@ -22,13 +22,13 @@ public class Icon extends androidx.appcompat.widget.AppCompatImageView {
     /* loaded from: classes.dex */
     public interface StateChangedListener {
         /* renamed from: a */
-        void changed(int i);
+        void changed(int index);
     }
 
     public Icon(Context context) {
         super(context);
         this.state = 0;
-        this.f6731b = new Vector<>();
+        this.stateImageVector = new Vector<>();
     }
 
     public Icon(Context context, AttributeSet attributeSet) {
@@ -38,7 +38,7 @@ public class Icon extends androidx.appcompat.widget.AppCompatImageView {
     public Icon(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         this.state = 0;
-        this.f6731b = new Vector<>();
+        this.stateImageVector = new Vector<>();
     }
 
     public void setStateChangedListener(StateChangedListener stateChangedListener) {
@@ -49,12 +49,12 @@ public class Icon extends androidx.appcompat.widget.AppCompatImageView {
         if (state < 0) {
             state = 0;
         }
-        if (state >= this.f6731b.size()) {
-            state = this.f6731b.size() - 1;
+        if (state >= this.stateImageVector.size()) {
+            state = this.stateImageVector.size() - 1;
         }
         if (state >= 0) {
             this.state = state;
-            setImageDrawable(this.f6731b.get(this.state));
+            setImageDrawable(this.stateImageVector.get(this.state));
         }
         if (this.stateChangedListener != null) {
             this.stateChangedListener.changed(state);
@@ -66,22 +66,22 @@ public class Icon extends androidx.appcompat.widget.AppCompatImageView {
     }
 
     /* renamed from: a */
-    public void m3489a(int i, Drawable drawable) {
-        int i2;
-        this.f6731b.add(i, drawable);
-        if (i < this.state) {
-            i2 = this.state;
-            this.state = i2 + 1;
+    public void addStateImage(int index, Drawable drawable) {
+        int state;
+        this.stateImageVector.add(index, drawable);
+        if (index < this.state) {
+            state = this.state;
+            this.state = state + 1;
         } else {
-            i2 = this.state;
+            state = this.state;
         }
-        this.state = i2;
+        this.state = state;
         setState(this.state);
     }
 
     /* renamed from: a */
     public void m3488a(Drawable drawable) {
-        this.f6731b.add(drawable);
+        this.stateImageVector.add(drawable);
         setState(this.state);
     }
 }

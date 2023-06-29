@@ -278,7 +278,7 @@ public abstract class AbstractExpandableListAdapter extends WrapperListAdapterIm
             Rect rect2 = new Rect();
             listView.getGlobalVisibleRect(rect2);
             int measuredHeight2 = ((View) view.getParent()).getMeasuredHeight();
-            if (!((rect.top + measuredHeight) + measuredHeight2 < rect2.bottom) && SDKVersionUtils.m8373a()) {
+            if (!((rect.top + measuredHeight) + measuredHeight2 < rect2.bottom) && SDKVersionUtils.sdkThan8()) {
                 listView.smoothScrollBy(((rect.top + measuredHeight) + measuredHeight2) - rect2.bottom, 0);
             }
         }

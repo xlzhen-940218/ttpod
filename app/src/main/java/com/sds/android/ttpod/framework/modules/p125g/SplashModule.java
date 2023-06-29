@@ -86,7 +86,7 @@ public final class SplashModule extends BaseModule {
                     int m4015a = m4014a.m4015a();
                     SplashItem m4013b = m4014a.m4013b();
                     if (m4013b != null) {
-                        String m3991c = SplashModule.this.m3991c(m4013b.getSuitFile(DisplayUtils.m7220h()));
+                        String m3991c = SplashModule.this.m3991c(m4013b.getSuitFile(DisplayUtils.getDpi()));
                         if (!FileUtils.isDir(m3991c)) {
                             m4015a = 0;
                         }
@@ -163,7 +163,7 @@ public final class SplashModule extends BaseModule {
         Exception e;
         Throwable th;
         if (list != null) {
-            int m7220h = DisplayUtils.m7220h();
+            int m7220h = DisplayUtils.getDpi();
             for (SplashItem splashItem : list) {
                 String suitFile = splashItem.getSuitFile(m7220h);
                 String m3995b = m3995b(suitFile);
@@ -257,7 +257,7 @@ public final class SplashModule extends BaseModule {
             HashSet hashSet = new HashSet();
             if (list != null) {
                 for (SplashItem splashItem : list) {
-                    hashSet.add(m3990d(splashItem.getSuitFile(DisplayUtils.m7220h())));
+                    hashSet.add(m3990d(splashItem.getSuitFile(DisplayUtils.getDpi())));
                 }
             }
             hashSet.add("帮助.txt");
@@ -346,13 +346,13 @@ public final class SplashModule extends BaseModule {
         if (i == 0) {
             return null;
         }
-        return new BitmapUtils().m8454a(BaseApplication.getApplication().getResources(), i, DisplayUtils.m7225c(), DisplayUtils.m7224d());
+        return new BitmapUtils().m8454a(BaseApplication.getApplication().getResources(), i, DisplayUtils.getWidth(), DisplayUtils.getHeight());
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: e */
     public Bitmap m3989e(String str) {
-        return BitmapUtils.m8435b(str, DisplayUtils.m7225c(), DisplayUtils.m7224d());
+        return BitmapUtils.m8435b(str, DisplayUtils.getWidth(), DisplayUtils.getHeight());
     }
 
     /* JADX INFO: Access modifiers changed from: private */

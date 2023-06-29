@@ -142,7 +142,7 @@ public class ThemeManager {
     @TargetApi(11)
     /* renamed from: a */
     public static int m3272a(ColorDrawable colorDrawable) {
-        if (SDKVersionUtils.checkVersionThanAndroid11()) {
+        if (SDKVersionUtils.sdkThan11()) {
             return colorDrawable.getColor();
         }
         try {

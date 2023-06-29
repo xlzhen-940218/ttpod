@@ -201,7 +201,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
     private void bindHeader(View view, AlbumItem albumItem) {
         TextView textView = (TextView) view.findViewById(R.id.album_introduce);
         this.mSongCount = (TextView) view.findViewById(R.id.album_song_count);
-        ImageCacheUtils.m4752a((ImageView) view.findViewById(R.id.album_pic), albumItem.getPic500(), DisplayUtils.m7225c(), DisplayUtils.m7225c(), (int) R.drawable.img_album_detail_defaul);
+        ImageCacheUtils.m4752a((ImageView) view.findViewById(R.id.album_pic), albumItem.getPic500(), DisplayUtils.getWidth(), DisplayUtils.getWidth(), (int) R.drawable.img_album_detail_defaul);
         ((TextView) view.findViewById(R.id.album_name)).setText(albumItem.getName());
         ((TextView) view.findViewById(R.id.album_artist)).setText(albumItem.getSingerName());
         ((TextView) view.findViewById(R.id.album_lang)).setText(getString(R.string.album_lang, albumItem.getLang()));

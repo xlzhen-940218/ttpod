@@ -524,7 +524,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         Bitmap bitmap;
         Throwable th;
         DebugUtils.m8426a(mediaItem, "mediaItem");
-        if (SDKVersionUtils.m8368f()) {
+        if (SDKVersionUtils.sdkThan14()) {
             pendingIntent4 = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("previous_command").putExtra("command", "previous_command").putExtra("key_origin", "notification"), PendingIntent.FLAG_IMMUTABLE);
             pendingIntent3 = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("play_pause_command").putExtra("command", "play_pause_command").putExtra("key_origin", "notification"), PendingIntent.FLAG_IMMUTABLE);
             pendingIntent2 = PendingIntent.getService(BaseApplication.getApplication(), 0, new Intent(BaseApplication.getApplication(), SupportService.class).setAction("next_command").putExtra("command", "next_command").putExtra("key_origin", "notification"), PendingIntent.FLAG_IMMUTABLE);
@@ -537,10 +537,10 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         }
         String substring = SearchManager.m2232a().m2219c().startsWith(mediaItem.getID()) ? SearchManager.m2232a().m2219c().substring(mediaItem.getID().length()) : null;
         try {
-            Bitmap m8445a = StringUtils.isEmpty(substring) ? null : BitmapUtils.m8445a(substring, DisplayUtils.m7229a(128));
+            Bitmap m8445a = StringUtils.isEmpty(substring) ? null : BitmapUtils.m8445a(substring, DisplayUtils.dp2px(128));
             if (m8445a == null) {
                 try {
-                    m8445a = BitmapFactory.decodeResource(getResources(), SDKVersionUtils.checkVersionThanAndroid11() ? R.drawable.img_notification_artist_default_hashoneycomb : R.drawable.img_notification_artist_default, null);
+                    m8445a = BitmapFactory.decodeResource(getResources(), SDKVersionUtils.sdkThan11() ? R.drawable.img_notification_artist_default_hashoneycomb : R.drawable.img_notification_artist_default, null);
                 } catch (Throwable th2) {
                     bitmap = m8445a;
                     th = th2;

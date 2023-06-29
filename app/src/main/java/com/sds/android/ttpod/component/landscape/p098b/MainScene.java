@@ -21,7 +21,7 @@ import com.sds.android.ttpod.component.landscape.p097a.ActionSequence;
 import com.sds.android.ttpod.component.landscape.p097a.ActionSpawn;
 import com.sds.android.ttpod.component.landscape.p097a.ActionYRotateTo;
 import com.sds.android.ttpod.component.landscape.p097a.ActionZRotateTo;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 
 /* renamed from: com.sds.android.ttpod.component.landscape.b.d */
 /* loaded from: classes.dex */
@@ -143,10 +143,10 @@ public class MainScene extends Scene implements ActionInstant.InterfaceC1253a, N
 
     /* renamed from: f */
     private void m6280f() {
-        C1780b c1780b = new C1780b();
-        c1780b.m4792a().inScaled = false;
-        int m7225c = DisplayUtils.m7225c();
-        int m7224d = DisplayUtils.m7224d();
+        BitmapUtils c1780b = new BitmapUtils();
+        c1780b.getNewOptions().inScaled = false;
+        int m7225c = DisplayUtils.getWidth();
+        int m7224d = DisplayUtils.getHeight();
         this.f4464g = new Background();
         Bitmap m4789a = c1780b.m4789a(this.f4461b.getResources(), R.raw.background, m7225c, m7224d);
         if (m4789a != null) {

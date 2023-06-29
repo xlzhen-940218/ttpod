@@ -86,11 +86,11 @@ public class TskPackHandle extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: b */
-    public byte[] mo3753b(String str) throws IOException {
-        if (str == null) {
+    public byte[] loadTskResource(String resName) throws IOException {
+        if (resName == null) {
             throw new IOException("file name is null");
         }
-        int[] iArr = this.skinResourceMaps.get(str.toLowerCase(Locale.US));
+        int[] iArr = this.skinResourceMaps.get(resName.toLowerCase(Locale.US));
         if (iArr != null) {
             this.stream.reset();
             this.stream.skip(iArr[0]);

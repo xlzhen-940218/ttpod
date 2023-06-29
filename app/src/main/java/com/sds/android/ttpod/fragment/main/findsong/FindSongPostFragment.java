@@ -28,8 +28,8 @@ public class FindSongPostFragment extends FindSongBaseViewFragment {
 
     private PosterGallery createPostGallery() {
         PosterGallery posterGallery = new PosterGallery(getActivity());
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, (int) (DisplayUtils.m7225c() * 0.469d));
-        int m7229a = DisplayUtils.m7229a(4);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, (int) (DisplayUtils.getWidth() * 0.469d));
+        int m7229a = DisplayUtils.dp2px(4);
         layoutParams.setMargins(m7229a, m7229a, m7229a, m7229a);
         posterGallery.setLayoutParams(layoutParams);
         posterGallery.setPosterCallback(new PosterGallery.InterfaceC2222a() { // from class: com.sds.android.ttpod.fragment.main.findsong.FindSongPostFragment.1

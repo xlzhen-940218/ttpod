@@ -7,5 +7,5 @@ import android.graphics.drawable.Drawable;
 /* loaded from: classes.dex */
 public abstract class DrawableCreator {
     /* renamed from: a */
-    public abstract Drawable mo3716a(Resources resources);
+    public abstract Drawable getDrawable(Resources resources);
 }

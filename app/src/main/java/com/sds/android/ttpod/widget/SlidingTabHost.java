@@ -402,7 +402,7 @@ public class SlidingTabHost extends HorizontalScrollView {
                 textView.setTypeface(this.f7990D, this.f7991E);
                 textView.setTextColor(this.colorStateList);
                 if (this.textAllCaps) {
-                    if (SDKVersionUtils.m8368f()) {
+                    if (SDKVersionUtils.sdkThan14()) {
                         textView.setAllCaps(true);
                     } else {
                         textView.setText(textView.getText().toString().toUpperCase(this.locale));

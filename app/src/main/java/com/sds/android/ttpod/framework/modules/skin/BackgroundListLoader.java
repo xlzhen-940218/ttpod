@@ -48,7 +48,7 @@ public class BackgroundListLoader implements Runnable {
     /* renamed from: b */
     private ArrayList<BackgroundItem> m3854b() {
         ArrayList<BackgroundItem> arrayList = new ArrayList<>();
-        String m5295m = TTPodConfig.m5295m();
+        String m5295m = TTPodConfig.getBkgs();
         String m3765a = CachedOnlineListReader.m3765a(m5295m, SkinUtils.m4645a(m5295m, "list_"), "bkg_list");
         OnlineBackgroundListResult onlineBackgroundListResult = TextUtils.isEmpty(m3765a) ? null : (OnlineBackgroundListResult) JSONUtils.fromJson(m3765a, OnlineBackgroundListResult.class);
         if (onlineBackgroundListResult == null || onlineBackgroundListResult.getSkinItems() == null) {

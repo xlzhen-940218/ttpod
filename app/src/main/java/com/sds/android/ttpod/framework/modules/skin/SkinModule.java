@@ -202,7 +202,7 @@ public final class SkinModule extends BaseModule {
             /* renamed from: a */
             public void onRequestSuccess(BackgroundCheckResult backgroundCheckResult) {
                 Long data = backgroundCheckResult.getData();
-                String m4645a = SkinUtils.m4645a(TTPodConfig.m5295m(), "list_");
+                String m4645a = SkinUtils.m4645a(TTPodConfig.getBkgs(), "list_");
                 if (SkinModule.this.m3543a(data, m4645a)) {
                     SkinModule.this.f6679a.m8576a((Runnable) new OnlineBackgroundListDownloader(data, "http://api.skin.ttpod.com/skin/recommend_background/list_", m4645a, CommandID.FINISH_UPDATE_RECOMMEND_BACKGROUND_LIST));
                 } else {
@@ -269,7 +269,7 @@ public final class SkinModule extends BaseModule {
     }
 
     public void downloadSkinCategoryList() {
-        this.f6679a.m8576a((Runnable) new OnlineCategoryListDownloader("http://api.skin.ttpod.com/skin/apiSkinType/list", CategoryListLoader.f6596a, CommandID.ON_SKIN_CATEGORY_LIST_DOWNLOADED));
+        this.f6679a.m8576a((Runnable) new OnlineCategoryListDownloader("http://api.skin.ttpod.com/skin/apiSkinType/list", CategoryListLoader.categorySkinPath, CommandID.ON_SKIN_CATEGORY_LIST_DOWNLOADED));
     }
 
     public void requestPagedSkinList(final Integer num, final Integer num2, final Integer num3) {
@@ -282,7 +282,7 @@ public final class SkinModule extends BaseModule {
     }
 
     public void downloadBackgroundCategoryList() {
-        this.f6679a.m8576a((Runnable) new OnlineCategoryListDownloader("http://log.topit.me/ttpod/apiSkinTypeList.php", CategoryListLoader.f6597b, CommandID.ON_BKG_CATEGORY_LIST_DOWNLOADED));
+        this.f6679a.m8576a((Runnable) new OnlineCategoryListDownloader("http://log.topit.me/ttpod/apiSkinTypeList.php", CategoryListLoader.categoryBkgPath, CommandID.ON_BKG_CATEGORY_LIST_DOWNLOADED));
     }
 
     public void requestPagedBackgroundList(final Integer num, final Integer num2, final Integer num3) {

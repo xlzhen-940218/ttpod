@@ -224,7 +224,7 @@ public class UserInfoActivity extends SlidingClosableActivity {
                 case 3:
                     if (this.mCachedRequestCode == 1) {
                         setCover();
-                        CommandCenter.getInstance().execute(new Command(CommandID.MODIFY_COVER, this.mLocalCoverImagePath, Integer.valueOf(DisplayUtils.m7225c()), Integer.valueOf((int) getResources().getDimension(R.dimen.cover_height))));
+                        CommandCenter.getInstance().execute(new Command(CommandID.MODIFY_COVER, this.mLocalCoverImagePath, Integer.valueOf(DisplayUtils.getWidth()), Integer.valueOf((int) getResources().getDimension(R.dimen.cover_height))));
                         return;
                     } else if (this.mCachedRequestCode == 2) {
                         setAvatar();
@@ -366,7 +366,7 @@ public class UserInfoActivity extends SlidingClosableActivity {
     }
 
     private void setCover() {
-        ImageCacheUtils.m4750a(this.mImageProfileCover, this.mUser.getProfileCoverUrl(), DisplayUtils.m7225c(), (int) getResources().getDimension(R.dimen.cover_height), this.mLocalCoverImagePath);
+        ImageCacheUtils.m4750a(this.mImageProfileCover, this.mUser.getProfileCoverUrl(), DisplayUtils.getWidth(), (int) getResources().getDimension(R.dimen.cover_height), this.mLocalCoverImagePath);
     }
 
     /* JADX INFO: Access modifiers changed from: private */

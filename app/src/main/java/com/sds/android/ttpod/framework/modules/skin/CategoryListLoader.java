@@ -7,8 +7,8 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
-import com.sds.android.ttpod.framework.modules.skin.p128a.CategoryItem;
-import com.sds.android.ttpod.framework.modules.skin.p128a.OnlineCategoryListResult;
+import com.sds.android.ttpod.framework.modules.skin.category.CategoryItem;
+import com.sds.android.ttpod.framework.modules.skin.category.OnlineCategoryListResult;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -20,22 +20,22 @@ import java.util.Iterator;
 public class CategoryListLoader implements Runnable {
 
     /* renamed from: a */
-    public static final String f6596a;
+    public static final String categorySkinPath;
 
     /* renamed from: b */
-    public static final String f6597b;
+    public static final String categoryBkgPath;
 
     /* renamed from: c */
     static final /* synthetic */ boolean f6598c;
 
     /* renamed from: d */
-    private static final String f6599d;
+    private static final String categoryListFolder;
 
     /* renamed from: e */
-    private String[] f6600e = {f6596a, f6597b};
+    private String[] categorys = {categorySkinPath, categoryBkgPath};
 
     /* renamed from: f */
-    private String[] f6601f = {f6599d + "category_skin.json", f6599d + "category_bkg.json"};
+    private String[] f6601f = {categoryListFolder + "category_skin.json", categoryListFolder + "category_bkg.json"};
 
     /* renamed from: g */
     private CommandID[] f6602g = {CommandID.ON_SKIN_CATEGORY_LIST_PARSED, CommandID.ON_BACKGROUND_CATEGORY_LIST_PARSED};
@@ -51,16 +51,16 @@ public class CategoryListLoader implements Runnable {
 
     static {
         f6598c = !CategoryListLoader.class.desiredAssertionStatus();
-        f6599d = "category_list" + File.separator;
-        f6596a = TTPodConfig.getSkinPath() + File.separator + "category_skin.json";
-        f6597b = TTPodConfig.m5295m() + File.separator + "category_bkg.json";
+        categoryListFolder = "category_list" + File.separator;
+        categorySkinPath = TTPodConfig.getSkinPath() + File.separator + "category_skin.json";
+        categoryBkgPath = TTPodConfig.getBkgs() + File.separator + "category_bkg.json";
     }
 
     public CategoryListLoader(int i) {
-        if (!f6598c && i >= this.f6600e.length) {
+        if (!f6598c && i >= this.categorys.length) {
             throw new AssertionError();
         }
-        this.f6603h = this.f6600e[i];
+        this.f6603h = this.categorys[i];
         this.f6604i = this.f6601f[i];
         this.f6605j = this.f6602g[i];
     }
@@ -79,26 +79,26 @@ public class CategoryListLoader implements Runnable {
         if (onlineCategoryListResult == null) {
             j = 0;
         } else {
-            ArrayList<CategoryItem> m3859a = onlineCategoryListResult.m3859a();
-            String m3857c = onlineCategoryListResult.m3857c();
-            String substring = m3857c.endsWith("/") ? m3857c.substring(0, m3857c.length() - 1) : m3857c;
+            ArrayList<CategoryItem> m3859a = onlineCategoryListResult.getData();
+            String picUrl = onlineCategoryListResult.getPicUrl();
+            //String substring = picUrl.endsWith("/") ? picUrl.substring(0, picUrl.length() - 1) : picUrl;
             Iterator<CategoryItem> it = m3859a.iterator();
             while (it.hasNext()) {
                 CategoryItem next = it.next();
-                next.m3864a(m3693a(substring, next.m3861d()));
+                next.setPicUrl(spliceUrl(picUrl, next.getRecommendPicUrl()));
                 arrayList.add(next);
             }
             Collections.sort(arrayList);
-            j = onlineCategoryListResult.m3858b();
+            j = onlineCategoryListResult.getCTime();
         }
         CommandCenter.getInstance().m4595b(new Command(this.f6605j, arrayList, Long.valueOf(j)), ModuleID.SKIN);
     }
 
     /* renamed from: a */
-    private String m3693a(String str, String str2) {
-        if (str2.startsWith("/")) {
-            str2 = str2.substring(1, str2.length());
+    private String spliceUrl(String leftUrl, String rightUrl) {
+        if (rightUrl.startsWith("/")) {
+            rightUrl = rightUrl.substring(1);
         }
-        return str + "/" + str2;
+        return leftUrl + "/" + rightUrl;
     }
 }

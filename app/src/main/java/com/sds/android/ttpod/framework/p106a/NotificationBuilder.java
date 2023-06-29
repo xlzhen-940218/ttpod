@@ -100,7 +100,7 @@ public class NotificationBuilder {
 
     public NotificationBuilder(Context context) {
         this.f5655d = context;
-        if (SDKVersionUtils.checkVersionThanAndroid11()) {
+        if (SDKVersionUtils.sdkThan11()) {
             this.f5654A = new Notification.Builder(context);
         } else {
             this.f5654A = null;
@@ -198,7 +198,7 @@ public class NotificationBuilder {
             notification.tickerView = this.f5669r;
         }
         notification.deleteIntent = this.f5666o;
-        if (SDKVersionUtils.m8372b()) {
+        if (SDKVersionUtils.sdkThan9()) {
             notification.fullScreenIntent = this.f5667p;
         }
         notification.sound = this.f5670s;

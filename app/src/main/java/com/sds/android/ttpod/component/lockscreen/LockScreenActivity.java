@@ -300,7 +300,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         this.mLockScreenLayout.setKeepScreenOn(Preferences.m3080A());
         try {
             Drawable drawable = WallpaperManager.getInstance(this).getDrawable();
-            if (SDKVersionUtils.m8367g()) {
+            if (SDKVersionUtils.sdkThan16()) {
                 this.mLockScreenLayout.setBackground(drawable);
             } else {
                 this.mLockScreenLayout.setBackground(drawable);
@@ -308,7 +308,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         } catch (Throwable th) {
             th.printStackTrace();
         }
-        Typeface m7226b = DisplayUtils.m7226b();
+        Typeface m7226b = DisplayUtils.getUniSansLightTTF();
         if (m7226b != null) {
             this.mTimeTextView.setTypeface(m7226b);
             this.mAMPMTextView.setTypeface(m7226b);
@@ -335,7 +335,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         this.mLyricView.setDisplayMode(LyricView.LyricDisplayEnum.Normal);
         this.mLyricView.setDefaultColorHighlight(-1);
         this.mLyricView.setColorHighlight(-1);
-        this.mLyricView.setFadeEdgeLength(DisplayUtils.m7229a(22));
+        this.mLyricView.setFadeEdgeLength(DisplayUtils.dp2px(22));
         int m3048Q = Preferences.getLyricFontSize();
         this.mLyricView.m3459b(0, this.mLyricView.getDefaultFontSizeHighlight() + m3048Q);
         this.mLyricView.m3482a(0, (m3048Q + this.mLyricView.getDefaultFontSizeNormal()) - 3.0f);
@@ -350,7 +350,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         }
         if (this.mSongImageView.getDrawable() == null) {
             String m3164g = Cache.getInstance().m3164g();
-            this.mSongImageView.setImageBitmap(m3164g != null ? BitmapUtils.m8435b(m3164g, DisplayUtils.m7225c(), DisplayUtils.m7224d()) : null);
+            this.mSongImageView.setImageBitmap(m3164g != null ? BitmapUtils.m8435b(m3164g, DisplayUtils.getWidth(), DisplayUtils.getHeight()) : null);
         }
     }
 

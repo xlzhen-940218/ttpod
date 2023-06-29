@@ -42,7 +42,7 @@ public class SAnimation extends SImage<AnimationImageView> {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public AnimationImageView mo3771b(Context context, SkinCache skinCache) {
+    public AnimationImageView getIcon(Context context, SkinCache skinCache) {
         AnimationImageView animation = new AnimationImageView(context);
         Resources resources = context.getResources();
         animation.setScaleType(getScaleType(this.scaleType));
@@ -66,7 +66,7 @@ public class SAnimation extends SImage<AnimationImageView> {
                 }
             } else {
                 if (m3594a != null) {
-                    animationDrawable.addFrame(m3594a.mo3716a(resources), i);
+                    animationDrawable.addFrame(m3594a.getDrawable(resources), i);
                 }
                 animationDrawable.setOneShot(true);
             }

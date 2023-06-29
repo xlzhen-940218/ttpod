@@ -11,10 +11,10 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 import com.sds.android.ttpod.utils.ThemeUtils;
 
 /* loaded from: classes.dex */
@@ -73,7 +73,7 @@ public class GlobalMenuThumbImageView extends androidx.appcompat.widget.AppCompa
             this.f7683a = ((BitmapDrawable) this.f7687e).getBitmap();
         } else {
             float f = (height * 1.0f) / intrinsicHeight;
-            this.f7683a = C1780b.m4781a(this.f7687e, (int) (this.f7687e.getIntrinsicWidth() * f), (int) (intrinsicHeight * f));
+            this.f7683a = BitmapUtils.m4781a(this.f7687e, (int) (this.f7687e.getIntrinsicWidth() * f), (int) (intrinsicHeight * f));
         }
         this.f7686d.setShader(new BitmapShader(this.f7683a, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP));
     }

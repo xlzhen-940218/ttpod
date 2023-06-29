@@ -98,7 +98,7 @@ public class SignalView extends View {
 
     /* renamed from: a */
     private void m1552a(Context context) {
-        this.f7914f = DisplayUtils.m7229a(60);
+        this.f7914f = DisplayUtils.dp2px(60);
         this.f7916h = 20;
         this.f7915g = new int[4];
         m1553a();

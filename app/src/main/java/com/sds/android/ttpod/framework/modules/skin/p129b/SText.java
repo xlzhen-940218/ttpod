@@ -120,7 +120,7 @@ public abstract class SText<T extends View> extends SComponent<T> {
         if (this.fontColor == this.fontColorPressed && this.fontColor == this.fontColorDisable && this.fontColor == this.fontColorFocused && this.fontColor == this.fontColorSelected) {
             textView.setTextColor(this.fontColor);
         } else {
-            textView.setTextColor(new ColorStateList(new int[][]{ViewWrapper.f6593x, ViewWrapper.f6571b, ViewWrapper.f6573d, ViewWrapper.f6572c, ViewWrapper.f6570a}, new int[]{this.fontColorPressed, this.fontColor, this.fontColorSelected, this.fontColorFocused, this.fontColorDisable}));
+            textView.setTextColor(new ColorStateList(new int[][]{ViewWrapper.PRESSED_ENABLED_STATE_SET, ViewWrapper.ENABLED_STATE_SET, ViewWrapper.SELECTED_STATE_SET, ViewWrapper.FOCUSED_STATE_SET, ViewWrapper.EMPTY_STATE_SET}, new int[]{this.fontColorPressed, this.fontColor, this.fontColorSelected, this.fontColorFocused, this.fontColorDisable}));
         }
         textView.setTextSize(this.font.size);
         if ((this.fontShadowColor & 0xff000000) != 0) {

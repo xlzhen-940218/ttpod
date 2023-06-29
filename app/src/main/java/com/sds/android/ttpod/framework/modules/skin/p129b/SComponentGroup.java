@@ -23,7 +23,7 @@ public class SComponentGroup extends SComponent<ViewGroup> implements Container<
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public ViewGroup mo3771b(Context context, SkinCache skinCache) {
+    public ViewGroup getIcon(Context context, SkinCache skinCache) {
         return new SkinAbsoluteLayout(context);
     }
 

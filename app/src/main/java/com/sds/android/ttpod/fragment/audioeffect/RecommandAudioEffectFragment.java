@@ -333,7 +333,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
             }
             C1412b c1412b = (C1412b) view.getTag();
             AudioEffectItem audioEffectItem = (AudioEffectItem) RecommandAudioEffectFragment.this.mDatas.get(i);
-            ImageCacheUtils.m4752a(c1412b.f4989b, audioEffectItem.getPic(), DisplayUtils.m7229a(40), DisplayUtils.m7229a(40), (int) R.drawable.img_avatar_default);
+            ImageCacheUtils.m4752a(c1412b.f4989b, audioEffectItem.getPic(), DisplayUtils.dp2px(40), DisplayUtils.dp2px(40), (int) R.drawable.img_avatar_default);
             c1412b.f4990c.setText(audioEffectItem.getNickName());
             c1412b.f4991d.setImageResource(EffectLevelItemHelper.m7148a(audioEffectItem.getTotal()).m7164b());
             c1412b.f4992e.setText(audioEffectItem.getPickCount() + "");

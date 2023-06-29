@@ -61,7 +61,7 @@ public class LockScreenModule extends BaseModule {
 
     public void stopSystemLock() {
         try {
-            if (!SDKVersionUtils.m8369e()) {
+            if (!SDKVersionUtils.sdkThan13()) {
                 SystemLockManager.m4079a();
                 SystemLockManager.m4078a(new SystemLockManager.InterfaceC1899a() { // from class: com.sds.android.ttpod.framework.modules.e.a.1
                     @Override // com.sds.android.ttpod.framework.modules.p123e.SystemLockManager.InterfaceC1899a

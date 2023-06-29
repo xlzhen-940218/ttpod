@@ -171,7 +171,7 @@ public class FoldableListLayout extends FrameLayout implements GestureDetector.O
     private void m1756a(Context context) {
         this.f7665q = new GestureDetector(context, this);
         this.f7665q.setIsLongpressEnabled(false);
-        if (SDKVersionUtils.checkVersionThanAndroid11()) {
+        if (SDKVersionUtils.sdkThan11()) {
             this.f7661m = ObjectAnimator.ofFloat(this, "foldRotation", 0.0f);
             this.f7667s = ViewConfiguration.get(context).getScaledPagingTouchSlop();
         }

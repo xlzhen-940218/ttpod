@@ -89,7 +89,7 @@ public class ZipPackHandle extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: b */
-    public byte[] mo3753b(String str) throws IOException {
+    public byte[] loadTskResource(String str) throws IOException {
         int size;
         byte[] bArr = null;
         ZipEntry m3752c = m3752c(str);

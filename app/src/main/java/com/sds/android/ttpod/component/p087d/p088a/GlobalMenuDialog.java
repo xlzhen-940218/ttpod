@@ -210,7 +210,7 @@ public class GlobalMenuDialog extends Dialog {
         Window window = getWindow();
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.gravity = Gravity.BOTTOM;
-        attributes.width = DisplayUtils.m7225c();
+        attributes.width = DisplayUtils.getWidth();
         window.setWindowAnimations(R.style.Dialog_Window_Anim);
         window.setAttributes(attributes);
         this.f3914e = findViewById(R.id.layout_root_view);

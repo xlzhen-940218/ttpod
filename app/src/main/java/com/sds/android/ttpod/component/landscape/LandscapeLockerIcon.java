@@ -31,8 +31,8 @@ public class LandscapeLockerIcon extends Icon {
     /* renamed from: a */
     public void m6374a(Drawable drawable, Drawable drawable2) {
         if (drawable != null && drawable2 != null) {
-            m3489a(0, drawable);
-            m3489a(1, drawable2);
+            addStateImage(0, drawable);
+            addStateImage(1, drawable2);
         }
     }
 

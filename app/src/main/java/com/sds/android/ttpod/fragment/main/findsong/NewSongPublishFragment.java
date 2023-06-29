@@ -320,7 +320,7 @@ public class NewSongPublishFragment extends SlidingClosableFragment implements A
                 c1542b.f5198a.setOnClickListener(this.f5196g);
                 ThemeManager.m3269a(c1542b.f5199b, ThemeElement.COMMON_CONTENT_TEXT);
                 ImageView imageView = c1542b.f5200c;
-                int m7225c = DisplayUtils.m7225c() / 4;
+                int m7225c = DisplayUtils.getWidth() / 4;
                 ImageCacheUtils.m4752a(imageView, albumData.getPicUrl(), m7225c, m7225c, (int) R.drawable.img_background_song_publish);
                 return;
             }

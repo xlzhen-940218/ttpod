@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public abstract class SimpleSongView extends FrameLayout implements ThemeManager.InterfaceC2019b {
 
     /* renamed from: l */
-    private static final int f7926l = (int) (0.4d * DisplayUtils.m7224d());
+    private static final int f7926l = (int) (0.4d * DisplayUtils.getHeight());
 
     /* renamed from: a */
     protected TextView f7927a;

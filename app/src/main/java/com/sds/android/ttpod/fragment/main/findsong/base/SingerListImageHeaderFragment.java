@@ -280,7 +280,7 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
         private SimpleGridView f5287f;
 
         /* renamed from: g */
-        private final int f5288g = DisplayUtils.m7225c() / 4;
+        private final int f5288g = DisplayUtils.getWidth() / 4;
 
         public C1604b(Context context) {
             this.f5283b = context;

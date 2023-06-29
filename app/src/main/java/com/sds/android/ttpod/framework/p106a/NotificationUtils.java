@@ -50,14 +50,14 @@ public class NotificationUtils {
         NotificationBuilder notificationBuilder = new NotificationBuilder(context);
         if (bitmap != null) {
             try {
-                bitmap2 = C1780b.m4787a(bitmap, DisplayUtils.m7229a(64));
+                bitmap2 = BitmapUtils.m4787a(bitmap, DisplayUtils.dp2px(64));
             } catch (Throwable th) {
                 th.printStackTrace();
             }
             if (bitmap2 == null && i != 0) {
                 bitmap2 = BitmapFactory.decodeResource(context.getResources(), i);
             }
-            if (!SDKVersionUtils.checkVersionThanAndroid11()) {
+            if (!SDKVersionUtils.sdkThan11()) {
                 notificationBuilder.m4702a(charSequence);
                 notificationBuilder.m4700b(charSequence2);
                 notificationBuilder.m4705a(bitmap2);
@@ -79,7 +79,7 @@ public class NotificationUtils {
         if (bitmap2 == null) {
             bitmap2 = BitmapFactory.decodeResource(context.getResources(), i);
         }
-        if (!SDKVersionUtils.checkVersionThanAndroid11()) {
+        if (!SDKVersionUtils.sdkThan11()) {
         }
         notificationBuilder.m4709a(i);
         notificationBuilder.m4707a(pendingIntent);
@@ -105,7 +105,7 @@ public class NotificationUtils {
             remoteViews.setImageViewBitmap(R.id.imageview_notification_play, bitmap);
         }
         notificationBuilder.m4703a(remoteViews);
-        if (SDKVersionUtils.m8368f()) {
+        if (SDKVersionUtils.sdkThan14()) {
             remoteViews.setViewVisibility(R.id.control_bar, View.VISIBLE);
             remoteViews.setViewVisibility(R.id.button_previous_notification_play, Preferences.m2988aS() ? View.VISIBLE : View.GONE);
             remoteViews.setViewVisibility(R.id.button_exit_notification_play, Preferences.m2987aT() ? View.VISIBLE : View.GONE);
@@ -123,7 +123,7 @@ public class NotificationUtils {
             remoteViews.setOnClickPendingIntent(R.id.button_exit_notification_play, pendingIntent5);
         }
         Notification m4710a = notificationBuilder.m4710a();
-        if (SDKVersionUtils.m8367g()) {
+        if (SDKVersionUtils.sdkThan16()) {
             m4710a.priority = f5679b.get(Preferences.m2989aR());
             RemoteViews remoteViews2 = new RemoteViews(context.getPackageName(), R.layout.notification_play_hasjellybean);
             if (charSequence != null) {

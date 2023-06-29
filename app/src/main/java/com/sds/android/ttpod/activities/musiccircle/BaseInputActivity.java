@@ -175,7 +175,7 @@ public abstract class BaseInputActivity extends SlidingClosableActivity {
     private void initView() {
         String onLoadPicUrl = onLoadPicUrl();
         if (!TextUtils.isEmpty(onLoadPicUrl)) {
-            int m7229a = DisplayUtils.m7229a(84);
+            int m7229a = DisplayUtils.dp2px(84);
             ImageCacheUtils.m4752a(this.mAvatar, onLoadPicUrl, m7229a, m7229a, (int) R.drawable.img_avatar_default);
         }
         TTPodUser onLoadUser = onLoadUser();

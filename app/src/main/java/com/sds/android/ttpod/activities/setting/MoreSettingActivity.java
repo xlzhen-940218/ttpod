@@ -16,7 +16,6 @@ import com.sds.android.ttpod.component.p085b.Card;
 import com.sds.android.ttpod.component.p085b.CheckableActionItem;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.component.p087d.p088a.MultiChoiceListDialog;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.utils.LogcatUtils;
@@ -133,7 +132,7 @@ public class MoreSettingActivity extends SlidingClosableActivity {
         arrayList.add(settingItem);
         arrayList.add(settingItem2);
         arrayList.add(checkableSettingItem2);
-        if (!SDKVersionUtils.m8366h()) {
+        if (!SDKVersionUtils.sdkThan17()) {
             arrayList.add(checkableSettingItem3);
         }
         arrayList.add(checkableSettingItem4);

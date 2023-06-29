@@ -27,7 +27,7 @@ public class SScrollText extends SText<AutoScrollableTextView> {
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public AutoScrollableTextView mo3771b(Context context, SkinCache skinCache) {
+    public AutoScrollableTextView getIcon(Context context, SkinCache skinCache) {
         return new AutoScrollableTextView(context);
     }
 

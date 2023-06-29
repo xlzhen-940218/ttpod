@@ -30,7 +30,7 @@ public class FindSongConfig {
 
         /* renamed from: b */
         public static int m8276b(int i) {
-            return ((DisplayUtils.m7225c() - ((i - 1) * DisplayUtils.m7229a(8))) - (DisplayUtils.m7229a(8) * 2)) / i;
+            return ((DisplayUtils.getWidth() - ((i - 1) * DisplayUtils.dp2px(8))) - (DisplayUtils.dp2px(8) * 2)) / i;
         }
 
         /* renamed from: a */
@@ -43,7 +43,7 @@ public class FindSongConfig {
             int i3 = i2 == 1 ? m8276b / 2 : m8276b;
             int ceil = (int) Math.ceil(i / i2);
             if (!str.equals("song_list")) {
-                m7229a = (i3 * ceil) + (DisplayUtils.m7229a(0) * (ceil - 1)) + DisplayUtils.m7229a(8);
+                m7229a = (i3 * ceil) + (DisplayUtils.dp2px(0) * (ceil - 1)) + DisplayUtils.dp2px(8);
             } else {
                 int i4 = 0;
                 int i5 = 0;
@@ -62,7 +62,7 @@ public class FindSongConfig {
                     }
                     i4 += i2;
                 }
-                m7229a = (DisplayUtils.m7229a(48) * i5) + ((ceil - i5) * DisplayUtils.m7229a(30)) + (i3 * ceil) + (DisplayUtils.m7229a(0) * (ceil - 1));
+                m7229a = (DisplayUtils.dp2px(48) * i5) + ((ceil - i5) * DisplayUtils.dp2px(30)) + (i3 * ceil) + (DisplayUtils.dp2px(0) * (ceil - 1));
             }
             return m7229a;
         }
@@ -83,7 +83,7 @@ public class FindSongConfig {
 
         /* renamed from: d */
         public static float m8274d(int i) {
-            return DisplayUtils.m7229a(15) - (i * 1.5f);
+            return DisplayUtils.dp2px(15) - (i * 1.5f);
         }
 
         static {
@@ -103,7 +103,7 @@ public class FindSongConfig {
     public static class C0627b {
         /* renamed from: a */
         public static int m8273a(int i) {
-            return ((DisplayUtils.m7229a(75) + 1 + 8) * i) + 1;
+            return ((DisplayUtils.dp2px(75) + 1 + 8) * i) + 1;
         }
     }
 

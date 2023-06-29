@@ -720,7 +720,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         }
         if (m2579y()) {
             this.f7092f = EnvironmentUtils.C0605d.m8460d(this.context);
-            if (SDKVersionUtils.m8365i()) {
+            if (SDKVersionUtils.sdkThan19()) {
                 this.f7092f = EnvironmentUtils.C0605d.m8470a(this.context, EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
             }
             if (StringUtils.isEmpty(this.f7092f)) {
@@ -975,7 +975,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
 
     /* renamed from: b */
     private void m2617b(MediaItem mediaItem) {
-        if (SDKVersionUtils.checkVersionThanAndroid11() && mediaItem != null) {
+        if (SDKVersionUtils.sdkThan11() && mediaItem != null) {
             this.context.sendStickyBroadcast(new Intent("com.android.music.metachanged").putExtra("id", mediaItem.getID()).putExtra("artist", mediaItem.getArtist()).putExtra("album", mediaItem.getAlbum()).putExtra("track", mediaItem.getTitle()).putExtra("playing", this.mediaPlayerProxy.getPlayStatus() == PlayStatus.STATUS_PLAYING).putExtra("isfavorite", mediaItem.getFav()));
         }
     }

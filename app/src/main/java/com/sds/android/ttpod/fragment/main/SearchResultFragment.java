@@ -76,7 +76,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     public static final String KEY_SEARCH_WORD = "key_search_word";
     private static final int SHOW_INPUT_METHOD_DELAY = 500;
     private static final String TAG = "SearchResultFragment";
-    private static final int TEXT_PADDING_SIZE = DisplayUtils.m7229a(8);
+    private static final int TEXT_PADDING_SIZE = DisplayUtils.dp2px(8);
     public static final String THIRD_SEACH_URL = "http://so.bq.yymommy.com/appsearch/#a=ss&q=";
     private static boolean sGotBillboard;
     private AlbumSearchFragment mAlbumSearchFragment;
@@ -291,7 +291,7 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
         setCurrentPosition(0);
         this.mAssociateView = new AutoCompleteView(layoutInflater.getContext());
         this.mAssociateView.m1439a(getResources().getDrawable(R.color.listview_divider_line));
-        this.mAssociateView.m1441a(DisplayUtils.m7229a(1));
+        this.mAssociateView.m1441a(DisplayUtils.dp2px(1));
         this.mAssociateView.m1440a(0, 0);
         this.mAssociateView.m1432b(TEXT_PADDING_SIZE);
         this.mAssociateView.m1437a(new AutoCompleteView.InterfaceC2253a() { // from class: com.sds.android.ttpod.fragment.main.SearchResultFragment.6

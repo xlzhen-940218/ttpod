@@ -14,8 +14,8 @@ public class SmallRotatePic extends RotatePic {
     @Override // com.sds.android.ttpod.widget.audioeffect.RotatePic
     /* renamed from: a */
     protected void mo1372a() {
-        this.f8220b = DisplayUtils.m7229a(15) / 3;
-        this.f8221c = DisplayUtils.m7229a(6) / 3;
+        this.f8220b = DisplayUtils.dp2px(15) / 3;
+        this.f8221c = DisplayUtils.dp2px(6) / 3;
         this.f8222d = R.drawable.effect_circle_green_small;
         this.f8219a = 5;
     }

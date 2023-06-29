@@ -79,7 +79,7 @@ public class HeaderFooterGridView extends LinearLayout implements ThemeManager.I
         this.f7695a = (ImageView) findViewById(R.id.img_right_menu_arrow_up);
         this.f7696b = (ImageView) findViewById(R.id.img_right_menu_arrow_down);
         this.f7697c = (GridView) findViewById(R.id.gridview);
-        if (SDKVersionUtils.m8373a()) {
+        if (SDKVersionUtils.sdkThan8()) {
             this.f7695a.setOnClickListener(this.f7699e);
             this.f7696b.setOnClickListener(this.f7700f);
             this.f7697c.setOnScrollListener(new AbsListView.OnScrollListener() { // from class: com.sds.android.ttpod.widget.HeaderFooterGridView.3

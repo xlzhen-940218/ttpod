@@ -56,7 +56,7 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
     }
 
     private void addViewToContainer(View view, View view2) {
-        int m7229a = DisplayUtils.m7229a(8);
+        int m7229a = DisplayUtils.dp2px(8);
         if (getModuleDataType().equals("song_list")) {
             this.mFindSongGridViewContainer.addView(view);
             this.mFindSongGridViewContainer.setPadding(m7229a, 0, m7229a, 0);
@@ -72,8 +72,8 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, FindSongConfig.C0626a.m8277a(getModuleData().getDataList().size(), m8275c, getModuleDataType(), getModuleData().getDataList()));
         gridView.setNumColumns(m8275c);
         gridView.setSelector(new ColorDrawable(0));
-        gridView.setVerticalSpacing(DisplayUtils.m7229a(0));
-        gridView.setHorizontalSpacing(DisplayUtils.m7229a(8));
+        gridView.setVerticalSpacing(DisplayUtils.dp2px(0));
+        gridView.setHorizontalSpacing(DisplayUtils.dp2px(8));
         gridView.setStretchMode(2);
         gridView.setLayoutParams(layoutParams);
         gridView.setGravity(17);
@@ -129,12 +129,12 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
             if (FindSongGridViewFragment.this.isSongListItemInSongListModule(i)) {
                 TextView textView = (TextView) view.findViewById(R.id.id_grid_view_item_author_name);
                 textView.setText(((FindSongHotListData) FindSongGridViewFragment.this.getItemData(i)).getAuthor());
-                float m7229a = DisplayUtils.m7229a(11) - (this.f5144c * 1.0f);
+                float m7229a = DisplayUtils.dp2px(11) - (this.f5144c * 1.0f);
                 textView.setTextSize(0, m7229a);
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams((int) m7229a, (int) m7229a);
                 layoutParams.addRule(15);
-                layoutParams.rightMargin = DisplayUtils.m7229a(3);
-                layoutParams.leftMargin = DisplayUtils.m7229a(5);
+                layoutParams.rightMargin = DisplayUtils.dp2px(3);
+                layoutParams.leftMargin = DisplayUtils.dp2px(5);
                 view.findViewById(R.id.id_author_icon).setLayoutParams(layoutParams);
                 return;
             }
@@ -146,11 +146,11 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
             if (FindSongGridViewFragment.this.isSongListItemInSongListModule(i)) {
                 TextView textView = (TextView) view.findViewById(R.id.id_grid_view_item_listen_count);
                 textView.setText(String.valueOf(((FindSongHotListData) FindSongGridViewFragment.this.getItemData(i)).getListenCount()));
-                float m7229a = DisplayUtils.m7229a(10) - (this.f5144c * 1.0f);
+                float m7229a = DisplayUtils.dp2px(10) - (this.f5144c * 1.0f);
                 textView.setTextSize(0, m7229a);
                 RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(((int) m7229a) + 1, ((int) m7229a) + 1);
                 layoutParams.addRule(15);
-                layoutParams.rightMargin = DisplayUtils.m7229a(3);
+                layoutParams.rightMargin = DisplayUtils.dp2px(3);
                 view.findViewById(R.id.id_listen_count_icon).setLayoutParams(layoutParams);
                 return;
             }
@@ -181,7 +181,7 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
                 } else {
                     FindSongGridViewFragment.this.setDescTextLines(Math.max(FindSongGridViewFragment.this.getDescTextLines(), i2));
                 }
-                textView.getLayoutParams().height = i2 == 2 ? DisplayUtils.m7229a(48) : DisplayUtils.m7229a(30);
+                textView.getLayoutParams().height = i2 == 2 ? DisplayUtils.dp2px(48) : DisplayUtils.dp2px(30);
                 textView.setMaxLines(i2);
                 return;
             }

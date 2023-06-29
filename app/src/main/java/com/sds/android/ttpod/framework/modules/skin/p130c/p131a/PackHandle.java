@@ -18,7 +18,7 @@ public abstract class PackHandle implements Closeable, Iterable<String> {
     public abstract boolean streamNotNull();
 
     /* renamed from: b */
-    public abstract byte[] mo3753b(String str) throws IOException;
+    public abstract byte[] loadTskResource(String str) throws IOException;
 
     @Override // java.io.Closeable, java.lang.AutoCloseable
     public abstract void close() throws IOException;

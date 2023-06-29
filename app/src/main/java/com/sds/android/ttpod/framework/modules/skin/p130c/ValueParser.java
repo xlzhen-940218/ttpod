@@ -74,7 +74,7 @@ public final class ValueParser {
         int m3705a = m3705a(i);
         switch (((-65536) & i) >> 16) {
             case 1:
-                return DisplayUtils.m7229a(m3705a);
+                return DisplayUtils.dp2px(m3705a);
             case 2:
                 return (int) (m3705a * (i2 / 100.0f));
             default:

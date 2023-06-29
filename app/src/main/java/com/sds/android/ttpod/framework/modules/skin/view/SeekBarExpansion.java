@@ -228,7 +228,7 @@ public class SeekBarExpansion extends androidx.appcompat.widget.AppCompatSeekBar
 
     @Override // android.widget.AbsSeekBar, android.view.View
     public void onRtlPropertiesChanged(final int i) {
-        if (SDKVersionUtils.m8366h()) {
+        if (SDKVersionUtils.sdkThan17()) {
             post(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.skin.view.SeekBarExpansion.1
                 @Override // java.lang.Runnable
                 public void run() {

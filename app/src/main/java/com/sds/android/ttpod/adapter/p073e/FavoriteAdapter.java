@@ -39,7 +39,7 @@ public class FavoriteAdapter extends BaseListAdapter<Post> {
         C0986a c0986a = (C0986a) view.getTag();
         LabeledTTPodUser user = PostUtils.m4029a(post).getUser();
         c0986a.f3318d.setText(user.getNickName());
-        int m7229a = DisplayUtils.m7229a(48);
+        int m7229a = DisplayUtils.dp2px(48);
         ImageCacheUtils.m4752a(c0986a.f3316b, user.getAvatarUrl(), m7229a, m7229a, (int) R.drawable.img_avatar_default);
         String str = "";
         if (post.getType() == MusiccircleContentType.SONG_LIST.value() || post.getType() == MusiccircleContentType.DJ.value()) {

@@ -15,6 +15,6 @@ public class OnlineBackgroundListDownloader extends OnlineListDownloader {
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.OnlineListDownloader
     /* renamed from: a */
     protected String mo3720a(String str) {
-        return !TextUtils.isEmpty(str) ? FileUtils.m8400l(str) : TTPodConfig.m5295m();
+        return !TextUtils.isEmpty(str) ? FileUtils.m8400l(str) : TTPodConfig.getBkgs();
     }
 }

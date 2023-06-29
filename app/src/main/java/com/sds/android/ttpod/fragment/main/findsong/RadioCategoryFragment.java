@@ -322,7 +322,7 @@ public class RadioCategoryFragment extends DoubleItemGridSectionListFragment<Rad
                 movementImage.setVisibility(View.VISIBLE);
                 if (RadioCategoryFragment.this.mArtistBitmap != null) {
                     movementImage.setMoveMentBitmap(RadioCategoryFragment.this.mArtistBitmap);
-                    movementImage.setMoveSpeed(DisplayUtils.m7229a(1));
+                    movementImage.setMoveSpeed(DisplayUtils.dp2px(1));
                     movementImage.setAlpha(RadioCategoryFragment.ALPHA);
                     movementImage.m1216a(movementImage.getWidth(), movementImage.getHeight());
                     movementImage.m1217a();

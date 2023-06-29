@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
-import com.sds.android.ttpod.widget.PullToRefreshHelper;
 
 /* loaded from: classes.dex */
 public class PullToRefreshScrollView extends ScrollView implements PullToRefreshHelper.InterfaceC2285b {
@@ -33,7 +32,7 @@ public class PullToRefreshScrollView extends ScrollView implements PullToRefresh
     /* renamed from: a */
     private void m1579a(Context context) {
         this.f7859a = new PullToRefreshHelper(this, this);
-        this.f7859a.m1256a(DisplayUtils.m7225c());
+        this.f7859a.m1256a(DisplayUtils.getWidth());
     }
 
     @Override // android.widget.ScrollView, android.view.View

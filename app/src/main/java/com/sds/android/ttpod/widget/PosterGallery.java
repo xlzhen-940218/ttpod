@@ -13,11 +13,8 @@ import com.sds.android.cloudapi.ttpod.data.RecommendData;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
-import com.sds.android.ttpod.framework.base.BaseFragment;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.utils.FindSongConfig;
 
 import java.util.ArrayList;
@@ -101,13 +98,13 @@ public class PosterGallery extends RelativeLayout implements ThemeManager.Interf
         RoundedImageView roundedImageView = new RoundedImageView(getContext(), 16.0f);
         roundedImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        layoutParams.setMargins(DisplayUtils.m7229a(4), 0, DisplayUtils.m7229a(4), 0);
+        layoutParams.setMargins(DisplayUtils.dp2px(4), 0, DisplayUtils.dp2px(4), 0);
         roundedImageView.setLayoutParams(layoutParams);
         roundedImageView.setOnClickListener(this.f7852c.mo1583a(i));
         String picUrl = recommendData.getPicUrl();
         roundedImageView.setTag(R.id.view_bind_data, recommendData);
-        int m7225c = DisplayUtils.m7225c();
-        int m7225c2 = (int) (DisplayUtils.m7225c() * 0.469d);
+        int m7225c = DisplayUtils.getWidth();
+        int m7225c2 = (int) (DisplayUtils.getWidth() * 0.469d);
         LogUtils.debug("PosterGallery", "poster url: " + picUrl + ", size: " + m7225c + "*" + m7225c2);
         ImageCacheUtils.m4752a(roundedImageView, picUrl, m7225c, m7225c2, (int) R.drawable.img_background_publish_poster_gallery);
         return roundedImageView;
@@ -116,10 +113,10 @@ public class PosterGallery extends RelativeLayout implements ThemeManager.Interf
     /* renamed from: a */
     private ImageView m1589a(RecommendData recommendData) {
         ImageView imageView = new ImageView(getContext());
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(DisplayUtils.m7229a(73), DisplayUtils.m7229a(28));
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(DisplayUtils.dp2px(73), DisplayUtils.dp2px(28));
         layoutParams.addRule(12);
         layoutParams.addRule(11);
-        layoutParams.setMargins(0, 0, 0, DisplayUtils.m7229a(12));
+        layoutParams.setMargins(0, 0, 0, DisplayUtils.dp2px(12));
         imageView.setLayoutParams(layoutParams);
         try {
             imageView.setBackgroundResource(FindSongConfig.C0628c.m8272a(recommendData.getTag()));

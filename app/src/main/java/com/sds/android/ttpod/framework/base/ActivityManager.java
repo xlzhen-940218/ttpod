@@ -51,7 +51,7 @@ public class ActivityManager {
     /* renamed from: b */
     public void m4616b() {
         for (Activity activity : this.f5705a) {
-            if (SDKVersionUtils.m8367g()) {
+            if (SDKVersionUtils.sdkThan16()) {
                 activity.finishAffinity();
             }
             activity.finish();

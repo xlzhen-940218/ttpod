@@ -6,7 +6,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import com.sds.android.sdk.core.p057a.ImageCache;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
-import com.sds.android.sdk.lib.util.BitmapUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.SecurityUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -24,7 +23,7 @@ public final class ImageCacheUtils {
     private static ImageCache f5631a;
 
     /* renamed from: b */
-    private static C1780b f5632b;
+    private static BitmapUtils f5632b;
 
     /* compiled from: ImageCacheUtils.java */
     /* renamed from: com.sds.android.ttpod.framework.a.f$a */
@@ -37,7 +36,7 @@ public final class ImageCacheUtils {
     /* renamed from: a */
     public static void m4757a() {
         f5631a = ImageCache.m8814a(0.05f, TTPodConfig.getCacheImagePath());
-        f5632b = new C1780b();
+        f5632b = new BitmapUtils();
     }
 
     /* renamed from: b */
@@ -152,8 +151,8 @@ public final class ImageCacheUtils {
     public static final void m4747a(String str, int i, int i2, Bitmap bitmap) {
         f5631a.m8812a(str, i, i2);
         f5631a.m8806a(str, (String) null, i, i2, bitmap);
-        C1780b c1780b = f5632b;
-        C1780b.m4777a(f5631a.m8815a() + File.separator + SecurityUtils.C0610b.m8359b(str), bitmap);
+        BitmapUtils c1780b = f5632b;
+        BitmapUtils.m4777a(f5631a.m8815a() + File.separator + SecurityUtils.C0610b.m8359b(str), bitmap);
     }
 
     /* renamed from: a */
@@ -230,7 +229,7 @@ public final class ImageCacheUtils {
     /* renamed from: a */
     private static void m4754a(ImageView imageView, int i, int i2, int i3, int i4) {
         try {
-            m4736d(imageView, BitmapUtils.m8440b(BaseApplication.getApplication().getResources(), i3, i, i2), i4);
+            m4736d(imageView, com.sds.android.sdk.lib.util.BitmapUtils.m8440b(BaseApplication.getApplication().getResources(), i3, i, i2), i4);
         } catch (Throwable th) {
             th.printStackTrace();
         }
@@ -246,7 +245,7 @@ public final class ImageCacheUtils {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public Bitmap mo1981a(Bitmap bitmap2) {
                     try {
-                        return C1780b.m4791a(BaseApplication.getApplication(), bitmap2, i);
+                        return BitmapUtils.m4791a(BaseApplication.getApplication(), bitmap2, i);
                     } catch (OutOfMemoryError e) {
                         e.printStackTrace();
                         return null;

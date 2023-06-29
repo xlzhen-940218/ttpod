@@ -660,7 +660,7 @@ public class Preferences {
 
     /* renamed from: ac */
     public static int m2976ac() {
-        return AccessHelper.queryId(preferencesContent, PreferencesID.MINI_LYRIC_Y_POSITION.name(), DisplayUtils.m7224d() >> 2);
+        return AccessHelper.queryId(preferencesContent, PreferencesID.MINI_LYRIC_Y_POSITION.name(), DisplayUtils.getHeight() >> 2);
     }
 
     /* renamed from: ad */

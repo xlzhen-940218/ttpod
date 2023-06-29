@@ -28,8 +28,8 @@ public class BackgroundCreateUtils {
     /* renamed from: a */
     public static Bitmap m5279a(BackgroundItem backgroundItem, int i) {
         Bitmap bitmap = null;
-        float m7225c = DisplayUtils.m7225c() / i;
-        float m7224d = DisplayUtils.m7224d() / i;
+        float m7225c = DisplayUtils.getWidth() / i;
+        float m7224d = DisplayUtils.getHeight() / i;
         InputStream m5276c = m5276c(backgroundItem);
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;

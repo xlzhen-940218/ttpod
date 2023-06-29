@@ -8,16 +8,16 @@ import android.view.View;
 public final class ViewWrapper extends View {
 
     /* renamed from: a */
-    public static final int[] f6570a = View.EMPTY_STATE_SET;
+    public static final int[] EMPTY_STATE_SET = View.EMPTY_STATE_SET;
 
     /* renamed from: b */
-    public static final int[] f6571b = View.ENABLED_STATE_SET;
+    public static final int[] ENABLED_STATE_SET = View.ENABLED_STATE_SET;
 
     /* renamed from: c */
-    public static final int[] f6572c = View.FOCUSED_STATE_SET;
+    public static final int[] FOCUSED_STATE_SET = View.FOCUSED_STATE_SET;
 
     /* renamed from: d */
-    public static final int[] f6573d = View.SELECTED_STATE_SET;
+    public static final int[] SELECTED_STATE_SET = View.SELECTED_STATE_SET;
 
     /* renamed from: e */
     public static final int[] f6574e = View.WINDOW_FOCUSED_STATE_SET;
@@ -77,7 +77,7 @@ public final class ViewWrapper extends View {
     public static final int[] f6592w = View.PRESSED_FOCUSED_SELECTED_WINDOW_FOCUSED_STATE_SET;
 
     /* renamed from: x */
-    public static final int[] f6593x = View.PRESSED_ENABLED_STATE_SET;
+    public static final int[] PRESSED_ENABLED_STATE_SET = View.PRESSED_ENABLED_STATE_SET;
 
     /* renamed from: y */
     public static final int[] f6594y = View.PRESSED_ENABLED_WINDOW_FOCUSED_STATE_SET;

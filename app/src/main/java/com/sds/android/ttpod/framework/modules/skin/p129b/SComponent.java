@@ -32,7 +32,7 @@ public abstract class SComponent<T extends View> extends SBase {
     protected SBitmap background;
 
     /* renamed from: b */
-    abstract T mo3771b(Context context, SkinCache skinCache);
+    abstract T getIcon(Context context, SkinCache skinCache);
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SBase
     /* renamed from: a */
@@ -117,7 +117,7 @@ public abstract class SComponent<T extends View> extends SBase {
 
     /* renamed from: c */
     public T m3811c(Context context, SkinCache skinCache) {
-        T mo3771b = mo3771b(context, skinCache);
+        T mo3771b = getIcon(context, skinCache);
         mo3771b.setLayoutParams(this.skinLayoutParams);
         setBackground(context, mo3771b, skinCache);
         return mo3771b;

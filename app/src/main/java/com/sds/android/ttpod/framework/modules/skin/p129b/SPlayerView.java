@@ -40,7 +40,7 @@ public class SPlayerView extends SBaseView<MultiScreenLayout, SPanel> {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public MultiScreenLayout mo3771b(Context context, SkinCache skinCache) {
+    public MultiScreenLayout getIcon(Context context, SkinCache skinCache) {
         return new MultiScreenLayout(context);
     }
 

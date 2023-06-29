@@ -110,7 +110,7 @@ public class SlidingPagerFragment extends Fragment {
     }
 
     private void initDotList() {
-        int m7223e = (int) (14.0f * DisplayUtils.m7223e());
+        int m7223e = (int) (14.0f * DisplayUtils.getDensity());
         for (int i = 0; i < this.mImageIds.length; i++) {
             ImageView imageView = new ImageView(getActivity());
             imageView.setLayoutParams(new ViewGroup.LayoutParams(m7223e, -2));

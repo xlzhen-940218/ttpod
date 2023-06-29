@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import androidx.core.view.ViewCompat;
+
 import com.sds.android.cloudapi.ttpod.api.SkinAPI;
 import com.sds.android.cloudapi.ttpod.result.BackgroundMoreCheckResult;
 import com.sds.android.sdk.lib.p065e.ThreadPool;
@@ -270,7 +270,7 @@ public final class ThemeModule extends BaseModule {
         if (drawable instanceof BitmapDrawable) {
             return ((BitmapDrawable) drawable).getBitmap();
         }
-        int m7225c = DisplayUtils.m7225c() / 3;
+        int m7225c = DisplayUtils.getWidth() / 3;
         ColorDrawable colorDrawable = (ColorDrawable) drawable;
         if (drawable == null) {
             ColorDrawable colorDrawable2 = new ColorDrawable(0xff000000);

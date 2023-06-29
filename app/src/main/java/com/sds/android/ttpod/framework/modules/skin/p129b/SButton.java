@@ -15,7 +15,7 @@ public class SButton extends SImage<TTPodButton> {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
-    public TTPodButton mo3771b(Context context, SkinCache skinCache) {
+    public TTPodButton getIcon(Context context, SkinCache skinCache) {
         return new TTPodButton(context);
     }
 

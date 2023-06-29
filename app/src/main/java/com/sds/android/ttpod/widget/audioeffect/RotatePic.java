@@ -12,7 +12,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
-import com.sds.android.ttpod.framework.p106a.C1780b;
+import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 
 /* loaded from: classes.dex */
 public class RotatePic extends View {
@@ -100,12 +100,12 @@ public class RotatePic extends View {
         this.f8228m = new Point();
         this.f8229n = getResources().getDisplayMetrics().density;
         this.f8219a = 20;
-        this.f8220b = DisplayUtils.m7229a(14);
-        this.f8221c = DisplayUtils.m7229a(6);
+        this.f8220b = DisplayUtils.dp2px(14);
+        this.f8221c = DisplayUtils.dp2px(6);
         this.f8222d = R.drawable.effect_circle_green;
         mo1372a();
-        C1780b c1780b = new C1780b();
-        c1780b.m4776a(false);
+        BitmapUtils c1780b = new BitmapUtils();
+        c1780b.setNewSDK(false);
         Resources resources = getResources();
         setBackground(c1780b.m4790a(resources, this.f8222d));
         this.f8224g = c1780b.m4790a(resources, this.f8222d);

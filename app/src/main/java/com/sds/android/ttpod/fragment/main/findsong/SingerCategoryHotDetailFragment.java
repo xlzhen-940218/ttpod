@@ -147,7 +147,7 @@ public class SingerCategoryHotDetailFragment extends ListLoadingFragment<SingerD
                 ThemeManager.m3269a(c1542b.m5612b(), ThemeElement.COMMON_CONTENT_TEXT);
                 ImageView m5610c = c1542b.m5610c();
                 if (!ListViewUtils.m8265a(m5610c, (int) R.drawable.img_background_song_publish)) {
-                    int m7225c = DisplayUtils.m7225c() / 4;
+                    int m7225c = DisplayUtils.getWidth() / 4;
                     ImageCacheUtils.m4751a(m5610c, ArtistUtils.m8310a(singerData.getId()), m7225c, m7225c, (int) R.drawable.img_background_song_publish, (int) R.anim.fade_in);
                     return;
                 }

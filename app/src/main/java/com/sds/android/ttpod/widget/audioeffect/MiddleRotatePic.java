@@ -14,8 +14,8 @@ public class MiddleRotatePic extends RotatePic {
     @Override // com.sds.android.ttpod.widget.audioeffect.RotatePic
     /* renamed from: a */
     protected void mo1372a() {
-        this.f8220b = DisplayUtils.m7229a(10);
-        this.f8221c = DisplayUtils.m7229a(4);
+        this.f8220b = DisplayUtils.dp2px(10);
+        this.f8221c = DisplayUtils.dp2px(4);
         this.f8222d = R.drawable.effect_circle_green_middle;
         this.f8219a = 5;
     }

@@ -28,7 +28,7 @@ import org.apache.http.client.methods.HttpGet;
 public class SkinThumbnailCreator extends SkinReader implements Runnable {
 
     /* renamed from: a */
-    public static final int f6693a = DisplayUtils.m7225c() >> 2;
+    public static final int f6693a = DisplayUtils.getWidth() >> 2;
 
     /* renamed from: c */
     public static final int f6694c = (int) ((f6693a * 1.5555556f) + 0.5f);
@@ -226,7 +226,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
                 break;
             }
             try {
-                bArr = this.packHandle.mo3753b(strArr[i]);
+                bArr = this.packHandle.loadTskResource(strArr[i]);
             } catch (IOException e) {
                 e.printStackTrace();
                 bArr = null;

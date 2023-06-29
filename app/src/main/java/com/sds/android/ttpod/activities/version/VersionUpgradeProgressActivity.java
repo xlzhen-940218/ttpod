@@ -90,7 +90,7 @@ public class VersionUpgradeProgressActivity extends BaseActivity {
     private void initView() {
         Button button;
         Button button2;
-        if (!SDKVersionUtils.m8368f()) {
+        if (!SDKVersionUtils.sdkThan14()) {
             button = (Button) findViewById(R.id.pdialog_standard_right);
             button2 = (Button) findViewById(R.id.pdialog_standard_left);
         } else {

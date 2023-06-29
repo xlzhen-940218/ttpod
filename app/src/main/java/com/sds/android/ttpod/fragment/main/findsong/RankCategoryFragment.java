@@ -131,7 +131,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
         this.mListView.setOnScrollListener(this.mOnScrollListener);
         this.mListView.setOnItemClickListener(this);
         this.mListView.setDivider(null);
-        this.mListView.setDividerHeight(DisplayUtils.m7229a(8));
+        this.mListView.setDividerHeight(DisplayUtils.dp2px(8));
         this.mListView.setFooterDividersEnabled(true);
         this.mListView.setVerticalScrollBarEnabled(false);
         this.mListView.setAdapter((ListAdapter) this.mAdapter);
@@ -154,7 +154,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
             this.mReloadTheme = false;
             if (this.mListView != null) {
                 this.mListView.setDivider(null);
-                this.mListView.setDividerHeight(DisplayUtils.m7229a(8));
+                this.mListView.setDividerHeight(DisplayUtils.dp2px(8));
                 this.mListView.setFooterDividersEnabled(true);
             }
         }
@@ -405,7 +405,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
                         RankCategoryFragment.this.onPlayImageClick(view2);
                     }
                 });
-                int m7229a = DisplayUtils.m7229a((int) RankCategoryFragment.WIDTH);
+                int m7229a = DisplayUtils.dp2px((int) RankCategoryFragment.WIDTH);
                 ImageCacheUtils.m4752a(rankCategoryViewHolder.image, musicRank2.getPicUrl(), m7229a, m7229a, (int) R.drawable.img_music_default_icon);
                 rankCategoryViewHolder.m3250a(ThemeUtils.m8163b());
                 LogUtils.info(RankCategoryFragment.TAG, "time: " + (SystemClock.uptimeMillis() - uptimeMillis));

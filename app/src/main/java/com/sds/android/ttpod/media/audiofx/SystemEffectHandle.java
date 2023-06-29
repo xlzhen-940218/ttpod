@@ -5,7 +5,6 @@ import android.media.audiofx.Equalizer;
 import android.media.audiofx.PresetReverb;
 import android.media.audiofx.Virtualizer;
 import com.sds.android.sdk.lib.util.SDKVersionUtils;
-import com.sds.android.ttpod.media.audiofx.TTEqualizer;
 
 /* loaded from: classes.dex */
 public class SystemEffectHandle implements IEffectHandle {
@@ -22,7 +21,7 @@ public class SystemEffectHandle implements IEffectHandle {
     @Override // com.sds.android.ttpod.media.audiofx.IEffectHandle
     public void setEqualizerEnabled(boolean z) {
         try {
-            if (SDKVersionUtils.m8372b()) {
+            if (SDKVersionUtils.sdkThan9()) {
                 if (this.mEqualizer != null) {
                     this.mEqualizer.setEnabled(z);
                 }
@@ -40,7 +39,7 @@ public class SystemEffectHandle implements IEffectHandle {
     public void setEqualizer(TTEqualizer.Settings settings) {
         int i = 0;
         try {
-            if (SDKVersionUtils.m8372b()) {
+            if (SDKVersionUtils.sdkThan9()) {
                 if (this.mEqualizer == null) {
                     this.mEqualizer = new Equalizer(0, this.mSessionID);
                 }
@@ -62,7 +61,7 @@ public class SystemEffectHandle implements IEffectHandle {
     @Override // com.sds.android.ttpod.media.audiofx.IEffectHandle
     public void setBassBoostEnabled(boolean z) {
         try {
-            if (SDKVersionUtils.m8372b()) {
+            if (SDKVersionUtils.sdkThan9()) {
                 if (this.mBassBoost != null) {
                     this.mBassBoost.setEnabled(z);
                 }
@@ -79,7 +78,7 @@ public class SystemEffectHandle implements IEffectHandle {
     @Override // com.sds.android.ttpod.media.audiofx.IEffectHandle
     public void setBassBoost(int i) {
         try {
-            if (SDKVersionUtils.m8372b()) {
+            if (SDKVersionUtils.sdkThan9()) {
                 if (this.mBassBoost == null) {
                     this.mBassBoost = new BassBoost(0, this.mSessionID);
                 }
@@ -105,7 +104,7 @@ public class SystemEffectHandle implements IEffectHandle {
     @Override // com.sds.android.ttpod.media.audiofx.IEffectHandle
     public void setVirtualizerEnabled(boolean z) {
         try {
-            if (SDKVersionUtils.m8372b()) {
+            if (SDKVersionUtils.sdkThan9()) {
                 if (this.mVirtualizer != null) {
                     this.mVirtualizer.setEnabled(z);
                 }
@@ -122,7 +121,7 @@ public class SystemEffectHandle implements IEffectHandle {
     @Override // com.sds.android.ttpod.media.audiofx.IEffectHandle
     public void setVirtualizer(int i) {
         try {
-            if (SDKVersionUtils.m8372b()) {
+            if (SDKVersionUtils.sdkThan9()) {
                 if (this.mVirtualizer == null) {
                     this.mVirtualizer = new Virtualizer(0, this.mSessionID);
                 }
@@ -136,7 +135,7 @@ public class SystemEffectHandle implements IEffectHandle {
     @Override // com.sds.android.ttpod.media.audiofx.IEffectHandle
     public void setReverbEnabled(boolean z) {
         try {
-            if (SDKVersionUtils.m8372b()) {
+            if (SDKVersionUtils.sdkThan9()) {
                 if (this.mReverb != null) {
                     this.mReverb.setEnabled(z);
                 }
@@ -153,7 +152,7 @@ public class SystemEffectHandle implements IEffectHandle {
     @Override // com.sds.android.ttpod.media.audiofx.IEffectHandle
     public void setReverb(int i) {
         try {
-            if (SDKVersionUtils.m8372b()) {
+            if (SDKVersionUtils.sdkThan9()) {
                 if (this.mReverb == null) {
                     this.mReverb = new PresetReverb(0, this.mSessionID);
                 }
