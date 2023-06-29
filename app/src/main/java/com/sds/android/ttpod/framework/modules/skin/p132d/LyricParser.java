@@ -15,7 +15,7 @@ public abstract class LyricParser {
     private static final HashMap<String, Class<? extends LyricParser>> f6634a = new HashMap<>();
 
     /* renamed from: a */
-    protected abstract Lyric mo3621a(String str);
+    protected abstract Lyric getLyric(String str);
 
     /* renamed from: a */
     protected abstract void mo3650a(Lyric lyric);
@@ -106,7 +106,7 @@ public abstract class LyricParser {
 
     /* renamed from: a */
     public final Lyric m3648a(BufferedReader bufferedReader, String str) throws Exception {
-        Lyric mo3621a = mo3621a(str);
+        Lyric mo3621a = getLyric(str);
         while (true) {
             String readLine = bufferedReader.readLine();
             if (readLine != null) {
@@ -115,7 +115,7 @@ public abstract class LyricParser {
                     mo3649a(mo3621a, trim);
                 }
             } else {
-                Collections.sort(mo3621a.mo3667h());
+                Collections.sort(mo3621a.getLrcLineList());
                 mo3650a(mo3621a);
                 return mo3621a;
             }

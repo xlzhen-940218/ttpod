@@ -1,6 +1,7 @@
 package com.sds.android.ttpod.framework.modules.skin.p132d;
 
 import android.text.TextUtils;
+
 import java.io.File;
 
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.d.i */
@@ -8,34 +9,41 @@ import java.io.File;
 public final class LyricInfo {
 
     /* renamed from: a */
-    private String f6625a;
+    private String title;
 
     /* renamed from: b */
-    private String f6626b;
+    private String singer;
 
     /* renamed from: c */
-    private String f6627c;
+    private String album;
 
     /* renamed from: d */
-    private String f6628d;
+    private String byName;
 
     /* renamed from: e */
-    private String f6629e;
+    private String lyricPath;
 
     /* renamed from: f */
-    private long f6630f;
+    private long offset;
 
     /* renamed from: g */
-    private long f6631g;
+    private long current;
 
     /* renamed from: h */
-    private long f6632h;
+    private long total;
 
     /* renamed from: i */
-    private long f6633i;
+    private long lyricLastModified;
 
     public int hashCode() {
-        return (((((((((this.f6629e == null ? 0 : this.f6629e.hashCode()) + (((this.f6628d == null ? 0 : this.f6628d.hashCode()) + (((this.f6626b == null ? 0 : this.f6626b.hashCode()) + (((this.f6627c == null ? 0 : this.f6627c.hashCode()) + 31) * 31)) * 31)) * 31)) * 31) + ((int) (this.f6630f ^ (this.f6630f >>> 1)))) * 31) + (this.f6625a != null ? this.f6625a.hashCode() : 0)) * 31) + ((int) (this.f6632h ^ (this.f6632h >>> 1)))) * 31) + ((int) (this.f6633i ^ (this.f6633i >>> 1)));
+        return (((((((((this.lyricPath == null ? 0 : this.lyricPath.hashCode())
+                + (((this.byName == null ? 0 : this.byName.hashCode())
+                + (((this.singer == null ? 0 : this.singer.hashCode())
+                + (((this.album == null ? 0 : this.album.hashCode()) + 31) * 31)) * 31)) * 31)) * 31)
+                + ((int) (this.offset ^ (this.offset >>> 1)))) * 31)
+                + (this.title != null ? this.title.hashCode() : 0)) * 31)
+                + ((int) (this.total ^ (this.total >>> 1)))) * 31)
+                + ((int) (this.lyricLastModified ^ (this.lyricLastModified >>> 1)));
     }
 
     public boolean equals(Object obj) {
@@ -46,120 +54,123 @@ public final class LyricInfo {
             return false;
         }
         LyricInfo lyricInfo = (LyricInfo) obj;
-        if (TextUtils.equals(this.f6625a, lyricInfo.f6625a) && TextUtils.equals(this.f6626b, lyricInfo.f6626b) && TextUtils.equals(this.f6627c, lyricInfo.f6627c) && TextUtils.equals(this.f6628d, lyricInfo.f6628d) && TextUtils.equals(this.f6629e, lyricInfo.f6629e) && this.f6630f == lyricInfo.f6630f && this.f6633i == lyricInfo.f6633i) {
-            return this.f6632h == lyricInfo.f6632h;
+        if (TextUtils.equals(this.title, lyricInfo.title) && TextUtils.equals(this.singer, lyricInfo.singer)
+                && TextUtils.equals(this.album, lyricInfo.album) && TextUtils.equals(this.byName, lyricInfo.byName)
+                && TextUtils.equals(this.lyricPath, lyricInfo.lyricPath) && this.offset == lyricInfo.offset
+                && this.lyricLastModified == lyricInfo.lyricLastModified) {
+            return this.total == lyricInfo.total;
         }
         return false;
     }
 
     /* renamed from: a */
-    public String m3666a() {
-        return this.f6629e;
+    public String getLyricPath() {
+        return this.lyricPath;
     }
 
     /* renamed from: a */
-    public void m3663a(String str) {
-        this.f6629e = str;
-        this.f6633i = new File(str).lastModified();
+    public void setLyricPath(String lyricPath) {
+        this.lyricPath = lyricPath;
+        this.lyricLastModified = new File(lyricPath).lastModified();
     }
 
     /* renamed from: b */
-    public long m3662b() {
-        return this.f6633i;
+    public long getLyricLastModified() {
+        return this.lyricLastModified;
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        if (!LyricUtils.m3643a(this.f6625a)) {
-            sb.append(String.format("[ti:%s]\n", this.f6625a));
+        StringBuilder stringBuilder = new StringBuilder();
+        if (!LyricUtils.isEmpty(this.title)) {
+            stringBuilder.append(String.format("[ti:%s]\n", this.title));
         }
-        if (!LyricUtils.m3643a(this.f6626b)) {
-            sb.append(String.format("[ar:%s]\n", this.f6626b));
+        if (!LyricUtils.isEmpty(this.singer)) {
+            stringBuilder.append(String.format("[ar:%s]\n", this.singer));
         }
-        if (!LyricUtils.m3643a(this.f6627c)) {
-            sb.append(String.format("[al:%s]\n", this.f6627c));
+        if (!LyricUtils.isEmpty(this.album)) {
+            stringBuilder.append(String.format("[al:%s]\n", this.album));
         }
-        if (!LyricUtils.m3643a(this.f6628d)) {
-            sb.append(String.format("[by:%s]\n", this.f6628d));
+        if (!LyricUtils.isEmpty(this.byName)) {
+            stringBuilder.append(String.format("[by:%s]\n", this.byName));
         }
-        if (this.f6630f != 0) {
-            sb.append(String.format("[offset:%d]\n", Long.valueOf(this.f6630f)));
+        if (this.offset != 0) {
+            stringBuilder.append(String.format("[offset:%d]\n", Long.valueOf(this.offset)));
         }
-        if (this.f6632h != 0) {
-            sb.append(String.format("[total:%d]\n", Long.valueOf(this.f6632h)));
+        if (this.total != 0) {
+            stringBuilder.append(String.format("[total:%d]\n", Long.valueOf(this.total)));
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     /* renamed from: b */
-    public void m3660b(String str) {
-        this.f6625a = str;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     /* renamed from: c */
-    public void m3657c(String str) {
-        this.f6626b = str;
+    public void setSinger(String singer) {
+        this.singer = singer;
     }
 
     /* renamed from: d */
-    public void m3655d(String str) {
-        this.f6627c = str;
+    public void setAlbum(String album) {
+        this.album = album;
     }
 
     /* renamed from: e */
-    public void m3653e(String str) {
-        this.f6628d = str;
+    public void setByName(String byName) {
+        this.byName = byName;
     }
 
     /* renamed from: a */
-    public void m3664a(long j) {
-        this.f6630f = j;
+    public void setOffset(long offset) {
+        this.offset = offset;
     }
 
     /* renamed from: b */
-    public void m3661b(long j) {
-        this.f6631g = j;
+    public void setCurrent(long current) {
+        this.current = current;
     }
 
     /* renamed from: c */
-    public void m3658c(long j) {
-        this.f6632h = j;
+    public void setTotal(long total) {
+        this.total = total;
     }
 
     /* renamed from: c */
-    public long m3659c() {
-        return this.f6630f;
+    public long getOffset() {
+        return this.offset;
     }
 
     /* renamed from: d */
-    public long m3656d() {
-        return this.f6631g;
+    public long getCurrent() {
+        return this.current;
     }
 
     /* renamed from: e */
-    public long m3654e() {
-        return this.f6632h;
+    public long getTotal() {
+        return this.total;
     }
 
     /* renamed from: a */
-    public int m3665a(int i) {
-        this.f6631g += i;
-        return (int) (this.f6631g - this.f6630f);
+    public int next(int i) {
+        this.current += i;
+        return (int) (this.current - this.offset);
     }
 
     /* renamed from: f */
-    public boolean m3652f() {
-        boolean z = this.f6630f != this.f6631g;
+    public boolean syncToOffset() {
+        boolean z = this.offset != this.current;
         if (z) {
-            this.f6630f = this.f6631g;
+            this.offset = this.current;
         }
         return z;
     }
 
     /* renamed from: g */
-    public int m3651g() {
-        int i = (int) (this.f6630f - this.f6631g);
-        this.f6631g = this.f6630f;
+    public int syncToCurrent() {
+        int i = (int) (this.offset - this.current);
+        this.current = this.offset;
         return i;
     }
 }

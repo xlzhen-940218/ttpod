@@ -5,5 +5,5 @@ package com.sds.android.ttpod.framework.modules.skin.p132d;
 public final class LyricConst {
 
     /* renamed from: a */
-    public static final byte[] f6624a = {-17, -69, -65};
+    public static final byte[] utf8 = {-17, -69, -65};
 }

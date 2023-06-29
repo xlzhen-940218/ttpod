@@ -7,7 +7,7 @@ public interface FormattedLyric {
     int getLrcLineSize();
 
     /* renamed from: a */
-    int mo3628a(long j);
+    int getIndexByLrcTime(long j);
 
     /* renamed from: a */
     Sentence getLrcLineIndex(int i);

@@ -4,8 +4,8 @@ package com.sds.android.ttpod.framework.modules.skin.p132d;
 /* loaded from: classes.dex */
 public interface OnMeasureTextListener {
     /* renamed from: a */
-    float mo3486a();
+    float getMinTextSize();
 
     /* renamed from: a */
-    int mo3467a(String str);
+    int measureLrcTextWidth(String str);
 }

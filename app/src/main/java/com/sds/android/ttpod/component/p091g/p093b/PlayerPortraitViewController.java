@@ -87,7 +87,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
         this.lyricToolMenu.setOnDismissListener(new PopupWindow.OnDismissListener() { // from class: com.sds.android.ttpod.component.g.b.e.1
             @Override // android.widget.PopupWindow.OnDismissListener
             public void onDismiss() {
-                if (PlayerPortraitViewController.this.m6464M() != null) {
+                if (PlayerPortraitViewController.this.getCurrentLyricView() != null) {
                     PlayerPortraitViewController.this.m6465L();
                 }
             }
@@ -108,16 +108,16 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     /* renamed from: L */
     public void m6465L() {
         int m3437e;
-        LyricView m6464M = m6464M();
-        if (m6464M != null && (m3437e = m6464M.m3437e()) != 0) {
+        LyricView currentLyricView = getCurrentLyricView();
+        if (currentLyricView != null && (m3437e = currentLyricView.m3437e()) != 0) {
             mo6442a_(m3437e);
-            m6464M.m3465a(true);
+            currentLyricView.m3465a(true);
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: M */
-    public LyricView m6464M() {
+    public LyricView getCurrentLyricView() {
         LyricView currentLyricView = this.currentViewEventController != null ? this.currentViewEventController.getLyricShowView() : null;
         return currentLyricView != null ? currentLyricView : this.lyricShowView;
     }
@@ -778,7 +778,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
     public void kalaOkEnabled(boolean z) {
         Preferences.m2812y(z);
         if (this.currentViewEventController instanceof LyricPanelViewController) {
-            m6464M().setKalaOK(z);
+            getCurrentLyricView().setKalaOK(z);
         }
     }
 
@@ -817,7 +817,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
 
     /* renamed from: m */
     private void m6414m(int i) {
-        LyricView m6464M = m6464M();
+        LyricView m6464M = getCurrentLyricView();
         if (m6464M != null) {
             if (i == 0) {
                 m6464M.m3434f();

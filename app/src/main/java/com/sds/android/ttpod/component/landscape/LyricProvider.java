@@ -37,13 +37,13 @@ public class LyricProvider {
     private OnMeasureTextListener f4593h = new OnMeasureTextListener() { // from class: com.sds.android.ttpod.component.landscape.g.1
         @Override // com.sds.android.ttpod.framework.modules.skin.p132d.OnMeasureTextListener
         /* renamed from: a */
-        public int mo3467a(String str) {
+        public int measureLrcTextWidth(String str) {
             return (int) (LyricProvider.this.f4592g.measureText(str) + 0.96f);
         }
 
         @Override // com.sds.android.ttpod.framework.modules.skin.p132d.OnMeasureTextListener
         /* renamed from: a */
-        public float mo3486a() {
+        public float getMinTextSize() {
             return LyricProvider.this.f4589d;
         }
     };
@@ -83,7 +83,7 @@ public class LyricProvider {
     private void m6124b() {
         this.f4587b = null;
         if (this.f4586a != null && this.f4590e > 10 && this.f4589d > 5.0f) {
-            this.f4587b = this.f4586a.mo3631a(1, this.f4590e, this.f4593h);
+            this.f4587b = this.f4586a.getFormatterLyric(1, this.f4590e, this.f4593h);
         }
     }
 
@@ -97,7 +97,7 @@ public class LyricProvider {
     /* renamed from: a */
     public void m6129a(long j) {
         if (this.f4587b != null && j >= 0) {
-            int mo3628a = this.f4587b.mo3628a(j);
+            int mo3628a = this.f4587b.getIndexByLrcTime(j);
             Sentence mo3629a = this.f4587b.getLrcLineIndex(mo3628a);
             String mo3635g = mo3629a == null ? "" : mo3629a.getCurrentLrcText();
             if (this.f4591f != mo3628a) {

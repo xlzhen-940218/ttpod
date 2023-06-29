@@ -3,18 +3,18 @@ package com.sds.android.ttpod.framework.modules.skin.p132d;
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.d.o */
 /* loaded from: classes.dex */
 public class TrcLyric extends LrcLyric {
-    public TrcLyric(String str) {
-        super(str);
+    public TrcLyric(String lyricPath) {
+        super(lyricPath);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.LrcLyric, com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: a */
-    public FormattedLyric mo3631a(int i, int i2, OnMeasureTextListener onMeasureTextListener) {
-        switch (i) {
+    public FormattedLyric getFormatterLyric(int lyricDisplayEnum, int width, OnMeasureTextListener onMeasureTextListener) {
+        switch (lyricDisplayEnum) {
             case 1:
-                return new TrcFormattedLyric(this, i2, onMeasureTextListener).m3688c();
+                return new TrcFormattedLyric(this, width, onMeasureTextListener).get();
             case 2:
-                return new TrcMtvFormattedLyric(this, i2, onMeasureTextListener).m3624c();
+                return new TrcMtvFormattedLyric(this, width, onMeasureTextListener).m3624c();
             default:
                 return null;
         }

@@ -17,7 +17,7 @@ public class LrcSentence implements Sentence {
     private int index;
 
     /* renamed from: e */
-    private int f6622e;
+    private int lrcTextWidth;
 
     /* renamed from: f */
     private LyricInfo lyricInfo;
@@ -30,12 +30,12 @@ public class LrcSentence implements Sentence {
         this.f6618a = lrcSentence.f6618a;
         this.lrcText = lrcSentence.lrcText;
         this.index = lrcSentence.index;
-        this.f6622e = lrcSentence.f6622e;
+        this.lrcTextWidth = lrcSentence.lrcTextWidth;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: a */
-    public void getLyricInfo(LyricInfo lyricInfo) {
+    public void setLyricInfo(LyricInfo lyricInfo) {
         this.lyricInfo = lyricInfo;
     }
 
@@ -44,18 +44,18 @@ public class LrcSentence implements Sentence {
         this.f6618a = i < 1 ? 1 : i;
         this.lrcText = lrcText;
         this.index = index;
-        this.f6622e = i3;
+        this.lrcTextWidth = i3;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: a */
-    public int mo3640a() {
-        return this.f6622e;
+    public int getLrcTextWidth() {
+        return this.lrcTextWidth;
     }
 
     /* renamed from: a */
-    public void m3680a(int i) {
-        this.f6622e = i;
+    public void setLrcTextWidth(int lrcTextWidth) {
+        this.lrcTextWidth = lrcTextWidth;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
@@ -95,14 +95,14 @@ public class LrcSentence implements Sentence {
     }
 
     /* renamed from: d */
-    public long m3676d() {
+    public long getTimeStamp() {
         return this.lrcTime;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: e */
     public long mo3637e() {
-        return (this.lyricInfo != null ? this.lyricInfo.m3656d() : 0L) + this.lrcTime;
+        return (this.lyricInfo != null ? this.lyricInfo.getCurrent() : 0L) + this.lrcTime;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
@@ -126,9 +126,9 @@ public class LrcSentence implements Sentence {
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Sentence
     /* renamed from: c */
     public int mo3611c(int i) {
-        if (LyricUtils.m3643a(this.lrcText)) {
+        if (LyricUtils.isEmpty(this.lrcText)) {
             return 0;
         }
-        return (this.f6622e * i) / this.f6618a;
+        return (this.lrcTextWidth * i) / this.f6618a;
     }
 }

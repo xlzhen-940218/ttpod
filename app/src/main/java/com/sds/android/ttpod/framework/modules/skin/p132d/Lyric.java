@@ -12,26 +12,26 @@ public interface Lyric {
     int mo3674a(int i);
 
     /* renamed from: a */
-    FormattedLyric mo3631a(int i, int i2, OnMeasureTextListener onMeasureTextListener);
+    FormattedLyric getFormatterLyric(int lyricDisplayEnum, int width, OnMeasureTextListener onMeasureTextListener);
 
     /* renamed from: a */
     boolean mo3673a(boolean z);
 
     /* renamed from: b */
-    int mo3672b();
+    int getLrcLineListSize();
 
     /* renamed from: d */
-    long mo3671d();
+    long getOffset();
 
     /* renamed from: e */
-    long mo3670e();
+    long getCurrent();
 
     /* renamed from: f */
-    long mo3669f();
+    long getLrcLastTime();
 
     /* renamed from: g */
-    LyricInfo mo3668g();
+    LyricInfo getLyricInfo();
 
     /* renamed from: h */
-    List<? extends Sentence> mo3667h();
+    List<? extends Sentence> getLrcLineList();
 }

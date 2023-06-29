@@ -4,10 +4,10 @@ package com.sds.android.ttpod.framework.modules.skin.p132d;
 /* loaded from: classes.dex */
 public interface Sentence extends Comparable<Sentence> {
     /* renamed from: a */
-    int mo3640a();
+    int getLrcTextWidth();
 
     /* renamed from: a */
-    void getLyricInfo(LyricInfo lyricInfo);
+    void setLyricInfo(LyricInfo lyricInfo);
 
     /* renamed from: b */
     int getIndex();

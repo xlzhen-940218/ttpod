@@ -4,6 +4,7 @@ import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.d.c */
@@ -11,13 +12,13 @@ import java.util.ArrayList;
 public class LrcLyric implements Lyric {
 
     /* renamed from: a */
-    private LyricInfo f6611a = new LyricInfo();
+    private LyricInfo lyricInfo = new LyricInfo();
 
     /* renamed from: b */
-    private ArrayList<LrcSentence> f6612b = new ArrayList<>(32);
+    private ArrayList<LrcSentence> lrcLineList = new ArrayList<>(32);
 
     public int hashCode() {
-        return ((this.f6611a.hashCode() + 31) * 31) + this.f6612b.size();
+        return ((this.lyricInfo.hashCode() + 31) * 31) + this.lrcLineList.size();
     }
 
     public boolean equals(Object obj) {
@@ -28,24 +29,25 @@ public class LrcLyric implements Lyric {
             return false;
         }
         LrcLyric lrcLyric = (LrcLyric) obj;
-        if (this.f6611a.equals(lrcLyric.f6611a)) {
-            return this.f6612b.size() == lrcLyric.f6612b.size();
+        if (this.lyricInfo.equals(lrcLyric.lyricInfo)) {
+            return this.lrcLineList.size() == lrcLyric.lrcLineList.size();
         }
         return false;
     }
 
-    public LrcLyric(String str) {
-        this.f6611a.m3663a(str);
+    public LrcLyric(String lyricPath) {
+        this.lyricInfo.setLyricPath(lyricPath);
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder(this.f6611a.toString());
-        int size = this.f6612b.size();
+        StringBuilder sb = new StringBuilder(this.lyricInfo.toString());
+        int size = this.lrcLineList.size();
         for (int i = 0; i < size; i++) {
-            LrcSentence lrcSentence = this.f6612b.get(i);
+            LrcSentence lrcSentence = this.lrcLineList.get(i);
             sb.append(lrcSentence.toString());
             if (i <= 2) {
-                LogUtils.debug("LrcLyric", "Lyric lookLyricPic toString idx=%d sentence=%s timestamp=%d", Integer.valueOf(i), lrcSentence.toString(), Long.valueOf(lrcSentence.m3676d()));
+                LogUtils.debug("LrcLyric", "Lyric lookLyricPic toString idx=%d sentence=%s timestamp=%d"
+                        , Integer.valueOf(i), lrcSentence.toString(), Long.valueOf(lrcSentence.getTimeStamp()));
             }
         }
         return sb.toString();
@@ -54,13 +56,13 @@ public class LrcLyric implements Lyric {
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: a */
     public int mo3674a(int i) {
-        return this.f6611a.m3665a(i);
+        return this.lyricInfo.next(i);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: a */
     public int mo3675a() {
-        return this.f6611a.m3651g();
+        return this.lyricInfo.syncToCurrent();
     }
 
     /* JADX WARN: Removed duplicated region for block: B:40:0x0055 A[EXC_TOP_SPLITTER, SYNTHETIC] */
@@ -74,16 +76,16 @@ public class LrcLyric implements Lyric {
         Exception exc;
         Throwable th;
         boolean z2 = true;
-        if (this.f6611a.m3652f()) {
-            String m3666a = this.f6611a.m3666a();
-            if (z && !LyricUtils.m3643a(m3666a)) {
+        if (this.lyricInfo.syncToOffset()) {
+            String m3666a = this.lyricInfo.getLyricPath();
+            if (z && !LyricUtils.isEmpty(m3666a)) {
                 FileUtils.exists(m3666a);
                 FileOutputStream fileOutputStream2 = null;
                 try {
                     fileOutputStream = new FileOutputStream(m3666a);
                     try {
-                        fileOutputStream.write(LyricConst.f6624a);
-                        fileOutputStream.write(toString().getBytes("UTF8"));
+                        fileOutputStream.write(LyricConst.utf8);
+                        fileOutputStream.write(toString().getBytes(StandardCharsets.UTF_8));
                         fileOutputStream.flush();
                         if (fileOutputStream != null) {
                             try {
@@ -137,57 +139,57 @@ public class LrcLyric implements Lyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: b */
-    public int mo3672b() {
-        return this.f6612b.size();
+    public int getLrcLineListSize() {
+        return this.lrcLineList.size();
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: c */
-    public ArrayList<LrcSentence> mo3667h() {
-        return this.f6612b;
+    public ArrayList<LrcSentence> getLrcLineList() {
+        return this.lrcLineList;
     }
 
     /* renamed from: b */
-    public LrcSentence m3687b(int i) {
-        return this.f6612b.get(i);
+    public LrcSentence getLrcLine(int i) {
+        return this.lrcLineList.get(i);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: d */
-    public long mo3671d() {
-        return this.f6611a.m3659c();
+    public long getOffset() {
+        return this.lyricInfo.getOffset();
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: e */
-    public long mo3670e() {
-        return this.f6611a.m3656d();
+    public long getCurrent() {
+        return this.lyricInfo.getCurrent();
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: f */
-    public long mo3669f() {
-        long m3654e = this.f6611a.m3654e();
-        if (m3654e == 0 && mo3672b() > 0) {
-            return this.f6612b.get(mo3672b() - 1).m3676d() + 5000;
+    public long getLrcLastTime() {
+        long total = this.lyricInfo.getTotal();
+        if (total == 0 && getLrcLineListSize() > 0) {
+            return this.lrcLineList.get(getLrcLineListSize() - 1).getTimeStamp() + 5000;
         }
-        return m3654e;
+        return total;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: g */
-    public LyricInfo mo3668g() {
-        return this.f6611a;
+    public LyricInfo getLyricInfo() {
+        return this.lyricInfo;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.Lyric
     /* renamed from: a */
-    public FormattedLyric mo3631a(int i, int i2, OnMeasureTextListener onMeasureTextListener) {
-        switch (i) {
+    public FormattedLyric getFormatterLyric(int lyricDisplayEnum, int width, OnMeasureTextListener onMeasureTextListener) {
+        switch (lyricDisplayEnum) {
             case 1:
-                return new LrcFormattedLyric(this, i2, onMeasureTextListener).m3688c();
+                return new LrcFormattedLyric(this, width, onMeasureTextListener).get();
             case 2:
-                return new LrcMtvFormattedLyric(this, i2, onMeasureTextListener).m3683c();
+                return new LrcMtvFormattedLyric(this, width, onMeasureTextListener).m3683c();
             default:
                 return null;
         }

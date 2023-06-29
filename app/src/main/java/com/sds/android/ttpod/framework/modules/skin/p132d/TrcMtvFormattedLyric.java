@@ -45,23 +45,23 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
         if (this.f6636a == null) {
             return null;
         }
-        int b = this.f6636a.mo3672b();
+        int b = this.f6636a.getLrcLineListSize();
         long j = 0;
         int i2 = 0;
         this.f6638c = new ArrayList<>(b);
         for (int i3 = 0; i3 < b; i3++) {
-            TrcSentence trcSentence = (TrcSentence) this.f6636a.m3687b(i3);
+            TrcSentence trcSentence = (TrcSentence) this.f6636a.getLrcLine(i3);
             if (i3 == b - 1) {
                 m3626a(trcSentence);
             } else {
                 int f = trcSentence.mo3636f();
-                LrcSentence b2 = this.f6636a.m3687b(i3 + 1);
+                LrcSentence b2 = this.f6636a.getLrcLine(i3 + 1);
                 if (trcSentence.getCurrentLrcText().length() > 0) {
                     m3626a(trcSentence);
-                    f = (int) (b2.m3676d() - (trcSentence.m3676d() + trcSentence.m3608i()));
+                    f = (int) (b2.getTimeStamp() - (trcSentence.getTimeStamp() + trcSentence.m3608i()));
                 }
                 if (f > 0) {
-                    j = i2 == 0 ? b2.m3676d() - f : j;
+                    j = i2 == 0 ? b2.getTimeStamp() - f : j;
                     i = i2 + f;
                 } else {
                     i = i2;
@@ -76,7 +76,7 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
                 }
             }
         }
-        LyricUtils.m3641a(this.f6638c, this.f6636a.mo3668g());
+        LyricUtils.setLyricInfoToLyricLineList(this.f6638c, this.f6636a.getLyricInfo());
         return this;
     }
 
@@ -84,7 +84,7 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
     private void m3626a(TrcSentence trcSentence) {
         TrcSentence trcSentence2 = new TrcSentence(trcSentence);
         this.f6638c.add(trcSentence2);
-        trcSentence2.m3680a(this.f6637b.mo3467a(trcSentence.getCurrentLrcText()));
+        trcSentence2.setLrcTextWidth(this.f6637b.measureLrcTextWidth(trcSentence.getCurrentLrcText()));
         trcSentence2.m3618a(this.f6637b);
     }
 
@@ -110,8 +110,8 @@ public class TrcMtvFormattedLyric implements FormattedLyric {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.FormattedLyric
     /* renamed from: a */
-    public int mo3628a(long j) {
-        this.f6639d = LyricUtils.m3642a(this.f6638c, j);
+    public int getIndexByLrcTime(long j) {
+        this.f6639d = LyricUtils.getIndex(this.f6638c, j);
         return this.f6639d;
     }
 }

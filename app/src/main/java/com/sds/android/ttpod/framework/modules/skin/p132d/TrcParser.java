@@ -14,8 +14,8 @@ public class TrcParser extends LrcParser {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.LrcParser, com.sds.android.ttpod.framework.modules.skin.p132d.LyricParser
     /* renamed from: a */
-    protected Lyric mo3621a(String str) {
-        return new TrcLyric(str);
+    protected Lyric getLyric(String lyricPath) {
+        return new TrcLyric(lyricPath);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -57,7 +57,7 @@ public class TrcParser extends LrcParser {
     @Override // com.sds.android.ttpod.framework.modules.skin.p132d.LrcParser
     /* renamed from: a */
     protected long mo3622a(LrcSentence lrcSentence, long j) {
-        long m3676d = lrcSentence.m3676d();
+        long m3676d = lrcSentence.getTimeStamp();
         long j2 = 0;
         ArrayList<TrcTimeRegion> m3609h = ((TrcSentence) lrcSentence).m3609h();
         if (m3609h == null) {

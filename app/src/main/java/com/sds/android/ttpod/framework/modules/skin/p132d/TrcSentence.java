@@ -205,7 +205,7 @@ public class TrcSentence extends LrcSentence {
             while (it.hasNext()) {
                 TrcTimeRegion next = it.next();
                 int m3604b = next.m3604b() + i;
-                next.m3605a(onMeasureTextListener.mo3467a(this.lrcText.substring(i, m3604b)));
+                next.m3605a(onMeasureTextListener.measureLrcTextWidth(this.lrcText.substring(i, m3604b)));
                 i = m3604b;
             }
         }

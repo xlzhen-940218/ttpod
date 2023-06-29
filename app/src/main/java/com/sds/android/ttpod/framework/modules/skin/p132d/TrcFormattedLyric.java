@@ -18,14 +18,14 @@ public class TrcFormattedLyric extends LrcFormattedLyric {
             return;
         }
         String g = trcSentence.getCurrentLrcText();
-        long d = trcSentence.m3676d();
+        long d = trcSentence.getTimeStamp();
         int f = trcSentence.mo3636f();
-        int mo3467a = this.f6608c.mo3467a(g);
-        if (mo3467a <= this.f6607b) {
+        int mo3467a = this.onMeasureTextListener.measureLrcTextWidth(g);
+        if (mo3467a <= this.width) {
             m3632a(g, d, 0, i, f, true, mo3467a);
             return;
         }
-        float f2 = mo3467a / this.f6607b;
+        float f2 = mo3467a / this.width;
         int i2 = 0;
         String str = g;
         while (true) {
@@ -36,16 +36,16 @@ public class TrcFormattedLyric extends LrcFormattedLyric {
             }
             String substring = str.substring(0, a);
             String substring2 = str.substring(a);
-            int m3632a = m3632a(substring, d, i2, i, f, false, this.f6608c.mo3467a(substring));
+            int m3632a = m3632a(substring, d, i2, i, f, false, this.onMeasureTextListener.measureLrcTextWidth(substring));
             d += m3632a;
             f -= m3632a;
             i2 += a;
-            int mo3467a2 = this.f6608c.mo3467a(substring2);
-            if (mo3467a2 <= this.f6607b) {
+            int mo3467a2 = this.onMeasureTextListener.measureLrcTextWidth(substring2);
+            if (mo3467a2 <= this.width) {
                 m3632a(substring2, d, i2, i, f, true, mo3467a2);
                 return;
             } else {
-                f2 = mo3467a2 / this.f6607b;
+                f2 = mo3467a2 / this.width;
                 str = substring2;
             }
         }
@@ -55,7 +55,7 @@ public class TrcFormattedLyric extends LrcFormattedLyric {
     private int m3632a(String str, long j, int i, int i2, int i3, boolean z, int i4) {
         int i5;
         TrcSentence trcSentence = new TrcSentence(j, str, 0, i2, i4);
-        int[] m3617a = ((TrcSentence) this.f6606a.m3687b(i2)).m3617a(trcSentence, i, str.length());
+        int[] m3617a = ((TrcSentence) this.lrcLyric.getLrcLine(i2)).m3617a(trcSentence, i, str.length());
         if (z) {
             i5 = i3;
         } else if (m3617a[0] >= i3) {
@@ -70,7 +70,7 @@ public class TrcFormattedLyric extends LrcFormattedLyric {
         if (m3617a[1] > 0) {
             trcSentence.m3677a(str.substring(1));
         }
-        trcSentence.m3618a(this.f6608c);
+        trcSentence.m3618a(this.onMeasureTextListener);
         this.lrcLineList.add(trcSentence);
         return i5;
     }
