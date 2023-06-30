@@ -43,7 +43,7 @@ public class SingerAlbumIntroduceView {
 
     /* renamed from: b */
     public void m5474b() {
-        ThemeManager.m3269a(this.f5330a, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.f5330a, "BackgroundMaskColor");
         ThemeManager.m3269a(this.f5330a.findViewById(R.id.album_lang), ThemeElement.CARD_SUB_TEXT);
         ThemeManager.m3269a(this.f5330a.findViewById(R.id.album_publish_time), ThemeElement.CARD_SUB_TEXT);
         ThemeManager.m3269a(this.f5330a.findViewById(R.id.album_introduce), ThemeElement.CARD_TEXT);

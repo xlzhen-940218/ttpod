@@ -62,7 +62,7 @@ public class SongCategoryChannelFragment extends GridViewFragment<OnlineMusicCat
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.GridViewFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_MUSIC_SUB_CATEGORY, ReflectUtils.m8375a(getClass(), "updateSubCategory", OnlineMusicSubCategoryResult.class));
+        map.put(CommandID.UPDATE_MUSIC_SUB_CATEGORY, ReflectUtils.loadMethod(getClass(), "updateSubCategory", OnlineMusicSubCategoryResult.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.GridViewFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment

@@ -101,11 +101,11 @@ public class PictureManagerAdapter extends BaseAdapter {
         public void m7675a(PictureDataItem pictureDataItem, PictureManagerViewHolder.PictureManagerSubLayoutViewHolder c0953a) {
             pictureDataItem.f3144f = true;
             c0953a.m7665a(pictureDataItem);
-            TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<PictureDataItem, PictureDataItem>(pictureDataItem) { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.3.2
+            TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<PictureDataItem, PictureDataItem>(pictureDataItem) { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.3.2
                 /* JADX INFO: Access modifiers changed from: protected */
                 @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public PictureDataItem mo1981a(PictureDataItem pictureDataItem2) {
+                public PictureDataItem inBackground(PictureDataItem pictureDataItem2) {
                     PictureManagerAdapter.this.reentrantReadWriteLock.readLock().lock();
                     if (PictureManagerAdapter.this.context == null || PictureManagerAdapter.this.mediaItem == null) {
                         return null;
@@ -224,7 +224,7 @@ public class PictureManagerAdapter extends BaseAdapter {
         if (!FileUtils.m8419a(TTPodConfig.getArtistPath() + File.separator + this.f3126d + File.separator + "result.xml")) {
             this.networkLoadView.setLoadState(NetworkLoadView.EnumC2205a.IDLE);
         } else {
-            TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Void, ArrayList<PictureDataItem>>(null) { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.1
+            TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Void, ArrayList<PictureDataItem>>(null) { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.1
                 /* JADX INFO: Access modifiers changed from: protected */
                 /* JADX WARN: Removed duplicated region for block: B:63:0x010a A[EXC_TOP_SPLITTER, SYNTHETIC] */
                 @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
@@ -232,7 +232,7 @@ public class PictureManagerAdapter extends BaseAdapter {
                 /*
                     Code decompiled incorrectly, please refer to instructions dump.
                 */
-                public ArrayList<PictureDataItem> mo1981a(Void r11) {
+                public ArrayList<PictureDataItem> inBackground(Void r11) {
                     FileInputStream fileInputStream = null;
                     FileInputStream fileInputStream2;
                     KXmlParser kXmlParser = null;
@@ -371,11 +371,11 @@ public class PictureManagerAdapter extends BaseAdapter {
             this.pictureDataItemArrayList = null;
             notifyDataSetChanged();
             this.networkLoadView.setLoadState(NetworkLoadView.EnumC2205a.LOADING);
-            TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Void, Integer>(null) { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.2
+            TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Void, Integer>(null) { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.2
                 /* JADX INFO: Access modifiers changed from: protected */
                 @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public Integer mo1981a(Void r10) {
+                public Integer inBackground(Void r10) {
                     PictureManagerAdapter.this.reentrantReadWriteLock.readLock().lock();
                     if (PictureManagerAdapter.this.context == null || PictureManagerAdapter.this.mediaItem == null) {
                         return 0;
@@ -537,7 +537,7 @@ public class PictureManagerAdapter extends BaseAdapter {
                 if (pictureDataItem != null) {
                     try {
                         this.imageViewBottom.setTag(pictureDataItem);
-                        ImageCacheUtils.m4752a(this.imageView, pictureDataItem.f3143e, this.imageView.getWidth(), this.imageView.getHeight(), (int) R.drawable.picture_manager_default);
+                        ImageCacheUtils.displayImage(this.imageView, pictureDataItem.f3143e, this.imageView.getWidth(), this.imageView.getHeight(), (int) R.drawable.picture_manager_default);
                         if (!pictureDataItem.f3145g) {
                             if (pictureDataItem.f3144f) {
                                 this.imageViewBottom.startAnimation(PictureManagerAdapter.this.animation);

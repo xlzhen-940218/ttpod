@@ -9,19 +9,19 @@ import android.util.AttributeSet;
 public class AnimationImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     /* renamed from: a */
-    private boolean f6716a;
+    private boolean animRunning;
 
     /* renamed from: b */
-    private boolean f6717b;
+    private boolean startAnim;
 
     /* renamed from: c */
-    private AnimationDrawable f6718c;
+    private AnimationDrawable animationDrawable;
 
     /* renamed from: d */
-    private Drawable f6719d;
+    private Drawable imageDrawable;
 
     /* renamed from: e */
-    private boolean f6720e;
+    private boolean ignoreFocusChanged;
 
     public AnimationImageView(Context context) {
         super(context);
@@ -35,37 +35,37 @@ public class AnimationImageView extends androidx.appcompat.widget.AppCompatImage
         super(context, attributeSet, i);
     }
 
-    public void setIgnoreFocusChanged(boolean z) {
-        this.f6720e = z;
+    public void setIgnoreFocusChanged(boolean ignoreFocusChanged) {
+        this.ignoreFocusChanged = ignoreFocusChanged;
     }
 
     /* renamed from: a */
-    public void m3504a() {
-        this.f6717b = true;
-        m3496c();
+    public void startAnim() {
+        this.startAnim = true;
+        start();
     }
 
     /* renamed from: b */
-    public void m3499b() {
-        this.f6717b = false;
-        m3494d();
+    public void stopAnim() {
+        this.startAnim = false;
+        stop();
     }
 
     @Override // android.widget.ImageView
     public void setImageDrawable(Drawable drawable) {
-        if (this.f6719d != drawable) {
-            this.f6719d = drawable;
-            if (!this.f6717b) {
+        if (this.imageDrawable != drawable) {
+            this.imageDrawable = drawable;
+            if (!this.startAnim) {
                 super.setImageDrawable(drawable);
             }
         }
     }
 
     public void setAnimationDrawable(AnimationDrawable animationDrawable) {
-        if (this.f6718c != animationDrawable) {
-            this.f6718c = animationDrawable;
-            if (this.f6717b) {
-                m3496c();
+        if (this.animationDrawable != animationDrawable) {
+            this.animationDrawable = animationDrawable;
+            if (this.startAnim) {
+                start();
             }
         }
     }
@@ -78,18 +78,18 @@ public class AnimationImageView extends androidx.appcompat.widget.AppCompatImage
     }
 
     /* renamed from: c */
-    private void m3496c() {
+    private void start() {
         post(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.skin.view.Animation.1
             @Override // java.lang.Runnable
             public void run() {
-                if (AnimationImageView.this.f6718c != null) {
-                    if (AnimationImageView.this.getDrawable() != AnimationImageView.this.f6718c) {
-                        AnimationImageView.super.setImageDrawable(AnimationImageView.this.f6718c);
-                        AnimationImageView.this.f6716a = AnimationImageView.this.f6718c.isRunning();
+                if (AnimationImageView.this.animationDrawable != null) {
+                    if (AnimationImageView.this.getDrawable() != AnimationImageView.this.animationDrawable) {
+                        AnimationImageView.super.setImageDrawable(AnimationImageView.this.animationDrawable);
+                        AnimationImageView.this.animRunning = AnimationImageView.this.animationDrawable.isRunning();
                     }
-                    if (!AnimationImageView.this.f6716a) {
-                        AnimationImageView.this.f6718c.start();
-                        AnimationImageView.this.f6716a = true;
+                    if (!AnimationImageView.this.animRunning) {
+                        AnimationImageView.this.animationDrawable.start();
+                        AnimationImageView.this.animRunning = true;
                     }
                 }
             }
@@ -99,44 +99,44 @@ public class AnimationImageView extends androidx.appcompat.widget.AppCompatImage
     @Override // android.view.View
     public void onWindowFocusChanged(boolean z) {
         super.onWindowFocusChanged(z);
-        if (!this.f6720e) {
-            m3500a(z);
+        if (!this.ignoreFocusChanged) {
+            changeAnimType(z);
         }
     }
 
     /* renamed from: d */
-    private void m3494d() {
+    private void stop() {
         post(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.skin.view.Animation.2
             @Override // java.lang.Runnable
             public void run() {
-                if (AnimationImageView.this.getDrawable() == AnimationImageView.this.f6718c) {
-                    if (AnimationImageView.this.f6718c != null) {
-                        AnimationImageView.this.f6718c.stop();
+                if (AnimationImageView.this.getDrawable() == AnimationImageView.this.animationDrawable) {
+                    if (AnimationImageView.this.animationDrawable != null) {
+                        AnimationImageView.this.animationDrawable.stop();
                     }
-                    if (AnimationImageView.this.f6719d != null) {
-                        AnimationImageView.super.setImageDrawable(AnimationImageView.this.f6719d);
+                    if (AnimationImageView.this.imageDrawable != null) {
+                        AnimationImageView.super.setImageDrawable(AnimationImageView.this.imageDrawable);
                     }
-                    AnimationImageView.this.f6716a = false;
+                    AnimationImageView.this.animRunning = false;
                 }
             }
         });
     }
 
     /* renamed from: a */
-    private void m3500a(boolean z) {
-        if (z) {
-            if (this.f6717b) {
-                m3496c();
+    private void changeAnimType(boolean start) {
+        if (start) {
+            if (this.startAnim) {
+                start();
                 return;
             }
             return;
         }
-        m3494d();
+        stop();
     }
 
     @Override // android.view.View
-    public void setEnabled(boolean z) {
-        super.setEnabled(z);
-        m3500a(z);
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        changeAnimType(enabled);
     }
 }

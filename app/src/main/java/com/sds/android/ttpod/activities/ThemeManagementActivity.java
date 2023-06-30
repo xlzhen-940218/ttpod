@@ -43,7 +43,7 @@ public class ThemeManagementActivity extends ThemeManagementBaseActivity impleme
     public void onResume() {
         super.onResume();
         if (Preferences.m2909bt() + 43200000 < System.currentTimeMillis()) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_BACKGROUND_MORE, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REQUEST_BACKGROUND_MORE, new Object[0]));
         }
     }
 

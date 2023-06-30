@@ -25,7 +25,7 @@ public class MusicRankSectionView extends SimpleSongView {
     protected void mo1456b(View view, Object obj) {
         MusicRank musicRank = (MusicRank) obj;
         ((TextView) view.findViewById(R.id.item_name)).setText(musicRank.getTitle());
-        ImageCacheUtils.m4752a((ImageView) view.findViewById(R.id.item_picture), musicRank.getPicUrl(), DisplayUtils.getWidth() / 4, DisplayUtils.getWidth() / 4, (int) R.drawable.img_background_song_publish);
+        ImageCacheUtils.displayImage((ImageView) view.findViewById(R.id.item_picture), musicRank.getPicUrl(), DisplayUtils.getWidth() / 4, DisplayUtils.getWidth() / 4, (int) R.drawable.img_background_song_publish);
     }
 
     @Override // com.sds.android.ttpod.widget.SimpleSongView

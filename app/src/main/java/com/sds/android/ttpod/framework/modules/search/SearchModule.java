@@ -54,25 +54,25 @@ public class SearchModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.REPORT_LYRIC_PICTURE, ReflectUtils.m8375a(cls, "reportLyricPicture", ReportTask.EnumC2097b.class, ReportTask.EnumC2096a.class, MediaItem.class));
-        map.put(CommandID.START_SEARCH_SONG, ReflectUtils.m8375a(cls, "aggregateSearch", String.class, Integer.class, Integer.class, String.class));
-        map.put(CommandID.START_SEARCH_HOT_WORDS, ReflectUtils.m8375a(cls, "searchHotWords", new Class[0]));
-        map.put(CommandID.START_SEARCH_ASSOCIATE, ReflectUtils.m8375a(cls, "searchAssociateWords", String.class));
-        map.put(CommandID.START_SEARCH_BILLBOARD, ReflectUtils.m8375a(cls, "searchBillboard", Integer.class));
-        map.put(CommandID.START_REPORT_SONG, ReflectUtils.m8375a(cls, "reportSong", String.class));
-        map.put(CommandID.START_SEARCH_RECOGNIZE, ReflectUtils.m8375a(cls, "startRecognize", new Class[0]));
-        map.put(CommandID.STOP_SEARCH_RECOGNIZE, ReflectUtils.m8375a(cls, "stopRecognize", new Class[0]));
-        map.put(CommandID.CANCEL_SEARCH_RECOGNIZE, ReflectUtils.m8375a(cls, "cancelRecognize", new Class[0]));
-        map.put(CommandID.GET_SEARCH_RECOGNIZE_VOLUME, ReflectUtils.m8375a(cls, "getRecognizeVolume", new Class[0]));
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "playMediaChanged", new Class[0]));
-        map.put(CommandID.START_SEARCH_ALBUM, ReflectUtils.m8375a(cls, "searchAlbum", String.class, Integer.class, Integer.class, String.class));
-        map.put(CommandID.START_SEARCH_PLAY_LIST, ReflectUtils.m8375a(cls, "searchPlaylist", String.class, Integer.class, Integer.class, String.class));
-        map.put(CommandID.RECEIVED_SEARCH_EVENT, ReflectUtils.m8375a(cls, "onReceive", Intent.class));
-        map.put(CommandID.GET_SEARCH_TYPES, ReflectUtils.m8375a(cls, "getSearchTypes", new Class[0]));
-        map.put(CommandID.START_SEARCH_LYRIC, ReflectUtils.m8375a(cls, "searchLyric", MediaItem.class, String.class, String.class));
-        map.put(CommandID.START_SEARCH_PICTURE, ReflectUtils.m8375a(cls, "searchPicture", MediaItem.class, String.class, String.class));
-        map.put(CommandID.START_DOWNLOAD_SEARCH_PICTURE, ReflectUtils.m8375a(cls, "downloadPicture", String.class, String.class, MediaItem.class));
-        map.put(CommandID.START_DOWNLOAD_SEARCH_LYRIC, ReflectUtils.m8375a(cls, "downloadLyric", ResultData.Item.class, MediaItem.class));
+        map.put(CommandID.REPORT_LYRIC_PICTURE, ReflectUtils.loadMethod(cls, "reportLyricPicture", ReportTask.EnumC2097b.class, ReportTask.EnumC2096a.class, MediaItem.class));
+        map.put(CommandID.START_SEARCH_SONG, ReflectUtils.loadMethod(cls, "aggregateSearch", String.class, Integer.class, Integer.class, String.class));
+        map.put(CommandID.START_SEARCH_HOT_WORDS, ReflectUtils.loadMethod(cls, "searchHotWords", new Class[0]));
+        map.put(CommandID.START_SEARCH_ASSOCIATE, ReflectUtils.loadMethod(cls, "searchAssociateWords", String.class));
+        map.put(CommandID.START_SEARCH_BILLBOARD, ReflectUtils.loadMethod(cls, "searchBillboard", Integer.class));
+        map.put(CommandID.START_REPORT_SONG, ReflectUtils.loadMethod(cls, "reportSong", String.class));
+        map.put(CommandID.START_SEARCH_RECOGNIZE, ReflectUtils.loadMethod(cls, "startRecognize", new Class[0]));
+        map.put(CommandID.STOP_SEARCH_RECOGNIZE, ReflectUtils.loadMethod(cls, "stopRecognize", new Class[0]));
+        map.put(CommandID.CANCEL_SEARCH_RECOGNIZE, ReflectUtils.loadMethod(cls, "cancelRecognize", new Class[0]));
+        map.put(CommandID.GET_SEARCH_RECOGNIZE_VOLUME, ReflectUtils.loadMethod(cls, "getRecognizeVolume", new Class[0]));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "playMediaChanged", new Class[0]));
+        map.put(CommandID.START_SEARCH_ALBUM, ReflectUtils.loadMethod(cls, "searchAlbum", String.class, Integer.class, Integer.class, String.class));
+        map.put(CommandID.START_SEARCH_PLAY_LIST, ReflectUtils.loadMethod(cls, "searchPlaylist", String.class, Integer.class, Integer.class, String.class));
+        map.put(CommandID.RECEIVED_SEARCH_EVENT, ReflectUtils.loadMethod(cls, "onReceive", Intent.class));
+        map.put(CommandID.GET_SEARCH_TYPES, ReflectUtils.loadMethod(cls, "getSearchTypes", new Class[0]));
+        map.put(CommandID.START_SEARCH_LYRIC, ReflectUtils.loadMethod(cls, "searchLyric", MediaItem.class, String.class, String.class));
+        map.put(CommandID.START_SEARCH_PICTURE, ReflectUtils.loadMethod(cls, "searchPicture", MediaItem.class, String.class, String.class));
+        map.put(CommandID.START_DOWNLOAD_SEARCH_PICTURE, ReflectUtils.loadMethod(cls, "downloadPicture", String.class, String.class, MediaItem.class));
+        map.put(CommandID.START_DOWNLOAD_SEARCH_LYRIC, ReflectUtils.loadMethod(cls, "downloadLyric", ResultData.Item.class, MediaItem.class));
     }
 
     public void reportLyricPicture(ReportTask.EnumC2097b enumC2097b, ReportTask.EnumC2096a enumC2096a, MediaItem mediaItem) {
@@ -201,11 +201,11 @@ public class SearchModule extends BaseModule {
 
     /* renamed from: a */
     private void m3918a(final String str, final String str2) {
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Void, Bitmap>(null) { // from class: com.sds.android.ttpod.framework.modules.search.a.9
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Void, Bitmap>(null) { // from class: com.sds.android.ttpod.framework.modules.search.a.9
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public Bitmap mo1981a(Void r3) {
+            public Bitmap inBackground(Void r3) {
                 return SearchModule.this.m3919a(str2);
             }
 
@@ -256,11 +256,11 @@ public class SearchModule extends BaseModule {
         }
         LogUtils.debug("SearchModule", "asyncLoadPicture artistPic lookLyricPic will begin path=%s", str2);
         final String str3 = str2;
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<String, Bitmap>(str2) { // from class: com.sds.android.ttpod.framework.modules.search.a.10
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<String, Bitmap>(str2) { // from class: com.sds.android.ttpod.framework.modules.search.a.10
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public Bitmap mo1981a(String str4) {
+            public Bitmap inBackground(String str4) {
                 LogUtils.debug("SearchModule", "asyncLoadPicture artistPic lookLyricPic now begin path=%s", str4);
                 return SearchModule.this.m3919a(str4);
             }
@@ -291,11 +291,11 @@ public class SearchModule extends BaseModule {
             Cache.getInstance().m3191b(str2, m3225N);
         }
         LogUtils.debug("SearchModule", "asyncLoadLyric lookLyricPic will begin path=%s", str2);
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Void, Lyric>(null) { // from class: com.sds.android.ttpod.framework.modules.search.a.2
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Void, Lyric>(null) { // from class: com.sds.android.ttpod.framework.modules.search.a.2
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public Lyric mo1981a(Void r6) {
+            public Lyric inBackground(Void r6) {
                 LogUtils.debug("SearchModule", "asyncLoadLyric lookLyricPic now begin path=%s", str2);
                 return LyricParser.m3647b(str2);
             }
@@ -335,7 +335,7 @@ public class SearchModule extends BaseModule {
     }
 
     public void getSearchTypes() {
-        ModuleRequestHelper.m4083a(OnlineMediaSearchAPI.m8863a(), CommandID.UPDATE_SEARCH_TYPES, id(), null);
+        ModuleRequestHelper.execute(OnlineMediaSearchAPI.m8863a(), CommandID.UPDATE_SEARCH_TYPES, id(), null);
     }
 
     public void downloadPicture(String str, String str2, MediaItem mediaItem) {

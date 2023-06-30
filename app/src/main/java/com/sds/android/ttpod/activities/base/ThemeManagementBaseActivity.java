@@ -57,8 +57,8 @@ public abstract class ThemeManagementBaseActivity extends SlidingPagerActivity i
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.APP_THEME_CHANGED, ReflectUtils.m8375a(cls, "onThemeLoaded", new Class[0]));
-        map.put(CommandID.UPDATE_BACKGROUND, ReflectUtils.m8375a(cls, "updateBackground", Drawable.class));
+        map.put(CommandID.APP_THEME_CHANGED, ReflectUtils.loadMethod(cls, "onThemeLoaded", new Class[0]));
+        map.put(CommandID.UPDATE_BACKGROUND, ReflectUtils.loadMethod(cls, "updateBackground", Drawable.class));
     }
 
     @Override // com.sds.android.ttpod.activities.base.SlidingPagerActivity
@@ -121,7 +121,7 @@ public abstract class ThemeManagementBaseActivity extends SlidingPagerActivity i
     public void onThemeLoaded() {
         ThemeUtils.m8168a(this.mEditAction, ThemeElement.TOP_BAR_EDIT_IMAGE, (int) R.string.icon_edit, ThemeElement.TOP_BAR_TEXT);
         ThemeUtils.m8166a(this.mPagerTitle);
-        ThemeManager.m3269a(this.mPagerContent, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mPagerContent, "BackgroundMaskColor");
         getActionBarController().onThemeLoaded();
         ThemeManager.m3260b(getRootView(), ThemeUtils.m8182a());
         ThemeUtils.m8168a(this.mEditAction, ThemeElement.TOP_BAR_EDIT_IMAGE, (int) R.string.icon_edit, ThemeElement.TOP_BAR_TEXT);

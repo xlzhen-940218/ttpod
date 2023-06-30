@@ -148,7 +148,7 @@ public class MyCommentsFragment extends SlidingClosableFragment implements Adapt
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_COMMENT_NOTICE_LIST, ReflectUtils.m8375a(getClass(), "updateCommentNotices", NoticeListResult.class, String.class));
+        map.put(CommandID.UPDATE_COMMENT_NOTICE_LIST, ReflectUtils.loadMethod(getClass(), "updateCommentNotices", NoticeListResult.class, String.class));
     }
 
     public void updateCommentNotices(NoticeListResult noticeListResult, String str) {

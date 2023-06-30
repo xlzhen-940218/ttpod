@@ -38,7 +38,7 @@ public class DiscoveryFragment extends RecommendPostListFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_DISCOVERY_POST_INFO_LIST_BY_ID, ReflectUtils.m8375a(getClass(), "updateCelebrityPosts", PostResult.class));
+        map.put(CommandID.UPDATE_DISCOVERY_POST_INFO_LIST_BY_ID, ReflectUtils.loadMethod(getClass(), "updateCelebrityPosts", PostResult.class));
     }
 
     public void updateCelebrityPosts(PostResult postResult) {

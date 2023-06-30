@@ -110,9 +110,9 @@ public class GroupListFragment extends BaseGroupListFragment implements IOrderAb
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_GROUP_LIST, ReflectUtils.m8375a(cls, "updateGroupList", GroupType.class, List.class));
-        map.put(CommandID.SCAN_FINISHED, ReflectUtils.m8375a(cls, "onScanFinished", Integer.class));
-        map.put(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, ReflectUtils.m8375a(cls, "updateMediaLibraryChanged", String.class));
+        map.put(CommandID.UPDATE_GROUP_LIST, ReflectUtils.loadMethod(cls, "updateGroupList", GroupType.class, List.class));
+        map.put(CommandID.SCAN_FINISHED, ReflectUtils.loadMethod(cls, "onScanFinished", Integer.class));
+        map.put(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, ReflectUtils.loadMethod(cls, "updateMediaLibraryChanged", String.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.list.BaseGroupListFragment

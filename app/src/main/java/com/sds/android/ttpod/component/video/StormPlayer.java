@@ -83,7 +83,7 @@ public class StormPlayer implements VideoPlayerInterface {
     private static void m5785a(String str) {
         if (!StringUtils.isEmpty(f4889a)) {
             String replace = f4889a.replace("AndroidStorm_", "AndroidStorm_" + str);
-            CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, DownloadUtils.m4760a(replace, TTPodConfig.getAppPath() + File.separator + FileUtils.getFilename(replace), 0L, "StormPlugin", DownloadTaskInfo.TYPE_APP, true, "stormvideo")));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, DownloadUtils.m4760a(replace, TTPodConfig.getAppPath() + File.separator + FileUtils.getFilename(replace), 0L, "StormPlugin", DownloadTaskInfo.TYPE_APP, true, "stormvideo")));
         }
     }
 

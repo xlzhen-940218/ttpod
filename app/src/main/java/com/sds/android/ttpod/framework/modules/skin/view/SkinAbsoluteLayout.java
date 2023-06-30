@@ -169,7 +169,7 @@ public class SkinAbsoluteLayout extends ViewGroup {
         this.f6870g |= z;
         if (this.f6870g) {
             this.f6870g = false;
-            mo3363a(z, i, i2, i3, i4);
+            layout(z, i, i2, i3, i4);
         } else {
             m3362b(z, i, i2, i3, i4);
         }
@@ -190,22 +190,22 @@ public class SkinAbsoluteLayout extends ViewGroup {
         for (int i5 = 0; i5 < childCount; i5++) {
             View childAt = getChildAt(i5);
             if (childAt instanceof ViewGroup) {
-                m3366a(childAt);
+                layout(childAt);
             }
         }
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
-    public void mo3363a(boolean z, int i, int i2, int i3, int i4) {
+    public void layout(boolean z, int i, int i2, int i3, int i4) {
         int childCount = getChildCount();
         for (int i5 = 0; i5 < childCount; i5++) {
-            m3366a(getChildAt(i5));
+            layout(getChildAt(i5));
         }
     }
 
     /* renamed from: a */
-    protected void m3366a(View view) {
+    protected void layout(View view) {
         if (!SkinLayoutParams.m3554b(view) && view.getVisibility() != View.GONE) {
             int paddingLeft = getPaddingLeft();
             int paddingTop = getPaddingTop();

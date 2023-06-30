@@ -116,7 +116,7 @@ public final class Cache {
 
     /* renamed from: f */
     public void m3167f() {
-        this.objectCache.m8766b(ObjectCacheID.CURRENT_ARTIST_BITMAP_PATH.name());
+        this.objectCache.syncMapLruCache(ObjectCacheID.CURRENT_ARTIST_BITMAP_PATH.name());
     }
 
     /* renamed from: g */
@@ -145,7 +145,7 @@ public final class Cache {
 
     /* renamed from: h */
     public void m3161h() {
-        this.objectCache.m8766b(ObjectCacheID.CURRENT_LYRIC_PATH.name());
+        this.objectCache.syncMapLruCache(ObjectCacheID.CURRENT_LYRIC_PATH.name());
     }
 
     /* renamed from: i */
@@ -238,11 +238,11 @@ public final class Cache {
 
     /* renamed from: l */
     public void m3153l() {
-        this.objectCache.m8766b(ObjectCacheID.SKIN_CACHE.name());
+        this.objectCache.syncMapLruCache(ObjectCacheID.SKIN_CACHE.name());
     }
 
     /* renamed from: m */
-    public SkinCache m3151m() {
+    public SkinCache getSkinCache() {
         try {
             return (SkinCache) this.objectCache.m8765b(ObjectCacheID.SKIN_CACHE.name(), null);
         } catch (Exception e) {
@@ -279,10 +279,10 @@ public final class Cache {
     }
 
     /* renamed from: b */
-    public <T> List<T> m3192b(String str) {
+    public <T> List<T> getHistoryPrefixDataList(String key) {
         ArrayList arrayList = new ArrayList();
         try {
-            return (List) this.objectCache.m8765b(ObjectCacheID.HISTORY_PREFIX.name() + str, arrayList);
+            return (List) this.objectCache.m8765b(ObjectCacheID.HISTORY_PREFIX.name() + key, arrayList);
         } catch (Exception e) {
             return arrayList;
         }
@@ -309,7 +309,7 @@ public final class Cache {
 
     /* renamed from: o */
     public void m3149o() {
-        this.objectCache.m8766b(ObjectCacheID.ARTIST_BITMAP_PATH.name());
+        this.objectCache.syncMapLruCache(ObjectCacheID.ARTIST_BITMAP_PATH.name());
     }
 
     /* renamed from: p */
@@ -403,7 +403,7 @@ public final class Cache {
 
     /* renamed from: v */
     public void m3142v() {
-        this.objectCache.m8766b(ObjectCacheID.LOCAL_SKIN_ITEMS.name());
+        this.objectCache.syncMapLruCache(ObjectCacheID.LOCAL_SKIN_ITEMS.name());
     }
 
     /* renamed from: a */
@@ -763,7 +763,7 @@ public final class Cache {
 
     /* renamed from: R */
     public void m3221R() {
-        this.objectCache.m8766b(ObjectCacheID.ONLINE_FAV_MEDIA_ID_LIST.name());
+        this.objectCache.syncMapLruCache(ObjectCacheID.ONLINE_FAV_MEDIA_ID_LIST.name());
     }
 
     /* renamed from: S */

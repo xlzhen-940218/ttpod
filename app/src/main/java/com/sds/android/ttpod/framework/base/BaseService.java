@@ -25,13 +25,13 @@ public abstract class BaseService extends Service {
     private void m4621a() {
         this.f5700a = (NotificationManager) getSystemService("notification");
         try {
-            this.f5702c = ReflectUtils.m8375a(getClass(), "startForeground", Integer.TYPE, Notification.class);
-            this.f5703d = ReflectUtils.m8375a(getClass(), "stopForeground", Boolean.TYPE);
+            this.f5702c = ReflectUtils.loadMethod(getClass(), "startForeground", Integer.TYPE, Notification.class);
+            this.f5703d = ReflectUtils.loadMethod(getClass(), "stopForeground", Boolean.TYPE);
         } catch (NoSuchMethodException e) {
             this.f5702c = null;
             this.f5703d = null;
             try {
-                this.f5701b = ReflectUtils.m8375a(getClass(), "setForeground", Boolean.TYPE);
+                this.f5701b = ReflectUtils.loadMethod(getClass(), "setForeground", Boolean.TYPE);
             } catch (NoSuchMethodException e2) {
                 throw new IllegalStateException("OS doesn't have Service.startForeground OR Service.setForeground!");
             }

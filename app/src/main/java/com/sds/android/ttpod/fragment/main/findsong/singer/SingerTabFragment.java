@@ -163,7 +163,7 @@ public abstract class SingerTabFragment extends SlidingClosableFragment implemen
         ThemeManager.m3269a(this.mFooterView, ThemeElement.SONG_LIST_ITEM_BACKGROUND);
         ThemeManager.m3269a(this.mFooterView, ThemeElement.SUB_BAR_TEXT);
         ThemeManager.m3269a(this.mListView, ThemeElement.COMMON_SEPARATOR);
-        ThemeManager.m3269a(this.mListView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mListView, "BackgroundMaskColor");
         if (this.mSlidingTabHost != null) {
             ThemeManager.m3269a(this.mSlidingTabHost, ThemeElement.TILE_MASK);
             this.mSlidingTabHost.setTextColor(ThemeManager.m3254c(ThemeElement.SUB_BAR_TEXT));

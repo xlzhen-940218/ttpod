@@ -115,7 +115,7 @@ public class FindSongListViewFragment extends FindSongBaseViewFragment implement
         /* renamed from: a */
         private void m5647a(C1520a c1520a, int i) {
             int m7229a = DisplayUtils.dp2px(75);
-            ImageCacheUtils.m4752a(c1520a.f5153b, FindSongListViewFragment.this.getItemData(i).getPicUrl(), m7229a, m7229a, (int) R.drawable.img_music_default_icon);
+            ImageCacheUtils.displayImage(c1520a.f5153b, FindSongListViewFragment.this.getItemData(i).getPicUrl(), m7229a, m7229a, (int) R.drawable.img_music_default_icon);
             c1520a.f5154c.setText(FindSongListViewFragment.this.getItemData(i).getName());
             c1520a.f5155d.setText(FindSongListViewFragment.this.getItemData(i).getDesc());
             c1520a.f5157f.setOnClickListener(FindSongListViewFragment.this.createItemOnClickListener(i));

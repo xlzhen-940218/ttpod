@@ -37,7 +37,7 @@ public class StarCategoryFragment extends BaseStarCategoryFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_STAR_CATEGORIES_LIST, ReflectUtils.m8375a(StarCategoryFragment.class, "onUpdateStarCategoryList", StarCategoryResult.class, String.class));
+        map.put(CommandID.UPDATE_STAR_CATEGORIES_LIST, ReflectUtils.loadMethod(StarCategoryFragment.class, "onUpdateStarCategoryList", StarCategoryResult.class, String.class));
     }
 
     public void onUpdateStarCategoryList(StarCategoryResult starCategoryResult, String str) {

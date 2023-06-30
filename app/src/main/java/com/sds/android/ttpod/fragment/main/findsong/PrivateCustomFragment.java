@@ -36,7 +36,7 @@ public class PrivateCustomFragment extends RecommendPostListFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_PRIVATE_CUSTOM_POSTS, ReflectUtils.m8375a(getClass(), "updatePrivateCustomResult", RecommendPostResult.class));
+        map.put(CommandID.UPDATE_PRIVATE_CUSTOM_POSTS, ReflectUtils.loadMethod(getClass(), "updatePrivateCustomResult", RecommendPostResult.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment

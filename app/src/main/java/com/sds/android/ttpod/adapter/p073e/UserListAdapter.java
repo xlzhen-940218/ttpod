@@ -64,7 +64,7 @@ public class UserListAdapter<Data extends TTPodUser> extends BaseListAdapter<Dat
     /* renamed from: a */
     public void mo5434a(final UserInfoViewHolder userInfoViewHolder, Data data) {
         UserAvatarView m7436a = userInfoViewHolder.m7436a();
-        ImageCacheUtils.m4752a(m7436a, data.getAvatarUrl(), m7436a.getWidth(), m7436a.getHeight(), (int) R.drawable.img_avatar_default);
+        ImageCacheUtils.displayImage(m7436a, data.getAvatarUrl(), m7436a.getWidth(), m7436a.getHeight(), (int) R.drawable.img_avatar_default);
         m7436a.setVFlagVisible(data.isVerified());
         userInfoViewHolder.m7435b().setText(data.getNickName());
         userInfoViewHolder.m7434c().setText(getContext().getString(R.string.follower_str, Integer.valueOf(data.getFollowersCount())));

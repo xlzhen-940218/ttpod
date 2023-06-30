@@ -33,7 +33,7 @@ public class SkinReader {
             this.packHandle = new PackHandleProxy();
         }
         try {
-            this.packHandle.mo3756a(inputStream, z);
+            this.packHandle.initTskPackHandle(inputStream, z);
         } catch (Exception e) {
             m3528b(inputStream);
         }
@@ -47,7 +47,7 @@ public class SkinReader {
             this.packHandle = new PackHandleProxy();
         }
         try {
-            this.packHandle.mo3755a(str);
+            this.packHandle.initTskPackHandleByFile(str);
         } catch (Exception e) {
             e.printStackTrace();
         }

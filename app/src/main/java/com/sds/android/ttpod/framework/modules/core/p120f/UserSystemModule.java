@@ -52,21 +52,21 @@ public final class UserSystemModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.RESISTER, ReflectUtils.m8375a(cls, "register", String.class, String.class, String.class));
-        map.put(CommandID.LOGIN, ReflectUtils.m8375a(cls, "login", String.class, String.class));
-        map.put(CommandID.QQ_LOGIN, ReflectUtils.m8375a(cls, "qqLogin", String.class, String.class, String.class));
-        map.put(CommandID.SINA_LOGIN, ReflectUtils.m8375a(cls, "sinaLogin", String.class, String.class, String.class));
-        map.put(CommandID.LOGOUT, ReflectUtils.m8375a(cls, "logout", new Class[0]));
-        map.put(CommandID.FIND_PASSWORD, ReflectUtils.m8375a(cls, "findPassword", String.class));
-        map.put(CommandID.MODIFY_NICKNAME, ReflectUtils.m8375a(cls, "modifyNickName", String.class));
-        map.put(CommandID.MODIFY_USER_EMAIL, ReflectUtils.m8375a(cls, "modifyUserMail", String.class, String.class));
-        map.put(CommandID.BIND_USER_EMAIL, ReflectUtils.m8375a(cls, "bindUserMail", String.class, String.class));
-        map.put(CommandID.MODIFY_PASSWORD, ReflectUtils.m8375a(cls, "modifyPassword", String.class, String.class));
-        map.put(CommandID.MODIFY_COVER, ReflectUtils.m8375a(cls, "modifyCover", String.class, Integer.class, Integer.class));
-        map.put(CommandID.MODIFY_AVATAR, ReflectUtils.m8375a(cls, "modifyAvatar", String.class, Integer.class, Integer.class));
-        map.put(CommandID.MODIFY_SEX_BIRTHDAY, ReflectUtils.m8375a(cls, "modifySexAndBirthday", TTPodUser.class, Boolean.class, Boolean.class));
-        map.put(CommandID.REFRESH_INFORMATION, ReflectUtils.m8375a(cls, "refreshInformation", new Class[0]));
-        map.put(CommandID.GET_USER_INFO_BY_ID, ReflectUtils.m8375a(cls, "getUserInfoById", String.class, Long.class));
+        map.put(CommandID.RESISTER, ReflectUtils.loadMethod(cls, "register", String.class, String.class, String.class));
+        map.put(CommandID.LOGIN, ReflectUtils.loadMethod(cls, "login", String.class, String.class));
+        map.put(CommandID.QQ_LOGIN, ReflectUtils.loadMethod(cls, "qqLogin", String.class, String.class, String.class));
+        map.put(CommandID.SINA_LOGIN, ReflectUtils.loadMethod(cls, "sinaLogin", String.class, String.class, String.class));
+        map.put(CommandID.LOGOUT, ReflectUtils.loadMethod(cls, "logout", new Class[0]));
+        map.put(CommandID.FIND_PASSWORD, ReflectUtils.loadMethod(cls, "findPassword", String.class));
+        map.put(CommandID.MODIFY_NICKNAME, ReflectUtils.loadMethod(cls, "modifyNickName", String.class));
+        map.put(CommandID.MODIFY_USER_EMAIL, ReflectUtils.loadMethod(cls, "modifyUserMail", String.class, String.class));
+        map.put(CommandID.BIND_USER_EMAIL, ReflectUtils.loadMethod(cls, "bindUserMail", String.class, String.class));
+        map.put(CommandID.MODIFY_PASSWORD, ReflectUtils.loadMethod(cls, "modifyPassword", String.class, String.class));
+        map.put(CommandID.MODIFY_COVER, ReflectUtils.loadMethod(cls, "modifyCover", String.class, Integer.class, Integer.class));
+        map.put(CommandID.MODIFY_AVATAR, ReflectUtils.loadMethod(cls, "modifyAvatar", String.class, Integer.class, Integer.class));
+        map.put(CommandID.MODIFY_SEX_BIRTHDAY, ReflectUtils.loadMethod(cls, "modifySexAndBirthday", TTPodUser.class, Boolean.class, Boolean.class));
+        map.put(CommandID.REFRESH_INFORMATION, ReflectUtils.loadMethod(cls, "refreshInformation", new Class[0]));
+        map.put(CommandID.GET_USER_INFO_BY_ID, ReflectUtils.loadMethod(cls, "getUserInfoById", String.class, Long.class));
     }
 
     public void register(String str, String str2, String str3) {

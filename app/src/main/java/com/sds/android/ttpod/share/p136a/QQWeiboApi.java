@@ -66,9 +66,9 @@ public class QQWeiboApi extends BaseApi {
         arrayList.add(new BasicNameValuePair("oauth_consumer_key", m2115a()));
         arrayList.add(new BasicNameValuePair("openid", m2101f()));
         arrayList.add(new BasicNameValuePair("format", "json"));
-        arrayList.add(new BasicNameValuePair("syncflag", FeedbackItem.STATUS_WAITING));
+        arrayList.add(new BasicNameValuePair("syncflag", "0"));
         arrayList.add(new BasicNameValuePair("content", shareInfo.m1958e()));
-        arrayList.add(new BasicNameValuePair("compatibleflag", FeedbackItem.STATUS_WAITING));
+        arrayList.add(new BasicNameValuePair("compatibleflag", "0"));
         return arrayList;
     }
 

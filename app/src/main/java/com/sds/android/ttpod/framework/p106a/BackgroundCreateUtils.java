@@ -43,8 +43,8 @@ public class BackgroundCreateUtils {
         }
         options.inJustDecodeBounds = false;
         try {
-            if (backgroundItem.m3337a() == BackgroundItem.EnumC2011a.ADD_BY_USER) {
-                bitmap = BitmapFactory.decodeFile(TTPodConfig.getBkgsPath() + File.separator + backgroundItem.m3331b(), options);
+            if (backgroundItem.getResourceTypeEnum() == BackgroundItem.ResourceTypeEnum.ADD_BY_USER) {
+                bitmap = BitmapFactory.decodeFile(TTPodConfig.getBkgsPath() + File.separator + backgroundItem.getImageName(), options);
             } else {
                 bitmap = BitmapFactory.decodeStream(m5276c, null, options);
             }
@@ -74,13 +74,13 @@ public class BackgroundCreateUtils {
     /* renamed from: c */
     private static InputStream m5276c(BackgroundItem backgroundItem) {
         BaseApplication m4635c = BaseApplication.getApplication();
-        if (BackgroundItem.EnumC2011a.ORIGINAL == backgroundItem.m3337a()) {
-            return m5281a(m4635c.getAssets(), backgroundItem.m3331b());
+        if (BackgroundItem.ResourceTypeEnum.ORIGINAL == backgroundItem.getResourceTypeEnum()) {
+            return m5281a(m4635c.getAssets(), backgroundItem.getImageName());
         }
-        if (BackgroundItem.EnumC2011a.ADD_BY_USER != backgroundItem.m3337a()) {
+        if (BackgroundItem.ResourceTypeEnum.ADD_BY_USER != backgroundItem.getResourceTypeEnum()) {
             return null;
         }
-        return m5278a(backgroundItem.m3331b());
+        return m5278a(backgroundItem.getImageName());
     }
 
     /* renamed from: a */
@@ -106,7 +106,7 @@ public class BackgroundCreateUtils {
     /* renamed from: b */
     public static void m5277b(BackgroundItem backgroundItem) {
         Bitmap bitmap;
-        File file = new File(TTPodConfig.getBkgsPath() + File.separator + backgroundItem.m3331b());
+        File file = new File(TTPodConfig.getBkgsPath() + File.separator + backgroundItem.getImageName());
         if (file.exists()) {
             String str = TTPodConfig.getCacheTmpPath() + File.separator + SecurityUtils.C0610b.m8361a(String.valueOf(file.lastModified()));
             if (FileUtils.m8419a(str)) {

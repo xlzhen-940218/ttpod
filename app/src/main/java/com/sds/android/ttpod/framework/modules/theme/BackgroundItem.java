@@ -2,6 +2,9 @@ package com.sds.android.ttpod.framework.modules.theme;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+
+import androidx.annotation.NonNull;
+
 import com.sds.android.cloudapi.ttpod.data.OnlineSkinItem;
 import com.sds.android.sdk.core.download.TaskInfo;
 import com.sds.android.ttpod.framework.TTPodConfig;
@@ -14,16 +17,16 @@ import java.io.Serializable;
 public class BackgroundItem implements Serializable {
 
     /* renamed from: a */
-    protected String f6927a;
+    protected String imagePath;
 
     /* renamed from: b */
     private String f6928b;
 
     /* renamed from: c */
-    private String f6929c;
+    private String imageName;
 
     /* renamed from: d */
-    private EnumC2011a f6930d;
+    private ResourceTypeEnum resourceTypeEnum;
 
     /* renamed from: e */
     private transient Drawable f6931e;
@@ -35,18 +38,18 @@ public class BackgroundItem implements Serializable {
     private Bitmap f6933g;
 
     /* renamed from: h */
-    private OnlineSkinItem f6934h;
+    private OnlineSkinItem onlineSkinItem;
 
     /* renamed from: i */
-    private TaskInfo f6935i;
+    private TaskInfo taskInfo;
 
     /* renamed from: j */
-    private long f6936j;
+    private long dateCreated;
 
     /* compiled from: BackgroundItem.java */
     /* renamed from: com.sds.android.ttpod.framework.modules.theme.a$a */
     /* loaded from: classes.dex */
-    public enum EnumC2011a {
+    public enum ResourceTypeEnum {
         ORIGINAL,
         ADD_BY_USER,
         ADD_VIEW,
@@ -55,58 +58,58 @@ public class BackgroundItem implements Serializable {
     }
 
     /* renamed from: a */
-    public EnumC2011a m3337a() {
-        return this.f6930d;
+    public ResourceTypeEnum getResourceTypeEnum() {
+        return this.resourceTypeEnum;
     }
 
     /* renamed from: a */
-    public void m3333a(EnumC2011a enumC2011a) {
-        this.f6930d = enumC2011a;
+    public void setResourceTypeEnum(ResourceTypeEnum resourceTypeEnum) {
+        this.resourceTypeEnum = resourceTypeEnum;
     }
 
     /* renamed from: b */
-    public String m3331b() {
-        return this.f6929c;
+    public String getImageName() {
+        return this.imageName;
     }
 
     /* renamed from: c */
-    public OnlineSkinItem m3330c() {
-        return this.f6934h;
+    public OnlineSkinItem getOnlineSkinItem() {
+        return this.onlineSkinItem;
     }
 
     /* renamed from: d */
-    public TaskInfo m3329d() {
-        return this.f6935i;
+    public TaskInfo getTaskInfo() {
+        return this.taskInfo;
     }
 
     /* renamed from: a */
-    public void m3334a(TaskInfo taskInfo) {
-        this.f6935i = taskInfo;
+    public void setTaskInfo(TaskInfo taskInfo) {
+        this.taskInfo = taskInfo;
     }
 
-    public BackgroundItem(String str, EnumC2011a enumC2011a) {
-        this.f6929c = str;
-        this.f6930d = enumC2011a;
+    public BackgroundItem(String str, ResourceTypeEnum resourceTypeEnum) {
+        this.imageName = str;
+        this.resourceTypeEnum = resourceTypeEnum;
     }
 
     public BackgroundItem(OnlineSkinItem onlineSkinItem) {
-        this.f6929c = onlineSkinItem.getName() + ".jpg";
-        this.f6930d = EnumC2011a.ONLINE_BACKGROUND;
-        this.f6927a = TTPodConfig.getBkgs() + File.separator + this.f6929c;
-        this.f6934h = onlineSkinItem;
-        this.f6936j = onlineSkinItem.getDateCreated();
+        this.imageName = onlineSkinItem.getName() + ".jpg";
+        this.resourceTypeEnum = ResourceTypeEnum.ONLINE_BACKGROUND;
+        this.imagePath = TTPodConfig.getBkgs() + File.separator + this.imageName;
+        this.onlineSkinItem = onlineSkinItem;
+        this.dateCreated = onlineSkinItem.getDateCreated();
     }
 
     public BackgroundItem(String str) {
         this.f6928b = str;
         if (str != null) {
-            this.f6929c = str.substring(str.lastIndexOf(File.separator) + 1);
+            this.imageName = str.substring(str.lastIndexOf(File.separator) + 1);
             if (str.startsWith("assets://")) {
-                this.f6930d = EnumC2011a.ORIGINAL;
+                this.resourceTypeEnum = ResourceTypeEnum.ORIGINAL;
             } else if (str.startsWith("file://")) {
-                this.f6930d = EnumC2011a.ADD_BY_USER;
+                this.resourceTypeEnum = ResourceTypeEnum.ADD_BY_USER;
             } else if (str.startsWith("follow_skin")) {
-                this.f6930d = EnumC2011a.FOLLOW_SKIN;
+                this.resourceTypeEnum = ResourceTypeEnum.FOLLOW_SKIN;
             }
         }
     }
@@ -136,42 +139,43 @@ public class BackgroundItem implements Serializable {
         return this.f6933g;
     }
 
+    @NonNull
     public String toString() {
-        StringBuffer stringBuffer = new StringBuffer();
-        if (this.f6930d == EnumC2011a.ORIGINAL) {
+        StringBuilder stringBuffer = new StringBuilder();
+        if (this.resourceTypeEnum == ResourceTypeEnum.ORIGINAL) {
             stringBuffer.append("assets://");
             stringBuffer.append(TTPodConfig.m5292p());
-        } else if (this.f6930d == EnumC2011a.ADD_BY_USER) {
+        } else if (this.resourceTypeEnum == ResourceTypeEnum.ADD_BY_USER) {
             stringBuffer.append("file://");
             stringBuffer.append(TTPodConfig.getBkgsPath());
-        } else if (this.f6930d == EnumC2011a.FOLLOW_SKIN) {
+        } else if (this.resourceTypeEnum == ResourceTypeEnum.FOLLOW_SKIN) {
             stringBuffer.append("follow_skin");
             return stringBuffer.toString();
         }
         stringBuffer.append(File.separator);
-        stringBuffer.append(this.f6929c);
+        stringBuffer.append(this.imageName);
         return stringBuffer.toString();
     }
 
     /* renamed from: h */
-    public String m3325h() {
-        return this.f6927a;
+    public String getImagePath() {
+        return this.imagePath;
     }
 
     /* renamed from: a */
-    public void m3332a(String str) {
-        this.f6929c = str + ".jpg";
-        this.f6927a = TTPodConfig.getBkgs() + File.separator + this.f6929c;
+    public void setImagePath(String str) {
+        this.imageName = str + ".jpg";
+        this.imagePath = TTPodConfig.getBkgs() + File.separator + this.imageName;
     }
 
     /* renamed from: i */
-    public long m3324i() {
-        return this.f6936j;
+    public long getDateCreated() {
+        return this.dateCreated;
     }
 
     public int hashCode() {
-        if (this.f6929c != null) {
-            return this.f6929c.hashCode();
+        if (this.imageName != null) {
+            return this.imageName.hashCode();
         }
         return 0;
     }

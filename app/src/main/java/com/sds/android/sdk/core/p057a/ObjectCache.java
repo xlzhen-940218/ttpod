@@ -22,10 +22,10 @@ public final class ObjectCache {
     private static ObjectCache instance;
 
     /* renamed from: b */
-    private static final ReentrantLock f2297b = new ReentrantLock();
+    private static final ReentrantLock REENTRANT_LOCK = new ReentrantLock();
 
     /* renamed from: c */
-    private File f2298c;
+    private File cacheFolderPath;
 
     /* renamed from: d */
     private boolean f2299d = false;
@@ -34,10 +34,10 @@ public final class ObjectCache {
     private C0572b f2300e = new C0572b();
 
     /* renamed from: f */
-    private LruCache<String, C0571a> f2301f;
+    private LruCache<String, SerialCache> serialLruCaches;
 
     /* renamed from: g */
-    private HashMap<String, C0571a> f2302g;
+    private HashMap<String, SerialCache> serialMapCaches;
 
     /* renamed from: a */
     public static synchronized ObjectCache getInstance(float f, String str) {
@@ -54,22 +54,22 @@ public final class ObjectCache {
     }
 
     private ObjectCache(float f, String str) {
-        this.f2298c = FileUtils.createFolder(str);
-        if (this.f2298c == null) {
-            this.f2298c = new File("");
+        this.cacheFolderPath = FileUtils.createFolder(str);
+        if (this.cacheFolderPath == null) {
+            this.cacheFolderPath = new File("");
         }
         if (f < 0.005f || f > 0.5f) {
             throw new IllegalArgumentException("memCacheSizePercent - percent must be between0.0050and0.5 (inclusive)");
         }
         LogUtils.info("ObjectCache", "MaxSize:" + (Math.round(((float) Runtime.getRuntime().maxMemory()) * f) / 1024));
-        this.f2301f = new LruCache<String, C0571a>(Math.round(((float) Runtime.getRuntime().maxMemory()) * f) / 1024) { // from class: com.sds.android.sdk.core.a.f.1
+        this.serialLruCaches = new LruCache<String, SerialCache>(Math.round(((float) Runtime.getRuntime().maxMemory()) * f) / 1024) { // from class: com.sds.android.sdk.core.a.f.1
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // android.support.v4.util.LruCache
             /* renamed from: a */
-            public int sizeOf(String str2, C0571a c0571a) {
+            public int sizeOf(String str2, SerialCache serialCache) {
                 int i = 0;
-                if (c0571a.m8758a() instanceof ISizeOfObject) {
-                    i = ((ISizeOfObject) c0571a.m8758a()).m8816a() / 1024;
+                if (serialCache.getObject() instanceof ISizeOfObject) {
+                    i = ((ISizeOfObject) serialCache.getObject()).m8816a() / 1024;
                 }
                 if (i == 0) {
                     return 1;
@@ -77,7 +77,7 @@ public final class ObjectCache {
                 return i;
             }
         };
-        this.f2302g = new HashMap<>();
+        this.serialMapCaches = new HashMap<>();
         this.f2300e.setPriority(10);
         this.f2300e.setDaemon(true);
         this.f2300e.start();
@@ -105,30 +105,30 @@ public final class ObjectCache {
         }
         long currentTimeMillis = System.currentTimeMillis() + j;
         if (z && (obj instanceof Serializable)) {
-            C0571a c0571a = new C0571a(obj, currentTimeMillis);
-            this.f2301f.put(str, c0571a);
+            SerialCache serialCache = new SerialCache(obj, currentTimeMillis);
+            this.serialLruCaches.put(str, serialCache);
             synchronized (this.f2300e) {
-                this.f2300e.m8755a(str, c0571a);
+                this.f2300e.m8755a(str, serialCache);
                 this.f2300e.notify();
             }
         } else {
             if (z) {
                 LogUtils.error("ObjectCache", "Object must be implement Serializable if can be serialized");
             }
-            this.f2302g.put(str, new C0571a(obj, currentTimeMillis));
+            this.serialMapCaches.put(str, new SerialCache(obj, currentTimeMillis));
         }
     }
 
     /* renamed from: a */
     public synchronized void m8777a() {
-        this.f2301f.evictAll();
+        this.serialLruCaches.evictAll();
     }
 
     /* renamed from: a */
     public synchronized boolean m8773a(String str) {
         boolean z = false;
         if (getValue(str) == null) {
-            z = m8762d(str) != null;
+            z = getCacheByKey(str) != null;
         }
         return z;
     }
@@ -142,7 +142,7 @@ public final class ObjectCache {
     public synchronized <T> T m8764b(String str, T t, boolean z) throws Exception {
         Object value = getValue(str);
         if (z && value == null) {
-            value = m8762d(str);
+            value = getCacheByKey(str);
         }
         if (value != null) {
             t = (T) value;
@@ -153,18 +153,18 @@ public final class ObjectCache {
     /* renamed from: c */
     private synchronized Object getValue(String key) {
         Object obj = null;
-        if (this.f2302g.containsKey(key)) {
-            if (this.f2302g.get(key).m8757b() >= System.currentTimeMillis()) {
-                obj = this.f2302g.get(key).m8758a();
+        if (this.serialMapCaches.containsKey(key)) {
+            if (this.serialMapCaches.get(key).getCurrentTimeMillis() >= System.currentTimeMillis()) {
+                obj = this.serialMapCaches.get(key).getObject();
             } else {
-                this.f2302g.remove(key);
+                this.serialMapCaches.remove(key);
             }
         }
         return obj;
     }
 
     /* renamed from: d */
-    private synchronized Object m8762d(String str) {
+    private synchronized Object getCacheByKey(String cacheKey) {
         Object obj = null;
         FileInputStream fileInputStream;
         ObjectInputStream objectInputStream;
@@ -172,13 +172,13 @@ public final class ObjectCache {
         Exception e;
         Throwable th;
         synchronized (this) {
-            if (this.f2301f.get(str) != null) {
-                if (this.f2301f.get(str).m8757b() >= System.currentTimeMillis()) {
-                    obj2 = this.f2301f.get(str).m8758a();
+            if (this.serialLruCaches.get(cacheKey) != null) {
+                if (this.serialLruCaches.get(cacheKey).getCurrentTimeMillis() >= System.currentTimeMillis()) {
+                    obj2 = this.serialLruCaches.get(cacheKey).getObject();
                 }
             } else {
-                f2297b.lock();
-                File file = new File(m8760f(str));
+                REENTRANT_LOCK.lock();
+                File file = new File(getCachePathByKey(cacheKey));
                 if (file.isFile()) {
                     boolean z = false;
                     try {
@@ -206,15 +206,15 @@ public final class ObjectCache {
                         } catch (Exception e3) {
                             e3.printStackTrace();
                         }
-                        f2297b.unlock();
+                        REENTRANT_LOCK.unlock();
                         //throw th;
                     }
                     try {
                         try {
-                            C0571a c0571a = (C0571a) objectInputStream.readObject();
-                            if (c0571a.m8757b() > System.currentTimeMillis()) {
-                                this.f2301f.put(str, c0571a);
-                                obj = c0571a.m8758a();
+                            SerialCache serialCache = (SerialCache) objectInputStream.readObject();
+                            if (serialCache.getCurrentTimeMillis() > System.currentTimeMillis()) {
+                                this.serialLruCaches.put(cacheKey, serialCache);
+                                obj = serialCache.getObject();
                             } else {
                                 z = true;
                                 obj = null;
@@ -228,12 +228,12 @@ public final class ObjectCache {
                             if (z) {
                                 file.delete();
                             }
-                            f2297b.unlock();
+                            REENTRANT_LOCK.unlock();
                         } catch (Throwable th3) {
                             th = th3;
                             fileInputStream.close();
                             objectInputStream.close();
-                            f2297b.unlock();
+                            REENTRANT_LOCK.unlock();
                             //throw th;
                         }
                     } catch (Exception e5) {
@@ -245,13 +245,13 @@ public final class ObjectCache {
                         } catch (Exception e6) {
                             e6.printStackTrace();
                         }
-                        f2297b.unlock();
+                        REENTRANT_LOCK.unlock();
                         obj = null;
                         obj2 = obj;
                         return obj2;
                     }
                 } else {
-                    f2297b.unlock();
+                    REENTRANT_LOCK.unlock();
                     obj = null;
                 }
                 obj2 = obj;
@@ -261,42 +261,42 @@ public final class ObjectCache {
     }
 
     /* renamed from: b */
-    public synchronized void m8766b(String str) {
-        if (this.f2302g.remove(str) == null) {
-            this.f2301f.remove(str);
-            m8761e(str);
+    public synchronized void syncMapLruCache(String str) {
+        if (this.serialMapCaches.remove(str) == null) {
+            this.serialLruCaches.remove(str);
+            exists(str);
         }
     }
 
     /* renamed from: e */
-    private void m8761e(String str) {
-        f2297b.lock();
-        FileUtils.exists(m8760f(str));
-        f2297b.unlock();
+    private void exists(String cacheKey) {
+        REENTRANT_LOCK.lock();
+        FileUtils.exists(getCachePathByKey(cacheKey));
+        REENTRANT_LOCK.unlock();
     }
 
     /* renamed from: f */
-    private String m8760f(String str) {
-        return this.f2298c.getAbsolutePath() + File.separator + str;
+    private String getCachePathByKey(String str) {
+        return this.cacheFolderPath.getAbsolutePath() + File.separator + str;
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
-    public void m8772a(String str, C0571a c0571a) {
+    public void saveToLocal(String cacheKey, SerialCache serialCache) {
         FileOutputStream fileOutputStream;
         ObjectOutputStream objectOutputStream = null;
-        f2297b.lock();
+        REENTRANT_LOCK.lock();
         Exception e;
         Throwable th;
         try {
             try {
-                File file = new File(m8760f(str));
+                File file = new File(getCachePathByKey(cacheKey));
                 fileOutputStream = new FileOutputStream(file);
                 try {
                     ObjectOutputStream objectOutputStream2 = new ObjectOutputStream(fileOutputStream);
                     try {
-                        objectOutputStream2.writeObject(c0571a);
-                        file.setLastModified(c0571a.m8757b());
+                        objectOutputStream2.writeObject(serialCache);
+                        file.setLastModified(serialCache.getCurrentTimeMillis());
                         try {
                             fileOutputStream.close();
                             objectOutputStream2.close();
@@ -313,7 +313,7 @@ public final class ObjectCache {
                         } catch (Exception e3) {
                             e3.printStackTrace();
                         }
-                        f2297b.unlock();
+                        REENTRANT_LOCK.unlock();
                     } catch (Throwable th1) {
                         th = th1;
                         objectOutputStream = objectOutputStream2;
@@ -335,7 +335,7 @@ public final class ObjectCache {
                 th = th2;
                 fileOutputStream = null;
             }
-            f2297b.unlock();
+            REENTRANT_LOCK.unlock();
         } catch (Throwable th3) {
             th = th3;
         }
@@ -345,27 +345,27 @@ public final class ObjectCache {
     /* compiled from: ObjectCache.java */
     /* renamed from: com.sds.android.sdk.core.a.f$a */
     /* loaded from: classes.dex */
-    public static final class C0571a implements Serializable {
+    public static final class SerialCache implements Serializable {
 
         /* renamed from: a */
-        private Object f2304a;
+        private Object object;
 
         /* renamed from: b */
-        private long f2305b;
+        private final long currentTimeMillis;
 
-        private C0571a(Object obj, long j) {
-            this.f2304a = obj;
-            this.f2305b = j;
+        private SerialCache(Object obj, long currentTimeMillis) {
+            this.object = obj;
+            this.currentTimeMillis = currentTimeMillis;
         }
 
         /* renamed from: a */
-        public Object m8758a() {
-            return this.f2304a;
+        public Object getObject() {
+            return this.object;
         }
 
         /* renamed from: b */
-        public long m8757b() {
-            return this.f2305b;
+        public long getCurrentTimeMillis() {
+            return this.currentTimeMillis;
         }
     }
 
@@ -376,37 +376,37 @@ public final class ObjectCache {
     public final class C0572b extends Thread {
 
         /* renamed from: b */
-        private LinkedHashMap<String, C0571a> f2307b;
+        private LinkedHashMap<String, SerialCache> serialMapCaches;
 
         /* renamed from: c */
-        private long f2308c;
+        private long timeMillis;
 
         /* renamed from: d */
-        private ReentrantLock f2309d;
+        private ReentrantLock reentrantLock;
 
         private C0572b() {
-            this.f2307b = new LinkedHashMap<>();
-            this.f2308c = 0L;
-            this.f2309d = new ReentrantLock();
+            this.serialMapCaches = new LinkedHashMap<>();
+            this.timeMillis = 0L;
+            this.reentrantLock = new ReentrantLock();
         }
 
         /* renamed from: a */
-        public void m8755a(String str, C0571a c0571a) {
-            this.f2309d.lock();
-            this.f2307b.put(str, c0571a);
-            this.f2309d.unlock();
+        public void m8755a(String str, SerialCache serialCache) {
+            this.reentrantLock.lock();
+            this.serialMapCaches.put(str, serialCache);
+            this.reentrantLock.unlock();
         }
 
         /* renamed from: a */
         private void m8756a() {
-            this.f2309d.lock();
-            LinkedHashMap<String,C0571a> linkedHashMap = new LinkedHashMap<String, C0571a>(this.f2307b);
-            this.f2309d.unlock();
-            for (String str : linkedHashMap.keySet()) {
-                ObjectCache.this.m8772a(str, (C0571a) linkedHashMap.get(str));
-                this.f2309d.lock();
-                this.f2307b.remove(str);
-                this.f2309d.unlock();
+            this.reentrantLock.lock();
+            LinkedHashMap<String, SerialCache> linkedHashMap = new LinkedHashMap<String, SerialCache>(this.serialMapCaches);
+            this.reentrantLock.unlock();
+            for (String cacheKey : linkedHashMap.keySet()) {
+                ObjectCache.this.saveToLocal(cacheKey, (SerialCache) linkedHashMap.get(cacheKey));
+                this.reentrantLock.lock();
+                this.serialMapCaches.remove(cacheKey);
+                this.reentrantLock.unlock();
             }
         }
 
@@ -421,15 +421,16 @@ public final class ObjectCache {
             FileInputStream fileInputStream2;
             ObjectInputStream objectInputStream2;
             boolean z;
-            ObjectCache.f2297b.lock();
-            File[] listFiles = ObjectCache.this.f2298c.listFiles();
-            ObjectCache.f2297b.unlock();
+            SerialCache serialCache;
+            ObjectCache.REENTRANT_LOCK.lock();
+            File[] listFiles = ObjectCache.this.cacheFolderPath.listFiles();
+            ObjectCache.REENTRANT_LOCK.unlock();
             Exception e;
             Throwable th;
             if (listFiles != null) {
                 for (File file : listFiles) {
                     if (file.lastModified() <= System.currentTimeMillis()) {
-                        ObjectCache.f2297b.lock();
+                        ObjectCache.REENTRANT_LOCK.lock();
                         try {
                             fileInputStream = new FileInputStream(file);
                             try {
@@ -458,7 +459,11 @@ public final class ObjectCache {
                         }
                         try {
                             try {
-                                z = ((C0571a) objectInputStream.readObject()).m8757b() <= System.currentTimeMillis();
+                                serialCache   = (SerialCache) objectInputStream.readObject();
+                                z = serialCache.getCurrentTimeMillis() <= System.currentTimeMillis();
+                                if(z){
+                                    serialMapCaches.put(file.getName(),serialCache);
+                                }
                                 try {
                                     fileInputStream.close();
                                     objectInputStream.close();
@@ -478,7 +483,7 @@ public final class ObjectCache {
                                 }
                                 if (z) {
                                 }
-                                ObjectCache.f2297b.unlock();
+                                ObjectCache.REENTRANT_LOCK.unlock();
                             } catch (Exception e8) {
                                 e = e8;
                                 e.printStackTrace();
@@ -492,12 +497,12 @@ public final class ObjectCache {
                                 }
                                 if (z) {
                                 }
-                                ObjectCache.f2297b.unlock();
+                                ObjectCache.REENTRANT_LOCK.unlock();
                             }
                             if (z) {
                                 FileUtils.exists(file);
                             }
-                            ObjectCache.f2297b.unlock();
+                            ObjectCache.REENTRANT_LOCK.unlock();
                         } catch (Throwable th3) {
                             th = th3;
                             try {
@@ -517,15 +522,15 @@ public final class ObjectCache {
         public void run() {
             while (!isInterrupted()) {
                 try {
-                    if (System.currentTimeMillis() > this.f2308c + 1800000) {
-                        if (this.f2308c != 0) {
+                    if (System.currentTimeMillis() > this.timeMillis + 1800000) {
+                        if (this.timeMillis != 0) {
                             m8754b();
                         }
-                        this.f2308c = System.currentTimeMillis();
+                        this.timeMillis = System.currentTimeMillis();
                     }
                     m8756a();
                     synchronized (this) {
-                        if (this.f2307b.size() <= 0) {
+                        if (this.serialMapCaches.size() <= 0) {
                             wait();
                         }
                     }

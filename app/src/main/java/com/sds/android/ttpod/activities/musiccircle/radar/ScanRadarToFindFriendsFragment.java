@@ -9,7 +9,6 @@ import com.sds.android.cloudapi.ttpod.result.AlikeUserListResult;
 import com.sds.android.sdk.lib.util.ReflectUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.activities.musiccircle.MusicCircleStatistic;
-import com.sds.android.ttpod.activities.musiccircle.radar.RadarAnimationManager;
 import com.sds.android.ttpod.fragment.base.SlidingClosableFragment;
 import com.sds.android.ttpod.fragment.musiccircle.WrapUserPostListFragment;
 import com.sds.android.ttpod.framework.modules.CommandID;
@@ -66,7 +65,7 @@ public class ScanRadarToFindFriendsFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_ALIKE_USER_LIST, ReflectUtils.m8375a(ScanRadarToFindFriendsFragment.class, "onUpdateAlikeUserList", AlikeUserListResult.class, String.class));
+        map.put(CommandID.UPDATE_ALIKE_USER_LIST, ReflectUtils.loadMethod(ScanRadarToFindFriendsFragment.class, "onUpdateAlikeUserList", AlikeUserListResult.class, String.class));
     }
 
     public void onUpdateAlikeUserList(AlikeUserListResult alikeUserListResult, String str) {

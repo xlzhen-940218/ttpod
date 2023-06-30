@@ -126,7 +126,7 @@ public class MyAudioEffectFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadFinished() {
         super.onLoadFinished();
-        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -134,13 +134,13 @@ public class MyAudioEffectFragment extends BaseFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_QUERY_EFFECT_USERINFO, ReflectUtils.m8375a(cls, "updateQueryEffectUserInfo", AudioEffectUserResult.class));
-        map.put(CommandID.UPDATE_QUERY_PRIVATE_EFFECT, ReflectUtils.m8375a(cls, "updateQueryPrivateEffect", List.class, List.class));
-        map.put(CommandID.UPDATE_DELETE_PRIVATE_EFFECT_LIST, ReflectUtils.m8375a(cls, "updateDeletePrivateEffectList", new Class[0]));
-        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, ReflectUtils.m8375a(cls, "updateSaveEffectToLocal", Boolean.class));
-        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, ReflectUtils.m8375a(cls, "updateSaveEffectToNetwork", AudioEffectAddResult.class));
-        map.put(CommandID.UPDATE_MANUAL_SETTING_EFFECT, ReflectUtils.m8375a(cls, "updateManualSettingEffect", new Class[0]));
-        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.m8375a(cls, "updateAudioEffectList", new Class[0]));
+        map.put(CommandID.UPDATE_QUERY_EFFECT_USERINFO, ReflectUtils.loadMethod(cls, "updateQueryEffectUserInfo", AudioEffectUserResult.class));
+        map.put(CommandID.UPDATE_QUERY_PRIVATE_EFFECT, ReflectUtils.loadMethod(cls, "updateQueryPrivateEffect", List.class, List.class));
+        map.put(CommandID.UPDATE_DELETE_PRIVATE_EFFECT_LIST, ReflectUtils.loadMethod(cls, "updateDeletePrivateEffectList", new Class[0]));
+        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, ReflectUtils.loadMethod(cls, "updateSaveEffectToLocal", Boolean.class));
+        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, ReflectUtils.loadMethod(cls, "updateSaveEffectToNetwork", AudioEffectAddResult.class));
+        map.put(CommandID.UPDATE_MANUAL_SETTING_EFFECT, ReflectUtils.loadMethod(cls, "updateManualSettingEffect", new Class[0]));
+        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.loadMethod(cls, "updateAudioEffectList", new Class[0]));
     }
 
     public void updateManualSettingEffect() {
@@ -226,7 +226,7 @@ public class MyAudioEffectFragment extends BaseFragment {
     public void setUserVisibleHint(boolean z) {
         super.setUserVisibleHint(z);
         if (z && this.mNeedUpdate) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_PRIVATE_EFFECT, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_PRIVATE_EFFECT, new Object[0]));
             this.mNeedUpdate = false;
         }
     }
@@ -281,7 +281,7 @@ public class MyAudioEffectFragment extends BaseFragment {
     }
 
     public void updateDeletePrivateEffectList() {
-        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_PRIVATE_EFFECT, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_PRIVATE_EFFECT, new Object[0]));
     }
 
     private void initMyAudioEffectViews() {
@@ -322,7 +322,7 @@ public class MyAudioEffectFragment extends BaseFragment {
         if (m2954aq != null && visitNetWifi()) {
             this.mLayoutEffectDetail.setVisibility(View.VISIBLE);
             if (getUserVisibleHint()) {
-                CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
             }
             setUserinfo(m2954aq, m2954aq.getAvatarUrl());
             setControlsVisible(0, 4);
@@ -458,7 +458,7 @@ public class MyAudioEffectFragment extends BaseFragment {
 
             @Override // java.lang.Runnable
             public void run() {
-                CommandCenter.getInstance().m4596b(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, MyAudioEffectFragment.this.mSelectedMediaItem));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, MyAudioEffectFragment.this.mSelectedMediaItem));
             }
         }
     }

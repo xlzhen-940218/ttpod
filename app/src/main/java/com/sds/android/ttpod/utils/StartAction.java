@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.Base64;
 
 
-import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
 import com.sds.android.cloudapi.ttpod.data.FeedbackMessage;
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
 import com.sds.android.cloudapi.ttpod.data.User;
@@ -255,35 +254,35 @@ public class StartAction {
     /* renamed from: d */
     private boolean m8209d(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.getInstance().m4596b(new Command(CommandID.NEXT, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.NEXT, new Object[0]));
         return true;
     }
 
     /* renamed from: e */
     private boolean m8207e(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.getInstance().m4596b(new Command(CommandID.PREVIOUS, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PREVIOUS, new Object[0]));
         return true;
     }
 
     /* renamed from: f */
     private boolean m8205f(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.STOP, new Object[0]));
         return true;
     }
 
     /* renamed from: g */
     private boolean m8203g(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.getInstance().m4596b(new Command(CommandID.PAUSE, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PAUSE, new Object[0]));
         return true;
     }
 
     /* renamed from: h */
     private boolean m8201h(Bundle bundle) {
         m8217b((int) m8227a(bundle, "play_mode", -1L));
-        CommandCenter.getInstance().m4596b(new Command(CommandID.RESUME, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.RESUME, new Object[0]));
         return true;
     }
 
@@ -410,7 +409,7 @@ public class StartAction {
         if (i <= 0) {
             return;
         }
-        //new //SSystemEvent("SYS_THIRDPARTY", str).append("sid", Integer.valueOf(i)).append("action", z ? FeedbackItem.STATUS_WAITING : "1").post();
+        //new //SSystemEvent("SYS_THIRDPARTY", str).append("sid", Integer.valueOf(i)).append("action", z ? "0" : "1").post();
     }
 
     /* renamed from: n */
@@ -421,7 +420,7 @@ public class StartAction {
         }
         DownloadTaskInfo m8192o = m8192o(bundle);
         if (m8192o != null) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m8192o));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, m8192o));
             return true;
         }
         return false;
@@ -439,7 +438,7 @@ public class StartAction {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo4039a(List<MediaItem> list) {
                     if (list != null && list.size() > 0) {
-                        CommandCenter.getInstance().m4605a(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, DownloadUtils.m4758a(list, AudioQuality.HIGH), Boolean.FALSE), 10);
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, DownloadUtils.m4758a(list, AudioQuality.HIGH), Boolean.FALSE), 10);
                     }
                 }
             });
@@ -717,7 +716,7 @@ public class StartAction {
                 JSONObject jSONObject = jSONArray.getJSONObject(i);
                 String string = jSONObject.getString("uri");
                 if (!StringUtils.isEmpty(string)) {
-                    arrayList.add(MediaItemUtils.m4711a(string, jSONObject.optString("title", ""), jSONObject.optString("artist", ""), (int) m8204f(jSONObject.optString("duration", FeedbackItem.STATUS_WAITING))));
+                    arrayList.add(MediaItemUtils.m4711a(string, jSONObject.optString("title", ""), jSONObject.optString("artist", ""), (int) m8204f(jSONObject.optString("duration", "0"))));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

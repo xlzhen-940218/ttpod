@@ -300,7 +300,7 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_PRIVATE_MESSAGE_LIST, ReflectUtils.m8375a(getClass(), "updatePrivateMessages", PrivateMessageOverViewListResult.class, String.class));
+        map.put(CommandID.UPDATE_PRIVATE_MESSAGE_LIST, ReflectUtils.loadMethod(getClass(), "updatePrivateMessages", PrivateMessageOverViewListResult.class, String.class));
     }
 
     public void updatePrivateMessages(PrivateMessageOverViewListResult privateMessageOverViewListResult, String str) {

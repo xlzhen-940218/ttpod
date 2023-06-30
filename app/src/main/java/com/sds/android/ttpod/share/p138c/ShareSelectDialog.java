@@ -571,11 +571,11 @@ public class ShareSelectDialog extends BaseDialog {
     /* renamed from: a */
     private void m2023a(final ShareLoadListener<String> shareLoadListener, final String str, String str2) {
         m1990v();
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<String, String>(str2) { // from class: com.sds.android.ttpod.share.c.c.2
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<String, String>(str2) { // from class: com.sds.android.ttpod.share.c.c.2
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public String mo1981a(String str3) {
+            public String inBackground(String str3) {
                 try {
                     HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str3).openConnection();
                     httpURLConnection.setDoInput(true);

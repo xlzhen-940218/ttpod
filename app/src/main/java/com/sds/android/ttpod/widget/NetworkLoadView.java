@@ -164,7 +164,7 @@ public class NetworkLoadView extends FrameLayout implements ThemeManager.Interfa
             this.f7748e.setTextColor(m3254c);
             this.f7747d.setTextColor(m3254c);
         }
-        Drawable m3265a = ThemeManager.m3265a(ThemeElement.BACKGROUND_MASK);
+        Drawable m3265a = ThemeManager.m3265a("BackgroundMaskColor");
         ThemeManager.m3270a(this, m3265a);
         ThemeManager.m3270a(this.f7744a, m3265a);
         ThemeManager.m3270a(this.f7745b, m3265a);

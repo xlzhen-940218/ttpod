@@ -125,7 +125,7 @@ public abstract class RecommendPostListFragment extends SlidingClosableFragment 
         if (this.mFooter != null) {
             this.mFooter.onThemeLoaded();
         }
-        ThemeManager.m3269a(this.mProxy.m5427a(), ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mProxy.m5427a(), "BackgroundMaskColor");
         StateView m5423b = this.mProxy.m5423b();
         if (m5423b != null) {
             m5423b.onThemeLoaded();
@@ -183,11 +183,11 @@ public abstract class RecommendPostListFragment extends SlidingClosableFragment 
     }
 
     public void requestPlayMediaView(final RecommendPost recommendPost) {
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<List<Long>, List<MediaItem>>(getPlaySongId(recommendPost)) { // from class: com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment.5
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<List<Long>, List<MediaItem>>(getPlaySongId(recommendPost)) { // from class: com.sds.android.ttpod.fragment.main.findsong.RecommendPostListFragment.5
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public List<MediaItem> mo1981a(List<Long> list) {
+            public List<MediaItem> inBackground(List<Long> list) {
                 return RecommendPostListFragment.this.convertMediaList(OnlineMediaItemAPI.m8867a(list).execute().getDataList());
             }
 

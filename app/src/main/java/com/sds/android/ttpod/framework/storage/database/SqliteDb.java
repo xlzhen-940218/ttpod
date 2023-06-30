@@ -54,7 +54,7 @@ public class SqliteDb {
     public static List<DownloadTaskInfo> m3125a(Context context, Integer num) {
         String num2;
         if (num == null) {
-            num2 = FeedbackItem.STATUS_WAITING;
+            num2 = "0";
         } else {
             num2 = num.toString();
         }

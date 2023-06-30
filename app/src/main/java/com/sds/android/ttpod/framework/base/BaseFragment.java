@@ -217,7 +217,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
         HashMap hashMap = new HashMap();
         try {
             onLoadCommandMap(hashMap);
-            hashMap.put(CommandID.APP_THEME_CHANGED, ReflectUtils.m8375a(getClass(), "onThemeChanged", new Class[0]));
+            hashMap.put(CommandID.APP_THEME_CHANGED, ReflectUtils.loadMethod(getClass(), "onThemeChanged", new Class[0]));
             return hashMap;
         } catch (Exception e) {
             throw new RuntimeException(e);

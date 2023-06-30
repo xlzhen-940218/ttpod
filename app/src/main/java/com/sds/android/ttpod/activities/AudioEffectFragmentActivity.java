@@ -80,7 +80,7 @@ public class AudioEffectFragmentActivity extends SlidingPagerActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         this.mPagerContent.setOffscreenPageLimit(this.mPagerAdapter.getCount() - 1);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
         this.mPagerTitle.setShouldExpand(true);
         setTitle(getString(R.string.audio_effect));
         this.mPagerTitle.setBackground(new ColorDrawable(Color.parseColor("#222222")));
@@ -114,9 +114,9 @@ public class AudioEffectFragmentActivity extends SlidingPagerActivity {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_QUERY_EFFECT_USERINFO, ReflectUtils.m8375a(cls, "updateQueryEffectUserInfo", AudioEffectUserResult.class));
-        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, ReflectUtils.m8375a(cls, "updateSaveEffectToNetwork", AudioEffectAddResult.class));
-        map.put(CommandID.EFFECT_SAVE_RESULT, ReflectUtils.m8375a(cls, "effectSaveResult", Boolean.class));
+        map.put(CommandID.UPDATE_QUERY_EFFECT_USERINFO, ReflectUtils.loadMethod(cls, "updateQueryEffectUserInfo", AudioEffectUserResult.class));
+        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, ReflectUtils.loadMethod(cls, "updateSaveEffectToNetwork", AudioEffectAddResult.class));
+        map.put(CommandID.EFFECT_SAVE_RESULT, ReflectUtils.loadMethod(cls, "effectSaveResult", Boolean.class));
     }
 
     public void effectSaveResult(Boolean bool) {
@@ -205,7 +205,7 @@ public class AudioEffectFragmentActivity extends SlidingPagerActivity {
     private void handleRestAllAudioEffect() {
         //AudioEffectStatistic.m5252t();
         //SUserUtils.m4956a(SAction.ACTION_EFFECT_AJUST_RESET, SPage.PAGE_NONE);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_AUDIO_EFFECT_RESET, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_AUDIO_EFFECT_RESET, new Object[0]));
     }
 
     private void handleSaveToCloud() {

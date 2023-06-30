@@ -31,13 +31,13 @@ public abstract class BaseMusicFragment extends BaseFragment implements AbsListV
                         return;
                     case 14:
                         String str = (String) ((Hashtable) message.obj).get("code");
-                        if (FeedbackItem.STATUS_RECORDED.equals(str)) {
+                        if ("3".equals(str)) {
                             Toast.makeText(BaseMusicFragment.this.getActivity(), BaseMusicFragment.this.getString(R.string.cardisnotcmcc), Toast.LENGTH_SHORT).show();
                             return;
-                        } else if (FeedbackItem.STATUS_SOLVED.equals(str)) {
+                        } else if ("2".equals(str)) {
                             Toast.makeText(BaseMusicFragment.this.getActivity(), BaseMusicFragment.this.getString(R.string.pleasechecknetwork), Toast.LENGTH_SHORT).show();
                             return;
-                        } else if (CMMusicUtils.m7276a() && !FeedbackItem.STATUS_WAITING.equals(str)) {
+                        } else if (CMMusicUtils.m7276a() && !"0".equals(str)) {
                             CmMusicSdkInitCode.m7343a(BaseMusicFragment.this.getActivity());
                             return;
                         } else {

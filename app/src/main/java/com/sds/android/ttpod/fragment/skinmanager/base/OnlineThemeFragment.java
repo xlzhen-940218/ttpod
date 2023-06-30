@@ -20,11 +20,11 @@ public abstract class OnlineThemeFragment extends BaseThemeFragment {
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment
     protected void onThemeItemSelected(SkinItem skinItem) {
-        if (skinItem.m3575a() == 0) {
+        if (skinItem.getType() == 0) {
             checkSkinItem(skinItem);
-        } else if (4 == skinItem.m3575a() && !sDownloadingSkinMap.containsKey(getSkinInfoMapKey(skinItem))) {
-            doStatistic(skinItem.m3565g());
-            sLastDownloadThemeName = skinItem.m3565g();
+        } else if (4 == skinItem.getType() && !sDownloadingSkinMap.containsKey(getSkinInfoMapKey(skinItem))) {
+            doStatistic(skinItem.getTitle());
+            sLastDownloadThemeName = skinItem.getTitle();
             tryDownloadSkin(skinItem, false);
         }
     }
@@ -54,7 +54,7 @@ public abstract class OnlineThemeFragment extends BaseThemeFragment {
         @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment.C1761a
         /* renamed from: a */
         protected void mo5325a(SkinItem skinItem, ImageView imageView) {
-            String pictureUrl = skinItem.m3566f().getPictureUrl();
+            String pictureUrl = skinItem.getOnlineSkinItem().getPictureUrl();
             Bitmap bitmap = null;
             if (!OnlineThemeFragment.this.checkUpdateForSkin(skinItem)) {
                 bitmap = ImageCacheUtils.m4748a(skinItem.getPath(), this.f5552b, this.f5553c);
@@ -62,7 +62,7 @@ public abstract class OnlineThemeFragment extends BaseThemeFragment {
             if (bitmap != null) {
                 imageView.setImageBitmap(bitmap);
             } else {
-                ImageCacheUtils.m4752a(imageView, pictureUrl, this.f5552b, this.f5553c, (int) R.drawable.img_skin_default_thumbnail);
+                ImageCacheUtils.displayImage(imageView, pictureUrl, this.f5552b, this.f5553c, (int) R.drawable.img_skin_default_thumbnail);
             }
         }
 
@@ -76,16 +76,16 @@ public abstract class OnlineThemeFragment extends BaseThemeFragment {
 
         /* renamed from: d */
         private void m5323d(SkinItem skinItem) {
-            switch (skinItem.m3575a()) {
+            switch (skinItem.getType()) {
                 case 0:
                     if (!FileUtils.m8414b(skinItem.getPath())) {
-                        skinItem.m3574a(4);
+                        skinItem.setType(4);
                         return;
                     }
                     return;
                 case 4:
                     if (FileUtils.m8414b(skinItem.getPath())) {
-                        skinItem.m3574a(0);
+                        skinItem.setType(0);
                         return;
                     }
                     return;
@@ -99,7 +99,7 @@ public abstract class OnlineThemeFragment extends BaseThemeFragment {
     protected void updateSkinInfoForThemeName(String str, int i) {
         SkinItem skinItemForThemeName = getSkinItemForThemeName(str);
         if (skinItemForThemeName != null) {
-            skinItemForThemeName.m3574a(i);
+            skinItemForThemeName.setType(i);
         }
     }
 }

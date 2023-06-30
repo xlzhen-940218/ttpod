@@ -242,11 +242,11 @@ public class MyFragment extends BaseFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, ReflectUtils.m8375a(cls, "updateMediaLibraryChanged", String.class));
-        map.put(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, ReflectUtils.m8375a(cls, "pushFavoriteOnlineMediaListComplete", new Class[0]));
-        map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_DATABASE, ReflectUtils.m8375a(cls, "updateAddDownloadTaskDatabase", DownloadTaskInfo.class));
-        map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_LIST_DATABASE, ReflectUtils.m8375a(cls, "updateAddDownloadTaskListDatabase", List.class));
-        map.put(CommandID.USER_ADDED_FAVORITE_MEDIA, ReflectUtils.m8375a(cls, "userAddedFavoriteMedia", MediaItem.class));
+        map.put(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, ReflectUtils.loadMethod(cls, "updateMediaLibraryChanged", String.class));
+        map.put(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, ReflectUtils.loadMethod(cls, "pushFavoriteOnlineMediaListComplete", new Class[0]));
+        map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_DATABASE, ReflectUtils.loadMethod(cls, "updateAddDownloadTaskDatabase", DownloadTaskInfo.class));
+        map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_LIST_DATABASE, ReflectUtils.loadMethod(cls, "updateAddDownloadTaskListDatabase", List.class));
+        map.put(CommandID.USER_ADDED_FAVORITE_MEDIA, ReflectUtils.loadMethod(cls, "userAddedFavoriteMedia", MediaItem.class));
     }
 
     public void updateMediaLibraryChanged(String str) {

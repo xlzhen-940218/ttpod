@@ -65,7 +65,7 @@ public class MediaItemSearchActivity extends BaseSearchActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_MEDIA_LIST, ReflectUtils.m8375a(getClass(), "updateMediaList", String.class, List.class));
+        map.put(CommandID.UPDATE_MEDIA_LIST, ReflectUtils.loadMethod(getClass(), "updateMediaList", String.class, List.class));
     }
 
     public void updateMediaList(String str, List<MediaItem> list) {

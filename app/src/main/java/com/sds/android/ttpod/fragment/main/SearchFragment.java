@@ -20,7 +20,6 @@ import com.sds.android.ttpod.fragment.base.SlidingClosableFragment;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
@@ -136,7 +135,7 @@ public class SearchFragment extends SlidingClosableFragment {
         super.onThemeLoaded();
         if (isViewAccessAble() && this.mReloadTheme) {
             this.mReloadTheme = false;
-            ThemeManager.m3269a(this.mRootView, ThemeElement.BACKGROUND_MASK);
+            ThemeManager.m3269a(this.mRootView, "BackgroundMaskColor");
             this.mHotwordStateView.onThemeLoaded();
         }
     }
@@ -195,7 +194,7 @@ public class SearchFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SEARCH_HOT_WORDS_FINISHED, ReflectUtils.m8375a(SearchFragment.class, "updateSearchHotWords", List.class));
+        map.put(CommandID.UPDATE_SEARCH_HOT_WORDS_FINISHED, ReflectUtils.loadMethod(SearchFragment.class, "updateSearchHotWords", List.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
@@ -234,7 +233,7 @@ public class SearchFragment extends SlidingClosableFragment {
         HotWords hotWords = this.mHotwords.get(i);
         textView.setText(hotWords.getWord());
         view.setTag(hotWords.getWord());
-        ImageCacheUtils.m4751a((ImageView) view.findViewById(R.id.channel_img), hotWords.getPictureUrl(), DisplayUtils.getWidth() / 4, DisplayUtils.getWidth() / 4, (int) R.drawable.img_imageview_hotword_default_icon, (int) R.anim.scale_in);
+        ImageCacheUtils.displayImage((ImageView) view.findViewById(R.id.channel_img), hotWords.getPictureUrl(), DisplayUtils.getWidth() / 4, DisplayUtils.getWidth() / 4, (int) R.drawable.img_imageview_hotword_default_icon, (int) R.anim.scale_in);
     }
 
     /* JADX INFO: Access modifiers changed from: private */

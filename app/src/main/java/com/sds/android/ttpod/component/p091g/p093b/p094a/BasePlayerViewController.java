@@ -96,16 +96,16 @@ public abstract class BasePlayerViewController extends ViewEventController {
         }
         if (this.f4185c != null) {
             if (this.f4184b == null || this.f4184b.isInterrupted()) {
-                this.f4185c.setOnActiveListener(new LineVisualization.InterfaceC2008a() { // from class: com.sds.android.ttpod.component.g.b.a.a.1
+                this.f4185c.setOnActiveListener(new LineVisualization.OnActiveListener() { // from class: com.sds.android.ttpod.component.g.b.a.a.1
                     @Override // com.sds.android.ttpod.framework.modules.skin.view.LineVisualization.InterfaceC2008a
                     /* renamed from: a */
-                    public void mo3350a() {
+                    public void active() {
                         BasePlayerViewController.this.m6558B();
                     }
 
                     @Override // com.sds.android.ttpod.framework.modules.skin.view.LineVisualization.InterfaceC2008a
                     /* renamed from: b */
-                    public void mo3349b() {
+                    public void inactive() {
                     }
                 });
                 this.f4184b = new C1220a();

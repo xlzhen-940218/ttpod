@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ValueParser;
@@ -33,35 +33,35 @@ public class SSkinInfo implements Serializable {
     protected int loaderVersion;
 
     /* renamed from: i */
-    protected long f6486i;
+    protected long dateCreated;
 
     /* renamed from: a */
-    public String m3781a() {
+    public String getAuthor() {
         return this.author;
     }
 
     /* renamed from: b */
-    public String m3780b() {
+    public String getVersion() {
         return this.version;
     }
 
     /* renamed from: c */
-    public long m3779c() {
-        return this.f6486i;
+    public long getDateCreated() {
+        return this.dateCreated;
     }
 
     /* renamed from: d */
-    public String m3778d() {
+    public String getName() {
         return this.name;
     }
 
     /* renamed from: e */
-    public String m3777e() {
+    public String getEmail() {
         return this.email;
     }
 
     /* renamed from: f */
-    public String m3776f() {
+    public String getWebPage() {
         return this.webpage;
     }
 
@@ -72,7 +72,7 @@ public class SSkinInfo implements Serializable {
         this.email = null;
         this.webpage = null;
         this.loaderVersion = 0;
-        this.f6486i = 0L;
+        this.dateCreated = 0L;
         this.name = kXmlParser.getAttributeValue(null, "Name");
         this.author = kXmlParser.getAttributeValue(null, "Author");
         this.version = kXmlParser.getAttributeValue(null, "Ver");
@@ -90,7 +90,7 @@ public class SSkinInfo implements Serializable {
         this.email = null;
         this.webpage = null;
         this.loaderVersion = 0;
-        this.f6486i = 0L;
+        this.dateCreated = 0L;
         this.name = sSkinInfo.name;
         this.author = sSkinInfo.author;
         this.version = sSkinInfo.version;
@@ -98,6 +98,6 @@ public class SSkinInfo implements Serializable {
         this.webpage = sSkinInfo.webpage;
         this.loaderVersion = sSkinInfo.loaderVersion;
         this.background = sSkinInfo.background;
-        this.f6486i = sSkinInfo.f6486i;
+        this.dateCreated = sSkinInfo.dateCreated;
     }
 }

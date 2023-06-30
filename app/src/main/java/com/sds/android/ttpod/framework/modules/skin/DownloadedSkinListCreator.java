@@ -24,7 +24,7 @@ public class DownloadedSkinListCreator implements Runnable {
             arrayList = new ArrayList();
             for (File file : m4650a) {
                 SkinItem skinItem = new SkinItem(file.getAbsolutePath(), 0);
-                skinItem.m3573a(new SkinInfoLoader(skinItem.getPath()).m3576a());
+                skinItem.setSkinInfo(new SkinInfoLoader(skinItem.getPath()).m3576a());
                 arrayList.add(skinItem);
             }
         }

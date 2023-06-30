@@ -60,7 +60,7 @@ public class BoostFragment extends BaseFragment {
             BoostFragment.this.mImageLimit.toggle();
             BoostFragment.this.judgeEffectIsEdit();
             BoostFragment.this.mLimit = BoostFragment.this.mImageLimit.isChecked();
-            CommandCenter.getInstance().m4596b(new Command(CommandID.SET_BOOSTLIMIT_ENABLED, Boolean.valueOf(BoostFragment.this.mLimit)));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_BOOSTLIMIT_ENABLED, Boolean.valueOf(BoostFragment.this.mLimit)));
             if (!BoostFragment.this.mBoostAjust) {
                 BoostFragment.this.mBoostAjust = true;
                 //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_BOOST_CHANNEL_LIMIT, SPage.PAGE_AUDIO_BOOST, SPage.PAGE_NONE);
@@ -90,7 +90,7 @@ public class BoostFragment extends BaseFragment {
             BoostFragment.this.judgeEffectIsEdit();
             if (f != BoostFragment.this.mBalance) {
                 BoostFragment.this.mBalance = f;
-                CommandCenter.getInstance().m4605a(new Command(CommandID.SET_CHANNELBALANCE, Float.valueOf(f)), 10);
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_CHANNELBALANCE, Float.valueOf(f)), 10);
                 BoostFragment.this.judgeClickEffectBoostChanBalance();
             }
         }
@@ -122,7 +122,7 @@ public class BoostFragment extends BaseFragment {
 
         @Override // java.lang.Runnable
         public void run() {
-            CommandCenter.getInstance().m4596b(new Command(this.f4944a, Integer.valueOf(RadialProgressWidget.m1402c(this.f4945b))));
+            CommandCenter.getInstance().postInvokeResult(new Command(this.f4944a, Integer.valueOf(RadialProgressWidget.m1402c(this.f4945b))));
             if (this.f4944a == CommandID.SET_BASSBOOST) {
                 int unused = BoostFragment.mBass = this.f4945b;
                 BoostFragment.mBassQueue.remove(this);
@@ -142,7 +142,7 @@ public class BoostFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.m8375a(getClass(), "updateAudioEffectInfo", new Class[0]));
+        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.loadMethod(getClass(), "updateAudioEffectInfo", new Class[0]));
     }
 
     public void updateAudioEffectInfo() {

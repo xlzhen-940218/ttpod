@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.common.p082a.BaseDialog;
@@ -41,7 +42,7 @@ public class OfflineModeUtils {
             viewGroup.addView(findViewById, layoutParams);
         }
         findViewById.setVisibility(View.VISIBLE);
-        findViewById.setOnTouchListener(new View$OnTouchListenerC0637c(view));
+        findViewById.setOnTouchListener(new OfflineModeOnTouchListener(view));
         View finalFindViewById = findViewById;
         ((Button) findViewById.findViewById(R.id.button_offline_continue)).setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.a.p.1
             @Override // android.view.View.OnClickListener
@@ -116,37 +117,37 @@ public class OfflineModeUtils {
     /* compiled from: OfflineModeUtils.java */
     /* renamed from: com.sds.android.ttpod.a.p$c */
     /* loaded from: classes.dex */
-    public static class View$OnTouchListenerC0637c implements View.OnTouchListener {
+    public static class OfflineModeOnTouchListener implements View.OnTouchListener {
 
         /* renamed from: a */
-        private boolean f2511a = false;
+        private boolean moveAction = false;
 
         /* renamed from: b */
-        private View f2512b;
+        private View touchView;
 
-        public View$OnTouchListenerC0637c(View view) {
-            this.f2512b = view;
+        public OfflineModeOnTouchListener(View view) {
+            this.touchView = view;
         }
 
         @Override // android.view.View.OnTouchListener
         public boolean onTouch(View view, MotionEvent motionEvent) {
             switch (motionEvent.getAction()) {
-                case 0:
-                case 5:
-                    this.f2511a = false;
-                    return this.f2512b.onTouchEvent(motionEvent);
-                case 1:
-                case 3:
-                case 6:
-                    if (this.f2511a) {
-                        this.f2511a = false;
-                        return this.f2512b.onTouchEvent(motionEvent);
+                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_POINTER_DOWN:
+                    this.moveAction = false;
+                    return this.touchView.onTouchEvent(motionEvent);
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                case MotionEvent.ACTION_POINTER_UP:
+                    if (this.moveAction) {
+                        this.moveAction = false;
+                        return this.touchView.onTouchEvent(motionEvent);
                     }
                     return false;
-                case 2:
-                    this.f2511a = true;
-                    return this.f2512b.onTouchEvent(motionEvent);
-                case 4:
+                case MotionEvent.ACTION_MOVE:
+                    this.moveAction = true;
+                    return this.touchView.onTouchEvent(motionEvent);
+                case MotionEvent.ACTION_OUTSIDE:
                 default:
                     return false;
             }

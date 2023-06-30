@@ -96,7 +96,7 @@ public class LyricPictureSettingActivity extends SlidingClosableActivity {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new SettingItem(3, 0, (int) R.string.image_down_amount_2g, (CharSequence) Integer.toString(Preferences.m3004aC()), (int) R.string.icon_arrow_right, true));
         arrayList.add(new SettingItem(2, 0, (int) R.string.image_down_amount_wifi, (CharSequence) Integer.toString(Preferences.m3005aB()), (int) R.string.icon_arrow_right, true));
-        if (PlatformUtils.m4656a()) {
+        if (PlatformUtils.sdkThan14()) {
             arrayList.add(new CheckableSettingItem(4, 0, R.string.image_artist_play, 0, 0, Preferences.m3003aD()));
         }
         arrayList.add(new CheckableSettingItem(5, 0, R.string.show_inner_picture, 0, 0, Preferences.m3072E()));

@@ -3,7 +3,7 @@ package com.sds.android.ttpod.component.p091g.p092a;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SEvent;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SEvent;
 
 /* renamed from: com.sds.android.ttpod.component.g.a.f */
 /* loaded from: classes.dex */

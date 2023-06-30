@@ -20,7 +20,7 @@ public class SceneFactory {
         if (skinCache != null) {
             skinCache.m3581g();
             try {
-                CodeIdentifyInputStreamReader codeIdentifyInputStreamReader = new CodeIdentifyInputStreamReader(new ByteArrayInputStream(skinCache.m3584d("/scene.xml")));
+                CodeIdentifyInputStreamReader codeIdentifyInputStreamReader = new CodeIdentifyInputStreamReader(new ByteArrayInputStream(skinCache.loadTskResource("/scene.xml")));
                 KXmlParser kXmlParser = new KXmlParser();
                 kXmlParser.setInput(codeIdentifyInputStreamReader);
                 kXmlParser.nextTag();

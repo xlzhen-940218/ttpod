@@ -174,9 +174,9 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.UPDATE_SEARCH_LYRIC_STATE, ReflectUtils.m8375a(cls, "updateSearchLyricState", SearchStatus.class, List.class, String.class, Lyric.class));
-        map.put(CommandID.UPDATE_SEARCH_PICTURE_STATE, ReflectUtils.m8375a(cls, "updateSearchPictureState", SearchStatus.class, List.class, String.class, Bitmap.class));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_SEARCH_LYRIC_STATE, ReflectUtils.loadMethod(cls, "updateSearchLyricState", SearchStatus.class, List.class, String.class, Lyric.class));
+        map.put(CommandID.UPDATE_SEARCH_PICTURE_STATE, ReflectUtils.loadMethod(cls, "updateSearchPictureState", SearchStatus.class, List.class, String.class, Bitmap.class));
     }
 
     public void updateSearchPictureState(SearchStatus searchStatus, List<ResultData> list, String str, Bitmap bitmap) {
@@ -188,7 +188,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
             case SEARCH_ONLINE_FINISHED:
                 if (list != null && list.size() > 0) {
                     ResultData.Item item = list.get(0).getLyricArray()[0];
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_PICTURE, item.getUrl(), item.getLocalLyricPath(), this.mMediaItem));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.START_DOWNLOAD_SEARCH_PICTURE, item.getUrl(), item.getLocalLyricPath(), this.mMediaItem));
                     return;
                 }
                 return;
@@ -209,7 +209,7 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
                     return;
                 case SEARCH_ONLINE_FINISHED:
                     if (list != null && list.size() > 0) {
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, list.get(0).getLyricArray()[0], this.mMediaItem));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, list.get(0).getLyricArray()[0], this.mMediaItem));
                         return;
                     }
                     return;

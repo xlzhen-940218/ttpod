@@ -14,8 +14,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.FileOpenUtils;
 import java.lang.reflect.Method;
@@ -43,7 +41,7 @@ public class CompletedDownloadFragment extends DownloadTaskListFragment {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
-        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.m8375a(getClass(), "updateTaskState", DownloadTaskInfo.class));
+        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.loadMethod(getClass(), "updateTaskState", DownloadTaskInfo.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment
@@ -82,12 +80,12 @@ public class CompletedDownloadFragment extends DownloadTaskListFragment {
     public void deleteAllCompleted(boolean z) {
         //SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL_SURE, SPage.PAGE_NONE);
         clear();
-        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_ALL_FINISHED_DOWNLOAD_TASK, Integer.valueOf(this.mDownloadType), Boolean.valueOf(z)));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_ALL_FINISHED_DOWNLOAD_TASK, Integer.valueOf(this.mDownloadType), Boolean.valueOf(z)));
     }
 
     private void delete(DownloadTaskInfo downloadTaskInfo, boolean z) {
         removeTask(downloadTaskInfo);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, Boolean.valueOf(z)));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, Boolean.valueOf(z)));
     }
 
     private void setRing(DownloadTaskInfo downloadTaskInfo) {

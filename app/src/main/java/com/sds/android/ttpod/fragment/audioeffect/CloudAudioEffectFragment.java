@@ -141,7 +141,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
         this.mLayoutRoot.setSelected(true);
         this.mHeadPlaystatusView = (ImageView) this.mRootView.findViewById(R.id.head_playstatus);
         updatePlayView();
-        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_EFFECT_USERINFO, new Object[0]));
         this.mTitleLayer = (RelativeLayout) this.mRootView.findViewById(R.id.new_title);
         this.mTitleLayer.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.audioeffect.CloudAudioEffectFragment.2
             @Override // android.view.View.OnClickListener
@@ -197,7 +197,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
     }
 
     private void restoreCurrentEffect() {
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_AUDIO_EFFECT_RESET, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_AUDIO_EFFECT_RESET, new Object[0]));
         String title = this.mCurrentMediaItem.getTitle();
         String artist = this.mCurrentMediaItem.getArtist();
         TTPodUser m2954aq = Preferences.m2954aq();
@@ -222,7 +222,7 @@ public class CloudAudioEffectFragment extends BaseFragment {
         audioEffectCache.m4406b(System.currentTimeMillis());
         audioEffectCache.m4390g(this.mCurrentMediaItem.getLocalDataSource());
         LogUtils.debug("CloudAudioEffectFragment", "saveToLocal " + audioEffectCache);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SAVE_EFFECT, this.mCurrentMediaItem, audioEffectCache, false));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SAVE_EFFECT, this.mCurrentMediaItem, audioEffectCache, false));
     }
 
     public RecommandAudioEffectFragment getRecommandEffectFragment() {
@@ -272,11 +272,11 @@ public class CloudAudioEffectFragment extends BaseFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.m8375a(cls, "updatePlayMediaInfo", new Class[0]));
-        map.put(CommandID.UPDATE_QUERY_EFFECT_USERINFO, ReflectUtils.m8375a(cls, "updateQueryEffectUserInfo", AudioEffectUserResult.class));
-        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.m8375a(cls, "updateAudioEffectInfo", new Class[0]));
-        map.put(CommandID.UPDATE_MANUAL_SETTING_EFFECT, ReflectUtils.m8375a(cls, "updateManualSettingEffect", new Class[0]));
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.loadMethod(cls, "updatePlayMediaInfo", new Class[0]));
+        map.put(CommandID.UPDATE_QUERY_EFFECT_USERINFO, ReflectUtils.loadMethod(cls, "updateQueryEffectUserInfo", AudioEffectUserResult.class));
+        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.loadMethod(cls, "updateAudioEffectInfo", new Class[0]));
+        map.put(CommandID.UPDATE_MANUAL_SETTING_EFFECT, ReflectUtils.loadMethod(cls, "updateManualSettingEffect", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
     }
 
     public void updatePlayStatus(PlayStatus playStatus) {

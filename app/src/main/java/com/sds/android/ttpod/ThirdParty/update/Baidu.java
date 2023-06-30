@@ -187,7 +187,7 @@ public class Baidu implements UpdateInterface {
         if (mUpdateInfoMap != null) {
             Intent intent = new Intent("com.baidu.appsearch.extinvoker.LAUNCH");
             intent.putExtra("id", VersionUpdateConst.ID_BAIDU);
-            intent.putExtra("backop", FeedbackItem.STATUS_WAITING);
+            intent.putExtra("backop", "0");
             intent.putExtra("func", "11");
             Bundle bundle = new Bundle();
             String str = mUpdateInfoMap.get("sname");

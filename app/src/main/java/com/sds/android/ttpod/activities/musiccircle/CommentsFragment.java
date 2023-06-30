@@ -167,8 +167,8 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_COMMENT_ID_LIST_BY_POST_ID, ReflectUtils.m8375a(cls, "updateCommentIdList", IdListResult.class, String.class));
-        map.put(CommandID.UPDATE_COMMENT_INFO_LIST_BY_ID_LIST, ReflectUtils.m8375a(cls, "updateCommentsDetailsByPage", CommentListResult.class, String.class));
+        map.put(CommandID.UPDATE_COMMENT_ID_LIST_BY_POST_ID, ReflectUtils.loadMethod(cls, "updateCommentIdList", IdListResult.class, String.class));
+        map.put(CommandID.UPDATE_COMMENT_INFO_LIST_BY_ID_LIST, ReflectUtils.loadMethod(cls, "updateCommentsDetailsByPage", CommentListResult.class, String.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
@@ -284,7 +284,7 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
         this.mFooterLoadingViewForNextPage.onThemeLoaded();
         ThemeUtils.m8173a((IconTextView) this.mRootView.findViewById(R.id.comment_empty_icon), ThemeElement.COMMON_TITLE_TEXT);
         getActionBarController().onThemeLoaded();
-        ThemeManager.m3269a(this.mListView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mListView, "BackgroundMaskColor");
         ThemeManager.m3269a(this.mListView, ThemeElement.COMMON_SEPARATOR);
         this.mCommentAdapter.notifyDataSetChanged();
     }
@@ -456,7 +456,7 @@ public class CommentsFragment extends SlidingClosableFragment implements Emotico
                     CommentsFragment.this.gotoUserHome(C0782a.this.m7994b(i));
                 }
             });
-            ImageCacheUtils.m4752a(commentViewHolder.m7566a(), m7994b(i) == null ? "" : m7994b(i).getAvatarUrl(), commentViewHolder.m7566a().getWidth(), commentViewHolder.m7566a().getHeight(), (int) R.drawable.img_avatar_default);
+            ImageCacheUtils.displayImage(commentViewHolder.m7566a(), m7994b(i) == null ? "" : m7994b(i).getAvatarUrl(), commentViewHolder.m7566a().getWidth(), commentViewHolder.m7566a().getHeight(), (int) R.drawable.img_avatar_default);
         }
 
         /* renamed from: b */

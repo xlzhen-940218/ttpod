@@ -11,7 +11,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.util.StateSet;
-import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
+
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.framework.modules.skin.SkinCache;
@@ -37,77 +37,78 @@ public class ThemeFramework {
     public static abstract class AbstractC2016e {
 
         /* renamed from: a */
-        public static final String[] f6949a = {"LEFT_RIGHT", "TOP_BOTTOM", "RIGHT_LEFT", "BOTTOM_TOP", "TL_BR", "BL_TR", "TR_BL", "BR_TL"};
+        public static final String[] ORIENTATION = {"LEFT_RIGHT"
+                , "TOP_BOTTOM", "RIGHT_LEFT", "BOTTOM_TOP", "TL_BR", "BL_TR", "TR_BL", "BR_TL"};
 
         /* renamed from: b */
-        protected String f6950b;
+        protected String id;
 
         /* renamed from: c */
-        protected Drawable f6951c;
+        protected Drawable wildCardDrawable;
 
         /* renamed from: d */
-        protected Drawable f6952d;
+        protected Drawable selectedDrawable;
 
         /* renamed from: e */
         protected Drawable f6953e;
 
         /* renamed from: f */
-        protected int f6954f;
+        protected int width;
 
         /* renamed from: g */
-        protected int f6955g;
+        protected int height;
 
         /* renamed from: h */
-        protected int f6956h;
+        protected int cornerRadius;
 
         /* renamed from: i */
-        protected int f6957i;
+        protected int padding;
 
-        public AbstractC2016e(String str) {
-            this.f6950b = str;
+        public AbstractC2016e(String id) {
+            this.id = id;
         }
 
         /* renamed from: a */
         public void mo3290a() {
-            this.f6951c = null;
-            this.f6952d = null;
+            this.wildCardDrawable = null;
+            this.selectedDrawable = null;
             this.f6953e = null;
         }
 
         /* renamed from: c */
-        public Drawable m3289c() {
-            return this.f6951c;
+        public Drawable getWildCardDrawable() {
+            return this.wildCardDrawable;
         }
 
         /* renamed from: d */
-        public Drawable m3288d() {
-            return this.f6952d;
+        public Drawable getSelectedDrawable() {
+            return this.selectedDrawable;
         }
 
         /* renamed from: e */
-        public int m3287e() {
-            return this.f6954f;
+        public int getWidth() {
+            return this.width;
         }
 
         /* renamed from: f */
-        public int m3286f() {
-            return this.f6955g;
+        public int getHeight() {
+            return this.height;
         }
 
         /* renamed from: g */
-        public int m3285g() {
-            return this.f6956h;
+        public int getCornerRadius() {
+            return this.cornerRadius;
         }
 
         /* renamed from: h */
-        public int m3284h() {
-            return this.f6957i;
+        public int getPadding() {
+            return this.padding;
         }
 
         /* renamed from: b */
         public Object mo3277b() {
             if (this.f6953e == null) {
-                if (this.f6952d != null && this.f6951c != null) {
+                if (this.selectedDrawable != null && this.wildCardDrawable != null) {
                     this.f6953e = m3283i();
                 } else {
                     this.f6953e = m3282j();
@@ -119,19 +120,19 @@ public class ThemeFramework {
         /* renamed from: i */
         private Drawable m3283i() {
             StateListDrawable stateListDrawable = new StateListDrawable();
-            stateListDrawable.addState(new int[]{16842919}, this.f6952d);
-            stateListDrawable.addState(new int[]{16842913}, this.f6952d);
-            stateListDrawable.addState(StateSet.WILD_CARD, this.f6951c);
+            stateListDrawable.addState(new int[]{16842919}, this.selectedDrawable);
+            stateListDrawable.addState(new int[]{16842913}, this.selectedDrawable);
+            stateListDrawable.addState(StateSet.WILD_CARD, this.wildCardDrawable);
             return stateListDrawable;
         }
 
         /* renamed from: j */
         private Drawable m3282j() {
-            if (this.f6951c != null) {
-                return this.f6951c;
+            if (this.wildCardDrawable != null) {
+                return this.wildCardDrawable;
             }
-            if (this.f6952d != null) {
-                return this.f6952d;
+            if (this.selectedDrawable != null) {
+                return this.selectedDrawable;
             }
             return null;
         }
@@ -140,14 +141,14 @@ public class ThemeFramework {
     /* compiled from: ThemeFramework.java */
     /* renamed from: com.sds.android.ttpod.framework.modules.theme.b$c */
     /* loaded from: classes.dex */
-    public static class C2014c extends AbstractC2016e {
-        public C2014c(String str) {
+    public static class ColorTheme extends AbstractC2016e {
+        public ColorTheme(String str) {
             super(str);
         }
 
         /* renamed from: c */
         private int m3300c(String str) {
-            return m3299d(str);
+            return dp2px(str);
         }
 
         /* renamed from: a */
@@ -193,35 +194,35 @@ public class ThemeFramework {
         public void m3302a(XmlPullParser xmlPullParser) {
             int attributeCount = xmlPullParser.getAttributeCount();
             GradientDrawable.Orientation orientation = GradientDrawable.Orientation.LEFT_RIGHT;
-            List<Integer> list = null;
+            List<Integer> normal = null;
             for (int i = 0; i < attributeCount; i++) {
                 String attributeName = xmlPullParser.getAttributeName(i);
                 String attributeValue = xmlPullParser.getAttributeValue(i);
                 if ("ID".equals(attributeName)) {
-                    this.f6950b = attributeValue;
+                    this.id = attributeValue;
                 } else if ("Normal".equals(attributeName)) {
-                    list = m3298e(attributeValue);
+                    normal = stringToIntArray(attributeValue);
                 } else if ("Selected".equals(attributeName)) {
-                    this.f6952d = new ColorDrawable(m3304a(attributeValue));
+                    this.selectedDrawable = new ColorDrawable(m3304a(attributeValue));
                 } else if ("Width".equals(attributeName)) {
-                    this.f6954f = m3299d(attributeValue);
+                    this.width = dp2px(attributeValue);
                 } else if ("Height".equals(attributeName)) {
-                    this.f6955g = m3299d(attributeValue);
+                    this.height = dp2px(attributeValue);
                 } else if ("Orientation".equals(attributeName)) {
-                    orientation = GradientDrawable.Orientation.valueOf(f6949a[Integer.parseInt(attributeValue)]);
+                    orientation = GradientDrawable.Orientation.valueOf(ORIENTATION[Integer.parseInt(attributeValue)]);
                 } else if ("CornerRadius".equals(attributeName)) {
-                    this.f6956h = m3299d(attributeValue);
+                    this.cornerRadius = dp2px(attributeValue);
                 } else if ("Padding".equals(attributeName)) {
-                    this.f6957i = m3300c(attributeValue);
+                    this.padding = m3300c(attributeValue);
                 }
             }
-            this.f6951c = m3303a(list, orientation);
+            this.wildCardDrawable = m3303a(normal, orientation);
         }
 
         @Override // com.sds.android.ttpod.framework.modules.theme.ThemeFramework.AbstractC2016e
         /* renamed from: b */
         public Object mo3277b() {
-            if (ThemeElement.isTextElementId(this.f6950b)) {
+            if (ThemeElement.isTextElementId(this.id)) {
                 return m3297i();
             }
             return super.mo3277b();
@@ -229,19 +230,19 @@ public class ThemeFramework {
 
         /* renamed from: i */
         private ColorStateList m3297i() {
-            if (this.f6952d != null && this.f6951c != null) {
-                return new ColorStateList(new int[][]{new int[]{16842919}, new int[]{16842913}, StateSet.WILD_CARD}, new int[]{ThemeManager.m3272a((ColorDrawable) this.f6952d), ThemeManager.m3272a((ColorDrawable) this.f6952d), ThemeManager.m3272a((ColorDrawable) this.f6951c)});
+            if (this.selectedDrawable != null && this.wildCardDrawable != null) {
+                return new ColorStateList(new int[][]{new int[]{16842919}, new int[]{16842913}, StateSet.WILD_CARD}, new int[]{ThemeManager.m3272a((ColorDrawable) this.selectedDrawable), ThemeManager.m3272a((ColorDrawable) this.selectedDrawable), ThemeManager.m3272a((ColorDrawable) this.wildCardDrawable)});
             }
-            if (this.f6951c == null) {
+            if (this.wildCardDrawable == null) {
                 return null;
             }
-            return new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{ThemeManager.m3272a((ColorDrawable) this.f6951c)});
+            return new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{ThemeManager.m3272a((ColorDrawable) this.wildCardDrawable)});
         }
 
         /* renamed from: d */
-        private int m3299d(String str) {
+        private int dp2px(String dp) {
             try {
-                return DisplayUtils.dp2px(Integer.parseInt(str));
+                return DisplayUtils.dp2px(Integer.parseInt(dp));
             } catch (NumberFormatException e) {
                 e.printStackTrace();
                 return -2;
@@ -249,19 +250,19 @@ public class ThemeFramework {
         }
 
         /* renamed from: a */
-        protected Drawable m3303a(List<Integer> list, GradientDrawable.Orientation orientation) {
+        protected Drawable m3303a(List<Integer> normalList, GradientDrawable.Orientation orientation) {
             int i = 0;
-            if (list == null) {
+            if (normalList == null) {
                 return null;
             }
-            if (1 == list.size()) {
-                return new ColorDrawable(list.get(0).intValue());
+            if (1 == normalList.size()) {
+                return new ColorDrawable(normalList.get(0).intValue());
             }
-            int[] iArr = new int[list.size()];
+            int[] iArr = new int[normalList.size()];
             while (true) {
                 int i2 = i;
-                if (i2 < list.size()) {
-                    iArr[i2] = list.get(i2).intValue();
+                if (i2 < normalList.size()) {
+                    iArr[i2] = normalList.get(i2).intValue();
                     i = i2 + 1;
                 } else {
                     return new GradientDrawable(orientation, iArr);
@@ -270,7 +271,7 @@ public class ThemeFramework {
         }
 
         /* renamed from: e */
-        private List<Integer> m3298e(String str) {
+        private List<Integer> stringToIntArray(String str) {
             String[] split = str.split(",");
             ArrayList arrayList = new ArrayList();
             for (String str2 : split) {
@@ -295,10 +296,10 @@ public class ThemeFramework {
             this(str, bitmap, null);
         }
 
-        public C2017f(String str, Bitmap bitmap, Bitmap bitmap2) {
-            super(str);
-            this.f6951c = m3279a(str, bitmap);
-            this.f6952d = m3279a(str, bitmap2);
+        public C2017f(String srcName, Bitmap bitmap, Bitmap bitmap2) {
+            super(srcName);
+            this.wildCardDrawable = bitmapToDrawable(srcName, bitmap);
+            this.selectedDrawable = bitmapToDrawable(srcName, bitmap2);
         }
 
         /* renamed from: a */
@@ -336,27 +337,27 @@ public class ThemeFramework {
 
         /* renamed from: j */
         private static String m3274j() {
-            String m7221g = DisplayUtils.getDpiName();
-            if ("_xhdpi".equals(m7221g)) {
-                return m7221g + (((double) DisplayUtils.getDensity()) > 2.0d ? FeedbackItem.STATUS_SOLVED : "1");
+            String dpiName = DisplayUtils.getDpiName();
+            if ("_xhdpi".equals(dpiName)) {
+                return dpiName + (((double) DisplayUtils.getDensity()) > 2.0d ? "2" : "1");
             }
-            return m7221g;
+            return dpiName;
         }
 
         /* renamed from: a */
-        protected Drawable m3279a(String str, Bitmap bitmap) {
+        protected Drawable bitmapToDrawable(String srcName, Bitmap bitmap) {
             if (bitmap == null) {
                 return null;
             }
             Resources resources = BaseApplication.getApplication().getResources();
-            if (m3281a(bitmap)) {
-                return new NinePatchDrawable(resources, new NinePatch(bitmap, bitmap.getNinePatchChunk(), str));
+            if (getNinePatchChunk(bitmap)) {
+                return new NinePatchDrawable(resources, new NinePatch(bitmap, bitmap.getNinePatchChunk(), srcName));
             }
             return new BitmapDrawable(resources, bitmap);
         }
 
         /* renamed from: a */
-        protected boolean m3281a(Bitmap bitmap) {
+        protected boolean getNinePatchChunk(Bitmap bitmap) {
             byte[] ninePatchChunk = bitmap.getNinePatchChunk();
             return ninePatchChunk != null && NinePatch.isNinePatchChunk(ninePatchChunk);
         }
@@ -397,19 +398,19 @@ public class ThemeFramework {
         /* renamed from: a */
         public void m3322a(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException {
             int eventType = xmlPullParser.getEventType();
-            C2014c c2014c = null;
+            ColorTheme colorTheme = null;
             do {
                 String name = xmlPullParser.getName();
-                String attributeValue = xmlPullParser.getAttributeValue(null, "ID");
+                String id = xmlPullParser.getAttributeValue(null, "ID");
                 if (2 == eventType) {
                     if ("Color".equals(name)) {
-                        c2014c = new C2014c(attributeValue);
-                        c2014c.m3302a(xmlPullParser);
+                        colorTheme = new ColorTheme(id);
+                        colorTheme.m3302a(xmlPullParser);
                     }
                 } else if (3 == eventType) {
                     if ("Color".equals(xmlPullParser.getName())) {
-                        if (c2014c != null) {
-                            this.f6937j.put(c2014c.f6950b, c2014c);
+                        if (colorTheme != null) {
+                            this.f6937j.put(colorTheme.id, colorTheme);
                         }
                     } else {
                         return;
@@ -441,16 +442,16 @@ public class ThemeFramework {
     public static class C2015d {
 
         /* renamed from: a */
-        protected String f6944a;
+        protected String statusBar;
 
         /* renamed from: c */
-        protected String f6946c;
+        protected String backgroundImage;
 
         /* renamed from: d */
-        protected String f6947d;
+        protected String homeBackgroundBlur;
 
         /* renamed from: b */
-        protected ColorDrawable f6945b = null;
+        protected ColorDrawable backgroundMaskColor = null;
 
         /* renamed from: e */
         private HashMap<String, C2012a> f6948e = new HashMap<>();
@@ -482,11 +483,11 @@ public class ThemeFramework {
                     do {
                         if (2 == eventType) {
                             String name = newPullParser.getName();
-                            String attributeValue = newPullParser.getAttributeValue(null, "ID");
+                            String id = newPullParser.getAttributeValue(null, "ID");
                             if (name.equals("View")) {
-                                m3294a(newPullParser);
-                            } else if (name.equals("Panel") && (m3293a = m3293a(newPullParser, attributeValue)) != null) {
-                                this.f6948e.put(attributeValue, m3293a);
+                                loadXml(newPullParser);
+                            } else if (name.equals("Panel") && (m3293a = m3293a(newPullParser, id)) != null) {
+                                this.f6948e.put(id, m3293a);
                             }
                         }
                         try {
@@ -507,26 +508,26 @@ public class ThemeFramework {
 
         /* renamed from: c */
         ColorDrawable m3291c() {
-            if (this.f6945b != null) {
-                return (ColorDrawable) this.f6945b.getConstantState().newDrawable();
+            if (this.backgroundMaskColor != null) {
+                return (ColorDrawable) this.backgroundMaskColor.getConstantState().newDrawable();
             }
             return null;
         }
 
         /* renamed from: a */
-        private void m3294a(XmlPullParser xmlPullParser) {
+        private void loadXml(XmlPullParser xmlPullParser) {
             int attributeCount = xmlPullParser.getAttributeCount();
             for (int i = 0; i < attributeCount; i++) {
                 String attributeName = xmlPullParser.getAttributeName(i);
                 String attributeValue = xmlPullParser.getAttributeValue(i);
-                if (ThemeElement.STATUS_BAR_MODE.equals(attributeName)) {
-                    this.f6944a = attributeValue;
-                } else if (ThemeElement.BACKGROUND_MASK.equals(attributeName)) {
-                    this.f6945b = new ColorDrawable(C2014c.m3304a(attributeValue));
+                if ("StatusBar".equals(attributeName)) {
+                    this.statusBar = attributeValue;
+                } else if ("BackgroundMaskColor".equals(attributeName)) {
+                    this.backgroundMaskColor = new ColorDrawable(ColorTheme.m3304a(attributeValue));
                 } else if ("BackgroundImage".equals(attributeName)) {
-                    this.f6946c = attributeValue;
+                    this.backgroundImage = attributeValue;
                 } else if ("HomeBackgroundBlur".equals(attributeName)) {
-                    this.f6947d = attributeName;
+                    this.homeBackgroundBlur = attributeName;
                 }
             }
         }
@@ -564,7 +565,7 @@ public class ThemeFramework {
         private SkinCache f6941d;
 
         /* renamed from: a */
-        private List<String> f6938a = new ArrayList();
+        private List<String> pngList = new ArrayList();
 
         /* renamed from: e */
         private HashMap<String, C2017f> f6942e = new HashMap<>();
@@ -588,7 +589,7 @@ public class ThemeFramework {
                 inputStream = null;
             } else {
                 try {
-                    inputStream = new ByteArrayInputStream(skinCache.m3584d("/theme.xml"));
+                    inputStream = new ByteArrayInputStream(skinCache.loadTskResource("/theme.xml"));
                 } catch (Exception e) {
                     inputStream = null;
                 }
@@ -629,8 +630,8 @@ public class ThemeFramework {
                 this.f6940c.m3292b();
                 this.f6940c = null;
             }
-            this.f6938a.clear();
-            this.f6938a = null;
+            this.pngList.clear();
+            this.pngList = null;
             this.f6942e.clear();
             this.f6942e = null;
             this.f6941d.clear();
@@ -703,7 +704,7 @@ public class ThemeFramework {
 
         /* renamed from: b */
         boolean m3315b(String str) {
-            return this.f6938a != null && this.f6938a.contains(str);
+            return this.pngList != null && this.pngList.contains(str);
         }
 
         /* renamed from: e */
@@ -719,7 +720,7 @@ public class ThemeFramework {
                     return "Content";
                 }
                 return str2;
-            } else if (str.equals(ThemeElement.PANEL_TOP_BAR)) {
+            } else if (str.equals("TopBar")) {
                 if (str2.equals("Text")) {
                     return "TitleText";
                 }
@@ -727,7 +728,7 @@ public class ThemeFramework {
                     return "SubTitleText";
                 }
                 if (str2.equals("Background")) {
-                    return ThemeElement.PANEL_TOP_BAR;
+                    return "TopBar";
                 }
                 return str2;
             } else if (str.equals(ThemeElement.PANEL_SUB_BAR)) {
@@ -781,7 +782,7 @@ public class ThemeFramework {
 
         /* renamed from: f */
         private String m3305f(String str, String str2) {
-            if (str.equals(ThemeElement.PANEL_TOP_BAR)) {
+            if (str.equals("TopBar")) {
                 if (str2.equals("Background")) {
                     return "top_bar_bkg";
                 }
@@ -849,14 +850,14 @@ public class ThemeFramework {
 
         /* renamed from: d */
         private void m3310d() {
-            Iterable<String> m3583e = this.f6941d.m3583e();
+            Iterable<String> m3583e = this.f6941d.getPackHandle();
             if (m3583e != null) {
                 for (String str : m3583e) {
                     if (str.endsWith(".png")) {
                         if (str.startsWith("/")) {
                             str = str.substring(1);
                         }
-                        this.f6938a.add(str);
+                        this.pngList.add(str);
                     }
                 }
             }
@@ -868,7 +869,7 @@ public class ThemeFramework {
             try {
                 for (String str2 : BaseApplication.getApplication().getAssets().list(str)) {
                     if (str2.endsWith(".png")) {
-                        this.f6938a.add(str2);
+                        this.pngList.add(str2);
                     }
                 }
             } catch (IOException e) {

@@ -111,10 +111,10 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_SEARCH_PICTURE_STATE, ReflectUtils.m8375a(cls, "loadPictureAfterSearchFinished", SearchStatus.class, List.class, String.class, Bitmap.class));
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "updatePlayMeta", new Class[0]));
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.UPDATE_SEARCH_LYRIC_STATE, ReflectUtils.m8375a(cls, "updateSearchLyricState", SearchStatus.class, List.class, String.class, Lyric.class));
+        map.put(CommandID.UPDATE_SEARCH_PICTURE_STATE, ReflectUtils.loadMethod(cls, "loadPictureAfterSearchFinished", SearchStatus.class, List.class, String.class, Bitmap.class));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "updatePlayMeta", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_SEARCH_LYRIC_STATE, ReflectUtils.loadMethod(cls, "updateSearchLyricState", SearchStatus.class, List.class, String.class, Lyric.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

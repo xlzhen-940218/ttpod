@@ -73,7 +73,7 @@ public class SkinCategoryDetailFragment extends ActionBarThemeListFragment {
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.ActionBarThemeListFragment, com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.REQUEST_PAGED_SKIN_LIST_FINISHED, ReflectUtils.m8375a(getClass(), "updateDataListForAdapter", OnlinePagedSkinListResult.class));
+        map.put(CommandID.REQUEST_PAGED_SKIN_LIST_FINISHED, ReflectUtils.loadMethod(getClass(), "updateDataListForAdapter", OnlinePagedSkinListResult.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment
@@ -115,7 +115,7 @@ public class SkinCategoryDetailFragment extends ActionBarThemeListFragment {
                         next.setSkinUrl("http://api.skin.ttpod.com/skin/apiSkin/download?id=" + next.getId());
                         SkinItem skinItem = new SkinItem(next);
                         if (FileUtils.m8419a(skinItem.getPath())) {
-                            skinItem.m3574a(0);
+                            skinItem.setType(0);
                         }
                         arrayList.add(skinItem);
                     }
@@ -159,7 +159,7 @@ public class SkinCategoryDetailFragment extends ActionBarThemeListFragment {
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.ActionBarThemeListFragment, com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        ThemeManager.m3269a(this.mFooterView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mFooterView, "BackgroundMaskColor");
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment

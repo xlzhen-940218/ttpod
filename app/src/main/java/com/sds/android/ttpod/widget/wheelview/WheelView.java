@@ -21,7 +21,7 @@ import java.util.List;
 public class WheelView extends View {
 
     /* renamed from: a */
-    private static final int[] f8409a = {-1, -1996488705, ViewCompat.MEASURED_SIZE_MASK};
+    private static final int[] f8409a = {-1, -1996488705, 0x00ffffff};
 
     /* renamed from: b */
     private int f8410b;

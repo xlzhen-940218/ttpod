@@ -45,7 +45,7 @@ public class MediaScanWifiActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, ReflectUtils.m8375a(MediaScanWifiActivity.class, "updateWifiTransmissionState", CommonResult.class));
+        map.put(CommandID.UPDATE_WIFI_TRANSMISSION_STATE, ReflectUtils.loadMethod(MediaScanWifiActivity.class, "updateWifiTransmissionState", CommonResult.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

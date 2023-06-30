@@ -25,7 +25,7 @@ public class SoundSearchHistoryActivity extends SoundSearchMediaListActivity {
         new SoundSearchHistory(new OnLoadListener<List<SoundSearchInfo>>() { // from class: com.sds.android.ttpod.activities.soundsearch.SoundSearchHistoryActivity.1
             @Override // com.sds.android.ttpod.framework.modules.p122d.OnLoadListener
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo4086a(List<SoundSearchInfo> list) {
+            public void loaded(List<SoundSearchInfo> list) {
                 SoundSearchInfo[] soundSearchInfoArr = new SoundSearchInfo[list.size()];
                 int size = list.size();
                 for (int i = 0; i < size; i++) {

@@ -1,7 +1,7 @@
 package com.sds.android.ttpod.component.p091g.p092a;
 
-import com.sds.android.ttpod.framework.modules.skin.p129b.SEvent;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SMotion;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SEvent;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SMotion;
 import java.util.ArrayList;
 import java.util.Iterator;
 

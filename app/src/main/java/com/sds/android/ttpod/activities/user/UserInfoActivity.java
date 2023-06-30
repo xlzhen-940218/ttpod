@@ -181,12 +181,12 @@ public class UserInfoActivity extends SlidingClosableActivity {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.MODIFY_NICKNAME_FINISHED, ReflectUtils.m8375a(cls, "modifyNickNameFinished", CommonResult.class));
-        map.put(CommandID.MODIFY_USER_EMAIL_FINISHED, ReflectUtils.m8375a(cls, "modifyUserEmailFinished", CommonResult.class));
-        map.put(CommandID.MODIFY_PASSWORD_FINISHED, ReflectUtils.m8375a(cls, "modifyPasswordFinished", CommonResult.class));
-        map.put(CommandID.MODIFY_COVER_FINISHED, ReflectUtils.m8375a(cls, "modifyCoverFinished", CommonResult.class));
-        map.put(CommandID.MODIFY_AVATAR_FINISHED, ReflectUtils.m8375a(cls, "modifyAvatarFinished", CommonResult.class));
-        map.put(CommandID.REFRESH_INFORMATION_FINISHED, ReflectUtils.m8375a(cls, "refreshInformationFinished", new Class[0]));
+        map.put(CommandID.MODIFY_NICKNAME_FINISHED, ReflectUtils.loadMethod(cls, "modifyNickNameFinished", CommonResult.class));
+        map.put(CommandID.MODIFY_USER_EMAIL_FINISHED, ReflectUtils.loadMethod(cls, "modifyUserEmailFinished", CommonResult.class));
+        map.put(CommandID.MODIFY_PASSWORD_FINISHED, ReflectUtils.loadMethod(cls, "modifyPasswordFinished", CommonResult.class));
+        map.put(CommandID.MODIFY_COVER_FINISHED, ReflectUtils.loadMethod(cls, "modifyCoverFinished", CommonResult.class));
+        map.put(CommandID.MODIFY_AVATAR_FINISHED, ReflectUtils.loadMethod(cls, "modifyAvatarFinished", CommonResult.class));
+        map.put(CommandID.REFRESH_INFORMATION_FINISHED, ReflectUtils.loadMethod(cls, "refreshInformationFinished", new Class[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

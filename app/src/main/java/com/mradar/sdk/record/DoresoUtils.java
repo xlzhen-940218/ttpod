@@ -47,7 +47,7 @@ public class DoresoUtils {
         hashMap.put("deviceId", m8984g(context));
         hashMap.put("device_model", m8995a());
         hashMap.put("device_os", m8990b());
-        hashMap.put("pre_recorder", MRadarSdk.IsAdvance ? "1" : FeedbackItem.STATUS_WAITING);
+        hashMap.put("pre_recorder", MRadarSdk.IsAdvance ? "1" : "0");
         hashMap.put("app_version", m8985f(context));
         if (MRadarSdk.IsLocation) {
             hashMap.put("coordinate", m8987d(context));

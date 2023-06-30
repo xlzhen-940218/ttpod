@@ -239,7 +239,7 @@ public class SqliteStorageImpl extends SqliteStorage {
             Object value = entry.getValue();
             if (value instanceof Boolean) {
                 int i3 = i2 + 1;
-                strArr[i2] = ((Boolean) value).booleanValue() ? "1" : FeedbackItem.STATUS_WAITING;
+                strArr[i2] = ((Boolean) value).booleanValue() ? "1" : "0";
                 i = i3;
             } else {
                 i = i2 + 1;

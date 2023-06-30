@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -36,7 +36,7 @@ public class SLyricShow extends SText {
     private int fontColorUpSelected;
 
     /* renamed from: z */
-    private int strokeCOlor;
+    private int strokeColor;
 
     public SLyricShow(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, HashMap<String, SFont> hashMap2, int i) {
         super(kXmlParser, hashMap, hashMap2, i);
@@ -44,7 +44,7 @@ public class SLyricShow extends SText {
         this.fadeColor = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FadeColor"), 0);
         this.fontColorUp = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontColorUp"), 0);
         this.fontColorUpSelected = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "FontColorUpSelected"), 0);
-        this.strokeCOlor = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "StrokeColor"), 0);
+        this.strokeColor = ValueParser.parseColor(kXmlParser.getAttributeValue(null, "StrokeColor"), 0);
         String fadeEdge = kXmlParser.getAttributeValue(null, "FadeEdge");
         if (fadeEdge != null) {
             if (fadeEdge.contains("Vertical")) {
@@ -99,10 +99,10 @@ public class SLyricShow extends SText {
             } else {
                 lyricView.setMtvGradient(false);
             }
-            if (this.strokeCOlor == 0) {
+            if (this.strokeColor == 0) {
                 lyricView.setMtvStroke(false);
             } else {
-                lyricView.setColorStrokeNormal(this.strokeCOlor);
+                lyricView.setColorStrokeNormal(this.strokeColor);
             }
             lyricView.setMtvOrSingle();
         } else if ("Single".equalsIgnoreCase(this.mode)) {

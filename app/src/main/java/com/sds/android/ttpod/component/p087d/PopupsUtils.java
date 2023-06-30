@@ -291,11 +291,11 @@ public class PopupsUtils {
             @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
             /* renamed from: a */
             public void mo5409a(final ActionItem actionItem, int i) {
-                TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Object, Integer>(null) { // from class: com.sds.android.ttpod.component.d.d.16.1
+                TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Object, Integer>(null) { // from class: com.sds.android.ttpod.component.d.d.16.1
                     /* JADX INFO: Access modifiers changed from: protected */
                     @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
                     /* renamed from: c */
-                    public Integer mo1981a(Object obj) {
+                    public Integer inBackground(Object obj) {
                         int m8247a;
                         String localDataSource = mediaItem.getLocalDataSource();
                         if (localDataSource == null) {
@@ -467,11 +467,11 @@ public class PopupsUtils {
                     //SUserUtils.m4956a(SAction.ACTION_SETTING_CLEAR_CACHE_CLEAR, SPage.PAGE_NONE);
                     //LocalStatistic.m5089q();
                     PopupsUtils.m6744a(context, (int) R.string.cleaning_cache, false, false);
-                    TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<List<CheckableActionItem>, Boolean>(m6813e) { // from class: com.sds.android.ttpod.component.d.d.20.1
+                    TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<List<CheckableActionItem>, Boolean>(m6813e) { // from class: com.sds.android.ttpod.component.d.d.20.1
                         /* JADX INFO: Access modifiers changed from: protected */
                         @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
                         /* renamed from: a  reason: avoid collision after fix types in other method */
-                        public Boolean mo1981a(List<CheckableActionItem> list) {
+                        public Boolean inBackground(List<CheckableActionItem> list) {
                             boolean z2;
                             int size = list.size();
                             int i = 0;
@@ -979,7 +979,7 @@ public class PopupsUtils {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(mediaItem);
                     if (moreOptionalDialog.m6817e()) {
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, arrayList));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, arrayList));
                     }
                     if (moreOptionalDialog.m6819c()) {
                         CommandCenter.getInstance().execute(new Command(CommandID.DELETE_PICTURE, arrayList));
@@ -1035,7 +1035,7 @@ public class PopupsUtils {
     public static void m6707b(Collection<MediaItem> collection) {
         ArrayList arrayList = new ArrayList();
         arrayList.addAll(collection);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, arrayList));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, arrayList));
     }
 
     /* renamed from: a */

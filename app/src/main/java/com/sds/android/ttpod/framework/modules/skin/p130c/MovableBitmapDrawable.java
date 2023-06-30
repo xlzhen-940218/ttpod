@@ -20,10 +20,10 @@ public class MovableBitmapDrawable extends BitmapDrawable {
     private final Rect f6531c;
 
     /* renamed from: d */
-    private int f6532d;
+    private int height;
 
     /* renamed from: e */
-    private int f6533e;
+    private int width;
 
     /* renamed from: f */
     private boolean f6534f;
@@ -38,8 +38,8 @@ public class MovableBitmapDrawable extends BitmapDrawable {
         this.f6530b = 0;
         this.f6531c = new Rect();
         this.f6534f = false;
-        this.f6532d = super.getIntrinsicHeight();
-        this.f6533e = super.getIntrinsicWidth();
+        this.height = super.getIntrinsicHeight();
+        this.width = super.getIntrinsicWidth();
         this.f6534f = z;
     }
 
@@ -49,25 +49,25 @@ public class MovableBitmapDrawable extends BitmapDrawable {
         int intrinsicWidth = super.getIntrinsicWidth();
         int intrinsicHeight = super.getIntrinsicHeight();
         float max = Math.max(rect.width() / intrinsicWidth, rect.height() / intrinsicHeight);
-        this.f6533e = (int) (intrinsicWidth * max);
-        this.f6532d = (int) (max * intrinsicHeight);
+        this.width = (int) (intrinsicWidth * max);
+        this.height = (int) (max * intrinsicHeight);
     }
 
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable
     public int getIntrinsicWidth() {
-        return this.f6533e;
+        return this.width;
     }
 
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable
     public int getIntrinsicHeight() {
-        return this.f6532d;
+        return this.height;
     }
 
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable
     public void draw(Canvas canvas) {
         Bitmap bitmap = getBitmap();
         if (bitmap != null) {
-            this.f6531c.set(0, 0, this.f6533e, this.f6532d);
+            this.f6531c.set(0, 0, this.width, this.height);
             Rect bounds = getBounds();
             if (this.f6534f) {
                 int width = bounds.width() - this.f6531c.width();

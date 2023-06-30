@@ -92,7 +92,7 @@ public class MusicLibraryFragment extends BaseFragment implements OnPageSelected
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_MUSIC_CATEGORY, ReflectUtils.m8375a(getClass(), "updateResult", OnlineMusicCategoryResult.class));
+        map.put(CommandID.UPDATE_MUSIC_CATEGORY, ReflectUtils.loadMethod(getClass(), "updateResult", OnlineMusicCategoryResult.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
@@ -131,7 +131,7 @@ public class MusicLibraryFragment extends BaseFragment implements OnPageSelected
         if (isViewAccessAble() && this.mReloadTheme) {
             super.onThemeLoaded();
             this.mReloadTheme = false;
-            ThemeManager.m3269a(this.mRootView, ThemeElement.BACKGROUND_MASK);
+            ThemeManager.m3269a(this.mRootView, "BackgroundMaskColor");
             if (this.mSongCategorySectionView != null) {
                 this.mSongCategorySectionView.onThemeLoaded();
                 updateView(this.mResult);

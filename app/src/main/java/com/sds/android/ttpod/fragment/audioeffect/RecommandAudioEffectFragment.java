@@ -126,11 +126,11 @@ public class RecommandAudioEffectFragment extends BaseFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_QUERY_EFFECT, ReflectUtils.m8375a(cls, "updateQueryEffect", AudioEffectItemResult.class));
-        map.put(CommandID.UPDATE_PICK_EFFECT, ReflectUtils.m8375a(cls, "updatePickEffect", AudioEffectCommResult.class, String.class));
-        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, ReflectUtils.m8375a(cls, "updateSaveEffectToNetwork", AudioEffectAddResult.class));
-        map.put(CommandID.UPDATE_MANUAL_SETTING_EFFECT, ReflectUtils.m8375a(cls, "updateManualSettingEffect", new Class[0]));
-        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.m8375a(cls, "updateAudioEffectList", new Class[0]));
+        map.put(CommandID.UPDATE_QUERY_EFFECT, ReflectUtils.loadMethod(cls, "updateQueryEffect", AudioEffectItemResult.class));
+        map.put(CommandID.UPDATE_PICK_EFFECT, ReflectUtils.loadMethod(cls, "updatePickEffect", AudioEffectCommResult.class, String.class));
+        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_NETWORK, ReflectUtils.loadMethod(cls, "updateSaveEffectToNetwork", AudioEffectAddResult.class));
+        map.put(CommandID.UPDATE_MANUAL_SETTING_EFFECT, ReflectUtils.loadMethod(cls, "updateManualSettingEffect", new Class[0]));
+        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.loadMethod(cls, "updateAudioEffectList", new Class[0]));
     }
 
     public void updateAudioEffectList() {
@@ -254,7 +254,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
     private void requestRecommendsEffect(Integer num, Integer num2) {
         MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_EFFECT, m3225N, num, num2));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_EFFECT, m3225N, num, num2));
         } else {
             this.mStateView.setState(StateView.EnumC2248b.NO_DATA);
         }
@@ -286,7 +286,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
         this.mAdapter.notifyDataSetChanged();
         performPlayClick(headerViewsCount, true);
         performSaveClick(i);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, false));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, false));
         //AudioEffectStatistic.m5269c();
         //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_APPLY, SPage.PAGE_AUDIO_CLOUD_EFFECT, SPage.PAGE_NONE);
     }
@@ -333,7 +333,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
             }
             C1412b c1412b = (C1412b) view.getTag();
             AudioEffectItem audioEffectItem = (AudioEffectItem) RecommandAudioEffectFragment.this.mDatas.get(i);
-            ImageCacheUtils.m4752a(c1412b.f4989b, audioEffectItem.getPic(), DisplayUtils.dp2px(40), DisplayUtils.dp2px(40), (int) R.drawable.img_avatar_default);
+            ImageCacheUtils.displayImage(c1412b.f4989b, audioEffectItem.getPic(), DisplayUtils.dp2px(40), DisplayUtils.dp2px(40), (int) R.drawable.img_avatar_default);
             c1412b.f4990c.setText(audioEffectItem.getNickName());
             c1412b.f4991d.setImageResource(EffectLevelItemHelper.m7148a(audioEffectItem.getTotal()).m7164b());
             c1412b.f4992e.setText(audioEffectItem.getPickCount() + "");
@@ -366,7 +366,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
     private void performPlayClick(int i, boolean z) {
         int m8266a = ListViewUtils.m8266a(this.mListView.getHeaderViewsCount(), i, this.mAdapter.getCount());
         if (m8266a != -1) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.SET_CLOUD_AUDIO_EFFECT, this.mDatas.get(m8266a), Boolean.valueOf(z)));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_CLOUD_AUDIO_EFFECT, this.mDatas.get(m8266a), Boolean.valueOf(z)));
         }
     }
 
@@ -395,7 +395,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
     private void performSaveClick(int i) {
         AudioEffectItem audioEffectItem = this.mDatas.get(i);
         saveCloudAudioEffect(audioEffectItem);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.BIND_EFFECT, audioEffectItem.getID()));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.BIND_EFFECT, audioEffectItem.getID()));
         if (!Preferences.m2974ad()) {
             Preferences.m3079A(true);
         }
@@ -431,7 +431,7 @@ public class RecommandAudioEffectFragment extends BaseFragment {
         if (!StringUtils.isEmpty(m3225N.getLocalDataSource())) {
             audioEffectCache.m4390g(m3225N.getLocalDataSource());
         }
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SAVE_EFFECT_TO_LOCAL, m3225N, audioEffectCache));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SAVE_EFFECT_TO_LOCAL, m3225N, audioEffectCache));
     }
 
     private String getCurrentTime() {

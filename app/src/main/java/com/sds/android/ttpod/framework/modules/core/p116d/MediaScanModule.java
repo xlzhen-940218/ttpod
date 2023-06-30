@@ -31,13 +31,13 @@ public final class MediaScanModule extends BaseModule implements MediaScanner.Sc
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.START_SCAN, ReflectUtils.m8375a(cls, "startScan", Collection.class, String.class));
-        map.put(CommandID.STOP_SCAN, ReflectUtils.m8375a(cls, "stopScan", new Class[0]));
-        map.put(CommandID.SCAN_PROGRESS, ReflectUtils.m8375a(cls, "progress", new Class[0]));
-        map.put(CommandID.SCANNED_FILE_COUNT, ReflectUtils.m8375a(cls, "scannedFileCount", new Class[0]));
-        map.put(CommandID.SCANNING_FILE_PATH, ReflectUtils.m8375a(cls, "scanningFilePath", new Class[0]));
-        map.put(CommandID.START_WIFI_TRANSMISSION, ReflectUtils.m8375a(cls, "startWifiTransmission", new Class[0]));
-        map.put(CommandID.STOP_WIFI_TRANSMISSION, ReflectUtils.m8375a(cls, "stopWifiTransmission", new Class[0]));
+        map.put(CommandID.START_SCAN, ReflectUtils.loadMethod(cls, "startScan", Collection.class, String.class));
+        map.put(CommandID.STOP_SCAN, ReflectUtils.loadMethod(cls, "stopScan", new Class[0]));
+        map.put(CommandID.SCAN_PROGRESS, ReflectUtils.loadMethod(cls, "progress", new Class[0]));
+        map.put(CommandID.SCANNED_FILE_COUNT, ReflectUtils.loadMethod(cls, "scannedFileCount", new Class[0]));
+        map.put(CommandID.SCANNING_FILE_PATH, ReflectUtils.loadMethod(cls, "scanningFilePath", new Class[0]));
+        map.put(CommandID.START_WIFI_TRANSMISSION, ReflectUtils.loadMethod(cls, "startWifiTransmission", new Class[0]));
+        map.put(CommandID.STOP_WIFI_TRANSMISSION, ReflectUtils.loadMethod(cls, "stopWifiTransmission", new Class[0]));
     }
 
     public MediaScanModule() {

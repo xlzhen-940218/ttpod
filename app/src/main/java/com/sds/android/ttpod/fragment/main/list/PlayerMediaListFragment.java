@@ -29,7 +29,7 @@ public class PlayerMediaListFragment extends PlayingFragment {
     @Override // com.sds.android.ttpod.fragment.main.list.PlayingFragment, com.sds.android.ttpod.fragment.main.list.MediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.ON_PLAYING_PANEL_SHOW, ReflectUtils.m8375a(getClass(), "scrollToPlayingRow", new Class[0]));
+        map.put(CommandID.ON_PLAYING_PANEL_SHOW, ReflectUtils.loadMethod(getClass(), "scrollToPlayingRow", new Class[0]));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.list.PlayingFragment, com.sds.android.ttpod.fragment.main.list.MediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
@@ -146,15 +146,15 @@ public class PlayerMediaListFragment extends PlayingFragment {
                 }
                 this.f5411e.setAnimationDrawable(m8158e);
                 boolean z2 = playStatus == PlayStatus.STATUS_PLAYING;
-                this.f5411e.m3504a();
+                this.f5411e.startAnim();
                 if (!z2) {
-                    this.f5411e.m3499b();
+                    this.f5411e.stopAnim();
                     return;
                 }
                 return;
             }
             this.f5411e.setVisibility(View.INVISIBLE);
-            this.f5411e.m3499b();
+            this.f5411e.stopAnim();
         }
 
         @Override // com.sds.android.ttpod.framework.modules.theme.ThemeManager.AbstractC2018a

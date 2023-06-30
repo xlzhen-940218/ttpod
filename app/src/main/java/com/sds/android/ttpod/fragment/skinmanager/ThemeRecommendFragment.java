@@ -59,8 +59,8 @@ public class ThemeRecommendFragment extends OnlineThemeFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_RECOMMEND_SKIN_LIST, ReflectUtils.m8375a(cls, "updateDataListForAdapter", ArrayList.class));
-        map.put(CommandID.UPDATE_DOWNLOADED_SKIN_LIST, ReflectUtils.m8375a(cls, "updateDownloadedSkinList", ArrayList.class));
+        map.put(CommandID.UPDATE_RECOMMEND_SKIN_LIST, ReflectUtils.loadMethod(cls, "updateDataListForAdapter", ArrayList.class));
+        map.put(CommandID.UPDATE_DOWNLOADED_SKIN_LIST, ReflectUtils.loadMethod(cls, "updateDownloadedSkinList", ArrayList.class));
     }
 
     public void updateDataListForAdapter(ArrayList<SkinItem> arrayList) {
@@ -69,7 +69,7 @@ public class ThemeRecommendFragment extends OnlineThemeFragment {
             if (checkIfReloadData(arrayList)) {
                 setAdapterDataSource(arrayList);
             }
-            CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_DOWNLOADED_SKIN_LIST, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REQUEST_DOWNLOADED_SKIN_LIST, new Object[0]));
             return;
         }
         this.mStateView.setState(StateView.EnumC2248b.FAILED);

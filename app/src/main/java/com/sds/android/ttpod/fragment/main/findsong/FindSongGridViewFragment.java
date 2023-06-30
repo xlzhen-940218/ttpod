@@ -219,7 +219,7 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
             layoutParams2.height = this.f5144c == 1 ? m8276b2 / 2 : m8276b2;
             layoutParams2.width = m8276b2;
             imageView.setLayoutParams(layoutParams2);
-            ImageCacheUtils.m4752a(imageView, FindSongGridViewFragment.this.getItemData(i).getPicUrl(), m8276b2, this.f5144c == 1 ? m8276b2 / 2 : m8276b2, (int) R.drawable.img_music_default_icon);
+            ImageCacheUtils.displayImage(imageView, FindSongGridViewFragment.this.getItemData(i).getPicUrl(), m8276b2, this.f5144c == 1 ? m8276b2 / 2 : m8276b2, (int) R.drawable.img_music_default_icon);
         }
 
         /* renamed from: a */
@@ -291,7 +291,7 @@ public class FindSongGridViewFragment extends FindSongBaseViewFragment {
             layoutParams.height = this.f5146b == 1 ? m8276b / 2 : m8276b;
             layoutParams.width = m8276b;
             c1518a.f5148b.setLayoutParams(layoutParams);
-            ImageCacheUtils.m4752a(c1518a.f5148b, recommendData.getPicUrl(), m8276b, this.f5146b == 1 ? m8276b / 2 : m8276b, (int) R.drawable.img_music_default_icon);
+            ImageCacheUtils.displayImage(c1518a.f5148b, recommendData.getPicUrl(), m8276b, this.f5146b == 1 ? m8276b / 2 : m8276b, (int) R.drawable.img_music_default_icon);
             if (recommendData.getForwardAction().getType() == 13) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.add(5, (i + 1) - getDataList().size());

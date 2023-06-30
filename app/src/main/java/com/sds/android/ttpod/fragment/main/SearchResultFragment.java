@@ -379,8 +379,8 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        ThemeManager.m3269a(this.mRootView, ThemeElement.BACKGROUND_MASK);
-        ThemeManager.m3269a(this.mHistoryListView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mRootView, "BackgroundMaskColor");
+        ThemeManager.m3269a(this.mHistoryListView, "BackgroundMaskColor");
         ThemeManager.m3269a(this.mHistoryListView, ThemeElement.COMMON_SEPARATOR);
         ThemeManager.m3269a(this.mSlidingTabHost, ThemeElement.SUB_BAR_BACKGROUND);
         ThemeManager.m3269a(this.mHeaderView, ThemeElement.SONG_LIST_ITEM_BACKGROUND);
@@ -401,12 +401,12 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_SEARCH_SONG_FINISHED, ReflectUtils.m8375a(cls, "updateSongSearchFinished", Integer.class, Integer.class, List.class, String.class));
-        map.put(CommandID.UPDATE_SEARCH_ASSOCIATE_FINISHED, ReflectUtils.m8375a(cls, "updateAssociateSearchFinished", List.class));
-        map.put(CommandID.UPDATE_SEARCH_ALBUM_FINISHED, ReflectUtils.m8375a(cls, "updateSearchAlbum", AlbumItemsResult.class));
-        map.put(CommandID.UPDATE_SEARCH_PLAY_LIST_RESULT, ReflectUtils.m8375a(cls, "updatePlaylistResult", PlaylistResult.class));
-        map.put(CommandID.UPDATE_SEARCH_BILLBOARD_FINISHED, ReflectUtils.m8375a(cls, "updateBillboardSearchFinished", List.class));
-        map.put(CommandID.UPDATE_SEARCH_TYPES, ReflectUtils.m8375a(cls, "updateSearchTypes", SearchTypeResult.class));
+        map.put(CommandID.UPDATE_SEARCH_SONG_FINISHED, ReflectUtils.loadMethod(cls, "updateSongSearchFinished", Integer.class, Integer.class, List.class, String.class));
+        map.put(CommandID.UPDATE_SEARCH_ASSOCIATE_FINISHED, ReflectUtils.loadMethod(cls, "updateAssociateSearchFinished", List.class));
+        map.put(CommandID.UPDATE_SEARCH_ALBUM_FINISHED, ReflectUtils.loadMethod(cls, "updateSearchAlbum", AlbumItemsResult.class));
+        map.put(CommandID.UPDATE_SEARCH_PLAY_LIST_RESULT, ReflectUtils.loadMethod(cls, "updatePlaylistResult", PlaylistResult.class));
+        map.put(CommandID.UPDATE_SEARCH_BILLBOARD_FINISHED, ReflectUtils.loadMethod(cls, "updateBillboardSearchFinished", List.class));
+        map.put(CommandID.UPDATE_SEARCH_TYPES, ReflectUtils.loadMethod(cls, "updateSearchTypes", SearchTypeResult.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment

@@ -66,27 +66,27 @@ public final class SkinModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.SET_SKIN, ReflectUtils.m8375a(cls, "setSkin", String.class, Integer.class));
-        map.put(CommandID.GET_SKIN_PROTOCOL_PATH, ReflectUtils.m8375a(cls, "getSkinProtocolPath", new Class[0]));
-        map.put(CommandID.SET_SKIN_PROTOCOL_PATH, ReflectUtils.m8375a(cls, "setSkinProtocolPath", String.class));
-        map.put(CommandID.DELETE_SKIN, ReflectUtils.m8375a(cls, "deleteSkin", String.class, Integer.class));
-        map.put(CommandID.DECODE_SKIN_THUMBNAIL, ReflectUtils.m8375a(cls, "decodeThumbNail", SkinItem.class));
-        map.put(CommandID.LOAD_SKIN, ReflectUtils.m8375a(cls, "loadSkin", new Class[0]));
-        map.put(CommandID.LOAD_SKIN_WITH_PATH, ReflectUtils.m8375a(cls, "loadSkinWithPath", String.class));
-        map.put(CommandID.REQUEST_RECOMMEND_SKIN_LIST, ReflectUtils.m8375a(cls, "loadRecommendSkinList", new Class[0]));
-        map.put(CommandID.REQUEST_UPDATE_RECOMMEND_SKIN_LIST, ReflectUtils.m8375a(cls, "updateRecommendSkinList", new Class[0]));
-        map.put(CommandID.REQUEST_UPDATE_RECOMMEND_BACKGROUND_LIST, ReflectUtils.m8375a(cls, "updateRecommendBackgroundList", new Class[0]));
-        map.put(CommandID.REQUEST_UPDATE_SKIN_RANK_LIST, ReflectUtils.m8375a(cls, "updateSkinRankList", new Class[0]));
-        map.put(CommandID.REQUEST_SKIN_RANK_LIST, ReflectUtils.m8375a(cls, "loadSkinRankList", Integer.class));
-        map.put(CommandID.REQUEST_SKIN_INFO, ReflectUtils.m8375a(cls, "loadSkinInfo", String.class));
-        map.put(CommandID.REQUEST_DOWNLOADED_SKIN_LIST, ReflectUtils.m8375a(cls, "loadDownloadedSkinList", new Class[0]));
-        map.put(CommandID.LOAD_ALL_LOCAL_SKIN_LIST, ReflectUtils.m8375a(cls, "loadAllLocalSkinList", new Class[0]));
-        map.put(CommandID.PARSE_CATEGORY_LIST, ReflectUtils.m8375a(cls, "parseCategoryList", Integer.class));
-        map.put(CommandID.REQUEST_SKIN_CATEGORY_LIST, ReflectUtils.m8375a(cls, "downloadSkinCategoryList", new Class[0]));
-        map.put(CommandID.REQUEST_PAGED_SKIN_LIST, ReflectUtils.m8375a(cls, "requestPagedSkinList", Integer.class, Integer.class, Integer.class));
-        map.put(CommandID.REQUEST_BKG_CATEGORY_LIST, ReflectUtils.m8375a(cls, "downloadBackgroundCategoryList", new Class[0]));
-        map.put(CommandID.REQUEST_PAGED_BKG_LIST, ReflectUtils.m8375a(cls, "requestPagedBackgroundList", Integer.class, Integer.class, Integer.class));
-        map.put(CommandID.NOTIFY_PLAYING_PANEL_ON_SHOW, ReflectUtils.m8375a(cls, "notifyPlayingPanelOnShow", new Class[0]));
+        map.put(CommandID.SET_SKIN, ReflectUtils.loadMethod(cls, "setSkin", String.class, Integer.class));
+        map.put(CommandID.GET_SKIN_PROTOCOL_PATH, ReflectUtils.loadMethod(cls, "getSkinProtocolPath", new Class[0]));
+        map.put(CommandID.SET_SKIN_PROTOCOL_PATH, ReflectUtils.loadMethod(cls, "setSkinProtocolPath", String.class));
+        map.put(CommandID.DELETE_SKIN, ReflectUtils.loadMethod(cls, "deleteSkin", String.class, Integer.class));
+        map.put(CommandID.DECODE_SKIN_THUMBNAIL, ReflectUtils.loadMethod(cls, "decodeThumbNail", SkinItem.class));
+        map.put(CommandID.LOAD_SKIN, ReflectUtils.loadMethod(cls, "loadSkin", new Class[0]));
+        map.put(CommandID.LOAD_SKIN_WITH_PATH, ReflectUtils.loadMethod(cls, "loadSkinWithPath", String.class));
+        map.put(CommandID.REQUEST_RECOMMEND_SKIN_LIST, ReflectUtils.loadMethod(cls, "loadRecommendSkinList", new Class[0]));
+        map.put(CommandID.REQUEST_UPDATE_RECOMMEND_SKIN_LIST, ReflectUtils.loadMethod(cls, "updateRecommendSkinList", new Class[0]));
+        map.put(CommandID.REQUEST_UPDATE_RECOMMEND_BACKGROUND_LIST, ReflectUtils.loadMethod(cls, "updateRecommendBackgroundList", new Class[0]));
+        map.put(CommandID.REQUEST_UPDATE_SKIN_RANK_LIST, ReflectUtils.loadMethod(cls, "updateSkinRankList", new Class[0]));
+        map.put(CommandID.REQUEST_SKIN_RANK_LIST, ReflectUtils.loadMethod(cls, "loadSkinRankList", Integer.class));
+        map.put(CommandID.REQUEST_SKIN_INFO, ReflectUtils.loadMethod(cls, "loadSkinInfo", String.class));
+        map.put(CommandID.REQUEST_DOWNLOADED_SKIN_LIST, ReflectUtils.loadMethod(cls, "loadDownloadedSkinList", new Class[0]));
+        map.put(CommandID.LOAD_ALL_LOCAL_SKIN_LIST, ReflectUtils.loadMethod(cls, "loadAllLocalSkinList", new Class[0]));
+        map.put(CommandID.PARSE_CATEGORY_LIST, ReflectUtils.loadMethod(cls, "parseCategoryList", Integer.class));
+        map.put(CommandID.REQUEST_SKIN_CATEGORY_LIST, ReflectUtils.loadMethod(cls, "downloadSkinCategoryList", new Class[0]));
+        map.put(CommandID.REQUEST_PAGED_SKIN_LIST, ReflectUtils.loadMethod(cls, "requestPagedSkinList", Integer.class, Integer.class, Integer.class));
+        map.put(CommandID.REQUEST_BKG_CATEGORY_LIST, ReflectUtils.loadMethod(cls, "downloadBackgroundCategoryList", new Class[0]));
+        map.put(CommandID.REQUEST_PAGED_BKG_LIST, ReflectUtils.loadMethod(cls, "requestPagedBackgroundList", Integer.class, Integer.class, Integer.class));
+        map.put(CommandID.NOTIFY_PLAYING_PANEL_ON_SHOW, ReflectUtils.loadMethod(cls, "notifyPlayingPanelOnShow", new Class[0]));
     }
 
     public void setSkin(String str, Integer num) {

@@ -36,9 +36,9 @@ public class LockScreenModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.START_LOCK_SCREEN, ReflectUtils.m8375a(cls, "startLockScreen", new Class[0]));
-        map.put(CommandID.STOP_LOCK_SCREEN, ReflectUtils.m8375a(cls, "stopLockScreen", new Class[0]));
-        map.put(CommandID.RECEIVED_LOCK_SCREEN_ACTION, ReflectUtils.m8375a(cls, "onReceive", Intent.class));
+        map.put(CommandID.START_LOCK_SCREEN, ReflectUtils.loadMethod(cls, "startLockScreen", new Class[0]));
+        map.put(CommandID.STOP_LOCK_SCREEN, ReflectUtils.loadMethod(cls, "stopLockScreen", new Class[0]));
+        map.put(CommandID.RECEIVED_LOCK_SCREEN_ACTION, ReflectUtils.loadMethod(cls, "onReceive", Intent.class));
     }
 
     public void startLockScreen() {

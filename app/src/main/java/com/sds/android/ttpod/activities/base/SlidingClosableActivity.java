@@ -15,10 +15,10 @@ public class SlidingClosableActivity extends ActionBarActivity {
         super.onCreate(bundle);
         this.mSlidingClosableRelativeLayout = new SlidingClosableRelativeLayout(this);
         this.mSlidingClosableRelativeLayout.setSlidingCloseMode(3);
-        this.mSlidingClosableRelativeLayout.setOnSlidingCloseListener(new SlidingClosableRelativeLayout.InterfaceC2237a() { // from class: com.sds.android.ttpod.activities.base.SlidingClosableActivity.1
+        this.mSlidingClosableRelativeLayout.setOnSlidingCloseListener(new SlidingClosableRelativeLayout.OnSlidingCloseListener() { // from class: com.sds.android.ttpod.activities.base.SlidingClosableActivity.1
             @Override // com.sds.android.ttpod.widget.SlidingClosableRelativeLayout.InterfaceC2237a
             /* renamed from: a */
-            public void mo1483a() {
+            public void close() {
                 if (SlidingClosableActivity.this.mSlidingClosableRelativeLayout != null) {
                     SlidingClosableActivity.this.mSlidingClosableRelativeLayout.setVisibility(View.GONE);
                     SlidingClosableActivity.super.finish();

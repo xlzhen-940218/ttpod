@@ -44,7 +44,7 @@ public class BackgroundRecommendFragment extends BackgroundBaseFragment implemen
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BackgroundBaseFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_BACKGROUND_LIST, ReflectUtils.m8375a(getClass(), "updateBackgroundList", ArrayList.class));
+        map.put(CommandID.UPDATE_BACKGROUND_LIST, ReflectUtils.loadMethod(getClass(), "updateBackgroundList", ArrayList.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BackgroundBaseFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
@@ -90,9 +90,9 @@ public class BackgroundRecommendFragment extends BackgroundBaseFragment implemen
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BkgEditListener
     public void onBkgDeleted(BackgroundItem backgroundItem) {
-        BackgroundItem itemForName = getItemForName(backgroundItem.m3331b());
+        BackgroundItem itemForName = getItemForName(backgroundItem.getImageName());
         if (itemForName != null) {
-            itemForName.m3333a(BackgroundItem.EnumC2011a.ONLINE_BACKGROUND);
+            itemForName.setResourceTypeEnum(BackgroundItem.ResourceTypeEnum.ONLINE_BACKGROUND);
             notifyDataSetChanged();
         }
     }
@@ -101,7 +101,7 @@ public class BackgroundRecommendFragment extends BackgroundBaseFragment implemen
         Iterator<BackgroundItem> it = this.mBackgroundAdapter.m5365b().iterator();
         while (it.hasNext()) {
             BackgroundItem next = it.next();
-            if (next.m3331b().equals(str)) {
+            if (next.getImageName().equals(str)) {
                 return next;
             }
         }

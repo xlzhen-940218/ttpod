@@ -51,8 +51,8 @@ public class VersionUpgradeProgressActivity extends BaseActivity {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_ALL_UPGRADE_PROGRESS_INFO, ReflectUtils.m8375a(cls, "updateProgressInfo", DownloadTaskInfo.class));
-        map.put(CommandID.THIRDPARTY_DOWNLOAD_PROGRESS, ReflectUtils.m8375a(cls, "updateProgressChange", Long.class, Long.class));
+        map.put(CommandID.UPDATE_ALL_UPGRADE_PROGRESS_INFO, ReflectUtils.loadMethod(cls, "updateProgressInfo", DownloadTaskInfo.class));
+        map.put(CommandID.THIRDPARTY_DOWNLOAD_PROGRESS, ReflectUtils.loadMethod(cls, "updateProgressChange", Long.class, Long.class));
     }
 
     /* JADX WARN: Can't fix incorrect switch cases order, some code will duplicate */

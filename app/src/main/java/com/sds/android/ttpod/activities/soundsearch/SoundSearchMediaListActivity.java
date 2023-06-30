@@ -91,7 +91,7 @@ public abstract class SoundSearchMediaListActivity extends SlidingClosableActivi
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.m8375a(getClass(), "updatePlayMediaInfo", new Class[0]));
+        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.loadMethod(getClass(), "updatePlayMediaInfo", new Class[0]));
     }
 
     public void updatePlayMediaInfo() {

@@ -193,7 +193,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
     public void onThemeLoaded() {
         super.onThemeLoaded();
         ThemeManager.m3269a(this.mListView, ThemeElement.COMMON_SEPARATOR);
-        ThemeManager.m3269a(this.mListView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mListView, "BackgroundMaskColor");
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.MVListFragment
@@ -213,7 +213,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
     protected static void startDownloadMV(String str, String str2, MVOnlineData mVOnlineData) {
         DownloadTaskInfo m4760a = DownloadUtils.m4760a(str, str2, Long.valueOf(mVOnlineData.getId()), mVOnlineData.getName(), DownloadTaskInfo.TYPE_VIDEO, true, "mv_channel");
         m4760a.setTag(mVOnlineData);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
     }
 
     private static void saveDownloadMvThumbnail(Context context, MVOnlineData mVOnlineData) {

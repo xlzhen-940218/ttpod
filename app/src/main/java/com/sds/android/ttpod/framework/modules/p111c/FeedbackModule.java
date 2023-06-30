@@ -46,11 +46,11 @@ public class FeedbackModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.PROPOSAL_FEEDBACK, ReflectUtils.m8375a(cls, "proposalFeedback", FeedbackItem.class));
-        map.put(CommandID.REQUEST_FEEDBACK_LIST, ReflectUtils.m8375a(cls, "requestFeedbackList", Long.class, Integer.class));
-        map.put(CommandID.REQUEST_FEEDBACK_MESSAGES, ReflectUtils.m8375a(cls, "requestFeedbackMessages", String.class, Long.class, Boolean.class));
-        map.put(CommandID.SEND_FEEDBACK_MESSAGE, ReflectUtils.m8375a(cls, "sendFeedbackMessage", FeedbackMessage.class));
-        map.put(CommandID.REQUEST_NEW_REPLYIED_FEEDBACKS, ReflectUtils.m8375a(cls, "requestNewRepliedFeedbacks", Long.class));
+        map.put(CommandID.PROPOSAL_FEEDBACK, ReflectUtils.loadMethod(cls, "proposalFeedback", FeedbackItem.class));
+        map.put(CommandID.REQUEST_FEEDBACK_LIST, ReflectUtils.loadMethod(cls, "requestFeedbackList", Long.class, Integer.class));
+        map.put(CommandID.REQUEST_FEEDBACK_MESSAGES, ReflectUtils.loadMethod(cls, "requestFeedbackMessages", String.class, Long.class, Boolean.class));
+        map.put(CommandID.SEND_FEEDBACK_MESSAGE, ReflectUtils.loadMethod(cls, "sendFeedbackMessage", FeedbackMessage.class));
+        map.put(CommandID.REQUEST_NEW_REPLYIED_FEEDBACKS, ReflectUtils.loadMethod(cls, "requestNewRepliedFeedbacks", Long.class));
     }
 
     public void proposalFeedback(final FeedbackItem feedbackItem) {

@@ -277,14 +277,14 @@ public abstract class PostListFragment extends SlidingClosableFragment implement
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "playMediaChanged", new Class[0]));
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.UPDATE_SYNC_FAVORITE_POST_FINISHED, ReflectUtils.m8375a(cls, "onSyncFavoritePostFinished", new Class[0]));
-        map.put(CommandID.UPDATE_ADD_FAVORITE_POSTS, ReflectUtils.m8375a(cls, "onAddFavoriteFinished", BaseResult.class, String.class));
-        map.put(CommandID.UPDATE_REMOVE_FAVORITE_POSTS, ReflectUtils.m8375a(cls, "onRemoveFavoriteFinished", BaseResult.class, String.class));
-        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.m8375a(cls, "onLoginFinished", CommonResult.class));
-        map.put(CommandID.UPDATE_POST_REPLY_COUNT, ReflectUtils.m8375a(cls, "updatePostReplyCount", Post.class));
-        map.put(CommandID.UPDATE_POST_REPOST_COUNT, ReflectUtils.m8375a(cls, "updatePostRepostCount", Post.class));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "playMediaChanged", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_SYNC_FAVORITE_POST_FINISHED, ReflectUtils.loadMethod(cls, "onSyncFavoritePostFinished", new Class[0]));
+        map.put(CommandID.UPDATE_ADD_FAVORITE_POSTS, ReflectUtils.loadMethod(cls, "onAddFavoriteFinished", BaseResult.class, String.class));
+        map.put(CommandID.UPDATE_REMOVE_FAVORITE_POSTS, ReflectUtils.loadMethod(cls, "onRemoveFavoriteFinished", BaseResult.class, String.class));
+        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.loadMethod(cls, "onLoginFinished", CommonResult.class));
+        map.put(CommandID.UPDATE_POST_REPLY_COUNT, ReflectUtils.loadMethod(cls, "updatePostReplyCount", Post.class));
+        map.put(CommandID.UPDATE_POST_REPOST_COUNT, ReflectUtils.loadMethod(cls, "updatePostRepostCount", Post.class));
     }
 
     public void updatePostReplyCount(Post post) {

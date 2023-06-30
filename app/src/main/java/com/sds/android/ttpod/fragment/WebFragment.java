@@ -137,9 +137,9 @@ public class WebFragment extends BaseFragment implements JsCallback, TTWebViewCl
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "playMediaChanged", new Class[0]));
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.UPDATE_UNICOM_FLOW_STATUS, ReflectUtils.m8375a(cls, "updateFlowStatus", Boolean.class));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "playMediaChanged", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_UNICOM_FLOW_STATUS, ReflectUtils.loadMethod(cls, "updateFlowStatus", Boolean.class));
     }
 
     public void updateFlowStatus(Boolean bool) {

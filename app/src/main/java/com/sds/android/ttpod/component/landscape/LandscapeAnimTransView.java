@@ -26,7 +26,7 @@ public class LandscapeAnimTransView extends AnimTransView {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.view.AnimTransView
     /* renamed from: a */
-    protected void mo3515a() {
+    protected void loadAnim() {
         Rotate3dAnimation rotate3dAnimation = new Rotate3dAnimation(-90.0f, 0.0f, 0.0f, false);
         rotate3dAnimation.setDuration(500L);
         rotate3dAnimation.setFillAfter(true);

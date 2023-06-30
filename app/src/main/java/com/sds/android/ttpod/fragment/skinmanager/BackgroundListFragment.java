@@ -13,7 +13,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.BackgroundItem;
-import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
 import com.sds.android.ttpod.framework.p106a.Pager;
 import com.sds.android.ttpod.utils.ListViewUtils;
@@ -56,7 +55,7 @@ public class BackgroundListFragment extends BackgroundBaseFragment {
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BackgroundBaseFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.REQUEST_PAGED_BKG_LIST_FINISHED, ReflectUtils.m8375a(getClass(), "updateDataListForAdapter", OnlinePagedSkinListResult.class));
+        map.put(CommandID.REQUEST_PAGED_BKG_LIST_FINISHED, ReflectUtils.loadMethod(getClass(), "updateDataListForAdapter", OnlinePagedSkinListResult.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BackgroundBaseFragment, com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
@@ -107,7 +106,7 @@ public class BackgroundListFragment extends BackgroundBaseFragment {
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BackgroundBaseFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        ThemeManager.m3269a(this.mListFooterView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mListFooterView, "BackgroundMaskColor");
     }
 
     public void updateDataListForAdapter(OnlinePagedSkinListResult onlinePagedSkinListResult) {
@@ -124,9 +123,9 @@ public class BackgroundListFragment extends BackgroundBaseFragment {
                         next.setPictureUrl(substring + next.getRecommendPicUrl());
                         next.setSkinUrl(substring + next.getSkinUrl());
                         BackgroundItem backgroundItem = new BackgroundItem(next);
-                        backgroundItem.m3332a(next.getId() + "_" + next.getName());
-                        if (FileUtils.m8419a(backgroundItem.m3325h())) {
-                            backgroundItem.m3333a(BackgroundItem.EnumC2011a.ADD_BY_USER);
+                        backgroundItem.setImagePath(next.getId() + "_" + next.getName());
+                        if (FileUtils.m8419a(backgroundItem.getImagePath())) {
+                            backgroundItem.setResourceTypeEnum(BackgroundItem.ResourceTypeEnum.ADD_BY_USER);
                         }
                         arrayList.add(backgroundItem);
                     } else {

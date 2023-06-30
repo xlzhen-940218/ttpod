@@ -36,6 +36,6 @@ public class SongPublishSectionView extends SimpleSongView {
         textView.setText(musicCircleFirstPublish.getTitle());
         textView.setVisibility(View.GONE);
         findViewById.setVisibility(musicCircleFirstPublish.isFirstPublish() ? View.VISIBLE : View.GONE);
-        ImageCacheUtils.m4752a(imageView, musicCircleFirstPublish.getPicUrl(), DisplayUtils.getWidth() / 4, DisplayUtils.getWidth() / 4, (int) R.drawable.img_background_song_publish);
+        ImageCacheUtils.displayImage(imageView, musicCircleFirstPublish.getPicUrl(), DisplayUtils.getWidth() / 4, DisplayUtils.getWidth() / 4, (int) R.drawable.img_background_song_publish);
     }
 }

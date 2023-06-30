@@ -42,16 +42,16 @@ public class ListenContentActivity extends SlidingClosableActivity implements Vi
             switch (message.what) {
                 case 1:
                     String str = (String) ((Hashtable) message.obj).get("code");
-                    if (FeedbackItem.STATUS_WAITING.equals(str)) {
+                    if ("0".equals(str)) {
                         ListenContentActivity.this.updateIMSI();
                         return;
-                    } else if (FeedbackItem.STATUS_RECORDED.equals(str)) {
+                    } else if ("3".equals(str)) {
                         PopupsUtils.m6760a((int) R.string.cardisnotcmcc);
                         return;
-                    } else if (FeedbackItem.STATUS_SOLVED.equals(str)) {
+                    } else if ("2".equals(str)) {
                         PopupsUtils.m6760a((int) R.string.pleasechecknetwork);
                         return;
-                    } else if (CMMusicUtils.m7276a() && !FeedbackItem.STATUS_WAITING.equals(str)) {
+                    } else if (CMMusicUtils.m7276a() && !"0".equals(str)) {
                         CmMusicSdkInitCode.m7343a(ListenContentActivity.this);
                         ListenContentActivity.this.updateIMSI();
                         return;

@@ -147,19 +147,19 @@ public final class CommandCenter {
     }
 
     /* renamed from: b */
-    public void m4596b(Command command) {
-        m4605a(command, 0);
+    public void postInvokeResult(Command command) {
+        postInvokeResult(command, 0);
     }
 
     /* renamed from: a */
-    public void m4605a(final Command command, int i) {
+    public void postInvokeResult(final Command command, int delayMillis) {
         checkCommandAndModuleId(command, null);
         this.handler.postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.a.b.1
             @Override // java.lang.Runnable
             public void run() {
                 CommandCenter.this.invokeResult(command, null);
             }
-        }, i);
+        }, delayMillis);
     }
 
     /* renamed from: b */

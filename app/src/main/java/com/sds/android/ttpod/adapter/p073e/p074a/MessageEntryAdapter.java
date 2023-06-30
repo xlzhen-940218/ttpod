@@ -39,7 +39,7 @@ public class MessageEntryAdapter extends BaseListAdapter<PrivateMessageOverView>
         if (user == null) {
             return;
         }
-        ImageCacheUtils.m4752a(c0974a.f3262b, user.getAvatarUrl(), c0974a.f3262b.getWidth(), c0974a.f3262b.getHeight(), (int) R.drawable.img_avatar_default);
+        ImageCacheUtils.displayImage(c0974a.f3262b, user.getAvatarUrl(), c0974a.f3262b.getWidth(), c0974a.f3262b.getHeight(), (int) R.drawable.img_avatar_default);
         c0974a.f3262b.setVFlagVisible(user.isVerified());
         c0974a.f3264d.setText(user.getNickName());
         c0974a.f3265e.setText(TimeUtils.m8157a(privateMessageOverView.getLastModified()));

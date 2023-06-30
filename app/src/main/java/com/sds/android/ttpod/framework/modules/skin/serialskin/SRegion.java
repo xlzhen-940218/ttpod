@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import android.view.View;

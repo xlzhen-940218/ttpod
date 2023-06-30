@@ -148,34 +148,34 @@ public class AudioEffectModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.SET_CLOUD_AUDIO_EFFECT_ENABLED, ReflectUtils.m8375a(cls, "setCloudAudioEffectEnabled", Boolean.class));
-        map.put(CommandID.SET_CLOUD_AUDIO_EFFECT, ReflectUtils.m8375a(cls, "applyCloudAudioEffect", AudioEffectItem.class, Boolean.class));
-        map.put(CommandID.SET_LOCAL_AUDIO_EFFECT, ReflectUtils.m8375a(cls, "setLocalAudioEffectEnabled", Boolean.class));
-        map.put(CommandID.SET_EQUALIZER, ReflectUtils.m8375a(cls, "setEqualizer", TTEqualizer.Settings.class));
-        map.put(CommandID.GET_EQUALIZER, ReflectUtils.m8375a(cls, "getEqualizer", new Class[0]));
-        map.put(CommandID.SET_BASSBOOST, ReflectUtils.m8375a(cls, "setBassBoost", Integer.class));
-        map.put(CommandID.SET_BOOSTLIMIT_ENABLED, ReflectUtils.m8375a(cls, "setBoostLimitEnabled", Boolean.class));
-        map.put(CommandID.SET_TREBLEBOOST, ReflectUtils.m8375a(cls, "setTrebleBoost", Integer.class));
-        map.put(CommandID.SET_VIRTUALIZER, ReflectUtils.m8375a(cls, "setVirtualizer", Integer.class));
-        map.put(CommandID.SET_REVERB, ReflectUtils.m8375a(cls, "setReverb", Integer.class));
-        map.put(CommandID.SET_CHANNELBALANCE, ReflectUtils.m8375a(cls, "setChannelBalance", Float.class));
-        map.put(CommandID.SAVE_CUSTOM_EQUALIZER, ReflectUtils.m8375a(cls, "saveCustomEqualizer", TTEqualizer.Settings.class));
-        map.put(CommandID.DELETE_CUSTOM_EQUALIZER, ReflectUtils.m8375a(cls, "deleteCustomEqualizer", String.class));
-        map.put(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, ReflectUtils.m8375a(cls, "queryCustomEqualizerList", new Class[0]));
-        map.put(CommandID.QUERY_EFFECT_USERINFO, ReflectUtils.m8375a(cls, "queryEffectUserInfo", new Class[0]));
-        map.put(CommandID.QUERY_EFFECT, ReflectUtils.m8375a(cls, "queryEffect", MediaItem.class, Integer.class, Integer.class));
-        map.put(CommandID.PICK_EFFECT, ReflectUtils.m8375a(cls, "pickEffect", String.class));
-        map.put(CommandID.BIND_EFFECT, ReflectUtils.m8375a(cls, "bindEffect", String.class));
-        map.put(CommandID.QUERY_PRIVATE_EFFECT, ReflectUtils.m8375a(cls, "queryPrivateEffect", new Class[0]));
-        map.put(CommandID.DELETE_PRIVATE_EFFECT_LIST, ReflectUtils.m8375a(cls, "deletePrivateEffectList", List.class));
-        map.put(CommandID.SET_EFFECT_ITEM, ReflectUtils.m8375a(cls, "setEffectItem", AudioEffectItem.class));
-        map.put(CommandID.SAVE_EFFECT_TO_LOCAL, ReflectUtils.m8375a(cls, "saveEffectToLocal", MediaItem.class, AudioEffectCache.class));
-        map.put(CommandID.SAVE_EFFECT_TO_NETWORK, ReflectUtils.m8375a(cls, "saveEffectToNetwork", MediaItem.class, AudioEffectItemData.class, Integer.class, Integer.class));
-        map.put(CommandID.SAVE_EFFECT, ReflectUtils.m8375a(cls, "saveEffect", MediaItem.class, AudioEffectCache.class, Boolean.class));
-        map.put(CommandID.IS_PICKED_EFFECT, ReflectUtils.m8375a(cls, "isPickedEffect", String.class));
-        map.put(CommandID.SET_AUDIO_EFFECT_TRY_MODE, ReflectUtils.m8375a(cls, "setAudioEffectTryMode", Boolean.class));
-        map.put(CommandID.SET_AUDIO_EFFECT_RESET, ReflectUtils.m8375a(cls, "setAudioEffectReset", new Class[0]));
-        map.put(CommandID.AUDIOEFFECT_CHANGED, ReflectUtils.m8375a(cls, "audioeffectChanged", new Class[0]));
+        map.put(CommandID.SET_CLOUD_AUDIO_EFFECT_ENABLED, ReflectUtils.loadMethod(cls, "setCloudAudioEffectEnabled", Boolean.class));
+        map.put(CommandID.SET_CLOUD_AUDIO_EFFECT, ReflectUtils.loadMethod(cls, "applyCloudAudioEffect", AudioEffectItem.class, Boolean.class));
+        map.put(CommandID.SET_LOCAL_AUDIO_EFFECT, ReflectUtils.loadMethod(cls, "setLocalAudioEffectEnabled", Boolean.class));
+        map.put(CommandID.SET_EQUALIZER, ReflectUtils.loadMethod(cls, "setEqualizer", TTEqualizer.Settings.class));
+        map.put(CommandID.GET_EQUALIZER, ReflectUtils.loadMethod(cls, "getEqualizer", new Class[0]));
+        map.put(CommandID.SET_BASSBOOST, ReflectUtils.loadMethod(cls, "setBassBoost", Integer.class));
+        map.put(CommandID.SET_BOOSTLIMIT_ENABLED, ReflectUtils.loadMethod(cls, "setBoostLimitEnabled", Boolean.class));
+        map.put(CommandID.SET_TREBLEBOOST, ReflectUtils.loadMethod(cls, "setTrebleBoost", Integer.class));
+        map.put(CommandID.SET_VIRTUALIZER, ReflectUtils.loadMethod(cls, "setVirtualizer", Integer.class));
+        map.put(CommandID.SET_REVERB, ReflectUtils.loadMethod(cls, "setReverb", Integer.class));
+        map.put(CommandID.SET_CHANNELBALANCE, ReflectUtils.loadMethod(cls, "setChannelBalance", Float.class));
+        map.put(CommandID.SAVE_CUSTOM_EQUALIZER, ReflectUtils.loadMethod(cls, "saveCustomEqualizer", TTEqualizer.Settings.class));
+        map.put(CommandID.DELETE_CUSTOM_EQUALIZER, ReflectUtils.loadMethod(cls, "deleteCustomEqualizer", String.class));
+        map.put(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, ReflectUtils.loadMethod(cls, "queryCustomEqualizerList", new Class[0]));
+        map.put(CommandID.QUERY_EFFECT_USERINFO, ReflectUtils.loadMethod(cls, "queryEffectUserInfo", new Class[0]));
+        map.put(CommandID.QUERY_EFFECT, ReflectUtils.loadMethod(cls, "queryEffect", MediaItem.class, Integer.class, Integer.class));
+        map.put(CommandID.PICK_EFFECT, ReflectUtils.loadMethod(cls, "pickEffect", String.class));
+        map.put(CommandID.BIND_EFFECT, ReflectUtils.loadMethod(cls, "bindEffect", String.class));
+        map.put(CommandID.QUERY_PRIVATE_EFFECT, ReflectUtils.loadMethod(cls, "queryPrivateEffect", new Class[0]));
+        map.put(CommandID.DELETE_PRIVATE_EFFECT_LIST, ReflectUtils.loadMethod(cls, "deletePrivateEffectList", List.class));
+        map.put(CommandID.SET_EFFECT_ITEM, ReflectUtils.loadMethod(cls, "setEffectItem", AudioEffectItem.class));
+        map.put(CommandID.SAVE_EFFECT_TO_LOCAL, ReflectUtils.loadMethod(cls, "saveEffectToLocal", MediaItem.class, AudioEffectCache.class));
+        map.put(CommandID.SAVE_EFFECT_TO_NETWORK, ReflectUtils.loadMethod(cls, "saveEffectToNetwork", MediaItem.class, AudioEffectItemData.class, Integer.class, Integer.class));
+        map.put(CommandID.SAVE_EFFECT, ReflectUtils.loadMethod(cls, "saveEffect", MediaItem.class, AudioEffectCache.class, Boolean.class));
+        map.put(CommandID.IS_PICKED_EFFECT, ReflectUtils.loadMethod(cls, "isPickedEffect", String.class));
+        map.put(CommandID.SET_AUDIO_EFFECT_TRY_MODE, ReflectUtils.loadMethod(cls, "setAudioEffectTryMode", Boolean.class));
+        map.put(CommandID.SET_AUDIO_EFFECT_RESET, ReflectUtils.loadMethod(cls, "setAudioEffectReset", new Class[0]));
+        map.put(CommandID.AUDIOEFFECT_CHANGED, ReflectUtils.loadMethod(cls, "audioeffectChanged", new Class[0]));
     }
 
     public void setCloudAudioEffectEnabled(Boolean bool) {
@@ -616,7 +616,7 @@ public class AudioEffectModule extends BaseModule {
                                     }
                                     FileUtils.exists(AudioEffectUtils.m4340a(mediaItem.getSongID(), mediaItem.getTitle(), mediaItem.getArtist()));
                                     if (Cache.getInstance().getCurrentPlayMediaItem().equals(mediaItem)) {
-                                        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, true));
+                                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_LOCAL_AUDIO_EFFECT, true));
                                         CommandCenter.getInstance().m4603a(new Command(CommandID.UPDATE_AUDIO_EFFECT_INFO, new Object[0]), ModuleID.AUDIO_EFFECT, 500);
                                     }
                                 }

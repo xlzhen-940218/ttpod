@@ -120,8 +120,8 @@ public class PopularSongFragment extends SceneRecommendFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_POPULAR_SONG_LIST, ReflectUtils.m8375a(getClass(), "updatePopularSongResult", MediaItemListResult.class));
-        map.put(CommandID.UPDATE_POPULAR_SONG_INTRODUCTION, ReflectUtils.m8375a(getClass(), "updatePopularSongIntroduction", IntroductionResult.class));
+        map.put(CommandID.UPDATE_POPULAR_SONG_LIST, ReflectUtils.loadMethod(getClass(), "updatePopularSongResult", MediaItemListResult.class));
+        map.put(CommandID.UPDATE_POPULAR_SONG_INTRODUCTION, ReflectUtils.loadMethod(getClass(), "updatePopularSongIntroduction", IntroductionResult.class));
     }
 
     public void updatePopularSongIntroduction(IntroductionResult introductionResult) {

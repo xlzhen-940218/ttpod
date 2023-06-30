@@ -64,7 +64,7 @@ public class SecurityUtils {
                     i2 += 256;
                 }
                 if (i2 < 16) {
-                    sb.append(FeedbackItem.STATUS_WAITING);
+                    sb.append("0");
                 }
                 sb.append(Integer.toHexString(i2));
             }
@@ -110,7 +110,7 @@ public class SecurityUtils {
             long longValue;
             long longValue2;
             StringBuilder sb = new StringBuilder(str.trim());
-            if (sb.toString().equals(FeedbackItem.STATUS_WAITING)) {
+            if (sb.toString().equals("0")) {
                 throw new IllegalArgumentException();
             }
             for (int i = 0; i < sb.length(); i++) {
@@ -123,7 +123,7 @@ public class SecurityUtils {
             z = false;
             if (sb.length() < 16) {
                 while (sb.length() < 16) {
-                    sb.append(FeedbackItem.STATUS_WAITING);
+                    sb.append("0");
                 }
             }
             if (z) {

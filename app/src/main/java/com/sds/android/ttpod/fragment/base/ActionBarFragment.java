@@ -45,7 +45,7 @@ public abstract class ActionBarFragment extends BaseFragment implements OnDropdo
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.APP_THEME_CHANGED, ReflectUtils.m8375a(getClass(), "onThemeChanged", new Class[0]));
+        map.put(CommandID.APP_THEME_CHANGED, ReflectUtils.loadMethod(getClass(), "onThemeChanged", new Class[0]));
     }
 
     @Override // androidx.fragment.app.Fragment

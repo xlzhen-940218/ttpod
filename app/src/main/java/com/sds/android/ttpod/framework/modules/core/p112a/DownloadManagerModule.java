@@ -110,20 +110,20 @@ public final class DownloadManagerModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.ADD_DOWNLOAD_TASK, ReflectUtils.m8375a(cls, "addDownloadTask", DownloadTaskInfo.class));
-        map.put(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, ReflectUtils.m8375a(cls, "asynAddDownloadTaskList", List.class, Boolean.class));
-        map.put(CommandID.CANCEL_DOWNLOAD_TASK, ReflectUtils.m8375a(cls, "cancelDownloadTask", DownloadTaskInfo.class));
-        map.put(CommandID.ADD_DOWNLOAD_TASK_BY_GROUP, ReflectUtils.m8375a(cls, "addDownloadTaskByGroup", String.class, Boolean.class));
-        map.put(CommandID.QUERY_DOWNLOADING_INFO_BY_GROUP, ReflectUtils.m8375a(cls, "queryDownloadTaskInfoByGroup", String.class));
-        map.put(CommandID.DELETE_DOWNLOAD_TASK, ReflectUtils.m8375a(cls, "deleteDownloadTask", DownloadTaskInfo.class, Boolean.class));
-        map.put(CommandID.GET_TASK_LIST_WITH_STATE, ReflectUtils.m8375a(cls, "getTaskListWithState", Integer.class));
-        map.put(CommandID.GET_TASK_LIST_WITH_TYPE, ReflectUtils.m8375a(cls, "getTaskList", Integer.class));
-        map.put(CommandID.DELETE_ALL_FINISHED_DOWNLOAD_TASK, ReflectUtils.m8375a(cls, "deleteAllFinishedTask", Integer.class, Boolean.class));
-        map.put(CommandID.CLEAR_COMPLETE_TASK_COUNT, ReflectUtils.m8375a(cls, "clearCompleteCount", new Class[0]));
-        map.put(CommandID.GET_TASK_DOWNLOADED_LENGTH, ReflectUtils.m8375a(cls, "getTaskDownloadedLength", DownloadTaskInfo.class));
-        map.put(CommandID.GET_TOTAL_DOWNLOAD_FILE_SIZE, ReflectUtils.m8375a(cls, "getTotalEvaluatedDownloadFileSizeInByte", List.class, AudioQuality.class));
-        map.put(CommandID.DOWNLOAD_STATE_CHANGED, ReflectUtils.m8375a(cls, "downloadStateChanged", DownloadTaskInfo.class, Task.ErrorCodeType.class));
-        map.put(CommandID.NET_WORK_TYPE_CHANGED, ReflectUtils.m8375a(cls, "netWorkTypeChanged", new Class[0]));
+        map.put(CommandID.ADD_DOWNLOAD_TASK, ReflectUtils.loadMethod(cls, "addDownloadTask", DownloadTaskInfo.class));
+        map.put(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, ReflectUtils.loadMethod(cls, "asynAddDownloadTaskList", List.class, Boolean.class));
+        map.put(CommandID.CANCEL_DOWNLOAD_TASK, ReflectUtils.loadMethod(cls, "cancelDownloadTask", DownloadTaskInfo.class));
+        map.put(CommandID.ADD_DOWNLOAD_TASK_BY_GROUP, ReflectUtils.loadMethod(cls, "addDownloadTaskByGroup", String.class, Boolean.class));
+        map.put(CommandID.QUERY_DOWNLOADING_INFO_BY_GROUP, ReflectUtils.loadMethod(cls, "queryDownloadTaskInfoByGroup", String.class));
+        map.put(CommandID.DELETE_DOWNLOAD_TASK, ReflectUtils.loadMethod(cls, "deleteDownloadTask", DownloadTaskInfo.class, Boolean.class));
+        map.put(CommandID.GET_TASK_LIST_WITH_STATE, ReflectUtils.loadMethod(cls, "getTaskListWithState", Integer.class));
+        map.put(CommandID.GET_TASK_LIST_WITH_TYPE, ReflectUtils.loadMethod(cls, "getTaskList", Integer.class));
+        map.put(CommandID.DELETE_ALL_FINISHED_DOWNLOAD_TASK, ReflectUtils.loadMethod(cls, "deleteAllFinishedTask", Integer.class, Boolean.class));
+        map.put(CommandID.CLEAR_COMPLETE_TASK_COUNT, ReflectUtils.loadMethod(cls, "clearCompleteCount", new Class[0]));
+        map.put(CommandID.GET_TASK_DOWNLOADED_LENGTH, ReflectUtils.loadMethod(cls, "getTaskDownloadedLength", DownloadTaskInfo.class));
+        map.put(CommandID.GET_TOTAL_DOWNLOAD_FILE_SIZE, ReflectUtils.loadMethod(cls, "getTotalEvaluatedDownloadFileSizeInByte", List.class, AudioQuality.class));
+        map.put(CommandID.DOWNLOAD_STATE_CHANGED, ReflectUtils.loadMethod(cls, "downloadStateChanged", DownloadTaskInfo.class, Task.ErrorCodeType.class));
+        map.put(CommandID.NET_WORK_TYPE_CHANGED, ReflectUtils.loadMethod(cls, "netWorkTypeChanged", new Class[0]));
     }
 
     public void netWorkTypeChanged() {
@@ -394,7 +394,7 @@ public final class DownloadManagerModule extends BaseModule {
             @Override // java.lang.Runnable
             public void run() {
                 if (DownloadTaskInfo.TYPE_AUDIO.equals(num)) {
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_ASYNCLOAD_MEDIA_ITEM_LIST, MediaStorage.GROUP_ID_DOWNLOAD, Preferences.m2860l(MediaStorage.GROUP_ID_DOWNLOAD)));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_ASYNCLOAD_MEDIA_ITEM_LIST, MediaStorage.GROUP_ID_DOWNLOAD, Preferences.m2860l(MediaStorage.GROUP_ID_DOWNLOAD)));
                 }
                 for (DownloadTaskInfo downloadTaskInfo : DownloadManagerModule.this.m4471a(num, 0)) {
                     SqliteDb.m3119b(DownloadManagerModule.sContext, downloadTaskInfo.getSavePath());
@@ -544,7 +544,7 @@ public final class DownloadManagerModule extends BaseModule {
         MediaItem queryMediaItem;
         MediaItem m4712a = MediaItemUtils.m4712a(downloadTaskInfo.getSavePath());
         if (m4712a != null && (queryMediaItem = MediaStorage.queryMediaItem(sContext, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a.getID())) != null) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, queryMediaItem, Boolean.FALSE));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, queryMediaItem, Boolean.FALSE));
         }
     }
 

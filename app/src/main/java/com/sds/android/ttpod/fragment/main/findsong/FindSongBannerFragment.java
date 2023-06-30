@@ -38,7 +38,7 @@ public class FindSongBannerFragment extends FindSongBaseViewFragment {
         int i = (int) (m7225c * 0.2d);
         roundedImageView.setLayoutParams(new LinearLayout.LayoutParams(-1, i));
         roundedImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        ImageCacheUtils.m4752a(roundedImageView, getItemData(0).getPicUrl(), m7225c, i, (int) R.drawable.img_background_publish_poster_gallery);
+        ImageCacheUtils.displayImage(roundedImageView, getItemData(0).getPicUrl(), m7225c, i, (int) R.drawable.img_background_publish_poster_gallery);
         return roundedImageView;
     }
 

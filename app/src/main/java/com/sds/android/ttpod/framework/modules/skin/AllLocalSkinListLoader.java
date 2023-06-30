@@ -7,7 +7,7 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SSkinInfo;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SSkinInfo;
 import com.sds.android.ttpod.framework.p106a.SkinUtils;
 import java.io.BufferedReader;
 import java.io.File;
@@ -63,7 +63,7 @@ public class AllLocalSkinListLoader implements Runnable {
         while (it.hasNext()) {
             SkinItem next = it.next();
             SkinItem skinItem = new SkinItem(next.getPath(), 1);
-            skinItem.m3573a(new LocalSkinReader(next.getPath()).getSSKinInfo());
+            skinItem.setSkinInfo(new LocalSkinReader(next.getPath()).getSSKinInfo());
             arrayList.add(skinItem);
         }
         return arrayList;
@@ -95,7 +95,7 @@ public class AllLocalSkinListLoader implements Runnable {
         if (m4650a != null && m4650a.length > 0) {
             for (File file : m4650a) {
                 SkinItem skinItem = new SkinItem(file.getAbsolutePath(), 0);
-                skinItem.m3573a(new SkinInfoLoader(skinItem.getPath()).m3576a());
+                skinItem.setSkinInfo(new SkinInfoLoader(skinItem.getPath()).m3576a());
                 arrayList.add(skinItem);
             }
         }

@@ -13,10 +13,10 @@ import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SBitmap;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SFont;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SSkinInfo;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SerializableSkin;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SBitmap;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SFont;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SSkinInfo;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SerializableSkin;
 import com.sds.android.ttpod.framework.modules.skin.p130c.BitmapDrawableCreator;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ColorDrawableCreator;
 import com.sds.android.ttpod.framework.modules.skin.p130c.DrawableCreator;
@@ -149,7 +149,7 @@ public class SkinCache extends SkinReader {
     }
 
     /* renamed from: a */
-    public final DrawableCreator m3594a(SBitmap sBitmap) {
+    public final DrawableCreator getStateListDrawableCreator(SBitmap sBitmap) {
         if (sBitmap != null) {
             if (sBitmap.m3816i()) {
                 StateListDrawableCreator stateListDrawableCreator = new StateListDrawableCreator();
@@ -209,8 +209,8 @@ public class SkinCache extends SkinReader {
     }
 
     /* renamed from: a */
-    public final Drawable m3596a(Resources resources, SBitmap sBitmap) {
-        DrawableCreator m3594a = m3594a(sBitmap);
+    public final Drawable getDrawable(Resources resources, SBitmap sBitmap) {
+        DrawableCreator m3594a = getStateListDrawableCreator(sBitmap);
         if (m3594a != null) {
             return m3594a.getDrawable(resources);
         }
@@ -218,8 +218,8 @@ public class SkinCache extends SkinReader {
     }
 
     /* renamed from: a */
-    public final Drawable m3595a(Resources resources, String str) {
-        DrawableCreator m3588b = getDrawableCreator(str);
+    public final Drawable getDrawable(Resources resources, String resName) {
+        DrawableCreator m3588b = getDrawableCreator(resName);
         if (m3588b != null) {
             return m3588b.getDrawable(resources);
         }
@@ -280,18 +280,18 @@ public class SkinCache extends SkinReader {
     }
 
     /* renamed from: d */
-    public byte[] m3584d(String str) throws IOException {
-        return this.packHandle.loadTskResource(str);
+    public byte[] loadTskResource(String name) throws IOException {
+        return this.packHandle.loadTskResource(name);
     }
 
     /* renamed from: e */
-    public Iterable<String> m3583e() {
+    public Iterable<String> getPackHandle() {
         return this.packHandle;
     }
 
     /* renamed from: f */
     public SSkinInfo m3582f() {
-        return this.serializableSkin == null ? this.f6650g : this.serializableSkin.m3853a();
+        return this.serializableSkin == null ? this.f6650g : this.serializableSkin.cloneSSKinInfo();
     }
 
     /* renamed from: g */
@@ -345,7 +345,7 @@ public class SkinCache extends SkinReader {
     }
 
     /* renamed from: a */
-    public Drawable m3597a(Context context) {
+    public Drawable getBackground(Context context) {
         Drawable bitmapDrawable;
         if (!m3581g()) {
             return null;

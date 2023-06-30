@@ -1,7 +1,7 @@
 package com.sds.android.ttpod.component.p091g.p092a;
 
 
-import com.sds.android.ttpod.framework.modules.skin.p129b.SMotion;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SMotion;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ValueParser;
 
 /* compiled from: Event.java */

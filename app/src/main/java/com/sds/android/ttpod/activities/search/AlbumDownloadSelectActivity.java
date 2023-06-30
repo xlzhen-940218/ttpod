@@ -85,7 +85,7 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.m8375a(getClass(), "updateTaskState", DownloadTaskInfo.class));
+        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.loadMethod(getClass(), "updateTaskState", DownloadTaskInfo.class));
     }
 
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity
@@ -220,7 +220,7 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
                 if (!AlbumDownloadSelectActivity.this.mOriginQuality.equals(AlbumDownloadSelectActivity.this.mSelectedQuality)) {
                     Preferences.m2889e(AlbumDownloadSelectActivity.this.mSelectedQuality);
                 }
-                CommandCenter.getInstance().m4605a(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, DownloadUtils.m4758a(AlbumDownloadSelectActivity.this.getSelectItems(), Preferences.m3056M()), Boolean.FALSE), 10);
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, DownloadUtils.m4758a(AlbumDownloadSelectActivity.this.getSelectItems(), Preferences.m3056M()), Boolean.FALSE), 10);
                 //SearchStatistic.m4929j();
             }
         }, R.string.cancel, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity.5

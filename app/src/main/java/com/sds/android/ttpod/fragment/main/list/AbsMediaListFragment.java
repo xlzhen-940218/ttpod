@@ -101,10 +101,10 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.m8375a(cls, "updatePlayingMediaInfo", new Class[0]));
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "playMediaChanged", new Class[0]));
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.UPDATE_FAVORITE_CHANGED, ReflectUtils.m8375a(cls, "updateFavoriteChanged", new Class[0]));
+        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.loadMethod(cls, "updatePlayingMediaInfo", new Class[0]));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "playMediaChanged", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_FAVORITE_CHANGED, ReflectUtils.loadMethod(cls, "updateFavoriteChanged", new Class[0]));
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -178,11 +178,11 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
             }
         });
         this.mListView.setOnScrollListener(this.mAZSideBar);
-        this.mAZSideBar.setOnMatchedPositionChangeListener(new AZSideBar.InterfaceC2161a() { // from class: com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment.4
+        this.mAZSideBar.setOnMatchedPositionChangeListener(new AZSideBar.OnMatchedPositionChangeListener() { // from class: com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment.4
             @Override // com.sds.android.ttpod.widget.AZSideBar.InterfaceC2161a
             /* renamed from: a */
-            public void mo1905a(int i, String str) {
-                AbsMediaListFragment.this.selectRow(i);
+            public void positionChanged(int position, String str) {
+                AbsMediaListFragment.this.selectRow(position);
             }
         });
         updateStateViews();
@@ -456,7 +456,7 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
         DebugUtils.m8426a((Object) list, "AZKeys");
         if (isViewAccessAble()) {
             LogUtils.debug(TAG, "lookLoadData updateAZKeys groupId=%s", this.mGroupID);
-            this.mAZSideBar.m1909a(list);
+            this.mAZSideBar.setAZKeys(list);
         }
         updateAZSideBar();
     }

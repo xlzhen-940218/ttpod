@@ -9,44 +9,55 @@ import android.os.SystemClock;
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.c.m */
 /* loaded from: classes.dex */
 public class TransitionDrawable extends LayerDrawable implements Drawable.Callback {
-
+    /**
+     * A transition is about to start.
+     */
+    private static final int TRANSITION_STARTING = 0;
+    /**
+     * The transition has started and the animation is in progress
+     */
+    private static final int TRANSITION_RUNNING = 1;
+    /**
+     * No transition will be applied
+     */
+    private static final int TRANSITION_NONE = 2;
     /* renamed from: b */
     private static final Drawable f6546b = new ColorDrawable(0);
 
     /* renamed from: a */
-    private int f6547a;
+    private int mTransitionState;
 
     /* renamed from: c */
-    private boolean f6548c;
+    private boolean mReverse;
 
     /* renamed from: d */
-    private long f6549d;
+    private long mStartTimeMillis;
 
     /* renamed from: e */
-    private int f6550e;
+    private int mFrom;
 
     /* renamed from: f */
-    private int f6551f;
+    private int mTo;
 
     /* renamed from: g */
-    private int f6552g;
+    private int mDuration;
 
     /* renamed from: h */
-    private int f6553h;
+    private int mOriginalDuration;
 
     /* renamed from: i */
-    private int f6554i;
+    private int mAlpha;
 
     /* renamed from: j */
-    private boolean f6555j;
+    private boolean mCrossFade;
 
     /* renamed from: k */
     private Drawable f6556k;
 
     public TransitionDrawable() {
         super(new Drawable[]{f6546b, f6546b});
-        this.f6547a = 2;
-        this.f6554i = 0;
+        this.mTransitionState = TRANSITION_NONE;
+        this.mAlpha = 0;
         for (int numberOfLayers = getNumberOfLayers() - 1; numberOfLayers >= 0; numberOfLayers--) {
             super.setId(numberOfLayers, numberOfLayers);
         }
@@ -69,22 +80,22 @@ public class TransitionDrawable extends LayerDrawable implements Drawable.Callba
     }
 
     /* renamed from: a */
-    private void m3711a(int i) {
-        this.f6550e = 0;
-        this.f6551f = 255;
-        this.f6554i = 0;
-        this.f6552g = i;
-        this.f6553h = i;
-        this.f6548c = false;
-        this.f6547a = 0;
+    private void startTransition(int durationMillis) {
+        this.mFrom = 0;
+        this.mTo = 255;
+        this.mAlpha = 0;
+        this.mDuration = durationMillis;
+        this.mOriginalDuration = durationMillis;
+        this.mReverse = false;
+        this.mTransitionState = TRANSITION_STARTING;
         invalidateSelf();
     }
 
     /* renamed from: a */
-    public void m3710a(Drawable drawable) {
+    public void setDrawable(Drawable drawable) {
         if (!m3706c()) {
             setDrawableByLayerId(1, drawable);
-            m3711a(1000);
+            startTransition(1000);
         }
         if (drawable == null) {
             drawable = f6546b;
@@ -94,7 +105,7 @@ public class TransitionDrawable extends LayerDrawable implements Drawable.Callba
 
     /* renamed from: b */
     public void m3707b(Drawable drawable) {
-        m3708b();
+        resetTransition();
         m3712a();
         setDrawableByLayerId(0, drawable);
         setDrawableByLayerId(1, drawable);
@@ -111,9 +122,9 @@ public class TransitionDrawable extends LayerDrawable implements Drawable.Callba
     }
 
     /* renamed from: b */
-    public void m3708b() {
-        this.f6554i = 0;
-        this.f6547a = 2;
+    public void resetTransition() {
+        this.mAlpha = 0;
+        this.mTransitionState = TRANSITION_NONE;
         invalidateSelf();
     }
 
@@ -121,28 +132,28 @@ public class TransitionDrawable extends LayerDrawable implements Drawable.Callba
     public void draw(Canvas canvas) {
         boolean z;
         Drawable drawable;
-        switch (this.f6547a) {
+        switch (this.mTransitionState) {
             case 0:
-                this.f6549d = SystemClock.uptimeMillis();
-                this.f6547a = 1;
+                this.mStartTimeMillis = SystemClock.uptimeMillis();
+                this.mTransitionState = TRANSITION_RUNNING;
                 z = false;
                 break;
             case 1:
-                if (this.f6549d < 0) {
+                if (this.mStartTimeMillis < 0) {
                     z = true;
                     break;
                 } else {
-                    float uptimeMillis = ((float) (SystemClock.uptimeMillis() - this.f6549d)) / this.f6552g;
+                    float uptimeMillis = ((float) (SystemClock.uptimeMillis() - this.mStartTimeMillis)) / this.mDuration;
                     z = uptimeMillis >= 1.0f;
-                    this.f6554i = (int) ((Math.min(uptimeMillis, 1.0f) * (this.f6551f - this.f6550e)) + this.f6550e);
+                    this.mAlpha = (int) ((Math.min(uptimeMillis, 1.0f) * (this.mTo - this.mFrom)) + this.mFrom);
                     break;
                 }
             default:
                 z = true;
                 break;
         }
-        int i = this.f6554i;
-        boolean z2 = this.f6555j;
+        int i = this.mAlpha;
+        boolean z2 = this.mCrossFade;
         Drawable drawable2 = getDrawable(0);
         Drawable drawable3 = getDrawable(1);
         if (z) {
@@ -157,7 +168,7 @@ public class TransitionDrawable extends LayerDrawable implements Drawable.Callba
                 if (drawable != this.f6556k) {
                     Drawable drawable4 = this.f6556k;
                     this.f6556k = null;
-                    m3710a(drawable4);
+                    setDrawable(drawable4);
                     return;
                 }
                 this.f6556k = null;
@@ -181,7 +192,7 @@ public class TransitionDrawable extends LayerDrawable implements Drawable.Callba
     }
 
     /* renamed from: a */
-    public void m3709a(boolean z) {
-        this.f6555j = z;
+    public void setCrossFade(boolean z) {
+        this.mCrossFade = z;
     }
 }

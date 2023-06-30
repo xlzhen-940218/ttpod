@@ -82,8 +82,8 @@ public class SubGroupListFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        ThemeManager.m3269a(this.mRootView, ThemeElement.BACKGROUND_MASK);
-        ThemeManager.m3269a(this.mRootView.findViewById(R.id.content_custom_group), ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mRootView, "BackgroundMaskColor");
+        ThemeManager.m3269a(this.mRootView.findViewById(R.id.content_custom_group), "BackgroundMaskColor");
         ThemeManager.m3269a(this.mRootView.findViewById(R.id.layout_create_playlist), ThemeElement.SONG_LIST_ITEM_BACKGROUND);
     }
 

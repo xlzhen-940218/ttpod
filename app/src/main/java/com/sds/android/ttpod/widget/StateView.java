@@ -167,9 +167,9 @@ public class StateView extends FrameLayout implements ThemeManager.InterfaceC201
 
     @Override // com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
-        ThemeManager.m3269a(this, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this, "BackgroundMaskColor");
         m1451b();
-        ThemeManager.m3269a(this.f8044a, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.f8044a, "BackgroundMaskColor");
         m1453a();
         ColorStateList m3254c = ThemeManager.m3254c(ThemeElement.COMMON_CONTENT_TEXT);
         if (m3254c != null) {
@@ -190,7 +190,7 @@ public class StateView extends FrameLayout implements ThemeManager.InterfaceC201
     /* renamed from: a */
     private void m1453a() {
         IconTextView iconTextView;
-        ThemeManager.m3269a(this.f8047d, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.f8047d, "BackgroundMaskColor");
         if (this.f8047d != null && (iconTextView = (IconTextView) this.f8047d.findViewById(R.id.icon_no_data)) != null) {
             ThemeUtils.m8173a(iconTextView, ThemeElement.TILE_SUB_TEXT);
         }
@@ -198,7 +198,7 @@ public class StateView extends FrameLayout implements ThemeManager.InterfaceC201
 
     /* renamed from: b */
     private void m1451b() {
-        ThemeManager.m3269a(this.f8046c, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.f8046c, "BackgroundMaskColor");
         if (this.f8046c != null) {
             IconTextView iconTextView = (IconTextView) this.f8046c.findViewById(R.id.no_media_icon);
             if (iconTextView != null) {

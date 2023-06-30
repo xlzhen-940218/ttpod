@@ -154,7 +154,7 @@ public class ShakeToFindFriendsFragment extends SlidingClosableFragment implemen
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SHAKE_RESULT, ReflectUtils.m8375a(ShakeToFindFriendsFragment.class, "onUpdateShakeResult", AroundUserListResult.class, String.class));
+        map.put(CommandID.UPDATE_SHAKE_RESULT, ReflectUtils.loadMethod(ShakeToFindFriendsFragment.class, "onUpdateShakeResult", AroundUserListResult.class, String.class));
     }
 
     public void onUpdateShakeResult(AroundUserListResult aroundUserListResult, String str) {

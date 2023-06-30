@@ -111,7 +111,7 @@ public abstract class MVListFragment extends ListLoadingFragment<MVOnlineData> {
                 c1594a.f5269d.setText(mVOnlineData2.getSinger());
                 c1594a.f5266a.setTag(R.id.view_bind_data, mVOnlineData2);
                 c1594a.f5266a.setOnClickListener(this);
-                ImageCacheUtils.m4752a(c1594a.f5270e, mVOnlineData2.getPicUrl(), this.f5263e.getResources().getDimensionPixelSize(R.dimen.mv_thumbnail_width), this.f5263e.getResources().getDimensionPixelSize(R.dimen.mv_thumbnail_height), (int) R.drawable.img_mv_default_image);
+                ImageCacheUtils.displayImage(c1594a.f5270e, mVOnlineData2.getPicUrl(), this.f5263e.getResources().getDimensionPixelSize(R.dimen.mv_thumbnail_width), this.f5263e.getResources().getDimensionPixelSize(R.dimen.mv_thumbnail_height), (int) R.drawable.img_mv_default_image);
                 ThemeManager.m3269a(c1594a.f5268c, ThemeElement.SONG_LIST_ITEM_TEXT);
                 ThemeManager.m3269a(c1594a.f5269d, ThemeElement.SONG_LIST_ITEM_SUB_TEXT);
                 ThemeManager.m3269a(c1594a.f5267b, ThemeElement.SONG_LIST_ITEM_MENU_IMAGE);

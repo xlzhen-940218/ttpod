@@ -9,10 +9,10 @@ import java.util.Iterator;
 /* loaded from: classes.dex */
 public abstract class PackHandle implements Closeable, Iterable<String> {
     /* renamed from: a */
-    public abstract void mo3756a(InputStream inputStream, boolean z) throws IOException;
+    public abstract void initTskPackHandle(InputStream inputStream, boolean loadStream) throws IOException;
 
     /* renamed from: a */
-    public abstract void mo3755a(String str) throws IOException;
+    public abstract void initTskPackHandleByFile(String str) throws IOException;
 
     /* renamed from: a */
     public abstract boolean streamNotNull();

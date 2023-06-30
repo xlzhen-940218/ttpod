@@ -67,7 +67,7 @@ public class NoticeAdapter extends BaseListAdapter<Notice> {
         Post post = notice.getPost();
         if (post != null) {
             final LabeledTTPodUser user = post.getUser();
-            ImageCacheUtils.m4752a(c0977a.f3273b, user.getAvatarUrl(), c0977a.f3273b.getWidth(), c0977a.f3273b.getHeight(), (int) R.drawable.img_avatar_default);
+            ImageCacheUtils.displayImage(c0977a.f3273b, user.getAvatarUrl(), c0977a.f3273b.getWidth(), c0977a.f3273b.getHeight(), (int) R.drawable.img_avatar_default);
             c0977a.f3276e.setCompoundDrawablesWithIntrinsicBounds(user.isVerified() ? R.drawable.img_user_v : 0, 0, 0, 0);
             c0977a.f3276e.setText(user.getNickName());
             View.OnClickListener onClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.e.a.c.1

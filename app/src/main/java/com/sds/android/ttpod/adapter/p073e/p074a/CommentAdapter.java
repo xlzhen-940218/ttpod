@@ -70,7 +70,7 @@ public class CommentAdapter extends BaseListAdapter<Notice> {
         if (comment != null) {
             final TTPodUser user = comment.getUser();
             if (user != null) {
-                ImageCacheUtils.m4752a(c0972a.f3255b, user.getAvatarUrl(), c0972a.f3255b.getWidth(), c0972a.f3255b.getHeight(), (int) R.drawable.img_avatar_default);
+                ImageCacheUtils.displayImage(c0972a.f3255b, user.getAvatarUrl(), c0972a.f3255b.getWidth(), c0972a.f3255b.getHeight(), (int) R.drawable.img_avatar_default);
                 c0972a.f3257d.setText(user.getNickName());
             }
             c0972a.f3256c.setText(TimeUtils.m8155a(getContext(), comment.getCreateTimeInSecond()));

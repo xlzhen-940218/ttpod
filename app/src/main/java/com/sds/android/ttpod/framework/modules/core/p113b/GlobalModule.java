@@ -167,12 +167,12 @@ public class GlobalModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.START_SLEEP_MODE, ReflectUtils.m8375a(cls, "startSleepMode", Integer.class));
-        map.put(CommandID.STOP_SLEEP_MODE, ReflectUtils.m8375a(cls, "stopSleepMode", new Class[0]));
-        map.put(CommandID.IS_SLEEP_MODE_ENABLED, ReflectUtils.m8375a(cls, "isSleepModeEnabled", new Class[0]));
-        map.put(CommandID.SLEEP_MODE_REMAIN_TIME, ReflectUtils.m8375a(cls, "sleepModeRemainTime", new Class[0]));
-        map.put(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, ReflectUtils.m8375a(cls, "setShakeSwitchSongEnabled", Boolean.class));
-        map.put(CommandID.SET_SHAKE_SWITCH_SONG_SENSITIVITY, ReflectUtils.m8375a(cls, "setShakeSwitchSongSensitivity", ShakeSensitivityType.class));
+        map.put(CommandID.START_SLEEP_MODE, ReflectUtils.loadMethod(cls, "startSleepMode", Integer.class));
+        map.put(CommandID.STOP_SLEEP_MODE, ReflectUtils.loadMethod(cls, "stopSleepMode", new Class[0]));
+        map.put(CommandID.IS_SLEEP_MODE_ENABLED, ReflectUtils.loadMethod(cls, "isSleepModeEnabled", new Class[0]));
+        map.put(CommandID.SLEEP_MODE_REMAIN_TIME, ReflectUtils.loadMethod(cls, "sleepModeRemainTime", new Class[0]));
+        map.put(CommandID.SET_SHAKE_SWITCH_SONG_ENABLED, ReflectUtils.loadMethod(cls, "setShakeSwitchSongEnabled", Boolean.class));
+        map.put(CommandID.SET_SHAKE_SWITCH_SONG_SENSITIVITY, ReflectUtils.loadMethod(cls, "setShakeSwitchSongSensitivity", ShakeSensitivityType.class));
     }
 
     public ErrCode startSleepMode(Integer num) {

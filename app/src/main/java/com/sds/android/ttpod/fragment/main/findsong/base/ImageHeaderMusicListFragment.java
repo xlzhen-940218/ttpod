@@ -82,8 +82,8 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "playMediaChanged", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "playMediaChanged", new Class[0]));
     }
 
     public void updatePlayStatus(PlayStatus playStatus) {
@@ -106,7 +106,7 @@ public abstract class ImageHeaderMusicListFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        ThemeManager.m3269a(this.mRootView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mRootView, "BackgroundMaskColor");
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

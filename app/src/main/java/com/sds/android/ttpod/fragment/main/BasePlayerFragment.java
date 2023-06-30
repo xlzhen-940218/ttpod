@@ -61,12 +61,12 @@ public abstract class BasePlayerFragment extends BaseFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "playMediaChanged", new Class[0]));
-        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.m8375a(cls, "updatePlayMediaInfo", new Class[0]));
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.UPDATE_SEARCH_PICTURE_STATE, ReflectUtils.m8375a(cls, "updateSearchPictureState", SearchStatus.class, List.class, String.class, Bitmap.class));
-        map.put(CommandID.SWITCH_ARTIST_PICTURE, ReflectUtils.m8375a(cls, "switchArtistPicture", String.class, String.class, Bitmap.class));
-        map.put(CommandID.UPDATE_SEARCH_LYRIC_STATE, ReflectUtils.m8375a(cls, "updateSearchLyricState", SearchStatus.class, List.class, String.class, Lyric.class));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "playMediaChanged", new Class[0]));
+        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.loadMethod(cls, "updatePlayMediaInfo", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_SEARCH_PICTURE_STATE, ReflectUtils.loadMethod(cls, "updateSearchPictureState", SearchStatus.class, List.class, String.class, Bitmap.class));
+        map.put(CommandID.SWITCH_ARTIST_PICTURE, ReflectUtils.loadMethod(cls, "switchArtistPicture", String.class, String.class, Bitmap.class));
+        map.put(CommandID.UPDATE_SEARCH_LYRIC_STATE, ReflectUtils.loadMethod(cls, "updateSearchLyricState", SearchStatus.class, List.class, String.class, Lyric.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
@@ -276,7 +276,7 @@ public abstract class BasePlayerFragment extends BaseFragment {
                             /* renamed from: a */
                             public void mo5409a(ActionItem actionItem, int i) {
                                 DebugUtils.m8423a((Object[]) ((ResultData) list.get(i)).getLyricArray(), "items");
-                                CommandCenter.getInstance().m4596b(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, ((ResultData) list.get(i)).getLyricArray()[0], m3225N));
+                                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.START_DOWNLOAD_SEARCH_LYRIC, ((ResultData) list.get(i)).getLyricArray()[0], m3225N));
                             }
                         }, new DialogInterface.OnCancelListener() { // from class: com.sds.android.ttpod.fragment.main.BasePlayerFragment.3
                             @Override // android.content.DialogInterface.OnCancelListener

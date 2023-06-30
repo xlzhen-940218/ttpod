@@ -104,7 +104,7 @@ public class SceneRecommendHeader {
         }
         m5487a(str);
         int dimension = (int) this.f5303a.getResources().getDimension(R.dimen.song_category_detail_image_size);
-        ImageCacheUtils.m4752a(this.f5305c, str2, dimension, dimension, (int) R.drawable.img_background_song_publish);
+        ImageCacheUtils.displayImage(this.f5305c, str2, dimension, dimension, (int) R.drawable.img_background_song_publish);
     }
 
     /* renamed from: c */

@@ -447,11 +447,11 @@ public class FilePickerActivity extends SlidingClosableActivity {
                     FilePickerActivity.this.setSelectNoneAction();
                 }
                 final File file2 = file;
-                TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<File, C0749a[]>(file) { // from class: com.sds.android.ttpod.activities.mediascan.FilePickerActivity.b.1
+                TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<File, C0749a[]>(file) { // from class: com.sds.android.ttpod.activities.mediascan.FilePickerActivity.b.1
                     /* JADX INFO: Access modifiers changed from: protected */
                     @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public C0749a[] mo1981a(File file3) {
+                    public C0749a[] inBackground(File file3) {
                         if (file3 == null || !file3.isDirectory()) {
                             return null;
                         }

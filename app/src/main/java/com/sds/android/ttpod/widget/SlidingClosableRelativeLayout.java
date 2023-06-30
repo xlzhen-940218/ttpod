@@ -54,7 +54,7 @@ public class SlidingClosableRelativeLayout extends RelativeLayout {
     private InterfaceC2238b f7950D;
 
     /* renamed from: E */
-    private InterfaceC2237a f7951E;
+    private OnSlidingCloseListener f7951E;
 
     /* renamed from: F */
     private InterfaceC2239c f7952F;
@@ -148,9 +148,9 @@ public class SlidingClosableRelativeLayout extends RelativeLayout {
 
     /* renamed from: com.sds.android.ttpod.widget.SlidingClosableRelativeLayout$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC2237a {
+    public interface OnSlidingCloseListener {
         /* renamed from: a */
-        void mo1483a();
+        void close();
     }
 
     /* renamed from: com.sds.android.ttpod.widget.SlidingClosableRelativeLayout$b */
@@ -258,7 +258,7 @@ public class SlidingClosableRelativeLayout extends RelativeLayout {
         this.f7950D = interfaceC2238b;
     }
 
-    public void setOnSlidingCloseListener(InterfaceC2237a interfaceC2237a) {
+    public void setOnSlidingCloseListener(OnSlidingCloseListener interfaceC2237a) {
         this.f7951E = interfaceC2237a;
     }
 
@@ -700,7 +700,7 @@ public class SlidingClosableRelativeLayout extends RelativeLayout {
         if (this.f7949C) {
             this.f7949C = false;
             if (this.f7951E != null) {
-                this.f7951E.mo1483a();
+                this.f7951E.close();
             }
         }
     }

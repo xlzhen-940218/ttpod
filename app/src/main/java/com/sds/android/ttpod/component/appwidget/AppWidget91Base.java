@@ -315,7 +315,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
             return "00";
         }
         if (i >= 0 && i < 10) {
-            return FeedbackItem.STATUS_WAITING + i;
+            return "0" + i;
         }
         return "" + i;
     }

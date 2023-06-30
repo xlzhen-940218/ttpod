@@ -25,52 +25,55 @@ import java.util.Iterator;
 /* loaded from: classes.dex */
 public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewFactory {
 
+    private static final int RESET_SWITCH = 1;
     /* renamed from: a */
     private boolean f6914a;
 
     /* renamed from: b */
-    private boolean f6915b;
+    private boolean visible;
 
     /* renamed from: c */
-    private boolean f6916c;
+    private boolean resetSwitch;
 
-    /* renamed from: d */
-    private boolean f6917d;
+    /**
+     * 用户在使用
+     */
+    private boolean userPresent;
 
     /* renamed from: e */
-    private boolean f6918e;
+    private boolean allowStart;
 
     /* renamed from: f */
-    private final FrameLayout.LayoutParams f6919f;
+    private final FrameLayout.LayoutParams layoutParams;
 
     /* renamed from: g */
-    private ArrayList<Bitmap> f6920g;
+    private ArrayList<Bitmap> bitmapArrayList;
 
     /* renamed from: h */
-    private int f6921h;
+    private int index;
 
     /* renamed from: i */
     private Drawable f6922i;
 
     /* renamed from: j */
-    private Handler f6923j;
+    private Handler handler;
 
     /* renamed from: k */
-    private final BroadcastReceiver f6924k;
+    private final BroadcastReceiver broadcastReceiver;
 
     public TTImageSwitcher(Context context) {
         super(context);
-        this.f6917d = true;
-        this.f6918e = true;
-        this.f6919f = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        this.f6920g = new ArrayList<>();
-        this.f6923j = new Handler() { // from class: com.sds.android.ttpod.framework.modules.skin.view.d.1
+        this.userPresent = true;
+        this.allowStart = true;
+        this.layoutParams = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        this.bitmapArrayList = new ArrayList<>();
+        this.handler = new Handler() { // from class: com.sds.android.ttpod.framework.modules.skin.view.d.1
             @Override // android.os.Handler
             public void handleMessage(Message message) {
                 int i = message.what;
                 LogUtils.debug("TTImageSwitcher", "handleMessage lookLyricPic what=%d", Integer.valueOf(i));
-                if (i == 1) {
-                    TTImageSwitcher.this.f6916c = true;
+                if (i == RESET_SWITCH) {
+                    TTImageSwitcher.this.resetSwitch = true;
                     TTImageSwitcher.this.m3344b();
                     TTImageSwitcher.this.m3341c();
                 } else if (i == 2) {
@@ -89,15 +92,15 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
                 }
             }
         };
-        this.f6924k = new BroadcastReceiver() { // from class: com.sds.android.ttpod.framework.modules.skin.view.d.2
+        this.broadcastReceiver = new BroadcastReceiver() { // from class: com.sds.android.ttpod.framework.modules.skin.view.d.2
             @Override // android.content.BroadcastReceiver
             public void onReceive(Context context2, Intent intent) {
                 String action = intent.getAction();
                 if ("android.intent.action.SCREEN_OFF".equals(action)) {
-                    TTImageSwitcher.this.f6917d = false;
+                    TTImageSwitcher.this.userPresent = false;
                     TTImageSwitcher.this.m3347a();
                 } else if ("android.intent.action.USER_PRESENT".equals(action)) {
-                    TTImageSwitcher.this.f6917d = true;
+                    TTImageSwitcher.this.userPresent = true;
                     TTImageSwitcher.this.m3347a();
                 } else if (Action.ACTION_AUTO_PLAY_ARTIST_IMAGE.equals(action)) {
                     TTImageSwitcher.this.setAllowStart(intent.getBooleanExtra("state", true));
@@ -107,14 +110,14 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
     }
 
     public void setAllowStart(boolean z) {
-        if (z != this.f6918e) {
-            this.f6918e = z;
-            if (this.f6918e) {
-                m3339d();
+        if (z != this.allowStart) {
+            this.allowStart = z;
+            if (this.allowStart) {
+                resetSwitch();
                 return;
             }
-            this.f6923j.removeCallbacksAndMessages(null);
-            this.f6921h = -1;
+            this.handler.removeCallbacksAndMessages(null);
+            this.index = -1;
             m3344b();
         }
     }
@@ -122,12 +125,12 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m3347a() {
-        boolean z = this.f6915b && this.f6917d && this.f6916c && this.f6918e;
+        boolean z = this.visible && this.userPresent && this.resetSwitch && this.allowStart;
         if (z != this.f6914a) {
             if (z) {
                 m3341c();
             } else {
-                this.f6923j.removeMessages(2);
+                this.handler.removeMessages(2);
             }
             this.f6914a = z;
         }
@@ -136,14 +139,14 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public void m3344b() {
-        this.f6921h++;
-        int size = this.f6920g.size();
-        if (this.f6921h >= size) {
-            this.f6921h = 0;
+        this.index++;
+        int size = this.bitmapArrayList.size();
+        if (this.index >= size) {
+            this.index = 0;
         }
         View nextView = getNextView();
-        if (this.f6921h < size) {
-            nextView.setBackground(new ClipBitmapDrawable(getResources(), this.f6920g.get(this.f6921h)));
+        if (this.index < size) {
+            nextView.setBackground(new ClipBitmapDrawable(getResources(), this.bitmapArrayList.get(this.index)));
         } else {
             nextView.setBackground(this.f6922i);
         }
@@ -153,31 +156,31 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: c */
     public void m3341c() {
-        if ((this.f6915b && this.f6917d && this.f6916c && this.f6918e) && this.f6920g.size() > 1) {
-            this.f6923j.sendMessageDelayed(this.f6923j.obtainMessage(2), 15000L);
+        if ((this.visible && this.userPresent && this.resetSwitch && this.allowStart) && this.bitmapArrayList.size() > 1) {
+            this.handler.sendMessageDelayed(this.handler.obtainMessage(2), 15000L);
         }
     }
 
     public void setImageBitmap(Bitmap bitmap) {
         LogUtils.debug("TTImageSwitcher", "setImageBitmap lookLyricPic bitmap width=%d height=%d", Integer.valueOf(bitmap != null ? bitmap.getWidth() : -1), Integer.valueOf(bitmap != null ? bitmap.getHeight() : -1));
-        this.f6923j.removeCallbacksAndMessages(null);
-        Message obtainMessage = this.f6923j.obtainMessage(3);
+        this.handler.removeCallbacksAndMessages(null);
+        Message obtainMessage = this.handler.obtainMessage(3);
         obtainMessage.obj = bitmap;
-        this.f6923j.sendMessageDelayed(obtainMessage, 200L);
+        this.handler.sendMessageDelayed(obtainMessage, 200L);
     }
 
     /* renamed from: d */
-    private void m3339d() {
-        this.f6916c = false;
-        this.f6921h = -1;
-        this.f6923j.removeCallbacksAndMessages(null);
-        this.f6923j.sendMessageDelayed(this.f6923j.obtainMessage(1), 200L);
+    private void resetSwitch() {
+        this.resetSwitch = false;
+        this.index = -1;
+        this.handler.removeCallbacksAndMessages(null);
+        this.handler.sendMessageDelayed(this.handler.obtainMessage(RESET_SWITCH), 200L);
     }
 
     @Override // android.widget.ViewSwitcher.ViewFactory
     public View makeView() {
         View view = new View(getContext());
-        view.setLayoutParams(this.f6919f);
+        view.setLayoutParams(this.layoutParams);
         return view;
     }
 
@@ -185,22 +188,22 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
     public void onDetachedFromWindow() {
         try {
             super.onDetachedFromWindow();
-            this.f6915b = false;
-            getContext().unregisterReceiver(this.f6924k);
+            this.visible = false;
+            getContext().unregisterReceiver(this.broadcastReceiver);
             m3347a();
-            Iterator<Bitmap> it = this.f6920g.iterator();
+            Iterator<Bitmap> it = this.bitmapArrayList.iterator();
             while (it.hasNext()) {
                 Bitmap next = it.next();
                 if (next != null && !next.isRecycled()) {
                     next.recycle();
                 }
             }
-            this.f6920g.clear();
-            this.f6923j.removeMessages(2);
-            this.f6923j.removeMessages(1);
-            this.f6923j.removeMessages(3);
+            this.bitmapArrayList.clear();
+            this.handler.removeMessages(2);
+            this.handler.removeMessages(1);
+            this.handler.removeMessages(3);
         } catch (IllegalArgumentException e) {
-            this.f6923j.removeMessages(2);
+            this.handler.removeMessages(2);
         }
     }
 
@@ -211,14 +214,14 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
         intentFilter.addAction("android.intent.action.SCREEN_OFF");
         intentFilter.addAction("android.intent.action.USER_PRESENT");
         intentFilter.addAction(Action.ACTION_AUTO_PLAY_ARTIST_IMAGE);
-        getContext().registerReceiver(this.f6924k, intentFilter);
+        getContext().registerReceiver(this.broadcastReceiver, intentFilter);
         m3347a();
     }
 
     @Override // android.view.View
-    protected void onWindowVisibilityChanged(int i) {
-        super.onWindowVisibilityChanged(i);
-        this.f6915b = i == 0;
+    protected void onWindowVisibilityChanged(int visibility) {
+        super.onWindowVisibilityChanged(visibility);
+        this.visible = visibility == VISIBLE;
         m3347a();
     }
 

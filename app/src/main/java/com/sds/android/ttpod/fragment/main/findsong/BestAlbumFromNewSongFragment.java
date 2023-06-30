@@ -78,7 +78,7 @@ public class BestAlbumFromNewSongFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_NEW_SONG_CATEGORY_PUBLISH_LIST, ReflectUtils.m8375a(getClass(), "updateNewSongCategory", FirstPublishNewSongCategoryResult.class));
+        map.put(CommandID.UPDATE_NEW_SONG_CATEGORY_PUBLISH_LIST, ReflectUtils.loadMethod(getClass(), "updateNewSongCategory", FirstPublishNewSongCategoryResult.class));
     }
 
     public void updateNewSongCategory(FirstPublishNewSongCategoryResult firstPublishNewSongCategoryResult) {
@@ -142,6 +142,6 @@ public class BestAlbumFromNewSongFragment extends SlidingClosableFragment {
     public void onThemeLoaded() {
         super.onThemeLoaded();
         ThemeUtils.m8166a(this.mSlidingTabHost);
-        ThemeManager.m3269a(this.mRootView.findViewById(R.id.best_album_background), ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mRootView.findViewById(R.id.best_album_background), "BackgroundMaskColor");
     }
 }

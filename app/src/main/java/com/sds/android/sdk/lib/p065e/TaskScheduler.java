@@ -51,31 +51,31 @@ public class TaskScheduler {
     }
 
     /* renamed from: a */
-    public static void m8582a(AbstractAsyncTaskC0595a abstractAsyncTaskC0595a) {
-        abstractAsyncTaskC0595a.exec();
+    public static void m8582a(SchedulerAsyncTask schedulerAsyncTask) {
+        schedulerAsyncTask.exec();
     }
 
     /* compiled from: TaskScheduler.java */
     /* renamed from: com.sds.android.sdk.lib.e.a$a */
     /* loaded from: classes.dex */
-    public static abstract class AbstractAsyncTaskC0595a<Input, Output> extends AsyncTask<Input, Object, Output> {
+    public static abstract class SchedulerAsyncTask<Input, Output> extends AsyncTask<Input, Object, Output> {
 
         /* renamed from: a */
         private Input input;
 
         /* renamed from: a */
-        protected abstract Output mo1981a(Input input);
+        protected abstract Output inBackground(Input input);
 
         /* renamed from: b */
         protected abstract void postExecute(Output output);
 
-        public AbstractAsyncTaskC0595a(Input input) {
+        public SchedulerAsyncTask(Input input) {
             this.input = input;
         }
 
         @Override // android.os.AsyncTask
         protected final Output doInBackground(Input... inputArr) {
-            return mo1981a(inputArr[0]);
+            return inBackground(inputArr[0]);
         }
 
         @Override // android.os.AsyncTask

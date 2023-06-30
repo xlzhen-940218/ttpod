@@ -100,8 +100,8 @@ public class PlayControlBarFragment extends BasePlayerFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_PLAY_POSITION, ReflectUtils.m8375a(cls, "updatePlayPosition", Integer.class));
-        map.put(CommandID.UPDATE_PICTURE_DELETED, ReflectUtils.m8375a(cls, "pictureDeleted", MediaItem.class));
+        map.put(CommandID.UPDATE_PLAY_POSITION, ReflectUtils.loadMethod(cls, "updatePlayPosition", Integer.class));
+        map.put(CommandID.UPDATE_PICTURE_DELETED, ReflectUtils.loadMethod(cls, "pictureDeleted", MediaItem.class));
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -165,7 +165,7 @@ public class PlayControlBarFragment extends BasePlayerFragment {
         int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.playcontrol_bar_height);
         ThemeFramework.AbstractC2016e m3258b = ThemeManager.m3258b(ThemeElement.PLAY_BAR_BACKGROUND);
         if (m3258b != null) {
-            i = m3258b.m3286f();
+            i = m3258b.getHeight();
             if (i <= dimensionPixelSize) {
                 i = dimensionPixelSize;
             }

@@ -280,7 +280,7 @@ public class GlobalMenuDialog extends Dialog {
         int dimensionPixelSize = this.f3915f.getResources().getDimensionPixelSize(R.dimen.global_menu_dialog_height);
         ThemeFramework.AbstractC2016e m3258b = ThemeManager.m3258b(ThemeElement.SETTING_BACKGROUND);
         if (m3258b != null) {
-            i = m3258b.m3286f();
+            i = m3258b.getHeight();
             if (i <= dimensionPixelSize) {
                 i = dimensionPixelSize;
             }
@@ -299,7 +299,7 @@ public class GlobalMenuDialog extends Dialog {
         Drawable m3265a = ThemeManager.m3265a(ThemeElement.SETTING_HORIZONTAL_BACKGROUND_IMAGE);
         if (m3265a == null) {
             ThemeFramework.AbstractC2016e m3258b = ThemeManager.m3258b(ThemeElement.SETTING_BACKGROUND);
-            m3265a = m3258b != null ? m3258b.m3289c() : null;
+            m3265a = m3258b != null ? m3258b.getWildCardDrawable() : null;
             if (m3265a == null) {
                 m3265a = new ColorDrawable(this.f3915f.getResources().getColor(R.color.slide_menu_background));
             }

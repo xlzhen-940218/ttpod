@@ -228,7 +228,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_ALL_UPGRADE_PROGRESS_INFO, ReflectUtils.m8375a(getClass(), "updateProgressInfo", DownloadTaskInfo.class));
+        map.put(CommandID.UPDATE_ALL_UPGRADE_PROGRESS_INFO, ReflectUtils.loadMethod(getClass(), "updateProgressInfo", DownloadTaskInfo.class));
     }
 
     public void showDownloadDialog() {
@@ -388,7 +388,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
                 if (FileUtils.m8419a(KtvActivity.this.mDownloadTaskInfo.getSavePath())) {
                     FileUtils.exists(KtvActivity.this.mDownloadTaskInfo.getSavePath());
                 }
-                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo));
                 while (!KtvActivity.this.mIsStopDownloading) {
                     if (KtvActivity.this.mDownloadTaskInfo == null) {
                         KtvActivity.this.mIsStopDownloading = true;

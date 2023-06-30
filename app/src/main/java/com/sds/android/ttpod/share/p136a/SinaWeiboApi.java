@@ -97,10 +97,10 @@ public class SinaWeiboApi extends BaseApi {
 
     /* renamed from: f */
     public void m2082f() {
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a(null) { // from class: com.sds.android.ttpod.share.a.i.1
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask(null) { // from class: com.sds.android.ttpod.share.a.i.1
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a */
-            protected Object mo1981a(Object obj) {
+            protected Object inBackground(Object obj) {
                 SinaWeiboFriendShipShowData sinaWeiboFriendShipShowData = (SinaWeiboFriendShipShowData) JSONUtils.fromJson(SinaWeiboApi.this.m2087a(0L, null, 1766187712L, "天天动听"),  SinaWeiboFriendShipShowData.class);
                 if (sinaWeiboFriendShipShowData == null || sinaWeiboFriendShipShowData.m1923a().m1922a()) {
                     return null;

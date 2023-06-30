@@ -357,7 +357,7 @@ public class MusicCircleEntryFragment extends HeaderPostListFragment implements 
     @Override // com.sds.android.ttpod.fragment.musiccircle.HeaderPostListFragment, com.sds.android.ttpod.fragment.musiccircle.PostListByIdFragment, com.sds.android.ttpod.fragment.musiccircle.PostListFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_TIMELINE_USER_POST_IDS, ReflectUtils.m8375a(getClass(), "updateTimelineUserPostIds", IdListResult.class, String.class));
+        map.put(CommandID.UPDATE_TIMELINE_USER_POST_IDS, ReflectUtils.loadMethod(getClass(), "updateTimelineUserPostIds", IdListResult.class, String.class));
     }
 
     public void updateTimelineUserPostIds(IdListResult idListResult, String str) {

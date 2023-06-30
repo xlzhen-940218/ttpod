@@ -247,19 +247,19 @@ public class UnicomFlowModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.CHECK_STATUS, ReflectUtils.m8375a(cls, "checkStatus", new Class[0]));
-        map.put(CommandID.SEND_VERIFY_CODE, ReflectUtils.m8375a(cls, "sendVerifyCode", String.class, Integer.class));
-        map.put(CommandID.OPEN_UNICOM_FLOW, ReflectUtils.m8375a(cls, "open", String.class, String.class, String.class));
-        map.put(CommandID.TRIAL_UNICOM_FLOW, ReflectUtils.m8375a(cls, "trial", String.class, String.class));
-        map.put(CommandID.UNSUBSCRIBE_UNICOM_FLOW, ReflectUtils.m8375a(cls, "unsubscribe", String.class, Integer.class, String.class, String.class));
-        map.put(CommandID.CHECK_USE_GPRS_POPUP_DIALOG, ReflectUtils.m8375a(cls, "checkUseGprsPopDialog", new Class[0]));
-        map.put(CommandID.UNICOM_FLOW_30M_DIALOG, ReflectUtils.m8375a(cls, "popupFlowGreaterThan30MDialog", new Class[0]));
-        map.put(CommandID.CHECK_BEGIN_MONTH_POPUP_DIALOG, ReflectUtils.m8375a(cls, "checkBeginMonthPopDialog", new Class[0]));
-        map.put(CommandID.NET_AUTHORIZE, ReflectUtils.m8375a(cls, "netAuthorize", new Class[0]));
-        map.put(CommandID.NET_WORK_TYPE_CHANGED, ReflectUtils.m8375a(cls, "netWorkTypeChanged", new Class[0]));
-        map.put(CommandID.SAVE_UNICOM_TOTAL_FLOW, ReflectUtils.m8375a(cls, "saveTotalFlow", new Class[0]));
-        map.put(CommandID.CLEAR_UNICOM_TOTAL_FLOW, ReflectUtils.m8375a(cls, "clearTotalFlow", new Class[0]));
-        map.put(CommandID.GET_UNICOM_TOTAL_FLOW, ReflectUtils.m8375a(cls, "getTotalFlow", new Class[0]));
+        map.put(CommandID.CHECK_STATUS, ReflectUtils.loadMethod(cls, "checkStatus", new Class[0]));
+        map.put(CommandID.SEND_VERIFY_CODE, ReflectUtils.loadMethod(cls, "sendVerifyCode", String.class, Integer.class));
+        map.put(CommandID.OPEN_UNICOM_FLOW, ReflectUtils.loadMethod(cls, "open", String.class, String.class, String.class));
+        map.put(CommandID.TRIAL_UNICOM_FLOW, ReflectUtils.loadMethod(cls, "trial", String.class, String.class));
+        map.put(CommandID.UNSUBSCRIBE_UNICOM_FLOW, ReflectUtils.loadMethod(cls, "unsubscribe", String.class, Integer.class, String.class, String.class));
+        map.put(CommandID.CHECK_USE_GPRS_POPUP_DIALOG, ReflectUtils.loadMethod(cls, "checkUseGprsPopDialog", new Class[0]));
+        map.put(CommandID.UNICOM_FLOW_30M_DIALOG, ReflectUtils.loadMethod(cls, "popupFlowGreaterThan30MDialog", new Class[0]));
+        map.put(CommandID.CHECK_BEGIN_MONTH_POPUP_DIALOG, ReflectUtils.loadMethod(cls, "checkBeginMonthPopDialog", new Class[0]));
+        map.put(CommandID.NET_AUTHORIZE, ReflectUtils.loadMethod(cls, "netAuthorize", new Class[0]));
+        map.put(CommandID.NET_WORK_TYPE_CHANGED, ReflectUtils.loadMethod(cls, "netWorkTypeChanged", new Class[0]));
+        map.put(CommandID.SAVE_UNICOM_TOTAL_FLOW, ReflectUtils.loadMethod(cls, "saveTotalFlow", new Class[0]));
+        map.put(CommandID.CLEAR_UNICOM_TOTAL_FLOW, ReflectUtils.loadMethod(cls, "clearTotalFlow", new Class[0]));
+        map.put(CommandID.GET_UNICOM_TOTAL_FLOW, ReflectUtils.loadMethod(cls, "getTotalFlow", new Class[0]));
     }
 
     public void open(final String str, String str2, String str3) {

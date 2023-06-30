@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import android.view.View;
@@ -52,14 +52,14 @@ public class SAnimTransImage extends SImage<View> {
         super.setBackground(context,  view, skinCache);
         if (view instanceof AnimTransView) {
             AnimTransView animTransView = (AnimTransView) view;
-            animTransView.setDefaultImageDrawable(skinCache.m3596a(context.getResources(), this.icon));
+            animTransView.setDefaultImageDrawable(skinCache.getDrawable(context.getResources(), this.icon));
             animTransView.setScaleType(getScaleType(this.scaleType));
             animTransView.m3514a(this.reflectionMaskStartColor, this.reflectionMaskEndColor);
             return;
         }
         LogUtils.debug("Image", "initView TTImageSwitcher");
         TTImageSwitcher tTImageSwitcher = (TTImageSwitcher) view;
-        tTImageSwitcher.setDefaultImageDrawable(skinCache.m3596a(context.getResources(), this.icon));
+        tTImageSwitcher.setDefaultImageDrawable(skinCache.getDrawable(context.getResources(), this.icon));
         tTImageSwitcher.setFactory(tTImageSwitcher);
         tTImageSwitcher.setAllowStart(Preferences.m3003aD());
         if (SDKVersionUtils.sdkThan14()) {

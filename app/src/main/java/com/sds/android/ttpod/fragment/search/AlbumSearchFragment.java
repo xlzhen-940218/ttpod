@@ -66,7 +66,7 @@ public class AlbumSearchFragment extends BaseSearchFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SEARCH_ALBUM_FINISHED, ReflectUtils.m8375a(getClass(), "updateSearchAlbum", AlbumItemsResult.class));
+        map.put(CommandID.UPDATE_SEARCH_ALBUM_FINISHED, ReflectUtils.loadMethod(getClass(), "updateSearchAlbum", AlbumItemsResult.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.search.BaseSearchFragment
@@ -170,7 +170,7 @@ public class AlbumSearchFragment extends BaseSearchFragment {
             }
             C1715b c1715b = (C1715b) view.getTag();
             AlbumItem albumItem = AlbumSearchFragment.this.mAlbumItemList.get(i);
-            ImageCacheUtils.m4752a(c1715b.f5469b, albumItem.getPic200(), DisplayUtils.dp2px(50), DisplayUtils.dp2px(50), (int) R.drawable.img_album_list_item_cover_default);
+            ImageCacheUtils.displayImage(c1715b.f5469b, albumItem.getPic200(), DisplayUtils.dp2px(50), DisplayUtils.dp2px(50), (int) R.drawable.img_album_list_item_cover_default);
             c1715b.f5470c.setText(albumItem.getName());
             c1715b.f5471d.setText(albumItem.getSingerName() + " " + albumItem.getPublishTime());
             ThemeManager.m3269a(c1715b.f5470c, ThemeElement.SONG_LIST_ITEM_TEXT);

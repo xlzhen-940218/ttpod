@@ -151,9 +151,9 @@ public abstract class BaseSearchFragment extends BaseFragment implements SearchF
         if (this.mStateView != null) {
             this.mStateView.onThemeLoaded();
         }
-        ThemeManager.m3269a(this.mRootView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mRootView, "BackgroundMaskColor");
         ThemeManager.m3269a(this.mListView, ThemeElement.COMMON_SEPARATOR);
-        ThemeManager.m3269a(this.mFooterView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mFooterView, "BackgroundMaskColor");
         ThemeManager.m3269a(this.mFooterView, ThemeElement.SONG_LIST_ITEM_TEXT);
         this.mAdapter.notifyDataSetChanged();
     }

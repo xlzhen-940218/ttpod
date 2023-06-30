@@ -66,7 +66,7 @@ import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowDialogType;
 import com.sds.android.ttpod.framework.modules.search.SoundRecognizer;
 import com.sds.android.ttpod.framework.modules.skin.SkinCache;
 import com.sds.android.ttpod.framework.modules.skin.SkinItem;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SSkinInfo;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SSkinInfo;
 import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.modules.theme.BackgroundItem;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;

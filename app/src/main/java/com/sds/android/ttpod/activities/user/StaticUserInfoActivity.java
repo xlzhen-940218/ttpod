@@ -24,7 +24,7 @@ public class StaticUserInfoActivity extends SlidingClosableActivity {
         TextView textView = (TextView) findViewById(R.id.text_sex);
         TextView textView2 = (TextView) findViewById(R.id.text_birthday);
         int m7229a = DisplayUtils.dp2px(120);
-        ImageCacheUtils.m4752a((ImageView) findViewById(R.id.user_avatar), this.mUser.getAvatarUrl(), m7229a, m7229a, (int) R.drawable.img_avatar_default);
+        ImageCacheUtils.displayImage((ImageView) findViewById(R.id.user_avatar), this.mUser.getAvatarUrl(), m7229a, m7229a, (int) R.drawable.img_avatar_default);
         ((TextView) findViewById(R.id.user_name)).setText(this.mUser.getNickName());
         ((TextView) findViewById(R.id.user_extra_info_1)).setText("粉丝：" + this.mUser.getFollowersCount());
         ((TextView) findViewById(R.id.user_extra_info_2)).setText("关注：" + this.mUser.getFollowingsCount());

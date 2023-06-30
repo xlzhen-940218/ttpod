@@ -50,11 +50,11 @@ public class PlayOnlineMediaTask {
 
     /* renamed from: a */
     public void m7497a(final Post post) {
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<List<Long>, OnlineMediaItemsResult>(PostUtils.m4025c(post)) { // from class: com.sds.android.ttpod.adapter.e.d.1
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<List<Long>, OnlineMediaItemsResult>(PostUtils.m4025c(post)) { // from class: com.sds.android.ttpod.adapter.e.d.1
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public OnlineMediaItemsResult mo1981a(List<Long> list) {
+            public OnlineMediaItemsResult inBackground(List<Long> list) {
                 PlayOnlineMediaTask.this.f3321b.post(new Runnable() { // from class: com.sds.android.ttpod.adapter.e.d.1.1
                     @Override // java.lang.Runnable
                     public void run() {

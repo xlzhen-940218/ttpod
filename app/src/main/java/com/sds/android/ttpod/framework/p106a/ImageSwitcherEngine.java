@@ -131,7 +131,7 @@ public class ImageSwitcherEngine {
     /* renamed from: h */
     public void m4719h() {
         this.f5647f.removeCallbacksAndMessages(null);
-        if (this.f5643a.size() > 1 && PlatformUtils.m4656a()) {
+        if (this.f5643a.size() > 1 && PlatformUtils.sdkThan14()) {
             this.f5647f.sendMessageDelayed(this.f5647f.obtainMessage(2), 15000L);
         }
     }

@@ -99,12 +99,12 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
         public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
             super.onLoadCommandMap(map);
             Class<?> cls = getClass();
-            map.put(CommandID.UPDATE_POST_INFO_LIST_BY_ID, ReflectUtils.m8375a(cls, "updateMusicCircleLists", PostResult.class, String.class));
-            map.put(CommandID.UPDATE_ADD_FAVORITE_POSTS, ReflectUtils.m8375a(cls, "onMusicCirclePostsChanged", BaseResult.class, String.class));
-            map.put(CommandID.UPDATE_REMOVE_FAVORITE_POSTS, ReflectUtils.m8375a(cls, "onMusicCirclePostsChanged", BaseResult.class, String.class));
-            map.put(CommandID.LOGIN_FINISHED, ReflectUtils.m8375a(cls, "onLogFinished", CommonResult.class));
-            map.put(CommandID.ADD_POSTS_TO_MEDIA_GROUP_FINISHED, ReflectUtils.m8375a(cls, "addPostToMediaGroupFinished", new Class[0]));
-            map.put(CommandID.UPDATE_LOCAL_AND_ONLINE_GROUP_LIST, ReflectUtils.m8375a(cls, "updateGroupList", List.class));
+            map.put(CommandID.UPDATE_POST_INFO_LIST_BY_ID, ReflectUtils.loadMethod(cls, "updateMusicCircleLists", PostResult.class, String.class));
+            map.put(CommandID.UPDATE_ADD_FAVORITE_POSTS, ReflectUtils.loadMethod(cls, "onMusicCirclePostsChanged", BaseResult.class, String.class));
+            map.put(CommandID.UPDATE_REMOVE_FAVORITE_POSTS, ReflectUtils.loadMethod(cls, "onMusicCirclePostsChanged", BaseResult.class, String.class));
+            map.put(CommandID.LOGIN_FINISHED, ReflectUtils.loadMethod(cls, "onLogFinished", CommonResult.class));
+            map.put(CommandID.ADD_POSTS_TO_MEDIA_GROUP_FINISHED, ReflectUtils.loadMethod(cls, "addPostToMediaGroupFinished", new Class[0]));
+            map.put(CommandID.UPDATE_LOCAL_AND_ONLINE_GROUP_LIST, ReflectUtils.loadMethod(cls, "updateGroupList", List.class));
         }
 
         /* JADX INFO: Access modifiers changed from: protected */
@@ -140,9 +140,9 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
         @Override // com.sds.android.ttpod.fragment.main.list.GroupListFragment, com.sds.android.ttpod.fragment.main.list.BaseGroupListFragment
         public void onReloadData() {
             if (Preferences.m2954aq() != null) {
-                CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_FAVORITE_SONG_LIST_POSTS, new Object[0]));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REQUEST_FAVORITE_SONG_LIST_POSTS, new Object[0]));
             } else {
-                CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_LOCAL_AND_ONLINE_GROUP_LIST, new Object[0]));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_LOCAL_AND_ONLINE_GROUP_LIST, new Object[0]));
             }
         }
 
@@ -178,7 +178,7 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
         }
 
         public void addPostToMediaGroupFinished() {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_LOCAL_AND_ONLINE_GROUP_LIST, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_LOCAL_AND_ONLINE_GROUP_LIST, new Object[0]));
         }
 
         /* JADX INFO: Access modifiers changed from: protected */
@@ -209,7 +209,7 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
                         ArrayList arrayList = new ArrayList();
                         arrayList.add(MediaStorage.getPostIdByGroupId(groupItem.getGroupID()));
                         C1503a.this.removeGroupItem(groupItem);
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.REMOVE_FAVORITE_POSTS, arrayList, ""));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REMOVE_FAVORITE_POSTS, arrayList, ""));
                     }
                 }
             });
@@ -223,7 +223,7 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
                     arrayList.add(post);
                 }
             }
-            CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_POSTS_TO_MEDIA_GROUP, arrayList));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_POSTS_TO_MEDIA_GROUP, arrayList));
         }
 
         /* JADX INFO: Access modifiers changed from: private */
@@ -257,7 +257,7 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(MessageDialog messageDialog2) {
                     C1503a.this.removeGroupItem(groupItem);
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_GROUP, groupItem.getGroupID()));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_GROUP, groupItem.getGroupID()));
                 }
             }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
             messageDialog.setTitle(R.string.menu_delete_songlist);

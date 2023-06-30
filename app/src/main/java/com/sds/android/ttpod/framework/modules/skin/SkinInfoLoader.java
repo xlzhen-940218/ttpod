@@ -5,7 +5,7 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SSkinInfo;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SSkinInfo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import org.xmlpull.v1.XmlPullParserException;

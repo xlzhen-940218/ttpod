@@ -87,60 +87,60 @@ public final class MusicCircleModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.REQUEST_MUSIC_POSTER_LIST, ReflectUtils.m8375a(cls, "requestMusicPosterList", new Class[0]));
-        map.put(CommandID.REQUEST_NEW_SONG_PUBLISH_LIST, ReflectUtils.m8375a(cls, "requestNewSongPublishList", new Class[0]));
-        map.put(CommandID.REQUEST_MORE_NEW_SONG_PUBLISH_LIST, ReflectUtils.m8375a(getClass(), "requestMoreNewSongPublishList", Integer.class, Integer.class));
-        map.put(CommandID.REQUEST_NEW_SONG_CATEGORY_PUBLISH_LIST, ReflectUtils.m8375a(getClass(), "requestNewSongCategoryPublishList", new Class[0]));
-        map.put(CommandID.REQUEST_NEW_ALBUM_PUBLISH_LIST, ReflectUtils.m8375a(getClass(), "requestNewAlbumPublishList", Integer.class, Integer.class));
-        map.put(CommandID.REQUEST_SHACK_USERS, ReflectUtils.m8375a(cls, "requestShakeUsers", Float.class, Float.class, String.class));
-        map.put(CommandID.REQUEST_ALIKE_USERS, ReflectUtils.m8375a(cls, "requestAlikeUsers", String.class));
-        map.put(CommandID.REQUEST_STAR_USERS_BY_RANK, ReflectUtils.m8375a(cls, "requestStarUsersByRank", Integer.class, Integer.class, Integer.class, String.class));
-        map.put(CommandID.REQUEST_STAR_USERS_BY_CATEGORY, ReflectUtils.m8375a(cls, "requestStarUsersByCategory", Integer.class, Integer.class, Integer.class, String.class));
-        map.put(CommandID.REQUEST_STAR_CATEGORIES, ReflectUtils.m8375a(cls, "requestStarCategories", String.class));
-        map.put(CommandID.MUSICCIRCLE_SEARCH, ReflectUtils.m8375a(cls, "search", String.class, String.class));
-        map.put(CommandID.FOLLOW_FRIEND, ReflectUtils.m8375a(cls, "followFriend", Long.class, String.class));
-        map.put(CommandID.UNFOLLOW_FRIEND, ReflectUtils.m8375a(cls, "unFollowFriend", Long.class, String.class));
-        map.put(CommandID.REQUEST_FOLLOWING_FRIEND_IDS, ReflectUtils.m8375a(cls, "requestFollowingFriendIds", Long.class, String.class));
-        map.put(CommandID.REQUEST_FOLLOWING_FRIENDS, ReflectUtils.m8375a(cls, "requestFollowingFriends", Long.class, Integer.class, Integer.class, Long.class, String.class));
-        map.put(CommandID.REQUEST_FOLLOWER_FRIENDS, ReflectUtils.m8375a(cls, "requestFollowerFriends", Long.class, Integer.class, Integer.class, Long.class, String.class));
-        map.put(CommandID.REQUEST_USER_INFO_BY_IDS, ReflectUtils.m8375a(cls, "requestFollowerFriends", Collection.class, String.class));
-        map.put(CommandID.REQUEST_SYSTEM_NOTICES, ReflectUtils.m8375a(cls, "requestSystemNotices", Long.class, Integer.class, String.class));
-        map.put(CommandID.POST_COMMENT, ReflectUtils.m8375a(cls, "postComment", Long.class, String.class, Long.class, Long.class, String.class));
-        map.put(CommandID.DELETE_COMMENT, ReflectUtils.m8375a(cls, "deleteComment", Long.class, Comment.class, String.class));
-        map.put(CommandID.RE_POST, ReflectUtils.m8375a(cls, "rePost", Long.class, Long.class, String.class, String.class));
-        map.put(CommandID.REQUEST_PRIVATE_MESSAGES, ReflectUtils.m8375a(cls, "requestPrivateMessages", Long.class, Integer.class, String.class));
-        map.put(CommandID.QUERY_PRIVATE_MESSAGES_CONTENT, ReflectUtils.m8375a(cls, "requestPrivateMessagesContent", Long.class, Long.class, Integer.class, String.class));
-        map.put(CommandID.DELETE_PRIVATE_MESSAGE, ReflectUtils.m8375a(cls, "deletePrivateMessage", String.class, String.class));
-        map.put(CommandID.SEND_PRIVATE_MESSAGE, ReflectUtils.m8375a(cls, "sendPrivateMessage", Long.class, String.class, String.class));
-        map.put(CommandID.DELETE_PRIVATE_MESSAGES, ReflectUtils.m8375a(cls, "deletePrivateMessages", Long.class, String.class));
-        map.put(CommandID.REQUEST_USER_POST_IDS, ReflectUtils.m8375a(cls, "requestUserPostIds", Long.class, String.class));
-        map.put(CommandID.REQUEST_TIMELINE_USER_POST_IDS, ReflectUtils.m8375a(cls, "requestTimelinePostIds", String.class));
-        map.put(CommandID.REQUEST_COMMENT_IDS_BY_POST_ID, ReflectUtils.m8375a(cls, "requestCommentsByPostId", Long.class, String.class));
-        map.put(CommandID.REQUEST_COMMENT_INFOS_BY_IDS, ReflectUtils.m8375a(cls, "requestCommentInfosByIds", Collection.class, String.class));
-        map.put(CommandID.REQUEST_POST_SONG_BY_IDS, ReflectUtils.m8375a(cls, "requestPostSongByIds", List.class, String.class));
-        map.put(CommandID.REQUEST_POST_DETAIL_BY_ID, ReflectUtils.m8375a(cls, "requestPostDetailById", Collection.class, String.class));
-        map.put(CommandID.REQUEST_POST_INFOS_BY_ID, ReflectUtils.m8375a(cls, "requestPostInfosById", Collection.class, String.class));
-        map.put(CommandID.REQUEST_CELEBRITY_POSTS, ReflectUtils.m8375a(cls, "requestCelebrityPosts", Long.class));
-        map.put(CommandID.REQUEST_RECOMMEND_CELEBRATE_POST_IDS, ReflectUtils.m8375a(cls, "requestRecommendCelebratePostIds", String.class));
-        map.put(CommandID.REQUEST_FIRST_PUBLISH_CELEBRATE_POST_IDS, ReflectUtils.m8375a(cls, "requestFirstPublishCelebratePostIds", String.class));
-        map.put(CommandID.REQUEST_POSTS_BY_CATEGORY_ID, ReflectUtils.m8375a(cls, "requestPostsByCategoryId", Long.class, Integer.class, String.class));
-        map.put(CommandID.REQUEST_REPOST_NOTICES, ReflectUtils.m8375a(cls, "requestRePostNotices", Integer.class, Integer.class, String.class));
-        map.put(CommandID.REQUEST_COMMENT_NOTICES, ReflectUtils.m8375a(cls, "requestCommentNotices", Integer.class, Integer.class, String.class));
-        map.put(CommandID.REQUEST_NEW_FOLLOWER_NOTICES, ReflectUtils.m8375a(cls, "requestNewFollowerNotices", String.class));
-        map.put(CommandID.DELETE_NOTICE, ReflectUtils.m8375a(cls, "deleteNotice", Notice.class, String.class));
-        map.put(CommandID.ADD_FAVORITE_POSTS, ReflectUtils.m8375a(cls, "addFavoritePosts", List.class, String.class));
-        map.put(CommandID.REMOVE_FAVORITE_POSTS, ReflectUtils.m8375a(cls, "removeFavoritePosts", List.class, String.class));
-        map.put(CommandID.IS_FAVORITE_POST, ReflectUtils.m8375a(cls, "isFavoritePost", Long.class));
-        map.put(CommandID.REQUEST_FAVORITE_POSTS, ReflectUtils.m8375a(cls, "requestFavoritePosts", String.class));
-        map.put(CommandID.IS_FOLLOWED, ReflectUtils.m8375a(cls, "isFollowed", Long.class));
-        map.put(CommandID.SET_LOGIN_UID, ReflectUtils.m8375a(cls, "setLoginUid", Long.class));
-        map.put(CommandID.CHANGE_POST_REPLY_COUNT, ReflectUtils.m8375a(cls, "changePostReplyCount", Post.class));
-        map.put(CommandID.CHANGE_POST_REPOST_COUNT, ReflectUtils.m8375a(cls, "changePostRepostCount", Post.class));
-        map.put(CommandID.REQUEST_FAVORITE_SONG_LIST_POSTS, ReflectUtils.m8375a(cls, "requestFavoriteSongListPosts", new Class[0]));
-        map.put(CommandID.ADD_POST_TO_MEDIA_GROUP, ReflectUtils.m8375a(cls, "addPostToMediaGroup", Post.class));
-        map.put(CommandID.ADD_POSTS_TO_MEDIA_GROUP, ReflectUtils.m8375a(cls, "addPostsToMediaGroup", List.class));
-        map.put(CommandID.ADD_LISTENER_COUNT, ReflectUtils.m8375a(cls, "addListenerCount", Long.class));
-        map.put(CommandID.REQUEST_PRIVATE_CUSTOM_POSTS, ReflectUtils.m8375a(cls, "requestRecommendPostPosts", Integer.class, Integer.class));
+        map.put(CommandID.REQUEST_MUSIC_POSTER_LIST, ReflectUtils.loadMethod(cls, "requestMusicPosterList", new Class[0]));
+        map.put(CommandID.REQUEST_NEW_SONG_PUBLISH_LIST, ReflectUtils.loadMethod(cls, "requestNewSongPublishList", new Class[0]));
+        map.put(CommandID.REQUEST_MORE_NEW_SONG_PUBLISH_LIST, ReflectUtils.loadMethod(getClass(), "requestMoreNewSongPublishList", Integer.class, Integer.class));
+        map.put(CommandID.REQUEST_NEW_SONG_CATEGORY_PUBLISH_LIST, ReflectUtils.loadMethod(getClass(), "requestNewSongCategoryPublishList", new Class[0]));
+        map.put(CommandID.REQUEST_NEW_ALBUM_PUBLISH_LIST, ReflectUtils.loadMethod(getClass(), "requestNewAlbumPublishList", Integer.class, Integer.class));
+        map.put(CommandID.REQUEST_SHACK_USERS, ReflectUtils.loadMethod(cls, "requestShakeUsers", Float.class, Float.class, String.class));
+        map.put(CommandID.REQUEST_ALIKE_USERS, ReflectUtils.loadMethod(cls, "requestAlikeUsers", String.class));
+        map.put(CommandID.REQUEST_STAR_USERS_BY_RANK, ReflectUtils.loadMethod(cls, "requestStarUsersByRank", Integer.class, Integer.class, Integer.class, String.class));
+        map.put(CommandID.REQUEST_STAR_USERS_BY_CATEGORY, ReflectUtils.loadMethod(cls, "requestStarUsersByCategory", Integer.class, Integer.class, Integer.class, String.class));
+        map.put(CommandID.REQUEST_STAR_CATEGORIES, ReflectUtils.loadMethod(cls, "requestStarCategories", String.class));
+        map.put(CommandID.MUSICCIRCLE_SEARCH, ReflectUtils.loadMethod(cls, "search", String.class, String.class));
+        map.put(CommandID.FOLLOW_FRIEND, ReflectUtils.loadMethod(cls, "followFriend", Long.class, String.class));
+        map.put(CommandID.UNFOLLOW_FRIEND, ReflectUtils.loadMethod(cls, "unFollowFriend", Long.class, String.class));
+        map.put(CommandID.REQUEST_FOLLOWING_FRIEND_IDS, ReflectUtils.loadMethod(cls, "requestFollowingFriendIds", Long.class, String.class));
+        map.put(CommandID.REQUEST_FOLLOWING_FRIENDS, ReflectUtils.loadMethod(cls, "requestFollowingFriends", Long.class, Integer.class, Integer.class, Long.class, String.class));
+        map.put(CommandID.REQUEST_FOLLOWER_FRIENDS, ReflectUtils.loadMethod(cls, "requestFollowerFriends", Long.class, Integer.class, Integer.class, Long.class, String.class));
+        map.put(CommandID.REQUEST_USER_INFO_BY_IDS, ReflectUtils.loadMethod(cls, "requestFollowerFriends", Collection.class, String.class));
+        map.put(CommandID.REQUEST_SYSTEM_NOTICES, ReflectUtils.loadMethod(cls, "requestSystemNotices", Long.class, Integer.class, String.class));
+        map.put(CommandID.POST_COMMENT, ReflectUtils.loadMethod(cls, "postComment", Long.class, String.class, Long.class, Long.class, String.class));
+        map.put(CommandID.DELETE_COMMENT, ReflectUtils.loadMethod(cls, "deleteComment", Long.class, Comment.class, String.class));
+        map.put(CommandID.RE_POST, ReflectUtils.loadMethod(cls, "rePost", Long.class, Long.class, String.class, String.class));
+        map.put(CommandID.REQUEST_PRIVATE_MESSAGES, ReflectUtils.loadMethod(cls, "requestPrivateMessages", Long.class, Integer.class, String.class));
+        map.put(CommandID.QUERY_PRIVATE_MESSAGES_CONTENT, ReflectUtils.loadMethod(cls, "requestPrivateMessagesContent", Long.class, Long.class, Integer.class, String.class));
+        map.put(CommandID.DELETE_PRIVATE_MESSAGE, ReflectUtils.loadMethod(cls, "deletePrivateMessage", String.class, String.class));
+        map.put(CommandID.SEND_PRIVATE_MESSAGE, ReflectUtils.loadMethod(cls, "sendPrivateMessage", Long.class, String.class, String.class));
+        map.put(CommandID.DELETE_PRIVATE_MESSAGES, ReflectUtils.loadMethod(cls, "deletePrivateMessages", Long.class, String.class));
+        map.put(CommandID.REQUEST_USER_POST_IDS, ReflectUtils.loadMethod(cls, "requestUserPostIds", Long.class, String.class));
+        map.put(CommandID.REQUEST_TIMELINE_USER_POST_IDS, ReflectUtils.loadMethod(cls, "requestTimelinePostIds", String.class));
+        map.put(CommandID.REQUEST_COMMENT_IDS_BY_POST_ID, ReflectUtils.loadMethod(cls, "requestCommentsByPostId", Long.class, String.class));
+        map.put(CommandID.REQUEST_COMMENT_INFOS_BY_IDS, ReflectUtils.loadMethod(cls, "requestCommentInfosByIds", Collection.class, String.class));
+        map.put(CommandID.REQUEST_POST_SONG_BY_IDS, ReflectUtils.loadMethod(cls, "requestPostSongByIds", List.class, String.class));
+        map.put(CommandID.REQUEST_POST_DETAIL_BY_ID, ReflectUtils.loadMethod(cls, "requestPostDetailById", Collection.class, String.class));
+        map.put(CommandID.REQUEST_POST_INFOS_BY_ID, ReflectUtils.loadMethod(cls, "requestPostInfosById", Collection.class, String.class));
+        map.put(CommandID.REQUEST_CELEBRITY_POSTS, ReflectUtils.loadMethod(cls, "requestCelebrityPosts", Long.class));
+        map.put(CommandID.REQUEST_RECOMMEND_CELEBRATE_POST_IDS, ReflectUtils.loadMethod(cls, "requestRecommendCelebratePostIds", String.class));
+        map.put(CommandID.REQUEST_FIRST_PUBLISH_CELEBRATE_POST_IDS, ReflectUtils.loadMethod(cls, "requestFirstPublishCelebratePostIds", String.class));
+        map.put(CommandID.REQUEST_POSTS_BY_CATEGORY_ID, ReflectUtils.loadMethod(cls, "requestPostsByCategoryId", Long.class, Integer.class, String.class));
+        map.put(CommandID.REQUEST_REPOST_NOTICES, ReflectUtils.loadMethod(cls, "requestRePostNotices", Integer.class, Integer.class, String.class));
+        map.put(CommandID.REQUEST_COMMENT_NOTICES, ReflectUtils.loadMethod(cls, "requestCommentNotices", Integer.class, Integer.class, String.class));
+        map.put(CommandID.REQUEST_NEW_FOLLOWER_NOTICES, ReflectUtils.loadMethod(cls, "requestNewFollowerNotices", String.class));
+        map.put(CommandID.DELETE_NOTICE, ReflectUtils.loadMethod(cls, "deleteNotice", Notice.class, String.class));
+        map.put(CommandID.ADD_FAVORITE_POSTS, ReflectUtils.loadMethod(cls, "addFavoritePosts", List.class, String.class));
+        map.put(CommandID.REMOVE_FAVORITE_POSTS, ReflectUtils.loadMethod(cls, "removeFavoritePosts", List.class, String.class));
+        map.put(CommandID.IS_FAVORITE_POST, ReflectUtils.loadMethod(cls, "isFavoritePost", Long.class));
+        map.put(CommandID.REQUEST_FAVORITE_POSTS, ReflectUtils.loadMethod(cls, "requestFavoritePosts", String.class));
+        map.put(CommandID.IS_FOLLOWED, ReflectUtils.loadMethod(cls, "isFollowed", Long.class));
+        map.put(CommandID.SET_LOGIN_UID, ReflectUtils.loadMethod(cls, "setLoginUid", Long.class));
+        map.put(CommandID.CHANGE_POST_REPLY_COUNT, ReflectUtils.loadMethod(cls, "changePostReplyCount", Post.class));
+        map.put(CommandID.CHANGE_POST_REPOST_COUNT, ReflectUtils.loadMethod(cls, "changePostRepostCount", Post.class));
+        map.put(CommandID.REQUEST_FAVORITE_SONG_LIST_POSTS, ReflectUtils.loadMethod(cls, "requestFavoriteSongListPosts", new Class[0]));
+        map.put(CommandID.ADD_POST_TO_MEDIA_GROUP, ReflectUtils.loadMethod(cls, "addPostToMediaGroup", Post.class));
+        map.put(CommandID.ADD_POSTS_TO_MEDIA_GROUP, ReflectUtils.loadMethod(cls, "addPostsToMediaGroup", List.class));
+        map.put(CommandID.ADD_LISTENER_COUNT, ReflectUtils.loadMethod(cls, "addListenerCount", Long.class));
+        map.put(CommandID.REQUEST_PRIVATE_CUSTOM_POSTS, ReflectUtils.loadMethod(cls, "requestRecommendPostPosts", Integer.class, Integer.class));
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
@@ -159,11 +159,11 @@ public final class MusicCircleModule extends BaseModule {
     }
 
     public void requestRecommendPostPosts(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8879a(num.intValue(), num2.intValue()), CommandID.UPDATE_PRIVATE_CUSTOM_POSTS, id(), null);
+        ModuleRequestHelper.execute(MusicCircleRecommendAPI.m8879a(num.intValue(), num2.intValue()), CommandID.UPDATE_PRIVATE_CUSTOM_POSTS, id(), null);
     }
 
     public void requestMusicPosterList() {
-        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8880a(), CommandID.UPDATE_MUSIC_POSTER_LIST, ModuleID.MUSIC_CIRCLE, null);
+        ModuleRequestHelper.execute(MusicCircleRecommendAPI.m8880a(), CommandID.UPDATE_MUSIC_POSTER_LIST, ModuleID.MUSIC_CIRCLE, null);
     }
 
     public void requestNewSongPublishList() {
@@ -176,15 +176,15 @@ public final class MusicCircleModule extends BaseModule {
     }
 
     public void requestMoreNewSongPublishList(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8877b(num.intValue(), num2.intValue()), CommandID.UPDATE_MORE_NEW_SONG_PUBLISH_LIST, id(), null);
+        ModuleRequestHelper.execute(MusicCircleRecommendAPI.m8877b(num.intValue(), num2.intValue()), CommandID.UPDATE_MORE_NEW_SONG_PUBLISH_LIST, id(), null);
     }
 
     public void requestNewSongCategoryPublishList() {
-        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8876c(), CommandID.UPDATE_NEW_SONG_CATEGORY_PUBLISH_LIST, id(), null);
+        ModuleRequestHelper.execute(MusicCircleRecommendAPI.m8876c(), CommandID.UPDATE_NEW_SONG_CATEGORY_PUBLISH_LIST, id(), null);
     }
 
     public void requestNewAlbumPublishList(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(MusicCircleRecommendAPI.m8875c(num.intValue(), num2.intValue()), CommandID.UPDATE_NEW_ALBUM_PUBLISH_LIST, id(), null);
+        ModuleRequestHelper.execute(MusicCircleRecommendAPI.m8875c(num.intValue(), num2.intValue()), CommandID.UPDATE_NEW_ALBUM_PUBLISH_LIST, id(), null);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -539,7 +539,7 @@ public final class MusicCircleModule extends BaseModule {
     }
 
     public void requestCelebrityPosts(Long l) {
-        ModuleRequestHelper.m4083a(PostAPI.m8855a(l.longValue()), CommandID.UPDATE_DISCOVERY_POST_INFO_LIST_BY_ID, id(), null);
+        ModuleRequestHelper.execute(PostAPI.m8855a(l.longValue()), CommandID.UPDATE_DISCOVERY_POST_INFO_LIST_BY_ID, id(), null);
     }
 
     public void requestRecommendCelebratePostIds(final String str) {
@@ -598,7 +598,7 @@ public final class MusicCircleModule extends BaseModule {
                     while (it.hasNext()) {
                         String str2 = buildMusicCircleFavGroupIDPrefix + ((Long) it.next()).longValue();
                         if (MediaStorage.isGroupExisted(MusicCircleModule.sContext, str2)) {
-                            CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_GROUP, str2));
+                            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_GROUP, str2));
                         }
                     }
                 }
@@ -697,11 +697,11 @@ public final class MusicCircleModule extends BaseModule {
         if (list == null) {
             throw new IllegalArgumentException("postList should not be null");
         }
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<List<Post>, Boolean>(list) { // from class: com.sds.android.ttpod.framework.modules.f.c.39
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<List<Post>, Boolean>(list) { // from class: com.sds.android.ttpod.framework.modules.f.c.39
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public Boolean mo1981a(List<Post> list2) {
+            public Boolean inBackground(List<Post> list2) {
                 if (Preferences.m2997aJ()) {
                     m4031c(list2);
                 } else {

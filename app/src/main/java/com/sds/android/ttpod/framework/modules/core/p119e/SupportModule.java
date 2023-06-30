@@ -160,24 +160,24 @@ public final class SupportModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.PLAY, ReflectUtils.m8375a(cls, "play", String.class));
-        map.put(CommandID.PLAY_GROUP, ReflectUtils.m8375a(cls, "playGroup", String.class, MediaItem.class));
-        map.put(CommandID.SYNC_GROUP, ReflectUtils.m8375a(cls, "syncGroup", String.class, MediaItem.class));
-        map.put(CommandID.SYNC_PLAYING_GROUP, ReflectUtils.m8375a(cls, "syncPlayingGroup", new Class[0]));
-        map.put(CommandID.SCAN_FINISHED, ReflectUtils.m8375a(cls, "scanFinished", Integer.class));
-        map.put(CommandID.START, ReflectUtils.m8375a(cls, "start", new Class[0]));
-        map.put(CommandID.STOP, ReflectUtils.m8375a(cls, "stop", new Class[0]));
-        map.put(CommandID.PAUSE, ReflectUtils.m8375a(cls, "pause", new Class[0]));
-        map.put(CommandID.RESUME, ReflectUtils.m8375a(cls, "resume", new Class[0]));
-        map.put(CommandID.PREVIOUS, ReflectUtils.m8375a(cls, "previous", new Class[0]));
-        map.put(CommandID.NEXT, ReflectUtils.m8375a(cls, "next", new Class[0]));
-        map.put(CommandID.EXIT, ReflectUtils.m8375a(cls, "exit", new Class[0]));
-        map.put(CommandID.SWITCH_PLAY_MODE, ReflectUtils.m8375a(cls, "switchPlayMode", new Class[0]));
-        map.put(CommandID.SET_POSITION, ReflectUtils.m8375a(cls, "setPosition", Integer.class));
-        map.put(CommandID.PLAY_LOCAL_RANDOM, ReflectUtils.m8375a(cls, "playLocalRandom", new Class[0]));
-        map.put(CommandID.SYNC_CUR_MEDIA_INFO, ReflectUtils.m8375a(cls, "ayncCurMediaInfo", new Class[0]));
-        map.put(CommandID.RESUME_IMAGE_SWITCHER, ReflectUtils.m8375a(cls, "resumeImageSwitcher", new Class[0]));
-        map.put(CommandID.PAUSE_IMAGE_SWITCHER, ReflectUtils.m8375a(cls, "pauseImageSwitcher", new Class[0]));
+        map.put(CommandID.PLAY, ReflectUtils.loadMethod(cls, "play", String.class));
+        map.put(CommandID.PLAY_GROUP, ReflectUtils.loadMethod(cls, "playGroup", String.class, MediaItem.class));
+        map.put(CommandID.SYNC_GROUP, ReflectUtils.loadMethod(cls, "syncGroup", String.class, MediaItem.class));
+        map.put(CommandID.SYNC_PLAYING_GROUP, ReflectUtils.loadMethod(cls, "syncPlayingGroup", new Class[0]));
+        map.put(CommandID.SCAN_FINISHED, ReflectUtils.loadMethod(cls, "scanFinished", Integer.class));
+        map.put(CommandID.START, ReflectUtils.loadMethod(cls, "start", new Class[0]));
+        map.put(CommandID.STOP, ReflectUtils.loadMethod(cls, "stop", new Class[0]));
+        map.put(CommandID.PAUSE, ReflectUtils.loadMethod(cls, "pause", new Class[0]));
+        map.put(CommandID.RESUME, ReflectUtils.loadMethod(cls, "resume", new Class[0]));
+        map.put(CommandID.PREVIOUS, ReflectUtils.loadMethod(cls, "previous", new Class[0]));
+        map.put(CommandID.NEXT, ReflectUtils.loadMethod(cls, "next", new Class[0]));
+        map.put(CommandID.EXIT, ReflectUtils.loadMethod(cls, "exit", new Class[0]));
+        map.put(CommandID.SWITCH_PLAY_MODE, ReflectUtils.loadMethod(cls, "switchPlayMode", new Class[0]));
+        map.put(CommandID.SET_POSITION, ReflectUtils.loadMethod(cls, "setPosition", Integer.class));
+        map.put(CommandID.PLAY_LOCAL_RANDOM, ReflectUtils.loadMethod(cls, "playLocalRandom", new Class[0]));
+        map.put(CommandID.SYNC_CUR_MEDIA_INFO, ReflectUtils.loadMethod(cls, "ayncCurMediaInfo", new Class[0]));
+        map.put(CommandID.RESUME_IMAGE_SWITCHER, ReflectUtils.loadMethod(cls, "resumeImageSwitcher", new Class[0]));
+        map.put(CommandID.PAUSE_IMAGE_SWITCHER, ReflectUtils.loadMethod(cls, "pauseImageSwitcher", new Class[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -195,7 +195,7 @@ public final class SupportModule extends BaseModule {
     /* renamed from: b */
     private void m4171b(MediaItem mediaItem) {
         if (mediaItem != null && mediaItem.isOnline() && !m4168e()) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.CHECK_USE_GPRS_POPUP_DIALOG, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.CHECK_USE_GPRS_POPUP_DIALOG, new Object[0]));
         }
     }
 
@@ -324,7 +324,7 @@ public final class SupportModule extends BaseModule {
             LogUtils.debug("SupportModule", "unicom flow handler greater than 30 size:" + m8718a);
             if (m8718a > 31457280) {
                 Preferences.m2943b((float) UnicomFlowUtil.m3955a(m8718a));
-                CommandCenter.getInstance().m4596b(new Command(CommandID.UNICOM_FLOW_30M_DIALOG, new Object[0]));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.UNICOM_FLOW_30M_DIALOG, new Object[0]));
                 return true;
             }
             return false;

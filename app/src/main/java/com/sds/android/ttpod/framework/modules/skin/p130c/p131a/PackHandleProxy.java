@@ -13,13 +13,13 @@ public class PackHandleProxy extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: a */
-    public void mo3755a(String str) throws IOException {
+    public void initTskPackHandleByFile(String str) throws IOException {
         if (!streamNotNull()) {
             if (this.packHandle == null) {
                 this.packHandle = new TskPackHandle();
             }
             try {
-                this.packHandle.mo3755a(str);
+                this.packHandle.initTskPackHandleByFile(str);
             } catch (Exception e) {
                 if (this.packHandle instanceof TskPackHandle) {
                     this.packHandle = new ZipPackHandle(str);
@@ -32,12 +32,12 @@ public class PackHandleProxy extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: a */
-    public void mo3756a(InputStream inputStream, boolean z) throws IOException {
+    public void initTskPackHandle(InputStream inputStream, boolean loadStream) throws IOException {
         if (!streamNotNull()) {
             if (this.packHandle == null || !(this.packHandle instanceof TskPackHandle)) {
                 this.packHandle = new TskPackHandle(inputStream);
             } else {
-                this.packHandle.mo3756a(inputStream, z);
+                this.packHandle.initTskPackHandle(inputStream, loadStream);
             }
         }
     }

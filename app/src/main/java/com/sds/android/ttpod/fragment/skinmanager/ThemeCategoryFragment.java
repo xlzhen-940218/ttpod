@@ -20,8 +20,8 @@ public class ThemeCategoryFragment extends BaseCategoryFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.ON_SKIN_CATEGORY_LIST_PARSED, ReflectUtils.m8375a(cls, "onDataListParsed", ArrayList.class, Long.class));
-        map.put(CommandID.ON_SKIN_CATEGORY_LIST_DOWNLOADED, ReflectUtils.m8375a(cls, "onDataListDownloaded", new Class[0]));
+        map.put(CommandID.ON_SKIN_CATEGORY_LIST_PARSED, ReflectUtils.loadMethod(cls, "onDataListParsed", ArrayList.class, Long.class));
+        map.put(CommandID.ON_SKIN_CATEGORY_LIST_DOWNLOADED, ReflectUtils.loadMethod(cls, "onDataListDownloaded", new Class[0]));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseCategoryFragment

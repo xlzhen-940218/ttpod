@@ -283,9 +283,9 @@ public abstract class HeaderPostListFragment extends PostListByIdFragment implem
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.MODIFY_COVER_FINISHED, ReflectUtils.m8375a(cls, "onModifyCoverFinished", CommonResult.class));
-        map.put(CommandID.MODIFY_AVATAR_FINISHED, ReflectUtils.m8375a(cls, "onModifyAvatarFinished", CommonResult.class));
-        map.put(CommandID.REFRESH_INFORMATION_FINISHED, ReflectUtils.m8375a(cls, "onRefreshUserInfo", new Class[0]));
+        map.put(CommandID.MODIFY_COVER_FINISHED, ReflectUtils.loadMethod(cls, "onModifyCoverFinished", CommonResult.class));
+        map.put(CommandID.MODIFY_AVATAR_FINISHED, ReflectUtils.loadMethod(cls, "onModifyAvatarFinished", CommonResult.class));
+        map.put(CommandID.REFRESH_INFORMATION_FINISHED, ReflectUtils.loadMethod(cls, "onRefreshUserInfo", new Class[0]));
     }
 
     public void onRefreshUserInfo() {

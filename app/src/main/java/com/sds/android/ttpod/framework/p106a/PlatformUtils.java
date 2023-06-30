@@ -7,17 +7,17 @@ import com.sds.android.sdk.lib.util.SDKVersionUtils;
 public class PlatformUtils {
 
     /* renamed from: a */
-    private static boolean f5686a;
+    private static boolean lowSDK14;
 
     static {
-        f5686a = false;
+        lowSDK14 = false;
         if (!SDKVersionUtils.sdkThan14()) {
-            f5686a = true;
+            lowSDK14 = true;
         }
     }
 
     /* renamed from: a */
-    public static boolean m4656a() {
-        return !f5686a;
+    public static boolean sdkThan14() {
+        return !lowSDK14;
     }
 }

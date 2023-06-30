@@ -105,9 +105,9 @@ public abstract class ListLoadingFragment<D> extends SlidingClosableFragment imp
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         if (this.mResponseId != null) {
-            map.put(this.mResponseId, ReflectUtils.m8375a(getClass(), "updateSingerData", SingerListResult.class));
+            map.put(this.mResponseId, ReflectUtils.loadMethod(getClass(), "updateSingerData", SingerListResult.class));
         }
-        map.put(CommandID.UPDATE_MV_LIST, ReflectUtils.m8375a(getClass(), "updateMVListData", ExtraDataListResult.class));
+        map.put(CommandID.UPDATE_MV_LIST, ReflectUtils.loadMethod(getClass(), "updateMVListData", ExtraDataListResult.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -129,13 +129,13 @@ public abstract class ListLoadingFragment<D> extends SlidingClosableFragment imp
     public void onThemeLoaded() {
         super.onThemeLoaded();
         if (this.mFooterView != null) {
-            ThemeManager.m3269a(this.mFooterView, ThemeElement.BACKGROUND_MASK);
+            ThemeManager.m3269a(this.mFooterView, "BackgroundMaskColor");
             ThemeManager.m3269a(this.mFooterView, ThemeElement.COMMON_SUB_TITLE_TEXT);
         }
         if (this.mLoadingView != null) {
             this.mLoadingView.onThemeLoaded();
         }
-        ThemeManager.m3269a(this.mListView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mListView, "BackgroundMaskColor");
         ThemeManager.m3269a(this.mListView, ThemeElement.COMMON_SEPARATOR);
         if (this.mListAdapter != null) {
             this.mListAdapter.notifyDataSetChanged();

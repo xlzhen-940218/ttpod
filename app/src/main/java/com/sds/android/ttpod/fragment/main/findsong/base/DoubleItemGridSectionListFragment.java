@@ -70,9 +70,9 @@ public abstract class DoubleItemGridSectionListFragment<D> extends SlidingClosab
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
         if (this.mResponseId != null) {
-            map.put(this.mResponseId, ReflectUtils.m8375a(cls, "updateData", ArrayList.class));
+            map.put(this.mResponseId, ReflectUtils.loadMethod(cls, "updateData", ArrayList.class));
         }
-        map.put(CommandID.UPDATE_RADIO_CATEGORY_LIST, ReflectUtils.m8375a(cls, "updateRadioList", DataListResult.class));
+        map.put(CommandID.UPDATE_RADIO_CATEGORY_LIST, ReflectUtils.loadMethod(cls, "updateRadioList", DataListResult.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -99,7 +99,7 @@ public abstract class DoubleItemGridSectionListFragment<D> extends SlidingClosab
         if (this.mLoadingView != null) {
             this.mLoadingView.onThemeLoaded();
         }
-        ThemeManager.m3269a(this.mListView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mListView, "BackgroundMaskColor");
         if (this.mAdapter != null) {
             this.mAdapter.notifyDataSetChanged();
         }

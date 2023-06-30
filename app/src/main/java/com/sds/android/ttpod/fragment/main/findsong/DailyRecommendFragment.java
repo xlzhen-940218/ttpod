@@ -37,8 +37,8 @@ public class DailyRecommendFragment extends SceneRecommendFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_DAILY_RECOMMEND, ReflectUtils.m8375a(getClass(), "updateDailyRecommendResult", MediaItemListResult.class));
-        map.put(CommandID.UPDATE_POPULAR_SONG_INTRODUCTION, ReflectUtils.m8375a(getClass(), "updateDailyRecommendHeader", IntroductionResult.class));
+        map.put(CommandID.UPDATE_DAILY_RECOMMEND, ReflectUtils.loadMethod(getClass(), "updateDailyRecommendResult", MediaItemListResult.class));
+        map.put(CommandID.UPDATE_POPULAR_SONG_INTRODUCTION, ReflectUtils.loadMethod(getClass(), "updateDailyRecommendHeader", IntroductionResult.class));
     }
 
     public void updateDailyRecommendResult(MediaItemListResult mediaItemListResult) {

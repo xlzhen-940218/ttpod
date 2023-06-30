@@ -189,9 +189,9 @@ public abstract class UserListFragment<Data extends TTPodUser> extends BaseFragm
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_SYNC_FOLLOWING_FINISHED, ReflectUtils.m8375a(cls, "updateSyncFollowingFinished", new Class[0]));
-        map.put(CommandID.UPDATE_FOLLOW_FRIEND, ReflectUtils.m8375a(cls, "updateFollow", BaseResult.class, String.class));
-        map.put(CommandID.UPDATE_UNFOLLOW_FRIEND, ReflectUtils.m8375a(cls, "updateUnFollow", BaseResult.class, String.class));
+        map.put(CommandID.UPDATE_SYNC_FOLLOWING_FINISHED, ReflectUtils.loadMethod(cls, "updateSyncFollowingFinished", new Class[0]));
+        map.put(CommandID.UPDATE_FOLLOW_FRIEND, ReflectUtils.loadMethod(cls, "updateFollow", BaseResult.class, String.class));
+        map.put(CommandID.UPDATE_UNFOLLOW_FRIEND, ReflectUtils.loadMethod(cls, "updateUnFollow", BaseResult.class, String.class));
     }
 
     public void updateFollow(BaseResult baseResult, String str) {

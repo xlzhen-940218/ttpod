@@ -183,7 +183,7 @@ public class AppWidget91Layout4x1 extends AppWidget91Base {
             String str = stringExtra + "/widget/ttpod/";
             if (!str.equals(this.f3648a)) {
                 this.f3648a = str;
-                if (FeedbackItem.STATUS_WAITING.equals(stringExtra.substring(stringExtra.indexOf("Themes") + 7)) && !this.f3656i) {
+                if ("0".equals(stringExtra.substring(stringExtra.indexOf("Themes") + 7)) && !this.f3656i) {
                     this.f3656i = true;
                     m7144b();
                 } else if (new File(this.f3648a).exists()) {

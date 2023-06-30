@@ -57,10 +57,10 @@ public class ThemeManager {
         String parsePanelId = ThemeElement.parsePanelId(str);
         String parseElementId = ThemeElement.parseElementId(str);
         if (ThemeElement.isTextElementId(parseElementId)) {
-            return m3268a(view, parsePanelId, parseElementId);
+            return setTextColor(view, parsePanelId, parseElementId);
         }
         if ((view instanceof ListView) && parseElementId.equals("Separator")) {
-            return m3259b(view, parsePanelId, parseElementId);
+            return setDivider(view, parsePanelId, parseElementId);
         }
         if ((view instanceof ImageView) && ThemeElement.isImageElementId(parseElementId)) {
             return m3267a((ImageView) view, parsePanelId, parseElementId);
@@ -94,8 +94,8 @@ public class ThemeManager {
         String parseElementId = ThemeElement.parseElementId(str);
         ThemeFramework.AbstractC2016e m3258b = m3258b(str);
         if (m3258b != null) {
-            int m3287e = m3258b.m3287e();
-            int m3286f = m3258b.m3286f();
+            int m3287e = m3258b.getWidth();
+            int m3286f = m3258b.getHeight();
             if (m3287e > 0) {
                 i = m3287e;
             }
@@ -170,7 +170,7 @@ public class ThemeManager {
         }
         Drawable drawable = null;
         if (f6960a != null) {
-            if (description.equals(ThemeElement.BACKGROUND_MASK)) {
+            if (description.equals("BackgroundMaskColor")) {
                 return f6960a.m3316b();
             }
             if (z) {
@@ -194,7 +194,7 @@ public class ThemeManager {
         if (f6960a == null) {
             m3257c();
         }
-        if (f6960a != null && 0 == 0) {
+        if (f6960a != null) {
             return f6960a.m3308d(str, str2);
         }
         LogUtils.error("Theme", "no theme in the system");
@@ -250,7 +250,7 @@ public class ThemeManager {
     }
 
     /* renamed from: a */
-    private static boolean m3268a(View view, String str, String str2) {
+    private static boolean setTextColor(View view, String str, String str2) {
         if (view instanceof TextView) {
             ColorStateList colorStateList = (ColorStateList) m3263a(str, str2, false, true);
             if (colorStateList != null) {
@@ -264,7 +264,7 @@ public class ThemeManager {
     }
 
     /* renamed from: b */
-    private static boolean m3259b(View view, String str, String str2) {
+    private static boolean setDivider(View view, String str, String str2) {
         Drawable drawable = (Drawable) m3263a(str, str2, false, true);
         if (drawable != null) {
             ((ListView) view).setDivider(drawable);

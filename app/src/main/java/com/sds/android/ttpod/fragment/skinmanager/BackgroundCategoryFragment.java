@@ -28,8 +28,8 @@ public class BackgroundCategoryFragment extends BaseCategoryFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.ON_BACKGROUND_CATEGORY_LIST_PARSED, ReflectUtils.m8375a(cls, "onDataListParsed", ArrayList.class, Long.class));
-        map.put(CommandID.ON_BKG_CATEGORY_LIST_DOWNLOADED, ReflectUtils.m8375a(cls, "onDataListDownloaded", new Class[0]));
+        map.put(CommandID.ON_BACKGROUND_CATEGORY_LIST_PARSED, ReflectUtils.loadMethod(cls, "onDataListParsed", ArrayList.class, Long.class));
+        map.put(CommandID.ON_BKG_CATEGORY_LIST_DOWNLOADED, ReflectUtils.loadMethod(cls, "onDataListDownloaded", new Class[0]));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseCategoryFragment, com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment

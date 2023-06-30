@@ -118,7 +118,7 @@ public class OnlineMediaListFragment extends AbsMediaListFragment {
     public void onThemeLoaded() {
         super.onThemeLoaded();
         getStateView().onThemeLoaded();
-        ThemeManager.m3269a(this.mNodataView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mNodataView, "BackgroundMaskColor");
         ThemeManager.m3269a(this.mFooterView, ThemeElement.SONG_LIST_ITEM_BACKGROUND);
         ThemeManager.m3269a(this.mFooterView, ThemeElement.SUB_BAR_TEXT);
     }

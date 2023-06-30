@@ -44,7 +44,7 @@ public class IntroductionFragment extends SlidingClosableFragment {
     private void initHeaderImage(String str) {
         ModifyFitCenterImageView modifyFitCenterImageView = (ModifyFitCenterImageView) this.mContent.findViewById(R.id.tv_post_introduction_pic);
         if (str != null) {
-            ImageCacheUtils.m4752a(modifyFitCenterImageView, str, (int) VIPPolicy.Entry.MAX_LIMIT, (int) VIPPolicy.Entry.MAX_LIMIT, (int) R.drawable.img_musiccircle_post_pic_default);
+            ImageCacheUtils.displayImage(modifyFitCenterImageView, str, (int) VIPPolicy.Entry.MAX_LIMIT, (int) VIPPolicy.Entry.MAX_LIMIT, (int) R.drawable.img_musiccircle_post_pic_default);
         }
     }
 
@@ -76,7 +76,7 @@ public class IntroductionFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        ThemeManager.m3269a(this.mContent, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mContent, "BackgroundMaskColor");
         ThemeManager.m3269a(this.mTweetTextView, ThemeElement.SONG_LIST_ITEM_TEXT);
         ThemeManager.m3269a(this.mContent.findViewById(R.id.v_post_introduction_indicator1), ThemeElement.SONG_LIST_ITEM_INDICATOR);
         ThemeManager.m3269a(this.mContent.findViewById(R.id.v_post_introduction_indicator2), ThemeElement.SONG_LIST_ITEM_INDICATOR);

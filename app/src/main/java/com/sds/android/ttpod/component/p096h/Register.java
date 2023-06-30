@@ -30,7 +30,7 @@ public final class Register {
             return "";
         }
         StringBuffer stringBuffer = new StringBuffer(str.trim());
-        if (stringBuffer.equals(FeedbackItem.STATUS_WAITING)) {
+        if (stringBuffer.equals("0")) {
             return "";
         }
         for (int i = 0; i < stringBuffer.length(); i++) {
@@ -43,7 +43,7 @@ public final class Register {
         z = false;
         if (stringBuffer.length() < 16) {
             while (stringBuffer.length() < 16) {
-                stringBuffer.append(FeedbackItem.STATUS_WAITING);
+                stringBuffer.append("0");
             }
         }
         int[] iArr = new int[2];

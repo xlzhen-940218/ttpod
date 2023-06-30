@@ -203,14 +203,14 @@ public class LandscapeFragment extends BasePlayerFragment {
             }
         });
         LandscapeLockerIcon landscapeLockerIcon = (LandscapeLockerIcon) this.mLandscapeView.findViewById(R.id.icon_locker);
-        landscapeLockerIcon.m6374a(getResources().getDrawable(R.drawable.xml_button_lock_landscape)
+        landscapeLockerIcon.setOnOffDrawable(getResources().getDrawable(R.drawable.xml_button_lock_landscape)
                 , getResources().getDrawable(R.drawable.xml_button_unlock_landscape));
         landscapeLockerIcon.m6375a();
-        landscapeLockerIcon.setOnLockerStateChangeListener(new LandscapeLockerIcon.InterfaceC1250a() { // from class: com.sds.android.ttpod.component.landscape.LandscapeFragment.5
+        landscapeLockerIcon.setOnLockerStateChangeListener(new LandscapeLockerIcon.OnLockerStateChangeListener() { // from class: com.sds.android.ttpod.component.landscape.LandscapeFragment.5
             @Override // com.sds.android.ttpod.component.landscape.LandscapeLockerIcon.InterfaceC1250a
             /* renamed from: a */
-            public void mo6373a(int i) {
-                LandscapeFragment.this.getActivity().setRequestedOrientation(i == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+            public void changed(int change) {
+                LandscapeFragment.this.getActivity().setRequestedOrientation(change == 0 ? ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE : ActivityInfo.SCREEN_ORIENTATION_SENSOR);
                 LandscapeFragment.this.hideMenuDelay();
             }
         });

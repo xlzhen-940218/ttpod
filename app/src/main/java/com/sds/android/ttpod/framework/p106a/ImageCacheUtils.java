@@ -45,12 +45,12 @@ public final class ImageCacheUtils {
     }
 
     /* renamed from: a */
-    public static final void m4752a(ImageView imageView, String str, int i, int i2, int i3) {
-        m4751a(imageView, str, i, i2, i3, 0);
+    public static final void displayImage(ImageView imageView, String str, int i, int i2, int i3) {
+        displayImage(imageView, str, i, i2, i3, 0);
     }
 
     /* renamed from: a */
-    public static final void m4751a(ImageView imageView, String str, int i, int i2, int i3, final int i4) {
+    public static final void displayImage(ImageView imageView, String str, int i, int i2, int i3, final int i4) {
         final WeakReference weakReference = new WeakReference(imageView);
         String m8811a = ImageCache.m8811a(str, i, i2, imageView.getScaleType());
         if (!StringUtils.isEmpty(m8811a)) {
@@ -239,11 +239,11 @@ public final class ImageCacheUtils {
     /* renamed from: d */
     public static void m4736d(final ImageView imageView, Bitmap bitmap, final int i) {
         if (imageView != null && bitmap != null) {
-            TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Bitmap, Bitmap>(bitmap) { // from class: com.sds.android.ttpod.framework.a.f.4
+            TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Bitmap, Bitmap>(bitmap) { // from class: com.sds.android.ttpod.framework.a.f.4
                 /* JADX INFO: Access modifiers changed from: protected */
                 @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public Bitmap mo1981a(Bitmap bitmap2) {
+                public Bitmap inBackground(Bitmap bitmap2) {
                     try {
                         return BitmapUtils.m4791a(BaseApplication.getApplication(), bitmap2, i);
                     } catch (OutOfMemoryError e) {

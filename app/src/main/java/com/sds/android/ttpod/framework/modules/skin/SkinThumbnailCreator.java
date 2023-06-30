@@ -11,8 +11,8 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SSkinInfo;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SerializableSkin;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SSkinInfo;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SerializableSkin;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -181,18 +181,18 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
     public void run() {
         boolean a;
         Bitmap m4748a = ImageCacheUtils.m4748a(this.f6696e.getPath(), f6693a, f6694c);
-        if ((m4748a == null && 4 == this.f6696e.m3575a()) || 3 == this.f6696e.m3575a()) {
-            OnlineSkinItem m3566f = this.f6696e.m3566f();
+        if ((m4748a == null && 4 == this.f6696e.getType()) || 3 == this.f6696e.getType()) {
+            OnlineSkinItem m3566f = this.f6696e.getOnlineSkinItem();
             if (m3566f != null) {
                 m3521a(m3566f);
                 return;
             }
             return;
         }
-        if (this.f6696e.f6658a == 0) {
+        if (this.f6696e.type == 0) {
             a = m3526e(this.f6696e.path);
         } else {
-            a = m3530a(m3533a(this.f6696e.f6658a, this.f6696e.path));
+            a = m3530a(m3533a(this.f6696e.type, this.f6696e.path));
         }
         if (a && m3522a()) {
             if (m4748a == null) {
@@ -209,7 +209,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
         if (m3516c == null) {
             return false;
         }
-        this.f6696e.title = m3516c.m3778d();
+        this.f6696e.title = m3516c.getName();
         return true;
     }
 
@@ -263,7 +263,7 @@ public class SkinThumbnailCreator extends SkinReader implements Runnable {
         try {
             if (k != null) {
                 try {
-                    sSkinInfo = SerializableSkin.m3847a(k);
+                    sSkinInfo = SerializableSkin.getSSkinInfoByReader(k);
                 } catch (Exception e) {
                     e.printStackTrace();
                     try {

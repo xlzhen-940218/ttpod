@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 /* loaded from: classes.dex */
-public class ModifyFitCenterImageView extends ImageView {
+public class ModifyFitCenterImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     /* renamed from: a */
     private boolean f6826a;
@@ -53,7 +53,7 @@ public class ModifyFitCenterImageView extends ImageView {
                 int measuredWidth2 = getMeasuredWidth();
                 int measuredHeight2 = getMeasuredHeight();
                 int ceil = ((int) Math.ceil((intrinsicHeight2 * ((measuredWidth2 - getPaddingLeft()) - getPaddingRight())) / intrinsicWidth2)) + getPaddingTop() + getPaddingBottom();
-                if (View.MeasureSpec.getMode(i2) == 0 || measuredHeight2 <= ceil) {
+                if (MeasureSpec.getMode(i2) == MeasureSpec.UNSPECIFIED || measuredHeight2 <= ceil) {
                     setMeasuredDimension(measuredWidth2, ceil);
                 } else {
                     setScaleType(ImageView.ScaleType.CENTER_CROP);

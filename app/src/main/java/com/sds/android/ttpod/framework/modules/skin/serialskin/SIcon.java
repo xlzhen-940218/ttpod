@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -41,7 +41,7 @@ public class SIcon extends SImage<Icon> {
     public void setBackground(Context context, Icon icon, SkinCache skinCache) {
         if (this.stateNum > 0) {
             Resources resources = context.getResources();
-            DrawableCreator m3594a = skinCache.m3594a(this.icon);
+            DrawableCreator m3594a = skinCache.getStateListDrawableCreator(this.icon);
             if (this.stateNum > 1 && m3594a != null && (m3594a instanceof BitmapDrawableCreator)) {
                 Bitmap m3761a = ((BitmapDrawableCreator) m3594a).m3761a();
                 if (m3761a != null) {
@@ -56,7 +56,7 @@ public class SIcon extends SImage<Icon> {
                     }
                 }
             } else {
-                icon.m3488a(skinCache.m3596a(resources, this.icon));
+                icon.m3488a(skinCache.getDrawable(resources, this.icon));
             }
         }
         icon.setScaleType(getScaleType(this.scaleType));

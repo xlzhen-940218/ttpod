@@ -163,7 +163,7 @@ public class MediaInfoEditDialog extends ScrollableDialog {
             if (audioEffectCache == null) {
                 audioEffectCache.m4405b(mediaItem.getArtist());
                 audioEffectCache.m4402c(mediaItem.getTitle());
-                CommandCenter.getInstance().m4596b(new Command(CommandID.SAVE_EFFECT, mediaItem, audioEffectCache, false));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SAVE_EFFECT, mediaItem, audioEffectCache, false));
                 return;
             }
             return;

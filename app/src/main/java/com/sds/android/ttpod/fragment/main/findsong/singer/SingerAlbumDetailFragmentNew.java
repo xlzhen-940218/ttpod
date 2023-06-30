@@ -84,10 +84,10 @@ public class SingerAlbumDetailFragmentNew extends SingerTabFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.m8375a(cls, "updatePlayingMediaInfo", new Class[0]));
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "playMediaChanged", new Class[0]));
-        map.put(CommandID.UPDATE_FAVORITE_CHANGED, ReflectUtils.m8375a(cls, "updateFavoriteChanged", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.loadMethod(cls, "updatePlayingMediaInfo", new Class[0]));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "playMediaChanged", new Class[0]));
+        map.put(CommandID.UPDATE_FAVORITE_CHANGED, ReflectUtils.loadMethod(cls, "updateFavoriteChanged", new Class[0]));
     }
 
     public void updatePlayStatus(PlayStatus playStatus) {

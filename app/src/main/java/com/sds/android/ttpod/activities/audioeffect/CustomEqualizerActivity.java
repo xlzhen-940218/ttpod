@@ -201,8 +201,8 @@ public class CustomEqualizerActivity extends ActionBarActivity implements ThemeM
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_CUSTOM_EQUALIZER_LIST, ReflectUtils.m8375a(cls, "updateCustomEqualizerList", List.class));
-        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.m8375a(cls, "updateAudioEffectInfo", new Class[0]));
+        map.put(CommandID.UPDATE_CUSTOM_EQUALIZER_LIST, ReflectUtils.loadMethod(cls, "updateCustomEqualizerList", List.class));
+        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.loadMethod(cls, "updateAudioEffectInfo", new Class[0]));
     }
 
     public void updateAudioEffectInfo() {
@@ -334,7 +334,7 @@ public class CustomEqualizerActivity extends ActionBarActivity implements ThemeM
 
     /* JADX INFO: Access modifiers changed from: private */
     public void setEqualizer() {
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_EQUALIZER, new TTEqualizer.Settings("自定义/custom", (short) this.mCustomData.length, this.mCustomData)));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_EQUALIZER, new TTEqualizer.Settings("自定义/custom", (short) this.mCustomData.length, this.mCustomData)));
         this.mEqualizerStyeName.setText("自定义/custom");
     }
 

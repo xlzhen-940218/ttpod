@@ -82,14 +82,14 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
         public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
             super.onLoadCommandMap(map);
             Class<?> cls = getClass();
-            map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.m8375a(cls, "updateDownloadState", DownloadTaskInfo.class));
-            map.put(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, ReflectUtils.m8375a(cls, "pullFavoriteOnlineMediaListComplete", new Class[0]));
-            map.put(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_ERROR, ReflectUtils.m8375a(cls, "refreshFavoriteOnlineFailed", new Class[0]));
-            map.put(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_ERROR, ReflectUtils.m8375a(cls, "refreshFavoriteOnlineFailed", new Class[0]));
-            map.put(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_INVALID, ReflectUtils.m8375a(cls, "refreshFavoriteOnlineFailed", new Class[0]));
-            map.put(CommandID.UPDATE_FAVORITE_CHANGED, ReflectUtils.m8375a(cls, "updateFavoriteChanged", new Class[0]));
-            map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_LIST_DATABASE, ReflectUtils.m8375a(cls, "updateDownloadTaskInfoList", List.class));
-            map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_DATABASE, ReflectUtils.m8375a(cls, "updateAddDownloadTaskDatabase", DownloadTaskInfo.class));
+            map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.loadMethod(cls, "updateDownloadState", DownloadTaskInfo.class));
+            map.put(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, ReflectUtils.loadMethod(cls, "pullFavoriteOnlineMediaListComplete", new Class[0]));
+            map.put(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_ERROR, ReflectUtils.loadMethod(cls, "refreshFavoriteOnlineFailed", new Class[0]));
+            map.put(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_ERROR, ReflectUtils.loadMethod(cls, "refreshFavoriteOnlineFailed", new Class[0]));
+            map.put(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST_INVALID, ReflectUtils.loadMethod(cls, "refreshFavoriteOnlineFailed", new Class[0]));
+            map.put(CommandID.UPDATE_FAVORITE_CHANGED, ReflectUtils.loadMethod(cls, "updateFavoriteChanged", new Class[0]));
+            map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_LIST_DATABASE, ReflectUtils.loadMethod(cls, "updateDownloadTaskInfoList", List.class));
+            map.put(CommandID.UPDATE_ADD_DOWNLOAD_TASK_DATABASE, ReflectUtils.loadMethod(cls, "updateAddDownloadTaskDatabase", DownloadTaskInfo.class));
         }
 
         public void pullFavoriteOnlineMediaListComplete() {

@@ -25,7 +25,7 @@ public class RepostInputActivity extends BaseInputActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_RE_POSTED, ReflectUtils.m8375a(getClass(), "onRepostFinished", BaseResult.class, String.class));
+        map.put(CommandID.UPDATE_RE_POSTED, ReflectUtils.loadMethod(getClass(), "onRepostFinished", BaseResult.class, String.class));
     }
 
     public void onRepostFinished(BaseResult baseResult, String str) {

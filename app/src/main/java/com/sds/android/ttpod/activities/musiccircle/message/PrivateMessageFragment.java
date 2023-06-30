@@ -72,8 +72,8 @@ public class PrivateMessageFragment extends SlidingClosableFragment implements E
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_PRIVATE_MESSAGE_CONTEXT_LIST, ReflectUtils.m8375a(getClass(), "onUpdatePrivateMessageContents", PrivateMessageContentListResult.class, String.class));
-        map.put(CommandID.UPDATE_SEND_PRIVATE_MESSAGE, ReflectUtils.m8375a(getClass(), "updateSendPrivateMessage", BaseResult.class, String.class));
+        map.put(CommandID.UPDATE_PRIVATE_MESSAGE_CONTEXT_LIST, ReflectUtils.loadMethod(getClass(), "onUpdatePrivateMessageContents", PrivateMessageContentListResult.class, String.class));
+        map.put(CommandID.UPDATE_SEND_PRIVATE_MESSAGE, ReflectUtils.loadMethod(getClass(), "updateSendPrivateMessage", BaseResult.class, String.class));
     }
 
     /* JADX INFO: Access modifiers changed from: private */

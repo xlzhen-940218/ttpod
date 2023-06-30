@@ -95,7 +95,7 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SINGER_CATEGORY_DETAIL, ReflectUtils.m8375a(getClass(), "updateSingerListInfo", SingerListResult.class));
+        map.put(CommandID.UPDATE_SINGER_CATEGORY_DETAIL, ReflectUtils.loadMethod(getClass(), "updateSingerListInfo", SingerListResult.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -140,11 +140,11 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
             }
         });
         this.mAZSideBar.setIndexWords(SEGMENT_CHAR);
-        this.mAZSideBar.setOnMatchedPositionChangeListener(new AZSideBar.InterfaceC2161a() { // from class: com.sds.android.ttpod.fragment.main.findsong.base.SingerListImageHeaderFragment.3
+        this.mAZSideBar.setOnMatchedPositionChangeListener(new AZSideBar.OnMatchedPositionChangeListener() { // from class: com.sds.android.ttpod.fragment.main.findsong.base.SingerListImageHeaderFragment.3
             @Override // com.sds.android.ttpod.widget.AZSideBar.InterfaceC2161a
             /* renamed from: a */
-            public void mo1905a(int i, String str) {
-                SingerListImageHeaderFragment.this.selectSection(i, str);
+            public void positionChanged(int position, String str) {
+                SingerListImageHeaderFragment.this.selectSection(position, str);
             }
         });
         this.mListView.setOnScrollListener(this.mAZSideBar);
@@ -175,11 +175,11 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
                 }
                 this.mSingerDataList = new ArrayList<>();
                 this.mSingerDataList.addAll(dataList);
-                TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Object, List<String>>(null) { // from class: com.sds.android.ttpod.fragment.main.findsong.base.SingerListImageHeaderFragment.4
+                TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Object, List<String>>(null) { // from class: com.sds.android.ttpod.fragment.main.findsong.base.SingerListImageHeaderFragment.4
                     /* JADX INFO: Access modifiers changed from: protected */
                     @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
                     /* renamed from: c */
-                    public List<String> mo1981a(Object obj) {
+                    public List<String> inBackground(Object obj) {
                         return SingerListImageHeaderFragment.this.buildRawAZKeys(SingerListImageHeaderFragment.this.mSingerDataList);
                     }
 
@@ -232,11 +232,11 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
         return arrayList2;
     }
 
-    protected void updateAZKeys(List<String> list) {
-        DebugUtils.m8426a((Object) list, "AZKeys");
+    protected void updateAZKeys(List<String> AZKeys) {
+        DebugUtils.m8426a((Object) AZKeys, "AZKeys");
         if (isViewAccessAble()) {
-            list.add(0, this.mHotCharacter);
-            this.mAZSideBar.m1909a(list);
+            AZKeys.add(0, this.mHotCharacter);
+            this.mAZSideBar.setAZKeys(AZKeys);
             this.mAZSideBar.m1914a(this.mHotCharacter, 0);
             this.mAZSideBar.setVisibility(View.VISIBLE);
         }
@@ -335,7 +335,7 @@ public class SingerListImageHeaderFragment extends SlidingClosableFragment {
                 findViewById.setTag(R.id.view_bind_data, singerData);
                 findViewById.setTag(R.id.view_tag_index, singerData.getName());
                 findViewById.setOnClickListener(SingerListImageHeaderFragment.this.mOnSingerClickListener);
-                ImageCacheUtils.m4752a((RoundedImageView) view.findViewById(R.id.item_picture), SingerListImageHeaderFragment.this.getImageUrl(singerData), this.f5288g, this.f5288g, (int) R.drawable.img_background_song_publish);
+                ImageCacheUtils.displayImage((RoundedImageView) view.findViewById(R.id.item_picture), SingerListImageHeaderFragment.this.getImageUrl(singerData), this.f5288g, this.f5288g, (int) R.drawable.img_background_song_publish);
             }
         }
     }

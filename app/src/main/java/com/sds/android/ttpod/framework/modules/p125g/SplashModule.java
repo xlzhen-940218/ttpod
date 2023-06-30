@@ -56,8 +56,8 @@ public final class SplashModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.LOAD_SPLASH, ReflectUtils.m8375a(cls, "loadSplash", Integer.class, Integer.class));
-        map.put(CommandID.SET_AUDIO_ENABLED, ReflectUtils.m8375a(cls, "setAudioEnabled", Boolean.class));
+        map.put(CommandID.LOAD_SPLASH, ReflectUtils.loadMethod(cls, "loadSplash", Integer.class, Integer.class));
+        map.put(CommandID.SET_AUDIO_ENABLED, ReflectUtils.loadMethod(cls, "setAudioEnabled", Boolean.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule

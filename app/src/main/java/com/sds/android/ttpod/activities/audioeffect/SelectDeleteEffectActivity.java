@@ -16,8 +16,6 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.PrivateEffectItem;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +108,7 @@ public class SelectDeleteEffectActivity extends SlidingClosableActivity {
     public void performDeleteClick() {
         List<PrivateEffectItem> selectItems = this.mFragment.getSelectItems();
         this.mList.removeAll(selectItems);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, selectItems));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_PRIVATE_EFFECT_LIST, selectItems));
         this.mFragment.updateData(this.mList);
         this.mSelectionAction.m7155c(this.mList.size() > 0);
         this.mIsSelected = false;

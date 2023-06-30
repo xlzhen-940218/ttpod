@@ -105,19 +105,19 @@ public class FindSongBaseViewFragment extends BaseFragment {
         TYPE_STO.put(13, SPage.PAGE_ONLINE_DAILY_RECOMMEND.getValue());
         TYPE_STO.put(14, SPage.PAGE_UNICOM_SUBSCRIBE.getValue());
         try {
-            METHODS.put(0, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardAbnormal", Integer.class));
-            METHODS.put(1, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardWeb", Integer.class));
-            METHODS.put(3, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardMusicCircleUserHome", Integer.class));
-            METHODS.put(4, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardCategoryDetail", Integer.class));
-            METHODS.put(5, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardPostDetail", Integer.class));
-            METHODS.put(6, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardPopularSong", Integer.class));
-            METHODS.put(7, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardMusicCircle", Integer.class));
-            METHODS.put(8, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardDiscovery", Integer.class));
-            METHODS.put(10, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardBestAlbum", Integer.class));
-            METHODS.put(11, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardNewAlbum", Integer.class));
-            METHODS.put(12, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardPrivateCustom", Integer.class));
-            METHODS.put(13, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardDailyRecommend", Integer.class));
-            METHODS.put(14, ReflectUtils.m8375a(FindSongBaseViewFragment.class, "forwardUnicomOpen", Integer.class));
+            METHODS.put(0, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardAbnormal", Integer.class));
+            METHODS.put(1, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardWeb", Integer.class));
+            METHODS.put(3, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardMusicCircleUserHome", Integer.class));
+            METHODS.put(4, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardCategoryDetail", Integer.class));
+            METHODS.put(5, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardPostDetail", Integer.class));
+            METHODS.put(6, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardPopularSong", Integer.class));
+            METHODS.put(7, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardMusicCircle", Integer.class));
+            METHODS.put(8, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardDiscovery", Integer.class));
+            METHODS.put(10, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardBestAlbum", Integer.class));
+            METHODS.put(11, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardNewAlbum", Integer.class));
+            METHODS.put(12, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardPrivateCustom", Integer.class));
+            METHODS.put(13, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardDailyRecommend", Integer.class));
+            METHODS.put(14, ReflectUtils.loadMethod(FindSongBaseViewFragment.class, "forwardUnicomOpen", Integer.class));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,12 +133,12 @@ public class FindSongBaseViewFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_POST_INFO_LIST_BY_ID, ReflectUtils.m8375a(getClass(), "updatePreLoadSongList", PostResult.class, String.class));
+        map.put(CommandID.UPDATE_POST_INFO_LIST_BY_ID, ReflectUtils.loadMethod(getClass(), "updatePreLoadSongList", PostResult.class, String.class));
     }
 
     private void preLoadSongListDataInWIFI() {
         if (EnvironmentUtils.DeviceConfig.hasNetwork() == 2) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, getNeedPreLoadSongListIds(), getRequestIdForCommandParallel()));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REQUEST_POST_INFOS_BY_ID, getNeedPreLoadSongListIds(), getRequestIdForCommandParallel()));
         }
     }
 

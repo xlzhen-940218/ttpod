@@ -65,8 +65,8 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(getClass(), "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(getClass(), "playMediaChanged", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(getClass(), "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(getClass(), "playMediaChanged", new Class[0]));
     }
 
     public void updatePlayStatus(PlayStatus playStatus) {
@@ -109,7 +109,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
     public void onThemeLoaded() {
         super.onThemeLoaded();
         if (this.mRootView != null) {
-            ThemeManager.m3269a(this.mRootView, ThemeElement.BACKGROUND_MASK);
+            ThemeManager.m3269a(this.mRootView, "BackgroundMaskColor");
             ThemeManager.m3269a(this.mSongCount, ThemeElement.SUB_BAR_BACKGROUND);
             ThemeManager.m3269a(this.mSongCount, ThemeElement.SUB_BAR_TEXT);
             if (this.mAlbumHeader != null) {
@@ -201,7 +201,7 @@ public class AlbumDetailFragment extends SlidingClosableFragment {
     private void bindHeader(View view, AlbumItem albumItem) {
         TextView textView = (TextView) view.findViewById(R.id.album_introduce);
         this.mSongCount = (TextView) view.findViewById(R.id.album_song_count);
-        ImageCacheUtils.m4752a((ImageView) view.findViewById(R.id.album_pic), albumItem.getPic500(), DisplayUtils.getWidth(), DisplayUtils.getWidth(), (int) R.drawable.img_album_detail_defaul);
+        ImageCacheUtils.displayImage((ImageView) view.findViewById(R.id.album_pic), albumItem.getPic500(), DisplayUtils.getWidth(), DisplayUtils.getWidth(), (int) R.drawable.img_album_detail_defaul);
         ((TextView) view.findViewById(R.id.album_name)).setText(albumItem.getName());
         ((TextView) view.findViewById(R.id.album_artist)).setText(albumItem.getSingerName());
         ((TextView) view.findViewById(R.id.album_lang)).setText(getString(R.string.album_lang, albumItem.getLang()));

@@ -36,7 +36,7 @@ public class SystemMessageAdapter extends BaseListAdapter<SystemNotice> {
         c0985a.f3311b.setText(TimeUtils.m8157a(systemNotice.getTimeStamp()));
         c0985a.f3312c.setText(systemNotice.getTitle());
         c0985a.f3313d.setText(systemNotice.getMessage());
-        ImageCacheUtils.m4752a(c0985a.f3314e, systemNotice.getPicture(), c0985a.f3314e.getWidth(), c0985a.f3314e.getHeight(), (int) R.drawable.img_avatar_default);
+        ImageCacheUtils.displayImage(c0985a.f3314e, systemNotice.getPicture(), c0985a.f3314e.getWidth(), c0985a.f3314e.getHeight(), (int) R.drawable.img_avatar_default);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */

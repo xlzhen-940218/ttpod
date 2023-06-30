@@ -75,7 +75,7 @@ public class NewSongPublishFragment extends SlidingClosableFragment implements A
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_MORE_NEW_SONG_PUBLISH_LIST, ReflectUtils.m8375a(getClass(), "updatePublishResult", FirstPublishNewSongMoreResult.class));
+        map.put(CommandID.UPDATE_MORE_NEW_SONG_PUBLISH_LIST, ReflectUtils.loadMethod(getClass(), "updatePublishResult", FirstPublishNewSongMoreResult.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -133,7 +133,7 @@ public class NewSongPublishFragment extends SlidingClosableFragment implements A
         this.mListHeader.onThemeLoaded();
         this.mAdapter.notifyDataSetChanged();
         this.mLoadingView.onThemeLoaded();
-        ThemeManager.m3269a(this.mListView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mListView, "BackgroundMaskColor");
     }
 
     protected void requestDataList(int i) {
@@ -321,7 +321,7 @@ public class NewSongPublishFragment extends SlidingClosableFragment implements A
                 ThemeManager.m3269a(c1542b.f5199b, ThemeElement.COMMON_CONTENT_TEXT);
                 ImageView imageView = c1542b.f5200c;
                 int m7225c = DisplayUtils.getWidth() / 4;
-                ImageCacheUtils.m4752a(imageView, albumData.getPicUrl(), m7225c, m7225c, (int) R.drawable.img_background_song_publish);
+                ImageCacheUtils.displayImage(imageView, albumData.getPicUrl(), m7225c, m7225c, (int) R.drawable.img_background_song_publish);
                 return;
             }
             m5617a(c1542b, false);

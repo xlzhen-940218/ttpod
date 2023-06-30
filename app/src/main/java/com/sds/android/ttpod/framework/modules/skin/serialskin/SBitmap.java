@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.text.TextUtils;
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;

@@ -56,7 +56,7 @@ public abstract class ActionBarThemeListFragment extends OnlineThemeFragment {
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.APP_THEME_CHANGED, ReflectUtils.m8375a(getClass(), "onThemeLoaded", new Class[0]));
+        map.put(CommandID.APP_THEME_CHANGED, ReflectUtils.loadMethod(getClass(), "onThemeLoaded", new Class[0]));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b

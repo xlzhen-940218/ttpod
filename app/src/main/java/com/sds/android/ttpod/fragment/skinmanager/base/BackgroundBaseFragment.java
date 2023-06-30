@@ -163,8 +163,8 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.BACKGROUND_THUMBNAIL_CREATED, ReflectUtils.m8375a(cls, "backgroundThumbnailCreated", BackgroundItem.class));
-        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.m8375a(cls, "updateBkgDownloadingState", DownloadTaskInfo.class));
+        map.put(CommandID.BACKGROUND_THUMBNAIL_CREATED, ReflectUtils.loadMethod(cls, "backgroundThumbnailCreated", BackgroundItem.class));
+        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.loadMethod(cls, "updateBkgDownloadingState", DownloadTaskInfo.class));
     }
 
     public void updateBkgDownloadingState(DownloadTaskInfo downloadTaskInfo) {
@@ -181,8 +181,8 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void setSelectedBackground(BackgroundItem backgroundItem) {
-        String m3331b = backgroundItem.m3331b();
-        if (backgroundItem.m3337a() == BackgroundItem.EnumC2011a.FOLLOW_SKIN || m3331b != null) {
+        String m3331b = backgroundItem.getImageName();
+        if (backgroundItem.getResourceTypeEnum() == BackgroundItem.ResourceTypeEnum.FOLLOW_SKIN || m3331b != null) {
             this.mBackgroundAdapter.m5364b(backgroundItem);
             saveBackgroundSettingToSystem(backgroundItem);
             //ThemeStatistic.m4883i();
@@ -191,7 +191,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     }
 
     private void saveBackgroundSettingToSystem(BackgroundItem backgroundItem) {
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_BACKGROUND, backgroundItem.toString()));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_BACKGROUND, backgroundItem.toString()));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -214,14 +214,14 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     }
 
     private void tryDownloadBackground(BackgroundItem backgroundItem) {
-        OnlineSkinItem m3330c = backgroundItem.m3330c();
+        OnlineSkinItem m3330c = backgroundItem.getOnlineSkinItem();
         if (m3330c != null) {
             if (!EnvironmentUtils.DeviceConfig.isConnected()) {
                 PopupsUtils.m6760a((int) R.string.shake_error_hint);
-            } else if (FileUtils.m8414b(backgroundItem.m3325h())) {
+            } else if (FileUtils.m8414b(backgroundItem.getImagePath())) {
                 PopupsUtils.m6760a((int) R.string.skin_file_already_existed);
             } else {
-                DownloadTaskInfo m4760a = DownloadUtils.m4760a(m3330c.getSkinUrl(), backgroundItem.m3325h(), 0L, backgroundItem.m3331b(), DownloadTaskInfo.TYPE_BACKGROUND, false, getStatisticOrigin());
+                DownloadTaskInfo m4760a = DownloadUtils.m4760a(m3330c.getSkinUrl(), backgroundItem.getImagePath(), 0L, backgroundItem.getImageName(), DownloadTaskInfo.TYPE_BACKGROUND, false, getStatisticOrigin());
                 List<DownloadTaskInfo> backgroundTaskList = getBackgroundTaskList();
                 if (backgroundTaskList != null && backgroundTaskList.contains(m4760a)) {
                     PopupsUtils.m6760a((int) R.string.downloading_already);
@@ -230,7 +230,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
                 m4760a.setTag(backgroundItem);
                 CommandCenter.getInstance().execute(new Command(CommandID.DELETE_DOWNLOAD_TASK, m4760a, Boolean.FALSE));
                 CommandCenter.getInstance().execute(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
-                backgroundItem.m3334a(m4760a);
+                backgroundItem.setTaskInfo(m4760a);
                 sLastRequestItem = backgroundItem;
                 this.mRefreshHandler.sendEmptyMessage(0);
             }
@@ -257,14 +257,14 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
-    public boolean isLocalBackground(BackgroundItem.EnumC2011a enumC2011a) {
-        return BackgroundItem.EnumC2011a.ADD_BY_USER == enumC2011a;
+    public boolean isLocalBackground(BackgroundItem.ResourceTypeEnum resourceTypeEnum) {
+        return BackgroundItem.ResourceTypeEnum.ADD_BY_USER == resourceTypeEnum;
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
     public void checkNormalStateItem(BackgroundItem backgroundItem) {
-        if (BackgroundItem.EnumC2011a.ONLINE_BACKGROUND == backgroundItem.m3337a()) {
-            if (backgroundItem.m3329d() == null) {
+        if (BackgroundItem.ResourceTypeEnum.ONLINE_BACKGROUND == backgroundItem.getResourceTypeEnum()) {
+            if (backgroundItem.getTaskInfo() == null) {
                 tryDownloadBackground(backgroundItem);
             }
             sLastRequestItem = backgroundItem;
@@ -283,7 +283,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
 
     /* JADX INFO: Access modifiers changed from: protected */
     public boolean isLocalUnSelectedBackgroundItem(BackgroundItem backgroundItem) {
-        return (backgroundItem == null || backgroundItem.m3337a() != BackgroundItem.EnumC2011a.ADD_BY_USER || this.mBackgroundAdapter.m5371a(backgroundItem)) ? false : true;
+        return (backgroundItem == null || backgroundItem.getResourceTypeEnum() != BackgroundItem.ResourceTypeEnum.ADD_BY_USER || this.mBackgroundAdapter.m5371a(backgroundItem)) ? false : true;
     }
 
     private boolean isShowOfflineModeView() {
@@ -412,10 +412,10 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
 
         /* renamed from: b */
         private void m5363b(BackgroundItem backgroundItem, ImageView imageView) {
-            if (BackgroundItem.EnumC2011a.ONLINE_BACKGROUND != backgroundItem.m3337a()) {
+            if (BackgroundItem.ResourceTypeEnum.ONLINE_BACKGROUND != backgroundItem.getResourceTypeEnum()) {
                 imageView.setVisibility(View.GONE);
             } else {
-                ViewUtils.m4640a(backgroundItem.m3324i(), imageView);
+                ViewUtils.m4640a(backgroundItem.getDateCreated(), imageView);
             }
         }
 
@@ -424,8 +424,8 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
             if (backgroundItem.m3326g() != null && !backgroundItem.m3326g().isRecycled()) {
                 imageView.setTag("localBackground");
                 imageView.setImageBitmap(backgroundItem.m3326g());
-            } else if (BackgroundItem.EnumC2011a.ONLINE_BACKGROUND == backgroundItem.m3337a() || backgroundItem.m3330c() != null) {
-                ImageCacheUtils.m4752a(imageView, backgroundItem.m3330c().getPictureUrl(), SkinThumbnailCreator.f6693a, SkinThumbnailCreator.f6694c, (int) R.drawable.img_skin_default_thumbnail);
+            } else if (BackgroundItem.ResourceTypeEnum.ONLINE_BACKGROUND == backgroundItem.getResourceTypeEnum() || backgroundItem.getOnlineSkinItem() != null) {
+                ImageCacheUtils.displayImage(imageView, backgroundItem.getOnlineSkinItem().getPictureUrl(), SkinThumbnailCreator.f6693a, SkinThumbnailCreator.f6694c, (int) R.drawable.img_skin_default_thumbnail);
             } else {
                 imageView.setImageResource(R.drawable.img_skin_default_thumbnail);
                 CommandCenter.getInstance().execute(new Command(CommandID.DECODE_BACKGROUND_THUMBNAIL, backgroundItem));
@@ -450,9 +450,9 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
             ProgressBar m5388c = themeViewHolder.m5388c();
             TextView m5386e = themeViewHolder.m5386e();
             View m5385f = themeViewHolder.m5385f();
-            if (BackgroundItem.EnumC2011a.ONLINE_BACKGROUND == backgroundItem.m3337a()) {
+            if (BackgroundItem.ResourceTypeEnum.ONLINE_BACKGROUND == backgroundItem.getResourceTypeEnum()) {
                 m5384g.setVisibility(View.VISIBLE);
-                TaskInfo m3329d = backgroundItem.m3329d();
+                TaskInfo m3329d = backgroundItem.getTaskInfo();
                 if (m3329d != null) {
                     m5388c.setVisibility(View.VISIBLE);
                     m5386e.setVisibility(View.INVISIBLE);
@@ -535,10 +535,10 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
             int intValue = downloadTaskInfo.getState().intValue();
             String fileName = downloadTaskInfo.getFileName();
             BackgroundItem backgroundItem = (BackgroundItem) downloadTaskInfo.getTag();
-            if (intValue == 4 && backgroundItem.m3329d() != null) {
-                backgroundItem.m3333a(BackgroundItem.EnumC2011a.ADD_BY_USER);
-                backgroundItem.m3334a((TaskInfo) null);
-                BackgroundBaseFragment.this.doStatistic(backgroundItem.m3330c());
+            if (intValue == 4 && backgroundItem.getTaskInfo() != null) {
+                backgroundItem.setResourceTypeEnum(BackgroundItem.ResourceTypeEnum.ADD_BY_USER);
+                backgroundItem.setTaskInfo((TaskInfo) null);
+                BackgroundBaseFragment.this.doStatistic(backgroundItem.getOnlineSkinItem());
                 if (backgroundItem.equals(BackgroundBaseFragment.sLastRequestItem)) {
                     BackgroundBaseFragment.this.setSelectedBackground(backgroundItem);
                     BackgroundItem unused = BackgroundBaseFragment.sLastRequestItem = null;
@@ -546,7 +546,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
                 PopupsUtils.m6721a(fileName + " " + BackgroundBaseFragment.this.getResources().getString(R.string.download_finished));
             } else if (intValue == 3 || intValue == 5) {
                 PopupsUtils.m6721a(BackgroundBaseFragment.this.getString(R.string.unknown_error));
-                backgroundItem.m3334a((TaskInfo) null);
+                backgroundItem.setTaskInfo((TaskInfo) null);
                 BackgroundItem unused2 = BackgroundBaseFragment.sLastRequestItem = null;
             }
         }

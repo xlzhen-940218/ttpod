@@ -148,8 +148,8 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_LOCAL_BACKGROUND_LIST, ReflectUtils.m8375a(cls, "updateBackgroundList", ArrayList.class));
-        map.put(CommandID.LOAD_SKIN_FINISHED, ReflectUtils.m8375a(cls, "loadSkinFinished", SkinCache.class));
+        map.put(CommandID.UPDATE_LOCAL_BACKGROUND_LIST, ReflectUtils.loadMethod(cls, "updateBackgroundList", ArrayList.class));
+        map.put(CommandID.LOAD_SKIN_FINISHED, ReflectUtils.loadMethod(cls, "loadSkinFinished", SkinCache.class));
     }
 
     @Override // android.support.v4.app.Fragment
@@ -228,7 +228,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
             return;
         }
         this.mBackgroundAdapter.m5365b().clear();
-        this.mBackgroundAdapter.m5357e(new BackgroundItem(null, BackgroundItem.EnumC2011a.FOLLOW_SKIN));
+        this.mBackgroundAdapter.m5357e(new BackgroundItem(null, BackgroundItem.ResourceTypeEnum.FOLLOW_SKIN));
         this.mBackgroundAdapter.m5366a(arrayList);
         if (isInEditMode()) {
             tryNotifySelectedCountChanged();
@@ -302,7 +302,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
         Iterator<BackgroundItem> it = this.mBackgroundAdapter.m5365b().iterator();
         while (it.hasNext()) {
             BackgroundItem next = it.next();
-            if (!this.mBackgroundAdapter.m5371a(next) && isLocalBackground(next.m3337a())) {
+            if (!this.mBackgroundAdapter.m5371a(next) && isLocalBackground(next.getResourceTypeEnum())) {
                 return true;
             }
         }
@@ -326,7 +326,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
         BackgroundItem backgroundItem = new BackgroundItem(this.mUserBackgroundName);
         this.mBackgroundAdapter.m5357e(backgroundItem);
         this.mBackgroundAdapter.m5364b(backgroundItem);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_BACKGROUND, this.mUserBackgroundName));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_BACKGROUND, this.mUserBackgroundName));
     }
 
     private void cropPhoto(int i, Intent intent) {
@@ -490,7 +490,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
 
     /* JADX INFO: Access modifiers changed from: private */
     public void deleteItem(BackgroundItem backgroundItem) {
-        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_BACKGROUND, backgroundItem.toString()));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_BACKGROUND, backgroundItem.toString()));
         this.mBackgroundAdapter.m5358d(backgroundItem);
         performBkgDeleted(backgroundItem);
     }

@@ -51,7 +51,7 @@ public class ReverbFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.m8375a(getClass(), "updateAudioEffectInfo", new Class[0]));
+        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.loadMethod(getClass(), "updateAudioEffectInfo", new Class[0]));
     }
 
     public void updateAudioEffectInfo() {

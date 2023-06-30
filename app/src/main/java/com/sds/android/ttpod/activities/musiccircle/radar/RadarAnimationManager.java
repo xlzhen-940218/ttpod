@@ -478,7 +478,7 @@ public class RadarAnimationManager implements View.OnClickListener {
             LogUtils.debug("TEST", "name: " + alikeTTPodUser.getNickName() + "fans: " + alikeTTPodUser.getFollowersCount() + " avatar: " + alikeTTPodUser.getAvatarUrl());
             String avatarUrl = alikeTTPodUser.getAvatarUrl();
             int m7229a = DisplayUtils.dp2px(70);
-            ImageCacheUtils.m4752a((ImageView) relativeLayout.findViewById(R.id.avatar), avatarUrl, m7229a, m7229a, (int) R.drawable.img_avatar_default);
+            ImageCacheUtils.displayImage((ImageView) relativeLayout.findViewById(R.id.avatar), avatarUrl, m7229a, m7229a, (int) R.drawable.img_avatar_default);
             i++;
             i2 = i3;
         }

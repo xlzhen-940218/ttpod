@@ -120,15 +120,15 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         checkExternalStorageExisted();
         if (EnvironmentUtils.DeviceConfig.isConnected()) {
             if (new Date().getTime() - Preferences.m2953ar().longValue() > 86400000) {
-                CommandCenter.getInstance().m4605a(new Command(CommandID.CHECK_UPGRADE, Boolean.TRUE), 30);
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.CHECK_UPGRADE, Boolean.TRUE), 30);
             }
             requestUpdateSkinList();
         }
         Preferences.m2877h(getResources().getStringArray(R.array.environment_title).length);
-        CommandCenter.getInstance().m4605a(new Command(CommandID.PRELOAD_ASYNCLOAD_MEDIA_ITEM_LIST, MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.m2860l(MediaStorage.GROUP_ID_ALL_LOCAL)), 1000);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_ALBUM));
-        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_FOLDER));
-        CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_ARTIST));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PRELOAD_ASYNCLOAD_MEDIA_ITEM_LIST, MediaStorage.GROUP_ID_ALL_LOCAL, Preferences.m2860l(MediaStorage.GROUP_ID_ALL_LOCAL)), 1000);
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_ALBUM));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_FOLDER));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_ARTIST));
         UnicomFlowUtil.m3954a(this);
     }
 
@@ -138,15 +138,15 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_MEDIA_ITEM_STARTED, ReflectUtils.m8375a(cls, "updateMediaItemStarted", MediaItem.class));
-        map.put(CommandID.UPDATE_MEDIA_ITEM_FINISHED, ReflectUtils.m8375a(cls, "updateMediaItemFinished", MediaItem.class));
-        map.put(CommandID.DO_VERSION_COMPACT_STARTED, ReflectUtils.m8375a(cls, "doVersionCompactStarted", new Class[0]));
-        map.put(CommandID.DO_VERSION_COMPACT_FINISHED, ReflectUtils.m8375a(cls, "doVersionCompactFinished", new Class[0]));
-        map.put(CommandID.FINISH_UPDATE_RECOMMEND_SKIN_LIST, ReflectUtils.m8375a(cls, "updateRecommendSkinListFinished", Boolean.class));
-        map.put(CommandID.FINISH_UPDATE_RECOMMEND_BACKGROUND_LIST, ReflectUtils.m8375a(cls, "updateRecommendBackgroundListFinished", Boolean.class));
-        map.put(CommandID.UPDATE_PLAY_MODE, ReflectUtils.m8375a(cls, "updatePlayMode", new Class[0]));
-        map.put(CommandID.UPDATE_SLEEP_MODE, ReflectUtils.m8375a(cls, "updateSleepMode", new Class[0]));
-        map.put(CommandID.UPDATE_UNICOM_FLOW_STATUS, ReflectUtils.m8375a(cls, "updateFlowStatus", Boolean.class));
+        map.put(CommandID.UPDATE_MEDIA_ITEM_STARTED, ReflectUtils.loadMethod(cls, "updateMediaItemStarted", MediaItem.class));
+        map.put(CommandID.UPDATE_MEDIA_ITEM_FINISHED, ReflectUtils.loadMethod(cls, "updateMediaItemFinished", MediaItem.class));
+        map.put(CommandID.DO_VERSION_COMPACT_STARTED, ReflectUtils.loadMethod(cls, "doVersionCompactStarted", new Class[0]));
+        map.put(CommandID.DO_VERSION_COMPACT_FINISHED, ReflectUtils.loadMethod(cls, "doVersionCompactFinished", new Class[0]));
+        map.put(CommandID.FINISH_UPDATE_RECOMMEND_SKIN_LIST, ReflectUtils.loadMethod(cls, "updateRecommendSkinListFinished", Boolean.class));
+        map.put(CommandID.FINISH_UPDATE_RECOMMEND_BACKGROUND_LIST, ReflectUtils.loadMethod(cls, "updateRecommendBackgroundListFinished", Boolean.class));
+        map.put(CommandID.UPDATE_PLAY_MODE, ReflectUtils.loadMethod(cls, "updatePlayMode", new Class[0]));
+        map.put(CommandID.UPDATE_SLEEP_MODE, ReflectUtils.loadMethod(cls, "updateSleepMode", new Class[0]));
+        map.put(CommandID.UPDATE_UNICOM_FLOW_STATUS, ReflectUtils.loadMethod(cls, "updateFlowStatus", Boolean.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -444,7 +444,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
 
     private void checkoutVersionCompact() {
         if (!((Boolean) CommandCenter.getInstance().m4602a(new Command(CommandID.CHECK_VERSION_COMPACT, new Object[0]), Boolean.class)).booleanValue()) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.DO_VERSION_COMPACT, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DO_VERSION_COMPACT, new Object[0]));
         }
     }
 
@@ -468,7 +468,7 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         if (status() == 2) {
             PopupsUtils.m6761a();
         }
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
     }
 
     public void updateRecommendSkinListFinished(Boolean bool) {
@@ -488,8 +488,8 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
 
     private void requestUpdateSkinList() {
         if (!sHasCheckSkinListUpdate) {
-            CommandCenter.getInstance().m4605a(new Command(CommandID.REQUEST_UPDATE_RECOMMEND_SKIN_LIST, new Object[0]), 15000);
-            CommandCenter.getInstance().m4605a(new Command(CommandID.REQUEST_UPDATE_RECOMMEND_BACKGROUND_LIST, new Object[0]), 15000);
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REQUEST_UPDATE_RECOMMEND_SKIN_LIST, new Object[0]), 15000);
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REQUEST_UPDATE_RECOMMEND_BACKGROUND_LIST, new Object[0]), 15000);
             LogUtils.debug("MyFragment", "requestUpdateSkinList [skin]--->");
             //ThemeStatistic.m4889f();
             //ThemeStatistic.m4882j();

@@ -4,5 +4,5 @@ package com.sds.android.ttpod.framework.modules.p122d;
 /* loaded from: classes.dex */
 public interface OnLoadListener<D> {
     /* renamed from: a */
-    void mo4086a(D d);
+    void loaded(D d);
 }

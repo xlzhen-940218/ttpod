@@ -373,7 +373,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
             return "00";
         }
         if (i >= 0 && i < 10) {
-            return FeedbackItem.STATUS_WAITING + i;
+            return "0" + i;
         }
         return "" + i;
     }

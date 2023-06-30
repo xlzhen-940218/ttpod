@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -20,7 +20,7 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     private String path;
 
     /* renamed from: b */
-    private long f6402b;
+    private long lastModified;
 
     /* renamed from: c */
     private SSkinInfo sSkinInfo;
@@ -29,11 +29,11 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     private int f6404d;
 
     /* renamed from: e */
-    private SBaseView[] f6405e;
+    private SBaseView[] skinViews;
 
-    public SerializableSkin(String str, long j, int i) {
-        this.path = str;
-        this.f6402b = j;
+    public SerializableSkin(String path, long lastModified, int i) {
+        this.path = path;
+        this.lastModified = lastModified;
         this.f6404d = i;
     }
 
@@ -44,12 +44,12 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.Container
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo3791a(SBaseView[] sBaseViewArr) {
-        this.f6405e = sBaseViewArr;
+    public void setSkinViews(SBaseView[] skinViews) {
+        this.skinViews = skinViews;
     }
 
     /* renamed from: a */
-    public SSkinInfo m3853a() {
+    public SSkinInfo cloneSSKinInfo() {
         if (this.sSkinInfo == null) {
             return null;
         }
@@ -57,13 +57,13 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     }
 
     /* renamed from: a */
-    public SBaseView m3846a(String str, int i) {
+    public SBaseView getViewByIdOrTransform(String id, int transform) {
         SBaseView sBaseView;
         SBaseView sBaseView2;
-        if (this.f6405e == null || this.f6405e.length <= 0) {
+        if (this.skinViews == null || this.skinViews.length <= 0) {
             return null;
         }
-        SBaseView[] sBaseViewArr = this.f6405e;
+        SBaseView[] sBaseViewArr = this.skinViews;
         int length = sBaseViewArr.length;
         int i2 = 0;
         SBaseView sBaseView3 = null;
@@ -74,9 +74,9 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
                 break;
             }
             sBaseView = sBaseViewArr[i2];
-            if (!TextUtils.equals(str, sBaseView.id)) {
+            if (!TextUtils.equals(id, sBaseView.id)) {
                 sBaseView = sBaseView3;
-            } else if (sBaseView.f6432c == i) {
+            } else if (sBaseView.transform == transform) {
                 sBaseView2 = sBaseView;
                 break;
             }
@@ -87,8 +87,8 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     }
 
     /* renamed from: a */
-    public SPlayerView m3852a(int i) {
-        SBaseView m3846a = m3846a("Player", i);
+    public SPlayerView getPlayerViewByTransForm(int transform) {
+        SBaseView m3846a = getViewByIdOrTransform("Player", transform);
         if (m3846a instanceof SPlayerView) {
             return (SPlayerView) m3846a;
         }
@@ -96,8 +96,8 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     }
 
     /* renamed from: b */
-    public SPlaylistView m3842b(int i) {
-        SBaseView m3846a = m3846a("Playlist", i);
+    public SPlaylistView getPlayerListViewByTransForm(int transform) {
+        SBaseView m3846a = getViewByIdOrTransform("Playlist", transform);
         if (m3846a instanceof SPlaylistView) {
             return (SPlaylistView) m3846a;
         }
@@ -105,14 +105,14 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     }
 
     /* renamed from: a */
-    public Drawable m3851a(Context context, SkinCache skinCache, int i) {
-        SPlayerView m3852a;
-        Drawable m3595a = this.sSkinInfo != null ? skinCache.m3595a(context.getResources(), this.sSkinInfo.background) : null;
-        if (!m3850a(m3595a) && (m3852a = m3852a(i)) != null) {
-            m3595a = m3852a.getDrawable(context, skinCache);
+    public Drawable m3851a(Context context, SkinCache skinCache, int transform) {
+        SPlayerView sPlayerView;
+        Drawable drawable = this.sSkinInfo != null ? skinCache.getDrawable(context.getResources(), this.sSkinInfo.background) : null;
+        if (!m3850a(drawable) && (sPlayerView = getPlayerViewByTransForm(transform)) != null) {
+            drawable = sPlayerView.getDrawable(context, skinCache);
         }
-        if (m3595a != null) {
-            return m3595a.getConstantState().newDrawable();
+        if (drawable != null) {
+            return drawable.getConstantState().newDrawable();
         }
         return null;
     }
@@ -123,7 +123,7 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     }
 
     /* renamed from: a */
-    public static SSkinInfo m3847a(Reader reader) throws Exception {
+    public static SSkinInfo getSSkinInfoByReader(Reader reader) throws Exception {
         KXmlParser kXmlParser = new KXmlParser();
         kXmlParser.setInput(reader);
         kXmlParser.nextTag();
@@ -132,10 +132,10 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     }
 
     /* renamed from: a */
-    public static SerializableSkin m3845a(String str, long j, Reader reader, int i) throws Exception {
+    public static SerializableSkin m3845a(String str, long lastModified, Reader reader, int i) throws Exception {
         int next;
         Object m3844a;
-        SerializableSkin serializableSkin = new SerializableSkin(str, j, i);
+        SerializableSkin serializableSkin = new SerializableSkin(str, lastModified, i);
         KXmlParser kXmlParser = new KXmlParser();
         kXmlParser.setInput(reader);
         kXmlParser.nextTag();
@@ -213,35 +213,36 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
     }
 
     /* renamed from: a */
-    private static SComponent m3844a(String str, KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, HashMap<String, SFont> hashMap2, int i) {
-        if ("Button".equals(str)) {
+    private static SComponent m3844a(String key, KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap
+            , HashMap<String, SFont> hashMap2, int i) {
+        if ("Button".equals(key)) {
             return new SButton(kXmlParser, hashMap, i);
         }
-        if ("Region".equals(str)) {
+        if ("Region".equals(key)) {
             return new SRegion(kXmlParser, hashMap, i);
         }
-        if ("Text".equals(str)) {
+        if ("Text".equals(key)) {
             return new SScrollText(kXmlParser, hashMap, hashMap2, i);
         }
-        if ("Icon".equals(str)) {
+        if ("Icon".equals(key)) {
             return new SIcon(kXmlParser, hashMap, i);
         }
-        if ("Slide".equals(str)) {
+        if ("Slide".equals(key)) {
             return new SSlide(kXmlParser, hashMap, i);
         }
-        if ("Animation".equals(str)) {
+        if ("Animation".equals(key)) {
             return new SAnimation(kXmlParser, hashMap, i);
         }
-        if ("LyricShow".equals(str)) {
+        if ("LyricShow".equals(key)) {
             return new SLyricShow(kXmlParser, hashMap, hashMap2, i);
         }
-        if ("Analyzer".equals(str)) {
+        if ("Analyzer".equals(key)) {
             return new SAnalyzer(kXmlParser, hashMap, i);
         }
-        if ("Image".equals(str)) {
+        if ("Image".equals(key)) {
             return new SAnimTransImage(kXmlParser, hashMap, i);
         }
-        if ("ComponentGroup".equals(str)) {
+        if ("ComponentGroup".equals(key)) {
             return new SComponentGroup(kXmlParser, hashMap, i);
         }
         return null;
@@ -284,25 +285,25 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
                     if (this.f6406a.get(0) instanceof SPanel) {
                         SPanel[] sPanelArr = new SPanel[size];
                         this.f6406a.toArray(sPanelArr);
-                        this.f6408c.mo3791a(sPanelArr);
+                        this.f6408c.setSkinViews(sPanelArr);
                     }
                 } else if ((this.f6408c instanceof SComponentView) || (this.f6408c instanceof SPanel) || (this.f6408c instanceof SComponentGroup)) {
                     SComponent[] sComponentArr = new SComponent[size];
                     this.f6406a.toArray(sComponentArr);
-                    this.f6408c.mo3791a(sComponentArr);
+                    this.f6408c.setSkinViews(sComponentArr);
                 } else if (this.f6408c instanceof SEvent) {
                     SMotion[] sMotionArr = new SMotion[size];
                     this.f6406a.toArray(sMotionArr);
-                    this.f6408c.mo3791a(sMotionArr);
+                    this.f6408c.setSkinViews(sMotionArr);
                 } else if (this.f6408c instanceof SerializableSkin) {
                     SBaseView[] sBaseViewArr = new SBaseView[size];
                     this.f6406a.toArray(sBaseViewArr);
-                    this.f6408c.mo3791a(sBaseViewArr);
+                    this.f6408c.setSkinViews(sBaseViewArr);
                 } else {
-                    this.f6408c.mo3791a(null);
+                    this.f6408c.setSkinViews(null);
                 }
             } else {
-                this.f6408c.mo3791a(null);
+                this.f6408c.setSkinViews(null);
             }
             if (this.f6408c instanceof HasEvent) {
                 int size2 = this.f6407b.size();
@@ -313,7 +314,7 @@ public class SerializableSkin implements Container<SBaseView>, Serializable {
                 } else {
                     sEventArr = null;
                 }
-                ((HasEvent) this.f6408c).mo3792a(sEventArr);
+                ((HasEvent) this.f6408c).setSEvents(sEventArr);
             }
         }
     }

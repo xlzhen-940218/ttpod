@@ -39,7 +39,7 @@ public class FeedbackComposeFragment extends BaseFragment implements View.OnClic
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.PROPOSAL_FEEDBACK_FINISH, ReflectUtils.m8375a(getClass(), "onProposalFinished", BaseResultRest.class, FeedbackItem.class));
+        map.put(CommandID.PROPOSAL_FEEDBACK_FINISH, ReflectUtils.loadMethod(getClass(), "onProposalFinished", BaseResultRest.class, FeedbackItem.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
@@ -81,7 +81,7 @@ public class FeedbackComposeFragment extends BaseFragment implements View.OnClic
                 } else {
                     this.mBtnSend.setClickable(false);
                     this.mBtnSend.setText(R.string.feedback_sending);
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.PROPOSAL_FEEDBACK, new FeedbackItem(trim, EnvironmentUtils.DeviceConfig.m8473f().toString(), trim2)));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PROPOSAL_FEEDBACK, new FeedbackItem(trim, EnvironmentUtils.DeviceConfig.m8473f().toString(), trim2)));
                     return;
                 }
             default:

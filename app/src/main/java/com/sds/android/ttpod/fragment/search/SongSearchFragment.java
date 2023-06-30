@@ -69,7 +69,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
     @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SEARCH_SONG_FINISHED, ReflectUtils.m8375a(getClass(), "updateSongSearchFinished", Integer.class, Integer.class, List.class, String.class));
+        map.put(CommandID.UPDATE_SEARCH_SONG_FINISHED, ReflectUtils.loadMethod(getClass(), "updateSongSearchFinished", Integer.class, Integer.class, List.class, String.class));
     }
 
     private void thirdSearch() {

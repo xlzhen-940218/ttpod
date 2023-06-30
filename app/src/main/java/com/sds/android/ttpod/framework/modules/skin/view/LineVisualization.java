@@ -12,35 +12,35 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SAnalyzer;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SAnalyzer;
 
 /* renamed from: com.sds.android.ttpod.framework.modules.skin.view.a */
 /* loaded from: classes.dex */
 public class LineVisualization extends View {
 
     /* renamed from: a */
-    private Drawable f6880a;
+    private Drawable lineDrawable;
 
     /* renamed from: b */
-    private Drawable f6881b;
+    private Drawable dotDrawable;
 
     /* renamed from: c */
-    private InterfaceC2008a f6882c;
+    private OnActiveListener onActiveListener;
 
     /* renamed from: d */
-    private int f6883d;
+    private int reflectionHeight;
 
     /* renamed from: e */
-    private int f6884e;
+    private int divideHeight;
 
     /* renamed from: f */
-    private int f6885f;
+    private int dotHeight;
 
     /* renamed from: g */
-    private int f6886g;
+    private int reflectionMaskStartColor;
 
     /* renamed from: h */
-    private int f6887h;
+    private int reflectionMaskEndColor;
 
     /* renamed from: i */
     private final Rect f6888i;
@@ -55,22 +55,22 @@ public class LineVisualization extends View {
     private long[] f6891l;
 
     /* renamed from: m */
-    private int f6892m;
+    private int lineDivideWidth;
 
     /* renamed from: n */
-    private int f6893n;
+    private int lineWidth;
 
     /* renamed from: o */
-    private int f6894o;
+    private int numberOfLine;
 
     /* renamed from: p */
     private boolean f6895p;
 
     /* renamed from: q */
-    private int f6896q;
+    private int width;
 
     /* renamed from: r */
-    private int f6897r;
+    private int height;
 
     /* renamed from: s */
     private Bitmap f6898s;
@@ -90,25 +90,25 @@ public class LineVisualization extends View {
     /* compiled from: LineVisualization.java */
     /* renamed from: com.sds.android.ttpod.framework.modules.skin.view.a$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC2008a {
+    public interface OnActiveListener {
         /* renamed from: a */
-        void mo3350a();
+        void active();
 
         /* renamed from: b */
-        void mo3349b();
+        void inactive();
     }
 
     public LineVisualization(Context context) {
         super(context);
-        this.f6884e = 5;
-        this.f6885f = -1;
-        this.f6886g = 553648127;
-        this.f6887h = 1627389951;
+        this.divideHeight = 5;
+        this.dotHeight = -1;
+        this.reflectionMaskStartColor = 553648127;
+        this.reflectionMaskEndColor = 1627389951;
         this.f6888i = new Rect();
         this.f6889j = new Rect();
-        this.f6892m = 5;
-        this.f6893n = 5;
-        this.f6894o = 0;
+        this.lineDivideWidth = 5;
+        this.lineWidth = 5;
+        this.numberOfLine = 0;
         this.f6895p = false;
         this.f6901v = new Paint();
         this.f6902w = new Canvas();
@@ -117,7 +117,7 @@ public class LineVisualization extends View {
     public void setNumberOfLine(int i) {
         int max = Math.max(Math.min(i, 128), 4);
         synchronized (this) {
-            this.f6894o = max;
+            this.numberOfLine = max;
             int i2 = max << 1;
             if (this.f6890k == null || this.f6890k.length < i2) {
                 this.f6890k = new int[i2];
@@ -129,26 +129,26 @@ public class LineVisualization extends View {
     }
 
     public int getNumberOfLine() {
-        return this.f6894o;
+        return this.numberOfLine;
     }
 
     public void setLineDrawable(Drawable drawable) {
-        if (this.f6880a != drawable) {
-            this.f6880a = drawable;
+        if (this.lineDrawable != drawable) {
+            this.lineDrawable = drawable;
             m3351d();
         }
     }
 
     public void setDotDrawable(Drawable drawable) {
-        if (this.f6881b != drawable) {
-            this.f6881b = drawable;
+        if (this.dotDrawable != drawable) {
+            this.dotDrawable = drawable;
             m3351d();
         }
     }
 
     public void setReflectionHeight(int i) {
-        if (i != this.f6883d) {
-            this.f6883d = i;
+        if (i != this.reflectionHeight) {
+            this.reflectionHeight = i;
             m3351d();
         }
     }
@@ -158,22 +158,22 @@ public class LineVisualization extends View {
         if (this.f6899t != null) {
             int height = this.f6899t.getHeight();
             this.f6901v.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
-            this.f6901v.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, height, this.f6887h, this.f6886g, Shader.TileMode.CLAMP));
+            this.f6901v.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, height, this.reflectionMaskEndColor, this.reflectionMaskStartColor, Shader.TileMode.CLAMP));
         }
     }
 
     public void setDivideHeight(int i) {
-        if (this.f6884e != i) {
-            this.f6884e = i;
+        if (this.divideHeight != i) {
+            this.divideHeight = i;
             m3353b();
         }
     }
 
     /* renamed from: a */
-    public void m3355a(int i, int i2) {
-        if (this.f6886g != i || this.f6887h != i2) {
-            this.f6886g = i;
-            this.f6887h = i2;
+    public void setReflectionMaskColors(int reflectionMaskStartColor, int reflectionMaskEndColor) {
+        if (this.reflectionMaskStartColor != reflectionMaskStartColor || this.reflectionMaskEndColor != reflectionMaskEndColor) {
+            this.reflectionMaskStartColor = reflectionMaskStartColor;
+            this.reflectionMaskEndColor = reflectionMaskEndColor;
             m3356a();
         }
     }
@@ -190,7 +190,7 @@ public class LineVisualization extends View {
             synchronized (this) {
                 iArr2 = this.f6890k;
                 jArr = this.f6891l;
-                i = this.f6894o;
+                i = this.numberOfLine;
             }
             if (iArr != null && iArr.length > 0) {
                 this.f6895p = true;
@@ -266,10 +266,10 @@ public class LineVisualization extends View {
     protected void onDraw(Canvas canvas) {
         int[] iArr = this.f6890k;
         if (iArr != null && this.f6898s != null) {
-            int min = Math.min(this.f6894o, iArr.length >> 1);
+            int min = Math.min(this.numberOfLine, iArr.length >> 1);
             int height = this.f6898s.getHeight();
             int width = this.f6898s.getWidth();
-            int abs = Math.abs(this.f6885f);
+            int abs = Math.abs(this.dotHeight);
             int i = 0;
             Canvas canvas2 = this.f6902w;
             canvas2.setBitmap(this.f6899t);
@@ -287,16 +287,16 @@ public class LineVisualization extends View {
                     this.f6888i.set(0, 0, width, abs);
                     canvas2.drawBitmap(this.f6898s, this.f6888i, this.f6889j, (Paint) null);
                 }
-                i += this.f6892m + width;
+                i += this.lineDivideWidth + width;
             }
             canvas.drawBitmap(this.f6899t, 0.0f, getTopPaddingOffset(), (Paint) null);
-            if (this.f6883d > 0) {
+            if (this.reflectionHeight > 0) {
                 canvas2.setBitmap(this.f6900u);
                 canvas2.drawBitmap(this.f6899t, 0.0f, 0.0f, (Paint) null);
-                canvas2.drawRect(0.0f, 0.0f, this.f6896q, height, this.f6901v);
+                canvas2.drawRect(0.0f, 0.0f, this.width, height, this.f6901v);
                 canvas.save();
-                canvas.translate(0.0f, getTopPaddingOffset() + this.f6884e + height + this.f6883d);
-                canvas.scale(1.0f, -(this.f6883d / height));
+                canvas.translate(0.0f, getTopPaddingOffset() + this.divideHeight + height + this.reflectionHeight);
+                canvas.scale(1.0f, -(this.reflectionHeight / height));
                 canvas.drawBitmap(this.f6900u, 0.0f, getTopPaddingOffset(), (Paint) null);
                 canvas.restore();
             }
@@ -304,44 +304,44 @@ public class LineVisualization extends View {
     }
 
     public void setLineWidth(int i) {
-        if (i > 0 && this.f6893n != i) {
-            int i2 = this.f6893n;
-            setNumberOfLine((this.f6896q + this.f6892m) / (this.f6893n + this.f6892m));
+        if (i > 0 && this.lineWidth != i) {
+            this.lineWidth = i;
+            setNumberOfLine((this.width + this.lineDivideWidth) / (this.lineWidth + this.lineDivideWidth));
             m3353b();
         }
     }
 
     public void setDotHeight(int i) {
-        if (i > 0 && this.f6885f != i) {
-            this.f6885f = i;
+        if (i > 0 && this.dotHeight != i) {
+            this.dotHeight = i;
         }
     }
 
     public void setLineDivideWidth(int i) {
-        if (i >= 0 && i != this.f6892m) {
-            this.f6892m = i;
-            setNumberOfLine((this.f6896q + this.f6892m) / (this.f6893n + this.f6892m));
+        if (i >= 0 && i != this.lineDivideWidth) {
+            this.lineDivideWidth = i;
+            setNumberOfLine((this.width + this.lineDivideWidth) / (this.lineWidth + this.lineDivideWidth));
         }
     }
 
     /* renamed from: b */
     private void m3353b() {
-        int i = this.f6893n;
-        int i2 = this.f6897r - (this.f6883d > 0 ? this.f6884e + this.f6883d : 0);
+        int i = this.lineWidth;
+        int i2 = this.height - (this.reflectionHeight > 0 ? this.divideHeight + this.reflectionHeight : 0);
         if (this.f6898s == null || this.f6898s.getWidth() != i || this.f6898s.getHeight() != i2) {
-            m3352c();
+            recycle();
             if (i > 0 && i2 > 0) {
                 this.f6898s = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
                 try {
-                    this.f6899t = Bitmap.createBitmap(this.f6896q, i2, Bitmap.Config.ARGB_8888);
+                    this.f6899t = Bitmap.createBitmap(this.width, i2, Bitmap.Config.ARGB_8888);
                 } catch (OutOfMemoryError e) {
-                    this.f6899t = Bitmap.createBitmap(this.f6896q, i2, Bitmap.Config.ARGB_4444);
+                    this.f6899t = Bitmap.createBitmap(this.width, i2, Bitmap.Config.ARGB_4444);
                 }
-                if (this.f6883d > 0) {
+                if (this.reflectionHeight > 0) {
                     try {
-                        this.f6900u = Bitmap.createBitmap(this.f6896q, i2, Bitmap.Config.ARGB_8888);
+                        this.f6900u = Bitmap.createBitmap(this.width, i2, Bitmap.Config.ARGB_8888);
                     } catch (OutOfMemoryError e2) {
-                        this.f6900u = Bitmap.createBitmap(this.f6896q, i2, Bitmap.Config.ARGB_4444);
+                        this.f6900u = Bitmap.createBitmap(this.width, i2, Bitmap.Config.ARGB_4444);
                     }
                 }
                 m3351d();
@@ -351,7 +351,7 @@ public class LineVisualization extends View {
     }
 
     /* renamed from: c */
-    private void m3352c() {
+    private void recycle() {
         if (this.f6898s != null) {
             this.f6898s.recycle();
             this.f6898s = null;
@@ -376,7 +376,7 @@ public class LineVisualization extends View {
     @Override // android.view.View
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        m3352c();
+        recycle();
     }
 
     /* renamed from: d */
@@ -385,19 +385,19 @@ public class LineVisualization extends View {
             int width = this.f6898s.getWidth();
             int height = this.f6898s.getHeight();
             Canvas canvas = new Canvas(this.f6898s);
-            if (this.f6885f < 0 && this.f6881b != null) {
-                this.f6885f = -Math.max(this.f6881b.getIntrinsicHeight(), Math.max(this.f6893n >> 2, 1));
+            if (this.dotHeight < 0 && this.dotDrawable != null) {
+                this.dotHeight = -Math.max(this.dotDrawable.getIntrinsicHeight(), Math.max(this.lineWidth >> 2, 1));
             }
-            int abs = Math.abs(this.f6885f);
-            if (this.f6880a != null) {
-                this.f6880a.setBounds(0, abs, width, height);
-                this.f6880a.draw(canvas);
+            int abs = Math.abs(this.dotHeight);
+            if (this.lineDrawable != null) {
+                this.lineDrawable.setBounds(0, abs, width, height);
+                this.lineDrawable.draw(canvas);
             }
-            if (this.f6881b != null && abs > 0) {
+            if (this.dotDrawable != null && abs > 0) {
                 canvas.save();
                 canvas.clipRect(0, 0, width, abs);
-                this.f6881b.setBounds(0, 0, width, abs);
-                this.f6881b.draw(canvas);
+                this.dotDrawable.setBounds(0, 0, width, abs);
+                this.dotDrawable.draw(canvas);
                 canvas.restore();
             }
         }
@@ -410,22 +410,22 @@ public class LineVisualization extends View {
         int measuredHeight = getMeasuredHeight();
         int paddingLeft = (measuredWidth - getPaddingLeft()) - getPaddingRight();
         int paddingTop = (measuredHeight - getPaddingTop()) - getPaddingBottom();
-        if (this.f6897r != paddingTop || this.f6896q != paddingLeft) {
+        if (this.height != paddingTop || this.width != paddingLeft) {
             ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            if (layoutParams instanceof SAnalyzer.C1979a) {
-                SAnalyzer.C1979a c1979a = (SAnalyzer.C1979a) layoutParams;
-                this.f6884e = c1979a.m3836g(measuredHeight);
-                this.f6885f = c1979a.m3833j(measuredHeight);
-                this.f6892m = c1979a.m3835h(measuredWidth);
-                this.f6893n = c1979a.m3834i(measuredWidth);
-                this.f6883d = c1979a.m3837f(measuredHeight);
+            if (layoutParams instanceof SAnalyzer.SAnalyzerLayoutParams) {
+                SAnalyzer.SAnalyzerLayoutParams params = (SAnalyzer.SAnalyzerLayoutParams) layoutParams;
+                this.divideHeight = params.getDivideHeight(measuredHeight);
+                this.dotHeight = params.getDotHeight(measuredHeight);
+                this.lineDivideWidth = params.getLineDivideWidth(measuredWidth);
+                this.lineWidth = params.getLineWidth(measuredWidth);
+                this.reflectionHeight = params.getReflectionHeight(measuredHeight);
             }
-            if (paddingLeft != this.f6896q) {
-                this.f6896q = measuredWidth;
-                setNumberOfLine((this.f6896q + this.f6892m) / (this.f6893n + this.f6892m));
+            if (paddingLeft != this.width) {
+                this.width = measuredWidth;
+                setNumberOfLine((this.width + this.lineDivideWidth) / (this.lineWidth + this.lineDivideWidth));
             }
-            if (paddingTop != this.f6897r) {
-                this.f6897r = measuredHeight;
+            if (paddingTop != this.height) {
+                this.height = measuredHeight;
                 m3353b();
             }
             invalidate();
@@ -436,12 +436,12 @@ public class LineVisualization extends View {
     public void setVisibility(int i) {
         int visibility = getVisibility();
         super.setVisibility(i);
-        InterfaceC2008a interfaceC2008a = this.f6882c;
-        if (interfaceC2008a != null && i != visibility) {
+        OnActiveListener onActiveListener = this.onActiveListener;
+        if (onActiveListener != null && i != visibility) {
             if (i == 0) {
-                interfaceC2008a.mo3350a();
+                onActiveListener.active();
             } else if (visibility == 0) {
-                interfaceC2008a.mo3349b();
+                onActiveListener.inactive();
             }
         }
     }
@@ -450,17 +450,17 @@ public class LineVisualization extends View {
     public void setEnabled(boolean z) {
         boolean isEnabled = isEnabled();
         super.setEnabled(z);
-        InterfaceC2008a interfaceC2008a = this.f6882c;
-        if (interfaceC2008a != null && z != isEnabled) {
+        OnActiveListener onActiveListener = this.onActiveListener;
+        if (onActiveListener != null && z != isEnabled) {
             if (z) {
-                interfaceC2008a.mo3350a();
+                onActiveListener.active();
             } else {
-                interfaceC2008a.mo3349b();
+                onActiveListener.inactive();
             }
         }
     }
 
-    public void setOnActiveListener(InterfaceC2008a interfaceC2008a) {
-        this.f6882c = interfaceC2008a;
+    public void setOnActiveListener(OnActiveListener onActiveListener) {
+        this.onActiveListener = onActiveListener;
     }
 }

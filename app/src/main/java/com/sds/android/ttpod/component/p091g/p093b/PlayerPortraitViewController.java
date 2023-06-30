@@ -20,10 +20,10 @@ import com.sds.android.ttpod.component.p091g.p093b.p095b.LyricFontPanel;
 import com.sds.android.ttpod.component.p091g.p093b.p095b.LyricToolMenu;
 import com.sds.android.ttpod.framework.modules.skin.SkinCache;
 import com.sds.android.ttpod.framework.modules.skin.SkinLayoutParams;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SComponent;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SEvent;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SPanel;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SPlayerView;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SComponent;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SEvent;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SPanel;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SPlayerView;
 import com.sds.android.ttpod.framework.modules.skin.p130c.SkinEventHandler;
 import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.modules.skin.view.Icon;
@@ -40,7 +40,7 @@ import java.util.Iterator;
 
 /* renamed from: com.sds.android.ttpod.component.g.b.e */
 /* loaded from: classes.dex */
-public class PlayerPortraitViewController extends BasePlayerViewController implements LyricColorPanel.LyricColorCallback, LyricFontPanel.LyricFontPanelCallback, LyricToolMenu.Callback, MultiScreenLayout.InterfaceC2002b {
+public class PlayerPortraitViewController extends BasePlayerViewController implements LyricColorPanel.LyricColorCallback, LyricFontPanel.LyricFontPanelCallback, LyricToolMenu.Callback, MultiScreenLayout.ScreenChangeListener {
 
     /* renamed from: Y */
     private ArrayList<Icon> icons;
@@ -133,14 +133,14 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
             throw new IllegalArgumentException("illegal SkinCache");
         }
         skinCache.m3581g();
-        SPlayerView m3852a = skinCache.getSerializableSkin().m3852a(0);
+        SPlayerView m3852a = skinCache.getSerializableSkin().getPlayerViewByTransForm(0);
         long currentTimeMillis = System.currentTimeMillis();
         LogUtils.debug("PlayerPortraitViewController", "create player views.");
         if (m3852a != null) {
             MultiScreenLayout multiScreenLayout = (MultiScreenLayout) m3852a.m3811c(context, skinCache);
             multiScreenLayout.setDrawingCacheBackgroundColor(0xff000000);
-            m6552c(m3852a.m3830b());
-            SPanel[] c = m3852a.m3829c();
+            m6552c(m3852a.getFullScreen());
+            SPanel[] c = m3852a.getSkinViews();
             if (c != null) {
                 ViewEventController[] viewEventControllerArr = new ViewEventController[4];
                 for (SPanel sPanel : c) {
@@ -676,7 +676,7 @@ public class PlayerPortraitViewController extends BasePlayerViewController imple
 
     @Override // com.sds.android.ttpod.framework.modules.skin.view.MultiScreenLayout.InterfaceC2002b
     /* renamed from: a */
-    public void mo3376a(int i, int i2) {
+    public void changed(int i, int i2) {
         if (i != i2) {
             int size = this.viewEventControllers.size();
             int width = this.multiScreenLayout.getWidth();

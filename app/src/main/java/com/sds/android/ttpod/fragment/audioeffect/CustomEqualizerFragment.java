@@ -230,9 +230,9 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_CUSTOM_EQUALIZER_LIST, ReflectUtils.m8375a(cls, "updateCustomEqualizerList", List.class));
-        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.m8375a(cls, "updateAudioEffectInfo", new Class[0]));
-        map.put(CommandID.UPDATE_MANUAL_SETTING_EFFECT, ReflectUtils.m8375a(cls, "updateAudioEffectInfo", new Class[0]));
+        map.put(CommandID.UPDATE_CUSTOM_EQUALIZER_LIST, ReflectUtils.loadMethod(cls, "updateCustomEqualizerList", List.class));
+        map.put(CommandID.UPDATE_AUDIO_EFFECT_INFO, ReflectUtils.loadMethod(cls, "updateAudioEffectInfo", new Class[0]));
+        map.put(CommandID.UPDATE_MANUAL_SETTING_EFFECT, ReflectUtils.loadMethod(cls, "updateAudioEffectInfo", new Class[0]));
     }
 
     public void updateAudioEffectInfo() {
@@ -383,7 +383,7 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
 
     /* JADX INFO: Access modifiers changed from: private */
     public void setEqualizer(String str) {
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SET_EQUALIZER, new TTEqualizer.Settings(str, (short) this.mCustomData.length, this.mCustomData)));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_EQUALIZER, new TTEqualizer.Settings(str, (short) this.mCustomData.length, this.mCustomData)));
         this.mEqualizerStyeTextView.setText(str);
     }
 

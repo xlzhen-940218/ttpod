@@ -36,7 +36,7 @@ public class PlaylistSearchFragment extends BaseSearchFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SEARCH_PLAY_LIST_RESULT, ReflectUtils.m8375a(getClass(), "updatePlaylistResult", PlaylistResult.class));
+        map.put(CommandID.UPDATE_SEARCH_PLAY_LIST_RESULT, ReflectUtils.loadMethod(getClass(), "updatePlaylistResult", PlaylistResult.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.search.BaseSearchFragment
@@ -153,7 +153,7 @@ public class PlaylistSearchFragment extends BaseSearchFragment {
             }
             C1722b c1722b2 = (C1722b) view.getTag();
             PlaylistResult.PlaylistItem playlistItem = PlaylistSearchFragment.this.mPlaylist.get(i);
-            ImageCacheUtils.m4752a(c1722b2.f5478b, playlistItem.getPicUrl(), DisplayUtils.dp2px(50), DisplayUtils.dp2px(50), (int) R.drawable.img_album_list_item_cover_default);
+            ImageCacheUtils.displayImage(c1722b2.f5478b, playlistItem.getPicUrl(), DisplayUtils.dp2px(50), DisplayUtils.dp2px(50), (int) R.drawable.img_album_list_item_cover_default);
             c1722b2.f5479c.setText(Html.fromHtml(playlistItem.getTitle()));
             c1722b2.f5480d.setText(PlaylistSearchFragment.this.getString(R.string.search_song_unit, Integer.valueOf(playlistItem.getSongListSize())));
             c1722b2.f5481e.setVisibility(View.VISIBLE);

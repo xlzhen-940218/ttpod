@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
 
@@ -37,7 +37,7 @@ public final class SEvent extends SBase implements Container<SMotion> {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.Container
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo3791a(SMotion[] sMotionArr) {
+    public void setSkinViews(SMotion[] sMotionArr) {
         this.f6450d = sMotionArr;
     }
 }

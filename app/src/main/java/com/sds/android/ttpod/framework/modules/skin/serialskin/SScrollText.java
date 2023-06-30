@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -13,15 +13,15 @@ import java.util.HashMap;
 public class SScrollText extends SText<AutoScrollableTextView> {
 
     /* renamed from: s */
-    private boolean f6476s;
+    private boolean autoScroll;
 
     /* renamed from: t */
-    private String f6477t;
+    private String textContent;
 
     public SScrollText(KXmlParser kXmlParser, HashMap<String, SBitmap> hashMap, HashMap<String, SFont> hashMap2, int i) {
         super(kXmlParser, hashMap, hashMap2, i);
-        this.f6476s = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "AutoScroll"), true);
-        this.f6477t = kXmlParser.getAttributeValue(null, "TextContent");
+        this.autoScroll = ValueParser.stringToBoolean(kXmlParser.getAttributeValue(null, "AutoScroll"), true);
+        this.textContent = kXmlParser.getAttributeValue(null, "TextContent");
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */
@@ -35,12 +35,12 @@ public class SScrollText extends SText<AutoScrollableTextView> {
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
     /* renamed from: a */
     public void setBackground(Context context, AutoScrollableTextView autoScrollableTextView, SkinCache skinCache) {
-        autoScrollableTextView.setAutoScrollable(this.f6476s);
+        autoScrollableTextView.setAutoScrollable(this.autoScroll);
         m3770a(autoScrollableTextView, skinCache);
         autoScrollableTextView.setFocusable(true);
-        autoScrollableTextView.setFormatString(this.f6477t);
+        autoScrollableTextView.setFormatString(this.textContent);
         autoScrollableTextView.m3490a(new CharSequence[0]);
-        if (this.f6476s) {
+        if (this.autoScroll) {
             autoScrollableTextView.setMarqueeRepeatLimit(-1);
             autoScrollableTextView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         } else {

@@ -135,7 +135,7 @@ public class ThemeUtils {
             return false;
         }
         for (int i = 0; i < arrayList.size(); i++) {
-            if (!arrayList.get(i).m3572a(arrayList2.get(i))) {
+            if (!arrayList.get(i).equal(arrayList2.get(i))) {
                 return false;
             }
         }
@@ -166,7 +166,7 @@ public class ThemeUtils {
     /* renamed from: a */
     public static void m8179a(View view, ThemeFramework.AbstractC2016e abstractC2016e) {
         if (abstractC2016e != null) {
-            int m3284h = abstractC2016e.m3284h();
+            int m3284h = abstractC2016e.getPadding();
             view.setPadding(m3284h, m3284h, m3284h, m3284h);
             return;
         }
@@ -177,7 +177,7 @@ public class ThemeUtils {
     public static int m8167a(ThemeFramework.AbstractC2016e abstractC2016e, int i) {
         int i2 = 0;
         if (abstractC2016e != null) {
-            i2 = abstractC2016e.m3286f();
+            i2 = abstractC2016e.getHeight();
         }
         return i2 > 0 ? i2 : i;
     }
@@ -194,17 +194,17 @@ public class ThemeUtils {
         Rect bounds = seekBar.getProgressDrawable().getBounds();
         Drawable m3265a = ThemeManager.m3265a(ThemeElement.COMMON_PROGRESS_BAR);
         if (m3265a == null) {
-            m3265a = new ColorDrawable(ThemeFramework.C2014c.m3304a("#000000 0"));
+            m3265a = new ColorDrawable(ThemeFramework.ColorTheme.m3304a("#000000 0"));
         }
         seekBar.setBackground(m3265a);
         Drawable m3265a2 = ThemeManager.m3265a(ThemeElement.COMMON_PROGRESS_DRAWABLE);
         if (m3265a2 == null) {
-            m3265a2 = new ColorDrawable(ThemeFramework.C2014c.m3304a("#4eccf6 80"));
+            m3265a2 = new ColorDrawable(ThemeFramework.ColorTheme.m3304a("#4eccf6 80"));
         }
         ClipDrawable clipDrawable = new ClipDrawable(m3265a2, 19, 1);
         Drawable m3265a3 = ThemeManager.m3265a(ThemeElement.COMMON_SECOND_PROGRESS_DRAWABLE);
         if (m3265a3 == null) {
-            m3265a3 = new ColorDrawable(ThemeFramework.C2014c.m3304a("#4eccf6 20"));
+            m3265a3 = new ColorDrawable(ThemeFramework.ColorTheme.m3304a("#4eccf6 20"));
         }
         LayerDrawable layerDrawable = new LayerDrawable(new Drawable[]{clipDrawable, new ClipDrawable(m3265a3, 19, 1)});
         layerDrawable.setId(0, 16908301);

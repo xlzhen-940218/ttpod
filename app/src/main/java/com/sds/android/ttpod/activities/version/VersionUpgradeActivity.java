@@ -185,8 +185,8 @@ public class VersionUpgradeActivity extends BaseActivity {
     @Override // com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_SHOW_DOWNLOAD_PROGRESS, ReflectUtils.m8375a(cls, "showDownloadProgress", Boolean.class));
-        map.put(CommandID.INSTALL_APP, ReflectUtils.m8375a(cls, "installApp", String.class));
+        map.put(CommandID.UPDATE_SHOW_DOWNLOAD_PROGRESS, ReflectUtils.loadMethod(cls, "showDownloadProgress", Boolean.class));
+        map.put(CommandID.INSTALL_APP, ReflectUtils.loadMethod(cls, "installApp", String.class));
     }
 
     public void showDownloadProgress(Boolean bool) {

@@ -166,10 +166,10 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
         if (picList != null && !picList.isEmpty()) {
             String str = picList.get(0);
             if (str != null) {
-                ImageCacheUtils.m4752a(imageView, str, imageView.getWidth(), imageView.getHeight(), (int) R.drawable.img_musiccircle_post_pic_default);
+                ImageCacheUtils.displayImage(imageView, str, imageView.getWidth(), imageView.getHeight(), (int) R.drawable.img_musiccircle_post_pic_default);
             }
         } else if (post.getType() == MusiccircleContentType.SINGLE_SONG.value()) {
-            ImageCacheUtils.m4752a(imageView, ArtistUtils.m8310a(post.getMediaItem().getArtistId()), imageView.getWidth(), imageView.getHeight(), (int) R.drawable.img_musiccircle_post_pic_default);
+            ImageCacheUtils.displayImage(imageView, ArtistUtils.m8310a(post.getMediaItem().getArtistId()), imageView.getWidth(), imageView.getHeight(), (int) R.drawable.img_musiccircle_post_pic_default);
         } else {
             imageView.setImageResource(R.drawable.img_musiccircle_post_pic_default);
         }
@@ -234,7 +234,7 @@ public abstract class PostListAdapter extends BaseListAdapter<Post> {
         m7456b.setText(labeledTTPodUser.getNickName());
         UserAvatarView m7448j = postViewItemHolder.m7448j();
         m7448j.setVFlagVisible(labeledTTPodUser.isVerified());
-        ImageCacheUtils.m4752a(m7448j, labeledTTPodUser.getAvatarUrl(), m7448j.getWidth(), m7448j.getHeight(), (int) R.drawable.img_avatar_default);
+        ImageCacheUtils.displayImage(m7448j, labeledTTPodUser.getAvatarUrl(), m7448j.getWidth(), m7448j.getHeight(), (int) R.drawable.img_avatar_default);
         View.OnClickListener onClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.e.e.4
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {

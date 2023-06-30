@@ -151,8 +151,8 @@ public class SoundSearchActivity extends SlidingClosableActivity {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.SEARCH_RECOGNIZE_ERROR, ReflectUtils.m8375a(cls, "searchRecognizeError", SoundRecognizer.EnumC1975a.class));
-        map.put(CommandID.SEARCH_RECOGNIZE_SUCCESS, ReflectUtils.m8375a(cls, "searchRecognizeSuccess", List.class));
+        map.put(CommandID.SEARCH_RECOGNIZE_ERROR, ReflectUtils.loadMethod(cls, "searchRecognizeError", SoundRecognizer.EnumC1975a.class));
+        map.put(CommandID.SEARCH_RECOGNIZE_SUCCESS, ReflectUtils.loadMethod(cls, "searchRecognizeSuccess", List.class));
     }
 
     public void searchRecognizeError(SoundRecognizer.EnumC1975a enumC1975a) {
@@ -182,11 +182,11 @@ public class SoundSearchActivity extends SlidingClosableActivity {
     private void processResults(SoundSearchInfo[] soundSearchInfoArr) {
         LogUtils.debug(TAG, "search start ");
         this.mStartTime = System.currentTimeMillis();
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<SoundSearchInfo[], SoundSearchInfo[]>(soundSearchInfoArr) { // from class: com.sds.android.ttpod.activities.SoundSearchActivity.5
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<SoundSearchInfo[], SoundSearchInfo[]>(soundSearchInfoArr) { // from class: com.sds.android.ttpod.activities.SoundSearchActivity.5
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public SoundSearchInfo[] mo1981a(SoundSearchInfo[] soundSearchInfoArr2) {
+            public SoundSearchInfo[] inBackground(SoundSearchInfo[] soundSearchInfoArr2) {
                 if (SoundSearchActivity.this.isFinishing()) {
                     return null;
                 }

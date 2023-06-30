@@ -65,7 +65,7 @@ public abstract class FriendsFragment extends UserListFragment<TTPodUser> {
     @Override // com.sds.android.ttpod.fragment.musiccircle.UserListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(onLoadUpdateRequestDataCommandID(), ReflectUtils.m8375a(getClass(), "onUpdateData", UserListResult.class, String.class));
+        map.put(onLoadUpdateRequestDataCommandID(), ReflectUtils.loadMethod(getClass(), "onUpdateData", UserListResult.class, String.class));
     }
 
     public void onUpdateData(UserListResult userListResult, String str) {

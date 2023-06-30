@@ -25,10 +25,10 @@ public abstract class SlidingClosableFragment extends ActionBarFragment {
     public final View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         this.mSlidingClosableRelativeLayout = new SlidingClosableRelativeLayout(getActivity());
         this.mSlidingClosableRelativeLayout.setSlidingCloseMode(3);
-        this.mSlidingClosableRelativeLayout.setOnSlidingCloseListener(new SlidingClosableRelativeLayout.InterfaceC2237a() { // from class: com.sds.android.ttpod.fragment.base.SlidingClosableFragment.1
+        this.mSlidingClosableRelativeLayout.setOnSlidingCloseListener(new SlidingClosableRelativeLayout.OnSlidingCloseListener() { // from class: com.sds.android.ttpod.fragment.base.SlidingClosableFragment.1
             @Override // com.sds.android.ttpod.widget.SlidingClosableRelativeLayout.InterfaceC2237a
             /* renamed from: a */
-            public void mo1483a() {
+            public void close() {
                 if (SlidingClosableFragment.this.mSlidingClosableRelativeLayout != null) {
                     SlidingClosableFragment.this.mSlidingClosableRelativeLayout.setVisibility(View.GONE);
                 }
@@ -68,7 +68,7 @@ public abstract class SlidingClosableFragment extends ActionBarFragment {
     @Override // com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_BACKGROUND, ReflectUtils.m8375a(getClass(), "updateBackground", Drawable.class));
+        map.put(CommandID.UPDATE_BACKGROUND, ReflectUtils.loadMethod(getClass(), "updateBackground", Drawable.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b

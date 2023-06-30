@@ -54,11 +54,11 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.REQUEST_FEEDBACK_LIST_FINISH, ReflectUtils.m8375a(cls, "updateFeedbackList", BaseResultRest.class, List.class, Boolean.class));
-        map.put(CommandID.PROPOSAL_FEEDBACK_FINISH, ReflectUtils.m8375a(cls, "onProposalFeedbackFinish", BaseResultRest.class, FeedbackItem.class));
-        map.put(CommandID.SEND_FEEDBACK_MESSAGE_FINISH, ReflectUtils.m8375a(cls, "onSendMessageFinish", BaseResultRest.class, FeedbackMessage.class));
-        map.put(CommandID.REQUEST_FEEDBACK_MESSAGES_FINISH, ReflectUtils.m8375a(cls, "onRequestMessagesFinished", BaseResultRest.class, List.class, Boolean.class));
-        map.put(CommandID.NEW_REPLYIED_FEEDBACKS_RECEIVED, ReflectUtils.m8375a(cls, "onRequestNewRepliedMessagesFinished", List.class));
+        map.put(CommandID.REQUEST_FEEDBACK_LIST_FINISH, ReflectUtils.loadMethod(cls, "updateFeedbackList", BaseResultRest.class, List.class, Boolean.class));
+        map.put(CommandID.PROPOSAL_FEEDBACK_FINISH, ReflectUtils.loadMethod(cls, "onProposalFeedbackFinish", BaseResultRest.class, FeedbackItem.class));
+        map.put(CommandID.SEND_FEEDBACK_MESSAGE_FINISH, ReflectUtils.loadMethod(cls, "onSendMessageFinish", BaseResultRest.class, FeedbackMessage.class));
+        map.put(CommandID.REQUEST_FEEDBACK_MESSAGES_FINISH, ReflectUtils.loadMethod(cls, "onRequestMessagesFinished", BaseResultRest.class, List.class, Boolean.class));
+        map.put(CommandID.NEW_REPLYIED_FEEDBACKS_RECEIVED, ReflectUtils.loadMethod(cls, "onRequestNewRepliedMessagesFinished", List.class));
     }
 
     @Override // android.support.v4.app.Fragment
@@ -194,7 +194,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
         Object[] objArr = new Object[2];
         objArr[0] = Long.valueOf(Cache.getInstance().m3147q() == null ? 0L : Preferences.m2908bu());
         objArr[1] = null;
-        m4607a.m4596b(new Command(commandID, objArr));
+        m4607a.postInvokeResult(new Command(commandID, objArr));
     }
 
     private void loadFeedbackCache() {

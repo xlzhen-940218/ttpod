@@ -48,7 +48,7 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.SkinCache;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SPlaylistView;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SPlaylistView;
 import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -93,15 +93,15 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.SKIN_CHANGED, ReflectUtils.m8375a(cls, "skinChanged", new Class[0]));
-        map.put(CommandID.LOAD_SKIN_FINISHED, ReflectUtils.m8375a(cls, "loadSkinFinished", SkinCache.class));
-        map.put(CommandID.UPDATE_PLAY_MODE, ReflectUtils.m8375a(cls, "updatePlayMode", new Class[0]));
-        map.put(CommandID.UPDATE_SLEEP_MODE, ReflectUtils.m8375a(cls, "updateSleepMode", new Class[0]));
-        map.put(CommandID.UPDATE_LYRIC_DELETED, ReflectUtils.m8375a(cls, "lyricDeleted", MediaItem.class));
-        map.put(CommandID.UPDATE_PICTURE_DELETED, ReflectUtils.m8375a(cls, "pictureDeleted", MediaItem.class));
-        map.put(CommandID.UPDATE_REPORT, ReflectUtils.m8375a(cls, "updateReport", ReportTask.EnumC2097b.class, MediaItem.class, Boolean.class));
-        map.put(CommandID.UPDATE_BACKGROUND, ReflectUtils.m8375a(cls, "updateBackground", Drawable.class));
-        map.put(CommandID.UPDATE_FAVORITE_CHANGED, ReflectUtils.m8375a(cls, "updateFavoriteChanged", new Class[0]));
+        map.put(CommandID.SKIN_CHANGED, ReflectUtils.loadMethod(cls, "skinChanged", new Class[0]));
+        map.put(CommandID.LOAD_SKIN_FINISHED, ReflectUtils.loadMethod(cls, "loadSkinFinished", SkinCache.class));
+        map.put(CommandID.UPDATE_PLAY_MODE, ReflectUtils.loadMethod(cls, "updatePlayMode", new Class[0]));
+        map.put(CommandID.UPDATE_SLEEP_MODE, ReflectUtils.loadMethod(cls, "updateSleepMode", new Class[0]));
+        map.put(CommandID.UPDATE_LYRIC_DELETED, ReflectUtils.loadMethod(cls, "lyricDeleted", MediaItem.class));
+        map.put(CommandID.UPDATE_PICTURE_DELETED, ReflectUtils.loadMethod(cls, "pictureDeleted", MediaItem.class));
+        map.put(CommandID.UPDATE_REPORT, ReflectUtils.loadMethod(cls, "updateReport", ReportTask.EnumC2097b.class, MediaItem.class, Boolean.class));
+        map.put(CommandID.UPDATE_BACKGROUND, ReflectUtils.loadMethod(cls, "updateBackground", Drawable.class));
+        map.put(CommandID.UPDATE_FAVORITE_CHANGED, ReflectUtils.loadMethod(cls, "updateFavoriteChanged", new Class[0]));
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -156,9 +156,9 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadFinished() {
         super.onLoadFinished();
-        SkinCache m3151m = Cache.getInstance().m3151m();
+        SkinCache m3151m = Cache.getInstance().getSkinCache();
         if (m3151m == null || m3151m.getSerializableSkin() == null) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_SKIN, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.LOAD_SKIN, new Object[0]));
         } else {
             loadSkinFinished(m3151m);
         }
@@ -263,11 +263,11 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
             LogUtils.info(TAG, "PortraitPlayerFragment.updateBackground background is null");
         } else if (this.mViewController != null) {
             if (Preferences.m3032Y()) {
-                SkinCache m3151m = Cache.getInstance().m3151m();
+                SkinCache m3151m = Cache.getInstance().getSkinCache();
                 if (m3151m != null) {
                     drawable = m3151m.m3589b(BaseApplication.getApplication());
                     if (drawable == null) {
-                        drawable = m3151m.m3597a(BaseApplication.getApplication());
+                        drawable = m3151m.getBackground(BaseApplication.getApplication());
                     }
                 } else {
                     LogUtils.debug(TAG, "PortraitPlayerFragment.updateBackground skin cache is null!");
@@ -298,7 +298,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     }
 
     public void skinChanged() {
-        CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_SKIN, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.LOAD_SKIN, new Object[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -536,7 +536,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                             }
                             FragmentActivity activity = PortraitPlayerFragment.this.getActivity();
                             PortraitPlayerFragment.this.startActivityForResult(new Intent(activity, PlayingListActivity.class), 1002);
-                            if (PortraitPlayerFragment.this.mSkinCache != null && PortraitPlayerFragment.this.mSkinCache.serializableSkinNotNull() && (m3842b = PortraitPlayerFragment.this.mSkinCache.getSerializableSkin().m3842b(0)) != null) {
+                            if (PortraitPlayerFragment.this.mSkinCache != null && PortraitPlayerFragment.this.mSkinCache.serializableSkinNotNull() && (m3842b = PortraitPlayerFragment.this.mSkinCache.getSerializableSkin().getPlayerListViewByTransForm(0)) != null) {
                                 PlayingListActivity.overrideActivityInAnimation(activity, m3842b.m3784f());
                             }
                             //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_PLAYING_LIST.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue(), SPage.PAGE_NONE.getValue()).post();
@@ -749,7 +749,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                 public void mo2038a(EditTextDialog editTextDialog2) {
                     try {
                         EditTextDialog.C1144a m6902c = editTextDialog2.m6902c(1);
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.START_SEARCH_LYRIC, m3225N, editTextDialog2.m6902c(2).m6896d().toString(), m6902c.m6896d().toString()));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.START_SEARCH_LYRIC, m3225N, editTextDialog2.m6902c(2).m6896d().toString(), m6902c.m6896d().toString()));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -767,7 +767,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public void mo2038a(EditTextDialog editTextDialog2) {
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.START_SEARCH_PICTURE, m3225N, editTextDialog2.m6902c(1).m6896d().toString(), null));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.START_SEARCH_PICTURE, m3225N, editTextDialog2.m6902c(1).m6896d().toString(), null));
                 }
             }, null);
             editTextDialog.setTitle(R.string.search_picture);
@@ -807,7 +807,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                 } else if (i == 1) {
                     enumC2096a = ReportTask.EnumC2096a.REPORT_NO_MATCH_STATE;
                 }
-                CommandCenter.getInstance().m4596b(new Command(CommandID.REPORT_LYRIC_PICTURE, ReportTask.EnumC2097b.REPORT_TYPE_LYRIC, enumC2096a, mediaItem));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REPORT_LYRIC_PICTURE, ReportTask.EnumC2097b.REPORT_TYPE_LYRIC, enumC2096a, mediaItem));
                 PopupsUtils.m6760a((int) R.string.thank_you_for_join);
                 listDialog.dismiss();
             }
@@ -829,7 +829,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
                 } else if (i == 2) {
                     enumC2096a = ReportTask.EnumC2096a.REPORT_LOW_QUALITY_STATE;
                 }
-                CommandCenter.getInstance().m4596b(new Command(CommandID.REPORT_LYRIC_PICTURE, ReportTask.EnumC2097b.REPORT_TYPE_LYRIC, enumC2096a, mediaItem));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REPORT_LYRIC_PICTURE, ReportTask.EnumC2097b.REPORT_TYPE_LYRIC, enumC2096a, mediaItem));
                 PopupsUtils.m6760a((int) R.string.thank_you_for_join);
                 listDialog.dismiss();
             }

@@ -1,9 +1,9 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import androidx.core.view.ViewCompat;
+
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
 import com.sds.android.ttpod.framework.modules.skin.SkinCache;
 import com.sds.android.ttpod.framework.modules.skin.p130c.ValueParser;

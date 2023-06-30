@@ -88,10 +88,10 @@ public abstract class BaseApi {
 
     /* renamed from: a */
     public void mo2096a(final ShareInfo shareInfo, final ApiCallback apiCallback) {
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a(null) { // from class: com.sds.android.ttpod.share.a.b.1
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask(null) { // from class: com.sds.android.ttpod.share.a.b.1
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a */
-            protected Object mo1981a(Object obj) {
+            protected Object inBackground(Object obj) {
                 return BaseApi.this.mo2076b(shareInfo, apiCallback);
             }
 

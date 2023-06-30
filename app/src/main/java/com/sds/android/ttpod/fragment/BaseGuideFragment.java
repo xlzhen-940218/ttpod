@@ -26,20 +26,20 @@ public abstract class BaseGuideFragment extends DialogFragment {
     public final View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         this.mSlidingClosableRelativeLayout = new SlidingClosableRelativeLayout(getActivity());
         this.mSlidingClosableRelativeLayout.setSlidingCloseMode(3);
-        this.mSlidingClosableRelativeLayout.setOnSlidingCloseListener(new SlidingClosableRelativeLayout.InterfaceC2237a() { // from class: com.sds.android.ttpod.fragment.BaseGuideFragment.1
-            @Override // com.sds.android.ttpod.widget.SlidingClosableRelativeLayout.InterfaceC2237a
-            /* renamed from: a */
-            public void mo1483a() {
-                if (BaseGuideFragment.this.mSlidingClosableRelativeLayout != null) {
-                    BaseGuideFragment.this.mSlidingClosableRelativeLayout.setVisibility(View.GONE);
-                }
-                FragmentManager fragmentManager = BaseGuideFragment.this.getFragmentManager();
-                if (fragmentManager != null) {
-                    fragmentManager.beginTransaction().remove(BaseGuideFragment.this).commitAllowingStateLoss();
-                }
+        // from class: com.sds.android.ttpod.fragment.BaseGuideFragment.1
+// com.sds.android.ttpod.widget.SlidingClosableRelativeLayout.InterfaceC2237a
+        /* renamed from: a */
+        this.mSlidingClosableRelativeLayout.setOnSlidingCloseListener(() -> {
+            if (BaseGuideFragment.this.mSlidingClosableRelativeLayout != null) {
+                BaseGuideFragment.this.mSlidingClosableRelativeLayout.setVisibility(View.GONE);
+            }
+            FragmentManager fragmentManager = BaseGuideFragment.this.getFragmentManager();
+            if (fragmentManager != null) {
+                fragmentManager.beginTransaction().remove(BaseGuideFragment.this).commitAllowingStateLoss();
             }
         });
-        this.mSlidingClosableRelativeLayout.addView(onCreateContentView(layoutInflater, viewGroup, bundle), new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        this.mSlidingClosableRelativeLayout.addView(onCreateContentView(layoutInflater, viewGroup, bundle)
+                , new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         return this.mSlidingClosableRelativeLayout;
     }
 

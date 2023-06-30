@@ -11,32 +11,32 @@ import java.util.List;
 public class History<D> {
 
     /* renamed from: a */
-    private List<D> f6098a;
+    private List<D> dataList;
 
     /* renamed from: b */
-    private OnLoadListener<List<D>> f6099b;
+    private OnLoadListener<List<D>> onLoadListener;
 
     /* renamed from: c */
-    private String f6100c;
+    private String historyName;
 
     /* renamed from: d */
-    private int f6101d;
+    private int loadCount;
 
-    public History(String str, int i, OnLoadListener<List<D>> onLoadListener) {
-        this.f6098a = new ArrayList();
-        this.f6099b = onLoadListener;
-        this.f6100c = str;
-        this.f6101d = i;
-        if (TextUtils.isEmpty(str) || i <= 0) {
+    public History(String historyName, int loadCount, OnLoadListener<List<D>> onLoadListener) {
+        this.dataList = new ArrayList();
+        this.onLoadListener = onLoadListener;
+        this.historyName = historyName;
+        this.loadCount = loadCount;
+        if (TextUtils.isEmpty(historyName) || loadCount <= 0) {
             throw new IllegalArgumentException("storePath must be valid, maxSize must be big than 0");
         }
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<String, List<D>>(this.f6100c) { // from class: com.sds.android.ttpod.framework.modules.d.a.1
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<String, List<D>>(this.historyName) { // from class: com.sds.android.ttpod.framework.modules.d.a.1
 
 
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public List<D> mo1981a(String str2) {
+            public List<D> inBackground(String str2) {
                 return History.this.m4094a(str2);
             }
 
@@ -47,61 +47,61 @@ public class History<D> {
 
             /* renamed from: a */
             protected void m4087a(List<D> list) {
-                History.this.f6098a = list;
-                if (History.this.f6099b != null) {
-                    History.this.f6099b.mo4086a(History.this.f6098a);
+                History.this.dataList = list;
+                if (History.this.onLoadListener != null) {
+                    History.this.onLoadListener.loaded(History.this.dataList);
                 }
             }
         });
     }
 
     public History(String str, int i) {
-        this.f6098a = new ArrayList();
-        this.f6100c = str;
-        this.f6101d = i;
-        this.f6098a = m4094a(this.f6100c);
+        this.dataList = new ArrayList();
+        this.historyName = str;
+        this.loadCount = i;
+        this.dataList = m4094a(this.historyName);
     }
 
     /* renamed from: a */
     public void m4095a(D d) {
-        if (this.f6098a.contains(d)) {
-            this.f6098a.remove(d);
+        if (this.dataList.contains(d)) {
+            this.dataList.remove(d);
         }
-        this.f6098a.add(0, d);
-        m4099a(this.f6101d);
-        m4090b(this.f6100c);
+        this.dataList.add(0, d);
+        m4099a(this.loadCount);
+        m4090b(this.historyName);
     }
 
     /* renamed from: b */
     public void m4091b(D d) {
-        if (this.f6098a.contains(d)) {
-            this.f6098a.remove(d);
-            m4090b(this.f6100c);
+        if (this.dataList.contains(d)) {
+            this.dataList.remove(d);
+            m4090b(this.historyName);
         }
     }
 
     /* renamed from: a */
     public void m4100a() {
-        this.f6098a.clear();
-        m4090b(this.f6100c);
+        this.dataList.clear();
+        m4090b(this.historyName);
     }
 
     /* renamed from: b */
     public List<D> m4093b() {
-        return this.f6098a;
+        return this.dataList;
     }
 
     /* renamed from: c */
     public int m4089c() {
-        return this.f6098a.size();
+        return this.dataList.size();
     }
 
     /* renamed from: a */
     private void m4099a(int i) {
-        int size = this.f6098a.size();
+        int size = this.dataList.size();
         if (size > i) {
             for (int i2 = size - 1; i2 >= i; i2--) {
-                this.f6098a.remove(i2);
+                this.dataList.remove(i2);
             }
         }
     }
@@ -109,11 +109,11 @@ public class History<D> {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public List<D> m4094a(String str) {
-        return Cache.getInstance().m3192b(str);
+        return Cache.getInstance().getHistoryPrefixDataList(str);
     }
 
     /* renamed from: b */
     private void m4090b(String str) {
-        Cache.getInstance().m3204a(str, this.f6098a);
+        Cache.getInstance().m3204a(str, this.dataList);
     }
 }

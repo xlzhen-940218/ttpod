@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,7 +13,7 @@ import java.util.HashMap;
 public abstract class SComponentView extends SBaseView<ViewGroup, SComponent> implements HasEvent {
 
     /* renamed from: j */
-    private SEvent[] f6448j;
+    private SEvent[] sEvents;
 
     /* JADX INFO: Access modifiers changed from: package-private */
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.SComponent
@@ -30,8 +30,8 @@ public abstract class SComponentView extends SBaseView<ViewGroup, SComponent> im
     /* renamed from: a */
     public void setBackground(Context context, ViewGroup viewGroup, SkinCache skinCache) {
         super.setBackground(context, viewGroup, skinCache);
-        if (this.f6434e != null) {
-            for (SComponent sComponent : (SComponent[]) this.f6434e) {
+        if (this.skinViews != null) {
+            for (SComponent sComponent : (SComponent[]) this.skinViews) {
                 View m3811c = sComponent.m3811c(context, skinCache);
                 if (m3811c != null) {
                     int id = m3811c.getId();
@@ -50,13 +50,13 @@ public abstract class SComponentView extends SBaseView<ViewGroup, SComponent> im
     }
 
     /* renamed from: d */
-    public SEvent[] m3805d() {
-        return this.f6448j;
+    public SEvent[] getSEvents() {
+        return this.sEvents;
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.HasEvent
     /* renamed from: a */
-    public void mo3792a(SEvent[] sEventArr) {
-        this.f6448j = sEventArr;
+    public void setSEvents(SEvent[] sEvents) {
+        this.sEvents = sEvents;
     }
 }

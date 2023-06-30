@@ -11,9 +11,9 @@ public class LandscapeLockerIcon extends Icon {
 
     /* renamed from: com.sds.android.ttpod.component.landscape.LandscapeLockerIcon$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC1250a {
+    public interface OnLockerStateChangeListener {
         /* renamed from: a */
-        void mo6373a(int i);
+        void changed(int change);
     }
 
     public LandscapeLockerIcon(Context context) {
@@ -29,10 +29,10 @@ public class LandscapeLockerIcon extends Icon {
     }
 
     /* renamed from: a */
-    public void m6374a(Drawable drawable, Drawable drawable2) {
-        if (drawable != null && drawable2 != null) {
-            addStateImage(0, drawable);
-            addStateImage(1, drawable2);
+    public void setOnOffDrawable(Drawable offDrawable, Drawable onDrawable) {
+        if (offDrawable != null && onDrawable != null) {
+            addStateImage(0, offDrawable);
+            addStateImage(1, onDrawable);
         }
     }
 
@@ -41,17 +41,17 @@ public class LandscapeLockerIcon extends Icon {
         setState(1);
     }
 
-    public void setOnLockerStateChangeListener(final InterfaceC1250a interfaceC1250a) {
+    public void setOnLockerStateChangeListener(final OnLockerStateChangeListener interfaceC1250a) {
         if (interfaceC1250a != null) {
             setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.component.landscape.LandscapeLockerIcon.1
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
                     if (LandscapeLockerIcon.this.getState() == 0) {
-                        interfaceC1250a.mo6373a(1);
+                        interfaceC1250a.changed(1);
                         LandscapeLockerIcon.this.setState(1);
                         return;
                     }
-                    interfaceC1250a.mo6373a(0);
+                    interfaceC1250a.changed(0);
                     LandscapeLockerIcon.this.setState(0);
                 }
             });

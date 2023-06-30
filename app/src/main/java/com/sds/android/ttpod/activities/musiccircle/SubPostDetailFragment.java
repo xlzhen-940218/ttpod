@@ -42,7 +42,7 @@ public class SubPostDetailFragment extends SlidingClosableFragment {
     public void onThemeLoaded() {
         super.onThemeLoaded();
         if (this.mRootView != null) {
-            ThemeManager.m3269a(this.mRootView, ThemeElement.BACKGROUND_MASK);
+            ThemeManager.m3269a(this.mRootView, "BackgroundMaskColor");
         }
     }
 

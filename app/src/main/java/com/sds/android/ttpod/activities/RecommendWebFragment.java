@@ -139,8 +139,8 @@ public class RecommendWebFragment extends SlidingClosableFragment implements TTW
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
-        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.m8375a(getClass(), "updateDownloadTaskState", DownloadTaskInfo.class));
-        map.put(CommandID.UPDATE_UNICOM_FLOW_STATUS, ReflectUtils.m8375a(getClass(), "updateUnicomFlowStatus", Boolean.class));
+        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.loadMethod(getClass(), "updateDownloadTaskState", DownloadTaskInfo.class));
+        map.put(CommandID.UPDATE_UNICOM_FLOW_STATUS, ReflectUtils.loadMethod(getClass(), "updateUnicomFlowStatus", Boolean.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment

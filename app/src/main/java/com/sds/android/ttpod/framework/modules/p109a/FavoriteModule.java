@@ -111,15 +111,15 @@ public class FavoriteModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.ADD_FAVORITE_MEDIA_ITEM, ReflectUtils.m8375a(cls, "addFavoriteMediaItem", MediaItem.class));
-        map.put(CommandID.DELETE_FAVORITE_MEDIA_ITEM, ReflectUtils.m8375a(cls, "deleteFavoriteMediaItem", MediaItem.class, Boolean.class));
-        map.put(CommandID.DELETE_FAVORITE_MEDIA_ITEM_LIST, ReflectUtils.m8375a(cls, "deleteFavoriteMediaItemList", Collection.class, Boolean.class));
-        map.put(CommandID.SYNC_FAVORITE_ONLINE_MEDIA_LIST, ReflectUtils.m8375a(cls, "syncFavoriteOnlineMediaList", new Class[0]));
-        map.put(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST, ReflectUtils.m8375a(cls, "pushFavoriteOnlineMediaList", new Class[0]));
-        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.m8375a(cls, "loginFinished", CommonResult.class));
-        map.put(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, ReflectUtils.m8375a(cls, "updateOnlineMediaItemList", String.class));
-        map.put(CommandID.LOGOUT_FINISHED, ReflectUtils.m8375a(cls, "logoutFinished", new Class[0]));
-        map.put(CommandID.DO_VERSION_COMPACT_FINISHED, ReflectUtils.m8375a(cls, "doVersionCompactFinished", new Class[0]));
+        map.put(CommandID.ADD_FAVORITE_MEDIA_ITEM, ReflectUtils.loadMethod(cls, "addFavoriteMediaItem", MediaItem.class));
+        map.put(CommandID.DELETE_FAVORITE_MEDIA_ITEM, ReflectUtils.loadMethod(cls, "deleteFavoriteMediaItem", MediaItem.class, Boolean.class));
+        map.put(CommandID.DELETE_FAVORITE_MEDIA_ITEM_LIST, ReflectUtils.loadMethod(cls, "deleteFavoriteMediaItemList", Collection.class, Boolean.class));
+        map.put(CommandID.SYNC_FAVORITE_ONLINE_MEDIA_LIST, ReflectUtils.loadMethod(cls, "syncFavoriteOnlineMediaList", new Class[0]));
+        map.put(CommandID.PUSH_FAVORITE_ONLINE_MEDIA_LIST, ReflectUtils.loadMethod(cls, "pushFavoriteOnlineMediaList", new Class[0]));
+        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.loadMethod(cls, "loginFinished", CommonResult.class));
+        map.put(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, ReflectUtils.loadMethod(cls, "updateOnlineMediaItemList", String.class));
+        map.put(CommandID.LOGOUT_FINISHED, ReflectUtils.loadMethod(cls, "logoutFinished", new Class[0]));
+        map.put(CommandID.DO_VERSION_COMPACT_FINISHED, ReflectUtils.loadMethod(cls, "doVersionCompactFinished", new Class[0]));
     }
 
     public void logoutFinished() {
@@ -236,7 +236,7 @@ public class FavoriteModule extends BaseModule {
     /* renamed from: a */
     private void m4557a(final MediaItem mediaItem, final Boolean bool) {
         DebugUtils.m8426a(Preferences.m2954aq(), "UserInfo");
-        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.buildOnlineFavGroupID(), mediaItem, false));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.buildOnlineFavGroupID(), mediaItem, false));
         FavoriteServerManager.m4544a().m4535b(mediaItem.getSongID().longValue());
         List<String> m3224O = Cache.getInstance().m3224O();
         m3224O.remove(mediaItem.getID());
@@ -247,7 +247,7 @@ public class FavoriteModule extends BaseModule {
                 public void run() {
                     MediaItem m4712a = MediaItemUtils.m4712a(mediaItem.getLocalDataSource());
                     if (m4712a != null) {
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, MediaStorage.queryMediaItem(FavoriteModule.sContext, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a.getID()), bool));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, MediaStorage.queryMediaItem(FavoriteModule.sContext, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a.getID()), bool));
                     }
                 }
             });

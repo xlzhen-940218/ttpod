@@ -225,11 +225,11 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_USER_POST_ID_LIST, ReflectUtils.m8375a(cls, "updateUserPostIds", IdListResult.class, String.class));
-        map.put(CommandID.UPDATE_SYNC_FOLLOWING_FINISHED, ReflectUtils.m8375a(cls, "updateSyncFollowingFinished", new Class[0]));
-        map.put(CommandID.UPDATE_FOLLOW_FRIEND, ReflectUtils.m8375a(cls, "updateFollow", BaseResult.class, String.class));
-        map.put(CommandID.UPDATE_UNFOLLOW_FRIEND, ReflectUtils.m8375a(cls, "updateUnFollow", BaseResult.class, String.class));
-        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.m8375a(cls, "onLoginFinished", CommonResult.class));
+        map.put(CommandID.UPDATE_USER_POST_ID_LIST, ReflectUtils.loadMethod(cls, "updateUserPostIds", IdListResult.class, String.class));
+        map.put(CommandID.UPDATE_SYNC_FOLLOWING_FINISHED, ReflectUtils.loadMethod(cls, "updateSyncFollowingFinished", new Class[0]));
+        map.put(CommandID.UPDATE_FOLLOW_FRIEND, ReflectUtils.loadMethod(cls, "updateFollow", BaseResult.class, String.class));
+        map.put(CommandID.UPDATE_UNFOLLOW_FRIEND, ReflectUtils.loadMethod(cls, "updateUnFollow", BaseResult.class, String.class));
+        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.loadMethod(cls, "onLoginFinished", CommonResult.class));
     }
 
     public void updateFollow(BaseResult baseResult, String str) {
@@ -357,7 +357,7 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        ThemeManager.m3269a(getRootView(), ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(getRootView(), "BackgroundMaskColor");
         ThemeUtils.m8168a(this.mRefreshAction, ThemeElement.TOP_BAR_REFRESH_IMAGE, (int) R.string.icon_refresh_with_two_arrow, ThemeElement.TOP_BAR_TEXT);
         ThemeUtils.m8168a(this.mEditAction, ThemeElement.TOP_BAR_EDIT_IMAGE, (int) R.string.icon_edit, ThemeElement.TOP_BAR_TEXT);
         getActionBarController().onThemeLoaded();

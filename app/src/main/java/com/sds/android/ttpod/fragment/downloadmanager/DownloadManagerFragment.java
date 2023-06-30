@@ -136,7 +136,7 @@ public class DownloadManagerFragment extends SlidingClosableFragment {
             public void mo2038a(OptionalDialog optionalDialog) {
                 //SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL_SURE, SPage.PAGE_NONE);
                 //LocalStatistic.m5152aB();
-                CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_ALL_FINISHED_DOWNLOAD_TASK, DownloadManagerFragment.this.mDownloadType, Boolean.valueOf(optionalDialog.m6808b())));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_ALL_FINISHED_DOWNLOAD_TASK, DownloadManagerFragment.this.mDownloadType, Boolean.valueOf(optionalDialog.m6808b())));
             }
         }, (BaseDialog.InterfaceC1064a<OptionalDialog>) null);
     }

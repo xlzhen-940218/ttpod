@@ -106,7 +106,7 @@ public class PosterGallery extends RelativeLayout implements ThemeManager.Interf
         int m7225c = DisplayUtils.getWidth();
         int m7225c2 = (int) (DisplayUtils.getWidth() * 0.469d);
         LogUtils.debug("PosterGallery", "poster url: " + picUrl + ", size: " + m7225c + "*" + m7225c2);
-        ImageCacheUtils.m4752a(roundedImageView, picUrl, m7225c, m7225c2, (int) R.drawable.img_background_publish_poster_gallery);
+        ImageCacheUtils.displayImage(roundedImageView, picUrl, m7225c, m7225c2, (int) R.drawable.img_background_publish_poster_gallery);
         return roundedImageView;
     }
 

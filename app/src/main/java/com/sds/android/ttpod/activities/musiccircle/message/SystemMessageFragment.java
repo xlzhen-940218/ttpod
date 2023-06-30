@@ -92,7 +92,7 @@ public class SystemMessageFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SYSTEM_NOTICE_LIST, ReflectUtils.m8375a(getClass(), "updateSystemMessage", SystemNoticeListResult.class, String.class));
+        map.put(CommandID.UPDATE_SYSTEM_NOTICE_LIST, ReflectUtils.loadMethod(getClass(), "updateSystemMessage", SystemNoticeListResult.class, String.class));
     }
 
     public void updateSystemMessage(SystemNoticeListResult systemNoticeListResult, String str) {

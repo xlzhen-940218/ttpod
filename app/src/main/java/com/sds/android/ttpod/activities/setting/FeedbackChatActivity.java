@@ -62,8 +62,8 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.REQUEST_FEEDBACK_MESSAGES_FINISH, ReflectUtils.m8375a(cls, "onRequestMessagesFinished", BaseResultRest.class, List.class, Boolean.class));
-        map.put(CommandID.SEND_FEEDBACK_MESSAGE_FINISH, ReflectUtils.m8375a(cls, "onSendMessageFinish", BaseResultRest.class, FeedbackMessage.class));
+        map.put(CommandID.REQUEST_FEEDBACK_MESSAGES_FINISH, ReflectUtils.loadMethod(cls, "onRequestMessagesFinished", BaseResultRest.class, List.class, Boolean.class));
+        map.put(CommandID.SEND_FEEDBACK_MESSAGE_FINISH, ReflectUtils.loadMethod(cls, "onSendMessageFinish", BaseResultRest.class, FeedbackMessage.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -123,7 +123,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
                     String obj = FeedbackChatActivity.this.mEtInput.getText().toString();
                     if (!StringUtils.isEmpty(obj)) {
                         FeedbackChatActivity.this.mBtnSend.setClickable(false);
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.SEND_FEEDBACK_MESSAGE, new FeedbackMessage(FeedbackChatActivity.this.mFeedbackItem.getId(), FeedbackMessage.TYPE_TEXT, obj)));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SEND_FEEDBACK_MESSAGE, new FeedbackMessage(FeedbackChatActivity.this.mFeedbackItem.getId(), FeedbackMessage.TYPE_TEXT, obj)));
                         return;
                     }
                     return;
@@ -166,7 +166,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
         if (!this.mIsRequestingMessage) {
             this.mRequestState = RequestState.REQUESTING;
             this.mIsRequestingMessage = true;
-            CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_FEEDBACK_MESSAGES, this.mFeedbackItem.getId(), l, bool));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REQUEST_FEEDBACK_MESSAGES, this.mFeedbackItem.getId(), l, bool));
         }
     }
 

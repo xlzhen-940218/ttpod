@@ -47,11 +47,11 @@ public class OnlineMediaUtils {
         if (list == null) {
             throw new IllegalArgumentException("ids should not be null");
         }
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<List<Long>, OnlineMediaItemsResult>(list) { // from class: com.sds.android.ttpod.framework.a.m.1
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<List<Long>, OnlineMediaItemsResult>(list) { // from class: com.sds.android.ttpod.framework.a.m.1
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public OnlineMediaItemsResult mo1981a(List<Long> list2) {
+            public OnlineMediaItemsResult inBackground(List<Long> list2) {
                 return z ? OnlineMediaItemAPI.m8864b(list2).execute() : OnlineMediaItemAPI.m8867a(list2).execute();
             }
 

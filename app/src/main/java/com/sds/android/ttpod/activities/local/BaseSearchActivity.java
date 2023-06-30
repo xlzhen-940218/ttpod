@@ -109,9 +109,9 @@ public abstract class BaseSearchActivity extends SlidingClosableActivity impleme
                 mediaItemViewHolder.getMenuView().setText(z ? R.string.icon_arrow_top : R.string.icon_arrow_down);
             }
         });
-        ThemeManager.m3269a(this.mSearchResultListView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mSearchResultListView, "BackgroundMaskColor");
         ThemeManager.m3269a(this.mSearchResultListView, ThemeElement.COMMON_SEPARATOR);
-        ThemeManager.m3269a(findViewById(R.id.search_screen_layout), ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(findViewById(R.id.search_screen_layout), "BackgroundMaskColor");
         getRootView().setBackground(ThemeUtils.m8182a());
         this.mSearchResultListView.setOnTouchListener(new View.OnTouchListener() { // from class: com.sds.android.ttpod.activities.local.BaseSearchActivity.5
             @Override // android.view.View.OnTouchListener

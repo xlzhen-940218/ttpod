@@ -104,10 +104,10 @@ public class MainFragment extends ActionBarFragment {
     @Override // com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_BUFFERING_STATE_STARTED, ReflectUtils.m8375a(MainFragment.class, "bufferingStarted", new Class[0]));
-        map.put(CommandID.UPDATE_BACKGROUND, ReflectUtils.m8375a(getClass(), "updateBackground", Drawable.class));
-        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.m8375a(getClass(), "loginFinished", CommonResult.class));
-        map.put(CommandID.LOGOUT_FINISHED, ReflectUtils.m8375a(getClass(), "logoutFinished", new Class[0]));
+        map.put(CommandID.UPDATE_BUFFERING_STATE_STARTED, ReflectUtils.loadMethod(MainFragment.class, "bufferingStarted", new Class[0]));
+        map.put(CommandID.UPDATE_BACKGROUND, ReflectUtils.loadMethod(getClass(), "updateBackground", Drawable.class));
+        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.loadMethod(getClass(), "loginFinished", CommonResult.class));
+        map.put(CommandID.LOGOUT_FINISHED, ReflectUtils.loadMethod(getClass(), "logoutFinished", new Class[0]));
     }
 
     public void bufferingStarted() {
@@ -288,7 +288,7 @@ public class MainFragment extends ActionBarFragment {
         if (isViewAccessAble()) {
             TTPodUser m2954aq = Preferences.m2954aq();
             ThemeFramework.AbstractC2016e m3258b = ThemeManager.m3258b(ThemeElement.SETTING_AVATAR);
-            final int m3285g = m3258b != null ? m3258b.m3285g() : (int) getResources().getDimension(R.dimen.avatar_frame_width);
+            final int m3285g = m3258b != null ? m3258b.getCornerRadius() : (int) getResources().getDimension(R.dimen.avatar_frame_width);
             IconTextView m7190b = getActionBarController().m7190b();
             if (m2954aq == null) {
                 m7190b.setImageDrawable(null);

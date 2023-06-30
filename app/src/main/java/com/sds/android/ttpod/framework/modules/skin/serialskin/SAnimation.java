@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -46,9 +46,9 @@ public class SAnimation extends SImage<AnimationImageView> {
         AnimationImageView animation = new AnimationImageView(context);
         Resources resources = context.getResources();
         animation.setScaleType(getScaleType(this.scaleType));
-        animation.setImageDrawable(skinCache.m3596a(resources, this.staticIcon));
+        animation.setImageDrawable(skinCache.getDrawable(resources, this.staticIcon));
         if (this.frameNum > 0) {
-            DrawableCreator m3594a = skinCache.m3594a(this.icon);
+            DrawableCreator m3594a = skinCache.getStateListDrawableCreator(this.icon);
             AnimationDrawable animationDrawable = new AnimationDrawable();
             int i = (int) (1000.0f / this.frameRate);
             if (this.frameNum > 1 && m3594a != null && (m3594a instanceof BitmapDrawableCreator)) {
@@ -71,7 +71,7 @@ public class SAnimation extends SImage<AnimationImageView> {
                 animationDrawable.setOneShot(true);
             }
             animation.setAnimationDrawable(animationDrawable);
-            animation.m3504a();
+            animation.startAnim();
         }
         return animation;
     }

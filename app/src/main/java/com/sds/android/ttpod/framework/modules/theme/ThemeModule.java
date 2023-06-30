@@ -40,7 +40,7 @@ public final class ThemeModule extends BaseModule {
     private int f6964c;
 
     /* renamed from: a */
-    private boolean f6962a = false;
+    private boolean loadedTheme = false;
 
     /* renamed from: d */
     private ThreadPool f6965d = new ThreadPool("themeWorkThreadPool", 1, 0);
@@ -61,15 +61,15 @@ public final class ThemeModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.LOAD_BACKGROUND_LIST, ReflectUtils.m8375a(cls, "loadBackgroundList", Boolean.class));
-        map.put(CommandID.SET_BACKGROUND, ReflectUtils.m8375a(cls, "setBackground", String.class));
-        map.put(CommandID.DELETE_BACKGROUND, ReflectUtils.m8375a(cls, "deleteBackground", String.class));
-        map.put(CommandID.LOAD_BACKGROUND, ReflectUtils.m8375a(cls, "loadBackground", new Class[0]));
-        map.put(CommandID.GET_BACKGROUND, ReflectUtils.m8375a(cls, "getBackground", new Class[0]));
-        map.put(CommandID.LOAD_THEME_LIST, ReflectUtils.m8375a(cls, "loadThemeList", new Class[0]));
-        map.put(CommandID.LOAD_SKIN_FINISHED, ReflectUtils.m8375a(cls, "loadSkinFinished", SkinCache.class));
-        map.put(CommandID.DECODE_BACKGROUND_THUMBNAIL, ReflectUtils.m8375a(cls, "decodeBackgroundThumbnail", BackgroundItem.class));
-        map.put(CommandID.REQUEST_BACKGROUND_MORE, ReflectUtils.m8375a(cls, "requestBackgroundMore", new Class[0]));
+        map.put(CommandID.LOAD_BACKGROUND_LIST, ReflectUtils.loadMethod(cls, "loadBackgroundList", Boolean.class));
+        map.put(CommandID.SET_BACKGROUND, ReflectUtils.loadMethod(cls, "setBackground", String.class));
+        map.put(CommandID.DELETE_BACKGROUND, ReflectUtils.loadMethod(cls, "deleteBackground", String.class));
+        map.put(CommandID.LOAD_BACKGROUND, ReflectUtils.loadMethod(cls, "loadBackground", new Class[0]));
+        map.put(CommandID.GET_BACKGROUND, ReflectUtils.loadMethod(cls, "getBackground", new Class[0]));
+        map.put(CommandID.LOAD_THEME_LIST, ReflectUtils.loadMethod(cls, "loadThemeList", new Class[0]));
+        map.put(CommandID.LOAD_SKIN_FINISHED, ReflectUtils.loadMethod(cls, "loadSkinFinished", SkinCache.class));
+        map.put(CommandID.DECODE_BACKGROUND_THUMBNAIL, ReflectUtils.loadMethod(cls, "decodeBackgroundThumbnail", BackgroundItem.class));
+        map.put(CommandID.REQUEST_BACKGROUND_MORE, ReflectUtils.loadMethod(cls, "requestBackgroundMore", new Class[0]));
     }
 
     public void loadThemeList() {
@@ -82,7 +82,7 @@ public final class ThemeModule extends BaseModule {
     public void loadSkinFinished(SkinCache skinCache) {
         if (Preferences.m3032Y()) {
             BackgroundItem backgroundItem = new BackgroundItem(Preferences.m3034X());
-            backgroundItem.m3335a(skinCache.m3597a(sContext));
+            backgroundItem.m3335a(skinCache.getBackground(sContext));
             Cache.getInstance().m3212a(backgroundItem);
             CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_BACKGROUND, backgroundItem.m3328e()), ModuleID.THEME);
         }
@@ -103,7 +103,7 @@ public final class ThemeModule extends BaseModule {
     }
 
     public void loadBackground() {
-        if (!this.f6962a) {
+        if (!this.loadedTheme) {
             this.f6965d.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.theme.d.1
                 /* JADX WARN: Removed duplicated region for block: B:21:0x0066 A[Catch: Throwable -> 0x0028, TRY_LEAVE, TryCatch #2 {Throwable -> 0x0028, blocks: (B:3:0x0011, B:4:0x001d, B:5:0x0020, B:6:0x0027, B:12:0x004d, B:19:0x0060, B:21:0x0066, B:25:0x007b), top: B:33:0x0011 }] */
                 /* JADX WARN: Removed duplicated region for block: B:25:0x007b A[Catch: Throwable -> 0x0028, TRY_ENTER, TRY_LEAVE, TryCatch #2 {Throwable -> 0x0028, blocks: (B:3:0x0011, B:4:0x001d, B:5:0x0020, B:6:0x0027, B:12:0x004d, B:19:0x0060, B:21:0x0066, B:25:0x007b), top: B:33:0x0011 }] */
@@ -114,7 +114,7 @@ public final class ThemeModule extends BaseModule {
                 public void run() {
                     BackgroundItem backgroundItem = null;
                     Throwable th;
-                    ThemeModule.this.f6962a = true;
+                    ThemeModule.this.loadedTheme = true;
                     BackgroundItem backgroundItem2 = new BackgroundItem(Preferences.m3034X());
                     Bitmap bitmap = null;
                     try {
@@ -122,7 +122,7 @@ public final class ThemeModule extends BaseModule {
                         backgroundItem = backgroundItem2;
                         th = th2;
                     }
-                    switch (C20234.f6970a[backgroundItem2.m3337a().ordinal()]) {
+                    switch (C20234.f6970a[backgroundItem2.getResourceTypeEnum().ordinal()]) {
                         case 1:
                             backgroundItem = ThemeModule.this.m3246a(backgroundItem2);
                             if (backgroundItem == null) {
@@ -134,11 +134,11 @@ public final class ThemeModule extends BaseModule {
                                 th = th3;
                                 th.printStackTrace();
                                 CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_BACKGROUND, backgroundItem.m3328e()), ModuleID.THEME);
-                                ThemeModule.this.f6962a = false;
+                                ThemeModule.this.loadedTheme = false;
                                 return;
                             }
                             CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_BACKGROUND, backgroundItem.m3328e()), ModuleID.THEME);
-                            ThemeModule.this.f6962a = false;
+                            ThemeModule.this.loadedTheme = false;
                             return;
                         case 2:
                             bitmap = BackgroundCreateUtils.m5279a(backgroundItem2, 1);
@@ -155,7 +155,7 @@ public final class ThemeModule extends BaseModule {
                                     backgroundItem = backgroundItem3;
                                     th.printStackTrace();
                                     CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_BACKGROUND, backgroundItem.m3328e()), ModuleID.THEME);
-                                    ThemeModule.this.f6962a = false;
+                                    ThemeModule.this.loadedTheme = false;
                                     return;
                                 }
                             } else {
@@ -164,14 +164,14 @@ public final class ThemeModule extends BaseModule {
                             }
                             Cache.getInstance().m3212a(backgroundItem);
                             CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_BACKGROUND, backgroundItem.m3328e()), ModuleID.THEME);
-                            ThemeModule.this.f6962a = false;
+                            ThemeModule.this.loadedTheme = false;
                             return;
                         case 3:
                             if (bitmap != null) {
                             }
                             Cache.getInstance().m3212a(backgroundItem);
                             CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_BACKGROUND, backgroundItem.m3328e()), ModuleID.THEME);
-                            ThemeModule.this.f6962a = false;
+                            ThemeModule.this.loadedTheme = false;
                             return;
                         default:
                             throw new IllegalArgumentException("the background type not supported!");
@@ -187,19 +187,19 @@ public final class ThemeModule extends BaseModule {
     static /* synthetic */ class C20234 {
 
         /* renamed from: a */
-        static final /* synthetic */ int[] f6970a = new int[BackgroundItem.EnumC2011a.values().length];
+        static final /* synthetic */ int[] f6970a = new int[BackgroundItem.ResourceTypeEnum.values().length];
 
         static {
             try {
-                f6970a[BackgroundItem.EnumC2011a.FOLLOW_SKIN.ordinal()] = 1;
+                f6970a[BackgroundItem.ResourceTypeEnum.FOLLOW_SKIN.ordinal()] = 1;
             } catch (NoSuchFieldError e) {
             }
             try {
-                f6970a[BackgroundItem.EnumC2011a.ADD_BY_USER.ordinal()] = 2;
+                f6970a[BackgroundItem.ResourceTypeEnum.ADD_BY_USER.ordinal()] = 2;
             } catch (NoSuchFieldError e2) {
             }
             try {
-                f6970a[BackgroundItem.EnumC2011a.ORIGINAL.ordinal()] = 3;
+                f6970a[BackgroundItem.ResourceTypeEnum.ORIGINAL.ordinal()] = 3;
             } catch (NoSuchFieldError e3) {
             }
         }
@@ -208,13 +208,13 @@ public final class ThemeModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public BackgroundItem m3246a(BackgroundItem backgroundItem) {
-        SkinCache m3151m = Cache.getInstance().m3151m();
-        if (m3151m == null || m3151m.m3597a(sContext) == null) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_SKIN, new Object[0]));
-            this.f6962a = false;
+        SkinCache skinCache = Cache.getInstance().getSkinCache();
+        if (skinCache == null || skinCache.getBackground(sContext) == null) {
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.LOAD_SKIN, new Object[0]));
+            this.loadedTheme = false;
             return null;
         }
-        backgroundItem.m3335a(m3151m.m3597a(sContext));
+        backgroundItem.m3335a(skinCache.getBackground(sContext));
         return backgroundItem;
     }
 
@@ -233,8 +233,8 @@ public final class ThemeModule extends BaseModule {
             @Override // java.lang.Runnable
             public void run() {
                 Bitmap m4748a;
-                if (BackgroundItem.EnumC2011a.FOLLOW_SKIN == backgroundItem.m3337a() && Cache.getInstance().m3151m() != null) {
-                    m4748a = ThemeModule.this.m3247a(Cache.getInstance().m3151m().m3597a(ThemeModule.sContext));
+                if (BackgroundItem.ResourceTypeEnum.FOLLOW_SKIN == backgroundItem.getResourceTypeEnum() && Cache.getInstance().getSkinCache() != null) {
+                    m4748a = ThemeModule.this.m3247a(Cache.getInstance().getSkinCache().getBackground(ThemeModule.sContext));
                 } else {
                     String backgroundItem2 = backgroundItem.toString();
                     m4748a = ImageCacheUtils.m4748a(backgroundItem2, ThemeModule.this.f6963b, ThemeModule.this.f6964c);

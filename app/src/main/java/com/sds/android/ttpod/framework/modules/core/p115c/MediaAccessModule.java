@@ -80,38 +80,38 @@ public class MediaAccessModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.QUERY_GROUP_ITEM_LIST, ReflectUtils.m8375a(cls, "queryGroupItemList", GroupType.class));
-        map.put(CommandID.QUERY_LOCAL_AND_ONLINE_GROUP_LIST, ReflectUtils.m8375a(cls, "queryGroupItemList", new Class[0]));
-        map.put(CommandID.QUERY_GROUP_ITEM_LIST_BY_AMOUNT_ORDER, ReflectUtils.m8375a(cls, "queryGroupItemListByAmountOrder", GroupType.class));
-        map.put(CommandID.SEARCH_GROUP_ITEM_LIST, ReflectUtils.m8375a(cls, "searchGroupItemList", GroupType.class, String.class));
-        map.put(CommandID.QUERY_MEDIA_ITEM_LIST, ReflectUtils.m8375a(cls, "queryMediaItemList", String.class, String.class));
-        map.put(CommandID.QUERY_MEDIA_COUNT, ReflectUtils.m8375a(cls, "queryMediaCount", String.class));
-        map.put(CommandID.QUERY_MEDIA_ITEM, ReflectUtils.m8375a(cls, "queryMediaItem", String.class, String.class));
-        map.put(CommandID.QUERY_ASYNCLOAD_MEDIA_ITEM_LIST, ReflectUtils.m8375a(cls, "queryAsyncLoadMediaItemList", String.class, String.class));
-        map.put(CommandID.PRELOAD_ASYNCLOAD_MEDIA_ITEM_LIST, ReflectUtils.m8375a(cls, "preLoadAsyncLoadMediaItemList", String.class, String.class));
-        map.put(CommandID.SEARCH_MEDIA_LIST, ReflectUtils.m8375a(cls, "searchMediaList", String.class, String.class));
-        map.put(CommandID.ADD_GROUP, ReflectUtils.m8375a(cls, "addGroup", String.class));
-        map.put(CommandID.DELETE_GROUP, ReflectUtils.m8375a(cls, "deleteGroup", String.class));
-        map.put(CommandID.ADD_MEDIA_ITEM, ReflectUtils.m8375a(cls, "addMediaItem", String.class, MediaItem.class));
-        map.put(CommandID.DELETE_MEDIA_ITEM, ReflectUtils.m8375a(cls, "deleteMediaItem", String.class, MediaItem.class, Boolean.class));
-        map.put(CommandID.ADD_MEDIA_ITEM_LIST, ReflectUtils.m8375a(cls, "addMediaItemList", String.class, Collection.class));
-        map.put(CommandID.DELETE_MEDIA_ITEM_LIST, ReflectUtils.m8375a(cls, "deleteMediaItemList", String.class, Collection.class, Boolean.class));
-        map.put(CommandID.UPDATE_GROUP_ITEM, ReflectUtils.m8375a(cls, "updateGroupItem", GroupItem.class));
-        map.put(CommandID.UPDATE_MEDIA_ITEM, ReflectUtils.m8375a(cls, "updateMediaItem", MediaItem.class));
-        map.put(CommandID.SYNC_NET_TEMPORARY_GROUP, ReflectUtils.m8375a(cls, "syncNetTemporaryGroup", List.class));
-        map.put(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, ReflectUtils.m8375a(cls, "syncNetTemporaryGroupWithName", List.class, String.class));
-        map.put(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, ReflectUtils.m8375a(cls, "appendNetTemporaryMediaItems", List.class));
-        map.put(CommandID.COMMIT_EXCHANGE_ORDER, ReflectUtils.m8375a(cls, "commitExchangeOrder", String.class, List.class));
-        map.put(CommandID.ADD_GROUP_ITEM_EXCHANGE_ORDER_EVENT, ReflectUtils.m8375a(cls, "addGroupItemExchangeOrderEvent", GroupType.class, String.class, String.class));
-        map.put(CommandID.COMMIT_GROUP_ITEM_EXCHANGE_ORDER, ReflectUtils.m8375a(cls, "commitGroupItemExchangeOrder", GroupType.class));
-        map.put(CommandID.DELETE_PICTURE, ReflectUtils.m8375a(cls, "deletePicture", Collection.class));
-        map.put(CommandID.DELETE_LYRIC, ReflectUtils.m8375a(cls, "deleteLyric", Collection.class));
-        map.put(CommandID.DO_VERSION_COMPACT_FINISHED, ReflectUtils.m8375a(cls, "doVersionCompactFinished", new Class[0]));
-        map.put(CommandID.LOGOUT_FINISHED, ReflectUtils.m8375a(cls, "logoutFinished", new Class[0]));
-        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.m8375a(cls, "loginFinished", CommonResult.class));
-        map.put(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, ReflectUtils.m8375a(cls, "pullFavoriteOnlineMediaListComplete", new Class[0]));
-        map.put(CommandID.SCAN_FINISHED, ReflectUtils.m8375a(cls, "scanFinished", Integer.class));
-        map.put(CommandID.DOWNLOAD_STATE_CHANGED, ReflectUtils.m8375a(cls, "downloadStateChanged", DownloadTaskInfo.class, Task.ErrorCodeType.class));
+        map.put(CommandID.QUERY_GROUP_ITEM_LIST, ReflectUtils.loadMethod(cls, "queryGroupItemList", GroupType.class));
+        map.put(CommandID.QUERY_LOCAL_AND_ONLINE_GROUP_LIST, ReflectUtils.loadMethod(cls, "queryGroupItemList", new Class[0]));
+        map.put(CommandID.QUERY_GROUP_ITEM_LIST_BY_AMOUNT_ORDER, ReflectUtils.loadMethod(cls, "queryGroupItemListByAmountOrder", GroupType.class));
+        map.put(CommandID.SEARCH_GROUP_ITEM_LIST, ReflectUtils.loadMethod(cls, "searchGroupItemList", GroupType.class, String.class));
+        map.put(CommandID.QUERY_MEDIA_ITEM_LIST, ReflectUtils.loadMethod(cls, "queryMediaItemList", String.class, String.class));
+        map.put(CommandID.QUERY_MEDIA_COUNT, ReflectUtils.loadMethod(cls, "queryMediaCount", String.class));
+        map.put(CommandID.QUERY_MEDIA_ITEM, ReflectUtils.loadMethod(cls, "queryMediaItem", String.class, String.class));
+        map.put(CommandID.QUERY_ASYNCLOAD_MEDIA_ITEM_LIST, ReflectUtils.loadMethod(cls, "queryAsyncLoadMediaItemList", String.class, String.class));
+        map.put(CommandID.PRELOAD_ASYNCLOAD_MEDIA_ITEM_LIST, ReflectUtils.loadMethod(cls, "preLoadAsyncLoadMediaItemList", String.class, String.class));
+        map.put(CommandID.SEARCH_MEDIA_LIST, ReflectUtils.loadMethod(cls, "searchMediaList", String.class, String.class));
+        map.put(CommandID.ADD_GROUP, ReflectUtils.loadMethod(cls, "addGroup", String.class));
+        map.put(CommandID.DELETE_GROUP, ReflectUtils.loadMethod(cls, "deleteGroup", String.class));
+        map.put(CommandID.ADD_MEDIA_ITEM, ReflectUtils.loadMethod(cls, "addMediaItem", String.class, MediaItem.class));
+        map.put(CommandID.DELETE_MEDIA_ITEM, ReflectUtils.loadMethod(cls, "deleteMediaItem", String.class, MediaItem.class, Boolean.class));
+        map.put(CommandID.ADD_MEDIA_ITEM_LIST, ReflectUtils.loadMethod(cls, "addMediaItemList", String.class, Collection.class));
+        map.put(CommandID.DELETE_MEDIA_ITEM_LIST, ReflectUtils.loadMethod(cls, "deleteMediaItemList", String.class, Collection.class, Boolean.class));
+        map.put(CommandID.UPDATE_GROUP_ITEM, ReflectUtils.loadMethod(cls, "updateGroupItem", GroupItem.class));
+        map.put(CommandID.UPDATE_MEDIA_ITEM, ReflectUtils.loadMethod(cls, "updateMediaItem", MediaItem.class));
+        map.put(CommandID.SYNC_NET_TEMPORARY_GROUP, ReflectUtils.loadMethod(cls, "syncNetTemporaryGroup", List.class));
+        map.put(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, ReflectUtils.loadMethod(cls, "syncNetTemporaryGroupWithName", List.class, String.class));
+        map.put(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, ReflectUtils.loadMethod(cls, "appendNetTemporaryMediaItems", List.class));
+        map.put(CommandID.COMMIT_EXCHANGE_ORDER, ReflectUtils.loadMethod(cls, "commitExchangeOrder", String.class, List.class));
+        map.put(CommandID.ADD_GROUP_ITEM_EXCHANGE_ORDER_EVENT, ReflectUtils.loadMethod(cls, "addGroupItemExchangeOrderEvent", GroupType.class, String.class, String.class));
+        map.put(CommandID.COMMIT_GROUP_ITEM_EXCHANGE_ORDER, ReflectUtils.loadMethod(cls, "commitGroupItemExchangeOrder", GroupType.class));
+        map.put(CommandID.DELETE_PICTURE, ReflectUtils.loadMethod(cls, "deletePicture", Collection.class));
+        map.put(CommandID.DELETE_LYRIC, ReflectUtils.loadMethod(cls, "deleteLyric", Collection.class));
+        map.put(CommandID.DO_VERSION_COMPACT_FINISHED, ReflectUtils.loadMethod(cls, "doVersionCompactFinished", new Class[0]));
+        map.put(CommandID.LOGOUT_FINISHED, ReflectUtils.loadMethod(cls, "logoutFinished", new Class[0]));
+        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.loadMethod(cls, "loginFinished", CommonResult.class));
+        map.put(CommandID.PULL_FAVORITE_ONLINE_MEDIA_LIST_COMPLETE, ReflectUtils.loadMethod(cls, "pullFavoriteOnlineMediaListComplete", new Class[0]));
+        map.put(CommandID.SCAN_FINISHED, ReflectUtils.loadMethod(cls, "scanFinished", Integer.class));
+        map.put(CommandID.DOWNLOAD_STATE_CHANGED, ReflectUtils.loadMethod(cls, "downloadStateChanged", DownloadTaskInfo.class, Task.ErrorCodeType.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
@@ -452,11 +452,11 @@ public class MediaAccessModule extends BaseModule {
                     CommandCenter.getInstance().m4603a(new Command(CommandID.UPDATE_MEDIA_ITEM_FINISHED, mediaItem), ModuleID.MEDIA_ACCESS, 500);
                     CommandCenter.getInstance().m4603a(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, mediaItem.getGroupID()), ModuleID.MEDIA_ACCESS, 500);
                     if (equals && m2463m == PlayStatus.STATUS_PLAYING) {
-                        CommandCenter.getInstance().m4605a(new Command(CommandID.START, new Object[0]), 1000);
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.START, new Object[0]), 1000);
                     }
                 }
                 if (equals) {
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_CUR_MEDIA_INFO, new Object[0]));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SYNC_CUR_MEDIA_INFO, new Object[0]));
                 }
             }
         });
@@ -563,7 +563,7 @@ public class MediaAccessModule extends BaseModule {
     /* renamed from: b */
     public void m4276b(String str) {
         if (StringUtils.equals(m4272c(str), Preferences.getLocalGroupId())) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
         }
     }
 
@@ -596,7 +596,7 @@ public class MediaAccessModule extends BaseModule {
                             break;
                         }
                     } else {
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.STOP, new Object[0]));
                         break;
                     }
                 }
@@ -606,10 +606,10 @@ public class MediaAccessModule extends BaseModule {
         if (str2 != null) {
             MediaItem queryMediaItem = MediaStorage.queryMediaItem(sContext, m2858m, str2);
             if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
-                CommandCenter.getInstance().m4596b(new Command(CommandID.PLAY_GROUP, m2858m, queryMediaItem));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PLAY_GROUP, m2858m, queryMediaItem));
             } else {
-                CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
-                CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_GROUP, m2858m, queryMediaItem));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.STOP, new Object[0]));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SYNC_GROUP, m2858m, queryMediaItem));
             }
         }
         m4276b(str);
@@ -637,16 +637,16 @@ public class MediaAccessModule extends BaseModule {
 
     /* renamed from: g */
     private void m4268g() {
-        CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.STOP, new Object[0]));
         Preferences.m2894d(MediaStorage.GROUP_ID_ALL_LOCAL);
         Preferences.getMediaId("");
-        CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
     }
 
     public void logoutFinished() {
         m4276b(MediaStorage.GROUP_ID_FAV);
         if (StringUtils.equals(Preferences.getLocalGroupId(), MediaStorage.GROUP_ID_FAV) && Cache.getInstance().getCurrentPlayMediaItem().isOnline()) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.NEXT, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.NEXT, new Object[0]));
         }
         m4269f();
         CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(MediaStorage.GROUP_ID_FAV)), ModuleID.MEDIA_ACCESS);

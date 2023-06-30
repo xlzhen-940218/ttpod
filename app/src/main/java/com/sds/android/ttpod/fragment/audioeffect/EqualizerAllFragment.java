@@ -142,7 +142,7 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
     public View onCreateView(LayoutInflater layoutInflater, ViewGroup viewGroup, Bundle bundle) {
         if (this.mRootView == null) {
             this.mRootView = layoutInflater.inflate(R.layout.fragment_equalizer_all, (ViewGroup) null);
-            CommandCenter.getInstance().m4596b(new Command(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, new Object[0]));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_CUSTOM_EQUALIZER_LIST, new Object[0]));
             AudioEffectParam m2457s = SupportFactory.getInstance(BaseApplication.getApplication()).m2457s();
             initAllData(m2457s != null ? m2457s.m4421g() : "");
             initListView();
@@ -154,8 +154,8 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
     @Override // com.sds.android.ttpod.fragment.audioeffect.BaseEqualizerFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_CUSTOM_EQUALIZER_LIST, ReflectUtils.m8375a(getClass(), "updateCustomEqualizerList", List.class));
-        map.put(CommandID.UPDATE_SAVE_CUSTOM_EQUALIZER, ReflectUtils.m8375a(getClass(), "updateSaveCustomEqualizer", TTEqualizer.Settings.class));
+        map.put(CommandID.UPDATE_CUSTOM_EQUALIZER_LIST, ReflectUtils.loadMethod(getClass(), "updateCustomEqualizerList", List.class));
+        map.put(CommandID.UPDATE_SAVE_CUSTOM_EQUALIZER, ReflectUtils.loadMethod(getClass(), "updateSaveCustomEqualizer", TTEqualizer.Settings.class));
     }
 
     public void updateCustomEqualizerList(List<TTEqualizer.Settings> list) {

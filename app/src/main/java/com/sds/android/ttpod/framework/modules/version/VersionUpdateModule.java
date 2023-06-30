@@ -78,10 +78,10 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.START_COMMON_UPGRADE, ReflectUtils.m8375a(cls, "startCommonUpgrade", String.class));
-        map.put(CommandID.START_SMART_UPGRADE, ReflectUtils.m8375a(cls, "startSmartUpgrade", Boolean.class));
-        map.put(CommandID.CHECK_UPGRADE, ReflectUtils.m8375a(cls, "checkUpgrade", Boolean.class));
-        map.put(CommandID.CANCEL_UPGRADE, ReflectUtils.m8375a(cls, "cancelUpgrade", new Class[0]));
+        map.put(CommandID.START_COMMON_UPGRADE, ReflectUtils.loadMethod(cls, "startCommonUpgrade", String.class));
+        map.put(CommandID.START_SMART_UPGRADE, ReflectUtils.loadMethod(cls, "startSmartUpgrade", Boolean.class));
+        map.put(CommandID.CHECK_UPGRADE, ReflectUtils.loadMethod(cls, "checkUpgrade", Boolean.class));
+        map.put(CommandID.CANCEL_UPGRADE, ReflectUtils.loadMethod(cls, "cancelUpgrade", new Class[0]));
     }
 
     public void cancelUpgrade() {
@@ -185,7 +185,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
                 if (FileUtils.m8419a(m4760a.getSavePath())) {
                     FileUtils.exists(m4760a.getSavePath());
                 }
-                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
                 while (!VersionUpdateModule.this.mIsStop && VersionUpdateModule.this.mDownloadTaskInfo != null) {
                     if (VersionUpdateModule.this.mDownloadTaskInfo.getState() == null || VersionUpdateModule.this.mDownloadTaskInfo.getState().intValue() == 0 || 1 == VersionUpdateModule.this.mDownloadTaskInfo.getState().intValue()) {
                         try {

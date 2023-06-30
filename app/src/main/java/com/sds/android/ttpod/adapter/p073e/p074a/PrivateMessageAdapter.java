@@ -196,7 +196,7 @@ public class PrivateMessageAdapter extends BaseAdapter {
     /* renamed from: a */
     private void m7528a(UserAvatarView userAvatarView, final TTPodUser tTPodUser) {
         userAvatarView.setVFlagVisible(tTPodUser.isVerified());
-        ImageCacheUtils.m4752a(userAvatarView, tTPodUser.getAvatarUrl(), userAvatarView.getWidth(), userAvatarView.getHeight(), (int) R.drawable.img_avatar_default);
+        ImageCacheUtils.displayImage(userAvatarView, tTPodUser.getAvatarUrl(), userAvatarView.getWidth(), userAvatarView.getHeight(), (int) R.drawable.img_avatar_default);
         userAvatarView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.adapter.e.a.d.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {

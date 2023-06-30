@@ -22,7 +22,7 @@ public class StarListOfRankFragment extends StarListFragment {
     @Override // com.sds.android.ttpod.fragment.musiccircle.UserListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_STAR_USER_LIST_BY_RANK, ReflectUtils.m8375a(StarListOfRankFragment.class, "onUpdateStarUserListByRank", LabeledTTPodUserListResult.class, String.class));
+        map.put(CommandID.UPDATE_STAR_USER_LIST_BY_RANK, ReflectUtils.loadMethod(StarListOfRankFragment.class, "onUpdateStarUserListByRank", LabeledTTPodUserListResult.class, String.class));
     }
 
     public void onUpdateStarUserListByRank(LabeledTTPodUserListResult labeledTTPodUserListResult, String str) {

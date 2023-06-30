@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -71,18 +71,18 @@ public class SSlide extends SComponent<SeekBarExpansion> {
     public void setBackground(Context context, SeekBarExpansion seekBarExpansion, SkinCache skinCache) {
         Resources resources = context.getResources();
         Drawable colorDrawable = new ColorDrawable(0);
-        Drawable m3596a = skinCache.m3596a(resources, this.knobIcon);
+        Drawable m3596a = skinCache.getDrawable(resources, this.knobIcon);
         if (m3596a == null) {
             m3596a = colorDrawable;
         }
         seekBarExpansion.setThumb(m3596a);
-        Drawable m3596a2 = skinCache.m3596a(resources, this.slideBackground);
+        Drawable m3596a2 = skinCache.getDrawable(resources, this.slideBackground);
         if (m3596a2 == null) {
             m3596a2 = colorDrawable;
         }
-        Drawable m3596a3 = skinCache.m3596a(resources, this.slideIcon);
+        Drawable m3596a3 = skinCache.getDrawable(resources, this.slideIcon);
         Drawable clipDrawable = m3596a3 != null ? new ClipDrawable(m3596a3, 19, 1) : colorDrawable;
-        Drawable m3596a4 = skinCache.m3596a(resources, this.slideSecondaryIcon);
+        Drawable m3596a4 = skinCache.getDrawable(resources, this.slideSecondaryIcon);
         if (m3596a4 != null) {
             colorDrawable = new ClipDrawable(m3596a4, 19, 1);
         }

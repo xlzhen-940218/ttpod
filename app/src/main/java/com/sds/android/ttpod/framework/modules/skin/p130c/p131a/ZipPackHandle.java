@@ -32,7 +32,7 @@ public class ZipPackHandle extends PackHandle {
     }
 
     public ZipPackHandle(String str) throws IOException {
-        mo3755a(str);
+        initTskPackHandleByFile(str);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle, java.io.Closeable, java.lang.AutoCloseable
@@ -45,7 +45,7 @@ public class ZipPackHandle extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: a */
-    public void mo3755a(String str) throws IOException {
+    public void initTskPackHandleByFile(String str) throws IOException {
         File file = new File(str);
         this.f6523c = new ZipFile(file);
         long lastModified = file.lastModified();
@@ -58,7 +58,7 @@ public class ZipPackHandle extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: a */
-    public void mo3756a(InputStream inputStream, boolean z) throws IOException {
+    public void initTskPackHandle(InputStream inputStream, boolean loadStream) throws IOException {
         throw new UnsupportedOperationException("zip pack cannot open in input stream");
     }
 

@@ -43,7 +43,7 @@ public class ArtistFrameView extends RelativeLayout {
     public void m1904a() {
         ThemeFramework.AbstractC2016e m3258b = ThemeManager.m3258b(ThemeElement.PLAY_BAR_ARTIST);
         ThemeUtils.m8179a(this.f7475a, m3258b);
-        this.f7477c = m3258b != null ? m3258b.m3285g() : 0;
+        this.f7477c = m3258b != null ? m3258b.getCornerRadius() : 0;
         ThemeUtils.m8180a(this.f7476b, ThemeManager.m3265a(ThemeElement.PLAY_BAR_ARTIS_MASK_IMAGE));
     }
 

@@ -79,7 +79,7 @@ public class FindSongFragment extends BaseFragment implements OnPageSelectedList
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
-        map.put(CommandID.UPDATE_RECOMMEND_CONTENT, ReflectUtils.m8375a(getClass(), "updateRecommendContent", FindSongModuleResult.class));
+        map.put(CommandID.UPDATE_RECOMMEND_CONTENT, ReflectUtils.loadMethod(getClass(), "updateRecommendContent", FindSongModuleResult.class));
     }
 
     @Override // androidx.fragment.app.Fragment
@@ -224,7 +224,7 @@ public class FindSongFragment extends BaseFragment implements OnPageSelectedList
             this.mReloadTheme = false;
             loadTheme(this.mNetworkLoadingView);
             loadDragRefreshTitleTheme(this.mDragUpdateListView);
-            ThemeManager.m3269a(this.mDragUpdateListView, ThemeElement.BACKGROUND_MASK);
+            ThemeManager.m3269a(this.mDragUpdateListView, "BackgroundMaskColor");
         }
     }
 

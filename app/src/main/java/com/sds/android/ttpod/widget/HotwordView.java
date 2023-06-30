@@ -259,9 +259,9 @@ public class HotwordView extends ViewGroup {
         ShapeDrawable shapeDrawable;
         ShapeDrawable shapeDrawable2;
         ThemeFramework.AbstractC2016e m3258b = ThemeManager.m3258b(ThemeElement.TILE_MASK);
-        if (m3258b instanceof ThemeFramework.C2014c) {
-            ColorDrawable colorDrawable = (ColorDrawable) m3258b.m3289c();
-            ColorDrawable colorDrawable2 = (ColorDrawable) m3258b.m3288d();
+        if (m3258b instanceof ThemeFramework.ColorTheme) {
+            ColorDrawable colorDrawable = (ColorDrawable) m3258b.getWildCardDrawable();
+            ColorDrawable colorDrawable2 = (ColorDrawable) m3258b.getSelectedDrawable();
             float[] fArr = {f7704a, f7704a, f7704a, f7704a, f7704a, f7704a, f7704a, f7704a};
             if (colorDrawable != null) {
                 ShapeDrawable shapeDrawable3 = new ShapeDrawable(new RoundRectShape(fArr, null, null));

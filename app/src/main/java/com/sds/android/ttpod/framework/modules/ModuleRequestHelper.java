@@ -22,7 +22,7 @@ import com.sds.android.ttpod.framework.storage.p133a.Cache;
 /* loaded from: classes.dex */
 public class ModuleRequestHelper {
     /* renamed from: a */
-    public static <Result extends BaseResult, TargetResult extends BaseResult> void m4083a(Request<Result> request, CommandID commandID, ModuleID moduleID, ResultConvert<Result, TargetResult> resultConvert) {
+    public static <Result extends BaseResult, TargetResult extends BaseResult> void execute(Request<Result> request, CommandID commandID, ModuleID moduleID, ResultConvert<Result, TargetResult> resultConvert) {
         execute(request, commandID, moduleID, resultConvert, null);
     }
 

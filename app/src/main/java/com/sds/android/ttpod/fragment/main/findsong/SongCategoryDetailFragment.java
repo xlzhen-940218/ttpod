@@ -60,8 +60,8 @@ public class SongCategoryDetailFragment extends SceneRecommendFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SONG_CATEGORY_DETAIL, ReflectUtils.m8375a(getClass(), "updateCategoryDetailResult", MediaItemListResult.class, String.class));
-        map.put(CommandID.UPDATE_SONG_CATEGORY_INFO, ReflectUtils.m8375a(getClass(), "updateCategoryInfo", DataListResult.class, String.class));
+        map.put(CommandID.UPDATE_SONG_CATEGORY_DETAIL, ReflectUtils.loadMethod(getClass(), "updateCategoryDetailResult", MediaItemListResult.class, String.class));
+        map.put(CommandID.UPDATE_SONG_CATEGORY_INFO, ReflectUtils.loadMethod(getClass(), "updateCategoryInfo", DataListResult.class, String.class));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment

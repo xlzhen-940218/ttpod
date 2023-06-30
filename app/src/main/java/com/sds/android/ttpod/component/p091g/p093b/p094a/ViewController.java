@@ -662,21 +662,20 @@ public class ViewController {
 
     /* renamed from: c */
     private void m6527c(MediaItem mediaItem) {
-        CharSequence validateString = TTTextUtils.validateString(this.context, mediaItem.getTitle());
-        CharSequence validateString2 = TTTextUtils.validateString(this.context, mediaItem.getArtist());
-        CharSequence validateString3 = TTTextUtils.validateString(this.context, mediaItem.getAlbum());
+        CharSequence title = TTTextUtils.validateString(this.context, mediaItem.getTitle());
+        CharSequence artist = TTTextUtils.validateString(this.context, mediaItem.getArtist());
+        CharSequence album = TTTextUtils.validateString(this.context, mediaItem.getAlbum());
         if (this.titleView != null) {
-            this.titleView.setText(validateString);
+            this.titleView.setText(title);
         }
         if (this.artistView != null) {
-            this.artistView.setText(validateString2);
+            this.artistView.setText(artist);
         }
         if (this.albumView != null) {
-            this.albumView.setText(validateString3);
+            this.albumView.setText(album);
         }
-        Iterator<AutoScrollableTextView> it = this.autoScrollableTextViews.iterator();
-        while (it.hasNext()) {
-            it.next().m3490a("Title", validateString, "Artist", validateString2, "Album", validateString3);
+        for (AutoScrollableTextView autoScrollableTextView : this.autoScrollableTextViews) {
+            autoScrollableTextView.m3490a("Title", title, "Artist", artist, "Album", album);
         }
     }
 

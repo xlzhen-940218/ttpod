@@ -976,7 +976,7 @@ public class Preferences {
 
     /* renamed from: aE */
     public static String m3002aE() {
-        return AccessHelper.query(preferencesContent, PreferencesID.LATEST_UPDATE_VERSION.name(), FeedbackItem.STATUS_WAITING);
+        return AccessHelper.query(preferencesContent, PreferencesID.LATEST_UPDATE_VERSION.name(), "0");
     }
 
     /* renamed from: o */

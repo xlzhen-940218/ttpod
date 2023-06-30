@@ -56,7 +56,7 @@ public abstract class GridViewFragment<D> extends SlidingClosableFragment implem
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SINGER_CATEGORY_LIST, ReflectUtils.m8375a(getClass(), "updateSingerCategoryList", DataListResult.class));
+        map.put(CommandID.UPDATE_SINGER_CATEGORY_LIST, ReflectUtils.loadMethod(getClass(), "updateSingerCategoryList", DataListResult.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -81,7 +81,7 @@ public abstract class GridViewFragment<D> extends SlidingClosableFragment implem
     public void onThemeLoaded() {
         super.onThemeLoaded();
         this.mLoadView.onThemeLoaded();
-        ThemeManager.m3269a(this.mGridView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mGridView, "BackgroundMaskColor");
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment

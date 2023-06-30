@@ -81,7 +81,7 @@ public abstract class BaseGroupListFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.PLAY_GROUP_CHANGED, ReflectUtils.m8375a(getClass(), "playGroupChanged", new Class[0]));
+        map.put(CommandID.PLAY_GROUP_CHANGED, ReflectUtils.loadMethod(getClass(), "playGroupChanged", new Class[0]));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment
@@ -110,11 +110,11 @@ public abstract class BaseGroupListFragment extends BaseFragment {
                 return true;
             }
         });
-        this.mAZSideBar.setOnMatchedPositionChangeListener(new AZSideBar.InterfaceC2161a() { // from class: com.sds.android.ttpod.fragment.main.list.BaseGroupListFragment.3
+        this.mAZSideBar.setOnMatchedPositionChangeListener(new AZSideBar.OnMatchedPositionChangeListener() { // from class: com.sds.android.ttpod.fragment.main.list.BaseGroupListFragment.3
             @Override // com.sds.android.ttpod.widget.AZSideBar.InterfaceC2161a
             /* renamed from: a */
-            public void mo1905a(int i, String str) {
-                BaseGroupListFragment.this.selectRow(i);
+            public void positionChanged(int position, String str) {
+                BaseGroupListFragment.this.selectRow(position);
             }
         });
         this.mGroupHeaderListView.setOnScrollListener(this.mAZSideBar);
@@ -194,7 +194,7 @@ public abstract class BaseGroupListFragment extends BaseFragment {
     public void updateAZKeys(List<String> list) {
         DebugUtils.m8426a((Object) list, "rawAZKeys");
         if (isViewAccessAble()) {
-            this.mAZSideBar.m1909a(list);
+            this.mAZSideBar.setAZKeys(list);
         }
     }
 

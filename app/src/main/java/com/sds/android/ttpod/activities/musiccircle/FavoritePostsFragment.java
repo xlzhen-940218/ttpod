@@ -146,9 +146,9 @@ public class FavoritePostsFragment extends SlidingClosableFragment implements Ad
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_POST_INFO_LIST_BY_ID, ReflectUtils.m8375a(getClass(), "updatePosts", PostResult.class, String.class));
-        map.put(CommandID.UPDATE_ADD_FAVORITE_POSTS, ReflectUtils.m8375a(getClass(), "onFavoritePostsChanged", BaseResult.class, String.class));
-        map.put(CommandID.UPDATE_REMOVE_FAVORITE_POSTS, ReflectUtils.m8375a(getClass(), "onFavoritePostsChanged", BaseResult.class, String.class));
+        map.put(CommandID.UPDATE_POST_INFO_LIST_BY_ID, ReflectUtils.loadMethod(getClass(), "updatePosts", PostResult.class, String.class));
+        map.put(CommandID.UPDATE_ADD_FAVORITE_POSTS, ReflectUtils.loadMethod(getClass(), "onFavoritePostsChanged", BaseResult.class, String.class));
+        map.put(CommandID.UPDATE_REMOVE_FAVORITE_POSTS, ReflectUtils.loadMethod(getClass(), "onFavoritePostsChanged", BaseResult.class, String.class));
     }
 
     public void onFavoritePostsChanged(BaseResult baseResult, String str) {

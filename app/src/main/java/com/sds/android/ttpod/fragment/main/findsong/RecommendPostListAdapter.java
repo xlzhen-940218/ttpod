@@ -79,7 +79,7 @@ public abstract class RecommendPostListAdapter extends BaseListAdapter<Recommend
     /* renamed from: a */
     private void m5505a(RecommendPost recommendPost, ImageView imageView) {
         if (!StringUtils.isEmpty(recommendPost.getPicUrl())) {
-            ImageCacheUtils.m4752a(imageView, recommendPost.getPicUrl(), imageView.getWidth(), imageView.getHeight(), (int) R.drawable.img_musiccircle_post_pic_default);
+            ImageCacheUtils.displayImage(imageView, recommendPost.getPicUrl(), imageView.getWidth(), imageView.getHeight(), (int) R.drawable.img_musiccircle_post_pic_default);
         } else {
             imageView.setImageResource(R.drawable.img_musiccircle_post_pic_default);
         }

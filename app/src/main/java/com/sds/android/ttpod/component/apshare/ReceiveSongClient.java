@@ -165,8 +165,8 @@ public class ReceiveSongClient {
                                     }
                                 });
                                 MediaItem m4712a = MediaItemUtils.m4712a(m7119a.getLocalDataSource());
-                                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a));
-                                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a));
+                                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a));
+                                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a));
                             } else if (this.f3720b != null) {
                                 LogUtils.info("ReceiveSongClient", "[apshare]-transfer canceled");
                                 if (this.f3720b != null) {
@@ -201,8 +201,8 @@ public class ReceiveSongClient {
                                     }
                                 });
                                 MediaItem m4712a2 = MediaItemUtils.m4712a(m7119a.getLocalDataSource());
-                                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a2));
-                                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a2));
+                                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a2));
+                                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a2));
                             } else if (this.f3720b != null) {
                                 LogUtils.info("ReceiveSongClient", "[apshare]-transfer canceled");
                                 if (this.f3720b != null) {
@@ -247,8 +247,8 @@ public class ReceiveSongClient {
                         }
                     });
                     MediaItem m4712a3 = MediaItemUtils.m4712a(m7119a.getLocalDataSource());
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a3));
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a3));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, m4712a3));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, m4712a3));
                 } else if (this.f3720b != null) {
                     LogUtils.info("ReceiveSongClient", "[apshare]-transfer canceled");
                     if (this.f3720b != null) {

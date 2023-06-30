@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 /* loaded from: classes.dex */
 public class ReflectUtils {
     /* renamed from: a */
-    public static Method m8375a(Class cls, String str, Class<?>... clsArr) throws NoSuchMethodException {
+    public static Method loadMethod(Class cls, String str, Class<?>... clsArr) throws NoSuchMethodException {
         Method[] declaredMethods;
         DebugUtils.m8426a(cls, "cls");
         DebugUtils.m8426a(str, "methodName");

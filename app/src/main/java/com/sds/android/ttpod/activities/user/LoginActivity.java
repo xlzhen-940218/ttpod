@@ -145,7 +145,7 @@ public class LoginActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.m8375a(getClass(), "loginFinished", CommonResult.class));
+        map.put(CommandID.LOGIN_FINISHED, ReflectUtils.loadMethod(getClass(), "loginFinished", CommonResult.class));
     }
 
     private void initUserNameView() {

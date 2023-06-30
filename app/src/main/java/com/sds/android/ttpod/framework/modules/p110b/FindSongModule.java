@@ -69,31 +69,31 @@ public class FindSongModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         Class<?> cls = getClass();
-        map.put(CommandID.GET_MUSIC_RANKS, ReflectUtils.m8375a(cls, "getMusicRanks", String.class));
-        map.put(CommandID.GET_RANK_MUSIC_LIST, ReflectUtils.m8375a(cls, "getRankMusicList", Integer.class, Integer.class, String.class));
-        map.put(CommandID.GET_FIND_SONG_CATEGORY_LIST, ReflectUtils.m8375a(cls, "getFindSongCategoryList", new Class[0]));
-        map.put(CommandID.GET_SINGER_CATEGORY_LIST, ReflectUtils.m8375a(cls, "getSingerCategoryList", Integer.class));
-        map.put(CommandID.GET_SINGER_CATEGORY_DETAIL, ReflectUtils.m8375a(cls, "getSingerCategoryDetail", Integer.class, Integer.class));
-        map.put(CommandID.GET_SINGER_SONG_LIST, ReflectUtils.m8375a(cls, "getSingerSongList", String.class, Integer.class));
-        map.put(CommandID.GET_SONG_CATEGORY_INFO, ReflectUtils.m8375a(cls, "getSongCategoryInfo", String.class));
-        map.put(CommandID.GET_DAILY_RECOMMEND, ReflectUtils.m8375a(cls, "getDailyRecommend", Integer.class));
-        map.put(CommandID.GET_SONG_CATEGORY_DETAIL, ReflectUtils.m8375a(cls, "getSongCategoryDetail", Integer.class, Integer.class, String.class));
-        map.put(CommandID.GET_RADIO_CATEGORY_LIST, ReflectUtils.m8375a(cls, "getRadioCategoryList", new Class[0]));
-        map.put(CommandID.GET_RADIO_CHANNEL_MUSIC_LIST, ReflectUtils.m8375a(cls, "getRadioChannelMusicList", String.class, Integer.class));
-        map.put(CommandID.GET_POPULAR_SONG_LIST, ReflectUtils.m8375a(cls, "getPopularSongList", Integer.class, String.class));
-        map.put(CommandID.GET_POPULAR_SONG_INTRODUCTION, ReflectUtils.m8375a(cls, "getIntroduction", Long.class));
-        map.put(CommandID.GET_MV_LIST, ReflectUtils.m8375a(cls, "getMVList", Integer.class, Integer.class));
-        map.put(CommandID.GET_MV_THUMBNAIL, ReflectUtils.m8375a(cls, "getMVThumbnail", String.class));
-        map.put(CommandID.FIND_SONG_RECOMMEND_MODULE, ReflectUtils.m8375a(cls, "findSongRecommendModule", new Class[0]));
-        map.put(CommandID.GET_FIND_SONG_HOT_SONGS, ReflectUtils.m8375a(cls, "getFindSongHotSongs", String.class, Integer.class, Integer.class));
-        map.put(CommandID.GET_FIND_SONG_HOT_LIST, ReflectUtils.m8375a(cls, "getFindSongHotList", String.class, Integer.class, Integer.class));
-        map.put(CommandID.GET_FIND_SONG_HOT_SINGERS, ReflectUtils.m8375a(cls, "getFindSongHotSingers", String.class, Integer.class, Integer.class, Boolean.class));
-        map.put(CommandID.GET_FIND_SONG_HANDPICK, ReflectUtils.m8375a(cls, "getFindSongHandpick", new Class[0]));
-        map.put(CommandID.GET_RECOMMEND_CONTENT, ReflectUtils.m8375a(cls, "getRecommendContent", Long.class));
+        map.put(CommandID.GET_MUSIC_RANKS, ReflectUtils.loadMethod(cls, "getMusicRanks", String.class));
+        map.put(CommandID.GET_RANK_MUSIC_LIST, ReflectUtils.loadMethod(cls, "getRankMusicList", Integer.class, Integer.class, String.class));
+        map.put(CommandID.GET_FIND_SONG_CATEGORY_LIST, ReflectUtils.loadMethod(cls, "getFindSongCategoryList", new Class[0]));
+        map.put(CommandID.GET_SINGER_CATEGORY_LIST, ReflectUtils.loadMethod(cls, "getSingerCategoryList", Integer.class));
+        map.put(CommandID.GET_SINGER_CATEGORY_DETAIL, ReflectUtils.loadMethod(cls, "getSingerCategoryDetail", Integer.class, Integer.class));
+        map.put(CommandID.GET_SINGER_SONG_LIST, ReflectUtils.loadMethod(cls, "getSingerSongList", String.class, Integer.class));
+        map.put(CommandID.GET_SONG_CATEGORY_INFO, ReflectUtils.loadMethod(cls, "getSongCategoryInfo", String.class));
+        map.put(CommandID.GET_DAILY_RECOMMEND, ReflectUtils.loadMethod(cls, "getDailyRecommend", Integer.class));
+        map.put(CommandID.GET_SONG_CATEGORY_DETAIL, ReflectUtils.loadMethod(cls, "getSongCategoryDetail", Integer.class, Integer.class, String.class));
+        map.put(CommandID.GET_RADIO_CATEGORY_LIST, ReflectUtils.loadMethod(cls, "getRadioCategoryList", new Class[0]));
+        map.put(CommandID.GET_RADIO_CHANNEL_MUSIC_LIST, ReflectUtils.loadMethod(cls, "getRadioChannelMusicList", String.class, Integer.class));
+        map.put(CommandID.GET_POPULAR_SONG_LIST, ReflectUtils.loadMethod(cls, "getPopularSongList", Integer.class, String.class));
+        map.put(CommandID.GET_POPULAR_SONG_INTRODUCTION, ReflectUtils.loadMethod(cls, "getIntroduction", Long.class));
+        map.put(CommandID.GET_MV_LIST, ReflectUtils.loadMethod(cls, "getMVList", Integer.class, Integer.class));
+        map.put(CommandID.GET_MV_THUMBNAIL, ReflectUtils.loadMethod(cls, "getMVThumbnail", String.class));
+        map.put(CommandID.FIND_SONG_RECOMMEND_MODULE, ReflectUtils.loadMethod(cls, "findSongRecommendModule", new Class[0]));
+        map.put(CommandID.GET_FIND_SONG_HOT_SONGS, ReflectUtils.loadMethod(cls, "getFindSongHotSongs", String.class, Integer.class, Integer.class));
+        map.put(CommandID.GET_FIND_SONG_HOT_LIST, ReflectUtils.loadMethod(cls, "getFindSongHotList", String.class, Integer.class, Integer.class));
+        map.put(CommandID.GET_FIND_SONG_HOT_SINGERS, ReflectUtils.loadMethod(cls, "getFindSongHotSingers", String.class, Integer.class, Integer.class, Boolean.class));
+        map.put(CommandID.GET_FIND_SONG_HANDPICK, ReflectUtils.loadMethod(cls, "getFindSongHandpick", new Class[0]));
+        map.put(CommandID.GET_RECOMMEND_CONTENT, ReflectUtils.loadMethod(cls, "getRecommendContent", Long.class));
     }
 
     public void getIntroduction(Long l) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8906a(l.longValue()), CommandID.UPDATE_POPULAR_SONG_INTRODUCTION, id(), null);
+        ModuleRequestHelper.execute(FindSongAPI.m8906a(l.longValue()), CommandID.UPDATE_POPULAR_SONG_INTRODUCTION, id(), null);
     }
 
     public void getDailyRecommend(Integer num) {
@@ -119,15 +119,15 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getSingerCategoryList(Integer num) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8909a(num.intValue()), CommandID.UPDATE_SINGER_CATEGORY_LIST, id(), null);
+        ModuleRequestHelper.execute(FindSongAPI.m8909a(num.intValue()), CommandID.UPDATE_SINGER_CATEGORY_LIST, id(), null);
     }
 
     public void getSingerCategoryDetail(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8902b(num.intValue(), num2.intValue()), CommandID.UPDATE_SINGER_CATEGORY_DETAIL, id(), null);
+        ModuleRequestHelper.execute(FindSongAPI.m8902b(num.intValue(), num2.intValue()), CommandID.UPDATE_SINGER_CATEGORY_DETAIL, id(), null);
     }
 
     public void getSingerSongList(String str, Integer num) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8904a(str, num.intValue()), CommandID.UPDATE_SINGER_SONG_LIST, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.3
+        ModuleRequestHelper.execute(FindSongAPI.m8904a(str, num.intValue()), CommandID.UPDATE_SINGER_SONG_LIST, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.3
             @Override // com.sds.android.ttpod.framework.modules.ResultConvert
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -152,7 +152,7 @@ public class FindSongModule extends BaseModule {
 
     public void getRadioCategoryList() {
         LogUtils.debug("FindSongModule", "RadioModule.getRadioCategoryList----->");
-        ModuleRequestHelper.m4083a(RadioAPI.m8834b(), CommandID.UPDATE_RADIO_CATEGORY_LIST, id(), null);
+        ModuleRequestHelper.execute(RadioAPI.m8834b(), CommandID.UPDATE_RADIO_CATEGORY_LIST, id(), null);
     }
 
     public void getRadioChannelMusicList(String str, Integer num) {
@@ -160,7 +160,7 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getPopularSongList(Integer num, String str) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8907a(num.intValue(), str), CommandID.UPDATE_POPULAR_SONG_LIST, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.5
+        ModuleRequestHelper.execute(FindSongAPI.m8907a(num.intValue(), str), CommandID.UPDATE_POPULAR_SONG_LIST, id(), new ResultConvert<OnlineMediaItemsResult, MediaItemListResult>() { // from class: com.sds.android.ttpod.framework.modules.b.a.5
             @Override // com.sds.android.ttpod.framework.modules.ResultConvert
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public MediaItemListResult mo4042a(OnlineMediaItemsResult onlineMediaItemsResult) {
@@ -170,7 +170,7 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getMVList(Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongAPI.m8901c(num.intValue(), num2.intValue()), CommandID.UPDATE_MV_LIST, id(), null);
+        ModuleRequestHelper.execute(FindSongAPI.m8901c(num.intValue(), num2.intValue()), CommandID.UPDATE_MV_LIST, id(), null);
     }
 
     /* JADX WARN: Type inference failed for: r0v0, types: [com.sds.android.ttpod.framework.modules.b.a$6] */
@@ -274,15 +274,15 @@ public class FindSongModule extends BaseModule {
     }
 
     public void findSongRecommendModule() {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8900a(), CommandID.UPDATE_FIND_SONG_RECOMMEND_MODULE, id(), null);
+        ModuleRequestHelper.execute(FindSongHotModuleAPI.m8900a(), CommandID.UPDATE_FIND_SONG_RECOMMEND_MODULE, id(), null);
     }
 
     public void getFindSongHotSongs(String str, Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8898a(str, num.intValue(), num2.intValue()), CommandID.UPDATE_GET_FIND_SONG_HOT_SONGS, id(), null);
+        ModuleRequestHelper.execute(FindSongHotModuleAPI.m8898a(str, num.intValue(), num2.intValue()), CommandID.UPDATE_GET_FIND_SONG_HOT_SONGS, id(), null);
     }
 
     public void getFindSongHotList(String str, Integer num, Integer num2) {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8895b(str, num.intValue(), num2.intValue()), CommandID.UPDATE_GET_FIND_SONG_HOT_LIST, id(), null);
+        ModuleRequestHelper.execute(FindSongHotModuleAPI.m8895b(str, num.intValue(), num2.intValue()), CommandID.UPDATE_GET_FIND_SONG_HOT_LIST, id(), null);
     }
 
     public void getFindSongHotSingers(final String str, final Integer num, final Integer num2, final Boolean bool) {
@@ -374,7 +374,7 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getFindSongHandpick() {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8896b(), CommandID.UPDATE_GET_FIND_SONG_HANDPICK, id(), null);
+        ModuleRequestHelper.execute(FindSongHotModuleAPI.m8896b(), CommandID.UPDATE_GET_FIND_SONG_HANDPICK, id(), null);
     }
 
     public void requestVoiceOfChinaResult() {
@@ -394,6 +394,6 @@ public class FindSongModule extends BaseModule {
     }
 
     public void getRecommendContent(Long l) {
-        ModuleRequestHelper.m4083a(FindSongHotModuleAPI.m8899a(l.longValue()), CommandID.UPDATE_RECOMMEND_CONTENT, id(), null);
+        ModuleRequestHelper.execute(FindSongHotModuleAPI.m8899a(l.longValue()), CommandID.UPDATE_RECOMMEND_CONTENT, id(), null);
     }
 }

@@ -29,12 +29,12 @@ public class SkinCacheCreator extends SkinReader implements Runnable {
     public void run() {
         SkinCache m3577a = m3577a(this.f6654a);
         if (m3577a != null) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.SET_SKIN_PROTOCOL_PATH, this.f6654a));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_SKIN_PROTOCOL_PATH, this.f6654a));
             Cache.getInstance().m3213a(m3577a);
             CommandCenter.getInstance().m4595b(new Command(this.f6656d, m3577a), ModuleID.SKIN);
         } else if (this.f6655c != null) {
             CommandCenter.getInstance().m4595b(new Command(CommandID.LOAD_SKIN_ERROR, new Object[0]), ModuleID.SKIN);
-            CommandCenter.getInstance().m4596b(new Command(CommandID.SET_SKIN_PROTOCOL_PATH, this.f6655c));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SET_SKIN_PROTOCOL_PATH, this.f6655c));
             SkinCache m3577a2 = m3577a(this.f6655c);
             if (m3577a2 != null) {
                 Cache.getInstance().m3213a(m3577a2);

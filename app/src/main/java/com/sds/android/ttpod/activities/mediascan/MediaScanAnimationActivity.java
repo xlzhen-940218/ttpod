@@ -31,7 +31,7 @@ public class MediaScanAnimationActivity extends BaseActivity {
     private static final int MSG_REFRESH = 0;
     private static final int REFRESH_TIME = 50;
     private static final String TAG = "MediaScanAnimationActivity";
-    private AnimationImageView mAnimationImageView;
+    private AnimationImageView mediaScanAnimView;
     private boolean mIsScanning;
     private TextView mMediaScanCountTextView;
     private Button mMediaScanFinishedButton;
@@ -65,9 +65,9 @@ public class MediaScanAnimationActivity extends BaseActivity {
             beginTransaction.replace(R.id.fragment_navigate, slidingPagerFragment);
             beginTransaction.commit();
         }
-        this.mAnimationImageView = (AnimationImageView) findViewById(R.id.imageview_mediascan_anim);
-        this.mAnimationImageView.setIgnoreFocusChanged(true);
-        this.mAnimationImageView.setAnimationResource(R.drawable.xml_imageview_mediascan_animation);
+        this.mediaScanAnimView = (AnimationImageView) findViewById(R.id.imageview_mediascan_anim);
+        this.mediaScanAnimView.setIgnoreFocusChanged(true);
+        this.mediaScanAnimView.setAnimationResource(R.drawable.xml_imageview_mediascan_animation);
         this.mMediaScanCountTextView = (TextView) findViewById(R.id.textview_mediascan_count);
         this.mMediaScanPathTextView = (TextView) findViewById(R.id.textview_mediascan_scan_path);
         this.mProgressBar = (ProgressBar) findViewById(R.id.progressbar_mediascan_progress);
@@ -102,7 +102,7 @@ public class MediaScanAnimationActivity extends BaseActivity {
         }
         objArr[1] = str;
         m4607a.execute(new Command(commandID, objArr));
-        this.mAnimationImageView.m3504a();
+        this.mediaScanAnimView.startAnim();
         this.mHandler.sendEmptyMessage(0);
     }
 
@@ -110,7 +110,7 @@ public class MediaScanAnimationActivity extends BaseActivity {
     @Override // com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.SCAN_FINISHED, ReflectUtils.m8375a(getClass(), "onScanFinished", Integer.class));
+        map.put(CommandID.SCAN_FINISHED, ReflectUtils.loadMethod(getClass(), "onScanFinished", Integer.class));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -127,7 +127,7 @@ public class MediaScanAnimationActivity extends BaseActivity {
         this.mMediaScanFinishedButton.setVisibility(View.VISIBLE);
         this.mMediaScanPathTextView.setVisibility(View.GONE);
         this.mProgressBar.setVisibility(View.GONE);
-        this.mAnimationImageView.m3499b();
+        this.mediaScanAnimView.stopAnim();
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity

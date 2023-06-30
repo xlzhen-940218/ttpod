@@ -151,7 +151,7 @@ public class EffectShareDialog extends BaseDialog {
             audioEffectCache.m4406b(System.currentTimeMillis());
             audioEffectCache.m4390g(this.f3893d.getLocalDataSource());
             LogUtils.debug("EffectShareDialog", "saveToLocal " + audioEffectCache);
-            CommandCenter.getInstance().m4596b(new Command(CommandID.SAVE_EFFECT, this.f3893d, audioEffectCache, bool));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SAVE_EFFECT, this.f3893d, audioEffectCache, bool));
             //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_AJUST_SAVE_OK, SPage.PAGE_NONE, SPage.PAGE_NONE);
             //AudioEffectStatistic.m5250v();
         }

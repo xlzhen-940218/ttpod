@@ -59,7 +59,7 @@ public class RegisterActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.RESISTER_FINISHED, ReflectUtils.m8375a(getClass(), "registerFinished", CommonResult.class));
+        map.put(CommandID.RESISTER_FINISHED, ReflectUtils.loadMethod(getClass(), "registerFinished", CommonResult.class));
     }
 
     private void initUserNameView() {

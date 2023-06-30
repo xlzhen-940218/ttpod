@@ -275,11 +275,11 @@ public class SettingEntryFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: private */
     public void cleanCache() {
         PopupsUtils.m6744a((Context) getActivity(), (int) R.string.cache_size_calculating, false, false);
-        TaskScheduler.m8582a(new TaskScheduler.AbstractAsyncTaskC0595a<Void, String[]>(null) { // from class: com.sds.android.ttpod.fragment.settings.SettingEntryFragment.6
+        TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Void, String[]>(null) { // from class: com.sds.android.ttpod.fragment.settings.SettingEntryFragment.6
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public String[] mo1981a(Void r12) {
+            public String[] inBackground(Void r12) {
                 return new String[]{Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.m8405g(TTPodConfig.getCacheObjectPath())), Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.m8405g(TTPodConfig.getCacheMediaPath())), Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.m8405g(TTPodConfig.getArtPath()) + FileUtils.m8405g(TTPodConfig.getArtistPath())), Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.m8405g(TTPodConfig.getLyricPath()))};
             }
 

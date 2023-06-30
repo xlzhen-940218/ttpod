@@ -42,9 +42,9 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.LOAD_SKIN_ERROR, ReflectUtils.m8375a(cls, "onLoadSkinError", new Class[0]));
-        map.put(CommandID.DECODE_SKIN_THUMBNAIL_FINISHED, ReflectUtils.m8375a(cls, "onSkinThumbnailCreated", SkinItem.class));
-        map.put(CommandID.UPDATE_ALL_LOCAL_SKIN_LIST, ReflectUtils.m8375a(cls, "updateDataListForAdapter", ArrayList.class));
+        map.put(CommandID.LOAD_SKIN_ERROR, ReflectUtils.loadMethod(cls, "onLoadSkinError", new Class[0]));
+        map.put(CommandID.DECODE_SKIN_THUMBNAIL_FINISHED, ReflectUtils.loadMethod(cls, "onSkinThumbnailCreated", SkinItem.class));
+        map.put(CommandID.UPDATE_ALL_LOCAL_SKIN_LIST, ReflectUtils.loadMethod(cls, "updateDataListForAdapter", ArrayList.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.skinmanager.base.BaseThemeFragment, com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
@@ -159,9 +159,9 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
 
     /* JADX INFO: Access modifiers changed from: private */
     public void deleteItem(SkinItem skinItem) {
-        if (deleteSkin(skinItem.getPath(), skinItem.m3575a()).booleanValue()) {
+        if (deleteSkin(skinItem.getPath(), skinItem.getType()).booleanValue()) {
             this.mThemeAdapter.m5331c(skinItem);
-            performSkinItemStateChange(skinItem.m3565g(), 4);
+            performSkinItemStateChange(skinItem.getTitle(), 4);
         }
         performSkinDeleted(skinItem);
     }
@@ -294,7 +294,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
 
         /* renamed from: d */
         private void m5393d(SkinItem skinItem) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.DECODE_SKIN_THUMBNAIL, skinItem));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DECODE_SKIN_THUMBNAIL, skinItem));
         }
 
         @SuppressLint("WrongConstant")
@@ -341,7 +341,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
         Iterator<SkinItem> it = this.mThemeData.iterator();
         while (it.hasNext()) {
             SkinItem next = it.next();
-            if (next.m3575a() != 1 && !this.mThemeAdapter.m5344a(next)) {
+            if (next.getType() != 1 && !this.mThemeAdapter.m5344a(next)) {
                 return true;
             }
         }
@@ -389,7 +389,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
             if (skinItemForSkinFileName == null && i == 0) {
                 themeDataList.add(new SkinItem(sOnlineSkinInfoMap.get(str)));
             } else if (skinItemForSkinFileName != null) {
-                skinItemForSkinFileName.m3574a(i);
+                skinItemForSkinFileName.setType(i);
             }
         }
     }
@@ -406,7 +406,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
                 return null;
             }
             SkinItem skinItem = themeDataList.get(i2);
-            if (!skinItem.m3564h().equals(str)) {
+            if (!skinItem.getFileName().equals(str)) {
                 i = i2 + 1;
             } else {
                 return skinItem;

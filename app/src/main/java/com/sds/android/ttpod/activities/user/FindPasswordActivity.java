@@ -46,7 +46,7 @@ public class FindPasswordActivity extends SlidingClosableActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.FIND_PASSWORD_FINISHED, ReflectUtils.m8375a(getClass(), "findPasswordFinished", CommonResult.class));
+        map.put(CommandID.FIND_PASSWORD_FINISHED, ReflectUtils.loadMethod(getClass(), "findPasswordFinished", CommonResult.class));
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

@@ -24,7 +24,7 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.SkinCache;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SPlaylistView;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SPlaylistView;
 import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.modules.skin.view.SkinAbsoluteLayout;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
@@ -108,8 +108,8 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
             }
         };
         SkinAbsoluteLayout skinAbsoluteLayout = null;
-        SkinCache m3151m = Cache.getInstance().m3151m();
-        if (m3151m != null && m3151m.serializableSkinNotNull() && (m3842b = m3151m.getSerializableSkin().m3842b(0)) != null) {
+        SkinCache m3151m = Cache.getInstance().getSkinCache();
+        if (m3151m != null && m3151m.serializableSkinNotNull() && (m3842b = m3151m.getSerializableSkin().getPlayerListViewByTransForm(0)) != null) {
             SkinAbsoluteLayout skinAbsoluteLayout2 = new SkinAbsoluteLayout(this);
             this.mViewController = new AbsolutePlayerViewController(this, m3151m, m3842b) { // from class: com.sds.android.ttpod.activities.PlayingListActivity.3
                 @Override // com.sds.android.ttpod.component.p091g.p093b.p094a.ViewEventController, com.sds.android.ttpod.component.p091g.p093b.p094a.ViewController
@@ -202,8 +202,8 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
     public void finish() {
         SPlaylistView m3842b;
         super.finish();
-        SkinCache m3151m = Cache.getInstance().m3151m();
-        if (m3151m != null && m3151m.serializableSkinNotNull() && (m3842b = m3151m.getSerializableSkin().m3842b(0)) != null) {
+        SkinCache m3151m = Cache.getInstance().getSkinCache();
+        if (m3151m != null && m3151m.serializableSkinNotNull() && (m3842b = m3151m.getSerializableSkin().getPlayerListViewByTransForm(0)) != null) {
             overrideActivityOutAnimation(this, m3842b.m3785e());
         }
     }
@@ -247,9 +247,9 @@ public class PlayingListActivity extends SlidingClosableActivity implements Them
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_PLAY_MODE, ReflectUtils.m8375a(cls, "updatePlayMode", new Class[0]));
-        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.m8375a(cls, "updatePlayMediaInfo", new Class[0]));
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_PLAY_MODE, ReflectUtils.loadMethod(cls, "updatePlayMode", new Class[0]));
+        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.loadMethod(cls, "updatePlayMediaInfo", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
     }
 
     public void updatePlayMode() {

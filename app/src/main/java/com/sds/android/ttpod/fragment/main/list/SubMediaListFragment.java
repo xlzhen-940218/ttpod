@@ -71,7 +71,7 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        ThemeManager.m3269a(getView().findViewById(R.id.content_local_media_list), ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(getView().findViewById(R.id.content_local_media_list), "BackgroundMaskColor");
     }
 
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment

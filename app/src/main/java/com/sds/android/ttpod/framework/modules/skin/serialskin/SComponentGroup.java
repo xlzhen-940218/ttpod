@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -58,7 +58,7 @@ public class SComponentGroup extends SComponent<ViewGroup> implements Container<
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.Container
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo3791a(SComponent[] sComponentArr) {
+    public void setSkinViews(SComponent[] sComponentArr) {
         this.f6447c = sComponentArr;
     }
 }

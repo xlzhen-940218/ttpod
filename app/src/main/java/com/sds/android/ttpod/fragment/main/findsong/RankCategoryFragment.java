@@ -145,11 +145,11 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
     public void onThemeLoaded() {
         if (isViewAccessAble() && this.mReloadTheme) {
             if (this.mFooterView != null) {
-                ThemeManager.m3269a(this.mFooterView, ThemeElement.BACKGROUND_MASK);
+                ThemeManager.m3269a(this.mFooterView, "BackgroundMaskColor");
                 ThemeManager.m3269a(this.mFooterView, ThemeElement.COMMON_SUB_TITLE_TEXT);
             }
             this.mLoadingView.onThemeLoaded();
-            ThemeManager.m3269a(this.mListView, ThemeElement.BACKGROUND_MASK);
+            ThemeManager.m3269a(this.mListView, "BackgroundMaskColor");
             ThemeManager.m3269a(this.mListView, ThemeElement.COMMON_SEPARATOR);
             this.mReloadTheme = false;
             if (this.mListView != null) {
@@ -182,11 +182,11 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_MUSIC_RANKS, ReflectUtils.m8375a(cls, "updateMusicRanks", MusicRanksResult.class, String.class));
-        map.put(CommandID.UPDATE_RANK_MUSIC_LIST, ReflectUtils.m8375a(cls, "updateRankMusicData", MediaItemListResult.class, String.class));
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
-        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.m8375a(cls, "updatePlayMediaItemInfo", new Class[0]));
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "playMediaChanged", new Class[0]));
+        map.put(CommandID.UPDATE_MUSIC_RANKS, ReflectUtils.loadMethod(cls, "updateMusicRanks", MusicRanksResult.class, String.class));
+        map.put(CommandID.UPDATE_RANK_MUSIC_LIST, ReflectUtils.loadMethod(cls, "updateRankMusicData", MediaItemListResult.class, String.class));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_PLAYING_MEDIA_INFO, ReflectUtils.loadMethod(cls, "updatePlayMediaItemInfo", new Class[0]));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "playMediaChanged", new Class[0]));
     }
 
     /* JADX INFO: Access modifiers changed from: private */
@@ -221,7 +221,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
                 this.mNetMusicListNeedSynced = true;
                 return;
             case 2:
-                CommandCenter.getInstance().m4596b(new Command(CommandID.PAUSE, new Object[0]));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PAUSE, new Object[0]));
                 return;
             case 3:
                 CommandCenter.getInstance().execute(new Command(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
@@ -239,11 +239,11 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
             LogUtils.debug(TAG, "RankCategoryFragment.updateRankMusicList---musicList.size: " + m4517a.size() + " mNetMusicListNeedSynced: " + this.mNetMusicListNeedSynced);
             if (m4517a.size() > 0 && this.mCurrentChannelState == 4) {
                 if (this.mNetMusicListNeedSynced) {
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, m4517a, this.mActiveChannelTitle));
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, m4517a.get(0)));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP_WITH_NAME, m4517a, this.mActiveChannelTitle));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, m4517a.get(0)));
                     this.mNetMusicListNeedSynced = false;
                 } else {
-                    CommandCenter.getInstance().m4596b(new Command(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, m4517a));
+                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.APPEND_NET_TEMPORARY_MEDIA_ITEMS, m4517a));
                 }
                 this.mPlayingListLastMediaItem = m4517a.get(m4517a.size() - 1);
             }
@@ -288,7 +288,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
 
     private void requestMusicList(int i) {
         LogUtils.debug(TAG, "RankCategoryFragment.requestMusicList---id: " + i);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.GET_RANK_MUSIC_LIST, Integer.valueOf(i), 1, toString()));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.GET_RANK_MUSIC_LIST, Integer.valueOf(i), 1, toString()));
     }
 
     public void updateMusicRanks(MusicRanksResult musicRanksResult, String str) {
@@ -406,7 +406,7 @@ public class RankCategoryFragment extends BaseFragment implements AdapterView.On
                     }
                 });
                 int m7229a = DisplayUtils.dp2px((int) RankCategoryFragment.WIDTH);
-                ImageCacheUtils.m4752a(rankCategoryViewHolder.image, musicRank2.getPicUrl(), m7229a, m7229a, (int) R.drawable.img_music_default_icon);
+                ImageCacheUtils.displayImage(rankCategoryViewHolder.image, musicRank2.getPicUrl(), m7229a, m7229a, (int) R.drawable.img_music_default_icon);
                 rankCategoryViewHolder.m3250a(ThemeUtils.m8163b());
                 LogUtils.info(RankCategoryFragment.TAG, "time: " + (SystemClock.uptimeMillis() - uptimeMillis));
             }

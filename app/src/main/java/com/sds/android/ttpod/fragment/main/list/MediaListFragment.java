@@ -174,13 +174,13 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_ASYNCLOAD_MEDIA_ITEM_LIST, ReflectUtils.m8375a(cls, "updateAsyncloadMediaItemList", String.class, AsyncLoadMediaItemList.class));
-        map.put(CommandID.DELETE_MEDIA_ITEMS_FINISHED, ReflectUtils.m8375a(cls, "onDeleteMediaItemsFinished", String.class));
-        map.put(CommandID.SCAN_FINISHED, ReflectUtils.m8375a(cls, "onScanFinished", Integer.class));
-        map.put(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, ReflectUtils.m8375a(cls, "updateMediaLibraryChanged", String.class));
-        map.put(CommandID.UPDATE_MEDIA_ITEM_FINISHED, ReflectUtils.m8375a(cls, "updateMediaItemFinished", MediaItem.class));
-        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, ReflectUtils.m8375a(cls, "updateSaveEffectToLocal", Boolean.class));
-        map.put(CommandID.UPDATE_DELETE_PRIVATE_EFFECT_LIST, ReflectUtils.m8375a(cls, "updateDeletePrivateEffectList", new Class[0]));
+        map.put(CommandID.UPDATE_ASYNCLOAD_MEDIA_ITEM_LIST, ReflectUtils.loadMethod(cls, "updateAsyncloadMediaItemList", String.class, AsyncLoadMediaItemList.class));
+        map.put(CommandID.DELETE_MEDIA_ITEMS_FINISHED, ReflectUtils.loadMethod(cls, "onDeleteMediaItemsFinished", String.class));
+        map.put(CommandID.SCAN_FINISHED, ReflectUtils.loadMethod(cls, "onScanFinished", Integer.class));
+        map.put(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, ReflectUtils.loadMethod(cls, "updateMediaLibraryChanged", String.class));
+        map.put(CommandID.UPDATE_MEDIA_ITEM_FINISHED, ReflectUtils.loadMethod(cls, "updateMediaItemFinished", MediaItem.class));
+        map.put(CommandID.UPDATE_SAVE_EFFECT_TO_LOCAL, ReflectUtils.loadMethod(cls, "updateSaveEffectToLocal", Boolean.class));
+        map.put(CommandID.UPDATE_DELETE_PRIVATE_EFFECT_LIST, ReflectUtils.loadMethod(cls, "updateDeletePrivateEffectList", new Class[0]));
     }
 
     public void updateSaveEffectToLocal(Boolean bool) {
@@ -304,7 +304,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
             }
         } else {
 
-            CommandCenter.getInstance().m4596b(new Command(CommandID.PLAY_GROUP, this.mGroupID, mediaItem));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PLAY_GROUP, this.mGroupID, mediaItem));
         }
     }
 

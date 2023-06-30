@@ -151,12 +151,12 @@ public final class DateTimeUtils {
             i2 %= 60;
         }
         if (i / 10 == 0) {
-            str = FeedbackItem.STATUS_WAITING + i;
+            str = "0" + i;
         } else {
             str = "" + i;
         }
         if (i2 / 10 == 0) {
-            str2 = FeedbackItem.STATUS_WAITING + i2;
+            str2 = "0" + i2;
         } else if (i2 == 60) {
             str = "" + i + 1;
             str2 = "00";

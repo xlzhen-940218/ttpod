@@ -15,10 +15,10 @@ import java.util.Locale;
 public class TskPackHandle extends PackHandle {
 
     /* renamed from: b */
-    private String f6516b;
+    private String filePath;
 
     /* renamed from: c */
-    private long f6517c;
+    private long lastModified;
 
     /* renamed from: e */
     private InputStream stream;
@@ -36,27 +36,27 @@ public class TskPackHandle extends PackHandle {
     }
 
     public TskPackHandle(String str) throws IOException {
-        mo3755a(str);
+        initTskPackHandleByFile(str);
     }
 
     public TskPackHandle(InputStream inputStream) throws IOException {
-        mo3756a(inputStream, true);
+        initTskPackHandle(inputStream, true);
     }
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: a */
-    public void mo3755a(String str) throws IOException {
+    public void initTskPackHandleByFile(String filePath) throws IOException {
         RandomAccessFileInputStream randomAccessFileInputStream;
-        File file = new File(str);
+        File file = new File(filePath);
         Exception e;
         long lastModified = file.lastModified();
-        boolean z = (TextUtils.equals(this.f6516b, str) && lastModified == this.f6517c) ? false : true;
+        boolean z = (TextUtils.equals(this.filePath, filePath) && lastModified == this.lastModified) ? false : true;
         try {
             randomAccessFileInputStream = new RandomAccessFileInputStream(file, "r");
             try {
-                mo3756a(randomAccessFileInputStream, z);
-                this.f6516b = str;
-                this.f6517c = lastModified;
+                initTskPackHandle(randomAccessFileInputStream, z);
+                this.filePath = filePath;
+                this.lastModified = lastModified;
             } catch (IOException e1) {
                 e = e1;
                 if (randomAccessFileInputStream != null) {
@@ -108,12 +108,12 @@ public class TskPackHandle extends PackHandle {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p130c.p131a.PackHandle
     /* renamed from: a */
-    public void mo3756a(InputStream inputStream, boolean z) throws IOException {
+    public void initTskPackHandle(InputStream inputStream, boolean loadStream) throws IOException {
         if (inputStream == null || !inputStream.markSupported()) {
             throw new IOException("INPUT STREAM NOT SUPPORTED");
         }
         inputStream.mark(inputStream.available());
-        if (!z && this.skinResourceMaps.size() > 0) {
+        if (!loadStream && this.skinResourceMaps.size() > 0) {
             this.stream = inputStream;
             return;
         }

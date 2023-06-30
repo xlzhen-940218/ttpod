@@ -215,7 +215,7 @@ public abstract class BaseCategoryFragment extends BaseFragment implements Adapt
             if (m4748a != null) {
                 imageView.setImageBitmap(m4748a);
             } else {
-                ImageCacheUtils.m4752a(imageView, m3860e, this.f5543f, this.f5544g, (int) R.drawable.img_skin_default_thumbnail);
+                ImageCacheUtils.displayImage(imageView, m3860e, this.f5543f, this.f5544g, (int) R.drawable.img_skin_default_thumbnail);
             }
         }
     }

@@ -79,7 +79,7 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         super.onThemeLoaded();
-        ThemeManager.m3269a(this.mRootView, ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.mRootView, "BackgroundMaskColor");
         ThemeManager.m3269a(this.mTaskListView, ThemeElement.COMMON_SEPARATOR);
         this.mStateView.onThemeLoaded();
         this.mTaskAdapter.notifyDataSetChanged();
@@ -88,7 +88,7 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
-        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.m8375a(getClass(), "updateTaskState", DownloadTaskInfo.class));
+        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.loadMethod(getClass(), "updateTaskState", DownloadTaskInfo.class));
     }
 
     @Override // android.support.v4.app.Fragment

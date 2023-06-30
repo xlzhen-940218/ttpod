@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
 
@@ -29,7 +29,7 @@ public class SPanel extends SBase implements Container<SComponent>, HasEvent {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.Container
     /* renamed from: a  reason: avoid collision after fix types in other method */
-    public void mo3791a(SComponent[] sComponentArr) {
+    public void setSkinViews(SComponent[] sComponentArr) {
         this.f6468c = sComponentArr;
     }
 
@@ -40,7 +40,7 @@ public class SPanel extends SBase implements Container<SComponent>, HasEvent {
 
     @Override // com.sds.android.ttpod.framework.modules.skin.p129b.HasEvent
     /* renamed from: a */
-    public void mo3792a(SEvent[] sEventArr) {
+    public void setSEvents(SEvent[] sEventArr) {
         this.f6469d = sEventArr;
     }
 }

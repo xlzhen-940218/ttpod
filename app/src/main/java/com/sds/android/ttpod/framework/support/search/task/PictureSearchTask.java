@@ -58,7 +58,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             return;
         }
         ResultData.Item[] m2179c = list.get(0).getLyricArray();
-        int length = (!PlatformUtils.m4656a() || m2179c == null) ? 1 : m2179c.length;
+        int length = (!PlatformUtils.sdkThan14() || m2179c == null) ? 1 : m2179c.length;
         if (m2179c == null) {
             length = 0;
         }

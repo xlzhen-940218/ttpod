@@ -42,19 +42,19 @@ public class WebJsInterface {
     @JavascriptInterface
     public void pause() {
         LogUtils.info(TAG, "pause from javascript");
-        CommandCenter.getInstance().m4596b(new Command(CommandID.PAUSE, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PAUSE, new Object[0]));
     }
 
     @JavascriptInterface
     public void resume() {
         LogUtils.info(TAG, "pause from javascript");
-        CommandCenter.getInstance().m4596b(new Command(CommandID.RESUME, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.RESUME, new Object[0]));
     }
 
     @JavascriptInterface
     public void stop() {
         LogUtils.info(TAG, "stop from javascript");
-        CommandCenter.getInstance().m4596b(new Command(CommandID.STOP, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.STOP, new Object[0]));
     }
 
     @JavascriptInterface
@@ -65,13 +65,13 @@ public class WebJsInterface {
     @JavascriptInterface
     public void next() {
         LogUtils.info(TAG, "next from javascript");
-        CommandCenter.getInstance().m4596b(new Command(CommandID.NEXT, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.NEXT, new Object[0]));
     }
 
     @JavascriptInterface
     public void previous() {
         LogUtils.info(TAG, "previous from javascript");
-        CommandCenter.getInstance().m4596b(new Command(CommandID.PREVIOUS, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PREVIOUS, new Object[0]));
     }
 
     @JavascriptInterface

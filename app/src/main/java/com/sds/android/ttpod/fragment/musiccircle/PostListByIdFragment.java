@@ -97,7 +97,7 @@ public abstract class PostListByIdFragment extends PostListFragment {
     @Override // com.sds.android.ttpod.fragment.musiccircle.PostListFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_POST_INFO_LIST_BY_ID, ReflectUtils.m8375a(getClass(), "updatePostInfoList", PostResult.class, String.class));
+        map.put(CommandID.UPDATE_POST_INFO_LIST_BY_ID, ReflectUtils.loadMethod(getClass(), "updatePostInfoList", PostResult.class, String.class));
     }
 
     public final void updatePostInfoList(PostResult postResult, String str) {

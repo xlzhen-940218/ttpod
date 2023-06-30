@@ -14,8 +14,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.support.download.DownloadTaskInfo;
 import com.sds.android.ttpod.utils.ThemeUtils;
 import java.lang.reflect.Method;
@@ -64,7 +62,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
     @Override // com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_DOWNLOAD_TASK_LIST_RELOADED, ReflectUtils.m8375a(getClass(), "reloadDownloadTaskList", new Class[0]));
+        map.put(CommandID.UPDATE_DOWNLOAD_TASK_LIST_RELOADED, ReflectUtils.loadMethod(getClass(), "reloadDownloadTaskList", new Class[0]));
     }
 
     @Override // com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment, com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
@@ -198,7 +196,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
     public void startAll() {
         for (DownloadTaskInfo downloadTaskInfo : this.mTasks) {
             if (downloadTaskInfo.getState().intValue() == 3 || downloadTaskInfo.getState().intValue() == 5) {
-                CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
             }
         }
     }
@@ -208,7 +206,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
         this.mHandler.removeMessages(0);
         for (DownloadTaskInfo downloadTaskInfo : this.mTasks) {
             if (downloadTaskInfo.getState().intValue() == 0 || downloadTaskInfo.getState().intValue() == 2 || downloadTaskInfo.getState().intValue() == 1) {
-                CommandCenter.getInstance().m4596b(new Command(CommandID.CANCEL_DOWNLOAD_TASK, downloadTaskInfo));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.CANCEL_DOWNLOAD_TASK, downloadTaskInfo));
             }
         }
     }
@@ -217,7 +215,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
     public void deleteAllUncompleted() {
         Iterator<DownloadTaskInfo> it = this.mTasks.iterator();
         while (it.hasNext()) {
-            CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_DOWNLOAD_TASK, it.next(), true));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_DOWNLOAD_TASK, it.next(), true));
         }
         this.mDownloadingTaskIds.clear();
         this.mHandler.removeMessages(0);

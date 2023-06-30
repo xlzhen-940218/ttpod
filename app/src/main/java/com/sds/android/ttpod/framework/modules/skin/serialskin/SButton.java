@@ -1,4 +1,4 @@
-package com.sds.android.ttpod.framework.modules.skin.p129b;
+package com.sds.android.ttpod.framework.modules.skin.serialskin;
 
 import android.content.Context;
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
@@ -24,7 +24,7 @@ public class SButton extends SImage<TTPodButton> {
     /* renamed from: a */
     public void setBackground(Context context, TTPodButton tTPodButton, SkinCache skinCache) {
         super.setBackground(context,tTPodButton, skinCache);
-        tTPodButton.setImageDrawable(skinCache.m3596a(context.getResources(), this.icon));
+        tTPodButton.setImageDrawable(skinCache.getDrawable(context.getResources(), this.icon));
         tTPodButton.setScaleType(getScaleType(this.scaleType));
     }
 }

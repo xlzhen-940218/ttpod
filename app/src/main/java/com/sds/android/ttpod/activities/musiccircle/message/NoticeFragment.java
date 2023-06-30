@@ -147,8 +147,8 @@ public class NoticeFragment extends SlidingClosableFragment implements AdapterVi
     @Override // com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_NEW_FOLLOWER_NOTICE_LIST, ReflectUtils.m8375a(getClass(), "updateNewFollowerNotices", NewFollowersListResult.class, String.class));
-        map.put(CommandID.UPDATE_REPOST_NOTICE_LIST, ReflectUtils.m8375a(getClass(), "updateRepostNotices", NoticeListResult.class, String.class));
+        map.put(CommandID.UPDATE_NEW_FOLLOWER_NOTICE_LIST, ReflectUtils.loadMethod(getClass(), "updateNewFollowerNotices", NewFollowersListResult.class, String.class));
+        map.put(CommandID.UPDATE_REPOST_NOTICE_LIST, ReflectUtils.loadMethod(getClass(), "updateRepostNotices", NoticeListResult.class, String.class));
     }
 
     public void updateRepostNotices(NoticeListResult noticeListResult, String str) {

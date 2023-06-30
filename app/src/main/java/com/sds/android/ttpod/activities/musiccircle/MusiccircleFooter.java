@@ -38,7 +38,7 @@ public class MusiccircleFooter implements ThemeManager.InterfaceC2019b {
     @Override // com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         ThemeManager.m3269a(this.f2774b, ThemeElement.COMMON_CONTENT_TEXT);
-        ThemeManager.m3269a(this.f2773a.findViewById(R.id.layout_root), ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(this.f2773a.findViewById(R.id.layout_root), "BackgroundMaskColor");
     }
 
     /* renamed from: a */

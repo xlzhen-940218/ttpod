@@ -27,8 +27,8 @@ public class VersionCompactModule extends BaseModule {
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     protected void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
-        map.put(CommandID.CHECK_VERSION_COMPACT, ReflectUtils.m8375a(getClass(), "checkVersionCompact", new Class[0]));
-        map.put(CommandID.DO_VERSION_COMPACT, ReflectUtils.m8375a(getClass(), "doVersionCompact", new Class[0]));
+        map.put(CommandID.CHECK_VERSION_COMPACT, ReflectUtils.loadMethod(getClass(), "checkVersionCompact", new Class[0]));
+        map.put(CommandID.DO_VERSION_COMPACT, ReflectUtils.loadMethod(getClass(), "doVersionCompact", new Class[0]));
     }
 
     public Boolean checkVersionCompact() {

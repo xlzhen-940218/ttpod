@@ -67,8 +67,8 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_RANK_MUSIC_LIST, ReflectUtils.m8375a(getClass(), "updateRankDetailResult", MediaItemListResult.class, String.class));
-        map.put(CommandID.UPDATE_MUSIC_RANKS, ReflectUtils.m8375a(getClass(), "updateMusicRanks", MusicRanksResult.class, String.class));
+        map.put(CommandID.UPDATE_RANK_MUSIC_LIST, ReflectUtils.loadMethod(getClass(), "updateRankDetailResult", MediaItemListResult.class, String.class));
+        map.put(CommandID.UPDATE_MUSIC_RANKS, ReflectUtils.loadMethod(getClass(), "updateMusicRanks", MusicRanksResult.class, String.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment
@@ -174,7 +174,7 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
                     RankDetailFragment.this.onPlayButtonClick();
                 }
             });
-            this.mOnlineMediaListFragment.getListView().addHeaderView(this.mRankDetailHeader.m5582c());
+            this.mOnlineMediaListFragment.getListView().addHeaderView(this.mRankDetailHeader.getLayout());
         }
         setTitle(this.mMusicRank.getTitle());
         this.mRankDetailHeader.mo5586a(this.mMusicRank);
@@ -209,78 +209,78 @@ public class RankDetailFragment extends ImageHeaderMusicListFragment {
     public static class C1561b {
 
         /* renamed from: a */
-        protected ImageView f5227a;
+        protected ImageView headerPictureImageView;
 
         /* renamed from: b */
-        protected TextView f5228b;
+        protected TextView headerDateTextView;
 
         /* renamed from: c */
-        protected TextView f5229c;
+        protected TextView headerSummaryTextView;
 
         /* renamed from: d */
-        private ImageView f5230d;
+        private ImageView headerPlayImageView;
 
         /* renamed from: e */
-        private View f5231e;
+        private View headerImageLayout;
 
         public C1561b() {
         }
 
         public C1561b(Context context) {
-            this.f5231e = View.inflate(context, R.layout.find_song_list_image_header, null);
-            this.f5228b = (TextView) this.f5231e.findViewById(R.id.find_song_list_image_header_date);
-            this.f5227a = (ImageView) this.f5231e.findViewById(R.id.find_song_list_image_header_pic);
+            this.headerImageLayout = View.inflate(context, R.layout.find_song_list_image_header, null);
+            this.headerDateTextView = (TextView) this.headerImageLayout.findViewById(R.id.find_song_list_image_header_date);
+            this.headerPictureImageView = (ImageView) this.headerImageLayout.findViewById(R.id.find_song_list_image_header_pic);
             try {
-                this.f5227a.setImageResource(R.drawable.img_background_ttpod_music_large_logo);
+                this.headerPictureImageView.setImageResource(R.drawable.img_background_ttpod_music_large_logo);
             } catch (Resources.NotFoundException e) {
                 e.printStackTrace();
             } catch (OutOfMemoryError e2) {
                 e2.printStackTrace();
             }
-            ((RectangleImageView) this.f5227a).setAspectRatio(1.88f);
-            this.f5230d = (ImageView) this.f5231e.findViewById(R.id.find_song_list_image_header_play);
-            this.f5229c = (TextView) this.f5231e.findViewById(R.id.find_song_list_image_header_summary);
+            ((RectangleImageView) this.headerPictureImageView).setAspectRatio(1.88f);
+            this.headerPlayImageView = (ImageView) this.headerImageLayout.findViewById(R.id.find_song_list_image_header_play);
+            this.headerSummaryTextView = (TextView) this.headerImageLayout.findViewById(R.id.find_song_list_image_header_summary);
         }
 
         /* renamed from: c */
-        public View m5582c() {
-            return this.f5231e;
+        public View getLayout() {
+            return this.headerImageLayout;
         }
 
         /* renamed from: a */
         public void mo5586a(MusicRank musicRank) {
-            this.f5229c.setText(musicRank.getDetail());
-            this.f5228b.setText(musicRank.getTime());
-            ImageCacheUtils.m4752a(this.f5227a, StringUtils.isEmpty(musicRank.getBigPicUrl()) ? musicRank.getPicUrl() : musicRank.getBigPicUrl(), DisplayUtils.getWidth(), DisplayUtils.getHeight() / 2, (int) R.drawable.img_background_ttpod_music_large_logo);
+            this.headerSummaryTextView.setText(musicRank.getDetail());
+            this.headerDateTextView.setText(musicRank.getTime());
+            ImageCacheUtils.displayImage(this.headerPictureImageView, StringUtils.isEmpty(musicRank.getBigPicUrl()) ? musicRank.getPicUrl() : musicRank.getBigPicUrl(), DisplayUtils.getWidth(), DisplayUtils.getHeight() / 2, (int) R.drawable.img_background_ttpod_music_large_logo);
         }
 
         /* renamed from: a */
         public void mo5585a(boolean z) {
-            this.f5230d.clearAnimation();
-            this.f5230d.setEnabled(true);
-            this.f5230d.setSelected(z);
+            this.headerPlayImageView.clearAnimation();
+            this.headerPlayImageView.setEnabled(true);
+            this.headerPlayImageView.setSelected(z);
         }
 
         /* renamed from: a */
         public void mo5587a(View.OnClickListener onClickListener) {
-            this.f5230d.setOnClickListener(onClickListener);
+            this.headerPlayImageView.setOnClickListener(onClickListener);
         }
 
         /* renamed from: b */
         public void mo5583b(boolean z) {
-            this.f5230d.clearAnimation();
-            this.f5230d.setSelected(z);
+            this.headerPlayImageView.clearAnimation();
+            this.headerPlayImageView.setSelected(z);
         }
 
         /* renamed from: a */
         public void mo5588a() {
-            ThemeManager.m3269a(this.f5231e, ThemeElement.TILE_BACKGROUND);
-            ThemeManager.m3269a(this.f5229c, ThemeElement.SONG_LIST_ITEM_TEXT);
+            ThemeManager.m3269a(this.headerImageLayout, ThemeElement.TILE_BACKGROUND);
+            ThemeManager.m3269a(this.headerSummaryTextView, ThemeElement.SONG_LIST_ITEM_TEXT);
         }
 
         /* renamed from: b */
         public void mo5584b() {
-            ViewUtils.m4639a(this.f5231e);
+            ViewUtils.m4639a(this.headerImageLayout);
         }
     }
 

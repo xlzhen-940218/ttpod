@@ -16,7 +16,7 @@ public class PlayingFragment extends MediaListFragment {
     @Override // com.sds.android.ttpod.fragment.main.list.MediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.PLAY_GROUP_CHANGED, ReflectUtils.m8375a(getClass(), "playGroupChanged", new Class[0]));
+        map.put(CommandID.PLAY_GROUP_CHANGED, ReflectUtils.loadMethod(getClass(), "playGroupChanged", new Class[0]));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.list.MediaListFragment, com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment

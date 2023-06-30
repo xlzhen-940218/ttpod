@@ -702,7 +702,7 @@ public class EnvironmentUtils {
             BufferedReader bufferedReader = null;
             Exception e;
             String str;
-            String str2 = FeedbackItem.STATUS_WAITING;
+            String str2 = "0";
             Throwable th;
             BufferedReader bufferedReader2 = null;
             try {
@@ -710,7 +710,7 @@ public class EnvironmentUtils {
             } catch (Exception e2) {
                 bufferedReader = null;
                 e = e2;
-                str = FeedbackItem.STATUS_WAITING;
+                str = "0";
             } catch (Throwable th1) {
                 th = th1;
                 if (bufferedReader2 != null) {
@@ -719,13 +719,13 @@ public class EnvironmentUtils {
             }
             try {
                 try {
-                    str = m8514a(FeedbackItem.STATUS_WAITING, bufferedReader.readLine());
+                    str = m8514a("0", bufferedReader.readLine());
                 } catch (Exception e3) {
                     e = e3;
-                    str = FeedbackItem.STATUS_WAITING;
+                    str = "0";
                 }
                 try {
-                    str2 = m8514a(FeedbackItem.STATUS_WAITING, bufferedReader.readLine());
+                    str2 = m8514a("0", bufferedReader.readLine());
                     if (bufferedReader != null) {
                         try {
                             bufferedReader.close();
@@ -826,14 +826,14 @@ public class EnvironmentUtils {
                     } catch (Exception e5) {
                         bufferedReader = bufferedReader2;
                         exc = e5;
-                        str = FeedbackItem.STATUS_WAITING;
+                        str = "0";
                     }
                 } catch (Throwable th2) {
                     th = th2;
                 }
             } catch (Exception e6) {
                 exc = e6;
-                str = FeedbackItem.STATUS_WAITING;
+                str = "0";
             }
             build = str;
         }

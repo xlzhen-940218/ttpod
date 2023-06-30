@@ -234,10 +234,10 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.UPDATE_POST_DETAIL_BY_ID, ReflectUtils.m8375a(cls, "updatePostDetail", PostResult.class, String.class));
-        map.put(CommandID.UPDATE_POST_SONG_BY_IDS, ReflectUtils.m8375a(cls, "updatePostSong", MediaItemListResult.class, String.class));
-        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.m8375a(cls, "playMediaChanged", new Class[0]));
-        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.m8375a(cls, "updatePlayStatus", PlayStatus.class));
+        map.put(CommandID.UPDATE_POST_DETAIL_BY_ID, ReflectUtils.loadMethod(cls, "updatePostDetail", PostResult.class, String.class));
+        map.put(CommandID.UPDATE_POST_SONG_BY_IDS, ReflectUtils.loadMethod(cls, "updatePostSong", MediaItemListResult.class, String.class));
+        map.put(CommandID.PLAY_MEDIA_CHANGED, ReflectUtils.loadMethod(cls, "playMediaChanged", new Class[0]));
+        map.put(CommandID.UPDATE_PLAY_STATUS, ReflectUtils.loadMethod(cls, "updatePlayStatus", PlayStatus.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ImageHeaderMusicListFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b

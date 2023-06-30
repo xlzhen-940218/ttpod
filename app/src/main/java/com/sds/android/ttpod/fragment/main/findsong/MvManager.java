@@ -106,7 +106,7 @@ public class MvManager {
         String m5556b = m5556b(mediaItem);
         DownloadTaskInfo m4760a = DownloadUtils.m4760a(m5556b, TTPodConfig.getMvPath() + File.separator + (mediaItem.getArtist() + " - " + mediaItem.getTitle()) + ("." + FileUtils.getSuffix(FileUtils.getFilename(m5556b))), 0L, mediaItem.getTitle(), DownloadTaskInfo.TYPE_VIDEO, true, "mv_channel");
         m4760a.setTag(m5556b);
-        CommandCenter.getInstance().m4596b(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));
     }
 
     /* renamed from: b */

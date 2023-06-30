@@ -69,8 +69,8 @@ public class EntryActivity extends BaseActivity {
     @Override // com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_SPLASH, ReflectUtils.m8375a(EntryActivity.class, "updateSplash", Bitmap.class, Bitmap.class, String.class, Boolean.class));
-        map.put(CommandID.FINISH_SPLASH, ReflectUtils.m8375a(EntryActivity.class, "finishSplash", new Class[0]));
+        map.put(CommandID.UPDATE_SPLASH, ReflectUtils.loadMethod(EntryActivity.class, "updateSplash", Bitmap.class, Bitmap.class, String.class, Boolean.class));
+        map.put(CommandID.FINISH_SPLASH, ReflectUtils.loadMethod(EntryActivity.class, "finishSplash", new Class[0]));
     }
 
     @Override // android.app.Activity, android.view.Window.Callback
@@ -79,7 +79,7 @@ public class EntryActivity extends BaseActivity {
         LogUtils.error("start", "EntryActivity onWindowFocusChanged splash loaded test");
         if (z && !this.mSentLoadSplashCommand && !TTPodConfig.getFinishSplash()) {
             this.mSentLoadSplashCommand = true;
-            CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_SPLASH, Integer.valueOf((int) R.drawable.img_splash), Integer.valueOf((int) R.string.readme)));
+            CommandCenter.getInstance().postInvokeResult(new Command(CommandID.LOAD_SPLASH, Integer.valueOf((int) R.drawable.img_splash), Integer.valueOf((int) R.string.readme)));
         }
     }
 
@@ -140,7 +140,7 @@ public class EntryActivity extends BaseActivity {
             Preferences.m2844p(EnvironmentUtils.AppConfig.getAppVersion());
             Cache.getInstance().m3142v();
         }
-        CommandCenter.getInstance().m4596b(new Command(CommandID.LOAD_BACKGROUND, new Object[0]));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.LOAD_BACKGROUND, new Object[0]));
         new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.EntryActivity.3
             @Override // java.lang.Runnable
             public void run() {

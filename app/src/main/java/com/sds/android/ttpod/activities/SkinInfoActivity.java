@@ -22,7 +22,7 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.SkinCache;
-import com.sds.android.ttpod.framework.modules.skin.p129b.SSkinInfo;
+import com.sds.android.ttpod.framework.modules.skin.serialskin.SSkinInfo;
 import com.sds.android.ttpod.framework.p106a.SkinUtils;
 import java.io.File;
 import java.lang.reflect.Method;
@@ -89,17 +89,17 @@ public class SkinInfoActivity extends ActionBarActivity {
     @Override // com.sds.android.ttpod.activities.base.ThemeActivity, com.sds.android.ttpod.framework.base.BaseActivity
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.LOAD_SKIN_WITH_PATH_FINISHED, ReflectUtils.m8375a(getClass(), "onLoadSkinFinished", SkinCache.class));
+        map.put(CommandID.LOAD_SKIN_WITH_PATH_FINISHED, ReflectUtils.loadMethod(getClass(), "onLoadSkinFinished", SkinCache.class));
     }
 
     public void onLoadSkinFinished(SkinCache skinCache) {
         this.mSkinInfo = skinCache.m3582f();
         if (this.mSkinInfo != null) {
-            this.mName.setText(this.mSkinInfo.m3778d());
-            this.mAuthor.setText(getLabelText(R.string.author, this.mSkinInfo.m3781a()));
-            this.mVersion.setText(getLabelText(R.string.version, this.mSkinInfo.m3780b()));
-            this.mEMail.setText(getLabelTextSpanable(R.string.email, this.mSkinInfo.m3777e()));
-            this.mWebPage.setText(getLabelTextSpanable(R.string.website, this.mSkinInfo.m3776f()));
+            this.mName.setText(this.mSkinInfo.getName());
+            this.mAuthor.setText(getLabelText(R.string.author, this.mSkinInfo.getAuthor()));
+            this.mVersion.setText(getLabelText(R.string.version, this.mSkinInfo.getVersion()));
+            this.mEMail.setText(getLabelTextSpanable(R.string.email, this.mSkinInfo.getEmail()));
+            this.mWebPage.setText(getLabelTextSpanable(R.string.website, this.mSkinInfo.getWebPage()));
             this.mApplyButton.setClickable(true);
         }
     }

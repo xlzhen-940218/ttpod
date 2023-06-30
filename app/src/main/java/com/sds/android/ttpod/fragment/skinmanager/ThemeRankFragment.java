@@ -26,13 +26,13 @@ public class ThemeRankFragment extends ActionBarThemeListFragment {
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
         Class<?> cls = getClass();
-        map.put(CommandID.FINISH_UPDATE_SKIN_RANK_LIST, ReflectUtils.m8375a(cls, "updateSkinRankResult", Boolean.class));
-        map.put(CommandID.UPDATE_SKIN_RANK_LIST, ReflectUtils.m8375a(cls, "updateDataListForAdapter", ArrayList.class));
+        map.put(CommandID.FINISH_UPDATE_SKIN_RANK_LIST, ReflectUtils.loadMethod(cls, "updateSkinRankResult", Boolean.class));
+        map.put(CommandID.UPDATE_SKIN_RANK_LIST, ReflectUtils.loadMethod(cls, "updateDataListForAdapter", ArrayList.class));
     }
 
     public void updateSkinRankResult(Boolean bool) {
         this.mCacheMode = false;
-        CommandCenter.getInstance().m4596b(new Command(CommandID.REQUEST_SKIN_RANK_LIST, 0));
+        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.REQUEST_SKIN_RANK_LIST, 0));
     }
 
     public void updateDataListForAdapter(ArrayList<SkinItem> arrayList) {

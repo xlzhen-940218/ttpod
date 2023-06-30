@@ -30,7 +30,7 @@ public class AccessTokenUtil {
         try {
             SharedPreferences sharedPreferences = context.getSharedPreferences(str, 0);
             String string = sharedPreferences.getString("access_token", "");
-            String string2 = sharedPreferences.getString("expires_in", FeedbackItem.STATUS_WAITING);
+            String string2 = sharedPreferences.getString("expires_in", "0");
             String string3 = sharedPreferences.getString("openid", "");
             bundle.putString("access_token", string);
             bundle.putString("expires_in", string2);

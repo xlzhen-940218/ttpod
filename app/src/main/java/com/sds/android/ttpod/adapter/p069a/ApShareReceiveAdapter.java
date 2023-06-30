@@ -85,8 +85,8 @@ public class ApShareReceiveAdapter extends ApShareBaseAdapter implements ShareIt
                     public void mo2038a(MessageDialog messageDialog2) {
                         transmittableMediaItem.m5768a(TransmittableMediaItem.EnumC1381a.TRANSMIT_IDLE);
                         FileUtils.exists(transmittableMediaItem.m5772a().getLocalDataSource());
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, transmittableMediaItem.m5772a(), true));
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, transmittableMediaItem.m5772a(), true));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, transmittableMediaItem.m5772a(), true));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_ALL_LOCAL, transmittableMediaItem.m5772a(), true));
                         transmittableMediaItem.m5771a(0);
                         ApShareReceiveAdapter.this.notifyDataSetChanged();
                     }

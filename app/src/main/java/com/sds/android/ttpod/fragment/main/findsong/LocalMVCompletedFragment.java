@@ -93,14 +93,14 @@ public class LocalMVCompletedFragment extends MVListFragment {
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ListLoadingFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment
     public void onLoadCommandMap(Map<CommandID, Method> map) throws NoSuchMethodException {
         super.onLoadCommandMap(map);
-        map.put(CommandID.UPDATE_MV_THUMBNAIL, ReflectUtils.m8375a(getClass(), "updateMVThumbnail", String.class, Bitmap.class));
-        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.m8375a(getClass(), "updateTaskState", DownloadTaskInfo.class));
+        map.put(CommandID.UPDATE_MV_THUMBNAIL, ReflectUtils.loadMethod(getClass(), "updateMVThumbnail", String.class, Bitmap.class));
+        map.put(CommandID.UPDATE_DOWNLOAD_TASK_STATE, ReflectUtils.loadMethod(getClass(), "updateTaskState", DownloadTaskInfo.class));
     }
 
     @Override // com.sds.android.ttpod.fragment.main.findsong.base.ListLoadingFragment, com.sds.android.ttpod.fragment.base.SlidingClosableFragment, com.sds.android.ttpod.fragment.base.ActionBarFragment, com.sds.android.ttpod.framework.base.BaseFragment, com.sds.android.ttpod.framework.modules.theme.ThemeManager.InterfaceC2019b
     public void onThemeLoaded() {
         ThemeManager.m3269a(this.mListView, ThemeElement.COMMON_SEPARATOR);
-        ThemeManager.m3269a(getRootView(), ThemeElement.BACKGROUND_MASK);
+        ThemeManager.m3269a(getRootView(), "BackgroundMaskColor");
         mStateView.onThemeLoaded();
         this.mListAdapter.notifyDataSetChanged();
     }
@@ -294,7 +294,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
                             m5533e.setImageDrawable(new BitmapDrawable(bitmap));
                         }
                     } else {
-                        CommandCenter.getInstance().m4596b(new Command(CommandID.GET_MV_THUMBNAIL, str));
+                        CommandCenter.getInstance().postInvokeResult(new Command(CommandID.GET_MV_THUMBNAIL, str));
                     }
                 }
                 ThemeManager.m3269a(c1594a.m5537c(), ThemeElement.SONG_LIST_ITEM_TEXT);

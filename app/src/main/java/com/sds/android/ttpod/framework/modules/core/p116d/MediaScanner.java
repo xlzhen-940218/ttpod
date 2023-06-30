@@ -422,7 +422,7 @@ public final class MediaScanner {
                 MediaScanner.this.scanCallback.onScanFinished();
             }
             if (StringUtils.equals(Preferences.getLocalGroupId(), this.f5991d)) {
-                CommandCenter.getInstance().m4596b(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.SYNC_PLAYING_GROUP, new Object[0]));
             }
         }
 
