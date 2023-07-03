@@ -320,10 +320,10 @@ public class StartAction {
                 }
             });
             if (!StringUtils.isEmpty(m8226a3)) {
-                messageDialog.m7258a(m8226a3);
+                messageDialog.setOKButtonText(m8226a3);
             }
             if (!StringUtils.isEmpty(m8226a4)) {
-                messageDialog.m7252b(m8226a4);
+                messageDialog.setCancelButtonText(m8226a4);
             }
             messageDialog.setTitle(m8226a);
             messageDialog.show();

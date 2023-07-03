@@ -54,7 +54,7 @@ public final class Task implements Runnable {
     /* loaded from: classes.dex */
     public static abstract class TaskCallback {
         /* renamed from: a */
-        public void mo2410a(TaskInfo taskInfo) {
+        public void connecting(TaskInfo taskInfo) {
         }
 
         /* renamed from: b */
@@ -84,7 +84,7 @@ public final class Task implements Runnable {
                         switch (message.what) {
                             case 0:
                                 Task.this.taskInfo.setState(1);
-                                Task.this.taskCallback.mo2410a(Task.this.taskInfo);
+                                Task.this.taskCallback.connecting(Task.this.taskInfo);
                                 break;
                             case 1:
                                 Task.this.taskInfo.setFileLength(Integer.valueOf(message.arg1));
@@ -132,12 +132,12 @@ public final class Task implements Runnable {
     }
 
     /* renamed from: a */
-    public TaskInfo m8737a() {
+    public TaskInfo getTaskInfo() {
         return this.taskInfo;
     }
 
     /* renamed from: b */
-    public void m8728b() {
+    public void close() {
         synchronized (this) {
             this.taskInfo.setState(3);
             this.taskInfo.setAttachTask(null);
@@ -420,11 +420,11 @@ public final class Task implements Runnable {
 
     public boolean equals(Object obj) {
         if (obj != null && getClass() == obj.getClass()) {
-            if (this.taskInfo == ((Task) obj).m8737a()) {
+            if (this.taskInfo == ((Task) obj).getTaskInfo()) {
                 return true;
             }
             if (this.taskInfo != null) {
-                return this.taskInfo.equals(((Task) obj).m8737a());
+                return this.taskInfo.equals(((Task) obj).getTaskInfo());
             }
         }
         return false;

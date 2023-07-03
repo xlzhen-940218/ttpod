@@ -2,6 +2,7 @@ package com.sds.android.sdk.core.p057a;
 
 import android.graphics.Bitmap;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.widget.ImageView;
 
@@ -24,7 +25,7 @@ public final class ImageLoadTask {
     private static final byte[] TEMP_DATA = new byte[8192];
 
     /* renamed from: a */
-    private Handler handler = new Handler() { // from class: com.sds.android.sdk.core.a.c.1
+    private Handler handler = new Handler(Looper.myLooper()) { // from class: com.sds.android.sdk.core.a.c.1
         @Override // android.os.Handler
         public void handleMessage(Message message) {
             if (message.what == 2) {

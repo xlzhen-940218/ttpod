@@ -13,7 +13,7 @@ public final class Manager {
     private static Manager instance = null;
 
     /* renamed from: b */
-    private List<ThreadPool> f2314b = new ArrayList();
+    private List<ThreadPool> threadPools = new ArrayList();
 
     /* renamed from: a */
     public static Manager getInstance() {
@@ -24,59 +24,59 @@ public final class Manager {
     }
 
     /* renamed from: c */
-    private ThreadPool m8738c(String str) {
-        for (int size = this.f2314b.size() - 1; size >= 0; size--) {
-            if (this.f2314b.get(size).m8578a().equals(str)) {
-                return this.f2314b.get(size);
+    private ThreadPool getThreadPoolByName(String threadPoolName) {
+        for (int size = this.threadPools.size() - 1; size >= 0; size--) {
+            if (this.threadPools.get(size).getThreadPoolName().equals(threadPoolName)) {
+                return this.threadPools.get(size);
             }
         }
         return null;
     }
 
     /* renamed from: a */
-    public void m8742a(String str, int i) {
-        if (StringUtils.isEmpty(str)) {
-            throw new IllegalStateException(str + " is empty!");
+    public void addThreadPool(String threadPoolName, int maxThreadCount) {
+        if (StringUtils.isEmpty(threadPoolName)) {
+            throw new IllegalStateException(threadPoolName + " is empty!");
         }
-        if (m8738c(str) != null) {
-            throw new IllegalStateException(str + " already existed!!");
+        if (getThreadPoolByName(threadPoolName) != null) {
+            throw new IllegalStateException(threadPoolName + " already existed!!");
         }
-        this.f2314b.add(new ThreadPool(str, i, 15L));
+        this.threadPools.add(new ThreadPool(threadPoolName, maxThreadCount, 15L));
     }
 
     /* renamed from: a */
-    public boolean m8743a(String str) {
+    public boolean threadPoolExist(String str) {
         if (StringUtils.isEmpty(str)) {
             throw new IllegalStateException(str + " is empty!");
         }
-        return m8738c(str) != null;
+        return getThreadPoolByName(str) != null;
     }
 
     /* renamed from: b */
-    public void m8739b(String str) {
-        this.f2314b.remove(m8738c(str));
+    public void removeThreadPoolByName(String threadPoolName) {
+        this.threadPools.remove(getThreadPoolByName(threadPoolName));
     }
 
     /* renamed from: a */
     public void start(String str, TaskInfo taskInfo, Task.TaskCallback abstractC0578a) {
-        ThreadPool threadPool = m8738c(str);
+        ThreadPool threadPool = getThreadPoolByName(str);
         if (threadPool == null) {
             throw new IllegalStateException(str + " not exist!");
         }
         Task task = new Task(taskInfo, abstractC0578a);
         taskInfo.setAttachTask(task);
-        threadPool.m8576a((Runnable) task);
+        threadPool.execute((Runnable) task);
     }
 
     /* renamed from: a */
-    public void m8741a(String str, TaskInfo taskInfo) {
-        ThreadPool m8738c = m8738c(str);
-        if (m8738c == null) {
+    public void closeTaskInfo(String str, TaskInfo taskInfo) {
+        ThreadPool threadPool = getThreadPoolByName(str);
+        if (threadPool == null) {
             throw new IllegalStateException(str + " not exist!");
         }
         if (taskInfo.getAttachTask() != null) {
-            taskInfo.getAttachTask().m8728b();
-            m8738c.m8574b(taskInfo.getAttachTask());
+            taskInfo.getAttachTask().close();
+            threadPool.remove(taskInfo.getAttachTask());
             return;
         }
         taskInfo.setState(3);

@@ -126,7 +126,7 @@ public abstract class RequestRest {
             return null;
         }
         BaseResultRest baseResultRest = new BaseResultRest();
-        baseResultRest.m8680b(c0586a.getStatusCode());
+        baseResultRest.setCode(c0586a.getStatusCode());
         baseResultRest.m8682a(c0586a.getHeader("Location"));
         try {
             try {
@@ -135,7 +135,7 @@ public abstract class RequestRest {
                 if (this.f2361i != null) {
                     m8347a = this.f2361i.m8662a(m8347a);
                 }
-                baseResultRest.m8679b(m8347a);
+                baseResultRest.setContent(m8347a);
                 try {
                     c0586a.getInputStream().close();
                     return baseResultRest;
@@ -167,7 +167,7 @@ public abstract class RequestRest {
     private BaseResultRest m8667b(HttpRequest.Response c0586a) {
         BaseResultRest m8672a = m8672a(c0586a);
         if (m8672a != null) {
-            this.age = (m8672a.m8675f() - HttpRequest.Response.getAge()) + System.currentTimeMillis();
+            this.age = (m8672a.getAge() - HttpRequest.Response.getAge()) + System.currentTimeMillis();
         } else {
             m8672a = new BaseResultRest(-1, "无法连接到服务器");
         }

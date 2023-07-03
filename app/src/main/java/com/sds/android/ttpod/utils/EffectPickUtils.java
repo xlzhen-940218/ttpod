@@ -19,7 +19,7 @@ import com.sds.android.ttpod.framework.modules.CommandID;
 public class EffectPickUtils {
     /* renamed from: a */
     public static void m8305a() {
-        Activity m4614c = ActivityManager.m4618a().m4614c();
+        Activity m4614c = ActivityManager.getInstance().getActiveActivity();
         final ViewGroup viewGroup = (ViewGroup) m4614c.findViewById(android.R.id.content);
         ImageView imageView = (ImageView) viewGroup.findViewWithTag(FavoriteUtils.class);
         if (imageView != null) {

@@ -57,8 +57,8 @@ public final class Cache {
     }
 
     /* renamed from: b */
-    public void m3196b() {
-        this.objectCache.m8777a();
+    public void evictAll() {
+        this.objectCache.evictAll();
     }
 
     /* renamed from: c */

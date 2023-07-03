@@ -32,10 +32,10 @@ public class TTPodApplication extends BaseApplication {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.framework.base.BaseApplication
     /* renamed from: a */
-    public void mo4637a() {
+    public void initMain() {
         registerReceiver(this.f2484a, new IntentFilter(MediaDBHelper.ACTION_UPDATE_DB_VERSION));
         try {
-            super.mo4637a();
+            super.initMain();
             PopupsUtils.m6749a(this);
             ImageCacheUtils.initUtil();
         } catch (Exception e) {
@@ -46,9 +46,9 @@ public class TTPodApplication extends BaseApplication {
     @Override // android.app.Application, android.content.ComponentCallbacks
     public void onLowMemory() {
         super.onLowMemory();
-        if (m4631g()) {
+        if (isMainPid()) {
             ImageCacheUtils.getImageCache().evictAll();
-            Cache.getInstance().m3196b();
+            Cache.getInstance().evictAll();
         }
     }
 

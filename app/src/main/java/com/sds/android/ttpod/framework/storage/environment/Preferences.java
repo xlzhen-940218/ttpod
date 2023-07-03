@@ -1,7 +1,7 @@
 package com.sds.android.ttpod.framework.storage.environment;
 
 import android.content.Context;
-import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
+
 import com.sds.android.cloudapi.ttpod.data.TTPodUser;
 import com.sds.android.cloudapi.ttpod.data.User;
 import com.sds.android.sdk.lib.util.DebugUtils;
@@ -30,7 +30,7 @@ public class Preferences {
     private static final String preferencesContent = EnvironmentContentProvider.preferencesContent;
 
     /* renamed from: b */
-    private static Context f6990b = null;
+    private static Context context = null;
 
     /* compiled from: Preferences.java */
     /* renamed from: com.sds.android.ttpod.framework.storage.environment.b$a */
@@ -41,9 +41,9 @@ public class Preferences {
     }
 
     /* renamed from: a */
-    public static void m3024a(Context context) {
-        f6990b = context;
-        AccessHelper.m3103a(context);
+    public static void setContext(Context context) {
+        Preferences.context = context;
+        AccessHelper.setContext(context);
     }
 
     /* renamed from: a */
@@ -1116,7 +1116,7 @@ public class Preferences {
 
     /* renamed from: a */
     public static void m3019a(PreferencesID preferencesID, InterfaceC2031a interfaceC2031a) {
-        m3023a(f6990b, preferencesID, interfaceC2031a);
+        m3023a(context, preferencesID, interfaceC2031a);
     }
 
     /* renamed from: a */
@@ -1128,7 +1128,7 @@ public class Preferences {
 
     /* renamed from: b */
     public static void m2938b(PreferencesID preferencesID, InterfaceC2031a interfaceC2031a) {
-        m2940b(f6990b, preferencesID, interfaceC2031a);
+        m2940b(context, preferencesID, interfaceC2031a);
     }
 
     /* renamed from: b */

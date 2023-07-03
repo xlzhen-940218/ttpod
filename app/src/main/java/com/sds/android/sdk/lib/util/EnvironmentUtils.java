@@ -97,16 +97,16 @@ public class EnvironmentUtils {
 
     /* renamed from: a */
     public static void m8525a(Context context) {
-        AppConfig.m8515a(context);
+        AppConfig.init(context);
         DeviceConfig.initConfig(context);
         UUIDConfig.init(context);
         packageName = context.getPackageName();
-        m8517g();
+        setDefaultExecutor();
     }
 
     @TargetApi(11)
     /* renamed from: g */
-    private static void m8517g() {
+    private static void setDefaultExecutor() {
         if (SDKVersionUtils.sdkThan11()) {
             try {
                 Method method = AsyncTask.class.getMethod("setDefaultExecutor", Executor.class);
@@ -618,20 +618,20 @@ public class EnvironmentUtils {
         private static Map<String, String> configMaps;
 
         /* renamed from: a */
-        public static void m8515a(Context context) {
-            m8511b(context);
-            m8507d(context);
-            m8509c(context);
+        public static void init(Context context) {
+            initConfig(context);
+            readAssetsBuild(context);
+            readAssetsChannels(context);
         }
 
         /* renamed from: b */
-        private static void m8511b(Context context) {
+        private static void initConfig(Context context) {
             InputStream inputStream = null;
             try {
                 try {
                     inputStream = context.getAssets().open("config");
                     configMaps = XmlUtils.m8332a(inputStream);
-                    m8500k();
+                    readConfigParams();
                     if (inputStream != null) {
                         try {
                             inputStream.close();
@@ -662,7 +662,7 @@ public class EnvironmentUtils {
         }
 
         /* renamed from: k */
-        private static void m8500k() {
+        private static void readConfigParams() {
             try {
                 appVersion = configMaps.get("app_version");
                 verificationEnable = stringToBool(configMaps.get("verification_enable"), false);
@@ -697,7 +697,7 @@ public class EnvironmentUtils {
         /*
             Code decompiled incorrectly, please refer to instructions dump.
         */
-        private static void m8509c(Context context) {
+        private static void readAssetsChannels(Context context) {
             BufferedReader bufferedReader = null;
             Exception e;
             String str;
@@ -772,7 +772,7 @@ public class EnvironmentUtils {
         }
 
         /* renamed from: d */
-        private static void m8507d(Context context) {
+        private static void readAssetsBuild(Context context) {
             Exception exc;
             String str = null;
             Throwable th;

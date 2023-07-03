@@ -9,12 +9,11 @@ import java.util.ArrayList;
 public class DataListResultRest<T> extends BaseResultRest {
 
     /* renamed from: a */
-    private ArrayList<T> f2350a = new ArrayList<>();
-
-    /* renamed from: a */
-    public ArrayList<T> mo8674a() {
-        this.f2350a = (ArrayList) JSONUtils.fromJson(m8676e(), new TypeToken<ArrayList<T>>() { // from class: com.sds.android.sdk.lib.b.c.1
+    public ArrayList<T> getData() {
+        // from class: com.sds.android.sdk.lib.b.c.1
+        /* renamed from: a */
+        ArrayList<T> data = JSONUtils.fromJson(getContent(), new TypeToken<ArrayList<T>>() { // from class: com.sds.android.sdk.lib.b.c.1
         }.getType());
-        return this.f2350a;
+        return data;
     }
 }

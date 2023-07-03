@@ -24,7 +24,7 @@ public class SDCardMountReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         if ("android.intent.action.MEDIA_MOUNTED".equals(action)) {
             LogUtils.error("SDCardMountReceiver", action);
-            TTPodConfig.m5307a(true);
+            TTPodConfig.initTTPodConfig(true);
         } else if ("android.intent.action.MEDIA_UNMOUNTED".equals(action)) {
             LogUtils.error("SDCardMountReceiver", action);
         }

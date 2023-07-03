@@ -30,7 +30,7 @@ public class ExceptionReporter {
     }
 
     /* renamed from: a */
-    public static void m8750a(final Context context, final String str) {
+    public static void setDefaultUncaughtExceptionHandler(final Context context, final String str) {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() { // from class: com.sds.android.sdk.core.b.b.1
             @Override // java.lang.Thread.UncaughtExceptionHandler
             public void uncaughtException(Thread thread, Throwable th) {

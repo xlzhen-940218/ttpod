@@ -140,7 +140,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         } catch (OutOfMemoryError e) {
             e.printStackTrace();
             ImageCacheUtils.getImageCache().evictAll();
-            Cache.getInstance().m3196b();
+            Cache.getInstance().evictAll();
             finish();
         }
     }

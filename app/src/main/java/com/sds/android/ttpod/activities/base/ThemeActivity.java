@@ -76,7 +76,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     public void updateAddDownloadTaskDatabase(DownloadTaskInfo downloadTaskInfo) {
-        if (ActivityManager.m4618a().m4611e(this) && isShowToast()) {
+        if (ActivityManager.getInstance().isActiveActivity(this) && isShowToast()) {
             PopupsUtils.m6721a(buildDownloadToastText(downloadTaskInfo, getString(R.string.start_download), null));
         }
     }
@@ -102,7 +102,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     public void updateAddDownloadTaskError(final DownloadTaskInfo downloadTaskInfo) {
-        if (ActivityManager.m4618a().m4611e(this)) {
+        if (ActivityManager.getInstance().isActiveActivity(this)) {
             if (DownloadTaskInfo.TYPE_AUDIO == downloadTaskInfo.getType()) {
                 PopupsUtils.m6721a("已经下载本首歌曲了");
                 return;
@@ -121,7 +121,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     public void updateAddDownloadTaskListError(final List<DownloadTaskInfo> list) {
-        if (ActivityManager.m4618a().m4611e(this)) {
+        if (ActivityManager.getInstance().isActiveActivity(this)) {
             MessageDialog messageDialog = new MessageDialog(this, (int) R.string.download_file_already_existed, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.base.ThemeActivity.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
@@ -135,7 +135,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     public void unicomFlowPopupDialog(UnicomFlowDialogType unicomFlowDialogType) {
-        if (ActivityManager.m4618a().m4611e(this)) {
+        if (ActivityManager.getInstance().isActiveActivity(this)) {
             //UnicomFlowManager.m7751d(this, unicomFlowDialogType);
         }
     }
@@ -174,7 +174,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     public void headSetPlugged() {
-        if (ActivityManager.m4618a().m4611e(this) && !Preferences.m2951at()) {
+        if (ActivityManager.getInstance().isActiveActivity(this) && !Preferences.m2951at()) {
             Preferences.m3069F(true);
             MessageDialog messageDialog = new MessageDialog(this, (int) R.string.headset_plug_tip, (int) R.string.iknown, (BaseDialog.OnClickListener<MessageDialog>) null);
             messageDialog.setTitle(R.string.headset_plugged);
@@ -184,7 +184,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     public void updateTaskState(DownloadTaskInfo downloadTaskInfo) {
-        if (ActivityManager.m4618a().m4611e(this) && downloadTaskInfo.getState().intValue() == 4 && downloadTaskInfo.getType() == DownloadTaskInfo.TYPE_APP) {
+        if (ActivityManager.getInstance().isActiveActivity(this) && downloadTaskInfo.getState().intValue() == 4 && downloadTaskInfo.getType() == DownloadTaskInfo.TYPE_APP) {
             Object tag = downloadTaskInfo.getTag();
             if (tag instanceof ThirdPartyApp) {
                 ThirdPartyApp thirdPartyApp = (ThirdPartyApp) tag;
@@ -199,7 +199,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     public void updateCommonUpgradeInfo(CommonResult commonResult) {
-        if (ActivityManager.m4618a().m4611e(this)) {
+        if (ActivityManager.getInstance().isActiveActivity(this)) {
             Integer num = (Integer) commonResult.m4583c();
             boolean z = this instanceof AboutActivity;
             VersionUpdateData versionUpdateData = (VersionUpdateData) commonResult.m4582d();
@@ -219,7 +219,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     public void updatePlayError(Integer num) {
-        if (ActivityManager.m4618a().m4611e(this) && checkExternalStorageExisted()) {
+        if (ActivityManager.getInstance().isActiveActivity(this) && checkExternalStorageExisted()) {
             int i = R.string.unknown_error;
             switch (num.intValue()) {
                 case PLAY_ERROR_CODE_5000 /* -5000 */:
@@ -263,7 +263,7 @@ public class ThemeActivity extends BaseActivity {
     }
 
     public void updateSmartUpgradeInfo(VersionUpdateData versionUpdateData) {
-        if (ActivityManager.m4618a().m4611e(this)) {
+        if (ActivityManager.getInstance().isActiveActivity(this)) {
             startVersionUpdateActivity(versionUpdateData, true);
         }
     }

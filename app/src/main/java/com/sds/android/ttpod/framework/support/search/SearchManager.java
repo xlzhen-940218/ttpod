@@ -123,7 +123,7 @@ public final class SearchManager {
         synchronized (SearchManager.class) {
             if (searchManager == null) {
                 searchManager = new SearchManager();
-                Manager.getInstance().m8742a("lyrics_picture_file_download", 3);
+                Manager.getInstance().addThreadPool("lyrics_picture_file_download", 3);
                 ImageSwitcherEngine.m4724d().m4722e();
                 searchManager.m2218d();
             }
@@ -134,7 +134,7 @@ public final class SearchManager {
     /* renamed from: b */
     public void m2222b() {
         ImageSwitcherEngine.m4724d().m4721f();
-        Manager.getInstance().m8739b("lyrics_picture_file_download");
+        Manager.getInstance().removeThreadPoolByName("lyrics_picture_file_download");
         BaseApplication.getApplication().unregisterReceiver(this.searchManagerReceiver);
         this.searchManagerReceiver = null;
         searchManager = null;

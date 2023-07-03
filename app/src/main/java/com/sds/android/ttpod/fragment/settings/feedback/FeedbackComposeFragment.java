@@ -52,7 +52,7 @@ public class FeedbackComposeFragment extends BaseFragment implements View.OnClic
     }
 
     public void onProposalFinished(BaseResultRest baseResultRest, FeedbackItem feedbackItem) {
-        if (baseResultRest.m8678c() == 201) {
+        if (baseResultRest.getCode() == 201) {
             PopupsUtils.m6760a((int) R.string.feedback_send_complete);
             this.mEtContent.setText("");
         } else {

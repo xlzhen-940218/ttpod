@@ -421,7 +421,7 @@ public class PopupsUtils {
             }
         };
         moreOptionalDialog.setTitle(charSequence);
-        moreOptionalDialog.m7255b(i);
+        moreOptionalDialog.setOKButtonText(i);
         moreOptionalDialog.show();
         return moreOptionalDialog;
     }
@@ -516,7 +516,7 @@ public class PopupsUtils {
                 }
             }
         }, (BaseDialog.OnClickListener<MultiChoiceListDialog>) null);
-        multiChoiceListDialog.m7255b(R.string.setting_dialog_button_clean);
+        multiChoiceListDialog.setOKButtonText(R.string.setting_dialog_button_clean);
         multiChoiceListDialog.setTitle(context.getString(R.string.clean_cache_title));
         multiChoiceListDialog.show();
     }

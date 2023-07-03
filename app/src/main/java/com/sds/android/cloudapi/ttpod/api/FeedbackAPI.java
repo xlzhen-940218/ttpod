@@ -70,10 +70,10 @@ public class FeedbackAPI {
     /* renamed from: a */
     public static FeedbackItem m8917a(String str) {
         BaseResultRest m8668b = new GetRequestRest(f2264b + "/" + str).m8668b();
-        if (!m8668b.m8677d()) {
+        if (!m8668b.isConnected()) {
             return null;
         }
-        return (FeedbackItem) JSONUtils.fromJson(m8668b.m8676e(),  FeedbackItem.class);
+        return (FeedbackItem) JSONUtils.fromJson(m8668b.getContent(),  FeedbackItem.class);
     }
 
     /* renamed from: a */

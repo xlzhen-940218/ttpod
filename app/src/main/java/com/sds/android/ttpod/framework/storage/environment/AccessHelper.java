@@ -83,7 +83,7 @@ public final class AccessHelper {
 
     /* JADX INFO: Access modifiers changed from: package-private */
     /* renamed from: a */
-    public static void m3103a(Context context) {
+    public static void setContext(Context context) {
         AccessHelper.context = context;
     }
 

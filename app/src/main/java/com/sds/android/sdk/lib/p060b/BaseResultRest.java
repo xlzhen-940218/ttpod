@@ -10,13 +10,13 @@ public class BaseResultRest<T> implements Serializable {
     private String f2346a = null;
 
     /* renamed from: b */
-    private int f2347b;
+    private int code;
 
     /* renamed from: c */
-    private String f2348c;
+    private String content;
 
     /* renamed from: d */
-    private int f2349d;
+    private int age;
 
     /* renamed from: b */
     public String m8681b() {
@@ -29,49 +29,49 @@ public class BaseResultRest<T> implements Serializable {
     }
 
     public String toString() {
-        return getClass().getSimpleName() + "{mCode=" + this.f2347b + ", mContent='" + this.f2348c + "'}";
+        return getClass().getSimpleName() + "{mCode=" + this.code + ", mContent='" + this.content + "'}";
     }
 
     public BaseResultRest() {
     }
 
-    public BaseResultRest(int i, String str) {
-        this.f2347b = i;
-        this.f2348c = str;
+    public BaseResultRest(int code, String content) {
+        this.code = code;
+        this.content = content;
     }
 
     /* renamed from: c */
-    public int m8678c() {
-        return this.f2347b;
+    public int getCode() {
+        return this.code;
     }
 
     /* renamed from: d */
-    public boolean m8677d() {
-        return mo8683a(this.f2347b);
+    public boolean isConnected() {
+        return isConnected(this.code);
     }
 
     /* renamed from: a */
-    protected boolean mo8683a(int i) {
-        return this.f2347b == 200;
+    protected boolean isConnected(int code) {
+        return this.code == 200;
     }
 
     /* renamed from: b */
-    public void m8680b(int i) {
-        this.f2347b = i;
+    public void setCode(int code) {
+        this.code = code;
     }
 
     /* renamed from: e */
-    public String m8676e() {
-        return this.f2348c == null ? "" : this.f2348c;
+    public String getContent() {
+        return this.content == null ? "" : this.content;
     }
 
     /* renamed from: b */
-    public void m8679b(String str) {
-        this.f2348c = str;
+    public void setContent(String str) {
+        this.content = str;
     }
 
     /* renamed from: f */
-    public int m8675f() {
-        return this.f2349d;
+    public int getAge() {
+        return this.age;
     }
 }

@@ -120,7 +120,7 @@ public final class ObjectCache {
     }
 
     /* renamed from: a */
-    public synchronized void m8777a() {
+    public synchronized void evictAll() {
         this.serialLruCaches.evictAll();
     }
 
@@ -391,9 +391,9 @@ public final class ObjectCache {
         }
 
         /* renamed from: a */
-        public void m8755a(String str, SerialCache serialCache) {
+        public void m8755a(String cacheKey, SerialCache serialCache) {
             this.reentrantLock.lock();
-            this.serialMapCaches.put(str, serialCache);
+            this.serialMapCaches.put(cacheKey, serialCache);
             this.reentrantLock.unlock();
         }
 

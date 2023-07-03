@@ -237,8 +237,8 @@ public class ShareSelectDialog extends BaseDialog {
             this.f7401d.m7414a(this.f7402e);
             this.f7401d.notifyDataSetChanged();
             setTitle(R.string.share_to);
-            m7263a(2, 8, 0, (OnClickListener) null);
-            m7263a(0, 8, 0, (OnClickListener) null);
+            setButton(2, 8, 0, (OnClickListener) null);
+            setButton(0, 8, 0, (OnClickListener) null);
             m2010e();
             mo2016c();
         }

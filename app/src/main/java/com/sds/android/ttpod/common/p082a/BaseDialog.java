@@ -19,10 +19,10 @@ public abstract class BaseDialog extends Dialog {
     private View mainDialog;
 
     /* renamed from: b */
-    private ViewGroup headerDialog;
+    private ViewGroup headerView;
 
     /* renamed from: c */
-    private ViewGroup notificationDialog;
+    private ViewGroup notificationView;
 
     /* renamed from: d */
     private ViewGroup bodyView;
@@ -109,13 +109,13 @@ public abstract class BaseDialog extends Dialog {
         setCancelable(true);
         setCanceledOnTouchOutside(true);
         this.mainDialog = View.inflate(getContext(), R.layout.dialog_main, null);
-        this.headerDialog = (ViewGroup) this.mainDialog.findViewById(R.id.dialog_header);
-        this.notificationDialog = (ViewGroup) this.mainDialog.findViewById(R.id.dialog_notification);
+        this.headerView = (ViewGroup) this.mainDialog.findViewById(R.id.dialog_header);
+        this.notificationView = (ViewGroup) this.mainDialog.findViewById(R.id.dialog_notification);
         this.bodyView = (ViewGroup) this.mainDialog.findViewById(R.id.dialog_body);
         this.footerView = (ViewGroup) this.mainDialog.findViewById(R.id.dialog_footer);
-        this.titleTextView = (TextView) this.headerDialog.findViewById(R.id.title);
-        this.headerButton = (Button) this.headerDialog.findViewById(R.id.header_button);
-        this.dividerButton = this.headerDialog.findViewById(R.id.header_button_divider);
+        this.titleTextView = (TextView) this.headerView.findViewById(R.id.title);
+        this.headerButton = (Button) this.headerView.findViewById(R.id.header_button);
+        this.dividerButton = this.headerView.findViewById(R.id.header_button_divider);
         Button leftButton = (Button) this.footerView.findViewById(R.id.button_left);
         Button rightButton = (Button) this.footerView.findViewById(R.id.button_right);
         this.middleButton = (Button) this.footerView.findViewById(R.id.button_middle);
@@ -129,7 +129,7 @@ public abstract class BaseDialog extends Dialog {
         setListener();
         View mo6810d = mo6810d();
         if (mo6810d != null) {
-            this.notificationDialog.addView(mo6810d);
+            this.notificationView.addView(mo6810d);
         }
         this.bodyView.addView(inflate(getContext()));
         setContentView(this.mainDialog);
@@ -186,7 +186,7 @@ public abstract class BaseDialog extends Dialog {
 
     /* renamed from: a */
     public void m7257a(boolean z) {
-        this.headerDialog.setVisibility(z ? View.VISIBLE : View.GONE);
+        this.headerView.setVisibility(z ? View.VISIBLE : View.GONE);
     }
 
     /* renamed from: b */
@@ -197,7 +197,7 @@ public abstract class BaseDialog extends Dialog {
     /* renamed from: a */
     public void m7264a(int i) {
         this.mainDialog.setBackgroundResource(i);
-        this.headerDialog.setBackgroundResource(i);
+        this.headerView.setBackgroundResource(i);
         this.footerView.setBackgroundResource(i);
         this.bodyView.setBackgroundResource(i);
     }
@@ -205,27 +205,27 @@ public abstract class BaseDialog extends Dialog {
     /* renamed from: a */
     public void m7262a(int i, OnClickListener onClickListener) {
         this.dividerButton.setVisibility(View.VISIBLE);
-        m7263a(3, 0, i, onClickListener);
+        setButton(3, 0, i, onClickListener);
     }
 
     /* renamed from: b */
     public void m7254b(int i, OnClickListener onClickListener) {
         this.okButton.setVisibility(View.GONE);
         this.cancelButton.setVisibility(View.GONE);
-        m7263a(2, 0, i, onClickListener);
+        setButton(2, 0, i, onClickListener);
     }
 
     /* renamed from: a */
     public void m7261a(int i, OnClickListener onClickListener, int i2, OnClickListener onClickListener2) {
         this.middleButton.setVisibility(View.GONE);
-        m7263a(0, 0, i, onClickListener);
-        m7263a(1, 0, i2, onClickListener2);
+        setButton(0, 0, i, onClickListener);
+        setButton(1, 0, i2, onClickListener2);
     }
 
     /* renamed from: a */
-    public void m7263a(int i, int i2, int i3, OnClickListener onClickListener) {
+    public void setButton(int buttonIndex, int visibility, int resId, OnClickListener onClickListener) {
         Button button;
-        switch (i) {
+        switch (buttonIndex) {
             case 0:
                 this.okOnClickListener = onClickListener;
                 button = this.okButton;
@@ -244,25 +244,25 @@ public abstract class BaseDialog extends Dialog {
                 button = this.headerButton;
                 break;
         }
-        button.setVisibility(i2);
-        if (i3 != 0) {
-            button.setText(i3);
+        button.setVisibility(visibility);
+        if (resId != 0) {
+            button.setText(resId);
         }
     }
 
     /* renamed from: b */
-    public void m7255b(int i) {
+    public void setOKButtonText(int i) {
         this.okButton.setText(i);
     }
 
     /* renamed from: a */
-    public void m7258a(String str) {
+    public void setOKButtonText(String str) {
         this.okButton.setText(str);
     }
 
     /* renamed from: b */
-    public void m7252b(String str) {
-        this.cancelButton.setText(str);
+    public void setCancelButtonText(String text) {
+        this.cancelButton.setText(text);
     }
 
     @Override // android.app.Dialog
@@ -312,9 +312,9 @@ public abstract class BaseDialog extends Dialog {
     }
 
     /* renamed from: a */
-    private void m7260a(Button button, boolean z) {
-        button.setBackgroundResource(z ? R.drawable.xml_dialog_footer_button_background_highlight : R.drawable.xml_dialog_footer_button_background);
-        button.setTextColor(getContext().getResources().getColor(z ? R.color.dialog_footer_button_text_highlight : R.color.dialog_footer_button_text));
+    private void m7260a(Button button, boolean selected) {
+        button.setBackgroundResource(selected ? R.drawable.xml_dialog_footer_button_background_highlight : R.drawable.xml_dialog_footer_button_background);
+        button.setTextColor(getContext().getResources().getColor(selected ? R.color.dialog_footer_button_text_highlight : R.color.dialog_footer_button_text));
     }
 
     @Override // android.app.Dialog

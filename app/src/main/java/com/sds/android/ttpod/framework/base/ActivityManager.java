@@ -10,76 +10,76 @@ import java.util.List;
 public class ActivityManager {
 
     /* renamed from: e */
-    private static ActivityManager f5704e;
+    private static ActivityManager instance;
 
     /* renamed from: a */
-    private List<Activity> f5705a = new ArrayList();
+    private List<Activity> activities = new ArrayList();
 
     /* renamed from: b */
-    private Activity f5706b = null;
+    private Activity activeActivity = null;
 
     /* renamed from: c */
-    private Activity f5707c = null;
+    private Activity pauseActivity = null;
 
     /* renamed from: d */
     private Activity f5708d = null;
 
     /* renamed from: a */
-    public static ActivityManager m4618a() {
-        if (f5704e == null) {
-            f5704e = new ActivityManager();
+    public static ActivityManager getInstance() {
+        if (instance == null) {
+            instance = new ActivityManager();
         }
-        return f5704e;
+        return instance;
     }
 
     /* renamed from: a */
     public void m4617a(Activity activity) {
-        this.f5705a.add(activity);
+        this.activities.add(activity);
     }
 
     /* renamed from: b */
-    public void m4615b(Activity activity) {
-        if (this.f5707c == activity) {
-            this.f5707c = null;
+    public void removeActivity(Activity activity) {
+        if (this.pauseActivity == activity) {
+            this.pauseActivity = null;
         }
         if (this.f5708d == activity) {
             this.f5708d = null;
         }
-        this.f5705a.remove(activity);
+        this.activities.remove(activity);
     }
 
     /* renamed from: b */
-    public void m4616b() {
-        for (Activity activity : this.f5705a) {
+    public void stopAllActivity() {
+        for (Activity activity : this.activities) {
             if (SDKVersionUtils.sdkThan16()) {
                 activity.finishAffinity();
             }
             activity.finish();
         }
-        this.f5705a.clear();
+        this.activities.clear();
     }
 
     /* renamed from: c */
-    public void m4613c(Activity activity) {
-        this.f5706b = activity;
-        if (this.f5707c == activity) {
-            this.f5707c = this.f5708d;
+    public void resumeActivity(Activity activity) {
+        this.activeActivity = activity;
+        if (this.pauseActivity == activity) {
+            this.pauseActivity = this.f5708d;
         }
     }
 
     /* renamed from: d */
-    public void m4612d(Activity activity) {
-        this.f5708d = this.f5707c;
-        this.f5707c = activity;
+    public void pauseActivity(Activity activity) {
+        this.f5708d = this.pauseActivity;
+        this.pauseActivity = activity;
     }
 
     /* renamed from: c */
-    public Activity m4614c() {
-        return this.f5706b;
+    public Activity getActiveActivity() {
+        return this.activeActivity;
     }
 
     /* renamed from: e */
-    public boolean m4611e(Activity activity) {
-        return activity != null && activity == m4614c();
+    public boolean isActiveActivity(Activity activity) {
+        return activity != null && activity == getActiveActivity();
     }
 }

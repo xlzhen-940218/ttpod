@@ -173,7 +173,7 @@ public final class EntryUtils {
     /* renamed from: b */
     public static void m8296b() {
         //LocalStatistic.m5167P();
-        ActivityManager.m4618a().m4616b();
+        ActivityManager.getInstance().stopAllActivity();
         CommandCenter.getInstance().execute(new Command(CommandID.EXIT, new Object[0]));
     }
 

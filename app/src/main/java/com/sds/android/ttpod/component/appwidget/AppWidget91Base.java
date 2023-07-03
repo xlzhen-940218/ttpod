@@ -14,7 +14,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
+
 import com.sds.android.sdk.lib.util.BitmapUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.ttpod.framework.base.Action;
@@ -163,7 +163,7 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
                 AppWidget91Base.this.mHandler.postDelayed(this, 1000L);
             }
         };
-        Preferences.m3024a(context);
+        Preferences.setContext(context);
     }
 
     public void onLoad(int i) {

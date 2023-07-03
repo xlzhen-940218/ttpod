@@ -104,7 +104,7 @@ public final class ThemeModule extends BaseModule {
 
     public void loadBackground() {
         if (!this.loadedTheme) {
-            this.f6965d.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.theme.d.1
+            this.f6965d.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.theme.d.1
                 /* JADX WARN: Removed duplicated region for block: B:21:0x0066 A[Catch: Throwable -> 0x0028, TRY_LEAVE, TryCatch #2 {Throwable -> 0x0028, blocks: (B:3:0x0011, B:4:0x001d, B:5:0x0020, B:6:0x0027, B:12:0x004d, B:19:0x0060, B:21:0x0066, B:25:0x007b), top: B:33:0x0011 }] */
                 /* JADX WARN: Removed duplicated region for block: B:25:0x007b A[Catch: Throwable -> 0x0028, TRY_ENTER, TRY_LEAVE, TryCatch #2 {Throwable -> 0x0028, blocks: (B:3:0x0011, B:4:0x001d, B:5:0x0020, B:6:0x0027, B:12:0x004d, B:19:0x0060, B:21:0x0066, B:25:0x007b), top: B:33:0x0011 }] */
                 @Override // java.lang.Runnable
@@ -219,7 +219,7 @@ public final class ThemeModule extends BaseModule {
     }
 
     public void loadBackgroundList(Boolean bool) {
-        this.f6965d.m8576a((Runnable) new BackgroundListLoader(bool));
+        this.f6965d.execute((Runnable) new BackgroundListLoader(bool));
     }
 
     public void deleteBackground(String str) {
@@ -229,7 +229,7 @@ public final class ThemeModule extends BaseModule {
     }
 
     public void decodeBackgroundThumbnail(final BackgroundItem backgroundItem) {
-        this.f6965d.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.theme.d.2
+        this.f6965d.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.theme.d.2
             @Override // java.lang.Runnable
             public void run() {
                 Bitmap m4748a;
@@ -293,7 +293,7 @@ public final class ThemeModule extends BaseModule {
     }
 
     public void requestBackgroundMore() {
-        this.f6965d.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.theme.d.3
+        this.f6965d.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.theme.d.3
             @Override // java.lang.Runnable
             public void run() {
                 BackgroundMoreCheckResult m8531f = SkinAPI.m8825d().execute();

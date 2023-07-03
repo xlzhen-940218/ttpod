@@ -95,8 +95,8 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
         super.onCreate(bundle);
         this.mBackgroundAdapter = initAdapter();
         mDownloadManager = Manager.getInstance();
-        if (!mDownloadManager.m8743a(BACKGROUND_DOWNLOAD_ISSUE)) {
-            mDownloadManager.m8742a(BACKGROUND_DOWNLOAD_ISSUE, 4);
+        if (!mDownloadManager.threadPoolExist(BACKGROUND_DOWNLOAD_ISSUE)) {
+            mDownloadManager.addThreadPool(BACKGROUND_DOWNLOAD_ISSUE, 4);
         }
     }
 
@@ -107,7 +107,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment
     public void onDestroy() {
         super.onDestroy();
-        mDownloadManager.m8739b(BACKGROUND_DOWNLOAD_ISSUE);
+        mDownloadManager.removeThreadPoolByName(BACKGROUND_DOWNLOAD_ISSUE);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

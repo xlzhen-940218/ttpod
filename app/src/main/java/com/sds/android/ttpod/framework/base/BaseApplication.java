@@ -39,7 +39,7 @@ public class BaseApplication extends MultiDexApplication {
     private static BaseApplication application = null;
 
     /* renamed from: b */
-    private static String f5694b;
+    private static String pid;
     private static FakeHttpServer fakeHttpServer;
 
     @Override // android.app.Application
@@ -61,26 +61,27 @@ public class BaseApplication extends MultiDexApplication {
                 }
             }
         }
-        Preferences.m3024a(this);
+        Preferences.setContext(this);
         BaseModule.setContext(this);
         DisplayUtils.init(this);
-        TTPodConfig.m5307a(true);
+        TTPodConfig.initTTPodConfig(true);
         application = this;
-        f5694b = m4625m();
+        pid = getCurrentPid();
         EnvironmentUtils.m8525a(this);
         LogUtils.setEnableLog(EnvironmentUtils.AppConfig.getTestMode());
         EffectDetect.detectAudioPlus(this);
-        ExceptionReporter.m8750a(this, Action.EXCEPTION_REPORT);
+        ExceptionReporter.setDefaultUncaughtExceptionHandler(this, Action.EXCEPTION_REPORT);
         //UmengStatisticUtils.m4867a(this, EnvironmentUtils.C0602a.m8512b());
         //UTAnalyticsUtils.m4869a(this);
-        if (m4631g()) {
-            mo4637a();
-        } else if (m4630h()) {
-            m4634d();
-        } else if (m4628j()) {
-            m4632f();
-        } else if (m4629i()) {
-            m4633e();
+        if (isMainPid()) {
+            initMain();
+            initSupport();
+        } else if (isSupport()) {
+            initSupport();
+        } else if (isPushService()) {
+            initPushService();
+        } else if (isAppwidget()) {
+            initAppwidget();
         }
 
 
@@ -106,7 +107,7 @@ public class BaseApplication extends MultiDexApplication {
 
     /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: a */
-    public void mo4637a() {
+    public void initMain() {
         try {
             m4622p();
             Preferences.m3033X(true);
@@ -136,7 +137,7 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     /* renamed from: d */
-    protected void m4634d() {
+    protected void initSupport() {
         m4622p();
         SearchSqliteDb.m3133a(this);
         //AppRuntimeStatistic.m5273a();
@@ -159,19 +160,19 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     /* renamed from: e */
-    protected void m4633e() {
-        TTPodConfig.m5307a(false);
+    protected void initAppwidget() {
+        TTPodConfig.initTTPodConfig(false);
     }
 
     /* renamed from: f */
-    protected void m4632f() {
+    protected void initPushService() {
     }
 
     /* renamed from: b */
     public void mo4636b() {
-        if (m4631g()) {
+        if (isMainPid()) {
             ModuleManager.getInstance().onAllPreDestroy();
-            com.sds.android.ttpod.framework.base.ActivityManager.m4618a().m4616b();
+            com.sds.android.ttpod.framework.base.ActivityManager.getInstance().stopAllActivity();
             //SEngine.instance();
             //SEngine.unbindFromService(this);
             new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.BaseApplication.2
@@ -186,27 +187,27 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     /* renamed from: g */
-    public boolean m4631g() {
-        return "com.sds.android.ttpod.main".equals(f5694b);
+    public boolean isMainPid() {
+        return "com.sds.android.ttpod.main".equals(pid);
     }
 
     /* renamed from: h */
-    protected boolean m4630h() {
-        return "com.sds.android.ttpod.support".equals(f5694b);
+    protected boolean isSupport() {
+        return "com.sds.android.ttpod.support".equals(pid);
     }
 
     /* renamed from: i */
-    protected boolean m4629i() {
-        return "com.sds.android.ttpod.appwidget".equals(f5694b);
+    protected boolean isAppwidget() {
+        return "com.sds.android.ttpod.appwidget".equals(pid);
     }
 
     /* renamed from: j */
-    protected boolean m4628j() {
-        return "com.sds.android.ttpod.pushservice".equals(f5694b);
+    protected boolean isPushService() {
+        return "com.sds.android.ttpod.pushservice".equals(pid);
     }
 
     /* renamed from: m */
-    private String m4625m() {
+    private String getCurrentPid() {
         List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE)).getRunningAppProcesses();
         if (runningAppProcesses != null) {
             for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) {

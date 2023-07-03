@@ -72,7 +72,7 @@ public abstract class BaseActivity extends FragmentActivity {
         super.onCreate(bundle);
         SmartBarUtils.m4642a(getWindow().getDecorView());
         this.mStatus = 0;
-        ActivityManager.m4618a().m4617a(this);
+        ActivityManager.getInstance().m4617a(this);
         Map<CommandID, Method> requestCommandMap = requestCommandMap();
         assertCommandMap(requestCommandMap);
         CommandCenter.getInstance().m4597a(this, requestCommandMap);
@@ -108,7 +108,7 @@ public abstract class BaseActivity extends FragmentActivity {
     public void onResume() {
         super.onResume();
         this.mStatus = 2;
-        ActivityManager.m4618a().m4613c(this);
+        ActivityManager.getInstance().resumeActivity(this);
         setBackgroundState(false);
         //UmengStatisticUtils.m4868a(this);
         MediaButtonReceiver.m2252b();
@@ -122,7 +122,7 @@ public abstract class BaseActivity extends FragmentActivity {
     public void onPause() {
         super.onPause();
         this.mStatus = 3;
-        ActivityManager.m4618a().m4612d(this);
+        ActivityManager.getInstance().pauseActivity(this);
         setBackgroundState(true);
         //UmengStatisticUtils.m4865b(this);
     }
@@ -178,7 +178,7 @@ public abstract class BaseActivity extends FragmentActivity {
     @Override // android.support.v4.app.FragmentActivity, android.app.Activity
     public void onDestroy() {
         this.mStatus = 5;
-        ActivityManager.m4618a().m4615b(this);
+        ActivityManager.getInstance().removeActivity(this);
         if (this.mFragmentBackStackManager != null) {
             this.mFragmentBackStackManager.m4578b();
         }

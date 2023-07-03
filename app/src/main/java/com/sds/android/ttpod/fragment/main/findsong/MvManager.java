@@ -49,7 +49,7 @@ public class MvManager {
                 MvManager.m5554d(context, mvPopupDialogCallBack, i);
             }
         }, (BaseDialog.OnClickListener<MessageDialog>) null);
-        messageDialog.m7255b(i3);
+        messageDialog.setOKButtonText(i3);
         messageDialog.setTitle(R.string.prompt_title);
         messageDialog.show();
     }

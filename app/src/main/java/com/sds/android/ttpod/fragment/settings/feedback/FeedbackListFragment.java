@@ -136,7 +136,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
 
     public void updateFeedbackList(BaseResultRest baseResultRest, List list, Boolean bool) {
         this.mListView.m1336b();
-        if (baseResultRest.m8677d()) {
+        if (baseResultRest.isConnected()) {
             this.mStateView.setState(StateView.EnumC2248b.SUCCESS);
             if (!bool.booleanValue()) {
                 this.mRequestState = RequestState.IDLE;
@@ -157,7 +157,7 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
 
     public void onProposalFeedbackFinish(BaseResultRest baseResultRest, FeedbackItem feedbackItem) {
         this.mListView.m1336b();
-        if (baseResultRest.m8677d()) {
+        if (baseResultRest.isConnected()) {
             this.mTvHint.setText(R.string.feedback_history_hint);
             synchronized (this.mAdapter) {
                 this.mAdapter.getDataList().add(0, feedbackItem);
@@ -167,14 +167,14 @@ public class FeedbackListFragment extends BaseFragment implements AdapterView.On
     }
 
     public void onRequestMessagesFinished(BaseResultRest baseResultRest, List list, Boolean bool) {
-        if (baseResultRest.m8677d() && this.mClickedFeedbackItem.isUnread()) {
+        if (baseResultRest.isConnected() && this.mClickedFeedbackItem.isUnread()) {
             this.mClickedFeedbackItem.setUnread(false);
             this.mAdapter.notifyDataSetChanged();
         }
     }
 
     public void onSendMessageFinish(BaseResultRest baseResultRest, FeedbackMessage feedbackMessage) {
-        if (baseResultRest.m8677d()) {
+        if (baseResultRest.isConnected()) {
             this.mClickedFeedbackItem.setLastUpdated(feedbackMessage.getTimestamp());
             this.mAdapter.getDataList().remove(this.mClickedFeedbackItem);
             this.mAdapter.getDataList().add(0, this.mClickedFeedbackItem);

@@ -59,7 +59,7 @@ public class FeedbackModule extends BaseModule {
             public void run() {
                 PostFeedbackResult postFeedbackResult = new PostFeedbackResult(FeedbackAPI.m8915a(feedbackItem.getProposalContent(), EnvironmentUtils.DeviceConfig.m8473f(), feedbackItem.getContactWay()).m8668b());
                 FeedbackItem feedbackItem2 = null;
-                if (postFeedbackResult.m8677d()) {
+                if (postFeedbackResult.isConnected()) {
                     String m8681b = postFeedbackResult.m8681b();
                     String substring = m8681b.substring(m8681b.lastIndexOf(47) + 1);
                     feedbackItem2 = FeedbackAPI.m8917a(substring);
@@ -87,8 +87,8 @@ public class FeedbackModule extends BaseModule {
                     long currentTimeMillis = System.currentTimeMillis();
                     GetFeedbackResult getFeedbackResult = new GetFeedbackResult(m8918a.m8668b());
                     ArrayList arrayList = new ArrayList();
-                    if (getFeedbackResult.m8677d() && getFeedbackResult.m8676e() != null) {
-                        ArrayList<FeedbackItem> mo8674a = getFeedbackResult.mo8674a();
+                    if (getFeedbackResult.isConnected() && getFeedbackResult.getContent() != null) {
+                        ArrayList<FeedbackItem> mo8674a = getFeedbackResult.getData();
                         if (mo8674a.size() > 0) {
                             long lastUpdated = mo8674a.get(0).getLastUpdated();
                             Iterator<FeedbackItem> it = mo8674a.iterator();
@@ -119,8 +119,8 @@ public class FeedbackModule extends BaseModule {
             public void run() {
                 GetFeedbackMessageResult getFeedbackMessageResult = new GetFeedbackMessageResult(FeedbackAPI.m8916a(str, l, (String) null).m8668b());
                 ArrayList<FeedbackMessage> arrayList = new ArrayList<>();
-                if (getFeedbackMessageResult.m8677d() && getFeedbackMessageResult.m8676e() != null) {
-                    arrayList = getFeedbackMessageResult.mo8674a();
+                if (getFeedbackMessageResult.isConnected() && getFeedbackMessageResult.getContent() != null) {
+                    arrayList = getFeedbackMessageResult.getData();
                     Collections.sort(arrayList, new Comparator<FeedbackMessage>() { // from class: com.sds.android.ttpod.framework.modules.c.a.3.1
                         @Override // java.util.Comparator
                         /* renamed from: a */
@@ -171,8 +171,8 @@ public class FeedbackModule extends BaseModule {
             @Override // java.lang.Runnable
             public void run() {
                 GetFeedbackResult getFeedbackResult = new GetFeedbackResult(FeedbackAPI.m8919a(l).m8668b());
-                if (getFeedbackResult.m8677d()) {
-                    ArrayList<FeedbackItem> mo8674a = getFeedbackResult.mo8674a();
+                if (getFeedbackResult.isConnected()) {
+                    ArrayList<FeedbackItem> mo8674a = getFeedbackResult.getData();
                     if (mo8674a.size() != 0) {
                         FeedbackModule.this.m4488a((List<FeedbackItem>) mo8674a, true);
                         CommandCenter.getInstance().m4595b(new Command(CommandID.NEW_REPLYIED_FEEDBACKS_RECEIVED, mo8674a), ModuleID.FEEDBACK);

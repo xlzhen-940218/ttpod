@@ -11,15 +11,15 @@ import java.util.ArrayList;
 /* loaded from: classes.dex */
 public class GetFeedbackResult extends DataListResultRest<FeedbackItem> {
     public GetFeedbackResult(BaseResultRest baseResultRest) {
-        m8680b(baseResultRest.m8678c());
-        m8679b(baseResultRest.m8676e());
+        setCode(baseResultRest.getCode());
+        setContent(baseResultRest.getContent());
         m8682a(baseResultRest.m8681b());
     }
 
     @Override // com.sds.android.sdk.lib.p060b.DataListResultRest
     /* renamed from: a */
-    public ArrayList<FeedbackItem> mo8674a() {
-        ArrayList<FeedbackItem> arrayList = (ArrayList) JSONUtils.fromJson(m8676e(), new TypeToken<ArrayList<FeedbackItem>>() { // from class: com.sds.android.cloudapi.ttpod.b.b.1
+    public ArrayList<FeedbackItem> getData() {
+        ArrayList<FeedbackItem> arrayList = (ArrayList) JSONUtils.fromJson(getContent(), new TypeToken<ArrayList<FeedbackItem>>() { // from class: com.sds.android.cloudapi.ttpod.b.b.1
         }.getType());
         return arrayList == null ? new ArrayList<>(0) : arrayList;
     }

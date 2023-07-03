@@ -118,7 +118,7 @@ public class MediaAccessModule extends BaseModule {
     public void onDestroy() {
         super.onDestroy();
         try {
-            this.f5933b.m8575b();
+            this.f5933b.getThreadPoolList();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -239,7 +239,7 @@ public class MediaAccessModule extends BaseModule {
     }
 
     public void queryMediaItemList(final String str, final String str2) {
-        this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.4
+        this.f5933b.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.4
             @Override // java.lang.Runnable
             public void run() {
                 CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIST, str, MediaStorage.queryMediaItemList(MediaAccessModule.sContext, str, str2)), ModuleID.MEDIA_ACCESS);
@@ -350,7 +350,7 @@ public class MediaAccessModule extends BaseModule {
 
     public void addMediaItemList(final String str, Collection<MediaItem> collection) {
         final ArrayList<MediaItem> arrayList = new ArrayList<>(collection);
-        this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.5
+        this.f5933b.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.5
             @Override // java.lang.Runnable
             public void run() {
                 ArrayList arrayList2 = new ArrayList();
@@ -375,7 +375,7 @@ public class MediaAccessModule extends BaseModule {
         DebugUtils.m8426a((Object) collection, "mediaItems");
         DebugUtils.m8426a(bool, "deleteFile");
         final ArrayList arrayList = new ArrayList(collection);
-        this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.6
+        this.f5933b.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.6
             @Override // java.lang.Runnable
             public void run() {
                 MediaAccessModule.this.m4280a(str, arrayList, bool);
@@ -386,7 +386,7 @@ public class MediaAccessModule extends BaseModule {
     public void commitExchangeOrder(final String str, List<ExchangeOrderEntity> list) {
         if (list != null && !list.isEmpty()) {
             final ArrayList arrayList = new ArrayList(list);
-            this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.7
+            this.f5933b.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.7
                 @Override // java.lang.Runnable
                 public void run() {
                     synchronized (MediaAccessModule.this) {
@@ -515,7 +515,7 @@ public class MediaAccessModule extends BaseModule {
     }
 
     public void deletePicture(final Collection<MediaItem> collection) {
-        this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.9
+        this.f5933b.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.9
             @Override // java.lang.Runnable
             public void run() {
                 MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
@@ -531,7 +531,7 @@ public class MediaAccessModule extends BaseModule {
     }
 
     public void deleteLyric(final Collection<MediaItem> collection) {
-        this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.10
+        this.f5933b.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.10
             @Override // java.lang.Runnable
             public void run() {
                 MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
@@ -620,7 +620,7 @@ public class MediaAccessModule extends BaseModule {
         } else {
             CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_MEDIA_LIBRARY_CHANGED, m4272c(str)), ModuleID.MEDIA_ACCESS);
         }
-        this.f5933b.m8576a(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.2
+        this.f5933b.execute(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.c.a.2
             @Override // java.lang.Runnable
             public void run() {
                 if (bool.booleanValue()) {

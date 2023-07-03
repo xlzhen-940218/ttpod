@@ -20,7 +20,7 @@ public class TTPodConfig {
     private static String ttpodPath;
 
     /* renamed from: a */
-    public static void m5307a(boolean z) {
+    public static void initTTPodConfig(boolean z) {
         ttpodPath = EnvironmentUtils.C0605d.getSdcardPath() + File.separator + "ttpod";
         cachePath = ttpodPath + File.separator + "cache";
         if (z) {

@@ -79,7 +79,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
 
     public void onRequestMessagesFinished(BaseResultRest baseResultRest, List list, Boolean bool) {
         this.mListView.m1336b();
-        if (baseResultRest.m8677d()) {
+        if (baseResultRest.isConnected()) {
             if (bool.booleanValue()) {
                 List<FeedbackMessage> b = this.mAdapter.getDataList();
                 b.addAll(list);
@@ -100,7 +100,7 @@ public class FeedbackChatActivity extends SlidingClosableActivity {
 
     public void onSendMessageFinish(BaseResultRest baseResultRest, FeedbackMessage feedbackMessage) {
         this.mListView.m1336b();
-        if (baseResultRest.m8678c() == 201) {
+        if (baseResultRest.getCode() == 201) {
             synchronized (this.mAdapter) {
                 this.mAdapter.getDataList().add(feedbackMessage);
                 this.mNewMessageTimestamp = Long.valueOf(feedbackMessage.getTimestamp() + 1);

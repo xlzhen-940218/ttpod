@@ -38,13 +38,13 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
 
     private boolean mViewAccessAble = false;
     private boolean mOfflineModeConfirmed = false;
-    private EnumC1800a mLoadState = EnumC1800a.NONE;
+    private LoadStateEnum mLoadState = LoadStateEnum.NONE;
     private String mSPage = "none";
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: com.sds.android.ttpod.framework.base.BaseFragment$a */
     /* loaded from: classes.dex */
-    public enum EnumC1800a {
+    public enum LoadStateEnum {
         NONE,
         DOING_ANIM,
         WAITING_PARENT,
@@ -92,14 +92,14 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
                             new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.framework.base.BaseFragment.1.1
                                 @Override // java.lang.Runnable
                                 public void run() {
-                                    if (BaseFragment.this.mLoadState == EnumC1800a.DOING_ANIM) {
+                                    if (BaseFragment.this.mLoadState == LoadStateEnum.DOING_ANIM) {
                                         BaseFragment.this.checkLoadFinished();
                                     }
                                 }
                             }, 100L);
                         }
                     });
-                    this.mLoadState = EnumC1800a.DOING_ANIM;
+                    this.mLoadState = LoadStateEnum.DOING_ANIM;
                     return loadAnimation;
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -127,7 +127,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
     @Override // android.support.v4.app.Fragment
     public void onResume() {
         super.onResume();
-        if (this.mLoadState == EnumC1800a.NONE && canLoadDataWhenResume()) {
+        if (this.mLoadState == LoadStateEnum.NONE && canLoadDataWhenResume()) {
             checkLoadFinished();
         }
         if (isPage()) {
@@ -157,7 +157,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
                 if (getFragmentHandler() != null) {
                     getFragmentHandler().mo4567d(this);
                 }
-                this.mLoadState = EnumC1800a.FINISHED;
+                this.mLoadState = LoadStateEnum.FINISHED;
                 onLoadFinished();
                 List<Fragment> fragments = getChildFragmentManager().getFragments();
                 if (fragments != null) {
@@ -169,14 +169,14 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
                 }
                 return;
             }
-            this.mLoadState = EnumC1800a.WAITING_PARENT;
+            this.mLoadState = LoadStateEnum.WAITING_PARENT;
         }
     }
 
     @Override // android.support.v4.app.Fragment
     public void setUserVisibleHint(boolean z) {
         super.setUserVisibleHint(z);
-        if (this.mLoadState == EnumC1800a.NONE) {
+        if (this.mLoadState == LoadStateEnum.NONE) {
             checkLoadFinished();
         }
     }
@@ -186,7 +186,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
 
     @Override // com.sds.android.ttpod.framework.base.ILoadFinished
     public boolean isLoadFinished() {
-        return this.mLoadState == EnumC1800a.FINISHED;
+        return this.mLoadState == LoadStateEnum.FINISHED;
     }
 
     @Override // android.support.v4.app.Fragment
@@ -204,7 +204,7 @@ public abstract class BaseFragment extends Fragment implements ILoadFinished, Th
     }
 
     private void onParentFragmentLaunchFinished() {
-        if (this.mLoadState == EnumC1800a.WAITING_PARENT) {
+        if (this.mLoadState == LoadStateEnum.WAITING_PARENT) {
             checkLoadFinished();
         }
     }
