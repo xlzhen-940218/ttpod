@@ -20,10 +20,10 @@ import java.lang.ref.WeakReference;
 public final class ImageCacheUtils {
 
     /* renamed from: a */
-    private static ImageCache f5631a;
+    private static ImageCache imageCache;
 
     /* renamed from: b */
-    private static BitmapUtils f5632b;
+    private static BitmapUtils bitmapUtils;
 
     /* compiled from: ImageCacheUtils.java */
     /* renamed from: com.sds.android.ttpod.framework.a.f$a */
@@ -34,14 +34,14 @@ public final class ImageCacheUtils {
     }
 
     /* renamed from: a */
-    public static void m4757a() {
-        f5631a = ImageCache.m8814a(0.05f, TTPodConfig.getCacheImagePath());
-        f5632b = new BitmapUtils();
+    public static void initUtil() {
+        imageCache = ImageCache.getInstance(0.05f, TTPodConfig.getCacheImagePath());
+        bitmapUtils = new BitmapUtils();
     }
 
     /* renamed from: b */
-    public static ImageCache m4743b() {
-        return f5631a;
+    public static ImageCache getImageCache() {
+        return imageCache;
     }
 
     /* renamed from: a */
@@ -52,9 +52,9 @@ public final class ImageCacheUtils {
     /* renamed from: a */
     public static final void displayImage(ImageView imageView, String str, int i, int i2, int i3, final int i4) {
         final WeakReference weakReference = new WeakReference(imageView);
-        String m8811a = ImageCache.m8811a(str, i, i2, imageView.getScaleType());
+        String m8811a = ImageCache.buildCropUrl(str, i, i2, imageView.getScaleType());
         if (!StringUtils.isEmpty(m8811a)) {
-            Bitmap m4746a = m4746a(m8811a, i, i2, (String) null);
+            Bitmap m4746a = getLruCacheBitmap(m8811a, i, i2, (String) null);
             ImageView imageView2 = (ImageView) weakReference.get();
             if (imageView2 != null) {
                 imageView2.setTag(m8811a);
@@ -66,13 +66,13 @@ public final class ImageCacheUtils {
                 }
                 ImageView imageView4 = (ImageView) weakReference.get();
                 if (imageView4 != null) {
-                    f5631a.m8810a(m8811a, i, i2, imageView4.getScaleType(), new ImageCache.InterfaceC0565a() { // from class: com.sds.android.ttpod.framework.a.f.1
+                    imageCache.addThreadPool(m8811a, i, i2, imageView4.getScaleType(), new ImageCache.ImageLoadedCallback() { // from class: com.sds.android.ttpod.framework.a.f.1
                         @Override // com.sds.android.sdk.core.p057a.ImageCache.InterfaceC0565a
                         /* renamed from: a */
-                        public void mo4733a(String str2, int i5, int i6, Bitmap bitmap) {
+                        public void loaded(String url, int width, int height, Bitmap bitmap) {
                             ImageView imageView5 = (ImageView) weakReference.get();
-                            if (imageView5 != null && imageView5.getTag().equals(str2)) {
-                                ImageCacheUtils.m4737c(imageView5, bitmap, i4);
+                            if (imageView5 != null && imageView5.getTag().equals(url)) {
+                                ImageCacheUtils.setImageBitmap(imageView5, bitmap, i4);
                             }
                         }
                     });
@@ -82,7 +82,7 @@ public final class ImageCacheUtils {
             }
             ImageView imageView5 = (ImageView) weakReference.get();
             if (imageView5 != null) {
-                m4737c(imageView5, m4746a, i4);
+                setImageBitmap(imageView5, m4746a, i4);
                 return;
             }
             return;
@@ -95,15 +95,15 @@ public final class ImageCacheUtils {
 
     /* renamed from: a */
     public static void m4744a(String str, String str2, int i, int i2) {
-        f5631a.m8812a(str, i, i2);
-        FileUtils.m8413b(f5631a.m8815a() + File.separator + SecurityUtils.C0610b.m8359b(str), str2);
+        imageCache.removeLruCache(str, i, i2);
+        FileUtils.m8413b(imageCache.getCacheImagePath() + File.separator + SecurityUtils.MD5Hex.stringToHex(str), str2);
     }
 
     /* renamed from: a */
     public static final Bitmap m4745a(String str, int i, int i2, boolean z) {
-        Bitmap m4746a = m4746a(str, i, i2, (String) null);
-        if (m4746a == null && !z && (m4746a = f5632b.m4779a(str, i, i2)) != null && f5631a != null) {
-            f5631a.m8806a(str, (String) null, i, i2, m4746a);
+        Bitmap m4746a = getLruCacheBitmap(str, i, i2, (String) null);
+        if (m4746a == null && !z && (m4746a = bitmapUtils.m4779a(str, i, i2)) != null && imageCache != null) {
+            imageCache.putImageToLrcCache(str, (String) null, i, i2, m4746a);
         }
         return m4746a;
     }
@@ -112,7 +112,7 @@ public final class ImageCacheUtils {
     public static final void m4750a(ImageView imageView, String str, int i, int i2, String str2) {
         if (!StringUtils.isEmpty(str)) {
             final WeakReference weakReference = new WeakReference(imageView);
-            Bitmap m4746a = m4746a(str, i, i2, str2);
+            Bitmap m4746a = getLruCacheBitmap(str, i, i2, str2);
             if (m4746a != null) {
                 ImageView imageView2 = (ImageView) weakReference.get();
                 if (imageView2 != null) {
@@ -121,7 +121,7 @@ public final class ImageCacheUtils {
                 }
                 return;
             }
-            Bitmap m4779a = f5632b.m4779a(str2, i, i2);
+            Bitmap m4779a = bitmapUtils.m4779a(str2, i, i2);
             if (m4779a != null) {
                 ImageView imageView3 = (ImageView) weakReference.get();
                 if (imageView3 != null) {
@@ -134,12 +134,12 @@ public final class ImageCacheUtils {
             if (imageView4 != null) {
                 imageView4.setTag(str);
             }
-            f5631a.m8809a(str, i, i2, new ImageCache.InterfaceC0565a() { // from class: com.sds.android.ttpod.framework.a.f.2
+            imageCache.addThreadPool(str, i, i2, new ImageCache.ImageLoadedCallback() { // from class: com.sds.android.ttpod.framework.a.f.2
                 @Override // com.sds.android.sdk.core.p057a.ImageCache.InterfaceC0565a
                 /* renamed from: a */
-                public void mo4733a(String str3, int i3, int i4, Bitmap bitmap) {
+                public void loaded(String url, int width, int height, Bitmap bitmap) {
                     ImageView imageView5 = (ImageView) weakReference.get();
-                    if (imageView5 != null && imageView5.getTag() != null && imageView5.getTag().equals(str3)) {
+                    if (imageView5 != null && imageView5.getTag() != null && imageView5.getTag().equals(url)) {
                         imageView5.setImageBitmap(bitmap);
                     }
                 }
@@ -149,19 +149,19 @@ public final class ImageCacheUtils {
 
     /* renamed from: a */
     public static final void m4747a(String str, int i, int i2, Bitmap bitmap) {
-        f5631a.m8812a(str, i, i2);
-        f5631a.m8806a(str, (String) null, i, i2, bitmap);
-        BitmapUtils c1780b = f5632b;
-        BitmapUtils.m4777a(f5631a.m8815a() + File.separator + SecurityUtils.C0610b.m8359b(str), bitmap);
+        imageCache.removeLruCache(str, i, i2);
+        imageCache.putImageToLrcCache(str, (String) null, i, i2, bitmap);
+        BitmapUtils c1780b = bitmapUtils;
+        BitmapUtils.m4777a(imageCache.getCacheImagePath() + File.separator + SecurityUtils.MD5Hex.stringToHex(str), bitmap);
     }
 
     /* renamed from: a */
     public static final Bitmap m4748a(String str, int i, int i2) {
-        Bitmap m4746a = m4746a(str, i, i2, (String) null);
+        Bitmap m4746a = getLruCacheBitmap(str, i, i2, (String) null);
         if (m4746a == null) {
-            m4746a = f5632b.m4779a(f5631a.m8815a() + File.separator + SecurityUtils.C0610b.m8359b(str), i, i2);
-            if (m4746a != null && f5631a != null) {
-                f5631a.m8806a(str, (String) null, i, i2, m4746a);
+            m4746a = bitmapUtils.m4779a(imageCache.getCacheImagePath() + File.separator + SecurityUtils.MD5Hex.stringToHex(str), i, i2);
+            if (m4746a != null && imageCache != null) {
+                imageCache.putImageToLrcCache(str, (String) null, i, i2, m4746a);
             }
         }
         return m4746a;
@@ -169,7 +169,7 @@ public final class ImageCacheUtils {
 
     /* renamed from: b */
     public static final void m4739b(String str, int i, int i2) {
-        f5631a.m8812a(str, i, i2);
+        imageCache.removeLruCache(str, i, i2);
     }
 
     /* renamed from: a */
@@ -183,7 +183,7 @@ public final class ImageCacheUtils {
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: c */
-    public static void m4737c(ImageView imageView, Bitmap bitmap, int i) {
+    public static void setImageBitmap(ImageView imageView, Bitmap bitmap, int i) {
         if (i != 0) {
             imageView.setAnimation(AnimationUtils.loadAnimation(imageView.getContext(), i));
         }
@@ -193,21 +193,21 @@ public final class ImageCacheUtils {
     /* renamed from: b */
     public static final void m4740b(ImageView imageView, String str, int i, int i2, int i3, final int i4) {
         if (!StringUtils.isEmpty(str)) {
-            Bitmap m4746a = m4746a(str, i, i2, (String) null);
+            Bitmap m4746a = getLruCacheBitmap(str, i, i2, (String) null);
             final WeakReference weakReference = new WeakReference(imageView);
             ImageView imageView2 = (ImageView) weakReference.get();
             if (imageView2 != null) {
                 imageView2.setTag(str);
             }
             if (m4746a == null) {
-                f5631a.m8809a(str, i, i2, new ImageCache.InterfaceC0565a() { // from class: com.sds.android.ttpod.framework.a.f.3
+                imageCache.addThreadPool(str, i, i2, new ImageCache.ImageLoadedCallback() { // from class: com.sds.android.ttpod.framework.a.f.3
                     @Override // com.sds.android.sdk.core.p057a.ImageCache.InterfaceC0565a
                     /* renamed from: a */
-                    public void mo4733a(String str2, int i5, int i6, Bitmap bitmap) {
+                    public void loaded(String url, int width, int height, Bitmap bitmap) {
                         ImageView imageView3 = (ImageView) weakReference.get();
-                        if (imageView3 != null && imageView3.getTag() != null && imageView3.getTag().equals(str2)) {
+                        if (imageView3 != null && imageView3.getTag() != null && imageView3.getTag().equals(url)) {
                             ImageCacheUtils.m4736d(imageView3, bitmap, i4);
-                            ImageCacheUtils.f5631a.m8806a(str2, (String) null, i5, i6, bitmap);
+                            ImageCacheUtils.imageCache.putImageToLrcCache(url, (String) null, width, height, bitmap);
                         }
                     }
                 });
@@ -266,7 +266,7 @@ public final class ImageCacheUtils {
     public static final void m4749a(IconTextView iconTextView, String str, int i, int i2, String str2, final InterfaceC1786a interfaceC1786a) {
         if (!StringUtils.isEmpty(str)) {
             final WeakReference weakReference = new WeakReference(iconTextView);
-            Bitmap m4746a = m4746a(str, i, i2, str2);
+            Bitmap m4746a = getLruCacheBitmap(str, i, i2, str2);
             if (m4746a != null) {
                 IconTextView iconTextView2 = (IconTextView) weakReference.get();
                 if (iconTextView2 != null) {
@@ -275,7 +275,7 @@ public final class ImageCacheUtils {
                 }
                 return;
             }
-            Bitmap m4779a = f5632b.m4779a(str2, i, i2);
+            Bitmap m4779a = bitmapUtils.m4779a(str2, i, i2);
             if (m4779a != null) {
                 IconTextView iconTextView3 = (IconTextView) weakReference.get();
                 if (iconTextView3 != null) {
@@ -288,12 +288,12 @@ public final class ImageCacheUtils {
             if (iconTextView4 != null) {
                 iconTextView4.setTag(str);
             }
-            f5631a.m8809a(str, i, i2, new ImageCache.InterfaceC0565a() { // from class: com.sds.android.ttpod.framework.a.f.5
+            imageCache.addThreadPool(str, i, i2, new ImageCache.ImageLoadedCallback() { // from class: com.sds.android.ttpod.framework.a.f.5
                 @Override // com.sds.android.sdk.core.p057a.ImageCache.InterfaceC0565a
                 /* renamed from: a */
-                public void mo4733a(String str3, int i3, int i4, Bitmap bitmap) {
+                public void loaded(String url, int width, int height, Bitmap bitmap) {
                     IconTextView iconTextView5 = (IconTextView) weakReference.get();
-                    if (iconTextView5 != null && iconTextView5.getTag().equals(str3)) {
+                    if (iconTextView5 != null && iconTextView5.getTag().equals(url)) {
                         iconTextView5.setImageDrawable(ImageCacheUtils.m4742b(bitmap, interfaceC1786a));
                     }
                 }
@@ -302,11 +302,11 @@ public final class ImageCacheUtils {
     }
 
     /* renamed from: a */
-    private static Bitmap m4746a(String str, int i, int i2, String str2) {
-        if (f5631a == null) {
-            m4757a();
+    private static Bitmap getLruCacheBitmap(String url, int width, int height, String filename) {
+        if (imageCache == null) {
+            initUtil();
         }
-        return f5631a.m8807a(str, str2, i, i2);
+        return imageCache.getLruCacheBitmap(url, filename, width, height);
     }
 
     /* JADX INFO: Access modifiers changed from: private */

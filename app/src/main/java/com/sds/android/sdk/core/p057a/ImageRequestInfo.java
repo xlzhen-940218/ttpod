@@ -2,7 +2,7 @@ package com.sds.android.sdk.core.p057a;
 
 import android.graphics.Bitmap;
 import android.widget.ImageView;
-import com.sds.android.sdk.core.p057a.ImageCache;
+
 import com.sds.android.sdk.lib.util.SecurityUtils;
 import java.io.File;
 
@@ -12,85 +12,85 @@ import java.io.File;
 public final class ImageRequestInfo {
 
     /* renamed from: a */
-    private ImageCache.InterfaceC0565a f2288a;
+    private ImageCache.ImageLoadedCallback imageLoadedCallback;
 
     /* renamed from: b */
-    private int f2289b;
+    private int width;
 
     /* renamed from: c */
-    private int f2290c;
+    private int height;
 
     /* renamed from: d */
-    private String f2291d;
+    private String imageUrl;
 
     /* renamed from: e */
-    private String f2292e;
+    private String filename;
 
     /* renamed from: f */
-    private String f2293f;
+    private String folderPath;
 
     /* renamed from: g */
-    private Bitmap f2294g;
+    private Bitmap imageBitmap;
 
     /* renamed from: h */
-    private ImageView.ScaleType f2295h;
+    private ImageView.ScaleType scaleType;
 
-    public ImageRequestInfo(String str, String str2, String str3, int i, int i2, ImageView.ScaleType scaleType, ImageCache.InterfaceC0565a interfaceC0565a) {
-        if (interfaceC0565a == null) {
+    public ImageRequestInfo(String imageUrl, String folderPath, String filename, int width, int height, ImageView.ScaleType scaleType, ImageCache.ImageLoadedCallback imageLoadedCallback) {
+        if (imageLoadedCallback == null) {
             throw new IllegalArgumentException("Callback must not be null");
         }
-        this.f2288a = interfaceC0565a;
-        this.f2291d = str;
-        this.f2293f = str2;
-        this.f2292e = str3;
-        this.f2289b = i;
-        this.f2290c = i2;
-        this.f2295h = scaleType;
+        this.imageLoadedCallback = imageLoadedCallback;
+        this.imageUrl = imageUrl;
+        this.folderPath = folderPath;
+        this.filename = filename;
+        this.width = width;
+        this.height = height;
+        this.scaleType = scaleType;
     }
 
     /* renamed from: a */
-    public ImageCache.InterfaceC0565a m8786a() {
-        return this.f2288a;
+    public ImageCache.ImageLoadedCallback getImageLoadedCallback() {
+        return this.imageLoadedCallback;
     }
 
     /* renamed from: b */
-    public String m8784b() {
-        return this.f2291d;
+    public String getImageUrl() {
+        return this.imageUrl;
     }
 
     /* renamed from: c */
-    public String m8783c() {
-        return this.f2292e;
+    public String getFilename() {
+        return this.filename;
     }
 
     /* renamed from: d */
-    public String m8782d() {
-        return this.f2293f + File.separator + (this.f2292e == null ? SecurityUtils.C0610b.m8359b(this.f2291d) : this.f2292e);
+    public String getLocalPath() {
+        return this.folderPath + File.separator + (this.filename == null ? SecurityUtils.MD5Hex.stringToHex(this.imageUrl) : this.filename);
     }
 
     /* renamed from: e */
-    public int m8781e() {
-        return this.f2289b;
+    public int getWidth() {
+        return this.width;
     }
 
     /* renamed from: f */
-    public int m8780f() {
-        return this.f2290c;
+    public int getHeight() {
+        return this.height;
     }
 
     /* renamed from: g */
-    public Bitmap m8779g() {
-        return this.f2294g;
+    public Bitmap getImageBitmap() {
+        return this.imageBitmap;
     }
 
     /* renamed from: a */
-    public void m8785a(Bitmap bitmap) {
-        this.f2294g = bitmap;
+    public void setImageBitmap(Bitmap bitmap) {
+        this.imageBitmap = bitmap;
     }
 
     /* renamed from: h */
-    public ImageView.ScaleType m8778h() {
-        return this.f2295h;
+    public ImageView.ScaleType getScaleType() {
+        return this.scaleType;
     }
 
     public boolean equals(Object obj) {
@@ -98,24 +98,26 @@ public final class ImageRequestInfo {
             return false;
         }
         ImageRequestInfo imageRequestInfo = (ImageRequestInfo) obj;
-        if (this.f2291d != null) {
-            if (!this.f2291d.equals(imageRequestInfo.f2291d)) {
+        if (this.imageUrl != null) {
+            if (!this.imageUrl.equals(imageRequestInfo.imageUrl)) {
                 return false;
             }
-        } else if (imageRequestInfo.f2291d != null) {
+        } else if (imageRequestInfo.imageUrl != null) {
             return false;
         }
-        if (this.f2292e != null) {
-            if (!this.f2292e.equals(imageRequestInfo.f2292e)) {
+        if (this.filename != null) {
+            if (!this.filename.equals(imageRequestInfo.filename)) {
                 return false;
             }
-        } else if (imageRequestInfo.f2292e != null) {
+        } else if (imageRequestInfo.filename != null) {
             return false;
         }
         return true;
     }
 
     public int hashCode() {
-        return (((this.f2291d != null ? this.f2291d.hashCode() : 0) + (((((this.f2288a.hashCode() * 31) + this.f2289b) * 31) + this.f2290c) * 31)) * 31) + (this.f2292e != null ? this.f2292e.hashCode() : 0);
+        return (((this.imageUrl != null ? this.imageUrl.hashCode() : 0)
+                + (((((this.imageLoadedCallback.hashCode() * 31) + this.width) * 31) + this.height) * 31)) * 31)
+                + (this.filename != null ? this.filename.hashCode() : 0);
     }
 }

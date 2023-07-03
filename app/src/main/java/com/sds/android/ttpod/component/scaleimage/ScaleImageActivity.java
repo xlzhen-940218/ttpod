@@ -227,10 +227,10 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
                 return;
             }
             ImageViewTouch m5861a = this.mPagerAdapter.m5861a(this.mStartIndex);
-            ImageCacheUtils.m4743b().m8809a(this.mPicList.get(this.mStartIndex), m5861a.getWidth(), m5861a.getHeight(), new ImageCache.InterfaceC0565a() { // from class: com.sds.android.ttpod.component.scaleimage.ScaleImageActivity.3
+            ImageCacheUtils.getImageCache().addThreadPool(this.mPicList.get(this.mStartIndex), m5861a.getWidth(), m5861a.getHeight(), new ImageCache.ImageLoadedCallback() { // from class: com.sds.android.ttpod.component.scaleimage.ScaleImageActivity.3
                 @Override // com.sds.android.sdk.core.p057a.ImageCache.InterfaceC0565a
                 /* renamed from: a */
-                public void mo4733a(String str2, int i, int i2, final Bitmap bitmap) {
+                public void loaded(String url, int width, int height, final Bitmap bitmap) {
                     if (bitmap == null) {
                         PopupsUtils.m6721a("请等待图片下载完成后再保存!");
                         return;
@@ -444,11 +444,11 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
             imageViewTouch.setFocusableInTouchMode(true);
             String str = (String) ScaleImageActivity.this.mPicList.get(i);
             imageViewTouch.setTag(str);
-            ImageCacheUtils.m4743b().m8809a(str, imageViewTouch.getWidth(), imageViewTouch.getHeight(), new ImageCache.InterfaceC0565a() { // from class: com.sds.android.ttpod.component.scaleimage.ScaleImageActivity.a.1
+            ImageCacheUtils.getImageCache().addThreadPool(str, imageViewTouch.getWidth(), imageViewTouch.getHeight(), new ImageCache.ImageLoadedCallback() { // from class: com.sds.android.ttpod.component.scaleimage.ScaleImageActivity.a.1
                 @Override // com.sds.android.sdk.core.p057a.ImageCache.InterfaceC0565a
                 /* renamed from: a */
-                public void mo4733a(String str2, int i2, int i3, Bitmap bitmap) {
-                    if (imageViewTouch.getTag().equals(str2)) {
+                public void loaded(String url, int width, int height, Bitmap bitmap) {
+                    if (imageViewTouch.getTag().equals(url)) {
                         imageViewTouch.m5880a(bitmap, true);
                     }
                 }

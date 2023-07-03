@@ -13,39 +13,40 @@ import com.sds.android.sdk.lib.util.SDKVersionUtils;
 import com.sds.android.sdk.lib.util.SecurityUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.sdk.lib.util.UrlUtils;
+
 import java.io.File;
 
 /* renamed from: com.sds.android.sdk.core.a.b */
 /* loaded from: classes.dex */
-public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
+public final class ImageCache implements ImageLoadTask.LoadImageCallback {
 
     /* renamed from: c */
-    private static ImageCache f2271c;
+    private static ImageCache instance;
 
     /* renamed from: a */
-    private LruCache<String, Bitmap> f2272a;
+    private LruCache<String, Bitmap> lruKeyBitmap;
 
     /* renamed from: b */
-    private File f2273b;
+    private File cacheImageFile;
 
     /* renamed from: d */
-    private ImageLoadTaskManger f2274d = new ImageLoadTaskManger();
+    private ImageLoadTaskManger imageLoadTaskManger = new ImageLoadTaskManger();
 
     /* compiled from: ImageCache.java */
     /* renamed from: com.sds.android.sdk.core.a.b$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC0565a {
+    public interface ImageLoadedCallback {
         /* renamed from: a */
-        void mo4733a(String str, int i, int i2, Bitmap bitmap);
+        void loaded(String url, int width, int height, Bitmap bitmap);
     }
 
     /* renamed from: a */
-    public static synchronized ImageCache m8814a(float f, String str) {
+    public static synchronized ImageCache getInstance(float memCacheSizePercent, String str) {
         ImageCache imageCache;
         synchronized (ImageCache.class) {
-            if (f2271c == null) {
-                f2271c = new ImageCache(f, str);
-                imageCache = f2271c;
+            if (instance == null) {
+                instance = new ImageCache(memCacheSizePercent, str);
+                imageCache = instance;
             } else {
                 throw new IllegalStateException("ImageCache already existed!");
             }
@@ -54,78 +55,79 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
     }
 
     /* renamed from: a */
-    public Bitmap m8807a(String str, String str2, int i, int i2) {
-        return this.f2272a.get(m8800c(str, str2, i, i2));
+    public Bitmap getLruCacheBitmap(String url, String filename, int width, int height) {
+        return this.lruKeyBitmap.get(getFileNameSpliceWidthHeight(url, filename, width, height));
     }
 
     /* renamed from: a */
-    public void m8806a(String str, String str2, int i, int i2, Bitmap bitmap) {
-        String m8800c = m8800c(str, str2, i, i2);
-        if (m8800c != null && bitmap != null) {
-            this.f2272a.put(m8800c, bitmap);
+    public void putImageToLrcCache(String str, String str2, int i, int i2, Bitmap bitmap) {
+        String fileNameSpliceWidthHeight = getFileNameSpliceWidthHeight(str, str2, i, i2);
+        if (fileNameSpliceWidthHeight != null && bitmap != null) {
+            this.lruKeyBitmap.put(fileNameSpliceWidthHeight, bitmap);
         }
     }
 
     /* renamed from: b */
-    public void m8802b(String str, String str2, int i, int i2) {
-        if (!StringUtils.isEmpty(str)) {
-            this.f2272a.remove(m8800c(str, str2, i, i2));
-            FileUtils.exists(this.f2273b.getAbsolutePath() + File.separator + m8808a(str, str2));
+    public void removeLruCache(String url, String filename, int width, int height) {
+        if (!StringUtils.isEmpty(url)) {
+            this.lruKeyBitmap.remove(getFileNameSpliceWidthHeight(url, filename, width, height));
+            FileUtils.exists(this.cacheImageFile.getAbsolutePath() + File.separator + getFixFileName(url, filename));
         }
     }
 
     /* renamed from: a */
-    public void m8812a(String str, int i, int i2) {
-        m8802b(str, null, i, i2);
+    public void removeLruCache(String url, int width, int height) {
+        removeLruCache(url, null, width, height);
     }
 
     /* renamed from: a */
-    public String m8815a() {
-        return this.f2273b.getAbsolutePath();
+    public String getCacheImagePath() {
+        return this.cacheImageFile.getAbsolutePath();
     }
 
     /* renamed from: a */
-    private void m8805a(String str, String str2, int i, int i2, ImageView.ScaleType scaleType, InterfaceC0565a interfaceC0565a) {
-        if (interfaceC0565a == null) {
+    private void addThreadPool(String imageUrl, String filename, int width, int height, ImageView.ScaleType scaleType, ImageLoadedCallback imageLoadedCallback) {
+        if (imageLoadedCallback == null) {
             throw new IllegalArgumentException("Callback must not be null");
         }
-        if (!this.f2274d.m8790a() && !StringUtils.isEmpty(str)) {
-            this.f2274d.m8789a(new ImageLoadTask(new ImageRequestInfo(str, this.f2273b.getAbsolutePath(), str2, i, i2, scaleType, interfaceC0565a), this));
+        if (!this.imageLoadTaskManger.isCloseManager() && !StringUtils.isEmpty(imageUrl)) {
+            this.imageLoadTaskManger.addThreadPool(new ImageLoadTask(new ImageRequestInfo(imageUrl
+                    , this.cacheImageFile.getAbsolutePath(), filename, width, height, scaleType, imageLoadedCallback), this));
         }
     }
 
     /* renamed from: a */
-    public void m8809a(String str, int i, int i2, InterfaceC0565a interfaceC0565a) {
-        m8805a(str, null, i, i2, null, interfaceC0565a);
+    public void addThreadPool(String url, int width, int height, ImageLoadedCallback imageLoadedCallback) {
+        addThreadPool(url, null, width, height, null, imageLoadedCallback);
     }
 
     /* renamed from: a */
-    public void m8810a(String str, int i, int i2, ImageView.ScaleType scaleType, InterfaceC0565a interfaceC0565a) {
-        m8805a(str, null, i, i2, scaleType, interfaceC0565a);
+    public void addThreadPool(String url, int width, int height, ImageView.ScaleType scaleType, ImageLoadedCallback imageLoadedCallback) {
+        addThreadPool(url, null, width, height, scaleType, imageLoadedCallback);
     }
 
     /* renamed from: b */
-    public void m8804b() {
-        this.f2272a.evictAll();
+    public void evictAll() {
+        this.lruKeyBitmap.evictAll();
     }
 
-    private ImageCache(float f, String str) {
-        if (f < 0.05f || f > 0.8f) {
+    private ImageCache(float memCacheSizePercent, String cacheImagePath) {
+        if (memCacheSizePercent < 0.05f || memCacheSizePercent > 0.8f) {
             throw new IllegalArgumentException("setMemCacheSizePercent - percent must be between0.05and0.8 (inclusive)");
         }
-        this.f2273b = FileUtils.createFolder(str);
-        if (this.f2273b == null) {
-            this.f2273b = new File("");
+        this.cacheImageFile = FileUtils.createFolder(cacheImagePath);
+        if (this.cacheImageFile == null) {
+            this.cacheImageFile = new File("");
         }
-        m8813a(Math.round(((float) Runtime.getRuntime().maxMemory()) * f));
+        initLruCache(Math.round(((float) Runtime.getRuntime().maxMemory()) * memCacheSizePercent));
     }
 
     /* renamed from: a */
-    private void m8813a(int i) {
+    private void initLruCache(int cacheSize) {
         if (!SDKVersionUtils.sdkThan12()) {
-            i = 1024;
+            cacheSize = 1024;
         }
-        this.f2272a = new LruCache<String, Bitmap>(i / 1024) { // from class: com.sds.android.sdk.core.a.b.1
+        this.lruKeyBitmap = new LruCache<String, Bitmap>(cacheSize / 1024) { // from class: com.sds.android.sdk.core.a.b.1
             /* JADX INFO: Access modifiers changed from: protected */
             @Override // android.support.v4.util.LruCache
             /* renamed from: a */
@@ -136,61 +138,61 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
             @Override // android.support.v4.util.LruCache
             /* renamed from: a */
             public int sizeOf(String str, Bitmap bitmap) {
-                int m8453a = BitmapUtils.m8453a(bitmap) / 1024;
-                if (m8453a == 0) {
+                int bitmapSize = BitmapUtils.getBitmapSize(bitmap) / 1024;
+                if (bitmapSize == 0) {
                     return 1;
                 }
-                return m8453a;
+                return bitmapSize;
             }
         };
     }
 
     @Override // com.sds.android.sdk.core.p057a.ImageLoadTask.InterfaceC0567a
     /* renamed from: a */
-    public Bitmap mo8791a(String str, String str2, int i, int i2, ImageView.ScaleType scaleType) {
-        return m8801b(str, str2, i, i2, scaleType);
+    public Bitmap loadBitmapFromCache(String filename, String localPath, int width, int height, ImageView.ScaleType scaleType) {
+        return loadBitmapFromLocal(filename, localPath, width, height, scaleType);
     }
 
     @Override // com.sds.android.sdk.core.p057a.ImageLoadTask.InterfaceC0567a
     /* renamed from: a */
-    public void mo8792a(ImageRequestInfo imageRequestInfo) {
-        if (imageRequestInfo.m8779g() == null) {
+    public void loadBitmapFromNetwork(ImageRequestInfo imageRequestInfo) {
+        if (imageRequestInfo.getImageBitmap() == null) {
             throw new IllegalArgumentException("bitmap must not be null!");
         }
-        String m8784b = imageRequestInfo.m8784b();
-        m8806a(m8784b, imageRequestInfo.m8783c(), imageRequestInfo.m8781e(), imageRequestInfo.m8780f(), imageRequestInfo.m8779g());
-        imageRequestInfo.m8786a().mo4733a(m8784b, imageRequestInfo.m8781e(), imageRequestInfo.m8780f(), imageRequestInfo.m8779g());
+        String imageUrl = imageRequestInfo.getImageUrl();
+        putImageToLrcCache(imageUrl, imageRequestInfo.getFilename(), imageRequestInfo.getWidth(), imageRequestInfo.getHeight(), imageRequestInfo.getImageBitmap());
+        imageRequestInfo.getImageLoadedCallback().loaded(imageUrl, imageRequestInfo.getWidth(), imageRequestInfo.getHeight(), imageRequestInfo.getImageBitmap());
     }
 
     /* renamed from: b */
-    private Bitmap m8801b(String str, String str2, int i, int i2, ImageView.ScaleType scaleType) {
-        if (FileUtils.m8414b(str2)) {
+    private Bitmap loadBitmapFromLocal(String filename, String localPath, int width, int height, ImageView.ScaleType scaleType) {
+        if (FileUtils.isFile(localPath)) {
             try {
-                FileUtils.m8418a(str2, System.currentTimeMillis());
+                FileUtils.setLastModified(localPath, System.currentTimeMillis());
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inJustDecodeBounds = true;
-                BitmapFactory.decodeFile(str2, options);
-                options.inSampleSize = BitmapUtils.m8436b(options, i, i2);
+                BitmapFactory.decodeFile(localPath, options);
+                options.inSampleSize = BitmapUtils.getAspectRatio(options, width, height);
                 options.inJustDecodeBounds = false;
                 options.inPurgeable = true;
                 options.inInputShareable = true;
                 if (StringUtils.equals("image/jpeg", options.outMimeType)) {
                     options.inPreferredConfig = Bitmap.Config.RGB_565;
                 }
-                Bitmap decodeFile = BitmapFactory.decodeFile(str2, options);
+                Bitmap decodeFile = BitmapFactory.decodeFile(localPath, options);
                 LogUtils.error("ImageCache", "scaleType:" + scaleType);
-                if (scaleType == null || i <= 0 || i2 <= 0) {
+                if (scaleType == null || width <= 0 || height <= 0) {
                     return decodeFile;
                 }
-                if (decodeFile.getWidth() > i || decodeFile.getHeight() > i2) {
+                if (decodeFile.getWidth() > width || decodeFile.getHeight() > height) {
                     if (scaleType == ImageView.ScaleType.FIT_XY) {
-                        return BitmapUtils.m8451a(decodeFile, i, i2, true);
+                        return BitmapUtils.m8451a(decodeFile, width, height, true);
                     }
                     if (scaleType == ImageView.ScaleType.FIT_CENTER) {
-                        return BitmapUtils.m8438b(decodeFile, i, i2, true);
+                        return BitmapUtils.m8438b(decodeFile, width, height, true);
                     }
                     if (scaleType == ImageView.ScaleType.CENTER_CROP) {
-                        return BitmapUtils.m8433c(decodeFile, i, i2, true);
+                        return BitmapUtils.m8433c(decodeFile, width, height, true);
                     }
                     return decodeFile;
                 }
@@ -203,39 +205,51 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
         return null;
     }
 
-    /* JADX INFO: Access modifiers changed from: package-private */
-    /* renamed from: c */
-    public static String m8800c(String str, String str2, int i, int i2) {
-        if (i < 0 || i2 < 0) {
+    /**
+     * 获取文件名和宽高
+     * @param url 图片链接
+     * @param filename 文件名
+     * @param width 宽
+     * @param height 高
+     * @return 返回拼接的文件名
+     */
+    public static String getFileNameSpliceWidthHeight(String url, String filename, int width, int height) {
+        if (width < 0 || height < 0) {
             throw new IllegalArgumentException("width and height must be > 0!!");
         }
-        return m8808a(str, str2) + i + i2;
+        return getFixFileName(url, filename) + width + height;
+    }
+
+    /**
+     * 获取修复后的文件名
+     *
+     * @param imageUrl 图片链接
+     * @param filename 文件名
+     * @return 返回文件名
+     */
+    private static String getFixFileName(String imageUrl, String filename) {
+        return StringUtils.isEmpty(filename) ? SecurityUtils.MD5Hex.stringToHex(imageUrl) : filename;
     }
 
     /* renamed from: a */
-    private static String m8808a(String str, String str2) {
-        return StringUtils.isEmpty(str2) ? SecurityUtils.C0610b.m8359b(str) : str2;
-    }
-
-    /* renamed from: a */
-    public static String m8811a(String str, int i, int i2, ImageView.ScaleType scaleType) {
+    public static String buildCropUrl(String str, int i, int i2, ImageView.ScaleType scaleType) {
         if (!StringUtils.isEmpty(str) && str.startsWith("http://3p.pic.ttdtweb.com") && i > 0 && i2 > 0 && i <= 4096 && i2 <= 4096) {
             String m8334a = UrlUtils.m8334a(str);
             String substring = str.substring(m8334a.length());
-            int m8803b = m8803b(i);
-            int m8803b2 = m8803b(i2);
+            int m8803b = cropSize(i);
+            int m8803b2 = cropSize(i2);
             String str2 = "1x." + FileUtils.getSuffix(str).toLowerCase();
             String str3 = "";
-            switch (C05642.f2276a[scaleType.ordinal()]) {
-                case 1:
-                case 2:
-                case 3:
+            switch (scaleType) {
+                case FIT_XY:
+                case FIT_START:
+                case FIT_CENTER:
                     str3 = "" + m8803b + "w_" + m8803b2 + "h_1c_1e_";
                     break;
-                case 4:
+                case FIT_END:
                     str3 = "" + m8803b + "w_" + m8803b2 + "h_1c_0e_";
                     break;
-                case 5:
+                case CENTER:
                     str3 = "" + m8803b + "w_" + m8803b2 + "h_1c_1i_";
                     break;
             }
@@ -248,40 +262,8 @@ public final class ImageCache implements ImageLoadTask.InterfaceC0567a {
         return str;
     }
 
-    /* compiled from: ImageCache.java */
-    /* renamed from: com.sds.android.sdk.core.a.b$2 */
-    /* loaded from: classes.dex */
-    static /* synthetic */ class C05642 {
-
-        /* renamed from: a */
-        static final /* synthetic */ int[] f2276a = new int[ImageView.ScaleType.values().length];
-
-        static {
-            try {
-                f2276a[ImageView.ScaleType.FIT_XY.ordinal()] = 1;
-            } catch (NoSuchFieldError e) {
-            }
-            try {
-                f2276a[ImageView.ScaleType.CENTER_CROP.ordinal()] = 2;
-            } catch (NoSuchFieldError e2) {
-            }
-            try {
-                f2276a[ImageView.ScaleType.CENTER_INSIDE.ordinal()] = 3;
-            } catch (NoSuchFieldError e3) {
-            }
-            try {
-                f2276a[ImageView.ScaleType.FIT_CENTER.ordinal()] = 4;
-            } catch (NoSuchFieldError e4) {
-            }
-            try {
-                f2276a[ImageView.ScaleType.CENTER.ordinal()] = 5;
-            } catch (NoSuchFieldError e5) {
-            }
-        }
-    }
-
     /* renamed from: b */
-    private static int m8803b(int i) {
-        return ((i + 25) / 50) * 50;
+    private static int cropSize(int size) {
+        return ((size + 25) / 50) * 50;
     }
 }

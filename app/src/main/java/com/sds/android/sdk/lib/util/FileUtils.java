@@ -30,22 +30,22 @@ public class FileUtils {
     }
 
     /* renamed from: b */
-    public static boolean m8414b(String str) {
-        if (StringUtils.isEmpty(str)) {
+    public static boolean isFile(String path) {
+        if (StringUtils.isEmpty(path)) {
             return false;
         }
-        File file = new File(str);
+        File file = new File(path);
         return file.exists() && file.isFile();
     }
 
     /* renamed from: a */
-    public static boolean m8418a(String str, long j) {
-        return m8414b(str) && new File(str).setLastModified(j);
+    public static boolean setLastModified(String str, long time) {
+        return isFile(str) && new File(str).setLastModified(time);
     }
 
     /* renamed from: c */
     public static long m8411c(String str) {
-        if (m8414b(str)) {
+        if (isFile(str)) {
             return new File(str).length();
         }
         return 0L;

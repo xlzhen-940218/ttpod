@@ -531,7 +531,7 @@ public class AudioEffectModule extends BaseModule {
         if (l == null) {
             throw new IllegalArgumentException("SongId must not be null!");
         }
-        return SecurityUtils.C0610b.m8361a(String.valueOf(l));
+        return SecurityUtils.MD5Hex.stringToMD5Hex(String.valueOf(l));
     }
 
     /* renamed from: i */
@@ -545,7 +545,7 @@ public class AudioEffectModule extends BaseModule {
         Iterator<MediaItem> it = MediaStorage.queryMediaItemList(sContext, str, Preferences.m2860l(str)).iterator();
         while (it.hasNext()) {
             MediaItem next = it.next();
-            if (!FileUtils.m8414b(AudioEffectUtils.m4341a(next))) {
+            if (!FileUtils.isFile(AudioEffectUtils.m4341a(next))) {
                 MediaStorage.deleteMediaItem(sContext, str, next.getID());
                 it.remove();
             }

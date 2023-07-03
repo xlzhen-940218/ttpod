@@ -77,7 +77,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             i2++;
             i++;
             if (m2128b == null || !m2128b.contains(Integer.valueOf(item.getId()))) {
-                if (!FileUtils.m8414b(item.getLocalLyricPath())) {
+                if (!FileUtils.isFile(item.getLocalLyricPath())) {
                     z = i2 >= length || i >= m3005aB;
                     downloadLyric(item, z);
                 }
@@ -197,7 +197,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                                     if (!it.hasNext()) {
                                         break;
                                     }
-                                    size = !FileUtils.m8414b(new StringBuilder().append(str).append((long) it.next().intValue()).toString()) ? i2 + 1 : i2;
+                                    size = !FileUtils.isFile(new StringBuilder().append(str).append((long) it.next().intValue()).toString()) ? i2 + 1 : i2;
                                 }
                                 return i2 >= m3005aB || i2 >= i;
                             }

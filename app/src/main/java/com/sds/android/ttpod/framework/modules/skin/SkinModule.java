@@ -112,7 +112,7 @@ public final class SkinModule extends BaseModule {
         switch (num.intValue()) {
             case 0:
                 z = m3542a(str);
-                String str2 = TTPodConfig.getCacheTmpPath() + File.separator + SecurityUtils.C0610b.m8361a(SkinUtils.m4646a(str, num.intValue()));
+                String str2 = TTPodConfig.getCacheTmpPath() + File.separator + SecurityUtils.MD5Hex.stringToMD5Hex(SkinUtils.m4646a(str, num.intValue()));
                 if (FileUtils.m8419a(str2)) {
                     new File(str2).delete();
                     break;

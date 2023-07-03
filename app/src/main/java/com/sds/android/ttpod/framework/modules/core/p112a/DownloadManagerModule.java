@@ -218,7 +218,7 @@ public final class DownloadManagerModule extends BaseModule {
 
     public void addDownloadTask(DownloadTaskInfo downloadTaskInfo) {
         m4472a(downloadTaskInfo.getType());
-        if (FileUtils.m8414b(downloadTaskInfo.getSavePath())) {
+        if (FileUtils.isFile(downloadTaskInfo.getSavePath())) {
             CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_ADD_DOWNLOAD_TASK_ERROR, downloadTaskInfo), ModuleID.DOWNLOAD_MANAGER);
             return;
         }
@@ -276,7 +276,7 @@ public final class DownloadManagerModule extends BaseModule {
         if (list != null && !list.isEmpty()) {
             boolean z2 = false;
             for (DownloadTaskInfo downloadTaskInfo : list) {
-                if (FileUtils.m8414b(downloadTaskInfo.getSavePath())) {
+                if (FileUtils.isFile(downloadTaskInfo.getSavePath())) {
                     if (bool.booleanValue()) {
                         FileUtils.exists(downloadTaskInfo.getSavePath());
                     }
@@ -355,7 +355,7 @@ public final class DownloadManagerModule extends BaseModule {
             TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.core.a.a.7
                 @Override // java.lang.Runnable
                 public void run() {
-                    if (FileUtils.m8414b(downloadTaskInfo.getSavePath())) {
+                    if (FileUtils.isFile(downloadTaskInfo.getSavePath())) {
                         if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType())) {
                             DownloadManagerModule.this.m4457d(downloadTaskInfo);
                         }
@@ -470,7 +470,7 @@ public final class DownloadManagerModule extends BaseModule {
         while (it.hasNext()) {
             DownloadTaskInfo next = it.next();
             if (next.getState().intValue() == 4) {
-                if (!FileUtils.m8414b(next.getSavePath()) || i == 1) {
+                if (!FileUtils.isFile(next.getSavePath()) || i == 1) {
                     it.remove();
                 } else if (next.getCompleteTime() == null) {
                     next.setCompleteTime(Long.valueOf(next.getAddTime().longValue()));

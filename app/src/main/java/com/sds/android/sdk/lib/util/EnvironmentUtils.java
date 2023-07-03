@@ -21,7 +21,6 @@ import androidx.core.content.ContextCompat;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 
-import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
 import com.sds.android.sdk.lib.openudid.OpenUDIDManager;
 import com.sds.android.ttpod.media.mediastore.old.MediaStoreOld;
 import com.ta.utdid2.device.UTDevice;
@@ -186,7 +185,7 @@ public class EnvironmentUtils {
             if (new File(str).canWrite()) {
                 String str2 = str + File.separator;
                 int i = 0;
-                while (FileUtils.m8414b(str2 + i)) {
+                while (FileUtils.isFile(str2 + i)) {
                     i++;
                 }
                 File m8407e = FileUtils.createFile(str2 + i);

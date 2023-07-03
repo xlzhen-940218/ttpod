@@ -193,7 +193,7 @@ public class SearchModule extends BaseModule {
         } else if (Action.SWITCH_ARTIST_BITMAP.equals(action)) {
             String stringExtra = intent.getStringExtra("media_id");
             String stringExtra2 = intent.getStringExtra("path");
-            if (FileUtils.m8414b(stringExtra2)) {
+            if (FileUtils.isFile(stringExtra2)) {
                 m3918a(stringExtra, stringExtra2);
             }
         }

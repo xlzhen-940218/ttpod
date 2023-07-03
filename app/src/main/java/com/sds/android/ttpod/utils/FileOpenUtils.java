@@ -17,7 +17,7 @@ public class FileOpenUtils {
     /* renamed from: a */
     public static boolean m8281a(Context context, DownloadTaskInfo downloadTaskInfo) {
         String savePath = downloadTaskInfo.getSavePath();
-        if (FileUtils.m8414b(savePath)) {
+        if (FileUtils.isFile(savePath)) {
             Integer type = downloadTaskInfo.getType();
             if (type == DownloadTaskInfo.TYPE_AUDIO) {
                 CommandCenter.getInstance().execute(new Command(CommandID.PLAY, savePath));

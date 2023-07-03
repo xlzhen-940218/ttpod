@@ -108,7 +108,7 @@ public class EntryActivity extends BaseActivity {
                 findViewById.setOnClickListener(this.mOnClickAudioEnableListener);
             }
         }
-        if (FileUtils.m8414b(str)) {
+        if (FileUtils.isFile(str)) {
             WebView webView = new WebView(this);
             webView.getSettings().setJavaScriptEnabled(true);
             if (SDKVersionUtils.sdkThan11()) {

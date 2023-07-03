@@ -236,7 +236,7 @@ public class BitmapUtils {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(resources, i, options);
-        options.inSampleSize = m8436b(options, i2, i3);
+        options.inSampleSize = getAspectRatio(options, i2, i3);
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(resources, i, options);
     }
@@ -251,7 +251,7 @@ public class BitmapUtils {
         options.inPurgeable = true;
         options.inInputShareable = true;
         BitmapFactory.decodeFile(str, options);
-        options.inSampleSize = m8436b(options, i, i2);
+        options.inSampleSize = getAspectRatio(options, i, i2);
         options.inJustDecodeBounds = false;
         if (m8437b(options)) {
             options.inPreferredConfig = Bitmap.Config.RGB_565;
@@ -264,17 +264,23 @@ public class BitmapUtils {
         }
     }
 
-    /* renamed from: b */
-    public static int m8436b(BitmapFactory.Options options, int i, int i2) {
+    /**
+     * 获取宽高比
+     * @param options 图片参数
+     * @param width 宽
+     * @param height 高
+     * @return 返回宽高比
+     */
+    public static int getAspectRatio(BitmapFactory.Options options, int width, int height) {
         int i3;
-        int i4 = options.outHeight;
-        int i5 = options.outWidth;
-        if (i <= 0 || i2 <= 0 || (i4 <= i2 && i5 <= i)) {
+        int outHeight = options.outHeight;
+        int outWidth = options.outWidth;
+        if (width <= 0 || height <= 0 || (outHeight <= height && outWidth <= width)) {
             i3 = 1;
-        } else if (i5 > i4) {
-            i3 = Math.round(i4 / i2);
+        } else if (outWidth > outHeight) {
+            i3 = Math.round(outHeight / height);
         } else {
-            i3 = Math.round(i5 / i);
+            i3 = Math.round(outWidth / width);
         }
         if (i3 == 0) {
             return 1;
@@ -283,7 +289,7 @@ public class BitmapUtils {
     }
 
     /* renamed from: a */
-    public static int m8453a(Bitmap bitmap) {
+    public static int getBitmapSize(Bitmap bitmap) {
         if (bitmap == null) {
             throw new IllegalArgumentException("bitmap must be not null!");
         }

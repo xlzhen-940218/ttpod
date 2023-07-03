@@ -252,13 +252,13 @@ public final class Cache {
 
     /* renamed from: a */
     public void m3206a(String str, ValidityResult validityResult) {
-        this.objectCache.m8771a(SecurityUtils.C0610b.m8361a(str), validityResult);
+        this.objectCache.m8771a(SecurityUtils.MD5Hex.stringToMD5Hex(str), validityResult);
     }
 
     /* renamed from: a */
     public ValidityResult m3207a(String str) {
         try {
-            return (ValidityResult) this.objectCache.m8765b(SecurityUtils.C0610b.m8361a(str), null);
+            return (ValidityResult) this.objectCache.m8765b(SecurityUtils.MD5Hex.stringToMD5Hex(str), null);
         } catch (Exception e) {
             return null;
         }

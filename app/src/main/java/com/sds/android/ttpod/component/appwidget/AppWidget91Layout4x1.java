@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
+
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
@@ -151,7 +151,7 @@ public class AppWidget91Layout4x1 extends AppWidget91Base {
                 str = this.f3648a + "pandawidget_ttpod_playnormal_4x1.png";
                 str2 = this.f3648a + "pandawidget_ttpod_playpressed_4x1.png";
             }
-            if (FileUtils.m8414b(str) && FileUtils.m8414b(str2) && (newSelector = newSelector(getContext(), str, str2)) != null) {
+            if (FileUtils.isFile(str) && FileUtils.isFile(str2) && (newSelector = newSelector(getContext(), str, str2)) != null) {
                 this.f3652e.setImageDrawable(newSelector);
                 return;
             }
@@ -168,7 +168,7 @@ public class AppWidget91Layout4x1 extends AppWidget91Base {
         StateListDrawable newSelector;
         if (!StringUtils.isEmpty(this.f3648a)) {
             String str = z ? this.f3648a + "pandawidget_ttpod_minilyricon_4x1.png" : this.f3648a + "pandawidget_ttpod_minilyricoff_4x1.png";
-            if (FileUtils.m8414b(str) && (newSelector = newSelector(getContext(), str, str)) != null) {
+            if (FileUtils.isFile(str) && (newSelector = newSelector(getContext(), str, str)) != null) {
                 this.f3654g.setImageDrawable(newSelector);
                 return;
             }
@@ -219,14 +219,14 @@ public class AppWidget91Layout4x1 extends AppWidget91Base {
         try {
             String str = this.f3648a + "pandawidget_ttpod_prevnormal_4x1.png";
             String str2 = this.f3648a + "pandawidget_ttpod_prevpressed_4x1.png";
-            if (FileUtils.m8414b(str) && FileUtils.m8414b(str2)) {
+            if (FileUtils.isFile(str) && FileUtils.isFile(str2)) {
                 this.f3651d.setImageDrawable(newSelector(getContext(), str, str2));
             } else {
                 this.f3651d.setImageResource(R.drawable.img_appwidget_play_prev);
             }
             String str3 = this.f3648a + "pandawidget_ttpod_nextnormal_4x1.png";
             String str4 = this.f3648a + "pandawidget_ttpod_nextpressed_4x1.png";
-            if (FileUtils.m8414b(str3) && FileUtils.m8414b(str4)) {
+            if (FileUtils.isFile(str3) && FileUtils.isFile(str4)) {
                 this.f3653f.setImageDrawable(newSelector(getContext(), str3, str4));
             } else {
                 this.f3653f.setImageResource(R.drawable.img_appwidget_play_next);

@@ -93,7 +93,7 @@ public final class SplashModule extends BaseModule {
                         String str2 = m3991c + File.separator + "background.jpg";
                         String str3 = m3991c + File.separator + "index.html";
                         Bitmap m3989e = SplashModule.this.m3989e(str2);
-                        if (FileUtils.m8414b(str3)) {
+                        if (FileUtils.isFile(str3)) {
                             j2 = 4000;
                         }
                         if (m3989e != null && FileUtils.m8419a((String) null) && Preferences.m3028a()) {

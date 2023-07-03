@@ -462,7 +462,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
     public void tryDownloadSkin(SkinItem skinItem, boolean z) {
         if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.shake_error_hint);
-        } else if (FileUtils.m8414b(skinItem.getPath()) && !z) {
+        } else if (FileUtils.isFile(skinItem.getPath()) && !z) {
             PopupsUtils.m6760a((int) R.string.skin_file_already_existed);
         } else {
             String m3565g = skinItem.getTitle();
@@ -478,7 +478,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
                 if (z) {
                     str = str + UPDATE_TEMP_SUFFIX;
                 }
-                if (FileUtils.m8414b(str)) {
+                if (FileUtils.isFile(str)) {
                     FileUtils.exists(str);
                 }
                 DownloadTaskInfo m4760a = DownloadUtils.m4760a(skinUrl, str, 0L, m3565g, DownloadTaskInfo.TYPE_SKIN, false, getStatisticOrigin());

@@ -37,7 +37,7 @@ public class TTPodApplication extends BaseApplication {
         try {
             super.mo4637a();
             PopupsUtils.m6749a(this);
-            ImageCacheUtils.m4757a();
+            ImageCacheUtils.initUtil();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +47,7 @@ public class TTPodApplication extends BaseApplication {
     public void onLowMemory() {
         super.onLowMemory();
         if (m4631g()) {
-            ImageCacheUtils.m4743b().m8804b();
+            ImageCacheUtils.getImageCache().evictAll();
             Cache.getInstance().m3196b();
         }
     }

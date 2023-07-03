@@ -78,7 +78,7 @@ public class ShareInfoConvertUtils {
 
     /* renamed from: a */
     private static String m8235a(String str) {
-        String str2 = ImageCacheUtils.m4743b().m8815a() + File.separator + SecurityUtils.C0610b.m8359b(str);
+        String str2 = ImageCacheUtils.getImageCache().getCacheImagePath() + File.separator + SecurityUtils.MD5Hex.stringToHex(str);
         return new File(str2).exists() ? str2 : "";
     }
 

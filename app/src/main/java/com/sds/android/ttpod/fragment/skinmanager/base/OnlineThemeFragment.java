@@ -78,13 +78,13 @@ public abstract class OnlineThemeFragment extends BaseThemeFragment {
         private void m5323d(SkinItem skinItem) {
             switch (skinItem.getType()) {
                 case 0:
-                    if (!FileUtils.m8414b(skinItem.getPath())) {
+                    if (!FileUtils.isFile(skinItem.getPath())) {
                         skinItem.setType(4);
                         return;
                     }
                     return;
                 case 4:
-                    if (FileUtils.m8414b(skinItem.getPath())) {
+                    if (FileUtils.isFile(skinItem.getPath())) {
                         skinItem.setType(0);
                         return;
                     }

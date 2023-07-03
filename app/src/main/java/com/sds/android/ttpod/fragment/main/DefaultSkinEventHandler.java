@@ -274,7 +274,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
     /* renamed from: d */
     public void m5670d() {
         MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
-        if (!m3225N.isNull() && FileUtils.m8414b(m3225N.getLocalDataSource())) {
+        if (!m3225N.isNull() && FileUtils.isFile(m3225N.getLocalDataSource())) {
             try {
                 BlueToothUtils.m8308a(this.activity, new File[]{new File(m3225N.getLocalDataSource())});
             } catch (Exception e) {

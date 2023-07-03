@@ -31,7 +31,7 @@ public class AudioEffectUtils {
     public static boolean m4339b(MediaItem mediaItem) {
         AudioEffectCache audioEffectCache;
         String m4341a = m4341a(mediaItem);
-        if (FileUtils.m8414b(m4341a)) {
+        if (FileUtils.isFile(m4341a)) {
             if (mediaItem.getSongID().longValue() != 0 && mediaItem.getLocalDataSource() == null) {
                 return true;
             }

@@ -1,6 +1,5 @@
 package com.sds.android.sdk.lib.util;
 
-import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
 import java.security.MessageDigest;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
@@ -13,19 +12,19 @@ public class SecurityUtils {
     /* compiled from: SecurityUtils.java */
     /* renamed from: com.sds.android.sdk.lib.util.j$b */
     /* loaded from: classes.dex */
-    public static class C0610b {
+    public static class MD5Hex {
         /* renamed from: a */
-        public static String m8361a(String str) {
-            return m8360a(m8357c(str));
+        public static String stringToMD5Hex(String str) {
+            return bytesToString(stringToMD5Bytes(str));
         }
 
         /* renamed from: b */
-        public static String m8359b(String str) {
-            return m8358b(m8357c(str));
+        public static String stringToHex(String str) {
+            return bytesToHex(stringToMD5Bytes(str));
         }
 
         /* renamed from: c */
-        private static byte[] m8357c(String str) {
+        private static byte[] stringToMD5Bytes(String str) {
             if (str == null) {
                 return null;
             }
@@ -40,7 +39,7 @@ public class SecurityUtils {
         }
 
         /* renamed from: a */
-        private static String m8360a(byte[] bArr) {
+        private static String bytesToString(byte[] bArr) {
             if (bArr == null) {
                 return null;
             }
@@ -52,7 +51,7 @@ public class SecurityUtils {
         }
 
         /* renamed from: b */
-        private static String m8358b(byte[] bArr) {
+        private static String bytesToHex(byte[] bArr) {
             if (bArr == null) {
                 return null;
             }

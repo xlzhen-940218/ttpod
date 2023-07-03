@@ -281,7 +281,7 @@ public class AudioEffectLoader {
     private void m2756a(final MediaItem mediaItem) {
         if (Preferences.m2974ad()) {
             String m4338b = AudioEffectUtils.m4338b(mediaItem.getSongID(), mediaItem.getTitle(), mediaItem.getArtist());
-            if (mediaItem.getSongID() != null && AudioEffectUtils.m4339b(mediaItem) && FileUtils.m8414b(m4338b)) {
+            if (mediaItem.getSongID() != null && AudioEffectUtils.m4339b(mediaItem) && FileUtils.isFile(m4338b)) {
                 this.f7008a = 1;
                 m2745b(m4338b);
                 if (Preferences.m2972ae()) {
@@ -408,7 +408,7 @@ public class AudioEffectLoader {
         if (Preferences.m2974ad()) {
             try {
                 String m4338b = AudioEffectUtils.m4338b(mediaItem.getSongID(), mediaItem.getTitle(), mediaItem.getArtist());
-                if (FileUtils.m8414b(m4338b) && AudioEffectUtils.m4339b(mediaItem)) {
+                if (FileUtils.isFile(m4338b) && AudioEffectUtils.m4339b(mediaItem)) {
                     this.f7008a = 1;
                     m2745b(m4338b);
                 } else {

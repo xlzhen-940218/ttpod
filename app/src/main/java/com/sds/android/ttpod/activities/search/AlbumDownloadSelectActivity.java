@@ -300,7 +300,7 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
                 return false;
             }
             OnlineMediaItem.Url m4682b = OnlineMediaItemUtils.m4682b(onlineMediaItem, Preferences.m3056M());
-            return m4682b != null && FileUtils.m8414b(OnlineMediaItemUtils.m4688a(onlineMediaItem, m4682b));
+            return m4682b != null && FileUtils.isFile(OnlineMediaItemUtils.m4688a(onlineMediaItem, m4682b));
         }
     }
 

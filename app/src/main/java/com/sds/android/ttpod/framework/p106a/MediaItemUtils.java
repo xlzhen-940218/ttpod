@@ -68,7 +68,7 @@ public class MediaItemUtils {
     public static MediaItem m4712a(String str) {
         DebugUtils.m8426a(str, "mediaSource");
         String m8396p = FileUtils.m8396p(str);
-        if (FileUtils.m8414b(m8396p)) {
+        if (FileUtils.isFile(m8396p)) {
             String m8399m = FileUtils.getSuffix(m8396p);
             if (m8399m.equalsIgnoreCase("mid") || m8399m.equalsIgnoreCase("midi") || m8399m.equalsIgnoreCase("amr")) {
                 return new MediaItem(null, null, m8396p, FileUtils.m8400l(m8396p), FileUtils.m8401k(m8396p), "", "", "", null, FileUtils.getSuffix(m8396p), 0, 0, 0, 0, 0, 0, 0, 0, null, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null);
@@ -86,7 +86,7 @@ public class MediaItemUtils {
     /* renamed from: a */
     public static void m4714a(MediaItem mediaItem, String str) {
         mediaItem.setLocalDataSource(str);
-        if (FileUtils.m8414b(mediaItem.getLocalDataSource())) {
+        if (FileUtils.isFile(mediaItem.getLocalDataSource())) {
             MediaTag mediaTag = new MediaTag();
             String m8399m = FileUtils.getSuffix(mediaItem.getLocalDataSource());
             if (mediaTag.openFile(mediaItem.getLocalDataSource(), true)) {

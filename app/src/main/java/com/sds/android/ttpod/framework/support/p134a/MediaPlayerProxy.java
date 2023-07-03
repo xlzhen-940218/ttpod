@@ -452,7 +452,7 @@ public final class MediaPlayerProxy {
                 e.printStackTrace();
             }
             //new //SSystemEvent("SYS_PLAY", "stop").append("song_id", this.f7049p).append("buffer_size", Integer.valueOf(this.f7052s.getBufferSize())).append("time_played", Integer.valueOf(m2687g() / 1000)).append("play_type", this.f7046m).post();
-        } else if (FileUtils.m8414b(this.f7048o)) {
+        } else if (FileUtils.isFile(this.f7048o)) {
             //LocalMediaStatistic.m5194d(this.f7048o, m2687g() / 1000);
             try {
                 //LocalMediaStatistic.m5200a(this.f7048o);
@@ -646,7 +646,7 @@ public final class MediaPlayerProxy {
         if (this.f7049p != null) {
             //OnlineMediaStatistic.m5048a(this.f7049p.longValue(), true);
             //new //SSystemEvent("SYS_PLAY", "complete").append("song_id", this.f7049p).append("play_type", this.f7046m).post();
-        } else if (FileUtils.m8414b(this.f7048o)) {
+        } else if (FileUtils.isFile(this.f7048o)) {
             //LocalMediaStatistic.m5198a(this.f7048o, true);
             //new //SSystemEvent("SYS_PLAY", "complete").append("song_id", this.f7048o).append("play_type", this.f7046m).post();
         }
@@ -699,7 +699,7 @@ public final class MediaPlayerProxy {
             //OnlineMediaStatistic.m5023j(this.f7049p.longValue(), this.f7052s.duration() / 1000);
             //OnlineMediaStatistic.m5049a(this.f7049p.longValue(), this.f7048o);
             //new //SSystemEvent("SYS_PLAY", "prepare").append("song_id", this.f7049p).append("file_size", Integer.valueOf(this.f7052s.getFileSize())).append("duration", Integer.valueOf(this.f7052s.duration() / 1000)).append("uri", this.f7048o).append("play_type", this.f7046m).post();
-        } else if (FileUtils.m8414b(this.f7048o)) {
+        } else if (FileUtils.isFile(this.f7048o)) {
             //LocalMediaStatistic.m5195c(this.f7048o, this.f7052s.getFileSize());
             //LocalMediaStatistic.m5196b(this.f7048o, this.f7052s.duration() / 1000);
             //StatisticUtils.m4910a("song", "listen_info", "local");

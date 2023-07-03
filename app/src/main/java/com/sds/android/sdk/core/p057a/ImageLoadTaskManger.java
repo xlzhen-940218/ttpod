@@ -9,48 +9,48 @@ import java.util.List;
 public final class ImageLoadTaskManger {
 
     /* renamed from: a */
-    private boolean f2282a = false;
+    private boolean closeManager = false;
 
     /* renamed from: b */
-    private C0569a f2283b = new C0569a(true);
+    private ImageLoadThread imageLoadThreadUsePool = new ImageLoadThread(true);
 
     /* renamed from: c */
-    private C0569a f2284c = new C0569a(false);
+    private ImageLoadThread imageLoadThreadNoPool = new ImageLoadThread(false);
 
     public ImageLoadTaskManger() {
-        this.f2284c.start();
-        this.f2283b.start();
+        this.imageLoadThreadNoPool.start();
+        this.imageLoadThreadUsePool.start();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* compiled from: ImageLoadTaskManger.java */
     /* renamed from: com.sds.android.sdk.core.a.d$a */
     /* loaded from: classes.dex */
-    public final class C0569a extends Thread {
+    public final class ImageLoadThread extends Thread {
 
         /* renamed from: b */
-        private boolean f2286b;
+        private boolean useThreadPool;
 
         /* renamed from: c */
-        private List<ImageLoadTask> f2287c;
+        private List<ImageLoadTask> imageLoadTasks;
 
-        private C0569a(boolean z) {
-            this.f2287c = new ArrayList();
-            this.f2286b = z;
+        private ImageLoadThread(boolean useThreadPool) {
+            this.imageLoadTasks = new ArrayList<>();
+            this.useThreadPool = useThreadPool;
         }
 
         /* renamed from: a */
-        void m8787a(ImageLoadTask imageLoadTask) {
+        void addThreadPool(ImageLoadTask imageLoadTask) {
             synchronized (this) {
-                this.f2287c.add(imageLoadTask);
+                this.imageLoadTasks.add(imageLoadTask);
                 int i = 80;
-                if (this.f2286b) {
+                if (this.useThreadPool) {
                     i = 40;
                 }
-                int size = this.f2287c.size();
+                int size = this.imageLoadTasks.size();
                 if (size > i) {
                     for (int i2 = size - i; i2 >= 0; i2--) {
-                        this.f2287c.remove(0);
+                        this.imageLoadTasks.remove(0);
                     }
                 }
                 notify();
@@ -63,18 +63,18 @@ public final class ImageLoadTaskManger {
             while (!isInterrupted()) {
                 ImageLoadTask imageLoadTask = null;
                 synchronized (this) {
-                    int size = this.f2287c.size();
+                    int size = this.imageLoadTasks.size();
                     if (size > 0) {
-                        imageLoadTask = this.f2287c.get(size - 1);
-                        this.f2287c.remove(size - 1);
+                        imageLoadTask = this.imageLoadTasks.get(size - 1);
+                        this.imageLoadTasks.remove(size - 1);
                     }
                 }
                 if (imageLoadTask != null) {
-                    if (!imageLoadTask.m8797a()) {
-                        if (!this.f2286b) {
-                            ImageLoadTaskManger.this.f2283b.m8787a(imageLoadTask);
+                    if (!imageLoadTask.loadImageFormCache()) {
+                        if (!this.useThreadPool) {
+                            ImageLoadTaskManger.this.imageLoadThreadUsePool.addThreadPool(imageLoadTask);
                         } else {
-                            imageLoadTask.m8794b();
+                            imageLoadTask.downloadAndLoad();
                         }
                     }
                 } else {
@@ -87,21 +87,21 @@ public final class ImageLoadTaskManger {
                 }
             }
             synchronized (this) {
-                this.f2287c.clear();
+                this.imageLoadTasks.clear();
             }
         }
     }
 
     /* renamed from: a */
-    public boolean m8790a() {
-        return this.f2282a;
+    public boolean isCloseManager() {
+        return this.closeManager;
     }
 
     /* renamed from: a */
-    public void m8789a(ImageLoadTask imageLoadTask) {
-        if (this.f2282a) {
+    public void addThreadPool(ImageLoadTask imageLoadTask) {
+        if (this.closeManager) {
             throw new IllegalStateException("Manager has been closed");
         }
-        this.f2284c.m8787a(imageLoadTask);
+        this.imageLoadThreadNoPool.addThreadPool(imageLoadTask);
     }
 }

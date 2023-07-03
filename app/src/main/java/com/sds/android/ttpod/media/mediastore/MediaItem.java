@@ -411,21 +411,21 @@ public final class MediaItem implements Parcelable, Serializable {
         if (l == null) {
             throw new IllegalArgumentException("SongId must not be null!");
         }
-        return SecurityUtils.C0610b.m8361a(String.valueOf(l));
+        return SecurityUtils.MD5Hex.stringToMD5Hex(String.valueOf(l));
     }
 
     public static String genIDWithExtra(String str) {
         if (str == null) {
             throw new IllegalArgumentException("extra must not be null!");
         }
-        return SecurityUtils.C0610b.m8361a(str);
+        return SecurityUtils.MD5Hex.stringToMD5Hex(str);
     }
 
     static String genIDWithMediaSourceAndStartTime(String str, Integer num) {
         if (str == null && num == null) {
             throw new IllegalArgumentException("SongId must not be null!");
         }
-        return SecurityUtils.C0610b.m8361a(str + num);
+        return SecurityUtils.MD5Hex.stringToMD5Hex(str + num);
     }
 
     private void assertOnlineMedia() {

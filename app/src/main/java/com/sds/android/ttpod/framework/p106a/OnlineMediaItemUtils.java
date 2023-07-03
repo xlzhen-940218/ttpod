@@ -26,7 +26,7 @@ public class OnlineMediaItemUtils {
         int length = append.length();
         for (String str : set) {
             append.append(str);
-            if (FileUtils.m8414b(append.toString())) {
+            if (FileUtils.isFile(append.toString())) {
                 return append.toString();
             }
             append.setLength(length);

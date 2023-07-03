@@ -92,6 +92,6 @@ public class AudioEffectID {
         for (short s = 0; s < this.f5851d.length; s = (short) (s + 1)) {
             str = str + "Level" + ((int) s) + ":" + ((int) this.f5851d[s]) + ",";
         }
-        return SecurityUtils.C0610b.m8359b("UserId:" + this.f5848a + " SongName:" + this.f5849b + " SingerName:" + this.f5850c + " Bass:" + this.f5852e + " Treble:" + this.f5853f + " Virtualizer:" + this.f5854g + " Reverb:" + this.f5855h + " Balance:" + this.f5856i + " Islimit:" + this.f5857j + " " + (str + "}"));
+        return SecurityUtils.MD5Hex.stringToHex("UserId:" + this.f5848a + " SongName:" + this.f5849b + " SingerName:" + this.f5850c + " Bass:" + this.f5852e + " Treble:" + this.f5853f + " Virtualizer:" + this.f5854g + " Reverb:" + this.f5855h + " Balance:" + this.f5856i + " Islimit:" + this.f5857j + " " + (str + "}"));
     }
 }

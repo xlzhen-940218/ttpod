@@ -650,14 +650,14 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                 if (StringUtils.isEmpty(localDataSource) && m2606g.getSongID().longValue() > 0 && (queryMediaItemBySongID = MediaStorage.queryMediaItemBySongID(this.context, MediaStorage.GROUP_ID_ALL_LOCAL, m2606g.getSongID())) != null) {
                     localDataSource = queryMediaItemBySongID.getLocalDataSource();
                 }
-                if (FileUtils.m8414b(localDataSource)) {
+                if (FileUtils.isFile(localDataSource)) {
                     this.mediaPlayerProxy.m2712a(localDataSource, (Long) null);
                     //LocalMediaStatistic.m5199a(localDataSource, System.nanoTime());
                     //new //SSystemEvent("SYS_PLAY", "start").append("play_type", "local").append("song_id", localDataSource).post();
                 } else {
                     if (m2606g.isOnline()) {
                         m2627a(m2606g);
-                    } else if (m2606g.getID().equals(SecurityUtils.C0610b.m8361a(m2606g.getExtra()))) {
+                    } else if (m2606g.getID().equals(SecurityUtils.MD5Hex.stringToMD5Hex(m2606g.getExtra()))) {
                         this.mediaPlayerProxy.m2711a(m2606g.getExtra(), TTPodConfig.getAudioTmp(), (Long) null);
                     } else {
                         processPlayError(-99);
@@ -705,7 +705,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         //OnlineMediaStatistic.m5050a(longValue, System.nanoTime());
         //OnlineMediaStatistic.m5036c(longValue, m2598k);
         String str2 = Preferences.getCacheMediaFolderPath() + File.separator + mediaItem.getSongID();
-        if (FileUtils.m8414b(str2)) {
+        if (FileUtils.isFile(str2)) {
             new File(str2).setLastModified(System.currentTimeMillis());
             //OnlineMediaStatistic.m5039b(longValue, true);
             //SSystemEvent.append("play_type", "cache").post();

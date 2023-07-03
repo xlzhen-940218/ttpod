@@ -133,7 +133,7 @@ public class PictureManagerAdapter extends BaseAdapter {
                     if (PictureManagerAdapter.this.context != null && PictureManagerAdapter.this.mediaItem != null) {
                         PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
                         pictureDataItem2.f3144f = false;
-                        pictureDataItem2.f3145g = FileUtils.m8414b(pictureDataItem2.getLocalLyricPath());
+                        pictureDataItem2.f3145g = FileUtils.isFile(pictureDataItem2.getLocalLyricPath());
                         PictureManagerAdapter.this.m7692a("download", PictureManagerAdapter.this.f3126d, pictureDataItem2.f3145g ? 1 : 2, pictureDataItem2.getId());
                         PictureManagerAdapter.this.notifyDataSetChanged();
                     }
@@ -475,7 +475,7 @@ public class PictureManagerAdapter extends BaseAdapter {
             if (this.url != null && (lastIndexOf = this.url.lastIndexOf(47)) > 0) {
                 this.f3143e = this.url.substring(0, lastIndexOf) + "/144/192" + this.url.substring(lastIndexOf);
             }
-            this.f3145g = FileUtils.m8414b(item.getLocalLyricPath());
+            this.f3145g = FileUtils.isFile(item.getLocalLyricPath());
         }
     }
 

@@ -218,7 +218,7 @@ public abstract class BackgroundBaseFragment extends SlidingClosableFragment {
         if (m3330c != null) {
             if (!EnvironmentUtils.DeviceConfig.isConnected()) {
                 PopupsUtils.m6760a((int) R.string.shake_error_hint);
-            } else if (FileUtils.m8414b(backgroundItem.getImagePath())) {
+            } else if (FileUtils.isFile(backgroundItem.getImagePath())) {
                 PopupsUtils.m6760a((int) R.string.skin_file_already_existed);
             } else {
                 DownloadTaskInfo m4760a = DownloadUtils.m4760a(m3330c.getSkinUrl(), backgroundItem.getImagePath(), 0L, backgroundItem.getImageName(), DownloadTaskInfo.TYPE_BACKGROUND, false, getStatisticOrigin());

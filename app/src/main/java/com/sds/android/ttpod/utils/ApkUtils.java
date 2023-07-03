@@ -11,7 +11,7 @@ import java.io.File;
 public final class ApkUtils {
     /* renamed from: a */
     public static boolean m8311a(Context context, String str) {
-        if (FileUtils.m8414b(str)) {
+        if (FileUtils.isFile(str)) {
             Intent intent = new Intent("android.intent.action.VIEW");
             intent.addFlags(268435456);
             intent.setDataAndType(Uri.fromFile(new File(str)), "application/vnd.android.package-archive");

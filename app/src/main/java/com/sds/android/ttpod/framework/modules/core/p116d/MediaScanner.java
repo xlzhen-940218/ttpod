@@ -434,7 +434,7 @@ public final class MediaScanner {
                         str = str.substring(0, str.length() - 1);
                     }
                     this.fileMatcher.start(sb.toString(), str2, Preferences.excludeHiddenFolder(), str);
-                } else if (FileUtils.m8414b(str)) {
+                } else if (FileUtils.isFile(str)) {
                     m4213a(str);
                 }
             }
@@ -547,8 +547,8 @@ public final class MediaScanner {
 
         /* renamed from: a */
         private void m4214a(MediaItem mediaItem) {
-            SecurityUtils.C0610b.m8361a("xxx_yyy");
-            SecurityUtils.C0610b.m8361a("xxx/yyy");
+            SecurityUtils.MD5Hex.stringToMD5Hex("xxx_yyy");
+            SecurityUtils.MD5Hex.stringToMD5Hex("xxx/yyy");
             if (!this.f5998k.contains(mediaItem.getID())) {
                 this.f5993f.add(mediaItem);
             } else {

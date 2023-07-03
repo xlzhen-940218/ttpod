@@ -147,7 +147,7 @@ public class AppWidget91Layout4x4 extends AppWidget91Base {
         Drawable drawableFromPath;
         if (playMode != null) {
             try {
-                if (!StringUtils.isEmpty(this.mTheme91Path) && FileUtils.m8414b(this.mTheme91Path + mStrPlayModeIcons[playMode.ordinal()]) && (drawableFromPath = getDrawableFromPath(this.mTheme91Path + mStrPlayModeIcons[playMode.ordinal()])) != null) {
+                if (!StringUtils.isEmpty(this.mTheme91Path) && FileUtils.isFile(this.mTheme91Path + mStrPlayModeIcons[playMode.ordinal()]) && (drawableFromPath = getDrawableFromPath(this.mTheme91Path + mStrPlayModeIcons[playMode.ordinal()])) != null) {
                     this.mImageButtonPlayMode.setImageDrawable(drawableFromPath);
                 } else {
                     this.mImageButtonPlayMode.setImageResource(mPlayModeIcons[playMode.ordinal()]);
@@ -175,7 +175,7 @@ public class AppWidget91Layout4x4 extends AppWidget91Base {
                 str = this.mTheme91Path + PATH_PLAY_NORMAL;
                 str2 = this.mTheme91Path + PATH_PLAY_PRESSED;
             }
-            if (FileUtils.m8414b(str) && FileUtils.m8414b(str2) && (newSelector = newSelector(getContext(), str, str2)) != null) {
+            if (FileUtils.isFile(str) && FileUtils.isFile(str2) && (newSelector = newSelector(getContext(), str, str2)) != null) {
                 this.mImageButtonPlay.setImageDrawable(newSelector);
                 return;
             }
@@ -231,34 +231,34 @@ public class AppWidget91Layout4x4 extends AppWidget91Base {
         try {
             String str = this.mTheme91Path + PATH_PREV_NORMAL;
             String str2 = this.mTheme91Path + PATH_PREV_PRESSED;
-            if (FileUtils.m8414b(str) && FileUtils.m8414b(str2)) {
+            if (FileUtils.isFile(str) && FileUtils.isFile(str2)) {
                 this.mImageButtonPlayPrev.setImageDrawable(newSelector(getContext(), str, str2));
             } else {
                 this.mImageButtonPlayPrev.setImageResource(R.drawable.xml_appwidget91_play_prev);
             }
             String str3 = this.mTheme91Path + PATH_NEXT_NORMAL;
             String str4 = this.mTheme91Path + PATH_NEXT_PRESSED;
-            if (FileUtils.m8414b(str3) && FileUtils.m8414b(str4)) {
+            if (FileUtils.isFile(str3) && FileUtils.isFile(str4)) {
                 this.mImageButtonPlayNext.setImageDrawable(newSelector(getContext(), str3, str4));
             } else {
                 this.mImageButtonPlayNext.setImageResource(R.drawable.img_appwidget_play_next);
             }
-            if (FileUtils.m8414b(this.mTheme91Path + PATH_BG_BUTTONS)) {
+            if (FileUtils.isFile(this.mTheme91Path + PATH_BG_BUTTONS)) {
                 this.mLayoutButtons.setBackground(getDrawableFromPath(this.mTheme91Path + PATH_BG_BUTTONS));
             } else {
                 this.mLayoutButtons.setBackgroundResource(R.drawable.img_background_appwidget91_buttons);
             }
-            if (FileUtils.m8414b(this.mTheme91Path + PATH_BG_TIME)) {
+            if (FileUtils.isFile(this.mTheme91Path + PATH_BG_TIME)) {
                 this.mTextViewTime.setBackground(getDrawableFromPath(this.mTheme91Path + PATH_BG_TIME));
             } else {
                 this.mTextViewTime.setBackgroundResource(R.drawable.img_background_appwidget91_time);
             }
-            if (FileUtils.m8414b(this.mTheme91Path + PATH_BG)) {
+            if (FileUtils.isFile(this.mTheme91Path + PATH_BG)) {
                 this.mLayoutBackground.setBackground(getDrawableFromPath(this.mTheme91Path + PATH_BG));
             } else {
                 this.mLayoutBackground.setBackgroundResource(R.drawable.img_background_appwidget91);
             }
-            if (FileUtils.m8414b(this.mTheme91Path + PATH_BG_DEFAULT)) {
+            if (FileUtils.isFile(this.mTheme91Path + PATH_BG_DEFAULT)) {
                 this.mImageViewMiddleDefault.setImageDrawable(getDrawableFromPath(this.mTheme91Path + PATH_BG_DEFAULT));
             } else {
                 this.mImageViewMiddleDefault.setImageResource(R.drawable.img_background_appwidget91_default);

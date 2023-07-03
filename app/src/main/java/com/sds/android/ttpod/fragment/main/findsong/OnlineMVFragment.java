@@ -219,10 +219,10 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
     private static void saveDownloadMvThumbnail(Context context, MVOnlineData mVOnlineData) {
         String picUrl = mVOnlineData.getPicUrl();
         final String generateMvThumbnailPath = generateMvThumbnailPath(mVOnlineData, ".jpg");
-        ImageCacheUtils.m4743b().m8809a(picUrl, context.getResources().getDimensionPixelSize(R.dimen.mv_thumbnail_width), context.getResources().getDimensionPixelSize(R.dimen.mv_thumbnail_height), new ImageCache.InterfaceC0565a() { // from class: com.sds.android.ttpod.fragment.main.findsong.OnlineMVFragment.3
+        ImageCacheUtils.getImageCache().addThreadPool(picUrl, context.getResources().getDimensionPixelSize(R.dimen.mv_thumbnail_width), context.getResources().getDimensionPixelSize(R.dimen.mv_thumbnail_height), new ImageCache.ImageLoadedCallback() { // from class: com.sds.android.ttpod.fragment.main.findsong.OnlineMVFragment.3
             @Override // com.sds.android.sdk.core.p057a.ImageCache.InterfaceC0565a
             /* renamed from: a */
-            public void mo4733a(String str, int i, int i2, Bitmap bitmap) {
+            public void loaded(String url, int width, int height, Bitmap bitmap) {
                 File m8407e;
                 if (bitmap != null && (m8407e = FileUtils.createFile(generateMvThumbnailPath)) != null) {
                     try {
@@ -268,7 +268,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
 
     private static void downloadMv(Context context, String str, MVOnlineData mVOnlineData) {
         String replace = generateLocalMvFilePath(str, mVOnlineData).replace(" ", "");
-        if (FileUtils.m8414b(replace)) {
+        if (FileUtils.isFile(replace)) {
             PopupsUtils.m6760a((int) R.string.mv_had_download);
             return;
         }
