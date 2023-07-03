@@ -60,10 +60,10 @@ public class HttpRequest {
     private static boolean proxy = false;
 
     /* renamed from: d */
-    private static String authorization = "";
+    private static String username = "";
 
     /* renamed from: e */
-    private static String f2329e = "";
+    private static String password = "";
 
     /* renamed from: f */
     private static String hostname = "";
@@ -72,7 +72,7 @@ public class HttpRequest {
     private static int port = 8080;
 
     /* renamed from: h */
-    private static boolean f2332h = false;
+    private static boolean hasNetwork = false;
 
     /* renamed from: i */
     private static long contentLength = 0;
@@ -97,11 +97,11 @@ public class HttpRequest {
     }
 
     /* renamed from: a */
-    public static void m8715a(String str, int i, String authorization, String str3) {
-        hostname = str;
-        port = i;
-        HttpRequest.authorization = authorization;
-        f2329e = str3;
+    public static void setData(String hostname, int port, String username, String password) {
+        HttpRequest.hostname = hostname;
+        HttpRequest.port = port;
+        HttpRequest.username = username;
+        HttpRequest.password = password;
     }
 
     /* renamed from: a */
@@ -116,7 +116,7 @@ public class HttpRequest {
 
     /* renamed from: a */
     private static void addAuthorization(HttpRequestBase httpRequestBase) {
-        httpRequestBase.addHeader(new BasicHeader("Authorization", "Basic " + Base64.encodeToString((authorization + ":" + f2329e).getBytes(), 0).trim()));
+        httpRequestBase.addHeader(new BasicHeader("Authorization", "Basic " + Base64.encodeToString((username + ":" + password).getBytes(), 0).trim()));
     }
 
     /* renamed from: b */
@@ -125,18 +125,18 @@ public class HttpRequest {
     }
 
     /* renamed from: a */
-    public static void m8705a(boolean z) {
-        proxy = z;
+    public static void setProxy(boolean proxy) {
+        HttpRequest.proxy = proxy;
     }
 
     /* renamed from: b */
-    public static void m8702b(boolean z) {
-        f2332h = z;
+    public static void setHasNetwork(boolean hasNetwork) {
+        HttpRequest.hasNetwork = hasNetwork;
     }
 
     /* renamed from: c */
-    public static boolean m8701c() {
-        return f2332h;
+    public static boolean hasNetwork() {
+        return hasNetwork;
     }
 
     /* renamed from: e */
@@ -295,7 +295,7 @@ public class HttpRequest {
         LogUtils.info("HttpRequest", "createResultFromHttpResponse statusCode=%d lookNetProblem", Integer.valueOf(statusCode));
         Response response = new Response(statusCode, allHeaders, m8331a, (int) contentLength, httpRequestBase);
         LogUtils.info("HttpRequest", "createResultFromHttpResponse lookNetProblem isUseProxy=" + proxy + "  host=" + hostname + "  port=" + port);
-        if (f2332h && contentLength > 0) {
+        if (hasNetwork && contentLength > 0) {
             HttpRequest.contentLength += contentLength;
         }
         response.ranges = "bytes".equals(response.getHeader("Accept-Ranges"));

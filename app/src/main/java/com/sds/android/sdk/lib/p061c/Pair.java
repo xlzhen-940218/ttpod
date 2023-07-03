@@ -7,33 +7,33 @@ import java.util.Map;
 class Pair<K, V> implements Map.Entry<K, V> {
 
     /* renamed from: a */
-    private K f2363a;
+    private K key;
 
     /* renamed from: b */
-    private V f2364b;
+    private V value;
 
     public Pair() {
     }
 
     public Pair(K k, V v) {
-        this.f2363a = k;
-        this.f2364b = v;
+        this.key = k;
+        this.value = v;
     }
 
     @Override // java.util.Map.Entry
     public K getKey() {
-        return this.f2363a;
+        return this.key;
     }
 
     @Override // java.util.Map.Entry
     public V getValue() {
-        return this.f2364b;
+        return this.value;
     }
 
     @Override // java.util.Map.Entry
     public V setValue(V v) {
-        V v2 = this.f2364b;
-        this.f2364b = v;
+        V v2 = this.value;
+        this.value = v;
         return v2;
     }
 }

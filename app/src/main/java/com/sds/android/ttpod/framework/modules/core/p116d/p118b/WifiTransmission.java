@@ -27,7 +27,7 @@ public final class WifiTransmission implements HttpServer.InterfaceC1874a {
     /* renamed from: b */
     public void m4179b() {
         if (this.f6023b == null) {
-            String m8376a = NetUtils.m8376a(BaseApplication.getApplication());
+            String m8376a = NetUtils.getIp(BaseApplication.getApplication());
             if (m8376a != null) {
                 String m4177d = m4177d();
                 if (m4177d != null) {

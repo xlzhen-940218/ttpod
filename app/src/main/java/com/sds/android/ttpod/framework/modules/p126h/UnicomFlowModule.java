@@ -40,7 +40,7 @@ public class UnicomFlowModule extends BaseModule {
     public static final Integer TCP_PROXY_PORT = 8143;
 
     /* renamed from: a */
-    private static final String f6291a = UnicomFlowModule.class.getName();
+    private static final String TAG = UnicomFlowModule.class.getName();
 
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     /* renamed from: id */
@@ -57,19 +57,19 @@ public class UnicomFlowModule extends BaseModule {
         if (UnicomFlowUtil.m3946f() && EnvironmentUtils.DeviceConfig.isConnected()) {
             //UnicomFlowStatistic.m4854J();
             //new SUserEvent("PAGE_CLICK", 1143, 0).post();
-            HttpRequest.m8702b(UnicomFlowUtil.m3945g());
+            HttpRequest.setHasNetwork(UnicomFlowUtil.hasNetwork());
             m3977a(UnicomFlowUtil.m3948d());
             m3976b();
             m3973c();
             checkStatus();
-            LogUtils.debug(f6291a, "unicom flow save imsi:" + EnvironmentUtils.DeviceConfig.getSubscriberId());
+            LogUtils.debug(TAG, "unicom flow save imsi:" + EnvironmentUtils.DeviceConfig.getSubscriberId());
             Cache.getInstance().m3154k(EnvironmentUtils.DeviceConfig.getSubscriberId());
         }
     }
 
     public void checkUseGprsPopDialog() {
         boolean z = UnicomFlowUtil.m3944h() && ((new Date().getTime() > Cache.getInstance().m3232G().getTime() ? 1 : (new Date().getTime() == Cache.getInstance().m3232G().getTime() ? 0 : -1)) >= 0 && Cache.getInstance().m3234E()) && !UnicomFlowUtil.m3949c();
-        LogUtils.debug(f6291a, "unicom flow check use popup dialog :" + z);
+        LogUtils.debug(TAG, "unicom flow check use popup dialog :" + z);
         if (z) {
             Cache.getInstance().m3186b(false);
             UnicomFlowUtil.m3935q();
@@ -79,7 +79,7 @@ public class UnicomFlowModule extends BaseModule {
 
     public void popupFlowGreaterThan30MDialog() {
         boolean z = UnicomFlowUtil.m3944h() && !UnicomFlowUtil.m3949c() && Cache.getInstance().m3233F();
-        LogUtils.debug(f6291a, "unicom flow greater than 30M popup dialog :" + z);
+        LogUtils.debug(TAG, "unicom flow greater than 30M popup dialog :" + z);
         if (z) {
             Cache.getInstance().m3177c(false);
             CommandCenter.getInstance().m4604a(new Command(CommandID.UNICOM_FLOW_POPUP_DIALOG, UnicomFlowDialogType.DIALOG_30M_TYPE), ModuleID.UNICOM_FLOW);
@@ -88,7 +88,7 @@ public class UnicomFlowModule extends BaseModule {
 
     public void checkBeginMonthPopDialog() {
         boolean z = UnicomFlowUtil.m3957a() && ((new Date().getTime() > Cache.getInstance().m3189b(UnicomFlowUtil.m3937o()).getTime() ? 1 : (new Date().getTime() == Cache.getInstance().m3189b(UnicomFlowUtil.m3937o()).getTime() ? 0 : -1)) >= 0 && Cache.getInstance().m3235D() && UnicomFlowUtil.m3941k()) && Cache.getInstance().m3138z() != UnicomFlowStatus.OPEN.ordinal();
-        LogUtils.debug(f6291a, "unicom flow checkStatus begin month popup dialog:" + z);
+        LogUtils.debug(TAG, "unicom flow checkStatus begin month popup dialog:" + z);
         if (z) {
             Cache.getInstance().m3197a(false);
             UnicomFlowUtil.m3936p();
@@ -99,10 +99,10 @@ public class UnicomFlowModule extends BaseModule {
     /* renamed from: b */
     private void m3976b() {
         if (new Date().getTime() <= Preferences.m2920bi().getTime() + 86400000) {
-            LogUtils.debug(f6291a, "unicom flow already request config:");
+            LogUtils.debug(TAG, "unicom flow already request config:");
             return;
         }
-        LogUtils.debug(f6291a, "unicom flow request config:");
+        LogUtils.debug(TAG, "unicom flow request config:");
         UnicomFlowAPI.m8823a().m8544a(new RequestCallback<UnicomFlowResult>() { // from class: com.sds.android.ttpod.framework.modules.h.c.1
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
@@ -110,7 +110,7 @@ public class UnicomFlowModule extends BaseModule {
                 boolean isValidOpen = unicomFlowResult.getUnicomFlow().isValidOpen();
                 boolean isTrial = unicomFlowResult.getUnicomFlow().isTrial();
                 boolean z = isValidOpen && Cache.getInstance().m3230I();
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow request config success: " + isValidOpen + " isEnable:" + z + "   trial:" + isTrial);
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow request config success: " + isValidOpen + " isEnable:" + z + "   trial:" + isTrial);
                 Preferences.m2931b(new Date());
                 Cache.getInstance().m3172d(isValidOpen);
                 Cache.getInstance().m3165f(isTrial);
@@ -123,7 +123,7 @@ public class UnicomFlowModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow request config fail:");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow request config fail:");
                 CommandCenter.getInstance().m4604a(new Command(CommandID.UPDATE_UNICOM_FLOW_STATUS, Boolean.valueOf(UnicomFlowUtil.m3957a())), ModuleID.UNICOM_FLOW);
             }
         });
@@ -157,10 +157,10 @@ public class UnicomFlowModule extends BaseModule {
             m3939m = Cache.getInstance().m3238A();
         }
         if (StringUtils.isEmpty(m3939m) && StringUtils.isEmpty(EnvironmentUtils.DeviceConfig.getSubscriberId())) {
-            LogUtils.debug(f6291a, "unicom flow already checkStatus imsi:" + EnvironmentUtils.DeviceConfig.getSubscriberId() + " phone:" + m3939m);
+            LogUtils.debug(TAG, "unicom flow already checkStatus imsi:" + EnvironmentUtils.DeviceConfig.getSubscriberId() + " phone:" + m3939m);
             return;
         }
-        LogUtils.debug(f6291a, "unicom flow checkStatus");
+        LogUtils.debug(TAG, "unicom flow checkStatus");
         UnicomFlowAPI.m8818b(m3939m, EnvironmentUtils.DeviceConfig.getSubscriberId()).m8544a(new RequestCallback<UnicomFlowResult>() { // from class: com.sds.android.ttpod.framework.modules.h.c.2
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
@@ -197,13 +197,13 @@ public class UnicomFlowModule extends BaseModule {
                     //new SUserEvent("PAGE_CLICK", 1144, 0).post();
                 }
                 UnicomFlowModule.this.m3977a(m3948d);
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow checkStatus success openTime:" + openTime + " trialTime:" + trialTime + " unsubscribeTime:" + unsubscribeTime + " openStatus:" + openStatus + " trialStatus:" + trialStatus + " valid:" + isValidOpen + " isEnable:" + z);
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow checkStatus success openTime:" + openTime + " trialTime:" + trialTime + " unsubscribeTime:" + unsubscribeTime + " openStatus:" + openStatus + " trialStatus:" + trialStatus + " valid:" + isValidOpen + " isEnable:" + z);
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow checkStatus failure");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow checkStatus failure");
             }
         });
     }
@@ -212,14 +212,14 @@ public class UnicomFlowModule extends BaseModule {
     /* renamed from: a */
     public void m3980a(String str) {
         try {
-            LogUtils.debug(f6291a, "unicom flow handler current month flow size:" + str);
+            LogUtils.debug(TAG, "unicom flow handler current month flow size:" + str);
             String m3222Q = Cache.getInstance().m3222Q();
             if (!StringUtils.isEmpty(str) && !StringUtils.isEmpty(m3222Q)) {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 int month = simpleDateFormat.parse(str).getMonth();
                 int month2 = simpleDateFormat.parse(m3222Q).getMonth();
                 if (month != month2) {
-                    LogUtils.debug(f6291a, "unicom flow handler change month clear flow size currentMonth:" + (month + 1) + "  lastMonth:" + (month2 + 1));
+                    LogUtils.debug(TAG, "unicom flow handler change month clear flow size currentMonth:" + (month + 1) + "  lastMonth:" + (month2 + 1));
                     CommandCenter.getInstance().execute(new Command(CommandID.CLEAR_UNICOM_TOTAL_FLOW, new Object[0]));
                 }
             }
@@ -231,16 +231,16 @@ public class UnicomFlowModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m3977a(boolean z) {
-        String str = UnicomFlowUtil.m3947e() ? PROXY_WAP_HOST : PROXY_HOST;
-        HttpRequest.m8715a(str, HTTP_PROXY_PORT.intValue(), USERNAME, PASSWORD);
-        HttpRequest.m8705a(z);
-        LogUtils.debug(f6291a, "unicom flow set http proxy host:" + str + " isUseProxy:" + z);
+        String hostname = UnicomFlowUtil.isWap() ? PROXY_WAP_HOST : PROXY_HOST;
+        HttpRequest.setData(hostname, HTTP_PROXY_PORT.intValue(), USERNAME, PASSWORD);
+        HttpRequest.setProxy(z);
+        LogUtils.debug(TAG, "unicom flow set http proxy host:" + hostname + " isUseProxy:" + z);
         UnicomProxyData unicomProxyData = new UnicomProxyData();
-        unicomProxyData.m3931a(str);
-        unicomProxyData.m3932a(TCP_PROXY_PORT.intValue());
-        unicomProxyData.m3929b(HTTP_PROXY_PORT.intValue());
-        unicomProxyData.m3928b(USERNAME);
-        unicomProxyData.m3926c(PASSWORD);
+        unicomProxyData.setHostName(hostname);
+        unicomProxyData.setTcpPort(TCP_PROXY_PORT.intValue());
+        unicomProxyData.setHttpPort(HTTP_PROXY_PORT.intValue());
+        unicomProxyData.setUsername(USERNAME);
+        unicomProxyData.setPassword(PASSWORD);
         SupportFactory.getInstance(sContext).m2499a(unicomProxyData, z);
     }
 
@@ -286,7 +286,7 @@ public class UnicomFlowModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m3978a(String str, UnicomFlow unicomFlow) {
-        LogUtils.debug(f6291a, "unicom flow set open status");
+        LogUtils.debug(TAG, "unicom flow set open status");
         Cache.getInstance().m3174d(str);
         Cache.getInstance().m3154k(EnvironmentUtils.DeviceConfig.getSubscriberId());
         String openTime = unicomFlow.getOpenTime();
@@ -302,7 +302,7 @@ public class UnicomFlowModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: b */
     public void m3974b(String str, UnicomFlow unicomFlow) {
-        LogUtils.debug(f6291a, "unicom flow set trial status");
+        LogUtils.debug(TAG, "unicom flow set trial status");
         Cache.getInstance().m3174d(str);
         Cache.getInstance().m3154k(EnvironmentUtils.DeviceConfig.getSubscriberId());
         String trialTime = unicomFlow.getTrialTime();
@@ -316,7 +316,7 @@ public class UnicomFlowModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public void m3986a(UnicomFlow unicomFlow) {
-        LogUtils.debug(f6291a, "unicom flow set unsubscribe status");
+        LogUtils.debug(TAG, "unicom flow set unsubscribe status");
         String unsubscribeTime = unicomFlow.getUnsubscribeTime();
         if (!StringUtils.isEmpty(unsubscribeTime)) {
             Cache.getInstance().m3156j(unsubscribeTime);
@@ -330,7 +330,7 @@ public class UnicomFlowModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow trial sucess");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow trial sucess");
                 CommonResult commonResult = new CommonResult(ErrCode.ErrNone, unicomFlowResult.getMessage(), unicomFlowResult.getUnicomFlow());
                 UnicomFlowModule.this.m3974b(str, unicomFlowResult.getUnicomFlow());
                 CommandCenter.getInstance().m4604a(new Command(CommandID.TRIAL_UNICOM_FLOW_RESULT, commonResult), ModuleID.UNICOM_FLOW);
@@ -339,7 +339,7 @@ public class UnicomFlowModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow trial fail");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow trial fail");
                 ErrCode errCode = ErrCode.ErrGeneral;
                 if (unicomFlowResult.getCode() == 2) {
                     UnicomFlowModule.this.m3974b(str, unicomFlowResult.getUnicomFlow());
@@ -355,14 +355,14 @@ public class UnicomFlowModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow sendVerifyCode sucess");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow sendVerifyCode sucess");
                 CommandCenter.getInstance().m4604a(new Command(CommandID.SEND_VERIFY_CODE_RESULT, new CommonResult(ErrCode.ErrNone, unicomFlowResult.getMessage(), unicomFlowResult.getUnicomFlow())), ModuleID.UNICOM_FLOW);
             }
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow sendVerifyCode fail");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow sendVerifyCode fail");
                 CommandCenter.getInstance().m4604a(new Command(CommandID.SEND_VERIFY_CODE_RESULT, new CommonResult(ErrCode.ErrGeneral, unicomFlowResult.getMessage(), unicomFlowResult.getUnicomFlow())), ModuleID.UNICOM_FLOW);
             }
         });
@@ -373,7 +373,7 @@ public class UnicomFlowModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow unsubscribe success");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow unsubscribe success");
                 UnicomFlowModule.this.m3986a(unicomFlowResult.getUnicomFlow());
                 CommandCenter.getInstance().m4604a(new Command(CommandID.UNSUBSCRIBE_UNICOM_FLOW_RESULT, new CommonResult(ErrCode.ErrNone, unicomFlowResult.getMessage(), unicomFlowResult.getUnicomFlow())), ModuleID.UNICOM_FLOW);
             }
@@ -381,7 +381,7 @@ public class UnicomFlowModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow unsubscribe fail");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow unsubscribe fail");
                 ErrCode errCode = unicomFlowResult.getCode() == 2 ? ErrCode.ErrAlreadyExists : ErrCode.ErrGeneral;
                 if (ErrCode.ErrAlreadyExists == errCode) {
                     UnicomFlowModule.this.m3986a(unicomFlowResult.getUnicomFlow());
@@ -396,7 +396,7 @@ public class UnicomFlowModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: a */
             public void onRequestSuccess(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow net auth success");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow net auth success");
                 CommonResult commonResult = new CommonResult(ErrCode.ErrNone, unicomFlowResult.getMessage(), unicomFlowResult.getUnicomFlow());
                 String phone = unicomFlowResult.getUnicomFlow().getPhone();
                 String token = unicomFlowResult.getUnicomFlow().getToken();
@@ -412,16 +412,16 @@ public class UnicomFlowModule extends BaseModule {
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             /* renamed from: b */
             public void onRequestFailure(UnicomFlowResult unicomFlowResult) {
-                LogUtils.debug(UnicomFlowModule.f6291a, "unicom flow net auth fail");
+                LogUtils.debug(UnicomFlowModule.TAG, "unicom flow net auth fail");
                 CommandCenter.getInstance().m4604a(new Command(CommandID.NET_AUTHORIZE_RESULT, new CommonResult(ErrCode.ErrGeneral, unicomFlowResult.getMessage(), unicomFlowResult.getUnicomFlow())), ModuleID.UNICOM_FLOW);
             }
         });
     }
 
     public void saveTotalFlow() {
-        if (HttpRequest.m8701c()) {
+        if (HttpRequest.hasNetwork()) {
             long m2453w = SupportFactory.getInstance(sContext).m2453w() + HttpRequest.getContentLength() + Cache.getInstance().m3227L();
-            LogUtils.debug(f6291a, "unicom flow save total flow size:" + m2453w);
+            LogUtils.debug(TAG, "unicom flow save total flow size:" + m2453w);
             HttpRequest.setContentLength(0L);
             SupportFactory.getInstance(sContext).m2503a(0L);
             if (HttpRequest.isProxy()) {
@@ -433,7 +433,7 @@ public class UnicomFlowModule extends BaseModule {
     }
 
     public void clearTotalFlow() {
-        LogUtils.debug(f6291a, "unicom flow clear total flow size:");
+        LogUtils.debug(TAG, "unicom flow clear total flow size:");
         SupportFactory.getInstance(sContext).m2503a(0L);
         HttpRequest.setContentLength(0L);
         Cache.getInstance().m3183c(0L);
@@ -444,7 +444,7 @@ public class UnicomFlowModule extends BaseModule {
         long m2453w = SupportFactory.getInstance(sContext).m2453w();
         long m8718a = HttpRequest.getContentLength();
         long m3227L = Cache.getInstance().m3227L();
-        LogUtils.debug(f6291a, "unicom flow get Total supportFlow:" + m2453w + " httpFlow:" + m8718a + " cacheFlow:" + m3227L);
+        LogUtils.debug(TAG, "unicom flow get Total supportFlow:" + m2453w + " httpFlow:" + m8718a + " cacheFlow:" + m3227L);
         //UnicomFlowStatistic.m4846a(m2453w + m8718a);
         CommandCenter.getInstance().m4604a(new Command(CommandID.GET_UNICOM_TOTAL_FLOW_RESULT, new Long(m2453w + m8718a + m3227L)), ModuleID.UNICOM_FLOW);
     }

@@ -19,7 +19,7 @@ public abstract class RequestRest {
     private long age;
 
     /* renamed from: g */
-    private String f2359g;
+    private String hostname;
 
     /* renamed from: i */
     private InterfaceC0588a f2361i;
@@ -51,16 +51,16 @@ public abstract class RequestRest {
     }
 
     /* renamed from: a */
-    protected abstract HttpRequest.Response mo8669a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3);
+    protected abstract HttpRequest.Response doHttpRequest(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3);
 
-    public RequestRest(String str) {
-        this.f2359g = str;
+    public RequestRest(String hostname) {
+        this.hostname = hostname;
         m8664d();
     }
 
     /* renamed from: a */
-    protected String m8673a() {
-        return this.f2359g;
+    protected String getHostname() {
+        return this.hostname;
     }
 
     /* renamed from: a */
@@ -92,9 +92,9 @@ public abstract class RequestRest {
         if (m8665c()) {
             return this.f2353a;
         }
-        this.f2362j = m8663e();
+        this.f2362j = getUrl();
         LogUtils.info("Request", "in execute lookNetProblem url=%s", this.f2362j);
-        return m8667b(mo8669a(this.f2362j, this.f2357e, this.f2355c, this.f2356d));
+        return m8667b(doHttpRequest(this.f2362j, this.f2357e, this.f2355c, this.f2356d));
     }
 
     /* renamed from: c */
@@ -109,8 +109,8 @@ public abstract class RequestRest {
     }
 
     /* renamed from: e */
-    protected String m8663e() {
-        String m8673a = m8673a();
+    protected String getUrl() {
+        String m8673a = getHostname();
         String m8343a = StringUtils.arrayToString("/", this.f2358f);
         if (!StringUtils.isEmpty(m8343a)) {
             m8673a = StringUtils.spliceStringAndArray("/", m8673a, m8343a);
@@ -209,7 +209,7 @@ public abstract class RequestRest {
             }
             str6 = str3 + it3.next() + ":" + this.f2356d.get(next) + " ";
         }
-        String str7 = "url: " + m8663e();
+        String str7 = "url: " + getUrl();
         if (!StringUtils.isEmpty(str)) {
             str7 = str7 + " " + str;
         }

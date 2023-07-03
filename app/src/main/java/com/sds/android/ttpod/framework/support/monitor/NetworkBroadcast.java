@@ -37,17 +37,18 @@ public class NetworkBroadcast extends BroadcastReceiver {
 
     /* renamed from: b */
     private void m2242b() {
-        boolean m3945g = UnicomFlowUtil.m3945g();
-        HttpRequest.m8702b(m3945g);
+        boolean hasNetwork = UnicomFlowUtil.hasNetwork();
+        HttpRequest.setHasNetwork(hasNetwork);
     }
 
     /* renamed from: c */
     private void m2241c() {
         if (this.supportService != null) {
-            String str = UnicomFlowUtil.m3947e() ? UnicomFlowModule.PROXY_WAP_HOST : UnicomFlowModule.PROXY_HOST;
+            String str = UnicomFlowUtil.isWap() ? UnicomFlowModule.PROXY_WAP_HOST : UnicomFlowModule.PROXY_HOST;
             boolean m3948d = UnicomFlowUtil.m3948d();
             LogUtils.debug(f7243a, "network change check unicom flow status isUseProxy:" + m3948d);
-            this.supportService.m2804a(str, UnicomFlowModule.HTTP_PROXY_PORT.intValue(), UnicomFlowModule.TCP_PROXY_PORT.intValue(), UnicomFlowModule.USERNAME, UnicomFlowModule.PASSWORD, m3948d);
+            this.supportService.m2804a(str, UnicomFlowModule.HTTP_PROXY_PORT.intValue()
+                    , UnicomFlowModule.TCP_PROXY_PORT.intValue(), UnicomFlowModule.USERNAME, UnicomFlowModule.PASSWORD, m3948d);
         }
     }
 

@@ -88,7 +88,7 @@ public class MvManager {
     public static void m5560a(Context context, MvPopupDialogCallBack mvPopupDialogCallBack, int i, int i2) {
         if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6721a(context.getString(R.string.cannot_play_for_network_error));
-        } else if (2 == EnvironmentUtils.DeviceConfig.hasNetwork()) {
+        } else if (2 == EnvironmentUtils.DeviceConfig.getNetworkType()) {
             mvPopupDialogCallBack.onSuccess();
         } else if (UnicomFlowUtil.m3946f() && HttpRequest.isProxy()) {
             if (i == 0) {

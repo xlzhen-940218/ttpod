@@ -190,7 +190,7 @@ public class VideoPlayManager {
         } else if (f4861c != null) {
             m5800d(context, str, str2);
         } else {
-            m5813a(context, str, str2, EnvironmentUtils.DeviceConfig.hasNetwork() == 2);
+            m5813a(context, str, str2, EnvironmentUtils.DeviceConfig.getNetworkType() == 2);
         }
     }
 
@@ -274,7 +274,7 @@ public class VideoPlayManager {
                         public void run() {
                             Object[] objArr = new Object[4];
                             objArr[0] = "f" + EnvironmentUtils.AppConfig.getChannelType();
-                            objArr[1] = Integer.valueOf(EnvironmentUtils.DeviceConfig.hasNetwork());
+                            objArr[1] = Integer.valueOf(EnvironmentUtils.DeviceConfig.getNetworkType());
                             objArr[2] = EnvironmentUtils.AppConfig.getAppVersion();
                             objArr[3] = Integer.valueOf(z2 ? 1 : 0);
                             String format = String.format("http://api.busdh.com/market-api/splash/app?f=%s&net=%s&v=%s&type=2&local_play=%d", objArr);

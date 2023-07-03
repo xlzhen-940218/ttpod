@@ -480,7 +480,7 @@ public class EnvironmentUtils {
         }
 
         /* renamed from: d */
-        public static int hasNetwork() {
+        public static int getNetworkType() {
             int i = f2461f;
             if (connectivityManager == null) {
                 return 1;
@@ -978,14 +978,14 @@ public class EnvironmentUtils {
 
         /* renamed from: e */
         public static HashMap<String, Object> m8488e() {
-            uuidMaps.put("net", Integer.valueOf(DeviceConfig.hasNetwork()));
+            uuidMaps.put("net", Integer.valueOf(DeviceConfig.getNetworkType()));
             return uuidMaps;
         }
 
         /* renamed from: f */
         public static JSONObject m8487f() {
             try {
-                uuidJsonObject.put("net", DeviceConfig.hasNetwork());
+                uuidJsonObject.put("net", DeviceConfig.getNetworkType());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

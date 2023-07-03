@@ -7,8 +7,8 @@ import android.net.wifi.WifiManager;
 /* loaded from: classes.dex */
 public class NetUtils {
     /* renamed from: a */
-    public static String m8376a(Context context) {
-        int ipAddress = ((WifiManager) context.getSystemService("wifi")).getConnectionInfo().getIpAddress();
+    public static String getIp(Context context) {
+        int ipAddress = ((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getConnectionInfo().getIpAddress();
         if (ipAddress == 0) {
             return null;
         }

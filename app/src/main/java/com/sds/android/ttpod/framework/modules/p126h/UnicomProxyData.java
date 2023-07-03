@@ -5,67 +5,67 @@ package com.sds.android.ttpod.framework.modules.p126h;
 public class UnicomProxyData {
 
     /* renamed from: a */
-    private int f6303a;
+    private int httpPort;
 
     /* renamed from: b */
-    private int f6304b;
+    private int tcpPort;
 
     /* renamed from: c */
-    private String f6305c;
+    private String hostname;
 
     /* renamed from: d */
-    private String f6306d;
+    private String username;
 
     /* renamed from: e */
-    private String f6307e;
+    private String password;
 
     /* renamed from: a */
-    public String m3933a() {
-        return this.f6305c;
+    public String getHostname() {
+        return this.hostname;
     }
 
     /* renamed from: a */
-    public void m3931a(String str) {
-        this.f6305c = str;
+    public void setHostName(String hostname) {
+        this.hostname = hostname;
     }
 
     /* renamed from: b */
-    public int m3930b() {
-        return this.f6304b;
+    public int getTcpPort() {
+        return this.tcpPort;
     }
 
     /* renamed from: a */
-    public void m3932a(int i) {
-        this.f6304b = i;
+    public void setTcpPort(int tcpPort) {
+        this.tcpPort = tcpPort;
     }
 
     /* renamed from: c */
-    public int m3927c() {
-        return this.f6303a;
+    public int getHttpPort() {
+        return this.httpPort;
     }
 
     /* renamed from: b */
-    public void m3929b(int i) {
-        this.f6303a = i;
+    public void setHttpPort(int httpPort) {
+        this.httpPort = httpPort;
     }
 
     /* renamed from: d */
-    public String m3925d() {
-        return this.f6306d;
+    public String getUsername() {
+        return this.username;
     }
 
     /* renamed from: b */
-    public void m3928b(String str) {
-        this.f6306d = str;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     /* renamed from: e */
-    public String m3924e() {
-        return this.f6307e;
+    public String getPassword() {
+        return this.password;
     }
 
     /* renamed from: c */
-    public void m3926c(String str) {
-        this.f6307e = str;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

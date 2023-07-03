@@ -257,7 +257,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
     /* renamed from: d */
     protected boolean hasNetwork() {
         AutoDownloadNetworkType autoDownloadNetworkType = Preferences.getDownloadLyricNetWorkType();
-        int m8476d = EnvironmentUtils.DeviceConfig.hasNetwork();
+        int m8476d = EnvironmentUtils.DeviceConfig.getNetworkType();
         if (getLyricSearchTaskInfo().isAuto() || ((AutoDownloadNetworkType.WIFI == autoDownloadNetworkType && 2 == m8476d) || AutoDownloadNetworkType.ALL == autoDownloadNetworkType)) {
             return m8476d == 2 || !Preferences.m3066H() || (getLyricSearchTaskInfo().isAuto() && Preferences.m3066H());
         }

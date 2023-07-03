@@ -287,7 +287,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     @Override // com.sds.android.ttpod.framework.support.p134a.Player.InterfaceC2054a
     /* renamed from: a */
     public void mo2560a(long j) {
-        if (HttpRequest.m8701c()) {
+        if (HttpRequest.hasNetwork()) {
             f6992a += j;
             LogUtils.debug("SupportService", "unicom flow play flow changed: flowSize:" + j + "  totalSize:" + f6992a);
         }
@@ -463,14 +463,14 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     }
 
     /* renamed from: a */
-    public void m2804a(String str, int i, int i2, String str2, String str3, boolean z) {
+    public void m2804a(String str, int i, int i2, String username, String password, boolean z) {
         LogUtils.debug("SupportService", "unicom flow Support Service bindProxy:" + z);
         this.f6996e = z;
         if (z) {
-            HttpRequest.m8715a(str, i, str2, str3);
+            HttpRequest.setData(str, i, username, password);
         }
-        HttpRequest.m8705a(z);
-        Player.getInstance().m2625a(str, i2, UnicomFlowUtil.m3953a(str2, str3), z);
+        HttpRequest.setProxy(z);
+        Player.getInstance().m2625a(str, i2, UnicomFlowUtil.m3953a(username, password), z);
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */

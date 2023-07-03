@@ -291,7 +291,7 @@ public class AudioEffectLoader {
                 return;
             }
             m2734h();
-            if (2 == EnvironmentUtils.DeviceConfig.hasNetwork() || !Preferences.m3066H() || Preferences.m2972ae()) {
+            if (2 == EnvironmentUtils.DeviceConfig.getNetworkType() || !Preferences.m3066H() || Preferences.m2972ae()) {
                 if (Preferences.m2972ae()) {
                     Preferences.m3077B(false);
                 }

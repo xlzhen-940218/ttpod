@@ -90,7 +90,7 @@ public class OfflineModeUtils {
 
     /* renamed from: a */
     public static boolean m8256a() {
-        return EnvironmentUtils.DeviceConfig.hasNetwork() != 2 && Preferences.m3066H();
+        return EnvironmentUtils.DeviceConfig.getNetworkType() != 2 && Preferences.m3066H();
     }
 
     /* compiled from: OfflineModeUtils.java */

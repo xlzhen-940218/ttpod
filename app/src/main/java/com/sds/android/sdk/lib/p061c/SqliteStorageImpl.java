@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
+
 import com.sds.android.sdk.lib.p061c.p062a.EntityDescriptor;
 import com.sds.android.sdk.lib.util.LogUtils;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class SqliteStorageImpl extends SqliteStorage {
     private Map<String, EntityDescriptor> f2380a = new HashMap();
 
     /* renamed from: b */
-    private Context f2381b;
+    private Context context;
 
     /* renamed from: c */
     private String f2382c;
@@ -71,9 +71,9 @@ public class SqliteStorageImpl extends SqliteStorage {
     /* renamed from: c */
     public SQLiteDatabase m8588c() {
         SQLiteDatabase sQLiteDatabase;
-        synchronized (this.f2381b) {
+        synchronized (this.context) {
             if (this.f2385f == null) {
-                this.f2385f = new C0593b(this.f2381b).getWritableDatabase();
+                this.f2385f = new C0593b(this.context).getWritableDatabase();
             }
             sQLiteDatabase = this.f2385f;
         }
@@ -81,7 +81,7 @@ public class SqliteStorageImpl extends SqliteStorage {
     }
 
     public SqliteStorageImpl(Context context, String str, int i, InterfaceC0592a interfaceC0592a) {
-        this.f2381b = context;
+        this.context = context;
         this.f2382c = str;
         this.f2383d = i;
         this.f2384e = interfaceC0592a;

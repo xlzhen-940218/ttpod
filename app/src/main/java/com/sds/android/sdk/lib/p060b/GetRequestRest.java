@@ -13,7 +13,7 @@ public class GetRequestRest extends RequestRest {
 
     @Override // com.sds.android.sdk.lib.p060b.RequestRest
     /* renamed from: a */
-    protected HttpRequest.Response mo8669a(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
+    protected HttpRequest.Response doHttpRequest(String str, HashMap<String, Object> hashMap, HashMap<String, Object> hashMap2, HashMap<String, Object> hashMap3) {
         LogUtils.info("GetRequestRest", "doHttpRequest in lookNetProblem url=%s", str);
         try {
             return HttpRequest.doGetRequest(str, hashMap, hashMap2);

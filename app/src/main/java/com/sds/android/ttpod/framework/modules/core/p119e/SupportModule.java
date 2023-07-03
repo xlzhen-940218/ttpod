@@ -318,7 +318,7 @@ public final class SupportModule extends BaseModule {
 
     /* renamed from: e */
     private boolean m4168e() {
-        if (HttpRequest.m8701c()) {
+        if (HttpRequest.hasNetwork()) {
             long m2453w = this.f6027d.m2453w();
             long m8718a = m2453w + HttpRequest.getContentLength() + Cache.getInstance().m3228K();
             LogUtils.debug("SupportModule", "unicom flow handler greater than 30 size:" + m8718a);

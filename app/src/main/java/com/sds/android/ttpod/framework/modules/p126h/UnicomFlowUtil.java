@@ -32,14 +32,14 @@ import java.util.Date;
 public class UnicomFlowUtil {
 
     /* renamed from: a */
-    private static final String f6301a = UnicomFlowModule.class.getSimpleName();
+    private static final String TAG = UnicomFlowModule.class.getSimpleName();
 
     /* renamed from: a */
     public static boolean m3957a() {
         boolean m3231H = Cache.getInstance().m3231H();
         boolean m3230I = Cache.getInstance().m3230I();
         boolean m3946f = m3946f();
-        LogUtils.debug(f6301a, "unicom flow isUnicomFlowEnable enable:" + m3231H + "  usable:" + m3230I + "  is unicom sdcard:" + m3946f);
+        LogUtils.debug(TAG, "unicom flow isUnicomFlowEnable enable:" + m3231H + "  usable:" + m3230I + "  is unicom sdcard:" + m3946f);
         return m3231H && m3230I && m3946f;
     }
 
@@ -52,7 +52,7 @@ public class UnicomFlowUtil {
     public static boolean m3949c() {
         int m3138z = Cache.getInstance().m3138z();
         int m3139y = Cache.getInstance().m3139y();
-        LogUtils.debug(f6301a, "is need use proxy open status:" + m3138z + "  trial status:" + m3139y);
+        LogUtils.debug(TAG, "is need use proxy open status:" + m3138z + "  trial status:" + m3139y);
         return m3138z == UnicomFlowStatus.OPEN.ordinal() || m3138z == UnicomFlowStatus.UNSUBSCRIBE.ordinal() || m3139y == FlowTrialStatus.TRIAL.ordinal();
     }
 
@@ -85,25 +85,25 @@ public class UnicomFlowUtil {
     }
 
     /* renamed from: e */
-    public static boolean m3947e() {
-        return EnvironmentUtils.DeviceConfig.hasNetwork() == 1;
+    public static boolean isWap() {
+        return EnvironmentUtils.DeviceConfig.getNetworkType() == 1;
     }
 
     /* renamed from: f */
     public static boolean m3946f() {
-        LogUtils.debug(f6301a, "imsi" + EnvironmentUtils.DeviceConfig.getSubscriberId());
+        LogUtils.debug(TAG, "imsi" + EnvironmentUtils.DeviceConfig.getSubscriberId());
         return EnvironmentUtils.DeviceConfig.getSubscriberId().startsWith("46001") || EnvironmentUtils.DeviceConfig.getSubscriberId().startsWith("46006");
     }
 
     /* renamed from: g */
-    public static boolean m3945g() {
-        LogUtils.debug(f6301a, "is use gprs network type:" + EnvironmentUtils.DeviceConfig.hasNetwork());
-        return EnvironmentUtils.DeviceConfig.hasNetwork() == 0 || 3 == EnvironmentUtils.DeviceConfig.hasNetwork() || 1 == EnvironmentUtils.DeviceConfig.hasNetwork();
+    public static boolean hasNetwork() {
+        LogUtils.debug(TAG, "is use gprs network type:" + EnvironmentUtils.DeviceConfig.getNetworkType());
+        return EnvironmentUtils.DeviceConfig.getNetworkType() == 0 || 3 == EnvironmentUtils.DeviceConfig.getNetworkType() || 1 == EnvironmentUtils.DeviceConfig.getNetworkType();
     }
 
     /* renamed from: h */
     public static boolean m3944h() {
-        return m3957a() && m3945g();
+        return m3957a() && hasNetwork();
     }
 
     /* renamed from: i */

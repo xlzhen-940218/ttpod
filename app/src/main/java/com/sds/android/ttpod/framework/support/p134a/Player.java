@@ -132,7 +132,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                     OnlineMediaItem onlineMediaItem = onlineMediaItemsResult.getDataList().get(0);
                     MediaItem m4716a = MediaItemUtils.m4716a(onlineMediaItem);
                     m2571a(m4716a.getExtra());
-                    OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a(onlineMediaItem, EnvironmentUtils.DeviceConfig.hasNetwork());
+                    OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a(onlineMediaItem, EnvironmentUtils.DeviceConfig.getNetworkType());
                     if (m4689a != null) {
                         try {
                             Player.this.mediaPlayerProxy.m2707b();
@@ -221,7 +221,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                 if (!m2606g.isOnline() || !StringUtils.isEmpty(m2606g.getLocalDataSource())) {
                     Player.this.processPlayError(i);
                     //ErrorStatistic.m5244a(i);
-                } else if (EnvironmentUtils.DeviceConfig.hasNetwork() == -1) {
+                } else if (EnvironmentUtils.DeviceConfig.getNetworkType() == -1) {
                     Player.this.processPlayError(-34);
                 } else if (!m2575a(i) || Player.this.f7104r >= 5) {
                     String str = "";
@@ -739,7 +739,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         }
         //OnlineMediaStatistic.m5039b(longValue, false);
         //SSystemEvent.append("play_type", "online").post();
-        OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a((OnlineMediaItem) JSONUtils.fromJson(mediaItem.getExtra(), OnlineMediaItem.class), EnvironmentUtils.DeviceConfig.hasNetwork());
+        OnlineMediaItem.Url m4689a = OnlineMediaItemUtils.m4689a((OnlineMediaItem) JSONUtils.fromJson(mediaItem.getExtra(), OnlineMediaItem.class), EnvironmentUtils.DeviceConfig.getNetworkType());
         if (m4689a != null) {
             try {
                 this.mediaPlayerProxy.m2711a(m4689a.getUrl(), TTPodConfig.getAudioTmp(), mediaItem.getSongID());

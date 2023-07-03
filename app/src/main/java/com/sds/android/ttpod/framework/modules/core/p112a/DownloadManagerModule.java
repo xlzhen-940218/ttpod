@@ -134,7 +134,7 @@ public final class DownloadManagerModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: d */
     public void m4458d() {
-        final int m8476d = EnvironmentUtils.DeviceConfig.hasNetwork();
+        final int m8476d = EnvironmentUtils.DeviceConfig.getNetworkType();
         LogUtils.error("DownloadManagerModule", "handleNetWorkState = " + m8476d);
         if (f5791f != m8476d) {
             f5791f = m8476d;

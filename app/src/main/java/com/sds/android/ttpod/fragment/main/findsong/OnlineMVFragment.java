@@ -179,7 +179,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
             this.mFooterView.clearAnimation();
             this.mFooterView.m1877a();
         }
-        VideoPlayManager.m5813a(getActivity(), null, null, EnvironmentUtils.DeviceConfig.hasNetwork() == 2);
+        VideoPlayManager.m5813a(getActivity(), null, null, EnvironmentUtils.DeviceConfig.getNetworkType() == 2);
         CommandCenter.getInstance().execute(new Command(this.mRequestId, Integer.valueOf(this.mId), Integer.valueOf(i)));
     }
 
@@ -200,7 +200,7 @@ public class OnlineMVFragment extends MVListFragment implements AbstractExpandab
     protected void playMv(MVOnlineData mVOnlineData) {
         if (mVOnlineData != null) {
             String highQualityUrl = mVOnlineData.getHighQualityUrl();
-            if (highQualityUrl == null || 2 != EnvironmentUtils.DeviceConfig.hasNetwork()) {
+            if (highQualityUrl == null || 2 != EnvironmentUtils.DeviceConfig.getNetworkType()) {
                 highQualityUrl = mVOnlineData.getNormalQualityUrl();
             }
             //MVStatistic.m5076a("mv_channel");

@@ -41,7 +41,7 @@ public abstract class LyrPicSearchTaskBaseInfo {
     private String f7279h = "";
 
     /* renamed from: i */
-    private int f7280i = EnvironmentUtils.DeviceConfig.hasNetwork();
+    private int f7280i = EnvironmentUtils.DeviceConfig.getNetworkType();
 
     /* renamed from: k */
     private MediaItem mediaItem = null;

@@ -104,7 +104,8 @@ public class Support {
         LogUtils.debug("Support", "support bindProxy is mSupportService:" + this.iSupportService);
         if (this.iSupportService != null && unicomProxyData != null) {
             try {
-                this.iSupportService.mo2389a(unicomProxyData.m3933a(), unicomProxyData.m3927c(), unicomProxyData.m3930b(), unicomProxyData.m3925d(), unicomProxyData.m3924e(), z);
+                this.iSupportService.mo2389a(unicomProxyData.getHostname(), unicomProxyData.getHttpPort()
+                        , unicomProxyData.getTcpPort(), unicomProxyData.getUsername(), unicomProxyData.getPassword(), z);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
