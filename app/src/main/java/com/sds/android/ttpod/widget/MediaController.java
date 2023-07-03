@@ -76,7 +76,7 @@ public class MediaController extends FrameLayout {
     private AudioManager f7733q;
 
     /* renamed from: r */
-    private InterfaceC2199a f7734r;
+    private LapseChangedListener f7734r;
 
     /* renamed from: s */
     private InterfaceC2202d f7735s;
@@ -95,7 +95,7 @@ public class MediaController extends FrameLayout {
 
     /* renamed from: com.sds.android.ttpod.widget.MediaController$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC2199a {
+    public interface LapseChangedListener {
         void onLapseChanged(MediaPlayer mediaPlayer);
     }
 
@@ -308,8 +308,8 @@ public class MediaController extends FrameLayout {
         }
     }
 
-    public void setLapseChangedListener(InterfaceC2199a interfaceC2199a) {
-        this.f7734r = interfaceC2199a;
+    public void setLapseChangedListener(LapseChangedListener lapseChangedListener) {
+        this.f7734r = lapseChangedListener;
     }
 
     /* renamed from: a */

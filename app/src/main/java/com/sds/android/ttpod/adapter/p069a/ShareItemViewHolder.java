@@ -78,12 +78,12 @@ public final class ShareItemViewHolder {
             this.f3178e.setVisibility(View.GONE);
             this.f3179f.setVisibility(View.GONE);
             this.f3180g.setVisibility(View.GONE);
-            this.f3175b.setOnCheckedChangeListener(new CheckImageView.InterfaceC2165a() { // from class: com.sds.android.ttpod.adapter.a.e.1
+            this.f3175b.setOnCheckedChangeListener(new CheckImageView.OnCheckedChangeListener() { // from class: com.sds.android.ttpod.adapter.a.e.1
                 @Override // com.sds.android.ttpod.widget.CheckImageView.InterfaceC2165a
                 /* renamed from: a */
-                public void mo1895a(CheckImageView checkImageView, boolean z, boolean z2) {
+                public void onChecked(CheckImageView checkImageView, boolean checked, boolean manual) {
                     if (ShareItemViewHolder.this.f3184k != null) {
-                        ShareItemViewHolder.this.f3184k.mo7629a(z, ShareItemViewHolder.this.f3183j);
+                        ShareItemViewHolder.this.f3184k.mo7629a(checked, ShareItemViewHolder.this.f3183j);
                     }
                 }
             });

@@ -1,0 +1,12 @@
+<html><body><form name="CMCCWLANFORM" method="post" action="http://fj.iwififree.com:8010/wifiPortal/portal.jhtml">  <input type="hidden" name="wlanuserip" value="220.161.15.110">  <input type="hidden" name="wlanacname" value="">  <input type="hidden" name="brasIp" value="218.5.204.119">  <input type="hidden" name="nasportId" value="ethtrunk/1:3104.2892">
+  <input type="hidden" name="portalurl" value="http://fj.iwififree.com:8010/wifiPortal/portal.jhtml">  <input type="hidden" name="mac" value="50-cc-f8-8b-fd-22"></form><script language='javascript'>    CMCCWLANFORM.submit();</script></body></html>
+<!--
+<?xml version="1.0" encoding="UTF-8"?>
+<WISPAccessGatewayParam xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.acmewisp.com/WISPAccessGatewayParam.xsd">
+<Proxy>
+<MessageType>110</MessageType>
+<NextURL>http://fj.iwififree.com:8010/wifiPortal/portal.jhtml?wlanuserip=220.161.15.110&wlanacname=&brasIp=218.5.204.119&mac=50-cc-f8-8b-fd-22</NextURL>
+<ResponseCode>200</ResponseCode>
+</Proxy>
+</WISPAccessGatewayParam>
+-->

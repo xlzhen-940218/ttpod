@@ -4,103 +4,102 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 
 /* loaded from: classes.dex */
-public class CheckImageView extends ImageView {
+public class CheckImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     /* renamed from: a */
-    private boolean f7492a;
+    private boolean checked;
 
     /* renamed from: b */
-    private InterfaceC2165a f7493b;
+    private OnCheckedChangeListener onCheckedChangeListener;
 
     /* renamed from: c */
-    private Drawable f7494c;
+    private Drawable unCheckDrawable;
 
     /* renamed from: d */
-    private Drawable f7495d;
+    private Drawable checkDrawable;
 
     /* renamed from: e */
-    private View.OnClickListener f7496e;
+    private View.OnClickListener onClickListener;
 
     /* renamed from: com.sds.android.ttpod.widget.CheckImageView$a */
     /* loaded from: classes.dex */
-    public interface InterfaceC2165a {
+    public interface OnCheckedChangeListener {
         /* renamed from: a */
-        void mo1895a(CheckImageView checkImageView, boolean z, boolean z2);
+        void onChecked(CheckImageView checkImageView, boolean checked, boolean manual);
     }
 
     public CheckImageView(Context context) {
         super(context);
-        this.f7496e = new View.OnClickListener() { // from class: com.sds.android.ttpod.widget.CheckImageView.1
+        this.onClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.widget.CheckImageView.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                CheckImageView.this.m1896a(!CheckImageView.this.f7492a, true);
+                CheckImageView.this.setChecked(!CheckImageView.this.checked, true);
             }
         };
-        setOnClickListener(this.f7496e);
+        setOnClickListener(this.onClickListener);
     }
 
     public CheckImageView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.f7496e = new View.OnClickListener() { // from class: com.sds.android.ttpod.widget.CheckImageView.1
+        this.onClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.widget.CheckImageView.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                CheckImageView.this.m1896a(!CheckImageView.this.f7492a, true);
+                CheckImageView.this.setChecked(!CheckImageView.this.checked, true);
             }
         };
-        setOnClickListener(this.f7496e);
+        setOnClickListener(this.onClickListener);
     }
 
     public CheckImageView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
-        this.f7496e = new View.OnClickListener() { // from class: com.sds.android.ttpod.widget.CheckImageView.1
+        this.onClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.widget.CheckImageView.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                CheckImageView.this.m1896a(!CheckImageView.this.f7492a, true);
+                CheckImageView.this.setChecked(!CheckImageView.this.checked, true);
             }
         };
-        setOnClickListener(this.f7496e);
+        setOnClickListener(this.onClickListener);
     }
 
     /* renamed from: a */
-    public void m1899a(int i, int i2) {
-        if (i2 != 0) {
-            this.f7495d = getContext().getResources().getDrawable(i2);
+    public void m1899a(int unCheckImgResId, int checkImgResId) {
+        if (checkImgResId != 0) {
+            this.checkDrawable = getContext().getResources().getDrawable(checkImgResId);
         } else {
-            this.f7495d = null;
+            this.checkDrawable = null;
         }
-        if (i != 0) {
-            this.f7494c = getContext().getResources().getDrawable(i);
+        if (unCheckImgResId != 0) {
+            this.unCheckDrawable = getContext().getResources().getDrawable(unCheckImgResId);
         } else {
-            this.f7494c = this.f7495d;
+            this.unCheckDrawable = this.checkDrawable;
         }
-        setImageDrawable(this.f7492a ? this.f7495d : this.f7494c);
+        setImageDrawable(this.checked ? this.checkDrawable : this.unCheckDrawable);
     }
 
     /* renamed from: a */
-    public boolean m1900a() {
-        return this.f7492a;
+    public boolean isChecked() {
+        return this.checked;
     }
 
-    public void setChecked(boolean z) {
-        m1896a(z, false);
+    public void setChecked(boolean checked) {
+        setChecked(checked, false);
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
-    public void m1896a(boolean z, boolean z2) {
-        if (this.f7492a != z) {
-            this.f7492a = z;
-            if (this.f7493b != null) {
-                this.f7493b.mo1895a(this, this.f7492a, z2);
+    public void setChecked(boolean checked, boolean manual) {
+        if (this.checked != checked) {
+            this.checked = checked;
+            if (this.onCheckedChangeListener != null) {
+                this.onCheckedChangeListener.onChecked(this, this.checked, manual);
             }
-            setImageDrawable(this.f7492a ? this.f7495d : this.f7494c);
+            setImageDrawable(this.checked ? this.checkDrawable : this.unCheckDrawable);
         }
     }
 
-    public void setOnCheckedChangeListener(InterfaceC2165a interfaceC2165a) {
-        this.f7493b = interfaceC2165a;
+    public void setOnCheckedChangeListener(OnCheckedChangeListener onCheckedChangeListener) {
+        this.onCheckedChangeListener = onCheckedChangeListener;
     }
 }

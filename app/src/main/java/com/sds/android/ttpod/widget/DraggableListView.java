@@ -143,10 +143,10 @@ public class DraggableListView extends ListView {
     private int f7600n;
 
     /* renamed from: o */
-    private InterfaceC2177b f7601o;
+    private DragListener dragListener;
 
     /* renamed from: p */
-    private InterfaceC2181f f7602p;
+    private DropListener f7602p;
 
     /* renamed from: q */
     private boolean f7603q;
@@ -180,7 +180,7 @@ public class DraggableListView extends ListView {
 
     /* renamed from: com.sds.android.ttpod.widget.DraggableListView$b */
     /* loaded from: classes.dex */
-    public interface InterfaceC2177b {
+    public interface DragListener {
         /* renamed from: a */
         void mo1780a(int i, int i2);
     }
@@ -194,7 +194,7 @@ public class DraggableListView extends ListView {
 
     /* renamed from: com.sds.android.ttpod.widget.DraggableListView$f */
     /* loaded from: classes.dex */
-    public interface InterfaceC2181f {
+    public interface DropListener {
         /* renamed from: a */
         void mo1773a(int i, int i2);
     }
@@ -269,11 +269,11 @@ public class DraggableListView extends ListView {
         if (listAdapter != null) {
             this.f7581T = new C2175a(listAdapter);
             this.f7581T.m1781a().registerDataSetObserver(this.f7592f);
-            if (listAdapter instanceof InterfaceC2181f) {
-                setDropListener((InterfaceC2181f) listAdapter);
+            if (listAdapter instanceof DropListener) {
+                setDropListener((DropListener) listAdapter);
             }
-            if (listAdapter instanceof InterfaceC2177b) {
-                setDragListener((InterfaceC2177b) listAdapter);
+            if (listAdapter instanceof DragListener) {
+                setDragListener((DragListener) listAdapter);
             }
         } else {
             this.f7581T = null;
@@ -635,8 +635,8 @@ public class DraggableListView extends ListView {
         }
         boolean z = (this.f7595i == i8 && this.f7596j == i9 && this.f7580S == f) ? false : true;
         if (i2 != this.f7594h) {
-            if (this.f7601o != null) {
-                this.f7601o.mo1780a(this.f7594h - headerViewsCount, i2 - headerViewsCount);
+            if (this.dragListener != null) {
+                this.dragListener.mo1780a(this.f7594h - headerViewsCount, i2 - headerViewsCount);
             }
             this.f7594h = i2;
             return true;
@@ -1439,8 +1439,8 @@ public class DraggableListView extends ListView {
         }
     }
 
-    public void setDragListener(InterfaceC2177b interfaceC2177b) {
-        this.f7601o = interfaceC2177b;
+    public void setDragListener(DragListener dragListener) {
+        this.dragListener = dragListener;
     }
 
     /* renamed from: d */
@@ -1448,8 +1448,8 @@ public class DraggableListView extends ListView {
         return this.f7603q;
     }
 
-    public void setDropListener(InterfaceC2181f interfaceC2181f) {
-        this.f7602p = interfaceC2181f;
+    public void setDropListener(DropListener dropListener) {
+        this.f7602p = dropListener;
     }
 
     /* JADX INFO: Access modifiers changed from: private */

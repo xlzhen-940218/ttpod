@@ -23,7 +23,7 @@ import com.sds.android.ttpod.widget.MediaController;
 import com.sds.android.ttpod.widget.MediaTitleBanner;
 
 /* loaded from: classes.dex */
-public class DefaultVideoActivity extends BaseActivity implements MediaController.InterfaceC2199a {
+public class DefaultVideoActivity extends BaseActivity implements MediaController.LapseChangedListener {
     private static final String LOG_TAG = "DefaultVideoActivity";
     private ImageView mBufferingAnimation;
     private TextView mBufferingPercentage;

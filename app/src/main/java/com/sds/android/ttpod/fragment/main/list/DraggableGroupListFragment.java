@@ -20,7 +20,7 @@ public class DraggableGroupListFragment extends GroupListFragment {
     public void onViewCreated(View view, Bundle bundle) {
         super.onViewCreated(view, bundle);
         ActionExpandableListView listView = getListView();
-        listView.setDragListener(new DraggableListView.InterfaceC2177b() { // from class: com.sds.android.ttpod.fragment.main.list.DraggableGroupListFragment.1
+        listView.setDragListener(new DraggableListView.DragListener() { // from class: com.sds.android.ttpod.fragment.main.list.DraggableGroupListFragment.1
             @Override // com.sds.android.ttpod.widget.DraggableListView.InterfaceC2177b
             /* renamed from: a */
             public void mo1780a(int i, int i2) {
@@ -34,7 +34,7 @@ public class DraggableGroupListFragment extends GroupListFragment {
                 }
             }
         });
-        listView.setDropListener(new DraggableListView.InterfaceC2181f() { // from class: com.sds.android.ttpod.fragment.main.list.DraggableGroupListFragment.2
+        listView.setDropListener(new DraggableListView.DropListener() { // from class: com.sds.android.ttpod.fragment.main.list.DraggableGroupListFragment.2
             @Override // com.sds.android.ttpod.widget.DraggableListView.InterfaceC2181f
             /* renamed from: a */
             public void mo1773a(int i, int i2) {

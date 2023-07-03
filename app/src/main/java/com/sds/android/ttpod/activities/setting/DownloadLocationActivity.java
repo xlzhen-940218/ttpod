@@ -100,7 +100,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         this.mStandardSDCardCheckView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.setting.DownloadLocationActivity.2
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (!DownloadLocationActivity.this.mStandardSDCardCheckView.m1900a()) {
+                if (!DownloadLocationActivity.this.mStandardSDCardCheckView.isChecked()) {
                     DownloadLocationActivity.this.setCheckViewById(R.id.standard_sdcard_checkView);
                     Preferences.m2880g(str2);
                     DownloadLocationActivity.this.mDownloadPathInfoTextView.setText(String.format(DownloadLocationActivity.this.getResources().getString(R.string.download_path_info), str2));
@@ -130,7 +130,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         this.mExtensionSDCardCheckView.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.setting.DownloadLocationActivity.3
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
-                if (!DownloadLocationActivity.this.mExtensionSDCardCheckView.m1900a()) {
+                if (!DownloadLocationActivity.this.mExtensionSDCardCheckView.isChecked()) {
                     DownloadLocationActivity.this.setCheckViewById(R.id.extension_sdcard_checkView);
                     try {
                         Preferences.m2880g(str2);
