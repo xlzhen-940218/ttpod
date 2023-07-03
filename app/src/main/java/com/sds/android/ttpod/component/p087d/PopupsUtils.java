@@ -81,16 +81,16 @@ import java.util.List;
 public class PopupsUtils {
 
     /* renamed from: a */
-    private static Toast f4017a;
+    private static Toast toast;
 
     /* renamed from: b */
-    private static WaitingDialog f4018b;
+    private static WaitingDialog waitingDialog;
 
     /* renamed from: c */
     private static PopupWindow popupWindow;
 
     /* renamed from: d */
-    private static Context f4020d;
+    private static Context context;
 
     /* renamed from: e */
     private static final SparseIntArray f4021e = new SparseIntArray();
@@ -125,20 +125,20 @@ public class PopupsUtils {
 
     /* renamed from: a */
     public static void m6749a(Context context) {
-        f4017a = Toast.makeText(context, "", Toast.LENGTH_LONG);
+        toast = Toast.makeText(context, "", Toast.LENGTH_LONG);
         if (SDKVersionUtils.sdkThan11()) {
-            f4020d = context;
+            PopupsUtils.context = context;
         }
     }
 
     /* renamed from: a */
     public static void m6721a(String str) {
         if (SDKVersionUtils.sdkThan11()) {
-            f4017a.cancel();
-            f4017a = Toast.makeText(f4020d, "", Toast.LENGTH_LONG);
+            toast.cancel();
+            toast = Toast.makeText(context, "", Toast.LENGTH_LONG);
         }
-        f4017a.setText(str);
-        f4017a.show();
+        toast.setText(str);
+        toast.show();
     }
 
     /* renamed from: a */
@@ -195,31 +195,31 @@ public class PopupsUtils {
     public static synchronized void m6731a(Context context, String str, boolean z, boolean z2) {
         synchronized (PopupsUtils.class) {
             if (context != null) {
-                if (f4018b != null && f4018b.isShowing()) {
-                    f4018b.dismiss();
-                    f4018b = null;
+                if (waitingDialog != null && waitingDialog.isShowing()) {
+                    waitingDialog.dismiss();
+                    waitingDialog = null;
                 }
-                f4018b = new WaitingDialog(context);
-                f4018b.setCanceledOnTouchOutside(z);
-                f4018b.setCancelable(z2);
-                f4018b.m6775a((CharSequence) str);
-                f4018b.show();
+                waitingDialog = new WaitingDialog(context);
+                waitingDialog.setCanceledOnTouchOutside(z);
+                waitingDialog.setCancelable(z2);
+                waitingDialog.setText((CharSequence) str);
+                waitingDialog.show();
             }
         }
     }
 
     /* renamed from: a */
     public static void m6761a() {
-        if (f4018b != null && f4018b.isShowing()) {
-            f4018b.dismiss();
-            f4018b = null;
+        if (waitingDialog != null && waitingDialog.isShowing()) {
+            waitingDialog.dismiss();
+            waitingDialog = null;
         }
     }
 
     /* renamed from: a */
-    public static SingleChoiceListDialog m6735a(Context context, CharSequence charSequence, CheckableActionItem[] checkableActionItemArr, int i, final ActionItem.InterfaceC1135b interfaceC1135b, BaseDialog.InterfaceC1064a<SingleChoiceListDialog> interfaceC1064a) {
+    public static SingleChoiceListDialog m6735a(Context context, CharSequence charSequence, CheckableActionItem[] checkableActionItemArr, int i, final ActionItem.InterfaceC1135b interfaceC1135b, BaseDialog.OnClickListener<SingleChoiceListDialog> onClickListener) {
         if (context != null) {
-            final SingleChoiceListDialog singleChoiceListDialog = new SingleChoiceListDialog(context, checkableActionItemArr, interfaceC1064a);
+            final SingleChoiceListDialog singleChoiceListDialog = new SingleChoiceListDialog(context, checkableActionItemArr, onClickListener);
             singleChoiceListDialog.setTitle(charSequence);
             singleChoiceListDialog.m6778c(i);
             singleChoiceListDialog.show();
@@ -284,7 +284,7 @@ public class PopupsUtils {
             m6760a((int) R.string.set_ringtone_online_toast);
             mediaItem.getLocalDataSource();
         }
-        final ListDialog listDialog = new ListDialog(context, new ActionItem[]{new ActionItem(0, 0, (int) R.string.ringtone_phone), new ActionItem(1, 0, (int) R.string.ringtone_notice), new ActionItem(2, 0, (int) R.string.ringtone_all)}, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+        final ListDialog listDialog = new ListDialog(context, new ActionItem[]{new ActionItem(0, 0, (int) R.string.ringtone_phone), new ActionItem(1, 0, (int) R.string.ringtone_notice), new ActionItem(2, 0, (int) R.string.ringtone_all)}, (BaseDialog.OnClickListener<? extends ListDialog>) null, (BaseDialog.OnClickListener<? extends ListDialog>) null);
         listDialog.setTitle(context.getString(R.string.set_ringtone_title));
         listDialog.m7254b(R.string.cancel, null);
         listDialog.m6844a(new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.component.d.d.16
@@ -365,30 +365,30 @@ public class PopupsUtils {
     }
 
     /* renamed from: a */
-    public static void m6733a(Context context, String str, BaseDialog.InterfaceC1064a<MessageDialog> interfaceC1064a) {
-        MessageDialog messageDialog = new MessageDialog(context, context.getString(R.string.media_delete_single, str), (int) R.string.delete, interfaceC1064a, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+    public static void m6733a(Context context, String str, BaseDialog.OnClickListener<MessageDialog> onClickListener) {
+        MessageDialog messageDialog = new MessageDialog(context, context.getString(R.string.media_delete_single, str), (int) R.string.delete, onClickListener, (int) R.string.cancel, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.delete);
         messageDialog.show();
     }
 
     /* renamed from: a */
-    public static void m6741a(Context context, BaseDialog.InterfaceC1064a<MessageDialog> interfaceC1064a) {
-        MessageDialog messageDialog = new MessageDialog(context, context.getString(R.string.download_remove_all_confirm_hint), (int) R.string.delete, interfaceC1064a, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+    public static void m6741a(Context context, BaseDialog.OnClickListener<MessageDialog> onClickListener) {
+        MessageDialog messageDialog = new MessageDialog(context, context.getString(R.string.download_remove_all_confirm_hint), (int) R.string.delete, onClickListener, (int) R.string.cancel, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.delete_all_download);
         messageDialog.show();
     }
 
     /* renamed from: a */
-    public static OptionalDialog m6747a(Context context, int i, CharSequence charSequence, CharSequence charSequence2, BaseDialog.InterfaceC1064a<OptionalDialog> interfaceC1064a) {
-        return m6746a(context, i, charSequence, charSequence2, interfaceC1064a, (BaseDialog.InterfaceC1064a<OptionalDialog>) null);
+    public static OptionalDialog m6747a(Context context, int i, CharSequence charSequence, CharSequence charSequence2, BaseDialog.OnClickListener<OptionalDialog> onClickListener) {
+        return m6746a(context, i, charSequence, charSequence2, onClickListener, (BaseDialog.OnClickListener<OptionalDialog>) null);
     }
 
     /* renamed from: a */
-    public static OptionalDialog m6746a(Context context, int i, CharSequence charSequence, final CharSequence charSequence2, BaseDialog.InterfaceC1064a<OptionalDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<OptionalDialog> interfaceC1064a2) {
+    public static OptionalDialog m6746a(Context context, int i, CharSequence charSequence, final CharSequence charSequence2, BaseDialog.OnClickListener<OptionalDialog> onClickListener, BaseDialog.OnClickListener<OptionalDialog> onClickListener2) {
         if (charSequence2 == null) {
             return null;
         }
-        OptionalDialog optionalDialog = new OptionalDialog(context, i, interfaceC1064a, interfaceC1064a2) { // from class: com.sds.android.ttpod.component.d.d.17
+        OptionalDialog optionalDialog = new OptionalDialog(context, i, onClickListener, onClickListener2) { // from class: com.sds.android.ttpod.component.d.d.17
             @Override // com.sds.android.ttpod.component.p087d.p088a.OptionalDialog
             /* renamed from: b */
             protected View mo6699b(Context context2) {
@@ -409,11 +409,11 @@ public class PopupsUtils {
     }
 
     /* renamed from: a */
-    public static MoreOptionalDialog m6736a(Context context, CharSequence charSequence, final CharSequence charSequence2, int i, BaseDialog.InterfaceC1064a<MoreOptionalDialog> interfaceC1064a) {
+    public static MoreOptionalDialog m6736a(Context context, CharSequence charSequence, final CharSequence charSequence2, int i, BaseDialog.OnClickListener<MoreOptionalDialog> onClickListener) {
         if (charSequence2 == null) {
             return null;
         }
-        MoreOptionalDialog moreOptionalDialog = new MoreOptionalDialog(context, interfaceC1064a, null) { // from class: com.sds.android.ttpod.component.d.d.18
+        MoreOptionalDialog moreOptionalDialog = new MoreOptionalDialog(context, onClickListener, null) { // from class: com.sds.android.ttpod.component.d.d.18
             @Override // com.sds.android.ttpod.component.p087d.p088a.MoreOptionalDialog
             /* renamed from: b */
             protected View mo6698b(Context context2) {
@@ -427,24 +427,24 @@ public class PopupsUtils {
     }
 
     /* renamed from: b */
-    public static void m6710b(Context context, String str, final BaseDialog.InterfaceC1064a<EditTextDialog> interfaceC1064a) {
+    public static void m6710b(Context context, String str, final BaseDialog.OnClickListener<EditTextDialog> onClickListener) {
         if (context != null) {
             EditTextDialog.C1144a[] c1144aArr = new EditTextDialog.C1144a[1];
             if (StringUtils.isEmpty(str)) {
                 str = GroupItemUtils.m8269a();
             }
             c1144aArr[0] = new EditTextDialog.C1144a(0, "", str, context.getString(R.string.input_playlist_name_hint));
-            EditTextDialog editTextDialog = new EditTextDialog(context, c1144aArr, R.string.save, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.component.d.d.19
+            EditTextDialog editTextDialog = new EditTextDialog(context, c1144aArr, R.string.save, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.component.d.d.19
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(EditTextDialog editTextDialog2) {
+                public void onClick(EditTextDialog editTextDialog2) {
                     try {
                         if (GroupItemUtils.m8268a(editTextDialog2.m6902c(0).m6896d().toString())) {
                             editTextDialog2.m7242f(false);
                             PopupsUtils.m6760a((int) R.string.playlist_name_existed);
                         } else {
                             editTextDialog2.m7242f(true);
-                           interfaceC1064a.mo2038a(editTextDialog2);
+                           onClickListener.onClick(editTextDialog2);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -458,10 +458,10 @@ public class PopupsUtils {
 
     /* renamed from: a */
     public static void m6724a(final Context context, String[] strArr, final boolean z) {
-        MultiChoiceListDialog multiChoiceListDialog = new MultiChoiceListDialog(context, new CheckableActionItem[]{(CheckableActionItem) new CheckableActionItem(0, R.string.clean_cache_online, false).m7010a((CharSequence) strArr[0]), (CheckableActionItem) new CheckableActionItem(1, R.string.clean_cache_music, false).m7010a((CharSequence) strArr[1]), (CheckableActionItem) new CheckableActionItem(2, R.string.clean_cache_pic, false).m7010a((CharSequence) strArr[2]), (CheckableActionItem) new CheckableActionItem(3, R.string.clean_cache_lyric, false).m7010a((CharSequence) strArr[3])}, new BaseDialog.InterfaceC1064a<MultiChoiceListDialog>() { // from class: com.sds.android.ttpod.component.d.d.20
+        MultiChoiceListDialog multiChoiceListDialog = new MultiChoiceListDialog(context, new CheckableActionItem[]{(CheckableActionItem) new CheckableActionItem(0, R.string.clean_cache_online, false).m7010a((CharSequence) strArr[0]), (CheckableActionItem) new CheckableActionItem(1, R.string.clean_cache_music, false).m7010a((CharSequence) strArr[1]), (CheckableActionItem) new CheckableActionItem(2, R.string.clean_cache_pic, false).m7010a((CharSequence) strArr[2]), (CheckableActionItem) new CheckableActionItem(3, R.string.clean_cache_lyric, false).m7010a((CharSequence) strArr[3])}, new BaseDialog.OnClickListener<MultiChoiceListDialog>() { // from class: com.sds.android.ttpod.component.d.d.20
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MultiChoiceListDialog multiChoiceListDialog2) {
+            public void onClick(MultiChoiceListDialog multiChoiceListDialog2) {
                 List<CheckableActionItem> m6813e = multiChoiceListDialog2.m6813e();
                 if (m6813e != null && !m6813e.isEmpty()) {
                     //SUserUtils.m4956a(SAction.ACTION_SETTING_CLEAR_CACHE_CLEAR, SPage.PAGE_NONE);
@@ -515,7 +515,7 @@ public class PopupsUtils {
                     });
                 }
             }
-        }, (BaseDialog.InterfaceC1064a<MultiChoiceListDialog>) null);
+        }, (BaseDialog.OnClickListener<MultiChoiceListDialog>) null);
         multiChoiceListDialog.m7255b(R.string.setting_dialog_button_clean);
         multiChoiceListDialog.setTitle(context.getString(R.string.clean_cache_title));
         multiChoiceListDialog.show();
@@ -568,12 +568,12 @@ public class PopupsUtils {
     }
 
     /* renamed from: b */
-    public static void m6713b(final Context context, final BaseDialog.InterfaceC1064a<EditTextDialog> interfaceC1064a) {
+    public static void m6713b(final Context context, final BaseDialog.OnClickListener<EditTextDialog> onClickListener) {
         if (context != null) {
-            EditTextDialog editTextDialog = new EditTextDialog(context, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", "" + Preferences.m2846p(), context.getString(R.string.input_wait_sleep_time), 2, 17, 4)}, R.string.start, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.component.d.d.21
+            EditTextDialog editTextDialog = new EditTextDialog(context, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", "" + Preferences.m2846p(), context.getString(R.string.input_wait_sleep_time), 2, 17, 4)}, R.string.start, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.component.d.d.21
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(EditTextDialog editTextDialog2) {
+                public void onClick(EditTextDialog editTextDialog2) {
                     try {
                         String obj = editTextDialog2.m6902c(1).m6896d().toString();
                         Integer valueOf = Integer.valueOf(StringUtils.isEmpty(obj) ? 0 : Integer.parseInt(obj));
@@ -587,8 +587,8 @@ public class PopupsUtils {
                             //LocalStatistic.m5155a(valueOf.intValue());
                             //new SUserEvent("PAGE_CLICK", SAction.ACTION_GLOBAL_MENU_SLEEP.getValue(), SPage.PAGE_GLOBAL_MENU.getValue(), SPage.PAGE_GLOBAL_MENU_DIALOG.getValue()).append("sleep_time", valueOf).post();
                             PopupsUtils.m6721a(context.getString(R.string.sleep_after_num_minute, valueOf));
-                            if (interfaceC1064a != null) {
-                                interfaceC1064a.mo2038a(editTextDialog2);
+                            if (onClickListener != null) {
+                                onClickListener.onClick(editTextDialog2);
                             }
                         }
                     } catch (Exception e) {
@@ -607,7 +607,7 @@ public class PopupsUtils {
             if (mediaItem == null) {
                 throw new IllegalArgumentException("mediaItem should not be null");
             }
-            final ListDialog listDialog = new ListDialog(activity, new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_remove, (int) R.string.delete), new ActionItem(1, (int) R.drawable.img_contextmenu_add, (int) R.string.add), new ActionItem(2, (int) R.drawable.img_contextmenu_share, (int) R.string.share), new ActionItem(3, (int) R.drawable.img_contextmenu_send, (int) R.string.send), new ActionItem(4, (int) R.drawable.img_contextmenu_mediainfo, (int) R.string.media_info)}, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+            final ListDialog listDialog = new ListDialog(activity, new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_remove, (int) R.string.delete), new ActionItem(1, (int) R.drawable.img_contextmenu_add, (int) R.string.add), new ActionItem(2, (int) R.drawable.img_contextmenu_share, (int) R.string.share), new ActionItem(3, (int) R.drawable.img_contextmenu_send, (int) R.string.send), new ActionItem(4, (int) R.drawable.img_contextmenu_mediainfo, (int) R.string.media_info)}, (BaseDialog.OnClickListener<? extends ListDialog>) null, (BaseDialog.OnClickListener<? extends ListDialog>) null);
             ActionItem.InterfaceC1135b interfaceC1135b3 = new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.component.d.d.2
                 @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
                 /* renamed from: a */
@@ -652,10 +652,10 @@ public class PopupsUtils {
             };
             listDialog.setTitle(R.string.more);
             listDialog.m6844a(interfaceC1135b3);
-            listDialog.m7254b(R.string.cancel, new BaseDialog.InterfaceC1064a<ListDialog>() { // from class: com.sds.android.ttpod.component.d.d.3
+            listDialog.m7254b(R.string.cancel, new BaseDialog.OnClickListener<ListDialog>() { // from class: com.sds.android.ttpod.component.d.d.3
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(ListDialog listDialog2) {
+                public void onClick(ListDialog listDialog2) {
                     //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_CANCEL.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_PORTRAIT_PLAYER.getValue()).post();
                     listDialog2.dismiss();
                 }
@@ -671,10 +671,10 @@ public class PopupsUtils {
             if (mediaItem == null) {
                 throw new IllegalArgumentException("mediaItem should not be null");
             }
-            final ListDialog listDialog = new ListDialog(activity, new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_share, (int) R.string.share), new ActionItem(1, (int) R.drawable.img_contextmenu_mv, (int) R.string.media_item_menu_mv)}, (int) R.string.cancel, new BaseDialog.InterfaceC1064a<ListDialog>() { // from class: com.sds.android.ttpod.component.d.d.4
+            final ListDialog listDialog = new ListDialog(activity, new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_share, (int) R.string.share), new ActionItem(1, (int) R.drawable.img_contextmenu_mv, (int) R.string.media_item_menu_mv)}, (int) R.string.cancel, new BaseDialog.OnClickListener<ListDialog>() { // from class: com.sds.android.ttpod.component.d.d.4
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(ListDialog listDialog2) {
+                public void onClick(ListDialog listDialog2) {
                     listDialog2.dismiss();
                 }
             });
@@ -730,7 +730,7 @@ public class PopupsUtils {
             }
             arrayList.add(new ActionItem(0, 0, string).m7009a(Integer.valueOf(i)));
         }
-        final ListDialog listDialog = new ListDialog(context, arrayList, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+        final ListDialog listDialog = new ListDialog(context, arrayList, (BaseDialog.OnClickListener<? extends ListDialog>) null, (BaseDialog.OnClickListener<? extends ListDialog>) null);
         listDialog.setTitle(R.string.set_auto_sleep_time);
         listDialog.m6844a(new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.component.d.d.6
             @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
@@ -739,7 +739,7 @@ public class PopupsUtils {
                 listDialog.dismiss();
                 int intValue = ((Number) actionItem.m7004f()).intValue();
                 if (intValue <= 0) {
-                    PopupsUtils.m6713b(context, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
+                    PopupsUtils.m6713b(context, (BaseDialog.OnClickListener<EditTextDialog>) null);
                 } else if (ErrCode.ErrNone != ((ErrCode) CommandCenter.getInstance().m4602a(new Command(CommandID.START_SLEEP_MODE, Integer.valueOf(intValue)), ErrCode.class))) {
                     PopupsUtils.m6721a(context.getString(R.string.input_invalid_args));
                 } else {
@@ -756,7 +756,7 @@ public class PopupsUtils {
     /* renamed from: c */
     public static void m6705c(Activity activity, MediaItem mediaItem) {
         if (activity != null && mediaItem != null) {
-            ListDialog listDialog = new ListDialog(activity, new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_share, (int) R.string.share), new ActionItem(1, (int) R.drawable.img_contextmenu_send, (int) R.string.send), new ActionItem(2, (int) R.drawable.img_contextmenu_mediainfo, (int) R.string.media_info)}, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+            ListDialog listDialog = new ListDialog(activity, new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_share, (int) R.string.share), new ActionItem(1, (int) R.drawable.img_contextmenu_send, (int) R.string.send), new ActionItem(2, (int) R.drawable.img_contextmenu_mediainfo, (int) R.string.media_info)}, (int) R.string.cancel, (BaseDialog.OnClickListener<? extends ListDialog>) null);
             listDialog.setTitle(R.string.more);
             listDialog.m6844a(new C1197a(activity, mediaItem, listDialog, null));
             //LocalStatistic.m5147aG();
@@ -835,7 +835,7 @@ public class PopupsUtils {
                     }
                     break;
                 case 5:
-                    PopupsUtils.m6729a(this.activity, Cache.getInstance().m3155k(), this.mediaItem, (ActionItem.InterfaceC1135b) null, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
+                    PopupsUtils.m6729a(this.activity, Cache.getInstance().m3155k(), this.mediaItem, (ActionItem.InterfaceC1135b) null, (BaseDialog.OnClickListener<EditTextDialog>) null);
                     break;
                 case 6:
                     PopupsUtils.m6740a((Context) this.activity, this.mediaItem);
@@ -874,7 +874,7 @@ public class PopupsUtils {
             } else {
                 m6704d = m6704d();
             }
-            ListDialog listDialog = new ListDialog(activity, m6704d, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+            ListDialog listDialog = new ListDialog(activity, m6704d, (int) R.string.cancel, (BaseDialog.OnClickListener<? extends ListDialog>) null);
             listDialog.setTitle(R.string.more);
             listDialog.m6844a(new C1197a(activity, mediaItem, listDialog, favoriteSongFragment));
             //LocalStatistic.m5147aG();
@@ -883,7 +883,7 @@ public class PopupsUtils {
     }
 
     /* renamed from: a */
-    public static void m6729a(Context context, List<GroupItem> list, MediaItem mediaItem, ActionItem.InterfaceC1135b interfaceC1135b, BaseDialog.InterfaceC1064a<EditTextDialog> interfaceC1064a) {
+    public static void m6729a(Context context, List<GroupItem> list, MediaItem mediaItem, ActionItem.InterfaceC1135b interfaceC1135b, BaseDialog.OnClickListener<EditTextDialog> onClickListener) {
         MediaItem queryMediaItem;
         ArrayList arrayList = new ArrayList(1);
         if (!mediaItem.isOnline()) {
@@ -896,11 +896,11 @@ public class PopupsUtils {
                 return;
             }
         }
-        m6726a(context, list, arrayList, interfaceC1135b, interfaceC1064a);
+        m6726a(context, list, arrayList, interfaceC1135b, onClickListener);
     }
 
     /* renamed from: a */
-    public static void m6726a(final Context context, List<GroupItem> list, final Collection<MediaItem> collection, final ActionItem.InterfaceC1135b interfaceC1135b, final BaseDialog.InterfaceC1064a<EditTextDialog> interfaceC1064a) {
+    public static void m6726a(final Context context, List<GroupItem> list, final Collection<MediaItem> collection, final ActionItem.InterfaceC1135b interfaceC1135b, final BaseDialog.OnClickListener<EditTextDialog> onClickListener) {
         if (context != null) {
             if (collection == null) {
                 throw new IllegalArgumentException("mediaItems should not be null");
@@ -913,22 +913,22 @@ public class PopupsUtils {
                     actionItemArr[i] = new ActionItem(groupItem.hashCode(), 0, groupItem.getName()).m7009a((Object) groupItem.getGroupID());
                 }
             }
-            final ListDialog listDialog = new ListDialog(context, actionItemArr, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+            final ListDialog listDialog = new ListDialog(context, actionItemArr, (int) R.string.cancel, (BaseDialog.OnClickListener<? extends ListDialog>) null);
             listDialog.setTitle(R.string.dialog_add_to_group_title);
-            listDialog.m7262a(R.string.create_playlist_add, new BaseDialog.InterfaceC1064a<ListDialog>() { // from class: com.sds.android.ttpod.component.d.d.7
+            listDialog.m7262a(R.string.create_playlist_add, new BaseDialog.OnClickListener<ListDialog>() { // from class: com.sds.android.ttpod.component.d.d.7
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(ListDialog listDialog2) {
+                public void onClick(ListDialog listDialog2) {
                     listDialog2.dismiss();
-                    PopupsUtils.m6710b(context, (String) null, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.component.d.d.7.1
+                    PopupsUtils.m6710b(context, (String) null, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.component.d.d.7.1
                         @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                         /* renamed from: a  reason: avoid collision after fix types in other method */
-                        public void mo2038a(EditTextDialog editTextDialog) {
+                        public void onClick(EditTextDialog editTextDialog) {
                             String obj = editTextDialog.m6902c(0).m6896d().toString();
                             CommandCenter.getInstance().execute(new Command(CommandID.ADD_MEDIA_ITEM_LIST, (String) CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, obj), String.class), collection));
                             PopupsUtils.m6721a(context.getString(R.string.add_to_group_success, obj));
-                            if (interfaceC1064a != null) {
-                                interfaceC1064a.mo2038a(editTextDialog);
+                            if (onClickListener != null) {
+                                onClickListener.onClick(editTextDialog);
                             }
                         }
                     });
@@ -953,7 +953,7 @@ public class PopupsUtils {
     }
 
     /* renamed from: a */
-    public static void m6738a(Context context, final MediaItem mediaItem, final String str, final BaseDialog.InterfaceC1064a<MoreOptionalDialog> interfaceC1064a) {
+    public static void m6738a(Context context, final MediaItem mediaItem, final String str, final BaseDialog.OnClickListener<MoreOptionalDialog> onClickListener) {
         String string;
         if (context != null) {
             if (mediaItem == null || str == null) {
@@ -964,17 +964,17 @@ public class PopupsUtils {
             } else {
                 string = context.getString(R.string.media_delete_single, mediaItem.getTitle());
             }
-            m6736a(context, context.getString(R.string.media_delete_title), string, (int) R.string.delete, new BaseDialog.InterfaceC1064a<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.component.d.d.9
+            m6736a(context, context.getString(R.string.media_delete_title), string, (int) R.string.delete, new BaseDialog.OnClickListener<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.component.d.d.9
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
+                public void onClick(MoreOptionalDialog moreOptionalDialog) {
                     if (str.equals(MediaStorage.GROUP_ID_FAV)) {
                         CommandCenter.getInstance().execute(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     } else {
                         CommandCenter.getInstance().execute(new Command(CommandID.DELETE_MEDIA_ITEM, str, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     }
-                    if (interfaceC1064a != null) {
-                        interfaceC1064a.mo2038a(moreOptionalDialog);
+                    if (onClickListener != null) {
+                        onClickListener.onClick(moreOptionalDialog);
                     }
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(mediaItem);
@@ -993,7 +993,7 @@ public class PopupsUtils {
     }
 
     /* renamed from: a */
-    public static void m6730a(Context context, final Collection<MediaItem> collection, final String str, final BaseDialog.InterfaceC1064a<MoreOptionalDialog> interfaceC1064a) {
+    public static void m6730a(Context context, final Collection<MediaItem> collection, final String str, final BaseDialog.OnClickListener<MoreOptionalDialog> onClickListener) {
         String string;
         if (context != null) {
             DebugUtils.m8424a((Collection) collection, "mediaItems");
@@ -1004,10 +1004,10 @@ public class PopupsUtils {
             } else {
                 string = context.getString(R.string.media_delete_multi, next.getTitle(), Integer.valueOf(collection.size()));
             }
-            m6736a(context, context.getString(R.string.media_delete_title), string, (int) R.string.delete, new BaseDialog.InterfaceC1064a<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.component.d.d.10
+            m6736a(context, context.getString(R.string.media_delete_title), string, (int) R.string.delete, new BaseDialog.OnClickListener<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.component.d.d.10
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
+                public void onClick(MoreOptionalDialog moreOptionalDialog) {
                     if (str.equals(MediaStorage.GROUP_ID_FAV)) {
                         CommandCenter.getInstance().execute(new Command(CommandID.DELETE_FAVORITE_MEDIA_ITEM_LIST, collection, Boolean.valueOf(moreOptionalDialog.m6821b())));
                     } else {
@@ -1016,8 +1016,8 @@ public class PopupsUtils {
                     if (moreOptionalDialog.m6817e()) {
                         PopupsUtils.m6707b(collection);
                     }
-                    if (interfaceC1064a != null) {
-                        interfaceC1064a.mo2038a(moreOptionalDialog);
+                    if (onClickListener != null) {
+                        onClickListener.onClick(moreOptionalDialog);
                     }
                     if (moreOptionalDialog.m6819c()) {
                         CommandCenter.getInstance().execute(new Command(CommandID.DELETE_PICTURE, collection));
@@ -1050,7 +1050,7 @@ public class PopupsUtils {
                         interfaceC1135b.mo5409a(actionItem, i);
                     }
                 }
-            }, (BaseDialog.InterfaceC1064a<SingleChoiceListDialog>) null);
+            }, (BaseDialog.OnClickListener<SingleChoiceListDialog>) null);
         }
     }
 

@@ -356,10 +356,10 @@ public abstract class AbsMediaListFragment extends BaseFragment implements Abstr
     }
 
     public void onDeleteMediaItem(final MediaItem mediaItem) {
-        PopupsUtils.m6738a(getActivity(), mediaItem, this.mGroupID, new BaseDialog.InterfaceC1064a<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment.6
+        PopupsUtils.m6738a(getActivity(), mediaItem, this.mGroupID, new BaseDialog.OnClickListener<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment.6
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
+            public void onClick(MoreOptionalDialog moreOptionalDialog) {
                 List<MediaItem> mediaItemList = AbsMediaListFragment.this.getMediaItemList();
                 if (!(mediaItemList instanceof AsyncLoadMediaItemList) || ((AsyncLoadMediaItemList) mediaItemList).isLoadFinished()) {
                     mediaItemList.remove(mediaItem);

@@ -105,10 +105,10 @@ public class LyricPictureSettingActivity extends SlidingClosableActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void setDownloadPicAmount(final ActionItem actionItem, final int i, int i2, final boolean z) {
-        SeekBarDialog seekBarDialog = new SeekBarDialog(this, 0, i2, 8, 1, "", new BaseDialog.InterfaceC1064a<SeekBarDialog>() { // from class: com.sds.android.ttpod.activities.setting.LyricPictureSettingActivity.1
+        SeekBarDialog seekBarDialog = new SeekBarDialog(this, 0, i2, 8, 1, "", new BaseDialog.OnClickListener<SeekBarDialog>() { // from class: com.sds.android.ttpod.activities.setting.LyricPictureSettingActivity.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(SeekBarDialog seekBarDialog2) {
+            public void onClick(SeekBarDialog seekBarDialog2) {
                 int m6789b = seekBarDialog2.m6789b();
                 actionItem.m7010a((CharSequence) (m6789b + ""));
                 LyricPictureSettingActivity.this.mPicSettingCard.m7799a((SettingItem) actionItem, i);

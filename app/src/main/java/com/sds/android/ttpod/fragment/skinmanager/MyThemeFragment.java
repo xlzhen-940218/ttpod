@@ -137,10 +137,10 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
     }
 
     private void showConfirmDeleteDialog() {
-        @SuppressLint("StringFormatMatches") MessageDialog messageDialog = new MessageDialog(getActivity(), getString(R.string.confirm_delete_skin, this.mSelectItemHashMap.size()), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.skinmanager.MyThemeFragment.1
+        @SuppressLint("StringFormatMatches") MessageDialog messageDialog = new MessageDialog(getActivity(), getString(R.string.confirm_delete_skin, this.mSelectItemHashMap.size()), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.skinmanager.MyThemeFragment.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog2) {
+            public void onClick(MessageDialog messageDialog2) {
                 int selectedCount = MyThemeFragment.this.selectedCount();
                 if (selectedCount > 0) {
                     Iterator it = MyThemeFragment.this.mSelectItemHashMap.keySet().iterator();
@@ -152,7 +152,7 @@ public class MyThemeFragment extends BaseThemeFragment implements IThemeEditable
                 }
                 MyThemeFragment.this.tryNotifyStopEditRequested();
             }
-        }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+        }, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.delete_theme);
         messageDialog.show();
     }

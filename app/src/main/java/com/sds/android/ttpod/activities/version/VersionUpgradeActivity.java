@@ -135,7 +135,7 @@ public class VersionUpgradeActivity extends BaseActivity {
     private void showUpdateProgressDialog() {
         if (this.mDialog == null) {
             this.mDialog = new WaitingDialog(this);
-            this.mDialog.m6775a((CharSequence) getString(R.string.login_wait_message));
+            this.mDialog.setText((CharSequence) getString(R.string.login_wait_message));
         }
         this.mDialog.show();
     }

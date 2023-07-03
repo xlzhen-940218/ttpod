@@ -163,10 +163,10 @@ public class FilePickerActivity extends SlidingClosableActivity {
                 @Override // com.sds.android.ttpod.component.ActionBarController.InterfaceC1072b
                 /* renamed from: a */
                 public void mo5433a(ActionBarController.C1070a c1070a) {
-                    EditTextDialog editTextDialog = new EditTextDialog(FilePickerActivity.this, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, FilePickerActivity.this.getString(R.string.folder), "", FilePickerActivity.this.getString(R.string.new_folder_hint))}, R.string.create, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.activities.mediascan.FilePickerActivity.3.1
+                    EditTextDialog editTextDialog = new EditTextDialog(FilePickerActivity.this, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, FilePickerActivity.this.getString(R.string.folder), "", FilePickerActivity.this.getString(R.string.new_folder_hint))}, R.string.create, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.activities.mediascan.FilePickerActivity.3.1
                         @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                         /* renamed from: a  reason: avoid collision after fix types in other method */
-                        public void mo2038a(EditTextDialog editTextDialog2) {
+                        public void onClick(EditTextDialog editTextDialog2) {
                             String obj = editTextDialog2.m6902c(1).m6896d().toString();
                             String obj2 = FilePickerActivity.this.mTextViewHeader.getText().toString();
                             PopupsUtils.m6721a(new File(obj2.endsWith("/") ? new StringBuilder().append(obj2).append(obj).toString() : new StringBuilder().append(obj2).append("/").append(obj).toString()).mkdir() ? FilePickerActivity.this.getString(R.string.new_folder_success) : FilePickerActivity.this.getString(R.string.new_folder_fail));

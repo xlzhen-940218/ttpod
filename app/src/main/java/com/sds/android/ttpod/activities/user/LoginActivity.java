@@ -78,7 +78,7 @@ public class LoginActivity extends SlidingClosableActivity {
     private AuthCallback mQQAuthCallback = new AuthCallback() { // from class: com.sds.android.ttpod.activities.user.LoginActivity.4
         @Override // com.sds.android.ttpod.share.p137b.AuthCallback
         /* renamed from: a */
-        public void mo1976a(Bundle bundle) {
+        public void onSuccess(Bundle bundle) {
             if (LoginActivity.this.status() == 2) {
                 PopupsUtils.m6748a(LoginActivity.this, (int) R.string.login_wait_message);
             }
@@ -94,11 +94,11 @@ public class LoginActivity extends SlidingClosableActivity {
 
         @Override // com.sds.android.ttpod.share.p137b.AuthCallback
         /* renamed from: a */
-        public void mo1975a(String str) {
+        public void onError(String errorMessage) {
             if (LoginActivity.this.status() == 2) {
                 PopupsUtils.m6761a();
             }
-            PopupsUtils.m6721a(str);
+            PopupsUtils.m6721a(errorMessage);
         }
     };
 
@@ -174,7 +174,7 @@ public class LoginActivity extends SlidingClosableActivity {
         this.mSinaAuthHandler.m2072a(new AuthCallback() { // from class: com.sds.android.ttpod.activities.user.LoginActivity.5
             @Override // com.sds.android.ttpod.share.p137b.AuthCallback
             /* renamed from: a */
-            public void mo1976a(Bundle bundle) {
+            public void onSuccess(Bundle bundle) {
                 if (LoginActivity.this.status() == 2) {
                     PopupsUtils.m6748a(LoginActivity.this, (int) R.string.login_wait_message);
                 }
@@ -190,7 +190,7 @@ public class LoginActivity extends SlidingClosableActivity {
 
             @Override // com.sds.android.ttpod.share.p137b.AuthCallback
             /* renamed from: a */
-            public void mo1975a(String str) {
+            public void onError(String errorMessage) {
                 if (LoginActivity.this.status() == 2) {
                     PopupsUtils.m6761a();
                 }

@@ -23,9 +23,9 @@ public abstract class OptionalDialog extends BaseDialog {
     /* renamed from: b */
     protected abstract View mo6699b(Context context);
 
-    public OptionalDialog(Context context, int i, int i2, BaseDialog.InterfaceC1064a<OptionalDialog> interfaceC1064a, int i3, BaseDialog.InterfaceC1064a<OptionalDialog> interfaceC1064a2) {
+    public OptionalDialog(Context context, int i, int i2, OnClickListener<OptionalDialog> onClickListener, int i3, OnClickListener<OptionalDialog> onClickListener2) {
         super(context);
-        m7261a(i2, interfaceC1064a, i3, interfaceC1064a2);
+        m7261a(i2, onClickListener, i3, onClickListener2);
         this.f3976b.setText(i);
         this.f3976b.setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.component.d.a.l.1
             @Override // android.view.View.OnClickListener
@@ -38,13 +38,13 @@ public abstract class OptionalDialog extends BaseDialog {
         });
     }
 
-    public OptionalDialog(Context context, int i, BaseDialog.InterfaceC1064a<OptionalDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<OptionalDialog> interfaceC1064a2) {
-        this(context, i, R.string.ok, interfaceC1064a, R.string.cancel, interfaceC1064a2);
+    public OptionalDialog(Context context, int i, OnClickListener<OptionalDialog> onClickListener, OnClickListener<OptionalDialog> onClickListener2) {
+        this(context, i, R.string.ok, onClickListener, R.string.cancel, onClickListener2);
     }
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected final View mo2034a(Context context) {
+    protected final View inflate(Context context) {
         View inflate = View.inflate(context, R.layout.dialog_body_option, null);
         this.f3976b = (CheckedTextView) inflate.findViewById(R.id.option);
         this.f3975a = (ScrollView) inflate.findViewById(R.id.scroll_content);
@@ -63,7 +63,7 @@ public abstract class OptionalDialog extends BaseDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: c */
-    public OptionalDialog mo2037a() {
+    public OptionalDialog getDialog() {
         return this;
     }
 }

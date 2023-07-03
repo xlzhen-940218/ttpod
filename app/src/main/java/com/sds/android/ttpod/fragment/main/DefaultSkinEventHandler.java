@@ -93,7 +93,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                     PopupsUtils.m6721a(this.activity.getString(R.string.cancel_sleep_mode));
                     break;
                 } else {
-                    PopupsUtils.m6713b(this.activity, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
+                    PopupsUtils.m6713b(this.activity, (BaseDialog.OnClickListener<EditTextDialog>) null);
                     break;
                 }
             case 6:
@@ -175,7 +175,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                     PopupsUtils.m6721a("网络歌曲不能添加到自定义列表");
                     break;
                 } else {
-                    PopupsUtils.m6729a(this.activity, Cache.getInstance().m3155k(), Cache.getInstance().getCurrentPlayMediaItem(), (ActionItem.InterfaceC1135b) null, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
+                    PopupsUtils.m6729a(this.activity, Cache.getInstance().m3155k(), Cache.getInstance().getCurrentPlayMediaItem(), (ActionItem.InterfaceC1135b) null, (BaseDialog.OnClickListener<EditTextDialog>) null);
                     break;
                 }
             case 25:
@@ -187,10 +187,10 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                 break;
             case 27:
                 if (!currentPlayMediaItem.isNull()) {
-                    PopupsUtils.m6747a(this.activity, (int) R.string.remove_option, this.activity.getString(R.string.media_delete_title), this.activity.getString(R.string.media_delete_single, new Object[]{currentPlayMediaItem.getTitle()}), new BaseDialog.InterfaceC1064a<OptionalDialog>() { // from class: com.sds.android.ttpod.fragment.main.a.1
+                    PopupsUtils.m6747a(this.activity, (int) R.string.remove_option, this.activity.getString(R.string.media_delete_title), this.activity.getString(R.string.media_delete_single, new Object[]{currentPlayMediaItem.getTitle()}), new BaseDialog.OnClickListener<OptionalDialog>() { // from class: com.sds.android.ttpod.fragment.main.a.1
                         @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                         /* renamed from: a  reason: avoid collision after fix types in other method */
-                        public void mo2038a(OptionalDialog optionalDialog) {
+                        public void onClick(OptionalDialog optionalDialog) {
                             CommandCenter.getInstance().execute(new Command(CommandID.DELETE_MEDIA_ITEM, currentPlayMediaItem.getGroupID(), currentPlayMediaItem, Boolean.valueOf(optionalDialog.m6808b())));
                         }
                     });
@@ -248,14 +248,14 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
                     @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
                     /* renamed from: a */
                     public void mo5409a(ActionItem actionItem, int i) {
-                        PopupsUtils.m6738a(DefaultSkinEventHandler.this.activity, m3225N, Preferences.getLocalGroupId(), (BaseDialog.InterfaceC1064a<MoreOptionalDialog>) null);
+                        PopupsUtils.m6738a(DefaultSkinEventHandler.this.activity, m3225N, Preferences.getLocalGroupId(), (BaseDialog.OnClickListener<MoreOptionalDialog>) null);
                     }
                 }, new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.fragment.main.a.3
                     @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
                     /* renamed from: a */
                     public void mo5409a(ActionItem actionItem, int i) {
                         //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PORTRAIT_MENU_MORE_ADD_TO_LIST.getValue(), SPage.PAGE_PLAYER_MENU_MORE.getValue(), SPage.PAGE_NONE.getValue()).post();
-                        PopupsUtils.m6729a(DefaultSkinEventHandler.this.activity, Cache.getInstance().m3155k(), m3225N, (ActionItem.InterfaceC1135b) null, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
+                        PopupsUtils.m6729a(DefaultSkinEventHandler.this.activity, Cache.getInstance().m3155k(), m3225N, (ActionItem.InterfaceC1135b) null, (BaseDialog.OnClickListener<EditTextDialog>) null);
                     }
                 });
             } else if (m3225N.isOnline()) {

@@ -94,13 +94,13 @@ public class EffectShareDialog extends BaseDialog {
         m6890b();
         m6887e();
         m6885g();
-        m7261a(R.string.save, new BaseDialog.InterfaceC1064a<MediaInfoEditDialog>() { // from class: com.sds.android.ttpod.component.d.a.c.1
+        m7261a(R.string.save, new OnClickListener<MediaInfoEditDialog>() { // from class: com.sds.android.ttpod.component.d.a.c.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MediaInfoEditDialog mediaInfoEditDialog) {
+            public void onClick(MediaInfoEditDialog mediaInfoEditDialog) {
                 EffectShareDialog.this.m6888c();
             }
-        }, R.string.cancel, (BaseDialog.InterfaceC1064a) null);
+        }, R.string.cancel, (OnClickListener) null);
         this.f3896g = Build.MODEL;
     }
 
@@ -207,7 +207,7 @@ public class EffectShareDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected View mo2034a(Context context) {
+    protected View inflate(Context context) {
         this.f3890a = View.inflate(context, R.layout.dialog_effect_share, null);
         setTitle(R.string.effect_share_dialog_title);
         return this.f3890a;
@@ -215,7 +215,7 @@ public class EffectShareDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected <T> T mo2037a() {
+    protected <T> T getDialog() {
         return null;
     }
 }

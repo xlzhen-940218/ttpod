@@ -1,7 +1,8 @@
 package com.sds.android.sdk.lib.util;
 
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
+
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -9,7 +10,7 @@ import org.apache.http.message.BasicNameValuePair;
 /* loaded from: classes.dex */
 public class UrlUtils {
     /* renamed from: a */
-    public static String buildGetParamsUrl(String url, Map<String, Object> paramsMaps) {
+    public static String buildGetParamsUrl(String url, HashMap<String, Object> paramsMaps) {
         if (paramsMaps != null && paramsMaps.size() != 0) {
             ArrayList arrayList = new ArrayList(paramsMaps.size());
             for (String str2 : paramsMaps.keySet()) {

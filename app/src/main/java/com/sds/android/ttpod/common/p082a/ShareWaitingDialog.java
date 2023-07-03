@@ -40,7 +40,7 @@ public class ShareWaitingDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected View mo2034a(Context context) {
+    protected View inflate(Context context) {
         this.f3572a = View.inflate(context, R.layout.share_dialog_body_waiting, null);
         this.f3573b = (ImageView) this.f3572a.findViewById(R.id.waiting_progress);
         this.f3574c = (TextView) this.f3572a.findViewById(R.id.waiting_message);
@@ -51,7 +51,7 @@ public class ShareWaitingDialog extends BaseDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: b */
-    public ShareWaitingDialog mo2037a() {
+    public ShareWaitingDialog getDialog() {
         return this;
     }
 

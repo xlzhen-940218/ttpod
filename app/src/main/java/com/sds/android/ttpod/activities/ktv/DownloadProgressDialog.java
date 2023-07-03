@@ -19,14 +19,14 @@ public class DownloadProgressDialog extends BaseDialog {
     /* renamed from: b */
     private ProgressBar f2634b;
 
-    public DownloadProgressDialog(Context context, BaseDialog.InterfaceC1064a interfaceC1064a, BaseDialog.InterfaceC1064a interfaceC1064a2) {
+    public DownloadProgressDialog(Context context, OnClickListener onClickListener, OnClickListener onClickListener2) {
         super(context, R.style.Theme_NoTitle_Dialog);
-        m7261a(R.string.version_upgrade_hide_dialog, interfaceC1064a2, R.string.cancel, interfaceC1064a);
+        m7261a(R.string.version_upgrade_hide_dialog, onClickListener2, R.string.cancel, onClickListener);
     }
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected View mo2034a(Context context) {
+    protected View inflate(Context context) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.ktv_dialog_download_progress, (ViewGroup) null);
         this.f2633a = (TextView) inflate.findViewById(R.id.text_downloading_progress);
         this.f2634b = (ProgressBar) inflate.findViewById(R.id.downloading_progress_bar);
@@ -36,7 +36,7 @@ public class DownloadProgressDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected <T> T mo2037a() {
+    protected <T> T getDialog() {
         return null;
     }
 

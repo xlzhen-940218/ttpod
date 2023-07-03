@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
@@ -29,68 +32,69 @@ import com.sds.android.ttpod.share.p139d.UrlUtil;
 public class AuthDialog extends Dialog {
 
     /* renamed from: a */
-    private WebView f7372a;
+    private WebView webView;
 
     /* renamed from: b */
-    private ProgressDialog f7373b;
+    private ProgressDialog progressDialog;
 
     /* renamed from: c */
-    private String f7374c;
+    private String url;
 
     /* renamed from: d */
-    private AuthCallback f7375d;
+    private AuthCallback authCallback;
 
     /* renamed from: e */
-    private Activity f7376e;
+    private Activity activity;
 
     @SuppressLint("ResourceType")
     public AuthDialog(Context context, String str, AuthCallback authCallback) {
         super(context, android.R.style.Theme_Translucent_NoTitleBar);
-        this.f7376e = (Activity) context;
+        this.activity = (Activity) context;
         if (StringUtils.isEmpty(str)) {
             throw new IllegalArgumentException("authUrl can not be null.");
         }
-        this.f7374c = str;
-        this.f7375d = authCallback;
+        this.url = str;
+        this.authCallback = authCallback;
     }
 
     @Override // android.app.Dialog
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        m2053b();
+        initProgressDialog();
         requestWindowFeature(1);
-        this.f7372a = new WebView(getContext());
-        m2055a();
+        this.webView = new WebView(getContext());
+        initWebView();
     }
 
     /* renamed from: a */
-    private void m2055a() {
-        this.f7372a.setVerticalScrollBarEnabled(false);
-        this.f7372a.setHorizontalScrollBarEnabled(false);
-        this.f7372a.getSettings().setJavaScriptEnabled(true);
-        this.f7372a.setWebViewClient(new C2139b());
-        this.f7372a.setWebChromeClient(new C2138a());
-        this.f7372a.loadUrl(this.f7374c);
-        this.f7372a.setVisibility(View.INVISIBLE);
-        addContentView(this.f7372a, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    @SuppressLint("SetJavaScriptEnabled")
+    private void initWebView() {
+        this.webView.setVerticalScrollBarEnabled(false);
+        this.webView.setHorizontalScrollBarEnabled(false);
+        this.webView.getSettings().setJavaScriptEnabled(true);
+        this.webView.setWebViewClient(new AuthWebViewClient());
+        this.webView.setWebChromeClient(new AuthWebChromeClient());
+        this.webView.loadUrl(this.url);
+        this.webView.setVisibility(View.INVISIBLE);
+        addContentView(this.webView, new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     }
 
     @Override // android.app.Dialog
     public void onBackPressed() {
         super.onBackPressed();
-        if (this.f7373b.isShowing()) {
-            this.f7373b.dismiss();
+        if (this.progressDialog.isShowing()) {
+            this.progressDialog.dismiss();
         }
     }
 
     /* renamed from: b */
-    private void m2053b() {
-        if (this.f7373b == null) {
-            this.f7373b = new ProgressDialog(getContext());
-            this.f7373b.requestWindowFeature(1);
-            this.f7373b.setTitle(getContext().getString(R.string.share_waiting_dialog_title));
-            this.f7373b.setMessage(getContext().getString(R.string.share_waiting_dialog_message));
-            this.f7373b.setOnKeyListener(new DialogInterface.OnKeyListener() { // from class: com.sds.android.ttpod.share.c.a.1
+    private void initProgressDialog() {
+        if (this.progressDialog == null) {
+            this.progressDialog = new ProgressDialog(getContext());
+            this.progressDialog.requestWindowFeature(1);
+            this.progressDialog.setTitle(getContext().getString(R.string.share_waiting_dialog_title));
+            this.progressDialog.setMessage(getContext().getString(R.string.share_waiting_dialog_message));
+            this.progressDialog.setOnKeyListener(new DialogInterface.OnKeyListener() { // from class: com.sds.android.ttpod.share.c.a.1
                 @Override // android.content.DialogInterface.OnKeyListener
                 public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
                     if (i == 4 && keyEvent.getRepeatCount() == 0) {
@@ -101,8 +105,8 @@ public class AuthDialog extends Dialog {
                 }
             });
         }
-        if (!this.f7373b.isShowing()) {
-            this.f7373b.show();
+        if (!this.progressDialog.isShowing()) {
+            this.progressDialog.show();
         }
     }
 
@@ -110,8 +114,27 @@ public class AuthDialog extends Dialog {
     /* compiled from: AuthDialog.java */
     /* renamed from: com.sds.android.ttpod.share.c.a$b */
     /* loaded from: classes.dex */
-    public class C2139b extends WebViewClient {
-        private C2139b() {
+    public class AuthWebViewClient extends WebViewClient {
+        private AuthWebViewClient() {
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                if(request.getUrl().getScheme().startsWith("wtloginmqq")){
+                    Intent intent = new Intent(Intent.ACTION_VIEW,request.getUrl());
+                    activity.startActivity(intent);
+                }
+                view.loadUrl(request.getUrl().toString());
+            }
+
+            return true;
         }
 
         @Override // android.webkit.WebViewClient
@@ -120,7 +143,7 @@ public class AuthDialog extends Dialog {
         }
 
         /* renamed from: a */
-        private boolean m2049a(String str, String str2) {
+        private boolean accessToken(String str, String str2) {
             if (!TextUtils.isEmpty(str) && !TextUtils.isEmpty(str2)) {
                 try {
                     if (System.currentTimeMillis() < System.currentTimeMillis() + (Long.parseLong(str2) * 1000)) {
@@ -135,10 +158,11 @@ public class AuthDialog extends Dialog {
 
         @Override // android.webkit.WebViewClient
         public void onPageStarted(WebView webView, String str, Bitmap bitmap) {
-            Bundle m1926a = UrlUtil.m1926a(str);
-            if (m1926a != null && m1926a.size() > 0 && m2049a(m1926a.getString("access_token"), m1926a.getString("expires_in"))) {
-                if (AuthDialog.this.f7375d != null) {
-                    AuthDialog.this.f7375d.mo1976a(m1926a);
+            Bundle bundle = UrlUtil.urlToBundle(str);
+            if (bundle.size() > 0 && accessToken(bundle.getString("access_token")
+                    , bundle.getString("expires_in"))) {
+                if (AuthDialog.this.authCallback != null) {
+                    AuthDialog.this.authCallback.onSuccess(bundle);
                 }
                 webView.stopLoading();
                 AuthDialog.this.dismiss();
@@ -162,18 +186,18 @@ public class AuthDialog extends Dialog {
     /* compiled from: AuthDialog.java */
     /* renamed from: com.sds.android.ttpod.share.c.a$a */
     /* loaded from: classes.dex */
-    public class C2138a extends WebChromeClient {
-        private C2138a() {
+    public class AuthWebChromeClient extends WebChromeClient {
+        private AuthWebChromeClient() {
         }
 
         @Override // android.webkit.WebChromeClient
         public void onProgressChanged(WebView webView, int i) {
             super.onProgressChanged(webView, i);
             if (i == 100) {
-                if (AuthDialog.this.f7373b.isShowing() && AuthDialog.this.f7376e != null && !AuthDialog.this.f7376e.isFinishing()) {
-                    AuthDialog.this.f7373b.dismiss();
+                if (AuthDialog.this.progressDialog.isShowing() && AuthDialog.this.activity != null && !AuthDialog.this.activity.isFinishing()) {
+                    AuthDialog.this.progressDialog.dismiss();
                 }
-                AuthDialog.this.f7372a.setVisibility(View.VISIBLE);
+                AuthDialog.this.webView.setVisibility(View.VISIBLE);
             }
         }
     }

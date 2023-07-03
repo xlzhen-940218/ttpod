@@ -99,6 +99,6 @@ public class NotificationSettingActivity extends SlidingClosableActivity {
                 Preferences.m2845p(actionItem2.m7005e());
 
             }
-        }, (BaseDialog.InterfaceC1064a<SingleChoiceListDialog>) null);
+        }, (BaseDialog.OnClickListener<SingleChoiceListDialog>) null);
     }
 }

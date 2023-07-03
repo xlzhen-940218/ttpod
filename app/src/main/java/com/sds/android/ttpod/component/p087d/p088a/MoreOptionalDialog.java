@@ -32,9 +32,9 @@ public abstract class MoreOptionalDialog extends BaseDialog {
     /* renamed from: b */
     protected abstract View mo6698b(Context context);
 
-    public MoreOptionalDialog(Context context, int i, BaseDialog.InterfaceC1064a<MoreOptionalDialog> interfaceC1064a, int i2, BaseDialog.InterfaceC1064a<MoreOptionalDialog> interfaceC1064a2) {
+    public MoreOptionalDialog(Context context, int i, OnClickListener<MoreOptionalDialog> onClickListener, int i2, OnClickListener<MoreOptionalDialog> onClickListener2) {
         super(context);
-        m7261a(i, interfaceC1064a, i2, interfaceC1064a2);
+        m7261a(i, onClickListener, i2, onClickListener2);
         this.f3969f = new View.OnClickListener() { // from class: com.sds.android.ttpod.component.d.a.i.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {
@@ -54,8 +54,8 @@ public abstract class MoreOptionalDialog extends BaseDialog {
         this.f3968e.setChecked(true);
     }
 
-    public MoreOptionalDialog(Context context, BaseDialog.InterfaceC1064a<MoreOptionalDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<MoreOptionalDialog> interfaceC1064a2) {
-        this(context, R.string.ok, interfaceC1064a, R.string.cancel, interfaceC1064a2);
+    public MoreOptionalDialog(Context context, OnClickListener<MoreOptionalDialog> onClickListener, OnClickListener<MoreOptionalDialog> onClickListener2) {
+        this(context, R.string.ok, onClickListener, R.string.cancel, onClickListener2);
     }
 
     /* renamed from: b */
@@ -65,7 +65,7 @@ public abstract class MoreOptionalDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected final View mo2034a(Context context) {
+    protected final View inflate(Context context) {
         View inflate = View.inflate(context, R.layout.dialog_body_more_option, null);
         this.f3965b = (CheckedTextView) inflate.findViewById(R.id.option_original_file);
         this.f3966c = (CheckedTextView) inflate.findViewById(R.id.option_artist_pic);
@@ -97,7 +97,7 @@ public abstract class MoreOptionalDialog extends BaseDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: g */
-    public MoreOptionalDialog mo2037a() {
+    public MoreOptionalDialog getDialog() {
         return this;
     }
 }

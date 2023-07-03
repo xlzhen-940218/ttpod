@@ -326,11 +326,11 @@ public abstract class BasePlayerFragment extends BaseFragment {
         for (int i2 = 0; i2 < list.size(); i2++) {
             arrayList.add(new ActionItem(i2, 0, list.get(i2).toString()));
         }
-        final ListDialog listDialog = new ListDialog(getActivity(), arrayList, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
-        listDialog.m7254b(R.string.cancel, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.fragment.main.BasePlayerFragment.4
+        final ListDialog listDialog = new ListDialog(getActivity(), arrayList, (BaseDialog.OnClickListener<? extends ListDialog>) null, (BaseDialog.OnClickListener<? extends ListDialog>) null);
+        listDialog.m7254b(R.string.cancel, new BaseDialog.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.BasePlayerFragment.4
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
-            public void mo2038a(Object obj) {
+            public void onClick(Object obj) {
                 onCancelListener.onCancel(listDialog);
             }
         });

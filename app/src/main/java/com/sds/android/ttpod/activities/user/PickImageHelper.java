@@ -45,7 +45,7 @@ public class PickImageHelper {
 
     /* renamed from: a */
     public void m7719a(final int i, final CharSequence charSequence, final int i2, final int i3) {
-        final ListDialog listDialog = new ListDialog(this.f3100b, new ActionItem[]{new ActionItem(0, 0, (int) R.string.userinfo_from_photo_galley), new ActionItem(1, 0, (int) R.string.userinfo_from_photo_camera)}, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+        final ListDialog listDialog = new ListDialog(this.f3100b, new ActionItem[]{new ActionItem(0, 0, (int) R.string.userinfo_from_photo_galley), new ActionItem(1, 0, (int) R.string.userinfo_from_photo_camera)}, (BaseDialog.OnClickListener<? extends ListDialog>) null, (BaseDialog.OnClickListener<? extends ListDialog>) null);
         listDialog.m7254b(R.string.cancel, null);
         listDialog.setTitle(charSequence);
         listDialog.m6844a(new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.activities.user.c.1

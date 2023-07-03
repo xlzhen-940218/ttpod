@@ -172,10 +172,10 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
     public void onDropDownMenuClicked(int i) {
         switch (i) {
             case 9:
-                MessageDialog messageDialog = new MessageDialog(getActivity(), (int) R.string.download_remove_all_confirm_hint, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.downloadmanager.UncompletedDownloadFragment.4
+                MessageDialog messageDialog = new MessageDialog(getActivity(), (int) R.string.download_remove_all_confirm_hint, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.downloadmanager.UncompletedDownloadFragment.4
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(MessageDialog messageDialog2) {
+                    public void onClick(MessageDialog messageDialog2) {
                         if (UncompletedDownloadFragment.this.getActivity() != null) {
                             //SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL_SURE, SPage.PAGE_NONE);
                             messageDialog2.dismiss();
@@ -183,7 +183,7 @@ public class UncompletedDownloadFragment extends DownloadTaskListFragment {
                             //LocalStatistic.m5148aF();
                         }
                     }
-                }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+                }, (BaseDialog.OnClickListener<MessageDialog>) null);
                 messageDialog.setTitle(R.string.download_remove_file_title);
                 messageDialog.show();
                 return;

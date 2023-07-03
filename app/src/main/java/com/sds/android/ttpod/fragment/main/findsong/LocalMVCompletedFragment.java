@@ -164,10 +164,10 @@ public class LocalMVCompletedFragment extends MVListFragment {
     }
 
     public void deleteAllCompleted() {
-        PopupsUtils.m6741a(getActivity(), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.LocalMVCompletedFragment.1
+        PopupsUtils.m6741a(getActivity(), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.LocalMVCompletedFragment.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog) {
+            public void onClick(MessageDialog messageDialog) {
                 LocalMVCompletedFragment.this.clearList();
             }
         });
@@ -334,10 +334,10 @@ public class LocalMVCompletedFragment extends MVListFragment {
         protected void m5635c(final MVOnlineData mVOnlineData) {
             final File downloadFile = LocalMVCompletedFragment.getDownloadFile(mVOnlineData);
             if (downloadFile != null) {
-                new MessageDialog(this.f5263e, this.f5263e.getString(R.string.remove_confirm, new Object[]{FileUtils.getFilename(downloadFile.getPath())}), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.LocalMVCompletedFragment.a.1
+                new MessageDialog(this.f5263e, this.f5263e.getString(R.string.remove_confirm, new Object[]{FileUtils.getFilename(downloadFile.getPath())}), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.LocalMVCompletedFragment.a.1
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(MessageDialog messageDialog) {
+                    public void onClick(MessageDialog messageDialog) {
                         downloadFile.delete();
                         C1524a.this.dataList.remove(mVOnlineData);
                         C1524a.this.notifyDataSetChanged();
@@ -349,7 +349,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
                             LocalMVCompletedFragment.mListener.mo5633a(count);
                         }
                     }
-                }, (BaseDialog.InterfaceC1064a<MessageDialog>) null).show();
+                }, (BaseDialog.OnClickListener<MessageDialog>) null).show();
             }
         }
     }

@@ -1,7 +1,7 @@
 package com.sds.android.ttpod.component.p087d.p088a;
 
 import android.content.Context;
-import com.sds.android.ttpod.common.p082a.BaseDialog;
+
 import com.sds.android.ttpod.component.p085b.CheckableActionItem;
 import com.sds.android.ttpod.component.p087d.MultiChoicePopupsListAdapter;
 import com.sds.android.ttpod.component.p087d.PopupsListAdapter;
@@ -16,12 +16,12 @@ public class MultiChoiceListDialog extends ListDialog<CheckableActionItem> {
     /* renamed from: a */
     private MultiChoicePopupsListAdapter f3971a;
 
-    public MultiChoiceListDialog(Context context, List<CheckableActionItem> list, BaseDialog.InterfaceC1064a<MultiChoiceListDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<MultiChoiceListDialog> interfaceC1064a2) {
-        super(context, list, interfaceC1064a, interfaceC1064a2);
+    public MultiChoiceListDialog(Context context, List<CheckableActionItem> list, OnClickListener<MultiChoiceListDialog> onClickListener, OnClickListener<MultiChoiceListDialog> onClickListener2) {
+        super(context, list, onClickListener, onClickListener2);
     }
 
-    public MultiChoiceListDialog(Context context, CheckableActionItem[] checkableActionItemArr, BaseDialog.InterfaceC1064a<MultiChoiceListDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<MultiChoiceListDialog> interfaceC1064a2) {
-        this(context, new ArrayList(Arrays.asList(checkableActionItemArr)), interfaceC1064a, interfaceC1064a2);
+    public MultiChoiceListDialog(Context context, CheckableActionItem[] checkableActionItemArr, OnClickListener<MultiChoiceListDialog> onClickListener, OnClickListener<MultiChoiceListDialog> onClickListener2) {
+        this(context, new ArrayList(Arrays.asList(checkableActionItemArr)), onClickListener, onClickListener2);
     }
 
     @Override // com.sds.android.ttpod.component.p087d.p088a.ListDialog
@@ -52,7 +52,7 @@ public class MultiChoiceListDialog extends ListDialog<CheckableActionItem> {
     }
 
     @Override
-    public ListDialog mo2037a() {
+    public ListDialog getDialog() {
         return this;
     }
 }

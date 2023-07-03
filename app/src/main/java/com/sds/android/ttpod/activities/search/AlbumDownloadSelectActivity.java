@@ -202,7 +202,7 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
     private ListDialog showAlbumQualityDialog(Context context) {
         this.mOriginQuality = Preferences.m3056M();
         this.mSelectedQuality = this.mOriginQuality;
-        SingleChoiceListDialog singleChoiceListDialog = new SingleChoiceListDialog(context, buildAudioQualityActionItems(), (BaseDialog.InterfaceC1064a<SingleChoiceListDialog>) null, (BaseDialog.InterfaceC1064a<SingleChoiceListDialog>) null);
+        SingleChoiceListDialog singleChoiceListDialog = new SingleChoiceListDialog(context, buildAudioQualityActionItems(), (BaseDialog.OnClickListener<SingleChoiceListDialog>) null, (BaseDialog.OnClickListener<SingleChoiceListDialog>) null);
         singleChoiceListDialog.setTitle(R.string.album_download_dialog_title);
         singleChoiceListDialog.m6778c(this.mOriginQuality.ordinal());
         singleChoiceListDialog.m6844a(new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity.3
@@ -213,20 +213,20 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
                 //SearchStatistic.m4949a(AlbumDownloadSelectActivity.this.mSelectedQuality);
             }
         });
-        singleChoiceListDialog.m7261a(R.string.confirm, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity.4
+        singleChoiceListDialog.m7261a(R.string.confirm, new BaseDialog.OnClickListener() { // from class: com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity.4
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
-            public void mo2038a(Object obj) {
+            public void onClick(Object obj) {
                 if (!AlbumDownloadSelectActivity.this.mOriginQuality.equals(AlbumDownloadSelectActivity.this.mSelectedQuality)) {
                     Preferences.m2889e(AlbumDownloadSelectActivity.this.mSelectedQuality);
                 }
                 CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, DownloadUtils.m4758a(AlbumDownloadSelectActivity.this.getSelectItems(), Preferences.m3056M()), Boolean.FALSE), 10);
                 //SearchStatistic.m4929j();
             }
-        }, R.string.cancel, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity.5
+        }, R.string.cancel, new BaseDialog.OnClickListener() { // from class: com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity.5
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
-            public void mo2038a(Object obj) {
+            public void onClick(Object obj) {
                 Preferences.m2889e(AlbumDownloadSelectActivity.this.mOriginQuality);
                 //SearchStatistic.m4930i();
             }

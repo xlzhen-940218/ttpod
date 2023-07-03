@@ -66,13 +66,13 @@ public class ShareSelectActivity extends BaseActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void showFollowTTPodOfficialSinaWeiboDialog(final SinaWeiboApi sinaWeiboApi) {
-        MessageDialog messageDialog = new MessageDialog(this, (int) R.string.share_follow_official_weibo_content, (int) R.string.share_follow_official_weibo_positive, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.activities.share.ShareSelectActivity.2
+        MessageDialog messageDialog = new MessageDialog(this, (int) R.string.share_follow_official_weibo_content, (int) R.string.share_follow_official_weibo_positive, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.share.ShareSelectActivity.2
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog2) {
+            public void onClick(MessageDialog messageDialog2) {
                 sinaWeiboApi.m2082f();
             }
-        }, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+        }, (int) R.string.cancel, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.share_follow_official_weibo_title);
         messageDialog.setOnDismissListener(new DialogInterface.OnDismissListener() { // from class: com.sds.android.ttpod.activities.share.ShareSelectActivity.3
             @Override // android.content.DialogInterface.OnDismissListener

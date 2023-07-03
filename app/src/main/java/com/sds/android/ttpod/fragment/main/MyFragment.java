@@ -182,17 +182,17 @@ public class MyFragment extends BaseFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void displayCustomizedHomepage() {
-        MultiChoiceListDialog multiChoiceListDialog = new MultiChoiceListDialog(getActivity(), new ArrayList(Arrays.asList(this.mItems)), new BaseDialog.InterfaceC1064a<MultiChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.main.MyFragment.4
+        MultiChoiceListDialog multiChoiceListDialog = new MultiChoiceListDialog(getActivity(), new ArrayList(Arrays.asList(this.mItems)), new BaseDialog.OnClickListener<MultiChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.main.MyFragment.4
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MultiChoiceListDialog multiChoiceListDialog2) {
+            public void onClick(MultiChoiceListDialog multiChoiceListDialog2) {
                 MyFragment.this.saveCustomizedHomepage();
                 MyFragment.this.mMyEntryManager.m5684a(MyFragment.this.mItems);
             }
-        }, new BaseDialog.InterfaceC1064a<MultiChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.main.MyFragment.5
+        }, new BaseDialog.OnClickListener<MultiChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.main.MyFragment.5
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MultiChoiceListDialog multiChoiceListDialog2) {
+            public void onClick(MultiChoiceListDialog multiChoiceListDialog2) {
                 MyFragment.this.loadCustomizedHomepage();
             }
         });
@@ -475,10 +475,10 @@ public class MyFragment extends BaseFragment {
             //LocalStatistic.m5157Z();
             //SUserUtils.m4956a(SAction.ACTION_RECENT_ADDED, SPage.PAGE_RECENT_ADDED);
         } else if (6 == m7005e) {
-            PopupsUtils.m6710b(getActivity(), (String) null, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.MyFragment.7
+            PopupsUtils.m6710b(getActivity(), (String) null, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.MyFragment.7
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(EditTextDialog editTextDialog) {
+                public void onClick(EditTextDialog editTextDialog) {
                     CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, editTextDialog.m6902c(0).m6896d().toString()), String.class);
                 }
             });

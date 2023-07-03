@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.sds.android.sdk.lib.p059a.HttpRequest;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.framework.p106a.ListUtils;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -26,7 +25,7 @@ public class NoCopyrightDialog extends ListDialog<ActionItem> {
     private TextView f3973b;
 
     public NoCopyrightDialog(Context context, List<ActionItem> list, MediaItem mediaItem) {
-        super(context, (ActionItem[]) list.toArray(new ActionItem[0]), (int) R.string.cancel, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+        super(context, (ActionItem[]) list.toArray(new ActionItem[0]), (int) R.string.cancel, (OnClickListener<? extends ListDialog>) null);
         setTitle(mediaItem.getTitle());
         if (!ListUtils.m4718a(list)) {
             this.f3972a.setText(R.string.search_notification_no_copyright);
@@ -34,10 +33,10 @@ public class NoCopyrightDialog extends ListDialog<ActionItem> {
         } else {
             this.f3972a.setText(R.string.search_notification_no_resource);
         }
-        m7254b(R.string.cancel, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.component.d.a.k.1
+        m7254b(R.string.cancel, new OnClickListener() { // from class: com.sds.android.ttpod.component.d.a.k.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
-            public void mo2038a(Object obj) {
+            public void onClick(Object obj) {
                 //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_CANCEL_COPYRIGHT_DIALOG.getValue(), SPage.PAGE_DIALOG_COPYRIGHT.getValue()).post();
             }
         });

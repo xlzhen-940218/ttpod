@@ -128,11 +128,11 @@ public class VideoPlayManager {
     /* renamed from: a */
     public static MessageDialog m5818a(final Context context, int i, final String str, final String str2, final boolean z, final DialogInterface.OnClickListener onClickListener) {
         //MVStatistic.m5077a();
-        MessageDialog messageDialog = new MessageDialog(context, i, (BaseDialog.InterfaceC1064a<MessageDialog>) null, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
-        messageDialog.m7261a(R.string.download_experience, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.1
+        MessageDialog messageDialog = new MessageDialog(context, i, (BaseDialog.OnClickListener<MessageDialog>) null, (BaseDialog.OnClickListener<MessageDialog>) null);
+        messageDialog.m7261a(R.string.download_experience, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog2) {
+            public void onClick(MessageDialog messageDialog2) {
                 messageDialog2.dismiss();
                 if (onClickListener != null) {
                     onClickListener.onClick(messageDialog2, -1);
@@ -149,10 +149,10 @@ public class VideoPlayManager {
                     }
                 }
             }
-        }, R.string.cancel, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.2
+        }, R.string.cancel, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.component.video.VideoPlayManager.2
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog2) {
+            public void onClick(MessageDialog messageDialog2) {
                 messageDialog2.dismiss();
                 if (onClickListener != null) {
                     onClickListener.onClick(messageDialog2, -2);

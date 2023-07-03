@@ -39,10 +39,10 @@ public class ShareContentDialog extends BaseDialog {
     private ShareType f7385f;
 
     /* renamed from: g */
-    private BaseDialog.InterfaceC1064a f7386g;
+    private OnClickListener f7386g;
 
     /* renamed from: h */
-    private BaseDialog.InterfaceC1064a f7387h;
+    private OnClickListener f7387h;
 
     /* renamed from: i */
     private TextWatcher f7388i;
@@ -50,17 +50,17 @@ public class ShareContentDialog extends BaseDialog {
     public ShareContentDialog(Context context, BaseApi baseApi, ApiCallback apiCallback) {
         super(context);
         this.f7385f = ShareType.NONE;
-        this.f7386g = new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.share.c.b.1
+        this.f7386g = new OnClickListener() { // from class: com.sds.android.ttpod.share.c.b.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
-            public void mo2038a(Object obj) {
+            public void onClick(Object obj) {
                 ShareContentDialog.this.m2042c();
             }
         };
-        this.f7387h = new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.share.c.b.2
+        this.f7387h = new OnClickListener() { // from class: com.sds.android.ttpod.share.c.b.2
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
-            public void mo2038a(Object obj) {
+            public void onClick(Object obj) {
                 ShareContentDialog.this.dismiss();
             }
         };
@@ -115,7 +115,7 @@ public class ShareContentDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected View mo2034a(Context context) {
+    protected View inflate(Context context) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.share_content_dialog, (ViewGroup) null);
         this.f7383d = (TextView) inflate.findViewById(R.id.textview_share_title);
         this.f7384e = (EditText) inflate.findViewById(R.id.edittext_share_content);
@@ -125,7 +125,7 @@ public class ShareContentDialog extends BaseDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: b */
-    public ShareContentDialog mo2037a() {
+    public ShareContentDialog getDialog() {
         return this;
     }
 

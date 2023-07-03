@@ -95,10 +95,10 @@ public class MediaItemSearchActivity extends BaseSearchActivity {
 
     protected void showRightContextMenu(C0738a.C0740a c0740a) {
         this.mSelectedMatchableMediaItem = c0740a;
-        MediaListFragment.showMediaRightContextMenu(this, this.mSelectedMatchableMediaItem.m8044a(), this.mGroupID, new BaseDialog.InterfaceC1064a<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.activities.local.MediaItemSearchActivity.1
+        MediaListFragment.showMediaRightContextMenu(this, this.mSelectedMatchableMediaItem.m8044a(), this.mGroupID, new BaseDialog.OnClickListener<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.activities.local.MediaItemSearchActivity.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
+            public void onClick(MoreOptionalDialog moreOptionalDialog) {
                 MediaItemSearchActivity.this.mMediaItemSearchAdapter.m7591a(MediaItemSearchActivity.this.mSelectedMatchableMediaItem);
             }
         });
@@ -106,10 +106,10 @@ public class MediaItemSearchActivity extends BaseSearchActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void onDeleteMediaItem(final MediaItem mediaItem) {
-        PopupsUtils.m6738a(this, mediaItem, this.mGroupID, new BaseDialog.InterfaceC1064a<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.activities.local.MediaItemSearchActivity.2
+        PopupsUtils.m6738a(this, mediaItem, this.mGroupID, new BaseDialog.OnClickListener<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.activities.local.MediaItemSearchActivity.2
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
+            public void onClick(MoreOptionalDialog moreOptionalDialog) {
                 CommandCenter.getInstance().execute(new Command(CommandID.DELETE_MEDIA_ITEM, MediaItemSearchActivity.this.mGroupID, mediaItem, Boolean.valueOf(moreOptionalDialog.m6821b())));
                 MediaItemSearchActivity.this.mMediaItemSearchAdapter.mo7590a(mediaItem);
             }

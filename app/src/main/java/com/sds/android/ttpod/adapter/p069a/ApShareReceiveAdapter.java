@@ -79,10 +79,10 @@ public class ApShareReceiveAdapter extends ApShareBaseAdapter implements ShareIt
                 FileUtils.exists(transmittableMediaItem.m5772a().getLocalDataSource());
                 break;
             case TRANSMIT_FINISHED:
-                MessageDialog messageDialog = new MessageDialog(m7660a(), m7660a().getString(R.string.remove_confirm, FileUtils.getFilename(transmittableMediaItem.m5772a().getLocalDataSource())), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.adapter.a.c.1
+                MessageDialog messageDialog = new MessageDialog(m7660a(), m7660a().getString(R.string.remove_confirm, FileUtils.getFilename(transmittableMediaItem.m5772a().getLocalDataSource())), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.adapter.a.c.1
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(MessageDialog messageDialog2) {
+                    public void onClick(MessageDialog messageDialog2) {
                         transmittableMediaItem.m5768a(TransmittableMediaItem.EnumC1381a.TRANSMIT_IDLE);
                         FileUtils.exists(transmittableMediaItem.m5772a().getLocalDataSource());
                         CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_MEDIA_ITEM, MediaStorage.GROUP_ID_RECENTLY_ADD, transmittableMediaItem.m5772a(), true));
@@ -90,7 +90,7 @@ public class ApShareReceiveAdapter extends ApShareBaseAdapter implements ShareIt
                         transmittableMediaItem.m5771a(0);
                         ApShareReceiveAdapter.this.notifyDataSetChanged();
                     }
-                }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+                }, (BaseDialog.OnClickListener<MessageDialog>) null);
                 messageDialog.setTitle(R.string.prompt_title);
                 messageDialog.show();
                 break;

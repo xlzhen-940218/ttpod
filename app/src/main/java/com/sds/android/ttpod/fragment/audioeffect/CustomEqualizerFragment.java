@@ -101,10 +101,10 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
 
         /* renamed from: a */
         private void m5756a() {
-            this.f4953b = new EditTextDialog(CustomEqualizerFragment.this.getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", CustomEqualizerFragment.this.getNewCustomEqualizerName(), CustomEqualizerFragment.this.getString(R.string.effect_custom_equalizer_input_name))}, R.string.save, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.audioeffect.CustomEqualizerFragment.1.1
+            this.f4953b = new EditTextDialog(CustomEqualizerFragment.this.getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", CustomEqualizerFragment.this.getNewCustomEqualizerName(), CustomEqualizerFragment.this.getString(R.string.effect_custom_equalizer_input_name))}, R.string.save, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.audioeffect.CustomEqualizerFragment.1.1
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(EditTextDialog editTextDialog) {
+                public void onClick(EditTextDialog editTextDialog) {
                     EditTextDialog.C1144a m6902c;
                     String str = "";
                     if (editTextDialog != null && (m6902c = editTextDialog.m6902c(1)) != null) {

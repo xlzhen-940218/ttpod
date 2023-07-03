@@ -54,7 +54,7 @@ public class QQApi extends BaseApi {
             this.f7323a.shareToQQ(this.f7324b, m2106a(this.f7325c), new BaseIUiListener() { // from class: com.sds.android.ttpod.share.a.e.1
                 @Override // com.sds.android.ttpod.share.p137b.BaseIUiListener
                 /* renamed from: a */
-                public void mo2067a(JSONObject jSONObject) {
+                public void complete(JSONObject jSONObject) {
                     QQApi.this.m2105b(apiCallback, new ShareResult(1, jSONObject.toString()));
                 }
 

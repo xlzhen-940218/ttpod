@@ -122,10 +122,10 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
                 if (view == LocalMediaEntryFragment.this.mIvAction) {
                     if (LocalMediaEntryFragment.this.mMatching) {
                         //SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_STOP, SPage.PAGE_NONE);
-                        MessageDialog messageDialog = new MessageDialog(LocalMediaEntryFragment.this.getActivity(), (int) R.string.prompt_match_not_complete, (int) R.string.prompt_stop, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.LocalMediaEntryFragment.5.1
+                        MessageDialog messageDialog = new MessageDialog(LocalMediaEntryFragment.this.getActivity(), (int) R.string.prompt_match_not_complete, (int) R.string.prompt_stop, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.LocalMediaEntryFragment.5.1
                             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                             /* renamed from: a  reason: avoid collision after fix types in other method */
-                            public void mo2038a(MessageDialog messageDialog2) {
+                            public void onClick(MessageDialog messageDialog2) {
                                 if (LocalMediaEntryFragment.this.mRegisteredBroadcast) {
                                     LocalMediaEntryFragment.this.getActivity().unregisterReceiver(LocalMediaEntryFragment.this.mBroadcastReceiver);
                                     LocalMediaEntryFragment.this.mRegisteredBroadcast = false;
@@ -135,7 +135,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
                                 LocalMediaEntryFragment.this.mMatching = false;
                                 LocalMediaEntryFragment.this.flushHeaderView();
                             }
-                        }, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+                        }, (int) R.string.cancel, (BaseDialog.OnClickListener<MessageDialog>) null);
                         messageDialog.setTitle(R.string.message_prompt);
                         messageDialog.show();
                         return;
@@ -548,7 +548,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
 
     private void showMatchComplete() {
         hideMatchBanner();
-        MessageDialog messageDialog = new MessageDialog(getActivity(), getString(R.string.prompt_match_detail, Integer.valueOf(this.mSuccessCount + this.mSkipCount), Integer.valueOf(this.mFailedCount)), (int) R.string.iknown, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+        MessageDialog messageDialog = new MessageDialog(getActivity(), getString(R.string.prompt_match_detail, Integer.valueOf(this.mSuccessCount + this.mSkipCount), Integer.valueOf(this.mFailedCount)), (int) R.string.iknown, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.prompt_match_result_title);
         messageDialog.show();
         //SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_SUCCESS, SPage.PAGE_NONE);

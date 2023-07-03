@@ -104,8 +104,8 @@ public class DisplaySettingActivity extends SlidingClosableActivity {
         OptionalDialog m6747a;
         boolean isChecked = ((Checkable) actionItem).isChecked();
         Preferences.m2879g(isChecked);
-        if (isChecked && Preferences.m3006aA() && (m6747a = PopupsUtils.m6747a(this, (int) R.string.never_show_again, "提示", "如果遇到MIUI V5系统无法显示桌面歌词的情况，请找到设置->应用->天天动听->打开悬浮窗即可", (BaseDialog.InterfaceC1064a<OptionalDialog>) null)) != null) {
-            m6747a.m7261a(R.string.set_at_once, new BaseDialog.InterfaceC1064a<OptionalDialog>() { // from class: com.sds.android.ttpod.activities.setting.DisplaySettingActivity.2
+        if (isChecked && Preferences.m3006aA() && (m6747a = PopupsUtils.m6747a(this, (int) R.string.never_show_again, "提示", "如果遇到MIUI V5系统无法显示桌面歌词的情况，请找到设置->应用->天天动听->打开悬浮窗即可", (BaseDialog.OnClickListener<OptionalDialog>) null)) != null) {
+            m6747a.m7261a(R.string.set_at_once, new BaseDialog.OnClickListener<OptionalDialog>() { // from class: com.sds.android.ttpod.activities.setting.DisplaySettingActivity.2
                 /* renamed from: a */
                 private Intent m7817a() {
                     if (SDKVersionUtils.sdkThan9()) {
@@ -125,14 +125,14 @@ public class DisplaySettingActivity extends SlidingClosableActivity {
 
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(OptionalDialog optionalDialog) {
+                public void onClick(OptionalDialog optionalDialog) {
                     DisplaySettingActivity.this.startActivity(m7817a());
                     Preferences.m3061J(!optionalDialog.m6808b());
                 }
-            }, R.string.i_known, new BaseDialog.InterfaceC1064a<OptionalDialog>() { // from class: com.sds.android.ttpod.activities.setting.DisplaySettingActivity.3
+            }, R.string.i_known, new BaseDialog.OnClickListener<OptionalDialog>() { // from class: com.sds.android.ttpod.activities.setting.DisplaySettingActivity.3
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(OptionalDialog optionalDialog) {
+                public void onClick(OptionalDialog optionalDialog) {
                     Preferences.m3061J(!optionalDialog.m6808b());
                 }
             });

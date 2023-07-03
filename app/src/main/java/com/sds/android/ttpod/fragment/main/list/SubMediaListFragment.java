@@ -275,10 +275,10 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
                 return;
             case 21:
                 //SUserUtils.m4956a(SAction.ACTION_LOCAL_SONG_DETAIL_ADD_TO_SONGLIST, SPage.PAGE_NONE);
-                PopupsUtils.m6710b(getActivity(), FileUtils.m8401k(string2), new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.2
+                PopupsUtils.m6710b(getActivity(), FileUtils.m8401k(string2), new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.2
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(EditTextDialog editTextDialog) {
+                    public void onClick(EditTextDialog editTextDialog) {
                         if (SubMediaListFragment.this.mMediaListFragment != null && !SubMediaListFragment.this.mMediaListFragment.isEmpty()) {
                             //SUserUtils.m4956a(SAction.ACTION_LOCAL_SONG_DETAIL_ADD_TO_SONGLIST_SURE, SPage.PAGE_NONE);
                             CommandCenter.getInstance().execute(new Command(CommandID.ADD_MEDIA_ITEM_LIST, (String) CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, editTextDialog.m6902c(0).m6896d().toString()), String.class), SubMediaListFragment.this.mMediaListFragment.getMediaItemList()));
@@ -315,10 +315,10 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
     }
 
     private void rename(final String str, String str2) {
-        EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", str2, getActivity().getString(R.string.rename_hint))}, R.string.save, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.3
+        EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", str2, getActivity().getString(R.string.rename_hint))}, R.string.save, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.3
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(EditTextDialog editTextDialog2) {
+            public void onClick(EditTextDialog editTextDialog2) {
                 EditTextDialog.C1144a m6902c = editTextDialog2.m6902c(1);
                 if (m6902c != null) {
                     if (GroupItemUtils.m8268a(m6902c.m6896d().toString())) {
@@ -339,14 +339,14 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
     }
 
     private void remove(final String str) {
-        MessageDialog messageDialog = new MessageDialog(getActivity(), getActivity().getString(R.string.delete_message), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.4
+        MessageDialog messageDialog = new MessageDialog(getActivity(), getActivity().getString(R.string.delete_message), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.4
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog2) {
+            public void onClick(MessageDialog messageDialog2) {
                 CommandCenter.getInstance().execute(new Command(CommandID.DELETE_GROUP, str));
                 SubMediaListFragment.this.finish();
             }
-        }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+        }, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.menu_delete_songlist);
         messageDialog.show();
     }

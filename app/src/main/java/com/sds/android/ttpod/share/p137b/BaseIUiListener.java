@@ -9,13 +9,13 @@ import org.json.JSONObject;
 /* loaded from: classes.dex */
 public abstract class BaseIUiListener implements IUiListener {
     /* renamed from: a */
-    public abstract void mo2067a(JSONObject jSONObject);
+    public abstract void complete(JSONObject jSONObject);
 
     @Override // com.tencent.tauth.IUiListener
     public void onComplete(Object obj) {
         if (obj != null) {
             try {
-                mo2067a(new JSONObject(obj.toString()));
+                complete(new JSONObject(obj.toString()));
                 return;
             } catch (JSONException e) {
                 e.printStackTrace();

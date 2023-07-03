@@ -149,10 +149,10 @@ public class MoreSettingActivity extends SlidingClosableActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void showCreateDesktopShortcutDialog() {
-        MultiChoiceListDialog multiChoiceListDialog = new MultiChoiceListDialog(this, new CheckableActionItem[]{new CheckableActionItem(1, R.string.ttpod, true), new CheckableActionItem(2, R.string.search_sound_search, true)}, new BaseDialog.InterfaceC1064a<MultiChoiceListDialog>() { // from class: com.sds.android.ttpod.activities.setting.MoreSettingActivity.2
+        MultiChoiceListDialog multiChoiceListDialog = new MultiChoiceListDialog(this, new CheckableActionItem[]{new CheckableActionItem(1, R.string.ttpod, true), new CheckableActionItem(2, R.string.search_sound_search, true)}, new BaseDialog.OnClickListener<MultiChoiceListDialog>() { // from class: com.sds.android.ttpod.activities.setting.MoreSettingActivity.2
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MultiChoiceListDialog multiChoiceListDialog2) {
+            public void onClick(MultiChoiceListDialog multiChoiceListDialog2) {
                 List<CheckableActionItem> m6813e = multiChoiceListDialog2.m6813e();
                 StringBuilder sb = new StringBuilder();
                 sb.append("[");
@@ -169,7 +169,7 @@ public class MoreSettingActivity extends SlidingClosableActivity {
                 sb.append("]");
 
             }
-        }, (BaseDialog.InterfaceC1064a<MultiChoiceListDialog>) null);
+        }, (BaseDialog.OnClickListener<MultiChoiceListDialog>) null);
         multiChoiceListDialog.setTitle(getString(R.string.select_create_icon));
         multiChoiceListDialog.show();
     }

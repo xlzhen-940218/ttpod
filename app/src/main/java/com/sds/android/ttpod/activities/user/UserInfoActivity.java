@@ -417,10 +417,10 @@ public class UserInfoActivity extends SlidingClosableActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void onClickEmail() {
-        EditTextDialog editTextDialog = new EditTextDialog(this, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(0, "", this.mUser.getUserName(), getString(R.string.userinfo_input_email)), new EditTextDialog.C1144a(1, "", "", getString(R.string.userinfo_input_current_password))}, R.string.save, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.activities.user.UserInfoActivity.4
+        EditTextDialog editTextDialog = new EditTextDialog(this, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(0, "", this.mUser.getUserName(), getString(R.string.userinfo_input_email)), new EditTextDialog.C1144a(1, "", "", getString(R.string.userinfo_input_current_password))}, R.string.save, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.activities.user.UserInfoActivity.4
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(EditTextDialog editTextDialog2) {
+            public void onClick(EditTextDialog editTextDialog2) {
                 String obj = editTextDialog2.m6902c(0).m6896d().toString();
                 String obj2 = editTextDialog2.m6902c(1).m6896d().toString();
                 if (!obj.equals(UserInfoActivity.this.mUser.getUserName()) && ValidateUtil.m7704a(obj, R.string.use_name_hint_text, R.string.email_format, null, 0, ValidateUtil.f3111a) && ValidateUtil.m7704a(obj2, R.string.pass_word_hint_text, R.string.password_length, null, 0, ValidateUtil.f3114d)) {
@@ -439,10 +439,10 @@ public class UserInfoActivity extends SlidingClosableActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void onClickPassword() {
-        EditTextDialog editTextDialog = new EditTextDialog(this, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(0, "", "", getString(R.string.userinfo_input_current_password)), new EditTextDialog.C1144a(1, "", "", getString(R.string.userinfo_input_new_password))}, R.string.save, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.activities.user.UserInfoActivity.5
+        EditTextDialog editTextDialog = new EditTextDialog(this, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(0, "", "", getString(R.string.userinfo_input_current_password)), new EditTextDialog.C1144a(1, "", "", getString(R.string.userinfo_input_new_password))}, R.string.save, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.activities.user.UserInfoActivity.5
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(EditTextDialog editTextDialog2) {
+            public void onClick(EditTextDialog editTextDialog2) {
                 String obj = editTextDialog2.m6902c(0).m6896d().toString();
                 String obj2 = editTextDialog2.m6902c(1).m6896d().toString();
                 if (ValidateUtil.m7704a(obj, R.string.pass_word_hint_text, R.string.password_length, null, 0, ValidateUtil.f3114d) && ValidateUtil.m7704a(obj2, R.string.pass_word_hint_text, R.string.password_length, null, 0, ValidateUtil.f3114d) && !obj.equals(obj2)) {
@@ -497,10 +497,10 @@ public class UserInfoActivity extends SlidingClosableActivity {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void onClickNickName() {
-        EditTextDialog editTextDialog = new EditTextDialog(this, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(0, "", this.mUser.getNickName(), getString(R.string.userinfo_input_nickname))}, R.string.save, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.activities.user.UserInfoActivity.6
+        EditTextDialog editTextDialog = new EditTextDialog(this, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(0, "", this.mUser.getNickName(), getString(R.string.userinfo_input_nickname))}, R.string.save, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.activities.user.UserInfoActivity.6
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(EditTextDialog editTextDialog2) {
+            public void onClick(EditTextDialog editTextDialog2) {
                 String obj = editTextDialog2.m6902c(0).m6896d().toString();
                 if (!obj.equals(UserInfoActivity.this.mUser.getNickName()) && ValidateUtil.m7704a(obj, R.string.nickname_hint_text, R.string.nick_name_restriction, null, 0, ValidateUtil.f3113c)) {
                     if (SensitiveWordUtils.m8243a(UserInfoActivity.this).m8242a(obj)) {

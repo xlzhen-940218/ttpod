@@ -107,14 +107,14 @@ public class ThemeActivity extends BaseActivity {
                 PopupsUtils.m6721a("已经下载本首歌曲了");
                 return;
             }
-            MessageDialog messageDialog = new MessageDialog(this, (int) R.string.download_file_already_existed, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.activities.base.ThemeActivity.1
+            MessageDialog messageDialog = new MessageDialog(this, (int) R.string.download_file_already_existed, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.base.ThemeActivity.1
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MessageDialog messageDialog2) {
+                public void onClick(MessageDialog messageDialog2) {
                     FileUtils.exists(downloadTaskInfo.getSavePath());
                     CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, downloadTaskInfo));
                 }
-            }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+            }, (BaseDialog.OnClickListener<MessageDialog>) null);
             messageDialog.setTitle(R.string.download);
             messageDialog.show();
         }
@@ -122,13 +122,13 @@ public class ThemeActivity extends BaseActivity {
 
     public void updateAddDownloadTaskListError(final List<DownloadTaskInfo> list) {
         if (ActivityManager.m4618a().m4611e(this)) {
-            MessageDialog messageDialog = new MessageDialog(this, (int) R.string.download_file_already_existed, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.activities.base.ThemeActivity.2
+            MessageDialog messageDialog = new MessageDialog(this, (int) R.string.download_file_already_existed, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.base.ThemeActivity.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MessageDialog messageDialog2) {
+                public void onClick(MessageDialog messageDialog2) {
                     CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ASYN_ADD_DOWNLOAD_TASK_LIST, list, Boolean.TRUE));
                 }
-            }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+            }, (BaseDialog.OnClickListener<MessageDialog>) null);
             messageDialog.setTitle(R.string.download);
             messageDialog.show();
         }
@@ -176,7 +176,7 @@ public class ThemeActivity extends BaseActivity {
     public void headSetPlugged() {
         if (ActivityManager.m4618a().m4611e(this) && !Preferences.m2951at()) {
             Preferences.m3069F(true);
-            MessageDialog messageDialog = new MessageDialog(this, (int) R.string.headset_plug_tip, (int) R.string.iknown, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+            MessageDialog messageDialog = new MessageDialog(this, (int) R.string.headset_plug_tip, (int) R.string.iknown, (BaseDialog.OnClickListener<MessageDialog>) null);
             messageDialog.setTitle(R.string.headset_plugged);
             messageDialog.m7244e(true);
             messageDialog.show();

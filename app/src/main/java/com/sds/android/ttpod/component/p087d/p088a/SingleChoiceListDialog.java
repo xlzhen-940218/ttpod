@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p085b.CheckableActionItem;
 import com.sds.android.ttpod.component.p087d.PopupsListAdapter;
 import com.sds.android.ttpod.component.p087d.SingleChoicePopupsListAdapter;
@@ -19,16 +18,16 @@ public class SingleChoiceListDialog extends ListDialog<CheckableActionItem> {
     /* renamed from: a */
     private SingleChoicePopupsListAdapter f4000a;
 
-    public SingleChoiceListDialog(Context context, List<CheckableActionItem> list, BaseDialog.InterfaceC1064a<SingleChoiceListDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<SingleChoiceListDialog> interfaceC1064a2) {
-        super(context, list, interfaceC1064a, interfaceC1064a2);
+    public SingleChoiceListDialog(Context context, List<CheckableActionItem> list, OnClickListener<SingleChoiceListDialog> onClickListener, OnClickListener<SingleChoiceListDialog> onClickListener2) {
+        super(context, list, onClickListener, onClickListener2);
     }
 
-    public SingleChoiceListDialog(Context context, CheckableActionItem[] checkableActionItemArr, BaseDialog.InterfaceC1064a<SingleChoiceListDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<SingleChoiceListDialog> interfaceC1064a2) {
-        this(context, new ArrayList(Arrays.asList(checkableActionItemArr)), interfaceC1064a, interfaceC1064a2);
+    public SingleChoiceListDialog(Context context, CheckableActionItem[] checkableActionItemArr, OnClickListener<SingleChoiceListDialog> onClickListener, OnClickListener<SingleChoiceListDialog> onClickListener2) {
+        this(context, new ArrayList(Arrays.asList(checkableActionItemArr)), onClickListener, onClickListener2);
     }
 
-    public SingleChoiceListDialog(Context context, CheckableActionItem[] checkableActionItemArr, BaseDialog.InterfaceC1064a<SingleChoiceListDialog> interfaceC1064a) {
-        super(context, checkableActionItemArr, (int) R.string.cancel, interfaceC1064a);
+    public SingleChoiceListDialog(Context context, CheckableActionItem[] checkableActionItemArr, OnClickListener<SingleChoiceListDialog> onClickListener) {
+        super(context, checkableActionItemArr, (int) R.string.cancel, onClickListener);
     }
 
     /* renamed from: c */
@@ -63,7 +62,7 @@ public class SingleChoiceListDialog extends ListDialog<CheckableActionItem> {
     }
 
     @Override
-    public ListDialog mo2037a() {
+    public ListDialog getDialog() {
         return this;
     }
 }

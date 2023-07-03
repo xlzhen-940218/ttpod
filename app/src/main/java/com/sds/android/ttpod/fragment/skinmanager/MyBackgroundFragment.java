@@ -440,10 +440,10 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
     }
 
     private void showConfirmDeleteDialog() {
-        MessageDialog messageDialog = new MessageDialog(getActivity(), getString(R.string.confirm_delete_background, Integer.valueOf(this.mSelectItemHashMap.size())), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.skinmanager.MyBackgroundFragment.4
+        MessageDialog messageDialog = new MessageDialog(getActivity(), getString(R.string.confirm_delete_background, Integer.valueOf(this.mSelectItemHashMap.size())), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.skinmanager.MyBackgroundFragment.4
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog2) {
+            public void onClick(MessageDialog messageDialog2) {
                 int selectedCount = MyBackgroundFragment.this.selectedCount();
                 if (selectedCount > 0) {
                     Iterator it = MyBackgroundFragment.this.mSelectItemHashMap.keySet().iterator();
@@ -455,7 +455,7 @@ public class MyBackgroundFragment extends BackgroundBaseFragment implements Edit
                 }
                 MyBackgroundFragment.this.tryNotifyStopEditRequested();
             }
-        }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+        }, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.delete);
         messageDialog.show();
     }

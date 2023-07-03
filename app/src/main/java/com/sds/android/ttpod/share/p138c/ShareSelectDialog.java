@@ -187,14 +187,14 @@ public class ShareSelectDialog extends BaseDialog {
         this.f7411r = new AuthCallback() { // from class: com.sds.android.ttpod.share.c.c.6
             @Override // com.sds.android.ttpod.share.p137b.AuthCallback
             /* renamed from: a */
-            public void mo1976a(Bundle bundle) {
+            public void onSuccess(Bundle bundle) {
                 ShareSelectDialog.this.m2035a(0, bundle);
             }
 
             @Override // com.sds.android.ttpod.share.p137b.AuthCallback
             /* renamed from: a */
-            public void mo1975a(String str) {
-                ShareSelectDialog.this.m2035a(1, str);
+            public void onError(String errorMessage) {
+                ShareSelectDialog.this.m2035a(1, errorMessage);
             }
         };
         this.f7412s = new Handler() { // from class: com.sds.android.ttpod.share.c.c.7
@@ -237,8 +237,8 @@ public class ShareSelectDialog extends BaseDialog {
             this.f7401d.m7414a(this.f7402e);
             this.f7401d.notifyDataSetChanged();
             setTitle(R.string.share_to);
-            m7263a(2, 8, 0, (BaseDialog.InterfaceC1064a) null);
-            m7263a(0, 8, 0, (BaseDialog.InterfaceC1064a) null);
+            m7263a(2, 8, 0, (OnClickListener) null);
+            m7263a(0, 8, 0, (OnClickListener) null);
             m2010e();
             mo2016c();
         }
@@ -246,7 +246,7 @@ public class ShareSelectDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected View mo2034a(Context context) {
+    protected View inflate(Context context) {
         View inflate = View.inflate(context, R.layout.dialog_share_select, null);
         this.f7401d = new ShareSelectAdapter(getContext());
         this.f7400c = (GridView) inflate.findViewById(R.id.gridview_share_select);
@@ -286,7 +286,7 @@ public class ShareSelectDialog extends BaseDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: f */
-    public ShareSelectDialog mo2037a() {
+    public ShareSelectDialog getDialog() {
         return this;
     }
 

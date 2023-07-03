@@ -1,7 +1,7 @@
 package com.sds.android.ttpod.component.p096h;
 
 import android.content.Context;
-import com.sds.android.cloudapi.ttpod.data.FeedbackItem;
+
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
@@ -104,10 +104,10 @@ public final class Register {
             String m8478c = StringUtils.isEmpty(EnvironmentUtils.DeviceConfig.getDeviceId()) ? EnvironmentUtils.DeviceConfig.getMacAddress() : EnvironmentUtils.DeviceConfig.getDeviceId();
             final String m6401a = m6401a(m8478c);
             if (!m6396a.m6395a("serialnumber", "").equals(m6401a)) {
-                EditTextDialog editTextDialog = new EditTextDialog(context, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(0, "设备串号:", m8478c, "", 1, 17).m6901a(), new EditTextDialog.C1144a(1, "注册码:", "", "请输入注册码", 1, 17)}, R.string.verify, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.component.h.a.1
+                EditTextDialog editTextDialog = new EditTextDialog(context, new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(0, "设备串号:", m8478c, "", 1, 17).m6901a(), new EditTextDialog.C1144a(1, "注册码:", "", "请输入注册码", 1, 17)}, R.string.verify, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.component.h.a.1
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(EditTextDialog editTextDialog2) {
+                    public void onClick(EditTextDialog editTextDialog2) {
                         String obj = editTextDialog2.m6902c(1).m6896d().toString();
                         if (!StringUtils.equals(m6401a, obj)) {
                             editTextDialog2.m7242f(false);
@@ -119,10 +119,10 @@ public final class Register {
                         m6396a2.m6391b("serialnumber", obj);
                         m6396a2.m6397a();
                     }
-                }, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.component.h.a.2
+                }, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.component.h.a.2
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(EditTextDialog editTextDialog2) {
+                    public void onClick(EditTextDialog editTextDialog2) {
                         CommandCenter.getInstance().execute(new Command(CommandID.EXIT, new Object[0]));
                     }
                 });

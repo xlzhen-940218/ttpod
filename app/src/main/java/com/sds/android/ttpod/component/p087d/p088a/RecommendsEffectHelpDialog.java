@@ -13,14 +13,14 @@ import com.sds.android.ttpod.common.p082a.BaseDialog;
 public class RecommendsEffectHelpDialog extends BaseDialog {
     public RecommendsEffectHelpDialog(Context context) {
         super(context);
-        m7254b(R.string.effect_know, (BaseDialog.InterfaceC1064a) null);
+        m7254b(R.string.effect_know, (OnClickListener) null);
         m7244e(true);
         setTitle(R.string.recommends_effect_help_dialog_title);
     }
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected View mo2034a(Context context) {
+    protected View inflate(Context context) {
         View inflate = View.inflate(getContext(), R.layout.dialog_recommends_effect_help, null);
         inflate.findViewById(R.id.textview_contact).setOnClickListener(new View.OnClickListener() { // from class: com.sds.android.ttpod.component.d.a.n.1
             @Override // android.view.View.OnClickListener
@@ -34,7 +34,7 @@ public class RecommendsEffectHelpDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected <T> T mo2037a() {
+    protected <T> T getDialog() {
         return null;
     }
 

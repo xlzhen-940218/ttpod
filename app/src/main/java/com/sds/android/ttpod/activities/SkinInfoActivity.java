@@ -194,18 +194,18 @@ public class SkinInfoActivity extends ActionBarActivity {
         }
         if (!m5294n.equals(m8400l)) {
             if (this.mDesFile.exists()) {
-                MessageDialog messageDialog = new MessageDialog(this, (int) R.string.theme_overwrite_choose, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.activities.SkinInfoActivity.1
+                MessageDialog messageDialog = new MessageDialog(this, (int) R.string.theme_overwrite_choose, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.SkinInfoActivity.1
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(MessageDialog messageDialog2) {
+                    public void onClick(MessageDialog messageDialog2) {
                         SkinInfoActivity.this.showWaitingDialog();
                         SkinInfoActivity.this.copyWithOverwriteExistFile(str);
                         SkinInfoActivity.this.openPlayerActivity();
                     }
-                }, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.activities.SkinInfoActivity.2
+                }, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.SkinInfoActivity.2
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(MessageDialog messageDialog2) {
+                    public void onClick(MessageDialog messageDialog2) {
                         SkinInfoActivity.this.showWaitingDialog();
                         SkinInfoActivity.this.copyWithoutOverwriteExistFile(str);
                         SkinInfoActivity.this.openPlayerActivity();

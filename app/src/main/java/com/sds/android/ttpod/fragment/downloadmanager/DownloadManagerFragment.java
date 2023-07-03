@@ -130,15 +130,15 @@ public class DownloadManagerFragment extends SlidingClosableFragment {
 
     /* JADX INFO: Access modifiers changed from: private */
     public void deleteDownloadedAudio() {
-        PopupsUtils.m6746a(getActivity(), (int) R.string.download_remove_file_message, BaseApplication.getApplication().getString(R.string.delete_all_download), BaseApplication.getApplication().getString(R.string.download_remove_all_confirm_hint), new BaseDialog.InterfaceC1064a<OptionalDialog>() { // from class: com.sds.android.ttpod.fragment.downloadmanager.DownloadManagerFragment.3
+        PopupsUtils.m6746a(getActivity(), (int) R.string.download_remove_file_message, BaseApplication.getApplication().getString(R.string.delete_all_download), BaseApplication.getApplication().getString(R.string.download_remove_all_confirm_hint), new BaseDialog.OnClickListener<OptionalDialog>() { // from class: com.sds.android.ttpod.fragment.downloadmanager.DownloadManagerFragment.3
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(OptionalDialog optionalDialog) {
+            public void onClick(OptionalDialog optionalDialog) {
                 //SUserUtils.m4956a(SAction.ACTION_MY_DOWNLOAD_DELETE_ALL_SURE, SPage.PAGE_NONE);
                 //LocalStatistic.m5152aB();
                 CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_ALL_FINISHED_DOWNLOAD_TASK, DownloadManagerFragment.this.mDownloadType, Boolean.valueOf(optionalDialog.m6808b())));
             }
-        }, (BaseDialog.InterfaceC1064a<OptionalDialog>) null);
+        }, (BaseDialog.OnClickListener<OptionalDialog>) null);
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, android.support.v4.app.Fragment

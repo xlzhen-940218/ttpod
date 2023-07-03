@@ -56,7 +56,7 @@ public abstract class MediaItemMenuClickStub implements View.OnClickListener {
         //SUserUtils.m4958a(this.f5424d);
         switch (view.getId()) {
             case R.id.media_menu_add /* 2131230745 */:
-                PopupsUtils.m6729a(this.f5421a, Cache.getInstance().m3155k(), this.f5423c, (ActionItem.InterfaceC1135b) null, (BaseDialog.InterfaceC1064a<EditTextDialog>) null);
+                PopupsUtils.m6729a(this.f5421a, Cache.getInstance().m3155k(), this.f5423c, (ActionItem.InterfaceC1135b) null, (BaseDialog.OnClickListener<EditTextDialog>) null);
                 //LocalStatistic.m5144aJ();
                 //m5442a(SAction.ACTION_RIGHT_MENU_ADD_TO, SPage.PAGE_DIALOG_ADD_SONG);
                 return;

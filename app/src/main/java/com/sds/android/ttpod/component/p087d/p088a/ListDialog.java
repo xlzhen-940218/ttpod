@@ -29,29 +29,29 @@ public class ListDialog<M extends ActionItem> extends BaseDialog {
     /* renamed from: d */
     private M f3944d;
 
-    public ListDialog(Context context, List<M> list, int i, BaseDialog.InterfaceC1064a<? extends ListDialog> interfaceC1064a, int i2, BaseDialog.InterfaceC1064a<? extends ListDialog> interfaceC1064a2) {
+    public ListDialog(Context context, List<M> list, int i, OnClickListener<? extends ListDialog> onClickListener, int i2, OnClickListener<? extends ListDialog> onClickListener2) {
         super(context);
-        m7261a(i, interfaceC1064a, i2, interfaceC1064a2);
+        m7261a(i, onClickListener, i2, onClickListener2);
         this.f3942b = mo6782a(context, list);
         m6839e();
         this.f3943c.setAdapter((ListAdapter) this.f3942b);
     }
 
-    public ListDialog(Context context, M[] mArr, int i, BaseDialog.InterfaceC1064a<? extends ListDialog> interfaceC1064a, int i2, BaseDialog.InterfaceC1064a<? extends ListDialog> interfaceC1064a2) {
-        this(context, new ArrayList(Arrays.asList(mArr)), i, interfaceC1064a, i2, interfaceC1064a2);
+    public ListDialog(Context context, M[] mArr, int i, OnClickListener<? extends ListDialog> onClickListener, int i2, OnClickListener<? extends ListDialog> onClickListener2) {
+        this(context, new ArrayList(Arrays.asList(mArr)), i, onClickListener, i2, onClickListener2);
     }
 
-    public ListDialog(Context context, List<M> list, BaseDialog.InterfaceC1064a<? extends ListDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<? extends ListDialog> interfaceC1064a2) {
-        this(context, list, (int) R.string.ok, interfaceC1064a, (int) R.string.cancel, interfaceC1064a2);
+    public ListDialog(Context context, List<M> list, OnClickListener<? extends ListDialog> onClickListener, OnClickListener<? extends ListDialog> onClickListener2) {
+        this(context, list, (int) R.string.ok, onClickListener, (int) R.string.cancel, onClickListener2);
     }
 
-    public ListDialog(Context context, M[] mArr, BaseDialog.InterfaceC1064a<? extends ListDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<? extends ListDialog> interfaceC1064a2) {
-        this(context, mArr, (int) R.string.ok, interfaceC1064a, (int) R.string.cancel, interfaceC1064a2);
+    public ListDialog(Context context, M[] mArr, OnClickListener<? extends ListDialog> onClickListener, OnClickListener<? extends ListDialog> onClickListener2) {
+        this(context, mArr, (int) R.string.ok, onClickListener, (int) R.string.cancel, onClickListener2);
     }
 
-    public ListDialog(Context context, M[] mArr, int i, BaseDialog.InterfaceC1064a<? extends ListDialog> interfaceC1064a) {
+    public ListDialog(Context context, M[] mArr, int i, OnClickListener<? extends ListDialog> onClickListener) {
         super(context);
-        m7254b(i, interfaceC1064a);
+        m7254b(i, onClickListener);
         this.f3942b = mo6782a(context, new ArrayList(Arrays.asList(mArr)));
         m6839e();
         this.f3943c.setAdapter((ListAdapter) this.f3942b);
@@ -73,7 +73,7 @@ public class ListDialog<M extends ActionItem> extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected View mo2034a(Context context) {
+    protected View inflate(Context context) {
         this.f3943c = (ListView) View.inflate(context, R.layout.popups_body_list, null);
         this.f3943c.setOnItemClickListener(new AdapterView.OnItemClickListener() { // from class: com.sds.android.ttpod.component.d.a.e.1
             /* JADX WARN: Multi-variable type inference failed */
@@ -93,7 +93,7 @@ public class ListDialog<M extends ActionItem> extends BaseDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: c */
-    public ListDialog mo2037a() {
+    public ListDialog getDialog() {
         return this;
     }
 

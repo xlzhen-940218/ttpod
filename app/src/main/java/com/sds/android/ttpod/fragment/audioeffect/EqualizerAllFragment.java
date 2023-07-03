@@ -56,7 +56,7 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
         /* renamed from: a */
         private void m5747a(final String str) {
             if (EqualizerAllFragment.this.mCustomEqualizerMap.containsKey(str)) {
-                final ListDialog listDialog = new ListDialog(EqualizerAllFragment.this.getActivity(), new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_rename, (int) R.string.rename), new ActionItem(1, (int) R.drawable.img_contextmenu_remove, (int) R.string.remove), new ActionItem(2, (int) R.drawable.img_contextmenu_edit, (int) R.string.edit)}, (int) R.string.cancel, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+                final ListDialog listDialog = new ListDialog(EqualizerAllFragment.this.getActivity(), new ActionItem[]{new ActionItem(0, (int) R.drawable.img_contextmenu_rename, (int) R.string.rename), new ActionItem(1, (int) R.drawable.img_contextmenu_remove, (int) R.string.remove), new ActionItem(2, (int) R.drawable.img_contextmenu_edit, (int) R.string.edit)}, (int) R.string.cancel, (BaseDialog.OnClickListener<? extends ListDialog>) null);
                 listDialog.setTitle(str);
                 listDialog.m6844a(new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.fragment.audioeffect.EqualizerAllFragment.2.1
                     @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
@@ -83,10 +83,10 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
         /* JADX INFO: Access modifiers changed from: private */
         /* renamed from: b */
         public void m5745b(final String str) {
-            EditTextDialog editTextDialog = new EditTextDialog(EqualizerAllFragment.this.getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", str, EqualizerAllFragment.this.getString(R.string.effect_custom_equalizer_input_name))}, R.string.save, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.audioeffect.EqualizerAllFragment.2.2
+            EditTextDialog editTextDialog = new EditTextDialog(EqualizerAllFragment.this.getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", str, EqualizerAllFragment.this.getString(R.string.effect_custom_equalizer_input_name))}, R.string.save, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.audioeffect.EqualizerAllFragment.2.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(EditTextDialog editTextDialog2) {
+                public void onClick(EditTextDialog editTextDialog2) {
                     String obj = editTextDialog2.m6902c(1).m6896d().toString();
                     if (!StringUtils.isEmpty(obj)) {
                         TTEqualizer.Settings settings = (TTEqualizer.Settings) EqualizerAllFragment.this.mCustomEqualizerMap.get(str);
@@ -107,10 +107,10 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
         /* JADX INFO: Access modifiers changed from: private */
         /* renamed from: c */
         public void m5743c(final String str) {
-            MessageDialog messageDialog = new MessageDialog(EqualizerAllFragment.this.getActivity(), EqualizerAllFragment.this.getString(R.string.media_delete_single, str), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.audioeffect.EqualizerAllFragment.2.3
+            MessageDialog messageDialog = new MessageDialog(EqualizerAllFragment.this.getActivity(), EqualizerAllFragment.this.getString(R.string.media_delete_single, str), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.audioeffect.EqualizerAllFragment.2.3
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MessageDialog messageDialog2) {
+                public void onClick(MessageDialog messageDialog2) {
                     m5742d(str);
                     if (str.equals(EqualizerAllFragment.this.mEqualizerSettings.getName())) {
                         EqualizerAllFragment.this.mEqualizerSettings = BaseEqualizerFragment.DEFAULT_SETTINGS;
@@ -118,7 +118,7 @@ public class EqualizerAllFragment extends BaseEqualizerFragment {
                     }
                     EqualizerAllFragment.this.mEqualizerAllAdapter.notifyDataSetChanged();
                 }
-            }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+            }, (BaseDialog.OnClickListener<MessageDialog>) null);
             messageDialog.setTitle(R.string.remove);
             messageDialog.show();
         }

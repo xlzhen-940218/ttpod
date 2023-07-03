@@ -34,18 +34,18 @@ public class ExceptionSendActivity extends BaseActivity {
             }
         });
         try {
-            MessageDialog messageDialog = new MessageDialog(this, (int) R.string.exception_content, (BaseDialog.InterfaceC1064a<MessageDialog>) null, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+            MessageDialog messageDialog = new MessageDialog(this, (int) R.string.exception_content, (BaseDialog.OnClickListener<MessageDialog>) null, (BaseDialog.OnClickListener<MessageDialog>) null);
             messageDialog.setTitle(R.string.exception);
-            messageDialog.m7261a(R.string.send, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.component.exception.ExceptionSendActivity.2
+            messageDialog.m7261a(R.string.send, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.component.exception.ExceptionSendActivity.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MessageDialog messageDialog2) {
+                public void onClick(MessageDialog messageDialog2) {
                     ExceptionSendActivity.this.finish();
                 }
-            }, R.string.cancel, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.component.exception.ExceptionSendActivity.3
+            }, R.string.cancel, new BaseDialog.OnClickListener() { // from class: com.sds.android.ttpod.component.exception.ExceptionSendActivity.3
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a */
-                public void mo2038a(Object obj3) {
+                public void onClick(Object obj3) {
                     ExceptionSendActivity.this.finish();
                 }
             });

@@ -17,8 +17,6 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.utils.EntryUtils;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,10 +48,10 @@ public class SubGroupListFragment extends SlidingClosableFragment {
             public void onClick(View view2) {
                 //SUserUtils.m4956a(SAction.ACTION_MY_SONGLIST_CREATE, SPage.PAGE_NONE);
                 //LocalStatistic.m5162U();
-                PopupsUtils.m6710b(SubGroupListFragment.this.getActivity(), DateUtils.m8432a(0), new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubGroupListFragment.1.1
+                PopupsUtils.m6710b(SubGroupListFragment.this.getActivity(), DateUtils.m8432a(0), new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubGroupListFragment.1.1
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(EditTextDialog editTextDialog) {
+                    public void onClick(EditTextDialog editTextDialog) {
                         CommandCenter.getInstance().m4602a(new Command(CommandID.ADD_GROUP, editTextDialog.m6902c(0).m6896d().toString()), String.class);
                     }
                 });

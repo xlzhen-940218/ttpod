@@ -9,19 +9,19 @@ import java.net.URLDecoder;
 /* loaded from: classes.dex */
 public class UrlUtil {
     /* renamed from: a */
-    public static Bundle m1926a(String str) {
+    public static Bundle urlToBundle(String str) {
         try {
             URL url = new URL(str);
-            Bundle m1925b = m1925b(url.getQuery());
-            m1925b.putAll(m1925b(url.getRef()));
-            return m1925b;
+            Bundle bundle = paramsToBundle(url.getQuery());
+            bundle.putAll(paramsToBundle(url.getRef()));
+            return bundle;
         } catch (MalformedURLException e) {
             return new Bundle();
         }
     }
 
     /* renamed from: b */
-    public static Bundle m1925b(String str) {
+    public static Bundle paramsToBundle(String str) {
         Bundle bundle = new Bundle();
         if (str != null) {
             for (String str2 : str.split("&")) {

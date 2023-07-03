@@ -229,10 +229,10 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
         /* JADX INFO: Access modifiers changed from: private */
         public void showSongListRenameDialog(final GroupItem groupItem) {
             //SUserUtils.m4956a(SAction.ACTION_MENU_RENAME_SONGLIST, SPage.PAGE_NONE);
-            EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", groupItem.getTitleName(), getActivity().getString(R.string.rename_hint))}, R.string.save, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.SubCustomGroupListFragment.a.2
+            EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, "", groupItem.getTitleName(), getActivity().getString(R.string.rename_hint))}, R.string.save, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.SubCustomGroupListFragment.a.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(EditTextDialog editTextDialog2) {
+                public void onClick(EditTextDialog editTextDialog2) {
                     EditTextDialog.C1144a m6902c = editTextDialog2.m6902c(1);
                     if (m6902c != null) {
                         if (GroupItemUtils.m8268a(m6902c.m6896d().toString())) {
@@ -252,14 +252,14 @@ public class SubCustomGroupListFragment extends SubGroupListFragment {
         /* JADX INFO: Access modifiers changed from: private */
         public void showSongListDeleteDialog(final GroupItem groupItem) {
             //SUserUtils.m4956a(SAction.ACTION_MENU_DELETE_SONGLIST, SPage.PAGE_NONE);
-            MessageDialog messageDialog = new MessageDialog(getActivity(), getActivity().getString(R.string.delete_message), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.SubCustomGroupListFragment.a.3
+            MessageDialog messageDialog = new MessageDialog(getActivity(), getActivity().getString(R.string.delete_message), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.SubCustomGroupListFragment.a.3
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MessageDialog messageDialog2) {
+                public void onClick(MessageDialog messageDialog2) {
                     C1503a.this.removeGroupItem(groupItem);
                     CommandCenter.getInstance().postInvokeResult(new Command(CommandID.DELETE_GROUP, groupItem.getGroupID()));
                 }
-            }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+            }, (BaseDialog.OnClickListener<MessageDialog>) null);
             messageDialog.setTitle(R.string.menu_delete_songlist);
             messageDialog.show();
         }

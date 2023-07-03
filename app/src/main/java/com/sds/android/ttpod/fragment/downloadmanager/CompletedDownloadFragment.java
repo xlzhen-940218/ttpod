@@ -66,10 +66,10 @@ public class CompletedDownloadFragment extends DownloadTaskListFragment {
     @Override // com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment
     public void onDropDownMenuClicked(int i) {
         if (i == 10) {
-            PopupsUtils.m6747a(getActivity(), (int) R.string.download_remove_file_message, BaseApplication.getApplication().getString(R.string.delete_all_download), BaseApplication.getApplication().getString(R.string.download_remove_all_confirm_hint), new BaseDialog.InterfaceC1064a<OptionalDialog>() { // from class: com.sds.android.ttpod.fragment.downloadmanager.CompletedDownloadFragment.2
+            PopupsUtils.m6747a(getActivity(), (int) R.string.download_remove_file_message, BaseApplication.getApplication().getString(R.string.delete_all_download), BaseApplication.getApplication().getString(R.string.download_remove_all_confirm_hint), new BaseDialog.OnClickListener<OptionalDialog>() { // from class: com.sds.android.ttpod.fragment.downloadmanager.CompletedDownloadFragment.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(OptionalDialog optionalDialog) {
+                public void onClick(OptionalDialog optionalDialog) {
                     CompletedDownloadFragment.this.deleteAllCompleted(optionalDialog.m6808b());
                 }
             });

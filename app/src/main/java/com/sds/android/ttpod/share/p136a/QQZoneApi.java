@@ -46,7 +46,7 @@ public class QQZoneApi extends BaseApi {
                 QQZoneApi.this.f7337d.shareToQzone(QQZoneApi.this.f7336c, m2097a, new BaseIUiListener() { // from class: com.sds.android.ttpod.share.a.g.1.1
                     @Override // com.sds.android.ttpod.share.p137b.BaseIUiListener
                     /* renamed from: a */
-                    public void mo2067a(JSONObject jSONObject) {
+                    public void complete(JSONObject jSONObject) {
                         QQZoneApi.this.f7335b = jSONObject.optInt("ret");
                         if (QQZoneApi.this.f7335b == 0) {
                             shareResult.m2091a(1);

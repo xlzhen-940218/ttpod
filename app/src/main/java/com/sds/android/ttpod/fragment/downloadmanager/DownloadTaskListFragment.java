@@ -316,10 +316,10 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view) {
                     //SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_CLICK_DELETE, SPage.PAGE_NONE);
-                    PopupsUtils.m6733a(DownloadTaskListFragment.this.getActivity(), C1432a.this.m5710a(downloadTaskInfo), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment.a.1.1
+                    PopupsUtils.m6733a(DownloadTaskListFragment.this.getActivity(), C1432a.this.m5710a(downloadTaskInfo), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.downloadmanager.DownloadTaskListFragment.a.1.1
                         @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                         /* renamed from: a  reason: avoid collision after fix types in other method */
-                        public void mo2038a(MessageDialog messageDialog) {
+                        public void onClick(MessageDialog messageDialog) {
                             //SUserUtils.m4956a(SAction.ACTION_DOWNING_SINGLE_CLICK_DELETE_SURE, SPage.PAGE_NONE);
                             CommandCenter.getInstance().execute(new Command(CommandID.DELETE_DOWNLOAD_TASK, downloadTaskInfo, true));
                             DownloadTaskListFragment.this.removeTask(downloadTaskInfo);

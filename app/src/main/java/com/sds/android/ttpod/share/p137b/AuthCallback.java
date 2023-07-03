@@ -6,8 +6,8 @@ import android.os.Bundle;
 /* loaded from: classes.dex */
 public interface AuthCallback {
     /* renamed from: a */
-    void mo1976a(Bundle bundle);
+    void onSuccess(Bundle bundle);
 
     /* renamed from: a */
-    void mo1975a(String str);
+    void onError(String errorMessage);
 }

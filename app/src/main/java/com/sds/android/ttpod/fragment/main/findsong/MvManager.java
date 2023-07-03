@@ -40,15 +40,15 @@ public class MvManager {
         }
         int i2 = i == 0 ? R.string.play_mv_warning : R.string.download_mv_warning;
         int i3 = i == 0 ? R.string.continue_play : R.string.continue_download;
-        MessageDialog messageDialog = new MessageDialog(context, i2, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.a.1
+        MessageDialog messageDialog = new MessageDialog(context, i2, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.findsong.a.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog2) {
+            public void onClick(MessageDialog messageDialog2) {
                 boolean unused = MvManager.f5246a = true;
                 messageDialog2.dismiss();
                 MvManager.m5554d(context, mvPopupDialogCallBack, i);
             }
-        }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+        }, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.m7255b(i3);
         messageDialog.setTitle(R.string.prompt_title);
         messageDialog.show();

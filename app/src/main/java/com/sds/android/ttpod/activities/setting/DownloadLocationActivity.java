@@ -139,10 +139,10 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
                         e.printStackTrace();
                     }
                     if (SDKVersionUtils.sdkThan19() && Preferences.m2911br()) {
-                        PopupsUtils.m6747a(DownloadLocationActivity.this, (int) R.string.never_show_again, "通知", DownloadLocationActivity.this.getString(R.string.download_chose_tip_info), (BaseDialog.InterfaceC1064a<OptionalDialog>) null).m7254b(R.string.i_known, new BaseDialog.InterfaceC1064a<OptionalDialog>() { // from class: com.sds.android.ttpod.activities.setting.DownloadLocationActivity.3.1
+                        PopupsUtils.m6747a(DownloadLocationActivity.this, (int) R.string.never_show_again, "通知", DownloadLocationActivity.this.getString(R.string.download_chose_tip_info), (BaseDialog.OnClickListener<OptionalDialog>) null).m7254b(R.string.i_known, new BaseDialog.OnClickListener<OptionalDialog>() { // from class: com.sds.android.ttpod.activities.setting.DownloadLocationActivity.3.1
                             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                             /* renamed from: a  reason: avoid collision after fix types in other method */
-                            public void mo2038a(OptionalDialog optionalDialog) {
+                            public void onClick(OptionalDialog optionalDialog) {
                                 Preferences.m2963ai(!optionalDialog.m6808b());
                             }
                         });
@@ -216,16 +216,16 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
             String stringExtra = intent.getStringExtra(FilePickerActivity.KEY_EXTRA_SELECTED_FILES);
             if (!EnvironmentUtils.C0605d.m8468a(stringExtra)) {
                 final File file = new File(EnvironmentUtils.C0605d.m8462c(this), "song");
-                MessageDialog messageDialog = new MessageDialog(this, getString(R.string.change_to_valid_path, new Object[]{file.getAbsolutePath()}), new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.activities.setting.DownloadLocationActivity.4
+                MessageDialog messageDialog = new MessageDialog(this, getString(R.string.change_to_valid_path, new Object[]{file.getAbsolutePath()}), new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.setting.DownloadLocationActivity.4
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
-                    public void mo2038a(MessageDialog messageDialog2) {
+                    public void onClick(MessageDialog messageDialog2) {
                         if (!file.exists()) {
                             file.mkdirs();
                         }
                         DownloadLocationActivity.this.updateDownloadPath(file.getAbsolutePath());
                     }
-                }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+                }, (BaseDialog.OnClickListener<MessageDialog>) null);
                 messageDialog.setTitle(R.string.invalid_download_path);
                 messageDialog.show();
                 return;

@@ -202,10 +202,10 @@ public class SettingEntryFragment extends BaseFragment {
                 }
 
             }
-        }, new BaseDialog.InterfaceC1064a<SingleChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.settings.SettingEntryFragment.3
+        }, new BaseDialog.OnClickListener<SingleChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.settings.SettingEntryFragment.3
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(SingleChoiceListDialog singleChoiceListDialog) {
+            public void onClick(SingleChoiceListDialog singleChoiceListDialog) {
             }
         });
     }
@@ -253,10 +253,10 @@ public class SettingEntryFragment extends BaseFragment {
                 }
                 //new SUserEvent("PAGE_CLICK", SAction.ACTION_OPEN_MENU_OF_SHAKE_CHANGE_SONG_SELECT.getValue(), SPage.PAGE_SETTING_PAGE.getValue(), 0).append("type", Integer.valueOf(i2)).post();
             }
-        }, new BaseDialog.InterfaceC1064a<SingleChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.settings.SettingEntryFragment.5
+        }, new BaseDialog.OnClickListener<SingleChoiceListDialog>() { // from class: com.sds.android.ttpod.fragment.settings.SettingEntryFragment.5
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(SingleChoiceListDialog singleChoiceListDialog) {
+            public void onClick(SingleChoiceListDialog singleChoiceListDialog) {
             }
         });
     }

@@ -246,7 +246,7 @@ public class KtvSongControl {
             if (this.f2643a == null) {
                 this.f2643a = new WaitingDialog(context);
                 if (!StringUtils.isEmpty(str)) {
-                    this.f2643a.m6775a((CharSequence) str);
+                    this.f2643a.setText((CharSequence) str);
                 }
             }
             if (!this.f2643a.isShowing()) {

@@ -306,16 +306,16 @@ public class StartAction {
             String m8226a3 = m8226a(bundle, "button_ok", "");
             String m8226a4 = m8226a(bundle, "button_cancel", "");
             final long m8227a = m8227a(bundle, "type", 0L);
-            MessageDialog messageDialog = new MessageDialog(this.f2521c, m8226a2, (int) R.string.ok, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.a.v.1
+            MessageDialog messageDialog = new MessageDialog(this.f2521c, m8226a2, (int) R.string.ok, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.a.v.1
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MessageDialog messageDialog2) {
+                public void onClick(MessageDialog messageDialog2) {
                     StartAction.this.m8230a(m8227a, false, bundle);
                 }
-            }, (int) R.string.cancel, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.a.v.2
+            }, (int) R.string.cancel, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.a.v.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MessageDialog messageDialog2) {
+                public void onClick(MessageDialog messageDialog2) {
                     StartAction.this.m8230a(m8227a, true, bundle);
                 }
             });

@@ -12,7 +12,6 @@ import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.JSONUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p085b.ActionItem;
 import com.sds.android.ttpod.component.p085b.CheckableActionItem;
 import com.sds.android.ttpod.framework.base.p108a.Command;
@@ -55,14 +54,14 @@ public class MediaInfoEditDialog extends ScrollableDialog {
         super(context);
         m6831a(mediaItem);
         setTitle(R.string.media_info);
-        m7261a(R.string.save, new BaseDialog.InterfaceC1064a<MediaInfoEditDialog>() { // from class: com.sds.android.ttpod.component.d.a.g.1
+        m7261a(R.string.save, new OnClickListener<MediaInfoEditDialog>() { // from class: com.sds.android.ttpod.component.d.a.g.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MediaInfoEditDialog mediaInfoEditDialog) {
+            public void onClick(MediaInfoEditDialog mediaInfoEditDialog) {
 
                 MediaInfoEditDialog.this.m6827c(mediaItem);
             }
-        }, R.string.cancel, (BaseDialog.InterfaceC1064a) null);
+        }, R.string.cancel, (OnClickListener) null);
         setOnDismissListener(onDismissListener);
     }
 
@@ -91,7 +90,7 @@ public class MediaInfoEditDialog extends ScrollableDialog {
     public void m6828b(MediaItem mediaItem) {
         int i = 0;
         CheckableActionItem[] checkableActionItemArr = {new CheckableActionItem(0, R.string.media_info_genre_pop), new CheckableActionItem(1, R.string.media_info_genre_rock), new CheckableActionItem(2, R.string.media_info_genre_metal), new CheckableActionItem(3, R.string.media_info_genre_dance), new CheckableActionItem(4, R.string.media_info_genre_country), new CheckableActionItem(5, R.string.media_info_genre_jazz), new CheckableActionItem(6, R.string.media_info_genre_electronic), new CheckableActionItem(7, R.string.media_info_genre_classical), new CheckableActionItem(8, R.string.media_info_genre_bluce), new CheckableActionItem(9, R.string.media_info_genre_opera), new CheckableActionItem(10, R.string.media_info_genre_voice)};
-        SingleChoiceListDialog singleChoiceListDialog = new SingleChoiceListDialog(getContext(), checkableActionItemArr, (BaseDialog.InterfaceC1064a<SingleChoiceListDialog>) null, (BaseDialog.InterfaceC1064a<SingleChoiceListDialog>) null);
+        SingleChoiceListDialog singleChoiceListDialog = new SingleChoiceListDialog(getContext(), checkableActionItemArr, (OnClickListener<SingleChoiceListDialog>) null, (OnClickListener<SingleChoiceListDialog>) null);
         int i2 = -1;
         String obj = this.f3954e.getText().toString();
         if (!TextUtils.isEmpty(obj)) {
@@ -193,7 +192,7 @@ public class MediaInfoEditDialog extends ScrollableDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: b */
-    public MediaInfoEditDialog mo2037a() {
+    public MediaInfoEditDialog getDialog() {
         return this;
     }
 

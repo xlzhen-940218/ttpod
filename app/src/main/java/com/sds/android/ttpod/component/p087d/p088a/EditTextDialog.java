@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.framework.base.BaseApplication;
 import com.sds.android.ttpod.utils.ClipboardUtils;
@@ -28,7 +27,7 @@ public class EditTextDialog extends ScrollableDialog {
     /* renamed from: c */
     private List<EditText> f3879c;
 
-    public EditTextDialog(Context context, C1144a[] c1144aArr, int i, BaseDialog.InterfaceC1064a<EditTextDialog> interfaceC1064a, int i2, BaseDialog.InterfaceC1064a<EditTextDialog> interfaceC1064a2) {
+    public EditTextDialog(Context context, C1144a[] c1144aArr, int i, OnClickListener<EditTextDialog> onClickListener, int i2, OnClickListener<EditTextDialog> onClickListener2) {
         super(context);
         this.f3879c = new ArrayList();
         if (c1144aArr != null) {
@@ -39,11 +38,11 @@ public class EditTextDialog extends ScrollableDialog {
                 }
             }
         }
-        m7261a(i, interfaceC1064a, i2, interfaceC1064a2);
+        m7261a(i, onClickListener, i2, onClickListener2);
     }
 
-    public EditTextDialog(Context context, C1144a[] c1144aArr, int i, BaseDialog.InterfaceC1064a<EditTextDialog> interfaceC1064a, BaseDialog.InterfaceC1064a<EditTextDialog> interfaceC1064a2) {
-        this(context, c1144aArr, i, interfaceC1064a, R.string.cancel, interfaceC1064a2);
+    public EditTextDialog(Context context, C1144a[] c1144aArr, int i, OnClickListener<EditTextDialog> onClickListener, OnClickListener<EditTextDialog> onClickListener2) {
+        this(context, c1144aArr, i, onClickListener, R.string.cancel, onClickListener2);
     }
 
     @Override // com.sds.android.ttpod.component.p087d.p088a.ScrollableDialog
@@ -116,7 +115,7 @@ public class EditTextDialog extends ScrollableDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: b */
-    public EditTextDialog mo2037a() {
+    public EditTextDialog getDialog() {
         return this;
     }
 

@@ -232,12 +232,12 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
     }
 
     public void showDownloadDialog() {
-        MessageDialog messageDialog = new MessageDialog(this, "需要安装KTV插件(大约120kb)才能使用，要下载吗?", (BaseDialog.InterfaceC1064a<MessageDialog>) null, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+        MessageDialog messageDialog = new MessageDialog(this, "需要安装KTV插件(大约120kb)才能使用，要下载吗?", (BaseDialog.OnClickListener<MessageDialog>) null, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.prompt_title);
-        messageDialog.m7261a(R.string.ok, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.2
+        messageDialog.m7261a(R.string.ok, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.2
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog2) {
+            public void onClick(MessageDialog messageDialog2) {
                 if (EnvironmentUtils.DeviceConfig.isConnected()) {
                     KtvActivity.this.startDownload();
                     KtvActivity.this.startDownloadDialog();
@@ -246,17 +246,17 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
                 }
                 PopupsUtils.m6760a((int) R.string.network_unavailable);
             }
-        }, R.string.cancel, (BaseDialog.InterfaceC1064a) null);
+        }, R.string.cancel, (BaseDialog.OnClickListener) null);
         messageDialog.show();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void startDownloadDialog() {
         if (this.mDownloadDialog == null) {
-            this.mDownloadDialog = new DownloadProgressDialog(this, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.3
+            this.mDownloadDialog = new DownloadProgressDialog(this, new BaseDialog.OnClickListener() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.3
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a */
-                public void mo2038a(Object obj) {
+                public void onClick(Object obj) {
                     if (KtvActivity.this.mIsRequestingApkUrl) {
                         KtvActivity.this.mIsStopDownloading = true;
                         return;

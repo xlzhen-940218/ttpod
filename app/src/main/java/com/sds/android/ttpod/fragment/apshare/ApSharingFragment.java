@@ -122,10 +122,10 @@ public class ApSharingFragment extends ApShareBaseFragment implements ApSharingA
     public void exitDialog() {
         FragmentActivity activity;
         if (SystemClock.currentThreadTimeMillis() - this.mViewCreateTime >= 200 && (activity = getActivity()) != null) {
-            MessageDialog messageDialog = new MessageDialog(activity, (int) R.string.share_prompt_cancel, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.apshare.ApSharingFragment.2
+            MessageDialog messageDialog = new MessageDialog(activity, (int) R.string.share_prompt_cancel, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.apshare.ApSharingFragment.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MessageDialog messageDialog2) {
+                public void onClick(MessageDialog messageDialog2) {
                     TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.fragment.apshare.ApSharingFragment.2.1
                         @Override // java.lang.Runnable
                         public void run() {
@@ -143,7 +143,7 @@ public class ApSharingFragment extends ApShareBaseFragment implements ApSharingA
                     });
                     ApSharingFragment.this.finish();
                 }
-            }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+            }, (BaseDialog.OnClickListener<MessageDialog>) null);
             messageDialog.setTitle(R.string.prompt_title);
             messageDialog.show();
         }

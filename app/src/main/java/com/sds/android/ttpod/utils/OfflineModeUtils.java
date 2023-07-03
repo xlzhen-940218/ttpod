@@ -69,17 +69,17 @@ public class OfflineModeUtils {
             return null;
         }
         final DialogC0636b dialogC0636b = new DialogC0636b(context);
-        dialogC0636b.m7261a(R.string.continue_text, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.a.p.2
+        dialogC0636b.m7261a(R.string.continue_text, new BaseDialog.OnClickListener() { // from class: com.sds.android.ttpod.a.p.2
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
-            public void mo2038a(Object obj) {
+            public void onClick(Object obj) {
                 Preferences.m2814x(false);
                 onClickListener.onClick(dialogC0636b, -1);
             }
-        }, R.string.cancel, new BaseDialog.InterfaceC1064a() { // from class: com.sds.android.ttpod.a.p.3
+        }, R.string.cancel, new BaseDialog.OnClickListener() { // from class: com.sds.android.ttpod.a.p.3
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a */
-            public void mo2038a(Object obj) {
+            public void onClick(Object obj) {
                 onClickListener.onClick(dialogC0636b, -2);
             }
         });
@@ -103,13 +103,13 @@ public class OfflineModeUtils {
 
         @Override // com.sds.android.ttpod.common.p082a.BaseDialog
         /* renamed from: a */
-        protected View mo2034a(Context context) {
+        protected View inflate(Context context) {
             return View.inflate(context, R.layout.dialog_confirm_offline_mode, null);
         }
 
         @Override // com.sds.android.ttpod.common.p082a.BaseDialog
         /* renamed from: a */
-        protected <T> T mo2037a() {
+        protected <T> T getDialog() {
             return null;
         }
     }

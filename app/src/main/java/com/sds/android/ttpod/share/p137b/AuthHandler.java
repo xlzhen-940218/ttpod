@@ -30,13 +30,13 @@ public abstract class AuthHandler {
         mo2059c(new AuthCallback() { // from class: com.sds.android.ttpod.share.b.b.1
             @Override // com.sds.android.ttpod.share.p137b.AuthCallback
             /* renamed from: a */
-            public void mo1976a(Bundle bundle) {
+            public void onSuccess(Bundle bundle) {
                 AuthHandler.this.m2071a(authCallback, bundle);
             }
 
             @Override // com.sds.android.ttpod.share.p137b.AuthCallback
             /* renamed from: a */
-            public void mo1975a(String str) {
+            public void onError(String errorMessage) {
                 AuthHandler.this.m2069b(authCallback);
             }
         });
@@ -53,7 +53,7 @@ public abstract class AuthHandler {
     /* renamed from: a */
     public void m2070a(AuthCallback authCallback, String str) {
         if (authCallback != null) {
-            authCallback.mo1975a(str);
+            authCallback.onError(str);
         }
     }
 
@@ -61,7 +61,7 @@ public abstract class AuthHandler {
     /* renamed from: a */
     public void m2071a(AuthCallback authCallback, Bundle bundle) {
         if (authCallback != null) {
-            authCallback.mo1976a(bundle);
+            authCallback.onSuccess(bundle);
         }
     }
 }

@@ -318,10 +318,10 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     protected void showRightContextMenu(final MediaItem mediaItem) {
         if (mediaItem.isOnline() || FileUtils.m8419a(mediaItem.getLocalDataSource())) {
-            showMediaRightContextMenu(getActivity(), mediaItem, this.mGroupID, new BaseDialog.InterfaceC1064a<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.MediaListFragment.2
+            showMediaRightContextMenu(getActivity(), mediaItem, this.mGroupID, new BaseDialog.OnClickListener<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.MediaListFragment.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
+                public void onClick(MoreOptionalDialog moreOptionalDialog) {
                     List<MediaItem> mediaItemList = MediaListFragment.this.getMediaItemList();
                     if (!(mediaItemList instanceof AsyncLoadMediaItemList) || ((AsyncLoadMediaItemList) mediaItemList).isLoadFinished()) {
                         mediaItemList.remove(mediaItem);
@@ -332,7 +332,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
         }
     }
 
-    public static void showMediaRightContextMenu(Activity activity, MediaItem mediaItem, String str, BaseDialog.InterfaceC1064a<MoreOptionalDialog> interfaceC1064a) {
+    public static void showMediaRightContextMenu(Activity activity, MediaItem mediaItem, String str, BaseDialog.OnClickListener<MoreOptionalDialog> onClickListener) {
         boolean m8419a = FileUtils.m8419a(mediaItem.getLocalDataSource());
         if (mediaItem.isOnline() && !m8419a) {
             new DownloadMenuHandler(activity).m6927a(mediaItem, null);
@@ -587,10 +587,10 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
             public void mo5409a(ActionItem actionItem, int i) {
                 MediaListFragment.this.tryNotifyStopEditRequested();
             }
-        }, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.MediaListFragment.7
+        }, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.MediaListFragment.7
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(EditTextDialog editTextDialog) {
+            public void onClick(EditTextDialog editTextDialog) {
                 MediaListFragment.this.tryNotifyStopEditRequested();
             }
         });
@@ -624,10 +624,10 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
 
     @Override // com.sds.android.ttpod.fragment.main.list.IEditAble
     public void remove() {
-        PopupsUtils.m6730a(getActivity(), this.mSelectMediaItemHashMap.values(), this.mGroupID, new BaseDialog.InterfaceC1064a<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.MediaListFragment.8
+        PopupsUtils.m6730a(getActivity(), this.mSelectMediaItemHashMap.values(), this.mGroupID, new BaseDialog.OnClickListener<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.MediaListFragment.8
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MoreOptionalDialog moreOptionalDialog) {
+            public void onClick(MoreOptionalDialog moreOptionalDialog) {
                 //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_REMOVE_SURE, SPage.PAGE_NONE);
                 MediaListFragment.this.getMediaItemList().removeAll(MediaListFragment.this.mSelectMediaItemHashMap.values());
                 MediaListFragment.this.updateMediaList(MediaListFragment.this.getMediaItemList());

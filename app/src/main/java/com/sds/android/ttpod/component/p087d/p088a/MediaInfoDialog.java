@@ -8,11 +8,8 @@ import android.widget.TextView;
 
 import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.ttpod.R;
-import com.sds.android.ttpod.common.p082a.BaseDialog;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.framework.modules.skin.p130c.DateTimeUtils;
-import com.sds.android.ttpod.framework.p106a.p107a.SAction;
-import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.media.text.TTTextUtils;
 import java.text.DecimalFormat;
@@ -28,14 +25,14 @@ public class MediaInfoDialog extends ScrollableDialog {
         super(context);
         m6838a(context, mediaItem);
         setTitle(R.string.media_info);
-        m7261a(R.string.edit, new BaseDialog.InterfaceC1064a<MediaInfoDialog>() { // from class: com.sds.android.ttpod.component.d.a.f.1
+        m7261a(R.string.edit, new OnClickListener<MediaInfoDialog>() { // from class: com.sds.android.ttpod.component.d.a.f.1
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MediaInfoDialog mediaInfoDialog) {
+            public void onClick(MediaInfoDialog mediaInfoDialog) {
 
                 PopupsUtils.m6712b(MediaInfoDialog.this.getContext(), mediaItem, onDismissListener);
             }
-        }, R.string.cancel, (BaseDialog.InterfaceC1064a) null);
+        }, R.string.cancel, (OnClickListener) null);
         setOnDismissListener(onDismissListener);
     }
 
@@ -74,7 +71,7 @@ public class MediaInfoDialog extends ScrollableDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: b */
-    public MediaInfoDialog mo2037a() {
+    public MediaInfoDialog getDialog() {
         return this;
     }
 }

@@ -39,7 +39,7 @@ public class SeekBarDialog extends BaseDialog {
     private int f3998i;
 
     /* JADX WARN: 'super' call moved to the top of the method (can break code semantics) */
-    public SeekBarDialog(Context context, int i, int i2, int i3, int i4, String str, BaseDialog.InterfaceC1064a<SeekBarDialog> interfaceC1064a) {
+    public SeekBarDialog(Context context, int i, int i2, int i3, int i4, String str, OnClickListener<SeekBarDialog> onClickListener) {
         super(context);
         int i5;
         int i6 = 1000;
@@ -57,7 +57,7 @@ public class SeekBarDialog extends BaseDialog {
         if (i4 <= 0) {
             throw new IllegalArgumentException("step must be > 0");
         }
-        m7261a(R.string.ok, interfaceC1064a, R.string.cancel, (BaseDialog.InterfaceC1064a) null);
+        m7261a(R.string.ok, onClickListener, R.string.cancel, (OnClickListener) null);
         this.f3992c = str;
         this.f3993d = i2;
         this.f3994e = i3 - i;
@@ -129,7 +129,7 @@ public class SeekBarDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected View mo2034a(Context context) {
+    protected View inflate(Context context) {
         View inflate = View.inflate(context, R.layout.dialog_body_seekbar, null);
         this.f3990a = (TextView) inflate.findViewById(R.id.dialog_display);
         this.f3991b = (SeekBar) inflate.findViewById(R.id.dialog_seekbar);
@@ -139,7 +139,7 @@ public class SeekBarDialog extends BaseDialog {
     /* JADX INFO: Access modifiers changed from: protected */
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: c */
-    public SeekBarDialog mo2037a() {
+    public SeekBarDialog getDialog() {
         return this;
     }
 }

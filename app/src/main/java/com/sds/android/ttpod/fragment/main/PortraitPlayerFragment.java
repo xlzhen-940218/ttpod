@@ -743,10 +743,10 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     public void showSearchLyricDialog() {
         final MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
-            EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, getString(R.string.title), m3225N.getTitle(), getString(R.string.please_input_title)), new EditTextDialog.C1144a(2, getString(R.string.artist), m3225N.getArtist(), getString(R.string.please_input_artist))}, R.string.search, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.9
+            EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, getString(R.string.title), m3225N.getTitle(), getString(R.string.please_input_title)), new EditTextDialog.C1144a(2, getString(R.string.artist), m3225N.getArtist(), getString(R.string.please_input_artist))}, R.string.search, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.9
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(EditTextDialog editTextDialog2) {
+                public void onClick(EditTextDialog editTextDialog2) {
                     try {
                         EditTextDialog.C1144a m6902c = editTextDialog2.m6902c(1);
                         CommandCenter.getInstance().postInvokeResult(new Command(CommandID.START_SEARCH_LYRIC, m3225N, editTextDialog2.m6902c(2).m6896d().toString(), m6902c.m6896d().toString()));
@@ -763,10 +763,10 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     private void showSearchPictureDialog() {
         final MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
-            EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, getString(R.string.artist), m3225N.getArtist(), getString(R.string.please_input_artist))}, R.string.search, new BaseDialog.InterfaceC1064a<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.10
+            EditTextDialog editTextDialog = new EditTextDialog(getActivity(), new EditTextDialog.C1144a[]{new EditTextDialog.C1144a(1, getString(R.string.artist), m3225N.getArtist(), getString(R.string.please_input_artist))}, R.string.search, new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.10
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
-                public void mo2038a(EditTextDialog editTextDialog2) {
+                public void onClick(EditTextDialog editTextDialog2) {
                     CommandCenter.getInstance().postInvokeResult(new Command(CommandID.START_SEARCH_PICTURE, m3225N, editTextDialog2.m6902c(1).m6896d().toString(), null));
                 }
             }, null);
@@ -777,24 +777,24 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
 
     /* JADX INFO: Access modifiers changed from: private */
     public void showDeleteLyricDialog() {
-        MessageDialog messageDialog = new MessageDialog(getActivity(), (int) R.string.confirm_delete_lyric, new BaseDialog.InterfaceC1064a<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.11
+        MessageDialog messageDialog = new MessageDialog(getActivity(), (int) R.string.confirm_delete_lyric, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.11
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
             /* renamed from: a  reason: avoid collision after fix types in other method */
-            public void mo2038a(MessageDialog messageDialog2) {
+            public void onClick(MessageDialog messageDialog2) {
                 if (!StringUtils.isEmpty(Cache.getInstance().m3159i())) {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(Cache.getInstance().getCurrentPlayMediaItem());
                     CommandCenter.getInstance().execute(new Command(CommandID.DELETE_LYRIC, arrayList));
                 }
             }
-        }, (BaseDialog.InterfaceC1064a<MessageDialog>) null);
+        }, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.delete_lyric);
         messageDialog.show();
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     public void showLyricErrorReportDialog(final MediaItem mediaItem) {
-        final ListDialog listDialog = new ListDialog(getActivity(), new ActionItem[]{new ActionItem(0, 0, (int) R.string.download_error), new ActionItem(1, 0, (int) R.string.not_matched), new ActionItem(2, 0, (int) R.string.not_synced_or_misprint)}, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+        final ListDialog listDialog = new ListDialog(getActivity(), new ActionItem[]{new ActionItem(0, 0, (int) R.string.download_error), new ActionItem(1, 0, (int) R.string.not_matched), new ActionItem(2, 0, (int) R.string.not_synced_or_misprint)}, (BaseDialog.OnClickListener<? extends ListDialog>) null, (BaseDialog.OnClickListener<? extends ListDialog>) null);
         listDialog.m7254b(R.string.cancel, null);
         listDialog.setTitle(R.string.report_lyric_error);
         listDialog.m6844a(new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.2
@@ -816,7 +816,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     }
 
     private void showPictureErrorReportDialog(final MediaItem mediaItem) {
-        final ListDialog listDialog = new ListDialog(getActivity(), new ActionItem[]{new ActionItem(0, 0, (int) R.string.download_error), new ActionItem(1, 0, (int) R.string.not_matched), new ActionItem(2, 0, (int) R.string.low_quality)}, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null, (BaseDialog.InterfaceC1064a<? extends ListDialog>) null);
+        final ListDialog listDialog = new ListDialog(getActivity(), new ActionItem[]{new ActionItem(0, 0, (int) R.string.download_error), new ActionItem(1, 0, (int) R.string.not_matched), new ActionItem(2, 0, (int) R.string.low_quality)}, (BaseDialog.OnClickListener<? extends ListDialog>) null, (BaseDialog.OnClickListener<? extends ListDialog>) null);
         listDialog.m7254b(R.string.cancel, null);
         listDialog.setTitle(R.string.report_picture_error);
         listDialog.m6844a(new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.fragment.main.PortraitPlayerFragment.3

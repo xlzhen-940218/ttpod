@@ -18,7 +18,7 @@ public abstract class ScrollableDialog extends BaseDialog {
 
     @Override // com.sds.android.ttpod.common.p082a.BaseDialog
     /* renamed from: a */
-    protected final View mo2034a(Context context) {
+    protected final View inflate(Context context) {
         ScrollView scrollView = new ScrollView(context);
         scrollView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         scrollView.addView(mo6793b(context));
