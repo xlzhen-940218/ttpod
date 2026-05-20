@@ -21,28 +21,22 @@ public class MediaScanActivity extends SlidingClosableActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.mediascan.MediaScanActivity.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.button_mediascan_custom /* 2131230894 */:
-                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSIC_CUSTOM, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_CUSTOM);
-                    Intent intent = new Intent(MediaScanActivity.this, FilePickerActivity.class);
-                    intent.putExtra(FilePickerActivity.KEY_EXTRA_CONFIRMYPE, 2);
-                    MediaScanActivity.this.startActivityForResult(intent, 0);
-                    return;
-                case R.id.button_mediascan_wifi /* 2131230895 */:
-                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_WIFI, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_UPLOAD_WIFI);
-                    EntryUtils.m8301a(MediaScanActivity.this, 2);
-                    return;
-                case R.id.button_mediascan_setting /* 2131230896 */:
-                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_SETTING, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_SETTING);
-                    MediaScanActivity.this.startActivityForResult(new Intent(MediaScanActivity.this, MediaScanSettingActivity.class), 1);
-                    return;
-                case R.id.button_mediascan_start /* 2131230897 */:
-                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_ONE_KEY, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_ONE_KEY);
-                    MediaScanActivity.this.startActivity(new Intent(MediaScanActivity.this, MediaScanAnimationActivity.class));
-                    MediaScanActivity.this.finish();
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.button_mediascan_custom) {
+                //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSIC_CUSTOM, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_CUSTOM);
+                Intent intent = new Intent(MediaScanActivity.this, FilePickerActivity.class);
+                intent.putExtra(FilePickerActivity.KEY_EXTRA_CONFIRMYPE, 2);
+                MediaScanActivity.this.startActivityForResult(intent, 0);
+            } else if (id == R.id.button_mediascan_wifi) {
+                //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_WIFI, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_UPLOAD_WIFI);
+                EntryUtils.m8301a(MediaScanActivity.this, 2);
+            } else if (id == R.id.button_mediascan_setting) {
+                //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_SETTING, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_SETTING);
+                MediaScanActivity.this.startActivityForResult(new Intent(MediaScanActivity.this, MediaScanSettingActivity.class), 1);
+            } else if (id == R.id.button_mediascan_start) {
+                //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_SCAN_MUSCI_ONE_KEY, SPage.PAGE_NONE, SPage.PAGE_SCAN_MUSIC_ONE_KEY);
+                MediaScanActivity.this.startActivity(new Intent(MediaScanActivity.this, MediaScanAnimationActivity.class));
+                MediaScanActivity.this.finish();
             }
         }
     };

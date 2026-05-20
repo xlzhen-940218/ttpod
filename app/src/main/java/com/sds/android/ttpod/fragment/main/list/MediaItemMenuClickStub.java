@@ -54,54 +54,43 @@ public abstract class MediaItemMenuClickStub implements View.OnClickListener {
     public void onClick(View view) {
         ListViewUtils.m8264a(this.f5422b);
         //SUserUtils.m4958a(this.f5424d);
-        switch (view.getId()) {
-            case R.id.media_menu_add /* 2131230745 */:
-                PopupsUtils.m6729a(this.f5421a, Cache.getInstance().m3155k(), this.f5423c, (ActionItem.InterfaceC1135b) null, (BaseDialog.OnClickListener<EditTextDialog>) null);
-                //LocalStatistic.m5144aJ();
-                //m5442a(SAction.ACTION_RIGHT_MENU_ADD_TO, SPage.PAGE_DIALOG_ADD_SONG);
-                return;
-            case R.id.media_menu_delete /* 2131230746 */:
-                mo5440b(this.f5423c);
-                //m5442a(SAction.ACTION_RIGHT_MENU_DELETE, SPage.PAGE_DIALOG_DELETE);
-                return;
-            case R.id.media_menu_download /* 2131230747 */:
-                new DownloadMenuHandler(this.f5421a).m6927a(this.f5423c,null);
-                return;
-            case R.id.media_menu_favor /* 2131230748 */:
-                mo5444a();
-                return;
-            case R.id.media_menu_favor_icon /* 2131230749 */:
-            default:
-                return;
-            case R.id.media_menu_more /* 2131230750 */:
-                mo5441a(this.f5423c);
-                //m5442a(SAction.ACTION_RIGHT_MENU_MORE, SPage.PAGE_DIALOG_MORE);
-                return;
-            case R.id.media_menu_mv /* 2131230751 */:
-                final MediaItem mediaItem = this.f5423c;
-                MvManager.showMv(this.f5421a, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.fragment.main.list.d.1
-                    @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
-                    /* renamed from: a */
-                    public void onSuccess() {
-                        VideoPlayManager.playVideo(MediaItemMenuClickStub.this.f5421a, mediaItem);
-                    }
+        int id = view.getId();
+        if (id == R.id.media_menu_add) {
+            PopupsUtils.m6729a(this.f5421a, Cache.getInstance().m3155k(), this.f5423c, (ActionItem.InterfaceC1135b) null, (BaseDialog.OnClickListener<EditTextDialog>) null);
+            //LocalStatistic.m5144aJ();
+            //m5442a(SAction.ACTION_RIGHT_MENU_ADD_TO, SPage.PAGE_DIALOG_ADD_SONG);
+        } else if (id == R.id.media_menu_delete) {
+            mo5440b(this.f5423c);
+            //m5442a(SAction.ACTION_RIGHT_MENU_DELETE, SPage.PAGE_DIALOG_DELETE);
+        } else if (id == R.id.media_menu_download) {
+            new DownloadMenuHandler(this.f5421a).m6927a(this.f5423c, null);
+        } else if (id == R.id.media_menu_favor) {
+            mo5444a();
+        } else if (id == R.id.media_menu_more) {
+            mo5441a(this.f5423c);
+            //m5442a(SAction.ACTION_RIGHT_MENU_MORE, SPage.PAGE_DIALOG_MORE);
+        } else if (id == R.id.media_menu_mv) {
+            final MediaItem mediaItem = this.f5423c;
+            MvManager.showMv(this.f5421a, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.fragment.main.list.d.1
+                @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
+                /* renamed from: a */
+                public void onSuccess() {
+                    VideoPlayManager.playVideo(MediaItemMenuClickStub.this.f5421a, mediaItem);
+                }
 
-                    @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
-                    /* renamed from: b */
-                    public void mo1218b() {
-                        MvManager.m5559a(mediaItem);
-                    }
-                }, 0);
-                //m5442a(SAction.ACTION_RIGHT_MENU_MV, SPage.PAGE_NONE);
-                return;
-            case R.id.media_menu_ring /* 2131230752 */:
-                PopupsUtils.m6740a((Context) this.f5421a, this.f5423c);
-                //m5442a(SAction.ACTION_RIGHT_MENU_RING, SPage.PAGE_DIALOG_RING);
-                return;
-            case R.id.media_menu_share /* 2131230753 */:
-                PopupsUtils.shareMediaItem(this.f5421a, this.f5423c);
-                //m5442a(SAction.ACTION_RIGHT_MENU_SHARE, SPage.PAGE_DIALOG_SHARE);
-                return;
+                @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
+                /* renamed from: b */
+                public void mo1218b() {
+                    MvManager.m5559a(mediaItem);
+                }
+            }, 0);
+            //m5442a(SAction.ACTION_RIGHT_MENU_MV, SPage.PAGE_NONE);
+        } else if (id == R.id.media_menu_ring) {
+            PopupsUtils.m6740a((Context) this.f5421a, this.f5423c);
+            //m5442a(SAction.ACTION_RIGHT_MENU_RING, SPage.PAGE_DIALOG_RING);
+        } else if (id == R.id.media_menu_share) {
+            PopupsUtils.shareMediaItem(this.f5421a, this.f5423c);
+            //m5442a(SAction.ACTION_RIGHT_MENU_SHARE, SPage.PAGE_DIALOG_SHARE);
         }
     }
 

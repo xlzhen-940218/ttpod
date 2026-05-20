@@ -87,50 +87,41 @@ public class SoundSearchResultActivity extends SlidingClosableActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.soundsearch.SoundSearchResultActivity.2
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.imageview_soundsearch_download /* 2131230980 */:
-                    new DownloadMenuHandler(SoundSearchResultActivity.this).m6927a(SoundSearchResultActivity.this.mMediaItem, "search");
-                    return;
-                case R.id.imageview_soundsearch_play /* 2131230981 */:
-                    if (Cache.getInstance().getCurrentPlayMediaItem().getID().equals(SoundSearchResultActivity.this.mMediaItem.getID())) {
-                        if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
-                            CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
-                        } else if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
-                            CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
-                        }
-                    } else {
-                        ArrayList arrayList = new ArrayList();
-                        arrayList.add(SoundSearchResultActivity.this.mMediaItem);
-                        Preferences.m3063I(false);
-                        CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
-                        CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, SoundSearchResultActivity.this.mMediaItem));
+            int id = view.getId();
+            if (id == R.id.imageview_soundsearch_download) {
+                new DownloadMenuHandler(SoundSearchResultActivity.this).m6927a(SoundSearchResultActivity.this.mMediaItem, "search");
+            } else if (id == R.id.imageview_soundsearch_play) {
+                if (Cache.getInstance().getCurrentPlayMediaItem().getID().equals(SoundSearchResultActivity.this.mMediaItem.getID())) {
+                    if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
+                        CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
+                    } else if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PLAYING) {
+                        CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
                     }
-                    SoundSearchResultActivity.this.mHasBeenPlayed = true;
+                } else {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(SoundSearchResultActivity.this.mMediaItem);
+                    Preferences.m3063I(false);
+                    CommandCenter.getInstance().execute(new Command(CommandID.SYNC_NET_TEMPORARY_GROUP, arrayList));
+                    CommandCenter.getInstance().execute(new Command(CommandID.PLAY_GROUP, MediaStorage.GROUP_ID_ONLINE_TEMPORARY, SoundSearchResultActivity.this.mMediaItem));
+                }
+                SoundSearchResultActivity.this.mHasBeenPlayed = true;
+            } else if (id == R.id.imageview_soundsearch_share) {
+                PopupsUtils.shareMediaItem((Activity) SoundSearchResultActivity.this, SoundSearchResultActivity.this.mMediaItem);
+            } else if (id == R.id.imageview_soundsearch_favorite) {
+                Boolean valueOf = Boolean.valueOf(!((Boolean) SoundSearchResultActivity.this.mImageViewAddFavor.getTag()).booleanValue());
+                if (Preferences.m2954aq() == null) {
+                    SoundSearchResultActivity.this.mImageViewAddFavor.setTag(false);
+                    EntryUtils.m8297a(true);
                     return;
-                case R.id.imageview_soundsearch_share /* 2131230982 */:
-                    PopupsUtils.shareMediaItem((Activity) SoundSearchResultActivity.this, SoundSearchResultActivity.this.mMediaItem);
-                    return;
-                case R.id.lyricview_soundsearch /* 2131230983 */:
-                case R.id.imageview_soundsearch_cover /* 2131230984 */:
-                default:
-                    return;
-                case R.id.imageview_soundsearch_favorite /* 2131230985 */:
-                    Boolean valueOf = Boolean.valueOf(!((Boolean) SoundSearchResultActivity.this.mImageViewAddFavor.getTag()).booleanValue());
-                    if (Preferences.m2954aq() == null) {
-                        SoundSearchResultActivity.this.mImageViewAddFavor.setTag(false);
-                        EntryUtils.m8297a(true);
-                        return;
-                    }
-                    SoundSearchResultActivity.this.mMediaItem.setFav(valueOf.booleanValue());
-                    SoundSearchResultActivity.this.mImageViewAddFavor.setTag(valueOf);
-                    SoundSearchResultActivity.this.mImageViewAddFavor.setImageResource(valueOf.booleanValue() ? R.drawable.img_favourite_selected : R.drawable.img_favourite_normal);
-                    if (valueOf.booleanValue()) {
-                        FavoriteUtils.m8283a(SoundSearchResultActivity.this.mMediaItem, true);
-                        return;
-                    } else {
-                        FavoriteUtils.m8282b(SoundSearchResultActivity.this.mMediaItem, false);
-                        return;
-                    }
+                }
+                SoundSearchResultActivity.this.mMediaItem.setFav(valueOf.booleanValue());
+                SoundSearchResultActivity.this.mImageViewAddFavor.setTag(valueOf);
+                SoundSearchResultActivity.this.mImageViewAddFavor.setImageResource(valueOf.booleanValue() ? R.drawable.img_favourite_selected : R.drawable.img_favourite_normal);
+                if (valueOf.booleanValue()) {
+                    FavoriteUtils.m8283a(SoundSearchResultActivity.this.mMediaItem, true);
+                } else {
+                    FavoriteUtils.m8282b(SoundSearchResultActivity.this.mMediaItem, false);
+                }
             }
         }
     };

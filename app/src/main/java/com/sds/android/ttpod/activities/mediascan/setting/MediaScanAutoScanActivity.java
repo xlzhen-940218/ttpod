@@ -32,27 +32,20 @@ public class MediaScanAutoScanActivity extends SlidingClosableActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.mediascan.setting.MediaScanAutoScanActivity.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.linearlayout_mediascan_autoscan_listview_footer /* 2131231768 */:
-                    Intent intent = new Intent(MediaScanAutoScanActivity.this, FilePickerActivity.class);
-                    intent.putExtra(FilePickerActivity.KEY_EXTRA_SHOW_FILE_TYPE, 2);
-                    intent.putExtra(FilePickerActivity.KEY_EXTRA_CONFIRMYPE, 1);
-                    MediaScanAutoScanActivity.this.startActivityForResult(intent, 0);
-                    return;
-                case R.id.imageview_mediascan_autoscan_add /* 2131231769 */:
-                case R.id.textview_mediascan_setting_auto_scan_tips /* 2131231770 */:
-                default:
-                    return;
-                case R.id.textview_mediascan_setting_auto_scan_start /* 2131231771 */:
-                    if (MediaScanAutoScanActivity.this.mAdapter.getCount() > 0) {
-                        Intent intent2 = new Intent(MediaScanAutoScanActivity.this, MediaScanAnimationActivity.class);
-                        intent2.putExtra(MediaScanAnimationActivity.KEY_SCAN_FILES, (String[]) MediaScanAutoScanActivity.this.mAutoScanFolderSet.toArray(new String[0]));
-                        MediaScanAutoScanActivity.this.startActivity(intent2);
-                        MediaScanAutoScanActivity.this.setResult(-1, null);
-                        MediaScanAutoScanActivity.this.finish();
-                        return;
-                    }
-                    return;
+            int id = view.getId();
+            if (id == R.id.linearlayout_mediascan_autoscan_listview_footer) {
+                Intent intent = new Intent(MediaScanAutoScanActivity.this, FilePickerActivity.class);
+                intent.putExtra(FilePickerActivity.KEY_EXTRA_SHOW_FILE_TYPE, 2);
+                intent.putExtra(FilePickerActivity.KEY_EXTRA_CONFIRMYPE, 1);
+                MediaScanAutoScanActivity.this.startActivityForResult(intent, 0);
+            } else if (id == R.id.textview_mediascan_setting_auto_scan_start) {
+                if (MediaScanAutoScanActivity.this.mAdapter.getCount() > 0) {
+                    Intent intent2 = new Intent(MediaScanAutoScanActivity.this, MediaScanAnimationActivity.class);
+                    intent2.putExtra(MediaScanAnimationActivity.KEY_SCAN_FILES, (String[]) MediaScanAutoScanActivity.this.mAutoScanFolderSet.toArray(new String[0]));
+                    MediaScanAutoScanActivity.this.startActivity(intent2);
+                    MediaScanAutoScanActivity.this.setResult(-1, null);
+                    MediaScanAutoScanActivity.this.finish();
+                }
             }
         }
     };

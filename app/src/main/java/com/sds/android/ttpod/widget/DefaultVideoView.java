@@ -1,6 +1,7 @@
 package com.sds.android.ttpod.widget;
 
 import android.content.Context;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.AttributeSet;
@@ -506,7 +507,10 @@ public class DefaultVideoView extends SurfaceView implements MediaController.Lap
             m1865a(false);
             try {
                 this.mediaPlayer = new MediaPlayer();
-                this.mediaPlayer.setAudioStreamType(3);
+                this.mediaPlayer.setAudioAttributes(new AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_MOVIE)
+                        .build());
                 this.mediaPlayer.setOnPreparedListener(this.onPreparedListener);
                 this.mediaPlayer.setOnVideoSizeChangedListener(this.f7554z);
                 this.mediaPlayer.setOnCompletionListener(this.onCompletionListener);

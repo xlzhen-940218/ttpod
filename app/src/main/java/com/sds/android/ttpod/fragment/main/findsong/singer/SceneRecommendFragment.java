@@ -20,27 +20,19 @@ public abstract class SceneRecommendFragment extends ImageHeaderMusicListFragmen
     private View.OnClickListener mViewOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.findsong.singer.SceneRecommendFragment.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.imageview_header_play /* 2131232090 */:
-                    if (!SceneRecommendFragment.this.isSongListNotLoaded()) {
-                        SceneRecommendFragment.this.replayPlayMediaRepeat(0L);
-                        return;
-                    }
-                    return;
-                case R.id.textview_header_detail /* 2131232091 */:
-                    SceneRecommendFragment.this.launchFragment((BaseFragment) Fragment.instantiate(SceneRecommendFragment.this.getActivity(), IntroductionFragment.class.getName(), SceneRecommendFragment.this.buildForwardIntroductionArguments()));
-                    return;
-                case R.id.text_next_page /* 2131232097 */:
-                    SceneRecommendFragment.this.doNextPageAction();
-                    return;
-                case R.id.text_download_all /* 2131232100 */:
-                    if (!SceneRecommendFragment.this.isSongListNotLoaded()) {
-                        SceneRecommendFragment.this.downloadAllMediaList();
-                        return;
-                    }
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.imageview_header_play) {
+                if (!SceneRecommendFragment.this.isSongListNotLoaded()) {
+                    SceneRecommendFragment.this.replayPlayMediaRepeat(0L);
+                }
+            } else if (id == R.id.textview_header_detail) {
+                SceneRecommendFragment.this.launchFragment((BaseFragment) Fragment.instantiate(SceneRecommendFragment.this.getActivity(), IntroductionFragment.class.getName(), SceneRecommendFragment.this.buildForwardIntroductionArguments()));
+            } else if (id == R.id.text_next_page) {
+                SceneRecommendFragment.this.doNextPageAction();
+            } else if (id == R.id.text_download_all) {
+                if (!SceneRecommendFragment.this.isSongListNotLoaded()) {
+                    SceneRecommendFragment.this.downloadAllMediaList();
+                }
             }
         }
     };

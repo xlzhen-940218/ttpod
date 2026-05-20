@@ -168,36 +168,27 @@ public class SongListAdapter extends BaseAdapter implements MediaItemMenuHolder.
             public void onClick(View view) {
                 //SUserUtils.m4958a(i);
                 SongListAdapter.this.m7400a(mediaItem, view, mediaItemMenuHolder, i);
-                switch (view.getId()) {
-                    case R.id.media_menu_download /* 2131230747 */:
-                        SongListAdapter.this.download(mediaItem);
-                        return;
-                    case R.id.media_menu_favor /* 2131230748 */:
-                        mediaItemMenuHolder.favority(mediaItem, i);
-                        return;
-                    case R.id.media_menu_favor_icon /* 2131230749 */:
-                    case R.id.media_menu_more /* 2131230750 */:
-                    case R.id.media_menu_ring /* 2131230752 */:
-                    default:
-                        return;
-                    case R.id.media_menu_mv /* 2131230751 */:
-                        MvManager.showMv(SongListAdapter.this.activity, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.adapter.f.c.1.1
-                            @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
-                            /* renamed from: a */
-                            public void onSuccess() {
-                                VideoPlayManager.playVideo(SongListAdapter.this.activity, mediaItem);
-                            }
+                int id = view.getId();
+                if (id == R.id.media_menu_download) {
+                    SongListAdapter.this.download(mediaItem);
+                } else if (id == R.id.media_menu_favor) {
+                    mediaItemMenuHolder.favority(mediaItem, i);
+                } else if (id == R.id.media_menu_mv) {
+                    MvManager.showMv(SongListAdapter.this.activity, new MvPopupDialogCallBack() { // from class: com.sds.android.ttpod.adapter.f.c.1.1
+                        @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
+                        /* renamed from: a */
+                        public void onSuccess() {
+                            VideoPlayManager.playVideo(SongListAdapter.this.activity, mediaItem);
+                        }
 
-                            @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
-                            /* renamed from: b */
-                            public void mo1218b() {
-                                MvManager.m5559a(mediaItem);
-                            }
-                        }, 0);
-                        return;
-                    case R.id.media_menu_share /* 2131230753 */:
-                        PopupsUtils.shareMediaItem(SongListAdapter.this.activity, mediaItem);
-                        return;
+                        @Override // com.sds.android.ttpod.fragment.main.findsong.MvPopupDialogCallBack
+                        /* renamed from: b */
+                        public void mo1218b() {
+                            MvManager.m5559a(mediaItem);
+                        }
+                    }, 0);
+                } else if (id == R.id.media_menu_share) {
+                    PopupsUtils.shareMediaItem(SongListAdapter.this.activity, mediaItem);
                 }
             }
         });

@@ -1,7 +1,9 @@
 package com.sds.android.ttpod.media.player;
 
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.audiofx.Visualizer;
+import android.os.Build;
 
 /* loaded from: classes.dex */
 public class SystemMediaPlayer extends MediaPlayer implements IMediaPlayer {
@@ -25,7 +27,10 @@ public class SystemMediaPlayer extends MediaPlayer implements IMediaPlayer {
 
     public SystemMediaPlayer() {
         try {
-            setAudioStreamType(3);
+            setAudioAttributes(new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build());
             this.mVisualizer = new Visualizer(getAudioSessionId());
             this.mVisualizer.setEnabled(true);
         } catch (Throwable th) {

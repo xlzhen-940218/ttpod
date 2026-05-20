@@ -257,26 +257,19 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
         acquireFastClickSupport();
-        switch (view.getId()) {
-            case R.id.imageview_pre /* 2131230870 */:
-                CommandCenter.getInstance().execute(new Command(CommandID.PREVIOUS, new Object[0]));
-                return;
-            case R.id.imageview_play /* 2131230871 */:
-                if (PlayStatus.STATUS_PAUSED == SupportFactory.getInstance(BaseApplication.getApplication()).m2463m()) {
-                    CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
-                    return;
-                } else {
-                    CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
-                    return;
-                }
-            case R.id.imageview_pause /* 2131230872 */:
-                CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
-                return;
-            case R.id.imageview_next /* 2131230873 */:
-                CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
-                return;
-            default:
-                return;
+        int id = view.getId();
+        if (id == R.id.imageview_pre) {
+            CommandCenter.getInstance().execute(new Command(CommandID.PREVIOUS, new Object[0]));
+        } else if (id == R.id.imageview_play) {
+            if (PlayStatus.STATUS_PAUSED == SupportFactory.getInstance(BaseApplication.getApplication()).m2463m()) {
+                CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
+            } else {
+                CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
+            }
+        } else if (id == R.id.imageview_pause) {
+            CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
+        } else if (id == R.id.imageview_next) {
+            CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
         }
     }
 

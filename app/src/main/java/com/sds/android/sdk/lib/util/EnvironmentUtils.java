@@ -310,8 +310,8 @@ public class EnvironmentUtils {
             String[] strArr;
             if (SDKVersionUtils.sdkThan11()) {
                 StorageManager storageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
-                for (String str : (String[]) storageManager.getClass().getMethod("getVolumePaths", null)
-                        .invoke(storageManager, null)) {
+                for (String str : (String[]) storageManager.getClass().getMethod("getVolumePaths", (Class<?>[]) null)
+                        .invoke(storageManager, (Object[]) null)) {
                     File file = new File(str);
                     if (file.canWrite() && !FileUtils.m8408d(str, EnvironmentUtils.sdcardPath)) {
                         return file.getCanonicalPath();

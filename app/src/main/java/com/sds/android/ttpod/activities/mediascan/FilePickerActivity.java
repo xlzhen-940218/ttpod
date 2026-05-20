@@ -78,16 +78,11 @@ public class FilePickerActivity extends SlidingClosableActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.mediascan.FilePickerActivity.4
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.button_filepicker_confirm /* 2131230909 */:
-                    FilePickerActivity.this.saveSelectAndFinish();
-                    return;
-                case R.id.textview_mediascan_filepicker_item_folder /* 2131231774 */:
-                case R.id.textview_mediascan_filepicker_item_title /* 2131231775 */:
-                    FilePickerActivity.this.doUpperPath();
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.button_filepicker_confirm) {
+                FilePickerActivity.this.saveSelectAndFinish();
+            } else if (id == R.id.textview_mediascan_filepicker_item_folder || id == R.id.textview_mediascan_filepicker_item_title) {
+                FilePickerActivity.this.doUpperPath();
             }
         }
     };

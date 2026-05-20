@@ -62,40 +62,29 @@ public class PostDetailFragment extends ImageHeaderMusicListFragment implements 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
             if (!ViewUtils.m4641a()) {
-                switch (view.getId()) {
-                    case R.id.post_header_back /* 2131231642 */:
-                    case R.id.post_header_title /* 2131231643 */:
-                        PostDetailFragment.this.onBackPressed();
-                        return;
-                    case R.id.post_header_user_click_bounds /* 2131231852 */:
-                        PostDetailFragment.this.goUserHome();
-                        return;
-                    case R.id.post_header_tweet_bounds /* 2131231856 */:
-                        PostDetailFragment.this.viewPostInfo();
-                        return;
-                    case R.id.post_header_favorite /* 2131231860 */:
-                        PostDetailFragment.this.favoritePost();
-                        return;
-                    case R.id.post_header_comment /* 2131231862 */:
-                        PostDetailFragment.this.viewComments();
-                        return;
-                    case R.id.post_header_share /* 2131231864 */:
-                        PostDetailFragment.this.sharePost();
-                        return;
-                    case R.id.post_header_download /* 2131231866 */:
-                        if (!PostDetailFragment.this.isSongListNotLoaded()) {
-                            PostDetailFragment.this.downloadPost();
-                            return;
-                        }
-                        return;
-                    case R.id.post_header_play /* 2131231868 */:
-                        if (!PostDetailFragment.this.isSongListNotLoaded()) {
-                            PostDetailFragment.this.playPost();
-                            return;
-                        }
-                        return;
-                    default:
-                        throw new UnsupportedOperationException();
+                int id = view.getId();
+                if (id == R.id.post_header_back || id == R.id.post_header_title) {
+                    PostDetailFragment.this.onBackPressed();
+                } else if (id == R.id.post_header_user_click_bounds) {
+                    PostDetailFragment.this.goUserHome();
+                } else if (id == R.id.post_header_tweet_bounds) {
+                    PostDetailFragment.this.viewPostInfo();
+                } else if (id == R.id.post_header_favorite) {
+                    PostDetailFragment.this.favoritePost();
+                } else if (id == R.id.post_header_comment) {
+                    PostDetailFragment.this.viewComments();
+                } else if (id == R.id.post_header_share) {
+                    PostDetailFragment.this.sharePost();
+                } else if (id == R.id.post_header_download) {
+                    if (!PostDetailFragment.this.isSongListNotLoaded()) {
+                        PostDetailFragment.this.downloadPost();
+                    }
+                } else if (id == R.id.post_header_play) {
+                    if (!PostDetailFragment.this.isSongListNotLoaded()) {
+                        PostDetailFragment.this.playPost();
+                    }
+                } else {
+                    throw new UnsupportedOperationException();
                 }
             }
         }

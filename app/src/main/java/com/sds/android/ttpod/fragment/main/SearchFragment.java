@@ -51,15 +51,9 @@ public class SearchFragment extends SlidingClosableFragment {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.SearchFragment.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.edittext_search_input /* 2131230775 */:
-                case R.id.head_panel /* 2131231531 */:
-                case R.id.imageview_search /* 2131231532 */:
-                    SearchFragment.this.startSearch("");
-                    return;
-                case R.id.recognizer /* 2131231530 */:
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.edittext_search_input || id == R.id.head_panel || id == R.id.imageview_search) {
+                SearchFragment.this.startSearch("");
             }
         }
     };

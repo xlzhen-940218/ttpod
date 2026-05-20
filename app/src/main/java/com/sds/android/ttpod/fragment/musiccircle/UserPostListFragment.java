@@ -54,25 +54,19 @@ public class UserPostListFragment extends HeaderPostListFragment implements Post
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
             if (!ViewUtils.m4641a()) {
-                switch (view.getId()) {
-                    case R.id.image_avatar /* 2131231232 */:
-                    case R.id.text_profile_nick_name /* 2131231824 */:
-                        UserPostListFragment.this.showUserInfo();
-                        return;
-                    case R.id.following_layout /* 2131231945 */:
-                        UserPostListFragment.this.viewFollowings();
-                        return;
-                    case R.id.follower_layout /* 2131231948 */:
-                        UserPostListFragment.this.viewFollowers();
-                        return;
-                    case R.id.private_message /* 2131231951 */:
-                        UserPostListFragment.this.sendPrivateMessage();
-                        return;
-                    case R.id.toggle_follow /* 2131231952 */:
-                        UserPostListFragment.this.toggleFollow();
-                        return;
-                    default:
-                        throw new UnsupportedOperationException();
+                int id = view.getId();
+                if (id == R.id.image_avatar || id == R.id.text_profile_nick_name) {
+                    UserPostListFragment.this.showUserInfo();
+                } else if (id == R.id.following_layout) {
+                    UserPostListFragment.this.viewFollowings();
+                } else if (id == R.id.follower_layout) {
+                    UserPostListFragment.this.viewFollowers();
+                } else if (id == R.id.private_message) {
+                    UserPostListFragment.this.sendPrivateMessage();
+                } else if (id == R.id.toggle_follow) {
+                    UserPostListFragment.this.toggleFollow();
+                } else {
+                    throw new UnsupportedOperationException();
                 }
             }
         }

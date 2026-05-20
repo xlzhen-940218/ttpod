@@ -782,7 +782,8 @@ public class MiniLyric implements View.OnTouchListener {
             i = i2;
         }
         if (z) {
-            Notification m4693a = NotificationUtils.m4693a(BaseApplication.getApplication(), i, string, string2, null, PendingIntent.getBroadcast(BaseApplication.getApplication(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT));
+            intent.setPackage(BaseApplication.getApplication().getPackageName());
+            Notification m4693a = NotificationUtils.m4693a(BaseApplication.getApplication(), i, string, string2, null, PendingIntent.getBroadcast(BaseApplication.getApplication(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE));
             m4693a.flags = 2;
             NotificationUtils.m4695a(12101710, m4693a);
         } else {

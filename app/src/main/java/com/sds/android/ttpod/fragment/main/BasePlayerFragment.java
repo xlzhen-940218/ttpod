@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.View;
 import com.sds.android.sdk.lib.util.DebugUtils;
@@ -38,18 +39,18 @@ import java.util.Map;
 public abstract class BasePlayerFragment extends BaseFragment {
     private static final float BUFFER_COMPLETE_PERCENT = 0.99f;
     private static final String LOG_TAG = "BasePlayerFragment";
-    private static final int UPDATE_PLAY_POSITION_INTERVAL = 50;
+    private static final int UPDATE_PLAY_POSITION_INTERVAL = 100;
     private static final int UPDATE_PLAY_POSITION_MSG = 1;
     private Bitmap mArtistBitmap;
     private String mArtistPath;
     private Lyric mLyric;
     private String mMediaID;
-    private Handler mPlayPositionRefreshHandler = new Handler() { // from class: com.sds.android.ttpod.fragment.main.BasePlayerFragment.1
+    private Handler mPlayPositionRefreshHandler = new Handler(Looper.getMainLooper()) { // from class: com.sds.android.ttpod.fragment.main.BasePlayerFragment.1
         @Override // android.os.Handler
         public void handleMessage(Message message) {
             if (BasePlayerFragment.this.mPlayPositionRefreshHandler != null) {
                 BasePlayerFragment.this.updatePlayPosition();
-                BasePlayerFragment.this.mPlayPositionRefreshHandler.sendEmptyMessageDelayed(1, 50L);
+                BasePlayerFragment.this.mPlayPositionRefreshHandler.sendEmptyMessageDelayed(1, 100L);
             }
         }
     };

@@ -550,7 +550,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
                             , TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist())
                             , TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum())
                             , bitmap, PendingIntent.getActivity(this, 0
-                                    , new Intent(Action.START_ENTRY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), 0)
+                                    , new Intent(Action.START_ENTRY).setPackage(getPackageName()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK), PendingIntent.FLAG_IMMUTABLE)
                             , pendingIntent4, pendingIntent3, pendingIntent2, pendingIntent);
                     m4692a.flags |= 32;
                     m4692a.tickerText = str;
@@ -562,7 +562,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
             bitmap = null;
             th = th3;
         }
-        Notification notification = NotificationUtils.m4692a(BaseApplication.getApplication(), Player.getInstance().m2604h(), mediaItem.getTitle(), TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist()), TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum()), bitmap, PendingIntent.getActivity(this, 0, new Intent(Action.START_ENTRY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        Notification notification = NotificationUtils.m4692a(BaseApplication.getApplication(), Player.getInstance().m2604h(), mediaItem.getTitle(), TTTextUtils.validateString(getApplicationContext(), mediaItem.getArtist()), TTTextUtils.validateString(getApplicationContext(), mediaItem.getAlbum()), bitmap, PendingIntent.getActivity(this, 0, new Intent(Action.START_ENTRY).setPackage(getPackageName()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 , PendingIntent.FLAG_IMMUTABLE), pendingIntent4, pendingIntent3, pendingIntent2, pendingIntent);
         notification.flags |= 32;
         notification.tickerText = str;

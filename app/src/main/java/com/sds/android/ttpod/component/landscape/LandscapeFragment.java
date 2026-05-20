@@ -81,58 +81,45 @@ public class LandscapeFragment extends BasePlayerFragment {
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
             if (LandscapeFragment.this.getActivity() != null) {
-                switch (view.getId()) {
-                    case R.id.button_share /* 2131231006 */:
-                        if (!Cache.getInstance().getCurrentPlayMediaItem().isNull()) {
-                            if (LandscapeFragment.this.mScreenCapture != null) {
-                                LandscapeFragment.this.mScreenCapture.m6134a();
-                                return;
+                int id = view.getId();
+                if (id == R.id.button_share) {
+                    if (!Cache.getInstance().getCurrentPlayMediaItem().isNull()) {
+                        if (LandscapeFragment.this.mScreenCapture != null) {
+                            LandscapeFragment.this.mScreenCapture.m6134a();
+                            return;
+                        }
+                        Bitmap createBitmap = Bitmap.createBitmap(LandscapeFragment.this.mLandscapeView.getWidth(), LandscapeFragment.this.mLandscapeView.getHeight(), Bitmap.Config.RGB_565);
+                        LandscapeFragment.this.mLandscapeView.draw(new Canvas(createBitmap));
+                        PopupsUtils.m6754a(LandscapeFragment.this.getActivity(), Cache.getInstance().getCurrentPlayMediaItem(), createBitmap);
+                        return;
+                    }
+                } else if (id == R.id.imagebutton_previous_landscape) {
+                    ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
+                    CommandCenter.getInstance().execute(new Command(CommandID.PREVIOUS, new Object[0]));
+                } else if (id == R.id.imagebutton_play_landscape) {
+                    ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
+                    CommandCenter.getInstance().execute(new Command(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
+                } else if (id == R.id.imagebutton_pause_landscape) {
+                    ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
+                    CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
+                } else if (id == R.id.imagebutton_next_landscape) {
+                    ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
+                    CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
+                } else if (id == R.id.gesture || id == R.id.animtransview_landscape_old || id == R.id.lyricview_landscape_old) {
+                    LandscapeFragment.this.toggleMenu();
+                } else if (id == R.id.switch_effect) {
+                    final Scene m6118b = SceneManager.m6121a().m6118b();
+                    if (m6118b != null && (m6118b instanceof NextEffect)) {
+                        LandscapeFragment.this.mGLSurfaceView.queueEvent(new Runnable() { // from class: com.sds.android.ttpod.component.landscape.LandscapeFragment.2.1
+                            @Override // java.lang.Runnable
+                            public void run() {
+                                ((NextEffect) m6118b).mo6214f_();
                             }
-                            Bitmap createBitmap = Bitmap.createBitmap(LandscapeFragment.this.mLandscapeView.getWidth(), LandscapeFragment.this.mLandscapeView.getHeight(), Bitmap.Config.RGB_565);
-                            LandscapeFragment.this.mLandscapeView.draw(new Canvas(createBitmap));
-                            PopupsUtils.m6754a(LandscapeFragment.this.getActivity(), Cache.getInstance().getCurrentPlayMediaItem(), createBitmap);
-                            return;
-                        }
-                        return;
-                    case R.id.imagebutton_previous_landscape /* 2131231591 */:
-                        ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
-                        CommandCenter.getInstance().execute(new Command(CommandID.PREVIOUS, new Object[0]));
-                        return;
-                    case R.id.imagebutton_play_landscape /* 2131231592 */:
-                        ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
-                        CommandCenter.getInstance().execute(new Command(SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED ? CommandID.RESUME : CommandID.START, new Object[0]));
-                        return;
-                    case R.id.imagebutton_pause_landscape /* 2131231593 */:
-                        ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
-                        CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
-                        return;
-                    case R.id.imagebutton_next_landscape /* 2131231594 */:
-                        ((BaseActivity) LandscapeFragment.this.getActivity()).acquireFastClickSupport();
-                        CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
-                        return;
-                    case R.id.gesture /* 2131231596 */:
-                    case R.id.animtransview_landscape_old /* 2131231598 */:
-                    case R.id.lyricview_landscape_old /* 2131231599 */:
-                        LandscapeFragment.this.toggleMenu();
-                        return;
-                    case R.id.switch_effect /* 2131231602 */:
-                        final Scene m6118b = SceneManager.m6121a().m6118b();
-                        if (m6118b != null && (m6118b instanceof NextEffect)) {
-                            LandscapeFragment.this.mGLSurfaceView.queueEvent(new Runnable() { // from class: com.sds.android.ttpod.component.landscape.LandscapeFragment.2.1
-                                @Override // java.lang.Runnable
-                                public void run() {
-                                    ((NextEffect) m6118b).mo6214f_();
-                                }
-                            });
-                            return;
-                        }
-                        return;
-                    case R.id.select_landscape /* 2131231603 */:
-                        Preferences.m3067G(!Preferences.m2949av());
-                        LandscapeFragment.this.switchLandscape();
-                        return;
-                    default:
-                        return;
+                        });
+                    }
+                } else if (id == R.id.select_landscape) {
+                    Preferences.m3067G(!Preferences.m2949av());
+                    LandscapeFragment.this.switchLandscape();
                 }
             }
         }

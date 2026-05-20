@@ -20,7 +20,6 @@ import com.sds.android.sdk.lib.p059a.FakeHttpServer;
 import com.sds.android.sdk.lib.p065e.TaskScheduler;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
-import com.sds.android.ttpod.BuildConfig;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.modules.ModuleManager;
@@ -49,7 +48,7 @@ public class BaseApplication extends MultiDexApplication {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             if (!Environment.isExternalStorageManager()) {
                 try {
-                    Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
+                    Uri uri = Uri.parse("package:" + getPackageName());
                     Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);

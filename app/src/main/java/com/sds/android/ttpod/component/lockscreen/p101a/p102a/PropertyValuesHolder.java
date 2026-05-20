@@ -127,10 +127,10 @@ public class PropertyValuesHolder implements Cloneable {
         String m6020a = m6020a(str, this.f4671a);
         if (cls2 == null) {
             try {
-                return cls.getMethod(m6020a, null);
+                return cls.getMethod(m6020a, (Class<?>[]) null);
             } catch (NoSuchMethodException e) {
                 try {
-                    method = cls.getDeclaredMethod(m6020a, null);
+                    method = cls.getDeclaredMethod(m6020a, (Class<?>[]) null);
                 } catch (NoSuchMethodException e2) {
                     method = null;
                 }

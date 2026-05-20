@@ -76,26 +76,21 @@ public class CustomEqualizerFragment extends BaseFragment implements ThemeManage
 
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.textview_effect_custom_default /* 2131231137 */:
-                    CustomEqualizerFragment.this.startActivity(new Intent(CustomEqualizerFragment.this.getActivity().getApplicationContext(), EqualizerFragmentActivity.class));
-                    //AudioEffectStatistic.m5267e();
-                    //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_DEFAULT, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
-                    return;
-                case R.id.textview_effect_custom_save /* 2131231138 */:
-                    m5756a();
-                    //AudioEffectStatistic.m5262j();
-                    //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_NEW, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
-                    return;
-                case R.id.textview_effect_custom_reset /* 2131231139 */:
-                    CustomEqualizerFragment.this.resetEqualizer();
-                    CustomEqualizerFragment.this.updateView();
-                    CustomEqualizerFragment.this.mScrollView.scrollTo(0, 0);
-                    //AudioEffectStatistic.m5260l();
-                    //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_RESET, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.textview_effect_custom_default) {
+                CustomEqualizerFragment.this.startActivity(new Intent(CustomEqualizerFragment.this.getActivity().getApplicationContext(), EqualizerFragmentActivity.class));
+                //AudioEffectStatistic.m5267e();
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_DEFAULT, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
+            } else if (id == R.id.textview_effect_custom_save) {
+                m5756a();
+                //AudioEffectStatistic.m5262j();
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_NEW, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
+            } else if (id == R.id.textview_effect_custom_reset) {
+                CustomEqualizerFragment.this.resetEqualizer();
+                CustomEqualizerFragment.this.updateView();
+                CustomEqualizerFragment.this.mScrollView.scrollTo(0, 0);
+                //AudioEffectStatistic.m5260l();
+                //SUserUtils.m4953a("PAGE_CLICK", SAction.ACTION_EFFECT_EQULIZER_RESET, SPage.PAGE_AUDIO_EQUALIZER, SPage.PAGE_NONE);
             }
         }
 

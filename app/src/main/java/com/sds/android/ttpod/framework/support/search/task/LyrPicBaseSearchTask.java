@@ -147,13 +147,13 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         SearchManager.m2232a().m2223a(lyricSearchTaskInfo.getMediaItem().getID(), lyricSearchTaskInfo.getSearchTaskType() == SearchTaskType.PICTURE_SEARCH_TASK_TYPE ? "picture_type" : "lyric_type", searchStatus);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: b */
     public static void m2155b(LyrPicSearchTaskBaseInfo lyrPicSearchTaskBaseInfo, SearchStatus searchStatus) {
         m2154b(lyrPicSearchTaskBaseInfo, searchStatus, null, null, 0);
     }
 
-    /* JADX INFO: Access modifiers changed from: private */
+    /* JADX INFO: Access modifiers changed from: protected */
     /* renamed from: b */
     public static void m2154b(LyrPicSearchTaskBaseInfo lyrPicSearchTaskBaseInfo, SearchStatus searchStatus, ArrayList<ResultData> arrayList, ArrayList<String> arrayList2, int i) {
         if (!lyrPicSearchTaskBaseInfo.m2206b() && !lyrPicSearchTaskBaseInfo.m2211a()) {
@@ -458,18 +458,26 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
     }
 
     protected String requestData(String url) {
-        String response = null;
+        String response = "";
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(url).openConnection();
             httpURLConnection.setRequestMethod("GET");
-            response = new String(getBytesByInputStream(httpURLConnection.getInputStream()), StandardCharsets.UTF_8);
+            int responseCode = httpURLConnection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                response = new String(getBytesByInputStream(httpURLConnection.getInputStream()), StandardCharsets.UTF_8);
+            } else {
+                LogUtils.error("LyrPicBaseSearchTask", "requestData failed, responseCode=" + responseCode + " url=" + url);
+            }
         } catch (IOException e) {
-            e.printStackTrace();
+            LogUtils.error("LyrPicBaseSearchTask", "requestData IOException, url=" + url + " exception=" + e.getMessage());
         }
         return response;
     }
 
     private byte[] getBytesByInputStream(InputStream is) {
+        if (is == null) {
+            return new byte[0];
+        }
         byte[] bytes = null;
         BufferedInputStream bis = new BufferedInputStream(is);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

@@ -111,21 +111,15 @@ public class SearchResultFragment extends SlidingClosableFragment implements Vie
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.main.SearchResultFragment.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.imageview_search_clear /* 2131230776 */:
-                    SearchResultFragment.this.mInputEditText.setText("");
-                    SearchResultFragment.this.mClearImageView.setVisibility(View.GONE);
-                    return;
-                case R.id.menu_view /* 2131231121 */:
-                    new DownloadMenuHandler(SearchResultFragment.this.getActivity()).m6927a((MediaItem) view.getTag()
-                            ,null);
-                    return;
-                case R.id.button_search_clear_history /* 2131232071 */:
-                    SearchResultFragment.this.mSearchHistory.m4100a();
-                    SearchResultFragment.this.showHistory();
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.imageview_search_clear) {
+                SearchResultFragment.this.mInputEditText.setText("");
+                SearchResultFragment.this.mClearImageView.setVisibility(View.GONE);
+            } else if (id == R.id.menu_view) {
+                new DownloadMenuHandler(SearchResultFragment.this.getActivity()).m6927a((MediaItem) view.getTag(), null);
+            } else if (id == R.id.button_search_clear_history) {
+                SearchResultFragment.this.mSearchHistory.m4100a();
+                SearchResultFragment.this.showHistory();
             }
         }
     };

@@ -628,7 +628,10 @@ public final class DownloadManagerModule extends BaseModule {
 
     /* renamed from: a */
     private Notification m4468a(String str, String str2, long j, int i) {
-        PendingIntent activity = PendingIntent.getActivity(sContext, 0, new Intent(Action.NOTIFICATION_START_DOWNLOAD_MANAGER).putExtra("fragment_page_index", i), PendingIntent.FLAG_IMMUTABLE);
+        Intent intent = new Intent(Action.NOTIFICATION_START_DOWNLOAD_MANAGER);
+        intent.setPackage(sContext.getPackageName());
+        intent.putExtra("fragment_page_index", i);
+        PendingIntent activity = PendingIntent.getActivity(sContext, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         Bitmap bitmap = null;
         try {
             bitmap = ((BitmapDrawable) sContext.getResources().getDrawable(R.drawable.img_notification_artist_default)).getBitmap();

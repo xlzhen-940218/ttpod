@@ -71,36 +71,25 @@ public class UserInfoActivity extends SlidingClosableActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.user.UserInfoActivity.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.imageview_userinfo_cover /* 2131231024 */:
-                    UserInfoActivity.this.onClickProfileCover();
-                    return;
-                case R.id.imageview_userinfo_avatar /* 2131231025 */:
-                    UserInfoActivity.this.onClickAvatar();
-                    return;
-                case R.id.linearlayout_userinfo_nickname /* 2131231026 */:
-                    UserInfoActivity.this.onClickNickName();
-                    return;
-                case R.id.linearlayout_userinfo_sex /* 2131231028 */:
-                    UserInfoActivity.this.onClickSex();
-                    return;
-                case R.id.linearlayout_userinfo_birthday /* 2131231032 */:
-                    UserInfoActivity.this.onClickBirthday();
-                    return;
-                case R.id.linearlayout_userinfo_vip /* 2131231035 */:
-                    UserInfoActivity.this.onClickVip();
-                    return;
-                case R.id.linearlayout_userinfo_email /* 2131231039 */:
-                    UserInfoActivity.this.onClickEmail();
-                    return;
-                case R.id.linearlayout_userinfo_password /* 2131231042 */:
-                    UserInfoActivity.this.onClickPassword();
-                    return;
-                case R.id.button_userinfo_logout /* 2131231045 */:
-                    UserInfoActivity.this.onClickLogout();
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.imageview_userinfo_cover) {
+                UserInfoActivity.this.onClickProfileCover();
+            } else if (id == R.id.imageview_userinfo_avatar) {
+                UserInfoActivity.this.onClickAvatar();
+            } else if (id == R.id.linearlayout_userinfo_nickname) {
+                UserInfoActivity.this.onClickNickName();
+            } else if (id == R.id.linearlayout_userinfo_sex) {
+                UserInfoActivity.this.onClickSex();
+            } else if (id == R.id.linearlayout_userinfo_birthday) {
+                UserInfoActivity.this.onClickBirthday();
+            } else if (id == R.id.linearlayout_userinfo_vip) {
+                UserInfoActivity.this.onClickVip();
+            } else if (id == R.id.linearlayout_userinfo_email) {
+                UserInfoActivity.this.onClickEmail();
+            } else if (id == R.id.linearlayout_userinfo_password) {
+                UserInfoActivity.this.onClickPassword();
+            } else if (id == R.id.button_userinfo_logout) {
+                UserInfoActivity.this.onClickLogout();
             }
         }
     };

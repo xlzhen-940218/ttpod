@@ -96,12 +96,8 @@ public class RecommandAudioEffectFragment extends BaseFragment {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.audioeffect.RecommandAudioEffectFragment.2
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.layout_play /* 2131231359 */:
-                    RecommandAudioEffectFragment.this.performPickClick(((Integer) view.getTag()).intValue());
-                    return;
-                default:
-                    return;
+            if (view.getId() == R.id.layout_play) {
+                RecommandAudioEffectFragment.this.performPickClick(((Integer) view.getTag()).intValue());
             }
         }
     };

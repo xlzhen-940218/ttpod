@@ -206,7 +206,7 @@ public class EntityDescriptor {
             str = null;
         } else {
             sb.replace(0, sb.length(), "PRIMARY KEY (");
-            sb.append(StringUtils.spliceStringAndArray(", ", this.f2367c.m8645b().m8632a()));
+            sb.append(StringUtils.spliceStringAndArray(", ", (Object[]) this.f2367c.m8645b().m8632a()));
             sb.append(")");
             str = sb.toString();
         }
@@ -215,7 +215,7 @@ public class EntityDescriptor {
             for (Index index : this.f2367c.m8644c()) {
                 if (index.m8633b().length > 0) {
                     sb.replace(0, sb.length(), "INDEX ").append(index.m8634a()).append(" (");
-                    sb.append(StringUtils.spliceStringAndArray(", ", index.m8633b()));
+                    sb.append(StringUtils.spliceStringAndArray(", ", (Object[]) index.m8633b()));
                     sb.append(")");
                     arrayList.add(sb.toString());
                 }

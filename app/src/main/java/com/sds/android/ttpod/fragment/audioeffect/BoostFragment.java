@@ -2,6 +2,7 @@ package com.sds.android.ttpod.fragment.audioeffect;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,7 @@ public class BoostFragment extends BaseFragment {
     private SeekBar mSeekBarTreble;
     private TextView mTrebleText;
     private TextView mVirtualizerText;
-    private static Handler mHandler = new Handler();
+    private static Handler mHandler = new Handler(Looper.getMainLooper());
     private static LinkedList<RunnableC1387a> mBassQueue = new LinkedList<>();
     private static LinkedList<RunnableC1387a> mVirtualizerQueue = new LinkedList<>();
     private static LinkedList<RunnableC1387a> mTrebleQueue = new LinkedList<>();

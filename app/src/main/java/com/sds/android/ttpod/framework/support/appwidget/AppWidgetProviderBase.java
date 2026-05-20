@@ -288,7 +288,10 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
 
     /* renamed from: b */
     private static void m2531b(RemoteViews remoteViews, int i, int i2, String str) {
-        remoteViews.setOnClickPendingIntent(i2, PendingIntent.getActivity(BaseApplication.getApplication(), i, new Intent(str), PendingIntent.FLAG_MUTABLE));
+        Context context = BaseApplication.getApplication();
+        Intent intent = new Intent(str);
+        intent.setPackage(context.getPackageName());
+        remoteViews.setOnClickPendingIntent(i2, PendingIntent.getActivity(context, i, intent, PendingIntent.FLAG_IMMUTABLE));
     }
 
     @Override // android.appwidget.AppWidgetProvider, android.content.BroadcastReceiver

@@ -486,16 +486,12 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     public void flushDownloadStateView(IconTextView iconTextView, int i) {
         iconTextView.setText(i);
         int i2 = COLOR_DOWNLOAD;
-        switch (i) {
-            case R.string.icon_download_downloaded /* 2131558818 */:
-                i2 = COLOR_DOWNLOADED;
-                break;
-            case R.string.icon_download_downloading /* 2131558819 */:
-                i2 = COLOR_DOWNLOADING;
-                break;
-            case R.string.icon_download_error /* 2131558820 */:
-                i2 = COLOR_DOWNLOAD_ERROR;
-                break;
+        if (i == R.string.icon_download_downloaded) {
+            i2 = COLOR_DOWNLOADED;
+        } else if (i == R.string.icon_download_downloading) {
+            i2 = COLOR_DOWNLOADING;
+        } else if (i == R.string.icon_download_error) {
+            i2 = COLOR_DOWNLOAD_ERROR;
         }
         iconTextView.setTextColor(i2);
     }

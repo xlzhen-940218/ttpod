@@ -18,24 +18,19 @@ public class ApShareEntryFragment extends SlidingClosableFragment {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.fragment.apshare.ApShareEntryFragment.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.tv_share /* 2131230792 */:
-                    ApShareEntryFragment.this.launchFragment(new ApShareChooseFragment());
-                    //LocalStatistic.m5102d();
-                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_UPLOAD_SONG_SHARE, SPage.PAGE_UPLOAD_SONG, SPage.PAGE_UPLOAD_SONG_SHARE);
-                    return;
-                case R.id.tv_receive /* 2131230793 */:
-                    ApShareEntryFragment.this.launchFragment(new ApShareReceiveFragment());
-                    //LocalStatistic.m5101e();
-                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_UPLOAD_SONG_RECEIVE, SPage.PAGE_UPLOAD_SONG, SPage.PAGE_UPLOAD_SONG_RECEIVE);
-                    return;
-                case R.id.tv_pc_send /* 2131230794 */:
-                    EntryUtils.m8301a(ApShareEntryFragment.this.getActivity(), 2);
-                    //LocalStatistic.m5100f();
-                    //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_UPLOAD_SONG_COMPUTE, SPage.PAGE_UPLOAD_SONG, SPage.PAGE_UPLOAD_SONG_PC);
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.tv_share) {
+                ApShareEntryFragment.this.launchFragment(new ApShareChooseFragment());
+                //LocalStatistic.m5102d();
+                //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_UPLOAD_SONG_SHARE, SPage.PAGE_UPLOAD_SONG, SPage.PAGE_UPLOAD_SONG_SHARE);
+            } else if (id == R.id.tv_receive) {
+                ApShareEntryFragment.this.launchFragment(new ApShareReceiveFragment());
+                //LocalStatistic.m5101e();
+                //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_UPLOAD_SONG_RECEIVE, SPage.PAGE_UPLOAD_SONG, SPage.PAGE_UPLOAD_SONG_RECEIVE);
+            } else if (id == R.id.tv_pc_send) {
+                EntryUtils.m8301a(ApShareEntryFragment.this.getActivity(), 2);
+                //LocalStatistic.m5100f();
+                //SUserUtils.m4951b("PAGE_CLICK", SAction.ACTION_UPLOAD_SONG_COMPUTE, SPage.PAGE_UPLOAD_SONG, SPage.PAGE_UPLOAD_SONG_PC);
             }
         }
     };

@@ -384,48 +384,35 @@ public class AppWidget91VoiceLayout4x4 extends AppWidget91Base implements View.O
 
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.image_album_cover /* 2131231078 */:
-                startActivity(Action.START_ENTRY);
-                return;
-            case R.id.button_play_prev /* 2131231085 */:
-                startService("previous_command");
-                return;
-            case R.id.button_play_pause /* 2131231086 */:
-                this.mClickedPlay = true;
-                startService("play_pause_command");
-                return;
-            case R.id.button_play_next /* 2131231087 */:
-                startService("next_command");
-                return;
-            case R.id.button_minilyric /* 2131231088 */:
-                startService("switch_desktop_lyric_hide_show_command");
-                return;
-            case R.id.button_playmode /* 2131231095 */:
-                startService("switch_play_mode_command");
-                return;
-            case R.id.button_refresh /* 2131231101 */:
-                m7135b();
-                return;
-            case R.id.button_more /* 2131231102 */:
-                Intent intent = new Intent(getContext(), WebActivity.class);
-                intent.setData(Uri.parse("http://m.voice.dongting.com/?from=ttpod&v=%s"));
-                intent.putExtra(WebFragment.EXTRA_TITLE, getContext().getString(R.string.voice_of_china));
-                intent.putExtra(WebFragment.EXTRA_HINT_BANNER_SHOW, false);
-                intent.addFlags(268435456);
-                getContext().startActivity(intent);
-                return;
-            case R.id.text_song1 /* 2131231104 */:
-                m7142a(0);
-                return;
-            case R.id.text_song2 /* 2131231105 */:
-                m7142a(1);
-                return;
-            case R.id.text_song3 /* 2131231106 */:
-                m7142a(2);
-                return;
-            default:
-                return;
+        int id = view.getId();
+        if (id == R.id.image_album_cover) {
+            startActivity(Action.START_ENTRY);
+        } else if (id == R.id.button_play_prev) {
+            startService("previous_command");
+        } else if (id == R.id.button_play_pause) {
+            this.mClickedPlay = true;
+            startService("play_pause_command");
+        } else if (id == R.id.button_play_next) {
+            startService("next_command");
+        } else if (id == R.id.button_minilyric) {
+            startService("switch_desktop_lyric_hide_show_command");
+        } else if (id == R.id.button_playmode) {
+            startService("switch_play_mode_command");
+        } else if (id == R.id.button_refresh) {
+            m7135b();
+        } else if (id == R.id.button_more) {
+            Intent intent = new Intent(getContext(), WebActivity.class);
+            intent.setData(Uri.parse("http://m.voice.dongting.com/?from=ttpod&v=%s"));
+            intent.putExtra(WebFragment.EXTRA_TITLE, getContext().getString(R.string.voice_of_china));
+            intent.putExtra(WebFragment.EXTRA_HINT_BANNER_SHOW, false);
+            intent.addFlags(268435456);
+            getContext().startActivity(intent);
+        } else if (id == R.id.text_song1) {
+            m7142a(0);
+        } else if (id == R.id.text_song2) {
+            m7142a(1);
+        } else if (id == R.id.text_song3) {
+            m7142a(2);
         }
     }
 }

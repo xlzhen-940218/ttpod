@@ -58,16 +58,11 @@ public class AlbumDownloadSelectActivity extends SlidingClosableActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.search.AlbumDownloadSelectActivity.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.checkbox_select_all /* 2131230789 */:
-                case R.id.text_select_all /* 2131230790 */:
-                    AlbumDownloadSelectActivity.this.performSelectAllClick();
-                    return;
-                case R.id.button_start_download /* 2131230791 */:
-                    AlbumDownloadSelectActivity.this.performDownloadClick();
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.checkbox_select_all || id == R.id.text_select_all) {
+                AlbumDownloadSelectActivity.this.performSelectAllClick();
+            } else if (id == R.id.button_start_download) {
+                AlbumDownloadSelectActivity.this.performDownloadClick();
             }
         }
     };

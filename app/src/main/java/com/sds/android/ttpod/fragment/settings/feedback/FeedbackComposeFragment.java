@@ -64,28 +64,24 @@ public class FeedbackComposeFragment extends BaseFragment implements View.OnClic
 
     @Override // android.view.View.OnClickListener
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btn_send_feedback /* 2131231502 */:
-                if (!EnvironmentUtils.DeviceConfig.isConnected()) {
-                    PopupsUtils.m6760a((int) R.string.network_error);
-                    return;
-                }
-                String trim = this.mEtContent.getText().toString().trim();
-                String trim2 = this.mEtContactWay.getText().toString().trim();
-                if (trim.length() <= 5) {
-                    PopupsUtils.m6760a((int) R.string.send_feedback_content_too_short);
-                    return;
-                } else if (trim2.length() > FEEDBACK_CONTACTWAY_LENGTH_LIMIT) {
-                    PopupsUtils.m6760a((int) R.string.send_feedback_contactway_too_long);
-                    return;
-                } else {
-                    this.mBtnSend.setClickable(false);
-                    this.mBtnSend.setText(R.string.feedback_sending);
-                    CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PROPOSAL_FEEDBACK, new FeedbackItem(trim, EnvironmentUtils.DeviceConfig.m8473f().toString(), trim2)));
-                    return;
-                }
-            default:
+        if (view.getId() == R.id.btn_send_feedback) {
+            if (!EnvironmentUtils.DeviceConfig.isConnected()) {
+                PopupsUtils.m6760a((int) R.string.network_error);
                 return;
+            }
+            String trim = this.mEtContent.getText().toString().trim();
+            String trim2 = this.mEtContactWay.getText().toString().trim();
+            if (trim.length() <= 5) {
+                PopupsUtils.m6760a((int) R.string.send_feedback_content_too_short);
+                return;
+            } else if (trim2.length() > FEEDBACK_CONTACTWAY_LENGTH_LIMIT) {
+                PopupsUtils.m6760a((int) R.string.send_feedback_contactway_too_long);
+                return;
+            } else {
+                this.mBtnSend.setClickable(false);
+                this.mBtnSend.setText(R.string.feedback_sending);
+                CommandCenter.getInstance().postInvokeResult(new Command(CommandID.PROPOSAL_FEEDBACK, new FeedbackItem(trim, EnvironmentUtils.DeviceConfig.m8473f().toString(), trim2)));
+            }
         }
     }
 

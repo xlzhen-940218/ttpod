@@ -63,35 +63,28 @@ public class PlayControlBarFragment extends BasePlayerFragment {
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
             ((BaseActivity) PlayControlBarFragment.this.getActivity()).acquireFastClickSupport();
-            switch (view.getId()) {
-                case R.id.itv_playcontrolbar_menu /* 2131231545 */:
-                    FragmentActivity activity = PlayControlBarFragment.this.getActivity();
-                    if (activity instanceof MainActivity) {
-                        ((MainActivity) activity).toggleMenu();
-                        return;
-                    }
-                    return;
-                case R.id.itv_playcontrolbar_next /* 2131231546 */:
-                    CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
-                    //LocalStatistic.m5180C();
-                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_NEXT.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
-                    return;
-                case R.id.itv_playcontrolbar_play /* 2131231547 */:
-                    if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
-                        CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
-                    } else if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_STOPPED) {
-                        CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
-                    }
-                    //LocalStatistic.m5182A();
-                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PLAY.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
-                    return;
-                case R.id.itv_playcontrolbar_pause /* 2131231548 */:
-                    CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
-                    //LocalStatistic.m5181B();
-                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PAUSE.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.itv_playcontrolbar_menu) {
+                FragmentActivity activity = PlayControlBarFragment.this.getActivity();
+                if (activity instanceof MainActivity) {
+                    ((MainActivity) activity).toggleMenu();
+                }
+            } else if (id == R.id.itv_playcontrolbar_next) {
+                CommandCenter.getInstance().execute(new Command(CommandID.NEXT, new Object[0]));
+                //LocalStatistic.m5180C();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_NEXT.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
+            } else if (id == R.id.itv_playcontrolbar_play) {
+                if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_PAUSED) {
+                    CommandCenter.getInstance().execute(new Command(CommandID.RESUME, new Object[0]));
+                } else if (SupportFactory.getInstance(BaseApplication.getApplication()).m2463m() == PlayStatus.STATUS_STOPPED) {
+                    CommandCenter.getInstance().execute(new Command(CommandID.START, new Object[0]));
+                }
+                //LocalStatistic.m5182A();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PLAY.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
+            } else if (id == R.id.itv_playcontrolbar_pause) {
+                CommandCenter.getInstance().execute(new Command(CommandID.PAUSE, new Object[0]));
+                //LocalStatistic.m5181B();
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CLICK_PLAYBAR_PAUSE.getValue(), SPage.PAGE_PLAY_BAR.getValue(), SPage.PAGE_NONE.getValue()).post();
             }
         }
     };

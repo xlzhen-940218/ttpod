@@ -1094,21 +1094,16 @@ public class PopupsUtils {
             View.OnClickListener onClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.component.d.d.13
                 @Override // android.view.View.OnClickListener
                 public void onClick(View view2) {
-                    switch (view2.getId()) {
-                        case R.id.btn_send /* 2131230855 */:
-                            //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_SEND, SPage.PAGE_NONE);
-                            editRequestListener.onSendToRequested();
-                            return;
-                        case R.id.btn_remove /* 2131231668 */:
-                            //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_REMOVE, SPage.PAGE_NONE);
-                            editRequestListener.onRemoveRequested();
-                            return;
-                        case R.id.btn_add /* 2131231669 */:
-                            //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_ADD, SPage.PAGE_NONE);
-                            editRequestListener.onAddToRequested();
-                            return;
-                        default:
-                            return;
+                    int id = view2.getId();
+                    if (id == R.id.btn_send) {
+                        //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_SEND, SPage.PAGE_NONE);
+                        editRequestListener.onSendToRequested();
+                    } else if (id == R.id.btn_remove) {
+                        //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_REMOVE, SPage.PAGE_NONE);
+                        editRequestListener.onRemoveRequested();
+                    } else if (id == R.id.btn_add) {
+                        //SUserUtils.m4956a(SAction.ACTION_BATCH_OPERATE_ADD, SPage.PAGE_NONE);
+                        editRequestListener.onAddToRequested();
                     }
                 }
             };

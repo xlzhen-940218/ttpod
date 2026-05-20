@@ -7,6 +7,7 @@ import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
 import com.sds.android.ttpod.framework.support.search.p135a.LyricSearchTaskInfo;
+import com.sds.android.ttpod.framework.support.search.SearchStatus;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
 import com.sds.android.ttpod.media.text.TTTextUtils;
 
@@ -14,8 +15,6 @@ import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /* renamed from: com.sds.android.ttpod.framework.support.search.task.b */
 /* loaded from: classes.dex */
@@ -122,6 +121,50 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
         return sb.toString();
     }
 
+    @Override
+    public void downloadLyric(final ResultData.Item item, final boolean z) {
+        if (item.getUrl() != null && item.getUrl().startsWith("lrclib:")) {
+            com.sds.android.sdk.lib.p065e.TaskScheduler.start(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        m2155b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_STARTED);
+                        String id = item.getUrl().substring("lrclib:".length());
+                        String json = requestData("https://lrclib.net/api/get/" + id);
+                        if (!TextUtils.isEmpty(json)) {
+                            com.google.gson.JsonObject obj = com.google.gson.JsonParser.parseString(json).getAsJsonObject();
+                            String lrc = "";
+                            if (obj.has("syncedLyrics") && !obj.get("syncedLyrics").isJsonNull()) {
+                                lrc = obj.get("syncedLyrics").getAsString();
+                            } else if (obj.has("plainLyrics") && !obj.get("plainLyrics").isJsonNull()) {
+                                lrc = obj.get("plainLyrics").getAsString();
+                            }
+
+                            if (!TextUtils.isEmpty(lrc)) {
+                                FileUtils.m8416a(lrc, item.getLocalLyricPath());
+                                ArrayList<String> list = new ArrayList<>();
+                                list.add(item.getLocalLyricPath());
+                                m2154b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_FINISHED, null, list, item.getId());
+                                if (z) {
+                                    m2164a(SearchStatus.SEARCH_ONLINE_FINISHED);
+                                }
+                                return;
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    m2154b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_FAILURE, null, null, item.getId());
+                    if (z) {
+                        m2164a(SearchStatus.SEARCH_ONLINE_FAILURE);
+                    }
+                }
+            });
+        } else {
+            super.downloadLyric(item, z);
+        }
+    }
+
     @Override // com.sds.android.ttpod.framework.support.search.task.LyrPicBaseSearchTask
     /* renamed from: a */
     protected void startDownloadLyric(List<ResultData> list) {
@@ -193,29 +236,54 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
     }
 
     @Override
-    protected ArrayList<ResultData> requestResultDataArrayList(String url) {
+    protected ArrayList<ResultData> requestResultDataArrayList(String initialUrl) {
         ArrayList<ResultData> resultDataArrayList = new ArrayList<>();
-        url = "http://www.22lrc.com/search.php?keyword=" + lyricSearchTaskInfo.getTitle() + "&radio=0";
-        String html = requestData(url);
-        Pattern pattern = Pattern.compile("<td class=\"gm\"><a.*?href=\"geci/(.*?)\">");
-        Matcher matcher = pattern.matcher(html);
-        String lrcId = null;
-        if (matcher.find()) {
-            lrcId = matcher.group(1);
+        String title = lyricSearchTaskInfo.getTitle();
+        String artist = lyricSearchTaskInfo.getSinger();
+        if (TextUtils.isEmpty(title)) {
+            return resultDataArrayList;
         }
-        if (lrcId != null) {
-            String lrcUrl = String.format("http://www.22lrc.com/lrc/%s/%s.lrc"
-                    , lrcId.substring(0, lrcId.length() - 4)
-                    , lrcId.substring(lrcId.length() - 4));
-            ResultData resultData = new ResultData();
-            resultData.setAlbum(lyricSearchTaskInfo.getMediaItem().getAlbum());
-            resultData.setArtist(lyricSearchTaskInfo.getMediaItem().getArtist());
-            resultData.setTitle(lyricSearchTaskInfo.getMediaItem().getTitle());
-            ResultData.Item[] items = new ResultData.Item[1];
-            String localLyricPath = TTPodConfig.getLyricPath() + File.separator +lyricSearchTaskInfo.getSongInfo()[1];
-            items[0] = new ResultData.Item("lrc", lrcUrl,localLyricPath+".lrc", Integer.valueOf(lrcId));
-            resultData.setLyricArray(items);
-            resultDataArrayList.add(resultData);
+
+        try {
+            String query = title;
+            if (!TextUtils.isEmpty(artist)) {
+                query += " " + artist;
+            }
+            String searchUrl = "https://lrclib.net/api/search?q=" + URLEncoder.encode(query, "UTF-8");
+            String json = requestData(searchUrl);
+            if (TextUtils.isEmpty(json)) {
+                return resultDataArrayList;
+            }
+
+            com.google.gson.JsonArray array = com.google.gson.JsonParser.parseString(json).getAsJsonArray();
+            for (int i = 0; i < array.size(); i++) {
+                com.google.gson.JsonObject obj = array.get(i).getAsJsonObject();
+                ResultData resultData = new ResultData();
+                resultData.setTitle(obj.get("trackName").getAsString());
+                resultData.setArtist(obj.get("artistName").getAsString());
+                resultData.setAlbum(obj.has("albumName") && !obj.get("albumName").isJsonNull() ? obj.get("albumName").getAsString() : "");
+
+                String lrc = "";
+                if (obj.has("syncedLyrics") && !obj.get("syncedLyrics").isJsonNull()) {
+                    lrc = obj.get("syncedLyrics").getAsString();
+                } else if (obj.has("plainLyrics") && !obj.get("plainLyrics").isJsonNull()) {
+                    lrc = obj.get("plainLyrics").getAsString();
+                }
+
+                if (!TextUtils.isEmpty(lrc)) {
+                    ResultData.Item[] items = new ResultData.Item[1];
+                    int id = obj.get("id").getAsInt();
+                    // We use a special URL format that we will handle in downloadLyric
+                    String downloadUrl = "lrclib:" + id;
+                    String localLyricPath = TTPodConfig.getLyricPath() + File.separator + m2145b(resultData.getArtist(), resultData.getTitle());
+                    items[0] = new ResultData.Item("lrc", downloadUrl, localLyricPath + ".lrc", id);
+                    resultData.setLyricArray(items);
+                    resultDataArrayList.add(resultData);
+                }
+                if (resultDataArrayList.size() >= 10) break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return resultDataArrayList;
     }

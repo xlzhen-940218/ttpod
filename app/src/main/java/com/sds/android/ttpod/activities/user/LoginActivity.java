@@ -46,32 +46,19 @@ public class LoginActivity extends SlidingClosableActivity {
     private View.OnClickListener mOnClickListener = new View.OnClickListener() { // from class: com.sds.android.ttpod.activities.user.LoginActivity.1
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.textview_qq_login /* 2131230876 */:
-                    LoginActivity.this.qqLogin();
-                    return;
-                case R.id.textview_sina_login /* 2131230877 */:
-                    LoginActivity.this.sinaLogin();
-                    return;
-                case R.id.edittext_username /* 2131230878 */:
-                case R.id.edittext_password /* 2131230879 */:
-                case R.id.buttonLayout /* 2131230880 */:
-                case R.id.register_layout /* 2131230883 */:
-                case R.id.textview_qq_message /* 2131230885 */:
-                default:
-                    return;
-                case R.id.textview_register /* 2131230881 */:
-                    LoginActivity.this.startActivity(new Intent(LoginActivity.this, RegisterActivity.class).putExtra("key_username", LoginActivity.this.mUserNameEditText.getText().toString()));
-                    return;
-                case R.id.textview_login /* 2131230882 */:
-                    LoginActivity.this.login();
-                    return;
-                case R.id.textview_find_password /* 2131230884 */:
-                    LoginActivity.this.findPassword();
-                    return;
-                case R.id.textview_qq_login_html /* 2131230886 */:
-                    LoginActivity.this.qqLoginHtml();
-                    return;
+            int id = view.getId();
+            if (id == R.id.textview_qq_login) {
+                LoginActivity.this.qqLogin();
+            } else if (id == R.id.textview_sina_login) {
+                LoginActivity.this.sinaLogin();
+            } else if (id == R.id.textview_register) {
+                LoginActivity.this.startActivity(new Intent(LoginActivity.this, RegisterActivity.class).putExtra("key_username", LoginActivity.this.mUserNameEditText.getText().toString()));
+            } else if (id == R.id.textview_login) {
+                LoginActivity.this.login();
+            } else if (id == R.id.textview_find_password) {
+                LoginActivity.this.findPassword();
+            } else if (id == R.id.textview_qq_login_html) {
+                LoginActivity.this.qqLoginHtml();
             }
         }
     };

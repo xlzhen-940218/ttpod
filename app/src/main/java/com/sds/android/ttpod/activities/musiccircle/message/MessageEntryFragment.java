@@ -73,29 +73,24 @@ public class MessageEntryFragment extends SlidingClosableFragment implements Abs
         @Override // android.view.View.OnClickListener
         public void onClick(View view) {
             Bundle bundle = new Bundle();
-            switch (view.getId()) {
-                case R.id.repost_notice /* 2131231838 */:
-                    NoticeFragment noticeFragment = new NoticeFragment();
-                    bundle.putInt("id", NoticeType.REPOST.value());
-                    noticeFragment.setArguments(bundle);
-                    noticeFragment.setOriginFragment(MessageEntryFragment.this);
-                    MessageEntryFragment.this.launchFragment(noticeFragment);
-                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_NOTIFICATION.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
-                    return;
-                case R.id.comment_notice /* 2131231839 */:
-                    MyCommentsFragment myCommentsFragment = new MyCommentsFragment();
-                    bundle.putInt("id", NoticeType.COMMENT.value());
-                    myCommentsFragment.setArguments(bundle);
-                    myCommentsFragment.setOriginFragment(MessageEntryFragment.this);
-                    MessageEntryFragment.this.launchFragment(myCommentsFragment);
-                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_COMMENT.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
-                    return;
-                case R.id.system_notice /* 2131231840 */:
-                    MessageEntryFragment.this.launchFragment(new SystemMessageFragment());
-                    //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_SYS_INFORM.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
-                    return;
-                default:
-                    return;
+            int id = view.getId();
+            if (id == R.id.repost_notice) {
+                NoticeFragment noticeFragment = new NoticeFragment();
+                bundle.putInt("id", NoticeType.REPOST.value());
+                noticeFragment.setArguments(bundle);
+                noticeFragment.setOriginFragment(MessageEntryFragment.this);
+                MessageEntryFragment.this.launchFragment(noticeFragment);
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_NOTIFICATION.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
+            } else if (id == R.id.comment_notice) {
+                MyCommentsFragment myCommentsFragment = new MyCommentsFragment();
+                bundle.putInt("id", NoticeType.COMMENT.value());
+                myCommentsFragment.setArguments(bundle);
+                myCommentsFragment.setOriginFragment(MessageEntryFragment.this);
+                MessageEntryFragment.this.launchFragment(myCommentsFragment);
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_COMMENT.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
+            } else if (id == R.id.system_notice) {
+                MessageEntryFragment.this.launchFragment(new SystemMessageFragment());
+                //new SUserEvent("PAGE_CLICK", SAction.ACTION_CIRCLE_MESSAGE_CLICK_SYS_INFORM.getValue(), SPage.PAGE_CIRCLE_MESSAGE.getValue()).post();
             }
         }
     };

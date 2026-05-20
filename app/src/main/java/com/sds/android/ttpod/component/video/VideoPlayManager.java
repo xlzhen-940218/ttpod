@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.res.AssetFileDescriptor;
+import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import com.sds.android.cloudapi.ttpod.data.OnlineMediaItem;
 
@@ -367,7 +368,10 @@ public class VideoPlayManager {
         } else {
             if (m2914bo == 0) {
                 f4864f = new MediaPlayer();
-                f4864f.setAudioStreamType(3);
+                f4864f.setAudioAttributes(new AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_MOVIE)
+                        .build());
                 AssetFileDescriptor openFd = null;
                 try {
                     openFd = context.getAssets().openFd("mv_support_check.mp4");

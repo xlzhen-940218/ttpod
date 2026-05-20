@@ -76,14 +76,16 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:taskAffinity="com.sds.android.ttpod.task"
-        android:theme="@style/Theme.TTPod">
+        android:theme="@style/Theme.TTPod"
+        android:resizeableActivity="true">
+        <meta-data android:name="com.mediatek.fps_boost" android:value="true" />
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="4d707f5e112cf75410007470" />
         <meta-data
             android:name="QIHOO_UPDATE_CHANNEL"
             android:value="420114" />
-
+        <meta-data android:name="android.max_aspect" android:value="3.0"/>
         <activity
             android:name="com.sds.android.ttpod.EntryActivity"
             android:configChanges="screenSize|orientation|keyboardHidden|keyboard"
