@@ -339,7 +339,7 @@ public abstract class DownloadTaskListFragment extends BaseFragment {
         /* JADX INFO: Access modifiers changed from: private */
         /* renamed from: a */
         public String m5710a(DownloadTaskInfo downloadTaskInfo) {
-            String m8401k = FileUtils.m8401k(downloadTaskInfo.getSavePath());
+            String m8401k = FileUtils.getFilenameWithoutExtension(downloadTaskInfo.getSavePath());
             if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType())) {
                 List<String> m8335c = StringUtils.stringToArray(m8401k, "-");
                 return m8335c.size() > 1 ? m8335c.get(1).trim() : m8335c.get(0).trim();

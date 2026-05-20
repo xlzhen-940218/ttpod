@@ -275,7 +275,7 @@ public class SubMediaListFragment extends SlidingClosableFragment implements IEd
                 return;
             case 21:
                 //SUserUtils.m4956a(SAction.ACTION_LOCAL_SONG_DETAIL_ADD_TO_SONGLIST, SPage.PAGE_NONE);
-                PopupsUtils.m6710b(getActivity(), FileUtils.m8401k(string2), new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.2
+                PopupsUtils.m6710b(getActivity(), FileUtils.getFilenameWithoutExtension(string2), new BaseDialog.OnClickListener<EditTextDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.SubMediaListFragment.2
                     @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                     /* renamed from: a  reason: avoid collision after fix types in other method */
                     public void onClick(EditTextDialog editTextDialog) {

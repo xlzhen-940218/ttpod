@@ -109,7 +109,7 @@ public class BackgroundCreateUtils {
         File file = new File(TTPodConfig.getBkgsPath() + File.separator + backgroundItem.getImageName());
         if (file.exists()) {
             String str = TTPodConfig.getCacheTmpPath() + File.separator + SecurityUtils.MD5Hex.stringToMD5Hex(String.valueOf(file.lastModified()));
-            if (FileUtils.m8419a(str)) {
+            if (FileUtils.exists(str)) {
                 new File(str).delete();
             }
             file.delete();

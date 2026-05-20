@@ -35,7 +35,7 @@ public class AudioEffectUtils {
             if (mediaItem.getSongID().longValue() != 0 && mediaItem.getLocalDataSource() == null) {
                 return true;
             }
-            String m8403i = FileUtils.m8403i(m4341a);
+            String m8403i = FileUtils.readStringFromFile(m4341a);
             if (m8403i != null && (audioEffectCache = (AudioEffectCache) JSONUtils.fromJson(m8403i, AudioEffectCache.class)) != null && StringUtils.equals(audioEffectCache.m4380p(), mediaItem.getLocalDataSource())) {
                 return true;
             }

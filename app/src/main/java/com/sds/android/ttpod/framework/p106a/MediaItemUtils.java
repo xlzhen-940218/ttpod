@@ -56,7 +56,7 @@ public class MediaItemUtils {
         long currentTimeMillis = System.currentTimeMillis();
         String str4 = null;
         String str5 = null;
-        if (StringUtils.isEmpty(str) || !FileUtils.m8419a(str)) {
+        if (StringUtils.isEmpty(str) || !FileUtils.exists(str)) {
             str5 = str;
         } else {
             str4 = str;
@@ -67,16 +67,16 @@ public class MediaItemUtils {
     /* renamed from: a */
     public static MediaItem m4712a(String str) {
         DebugUtils.m8426a(str, "mediaSource");
-        String m8396p = FileUtils.m8396p(str);
+        String m8396p = FileUtils.getCanonicalPath(str);
         if (FileUtils.isFile(m8396p)) {
             String m8399m = FileUtils.getSuffix(m8396p);
             if (m8399m.equalsIgnoreCase("mid") || m8399m.equalsIgnoreCase("midi") || m8399m.equalsIgnoreCase("amr")) {
-                return new MediaItem(null, null, m8396p, FileUtils.m8400l(m8396p), FileUtils.m8401k(m8396p), "", "", "", null, FileUtils.getSuffix(m8396p), 0, 0, 0, 0, 0, 0, 0, 0, null, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null);
+                return new MediaItem(null, null, m8396p, FileUtils.getParentPath(m8396p), FileUtils.getFilenameWithoutExtension(m8396p), "", "", "", null, FileUtils.getSuffix(m8396p), 0, 0, 0, 0, 0, 0, 0, 0, null, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null);
             }
             MediaTag mediaTag = new MediaTag();
             long currentTimeMillis = System.currentTimeMillis();
             if (mediaTag.openFile(m8396p, true)) {
-                return new MediaItem(null, null, m8396p, FileUtils.m8400l(m8396p), mediaTag.getTitle(), mediaTag.getArtist(), mediaTag.getAlbum(), mediaTag.getGenre(), null, m8399m, 0, Integer.valueOf(mediaTag.duration()), Integer.valueOf(mediaTag.track()), Integer.valueOf(mediaTag.year()), null, Integer.valueOf(mediaTag.bitRate()), Integer.valueOf(mediaTag.sampleRate()), Integer.valueOf(mediaTag.channels()), mediaTag.getComment(), 0, 0, Long.valueOf(currentTimeMillis), Long.valueOf(currentTimeMillis), null, false, null, null);
+                return new MediaItem(null, null, m8396p, FileUtils.getParentPath(m8396p), mediaTag.getTitle(), mediaTag.getArtist(), mediaTag.getAlbum(), mediaTag.getGenre(), null, m8399m, 0, Integer.valueOf(mediaTag.duration()), Integer.valueOf(mediaTag.track()), Integer.valueOf(mediaTag.year()), null, Integer.valueOf(mediaTag.bitRate()), Integer.valueOf(mediaTag.sampleRate()), Integer.valueOf(mediaTag.channels()), mediaTag.getComment(), 0, 0, Long.valueOf(currentTimeMillis), Long.valueOf(currentTimeMillis), null, false, null, null);
             }
             mediaTag.close();
         }

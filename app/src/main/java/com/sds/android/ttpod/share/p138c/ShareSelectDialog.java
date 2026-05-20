@@ -406,7 +406,7 @@ public class ShareSelectDialog extends BaseDialog {
         String m1960d="";
         final String str = m1991u() + m1960d.hashCode() + ".jpg";
         if (!StringUtils.isEmpty(this.f7408l.m1960d())) {
-            if (FileUtils.m8419a(str)) {
+            if (FileUtils.exists(str)) {
                 this.f7408l.m1966b(str);
                 m2011d(this.f7408l.m1956f());
             } else {

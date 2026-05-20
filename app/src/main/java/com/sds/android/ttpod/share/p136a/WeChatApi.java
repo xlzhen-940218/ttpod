@@ -116,7 +116,7 @@ public class WeChatApi extends BaseApi {
 
     /* renamed from: a */
     private boolean m2079a(WXMediaMessage wXMediaMessage, String str) {
-        if (FileUtils.m8419a(str)) {
+        if (FileUtils.exists(str)) {
             wXMediaMessage.thumbData = m2081a(this.f7351b.m8444a(str, 60, 100), true);
         } else {
             wXMediaMessage.thumbData = m2081a(this.f7351b.m8455a(this.f7354e.getResources(), R.drawable.share_ttpod), true);

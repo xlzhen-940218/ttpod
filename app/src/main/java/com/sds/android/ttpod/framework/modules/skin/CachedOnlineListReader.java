@@ -39,7 +39,7 @@ public class CachedOnlineListReader {
         if (TextUtils.isEmpty(str)) {
             return true;
         }
-        if (FileUtils.m8405g(str) == 0) {
+        if (FileUtils.getFolderSize(str) == 0) {
             FileUtils.exists(str);
             return true;
         }

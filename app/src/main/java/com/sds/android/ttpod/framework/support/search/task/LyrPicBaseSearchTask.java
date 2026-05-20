@@ -2,11 +2,9 @@ package com.sds.android.ttpod.framework.support.search.task;
 
 import android.content.Intent;
 
-import com.sds.android.cloudapi.ttpod.data.User;
 import com.sds.android.sdk.core.download.Manager;
 import com.sds.android.sdk.core.download.Task;
 import com.sds.android.sdk.core.download.TaskInfo;
-
 import com.sds.android.sdk.lib.util.DebugUtils;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
@@ -116,14 +114,16 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
             }
         } catch (Exception e) {
             LyrPicSearchTaskBaseInfo mo2131b2 = getLyricSearchTaskInfo();
-            MediaItem m2194i2 = mo2131b2.getMediaItem();
+            MediaItem m2194i2 = mo2131b2 != null ? mo2131b2.getMediaItem() : null;
             Object[] objArr = new Object[3];
-            objArr[0] = mo2131b2 instanceof LyricSearchTaskInfo ? "lyric" : User.KEY_AVATAR;
+            objArr[0] = mo2131b2 instanceof LyricSearchTaskInfo ? "lyric" : "picture";
             objArr[1] = m2194i2 != null ? m2194i2.getTitle() : null;
             objArr[2] = e.toString();
             LogUtils.error("LyrPicBaseSearchTask", "in run searchTask lookLyricPic type=%s title=%s exception=%s", objArr);
-            m2155b(mo2131b2, SearchStatus.SEARCH_DOWNLOAD_FAILURE);
-            m2164a(SearchManager.SEARCH_ONLINE_FAILURE);
+            if (mo2131b2 != null) {
+                m2155b(mo2131b2, SearchStatus.SEARCH_DOWNLOAD_FAILURE);
+                m2164a(SearchManager.SEARCH_ONLINE_FAILURE);
+            }
         }
     }
 
@@ -136,7 +136,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
             FileUtils.exists(next);
         }
         if (z) {
-            FileUtils.exists(new File(arrayList.get(0)).getParentFile());
+            FileUtils.deepExists(new File(arrayList.get(0)).getParentFile());
         }
     }
 
@@ -462,14 +462,19 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         try {
             HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(url).openConnection();
             httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setConnectTimeout(10000);
+            httpURLConnection.setReadTimeout(10000);
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                response = new String(getBytesByInputStream(httpURLConnection.getInputStream()), StandardCharsets.UTF_8);
+                byte[] data = getBytesByInputStream(httpURLConnection.getInputStream());
+                if (data != null && data.length > 0) {
+                    response = new String(data, StandardCharsets.UTF_8);
+                }
             } else {
                 LogUtils.error("LyrPicBaseSearchTask", "requestData failed, responseCode=" + responseCode + " url=" + url);
             }
-        } catch (IOException e) {
-            LogUtils.error("LyrPicBaseSearchTask", "requestData IOException, url=" + url + " exception=" + e.getMessage());
+        } catch (Exception e) {
+            LogUtils.error("LyrPicBaseSearchTask", "requestData exception, url=" + url + " exception=" + e.getMessage());
         }
         return response;
     }
@@ -478,7 +483,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         if (is == null) {
             return new byte[0];
         }
-        byte[] bytes = null;
+        byte[] bytes = new byte[0];
         BufferedInputStream bis = new BufferedInputStream(is);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(baos);

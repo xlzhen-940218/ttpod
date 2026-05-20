@@ -479,18 +479,18 @@ public class PopupsUtils {
                             while (i < size) {
                                 CheckableActionItem checkableActionItem = list.get(i);
                                 if (checkableActionItem.m7005e() == 0) {
-                                    FileUtils.m8415b(new File(TTPodConfig.getCacheObjectPath()));
+                                    FileUtils.deleteFilesRecursive(new File(TTPodConfig.getCacheObjectPath()));
                                     z2 = true;
                                 } else if (1 == checkableActionItem.m7005e()) {
                                     MediaItem mediaItem = Cache.getInstance().getCurrentPlayMediaItem();
-                                    FileUtils.m8417a(TTPodConfig.getCacheMediaPath(), 0L, mediaItem != null ? new String[]{TTPodConfig.getAudioTmp(), TTPodConfig.getSongIdPath(mediaItem.getSongID())} : null);
+                                    FileUtils.limitFolderSize(TTPodConfig.getCacheMediaPath(), 0L, mediaItem != null ? new String[]{TTPodConfig.getAudioTmp(), TTPodConfig.getSongIdPath(mediaItem.getSongID())} : null);
                                     z2 = true;
                                 } else if (2 == checkableActionItem.m7005e()) {
-                                    FileUtils.m8415b(new File(TTPodConfig.getArtPath()));
-                                    FileUtils.m8415b(new File(TTPodConfig.getArtistPath()));
+                                    FileUtils.deleteFilesRecursive(new File(TTPodConfig.getArtPath()));
+                                    FileUtils.deleteFilesRecursive(new File(TTPodConfig.getArtistPath()));
                                     z2 = true;
                                 } else if (3 == checkableActionItem.m7005e()) {
-                                    FileUtils.m8415b(new File(TTPodConfig.getLyricPath()));
+                                    FileUtils.deleteFilesRecursive(new File(TTPodConfig.getLyricPath()));
                                     z2 = true;
                                 } else {
                                     z2 = z3;
@@ -869,7 +869,7 @@ public class PopupsUtils {
     public static void m6757a(Activity activity, FavoriteSubMediaListFragment.FavoriteSongFragment favoriteSongFragment, MediaItem mediaItem) {
         ActionItem[] m6704d;
         if (activity != null && mediaItem != null) {
-            if (mediaItem.isOnline() && !FileUtils.m8419a(mediaItem.getLocalDataSource())) {
+            if (mediaItem.isOnline() && !FileUtils.exists(mediaItem.getLocalDataSource())) {
                 m6704d = m6717a(mediaItem.containMV());
             } else {
                 m6704d = m6704d();

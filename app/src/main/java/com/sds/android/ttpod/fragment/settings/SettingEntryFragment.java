@@ -280,7 +280,7 @@ public class SettingEntryFragment extends BaseFragment {
             @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
             /* renamed from: a  reason: avoid collision after fix types in other method */
             public String[] inBackground(Void r12) {
-                return new String[]{Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.m8405g(TTPodConfig.getCacheObjectPath())), Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.m8405g(TTPodConfig.getCacheMediaPath())), Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.m8405g(TTPodConfig.getArtPath()) + FileUtils.m8405g(TTPodConfig.getArtistPath())), Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.m8405g(TTPodConfig.getLyricPath()))};
+                return new String[]{Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.getFolderSize(TTPodConfig.getCacheObjectPath())), Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.getFolderSize(TTPodConfig.getCacheMediaPath())), Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.getFolderSize(TTPodConfig.getArtPath()) + FileUtils.getFolderSize(TTPodConfig.getArtistPath())), Formatter.formatFileSize(SettingEntryFragment.this.getActivity(), FileUtils.getFolderSize(TTPodConfig.getLyricPath()))};
             }
 
             /* JADX INFO: Access modifiers changed from: protected */

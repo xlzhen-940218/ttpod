@@ -156,7 +156,7 @@ public class FavoriteModule extends BaseModule {
     /* renamed from: a */
     protected void m4560a() {
         for (MediaItem mediaItem : MediaStorage.queryMediaItemList(sContext, MediaStorage.buildOnlineFavGroupID(), Preferences.m2860l(MediaStorage.buildOnlineFavGroupID()))) {
-            if (!StringUtils.isEmpty(mediaItem.getLocalDataSource()) && !FileUtils.m8419a(mediaItem.getLocalDataSource())) {
+            if (!StringUtils.isEmpty(mediaItem.getLocalDataSource()) && !FileUtils.exists(mediaItem.getLocalDataSource())) {
                 MediaItemUtils.m4714a(mediaItem, mediaItem.getLocalDataSource());
                 MediaStorage.updateMediaItem(sContext, mediaItem);
             }

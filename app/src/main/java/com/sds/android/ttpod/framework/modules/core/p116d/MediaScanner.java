@@ -197,7 +197,7 @@ public final class MediaScanner {
         try {
             if (StringUtils.isEmpty(m8460d) || sdcardPath.equals(m8460d) || !m4236a(sdcardPath) || !m4236a(m8460d)) {
                 this.f5987f = "";
-            } else if (SDKVersionUtils.sdkThan9() && Environment.isExternalStorageRemovable() && FileUtils.m8408d(EnvironmentUtils.C0605d.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
+            } else if (SDKVersionUtils.sdkThan9() && Environment.isExternalStorageRemovable() && FileUtils.testDirPermissions(EnvironmentUtils.C0605d.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
                 this.f5986e = EnvironmentUtils.C0605d.m8460d(BaseApplication.getApplication());
                 this.f5987f = EnvironmentUtils.C0605d.getSdcardPath();
             }
@@ -213,7 +213,7 @@ public final class MediaScanner {
         Long valueOf = Long.valueOf(System.currentTimeMillis());
         String str2 = m4232b(str) + File.separator + valueOf.toString();
         FileUtils.createFile(str2);
-        if (FileUtils.m8419a(str2)) {
+        if (FileUtils.exists(str2)) {
             FileUtils.exists(str2);
             return true;
         }
@@ -462,14 +462,14 @@ public final class MediaScanner {
             if (this.mediaTag.openFile(str, true)) {
                 if (m4217a(this.mediaTag.duration())) {
                     long currentTimeMillis = System.currentTimeMillis();
-                    m4214a(new MediaItem(null, null, str, FileUtils.m8400l(str), this.mediaTag.getTitle(), this.mediaTag.getArtist(), this.mediaTag.getAlbum(), this.mediaTag.getGenre(), null, FileUtils.getSuffix(str), 0, Integer.valueOf(this.mediaTag.duration()), Integer.valueOf(this.mediaTag.track()), Integer.valueOf(this.mediaTag.year()), null, Integer.valueOf(this.mediaTag.bitRate()), Integer.valueOf(this.mediaTag.sampleRate()), Integer.valueOf(this.mediaTag.channels()), this.mediaTag.getComment(), 0, 0, Long.valueOf(currentTimeMillis), Long.valueOf(currentTimeMillis), 0L, false, null, null));
+                    m4214a(new MediaItem(null, null, str, FileUtils.getParentPath(str), this.mediaTag.getTitle(), this.mediaTag.getArtist(), this.mediaTag.getAlbum(), this.mediaTag.getGenre(), null, FileUtils.getSuffix(str), 0, Integer.valueOf(this.mediaTag.duration()), Integer.valueOf(this.mediaTag.track()), Integer.valueOf(this.mediaTag.year()), null, Integer.valueOf(this.mediaTag.bitRate()), Integer.valueOf(this.mediaTag.sampleRate()), Integer.valueOf(this.mediaTag.channels()), this.mediaTag.getComment(), 0, 0, Long.valueOf(currentTimeMillis), Long.valueOf(currentTimeMillis), 0L, false, null, null));
                     m4197e();
                 } else {
                     this.f5997j.set(this.f5997j.get() + 1);
                 }
             } else {
                 long currentTimeMillis2 = System.currentTimeMillis();
-                m4214a(new MediaItem(null, null, str, FileUtils.m8400l(str), FileUtils.m8401k(str), "", "", "", null, FileUtils.getSuffix(str), 0, 0, 0, 0, null, 0, 0, 0, "", 0, 0, Long.valueOf(currentTimeMillis2), Long.valueOf(currentTimeMillis2), 0L, false, null, null));
+                m4214a(new MediaItem(null, null, str, FileUtils.getParentPath(str), FileUtils.getFilenameWithoutExtension(str), "", "", "", null, FileUtils.getSuffix(str), 0, 0, 0, 0, null, 0, 0, 0, "", 0, 0, Long.valueOf(currentTimeMillis2), Long.valueOf(currentTimeMillis2), 0L, false, null, null));
                 m4197e();
             }
             this.mediaTag.close();
@@ -513,7 +513,7 @@ public final class MediaScanner {
                         }
                         int i2 = i * 1000;
                         if (m4217a(i2)) {
-                            m4214a(new MediaItem(null, null, FileUtils.m8396p(m4246b), FileUtils.m8400l(m4246b), TextUtils.isEmpty(next.m4257c()) ? title : next.m4257c(), TextUtils.isEmpty(next.m4255d()) ? artist : next.m4255d(), album, genre, null, FileUtils.getSuffix(m4246b), Integer.valueOf(m4249h == 0 ? 1 : m4249h * 1000), Integer.valueOf(i2), Integer.valueOf(next.m4253e()), Integer.valueOf(intValue4), 0, Integer.valueOf(intValue), Integer.valueOf(intValue2), Integer.valueOf(intValue3), comment, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null));
+                            m4214a(new MediaItem(null, null, FileUtils.getCanonicalPath(m4246b), FileUtils.getParentPath(m4246b), TextUtils.isEmpty(next.m4257c()) ? title : next.m4257c(), TextUtils.isEmpty(next.m4255d()) ? artist : next.m4255d(), album, genre, null, FileUtils.getSuffix(m4246b), Integer.valueOf(m4249h == 0 ? 1 : m4249h * 1000), Integer.valueOf(i2), Integer.valueOf(next.m4253e()), Integer.valueOf(intValue4), 0, Integer.valueOf(intValue), Integer.valueOf(intValue2), Integer.valueOf(intValue3), comment, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null));
                             if (cDRWinSheetEntry != null) {
                                 m4197e();
                             }
@@ -530,8 +530,8 @@ public final class MediaScanner {
 
         /* renamed from: d */
         private void m4198d(String str) {
-            String m8396p = FileUtils.m8396p(str);
-            m4214a(new MediaItem(null, null, m8396p, FileUtils.m8400l(m8396p), FileUtils.m8401k(m8396p), "", "", "", null, FileUtils.getSuffix(m8396p), 0, 0, 0, 0, 0, 0, 0, 0, null, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null));
+            String m8396p = FileUtils.getCanonicalPath(str);
+            m4214a(new MediaItem(null, null, m8396p, FileUtils.getParentPath(m8396p), FileUtils.getFilenameWithoutExtension(m8396p), "", "", "", null, FileUtils.getSuffix(m8396p), 0, 0, 0, 0, 0, 0, 0, 0, null, 0, 0, Long.valueOf(System.currentTimeMillis()), Long.valueOf(System.currentTimeMillis()), 0L, false, null, null));
             m4197e();
         }
 

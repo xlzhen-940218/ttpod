@@ -477,7 +477,7 @@ public final class MediaPlayerProxy {
         //SSystemEvent //SSystemEvent = //new //SSystemEvent("SYS_PLAY", "pause");
         if (this.f7049p != null) {
             //SSystemEvent.append("song_id", this.f7049p).append("play_type", this.f7046m).post();
-        } else if (FileUtils.m8419a(this.f7048o)) {
+        } else if (FileUtils.exists(this.f7048o)) {
             //SSystemEvent.append("song_id", this.f7048o).append("play_type", this.f7046m).post();
         }
     }
@@ -509,7 +509,7 @@ public final class MediaPlayerProxy {
         //SSystemEvent //SSystemEvent = //new //SSystemEvent("SYS_PLAY", "resume");
         if (this.f7049p != null) {
             //SSystemEvent.append("song_id", this.f7049p).append("play_type", this.f7046m).post();
-        } else if (FileUtils.m8419a(this.f7048o)) {
+        } else if (FileUtils.exists(this.f7048o)) {
             //SSystemEvent.append("song_id", this.f7048o).append("play_type", this.f7046m).post();
         }
     }

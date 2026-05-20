@@ -41,7 +41,7 @@ public class MediaScanExcludeActivity extends SlidingClosableActivity {
         setTitle(R.string.mediascan_setting_choose_exclude_folders);
         this.mExcludeFolderSet = Preferences.m2882g() != null ? Preferences.m2882g() : this.mExcludeFolderSet;
         for (String str : this.mExcludeFolderSet) {
-            if (FileUtils.m8419a(str)) {
+            if (FileUtils.exists(str)) {
                 this.mAllFolderList.add(str);
             }
         }
@@ -117,7 +117,7 @@ public class MediaScanExcludeActivity extends SlidingClosableActivity {
             }
             String str = (String) MediaScanExcludeActivity.this.mAllFolderList.get(i);
             c0766b.f2727a.setText(FileUtils.getFilename(str));
-            c0766b.f2728b.setText(FileUtils.m8400l(str));
+            c0766b.f2728b.setText(FileUtils.getParentPath(str));
             c0766b.f2729c.setOnCheckedChangeListener(null);
             c0766b.f2729c.setChecked(MediaScanExcludeActivity.this.mExcludeFolderSet.contains(str));
             c0766b.f2729c.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() { // from class: com.sds.android.ttpod.activities.mediascan.setting.MediaScanExcludeActivity.a.1

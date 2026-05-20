@@ -178,7 +178,7 @@ public class FindSongModule extends BaseModule {
         new Thread("extractMvThumbnail") { // from class: com.sds.android.ttpod.framework.modules.b.a.6
             @Override // java.lang.Thread, java.lang.Runnable
             public void run() {
-                Bitmap decodeFile = BitmapFactory.decodeFile(TTPodConfig.getMvCachePath() + File.separator + (FileUtils.m8401k(str) + ".jpg"));
+                Bitmap decodeFile = BitmapFactory.decodeFile(TTPodConfig.getMvCachePath() + File.separator + (FileUtils.getFilenameWithoutExtension(str) + ".jpg"));
                 if (decodeFile == null && SDKVersionUtils.sdkThan8()) {
                     decodeFile = ThumbnailUtils.createVideoThumbnail(str, 3);
                 }

@@ -2,6 +2,7 @@ package com.sds.android.ttpod.framework.support.search.task;
 
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
+
 import com.sds.android.cloudapi.ttpod.data.User;
 import com.sds.android.sdk.lib.util.EnvironmentUtils;
 import com.sds.android.sdk.lib.util.FileUtils;
@@ -115,7 +116,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         MediaItem i3 = getLyricSearchTaskInfo().getMediaItem();
         String mo2137a = getMediaItem(i3);
         if (mo2137a != null) {
-            String m8403i = FileUtils.m8403i(mo2137a);
+            String m8403i = FileUtils.readStringFromFile(mo2137a);
             Object m8346a = StringUtils.isEmpty(m8403i);
             try {
                 if (!((boolean) m8346a)) {
@@ -499,10 +500,63 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         return 4 == (i & 4);
     }
 
-    @Override // com.sds.android.ttpod.framework.support.search.task.LyrPicBaseSearchTask
-    /* renamed from: a */
+    @Override
     protected String buildUrl() {
         return m2138a(getLyricSearchTaskInfo());
+    }
+
+    @Override
+    protected ArrayList<ResultData> requestResultDataArrayList(String initialUrl) {
+        ArrayList<ResultData> resultDataArrayList = new ArrayList<>();
+        MediaItem mediaItem = getLyricSearchTaskInfo().getMediaItem();
+        String artist = mediaItem.getArtist();
+        if (TextUtils.isEmpty(artist)) {
+            artist = getLyricSearchTaskInfo().getSinger();
+        }
+        if (TextUtils.isEmpty(artist)) {
+            return resultDataArrayList;
+        }
+
+        try {
+            String searchUrl = "https://api.deezer.com/search/artist?q=" + URLEncoder.encode(artist, "UTF-8");
+            String json = requestData(searchUrl);
+            if (TextUtils.isEmpty(json)) {
+                return resultDataArrayList;
+            }
+
+            com.google.gson.JsonObject root = com.google.gson.JsonParser.parseString(json).getAsJsonObject();
+            if (root != null && root.has("data") && root.get("data").isJsonArray()) {
+                com.google.gson.JsonArray data = root.getAsJsonArray("data");
+                if (data != null && data.size() > 0) {
+                    com.google.gson.JsonElement element = data.get(0);
+                    if (element != null && element.isJsonObject()) {
+                        com.google.gson.JsonObject artistObj = element.getAsJsonObject();
+                        String picUrl = null;
+                        if (artistObj.has("picture_xl") && !artistObj.get("picture_xl").isJsonNull()) {
+                            picUrl = artistObj.get("picture_xl").getAsString();
+                        } else if (artistObj.has("picture_big") && !artistObj.get("picture_big").isJsonNull()) {
+                            picUrl = artistObj.get("picture_big").getAsString();
+                        }
+
+                        if (!TextUtils.isEmpty(picUrl) && artistObj.has("id") && !artistObj.get("id").isJsonNull()) {
+                            ResultData resultData = new ResultData();
+                            resultData.setArtist(artist);
+                            resultData.setTitle(mediaItem.getTitle());
+
+                            ResultData.Item[] items = new ResultData.Item[1];
+                            int artistId = artistObj.get("id").getAsInt();
+                            String localPath = TTPodConfig.getArtistPath() + File.separator + FileUtils.removeWrongCharacter(artist) + File.separator + artistId + ".jpg";
+                            items[0] = new ResultData.Item("artist", picUrl, localPath, artistId);
+                            resultData.setLyricArray(items);
+                            resultDataArrayList.add(resultData);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultDataArrayList;
     }
 
     /* renamed from: a */

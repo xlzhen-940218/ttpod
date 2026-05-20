@@ -72,7 +72,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         try {
             if (StringUtils.isEmpty(m8460d) || m8467b.equals(m8460d) || !checkSDCardPath(m8467b) || !checkSDCardPath(m8460d)) {
                 this.mExtensionCardPath = "";
-            } else if (SDKVersionUtils.sdkThan9() && Environment.isExternalStorageRemovable() && FileUtils.m8408d(EnvironmentUtils.C0605d.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
+            } else if (SDKVersionUtils.sdkThan9() && Environment.isExternalStorageRemovable() && FileUtils.testDirPermissions(EnvironmentUtils.C0605d.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
                 this.mStandardCardPath = EnvironmentUtils.C0605d.m8460d(this);
                 this.mExtensionCardPath = EnvironmentUtils.C0605d.getSdcardPath();
             }
@@ -201,7 +201,7 @@ public class DownloadLocationActivity extends SlidingClosableActivity {
         Long valueOf = Long.valueOf(System.currentTimeMillis());
         String str2 = getWritableBasePath(str) + File.separator + valueOf.toString();
         FileUtils.createFile(str2);
-        if (FileUtils.m8419a(str2)) {
+        if (FileUtils.exists(str2)) {
             FileUtils.exists(str2);
             return true;
         }

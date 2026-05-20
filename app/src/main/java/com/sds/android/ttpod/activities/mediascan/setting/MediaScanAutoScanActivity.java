@@ -154,7 +154,7 @@ public class MediaScanAutoScanActivity extends SlidingClosableActivity {
             });
             String item = getItem(i);
             c0762b.f2720a.setText(FileUtils.getFilename(item));
-            c0762b.f2721b.setText(FileUtils.m8400l(item));
+            c0762b.f2721b.setText(FileUtils.getParentPath(item));
             return view;
         }
     }

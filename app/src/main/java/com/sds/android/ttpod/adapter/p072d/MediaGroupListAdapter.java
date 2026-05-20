@@ -37,7 +37,7 @@ public class MediaGroupListAdapter extends BaseListAdapter<GroupItem> {
     protected void m7578a(C0969a c0969a, GroupItem groupItem) {
         boolean startsWith = groupItem.getGroupID().startsWith(MediaStorage.GROUP_ID_FOLDER_PREFIX);
         c0969a.m7574e().setVisibility(View.GONE);
-        c0969a.m7576c().setText(startsWith ? FileUtils.m8401k(groupItem.getName()) : groupItem.getName());
+        c0969a.m7576c().setText(startsWith ? FileUtils.getFilenameWithoutExtension(groupItem.getName()) : groupItem.getName());
         c0969a.m7575d().setText(getContext().getString(R.string.count_of_media, groupItem.getCount()) + (startsWith ? "  " + groupItem.getName() : ""));
         c0969a.m7577b().setVisibility(groupItem.equals(getData()) ? View.VISIBLE : View.GONE);
     }

@@ -139,7 +139,7 @@ public class MediaInfoEditDialog extends ScrollableDialog {
         } catch (Exception e2) {
             e2.printStackTrace();
         }
-        FileUtils.m8410c(m4341a, AudioEffectUtils.m4341a(mediaItem));
+        FileUtils.renameFile(m4341a, AudioEffectUtils.m4341a(mediaItem));
         m6825d(mediaItem);
         CommandCenter.getInstance().execute(new Command(CommandID.UPDATE_MEDIA_ITEM, mediaItem));
     }
@@ -152,7 +152,7 @@ public class MediaInfoEditDialog extends ScrollableDialog {
     */
     private void m6825d(MediaItem mediaItem) {
         AudioEffectCache audioEffectCache;
-        String m8403i = FileUtils.m8403i(AudioEffectUtils.m4341a(mediaItem));
+        String m8403i = FileUtils.readStringFromFile(AudioEffectUtils.m4341a(mediaItem));
         try {
         } catch (Exception e) {
             e.printStackTrace();

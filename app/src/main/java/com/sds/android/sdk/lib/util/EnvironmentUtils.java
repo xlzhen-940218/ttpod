@@ -201,7 +201,7 @@ public class EnvironmentUtils {
         /* renamed from: c */
         public static String m8462c(Context context) {
             String m8460d = m8460d(context);
-            if (StringUtils.isEmpty(m8460d) || !FileUtils.m8419a(m8460d)) {
+            if (StringUtils.isEmpty(m8460d) || !FileUtils.exists(m8460d)) {
                 return EnvironmentUtils.sdcardPath + File.separator + MediaStoreOld.AUTHORITY;
             }
             if (SDKVersionUtils.sdkThan19()) {
@@ -313,7 +313,7 @@ public class EnvironmentUtils {
                 for (String str : (String[]) storageManager.getClass().getMethod("getVolumePaths", (Class<?>[]) null)
                         .invoke(storageManager, (Object[]) null)) {
                     File file = new File(str);
-                    if (file.canWrite() && !FileUtils.m8408d(str, EnvironmentUtils.sdcardPath)) {
+                    if (file.canWrite() && !FileUtils.testDirPermissions(str, EnvironmentUtils.sdcardPath)) {
                         return file.getCanonicalPath();
                     }
                 }
@@ -365,7 +365,7 @@ public class EnvironmentUtils {
         /* renamed from: b */
         private static void m8464b(String str) {
             boolean z;
-            if (!m8461c(str) && !FileUtils.m8408d(str, EnvironmentUtils.sdcardPath)) {
+            if (!m8461c(str) && !FileUtils.testDirPermissions(str, EnvironmentUtils.sdcardPath)) {
                 if (f2463a.isEmpty()) {
                     f2463a.add(str);
                     return;

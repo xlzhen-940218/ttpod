@@ -119,7 +119,7 @@ public final class ShareItemViewHolder {
         this.f3176c.setText(FileUtils.getFilename(localDataSource));
         long size = m5772a.getSize();
         if (size <= 0) {
-            size = FileUtils.m8405g(localDataSource);
+            size = FileUtils.getFolderSize(localDataSource);
             m5772a.setSize(size);
         }
         this.f3177d.setText(Formatter.formatFileSize(this.f3181h.getContext(), size));

@@ -96,7 +96,7 @@ public final class ImageCacheUtils {
     /* renamed from: a */
     public static void m4744a(String str, String str2, int i, int i2) {
         imageCache.removeLruCache(str, i, i2);
-        FileUtils.m8413b(imageCache.getCacheImagePath() + File.separator + SecurityUtils.MD5Hex.stringToHex(str), str2);
+        FileUtils.copyFile(imageCache.getCacheImagePath() + File.separator + SecurityUtils.MD5Hex.stringToHex(str), str2);
     }
 
     /* renamed from: a */

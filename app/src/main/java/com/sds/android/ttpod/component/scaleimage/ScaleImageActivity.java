@@ -221,9 +221,9 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
             if (!FileUtils.isDir(m5312A)) {
                 FileUtils.createFolder(m5312A);
             }
-            final String str = TTPodConfig.getImagePath() + File.separator + FileUtils.m8401k(this.mPicList.get(this.mStartIndex)) + ".jpg";
+            final String str = TTPodConfig.getImagePath() + File.separator + FileUtils.getFilenameWithoutExtension(this.mPicList.get(this.mStartIndex)) + ".jpg";
             if (new File(str).exists()) {
-                PopupsUtils.m6721a("图片已存在");
+                PopupsUtils.m6721a("图片已存?");
                 return;
             }
             ImageViewTouch m5861a = this.mPagerAdapter.m5861a(this.mStartIndex);
@@ -232,10 +232,10 @@ public class ScaleImageActivity extends BaseActivity implements View.OnClickList
                 /* renamed from: a */
                 public void loaded(String url, int width, int height, final Bitmap bitmap) {
                     if (bitmap == null) {
-                        PopupsUtils.m6721a("请等待图片下载完成后再保存!");
+                        PopupsUtils.m6721a("请等待图片下载完成后再保?");
                         return;
                     }
-                    PopupsUtils.m6721a("图片保存在:" + str);
+                    PopupsUtils.m6721a("图片保存?" + str);
                     TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.component.scaleimage.ScaleImageActivity.3.1
                         /* JADX WARN: Removed duplicated region for block: B:28:0x0036 A[EXC_TOP_SPLITTER, SYNTHETIC] */
                         @Override // java.lang.Runnable

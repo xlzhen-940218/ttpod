@@ -85,7 +85,7 @@ public class MediaTag {
     private String getTitleOrFileName() {
         String title = title();
         if (StringUtils.isEmpty(title)) {
-            return FileUtils.m8401k(this.mFileName);
+            return FileUtils.getFilenameWithoutExtension(this.mFileName);
         }
         return title;
     }

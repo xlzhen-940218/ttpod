@@ -43,7 +43,7 @@ public class MediaInfoDialog extends ScrollableDialog {
         m6837a(this.f3946a, R.id.album, R.string.media_info_label_album, TTTextUtils.validateString(context, mediaItem.getAlbum()));
         m6837a(this.f3946a, R.id.genre, R.string.media_info_label_genre, TTTextUtils.validateString(context, mediaItem.getGenre()));
         m6837a(this.f3946a, R.id.time, R.string.media_info_label_time, DateTimeUtils.m3748a(mediaItem.getDuration().intValue()));
-        m6837a(this.f3946a, R.id.size, R.string.media_info_label_size, Formatter.formatFileSize(context, FileUtils.m8405g(mediaItem.getLocalDataSource())));
+        m6837a(this.f3946a, R.id.size, R.string.media_info_label_size, Formatter.formatFileSize(context, FileUtils.getFolderSize(mediaItem.getLocalDataSource())));
         m6837a(this.f3946a, R.id.format, R.string.media_info_label_format, FileUtils.getSuffix(mediaItem.getLocalDataSource()));
         m6837a(this.f3946a, R.id.year, R.string.media_info_label_year, String.valueOf(mediaItem.getYear()));
         m6837a(this.f3946a, R.id.bitrate, R.string.media_info_label_bitrate, context.getString(R.string.media_info_content_bitrate, mediaItem.getBitRate()));

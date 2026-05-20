@@ -134,14 +134,16 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
                         if (!TextUtils.isEmpty(json)) {
                             com.google.gson.JsonObject obj = com.google.gson.JsonParser.parseString(json).getAsJsonObject();
                             String lrc = "";
-                            if (obj.has("syncedLyrics") && !obj.get("syncedLyrics").isJsonNull()) {
-                                lrc = obj.get("syncedLyrics").getAsString();
-                            } else if (obj.has("plainLyrics") && !obj.get("plainLyrics").isJsonNull()) {
-                                lrc = obj.get("plainLyrics").getAsString();
+                            if (obj != null) {
+                                if (obj.has("syncedLyrics") && !obj.get("syncedLyrics").isJsonNull()) {
+                                    lrc = obj.get("syncedLyrics").getAsString();
+                                } else if (obj.has("plainLyrics") && !obj.get("plainLyrics").isJsonNull()) {
+                                    lrc = obj.get("plainLyrics").getAsString();
+                                }
                             }
 
                             if (!TextUtils.isEmpty(lrc)) {
-                                FileUtils.m8416a(lrc, item.getLocalLyricPath());
+                                FileUtils.writeStringToFile(lrc, item.getLocalLyricPath());
                                 ArrayList<String> list = new ArrayList<>();
                                 list.add(item.getLocalLyricPath());
                                 m2154b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_FINISHED, null, list, item.getId());
@@ -257,10 +259,14 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
 
             com.google.gson.JsonArray array = com.google.gson.JsonParser.parseString(json).getAsJsonArray();
             for (int i = 0; i < array.size(); i++) {
-                com.google.gson.JsonObject obj = array.get(i).getAsJsonObject();
+                com.google.gson.JsonElement element = array.get(i);
+                if (element == null || !element.isJsonObject()) {
+                    continue;
+                }
+                com.google.gson.JsonObject obj = element.getAsJsonObject();
                 ResultData resultData = new ResultData();
-                resultData.setTitle(obj.get("trackName").getAsString());
-                resultData.setArtist(obj.get("artistName").getAsString());
+                resultData.setTitle(obj.has("trackName") && !obj.get("trackName").isJsonNull() ? obj.get("trackName").getAsString() : "");
+                resultData.setArtist(obj.has("artistName") && !obj.get("artistName").isJsonNull() ? obj.get("artistName").getAsString() : "");
                 resultData.setAlbum(obj.has("albumName") && !obj.get("albumName").isJsonNull() ? obj.get("albumName").getAsString() : "");
 
                 String lrc = "";
@@ -270,7 +276,7 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
                     lrc = obj.get("plainLyrics").getAsString();
                 }
 
-                if (!TextUtils.isEmpty(lrc)) {
+                if (!TextUtils.isEmpty(lrc) && obj.has("id") && !obj.get("id").isJsonNull()) {
                     ResultData.Item[] items = new ResultData.Item[1];
                     int id = obj.get("id").getAsInt();
                     // We use a special URL format that we will handle in downloadLyric

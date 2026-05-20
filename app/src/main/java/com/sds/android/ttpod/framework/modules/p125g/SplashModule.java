@@ -96,7 +96,7 @@ public final class SplashModule extends BaseModule {
                         if (FileUtils.isFile(str3)) {
                             j2 = 4000;
                         }
-                        if (m3989e != null && FileUtils.m8419a((String) null) && Preferences.m3028a()) {
+                        if (m3989e != null && FileUtils.exists((String) null) && Preferences.m3028a()) {
                             SplashModule.this.f6286a = System.currentTimeMillis();
                             SplashModule.this.m4003a((String) null);
                             i = m4015a;
@@ -229,8 +229,8 @@ public final class SplashModule extends BaseModule {
     /* renamed from: a */
     public void m4004a(Integer num) {
         String str = TTPodConfig.getSplashPath() + File.separator + "帮助.txt";
-        if (!FileUtils.m8419a(str)) {
-            FileUtils.m8416a(BaseApplication.getApplication().getString(num.intValue()), str);
+        if (!FileUtils.exists(str)) {
+            FileUtils.writeStringToFile(BaseApplication.getApplication().getString(num.intValue()), str);
         }
     }
 
@@ -240,8 +240,8 @@ public final class SplashModule extends BaseModule {
             String str3 = str2 + ".tmp";
             HttpRequest.Response m8708a = HttpRequest.m8708a(new HttpGet(str), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
             if (m8708a != null && 200 == m8708a.getStatusCode()) {
-                if (FileUtils.m8420a(m8708a.getInputStream(), str3)) {
-                    return FileUtils.m8410c(str3, str2);
+                if (FileUtils.writeInputStreamToFile(m8708a.getInputStream(), str3)) {
+                    return FileUtils.renameFile(str3, str2);
                 }
                 FileUtils.exists(str3);
             }
@@ -302,7 +302,7 @@ public final class SplashModule extends BaseModule {
         Bitmap bitmap = null;
         for (int i = 0; i < length; i++) {
             String str = TTPodConfig.getSplashPath() + File.separator + strArr[i];
-            if (FileUtils.m8419a(str) && (bitmap = m3989e(str)) != null) {
+            if (FileUtils.exists(str) && (bitmap = m3989e(str)) != null) {
                 break;
             }
         }
@@ -326,7 +326,7 @@ public final class SplashModule extends BaseModule {
 
     /* renamed from: d */
     private String m3990d(String str) {
-        String m8401k = FileUtils.m8401k(str);
+        String m8401k = FileUtils.getFilenameWithoutExtension(str);
         if (StringUtils.isEmpty(m8401k)) {
             return null;
         }

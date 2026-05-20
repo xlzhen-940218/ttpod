@@ -84,7 +84,7 @@ public class ThemeActivity extends BaseActivity {
     private String buildDownloadToastText(DownloadTaskInfo downloadTaskInfo, String str, String str2) {
         String m8402j = FileUtils.getFilename(downloadTaskInfo.getSavePath());
         if (DownloadTaskInfo.TYPE_AUDIO.equals(downloadTaskInfo.getType())) {
-            m8402j = FileUtils.m8401k(downloadTaskInfo.getSavePath());
+            m8402j = FileUtils.getFilenameWithoutExtension(downloadTaskInfo.getSavePath());
             List<String> m8335c = StringUtils.stringToArray(m8402j, "-");
             if (m8335c.size() > 1) {
                 m8402j = m8335c.get(1).trim();
@@ -104,7 +104,7 @@ public class ThemeActivity extends BaseActivity {
     public void updateAddDownloadTaskError(final DownloadTaskInfo downloadTaskInfo) {
         if (ActivityManager.getInstance().isActiveActivity(this)) {
             if (DownloadTaskInfo.TYPE_AUDIO == downloadTaskInfo.getType()) {
-                PopupsUtils.m6721a("已经下载本首歌曲了");
+                PopupsUtils.m6721a("已经下载本首歌曲?");
                 return;
             }
             MessageDialog messageDialog = new MessageDialog(this, (int) R.string.download_file_already_existed, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.base.ThemeActivity.1

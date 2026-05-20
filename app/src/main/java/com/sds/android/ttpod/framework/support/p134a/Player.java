@@ -315,8 +315,8 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         public void mo2565g() {
             MediaItem m2606g;
             String m5310C = TTPodConfig.getAudioTmp();
-            if (FileUtils.m8419a(m5310C) && (m2606g = Player.this.getMediaItem()) != null && m2606g.isOnline()) {
-                FileUtils.m8413b(TTPodConfig.getSongIdPath(m2606g.getSongID()), m5310C);
+            if (FileUtils.exists(m5310C) && (m2606g = Player.this.getMediaItem()) != null && m2606g.isOnline()) {
+                FileUtils.copyFile(TTPodConfig.getSongIdPath(m2606g.getSongID()), m5310C);
             }
         }
     };
@@ -666,7 +666,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                     TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.support.a.f.1
                         @Override // java.lang.Runnable
                         public void run() {
-                            long m8405g = FileUtils.m8405g(Player.CACHE_MEDIA_PATH);
+                            long m8405g = FileUtils.getFolderSize(Player.CACHE_MEDIA_PATH);
                             if (m8405g > 209715200 || EnvironmentUtils.C0605d.m8469a(new File(Player.CACHE_MEDIA_PATH)) <= 52428800) {
                                 long j = m8405g - 41943040;
                                 long j2 = j > 0 ? j : 0L;
@@ -674,7 +674,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                                 if (j2 <= 209715200) {
                                     j2 = 209715200;
                                 }
-                                FileUtils.m8417a(str, j2, new String[]{TTPodConfig.getAudioTmp(), m2730a});
+                                FileUtils.limitFolderSize(str, j2, new String[]{TTPodConfig.getAudioTmp(), m2730a});
                             }
                         }
                     });

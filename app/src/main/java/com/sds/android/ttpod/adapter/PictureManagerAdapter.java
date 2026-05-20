@@ -115,8 +115,8 @@ public class PictureManagerAdapter extends BaseAdapter {
                     InputStream m8688e = m8708a != null ? m8708a.getInputStream() : null;
                     if (m8688e != null) {
                         String str = pictureDataItem2.getLocalLyricPath() + ".tmp";
-                        if (FileUtils.m8420a(m8688e, str)) {
-                            FileUtils.m8410c(str, pictureDataItem2.getLocalLyricPath());
+                        if (FileUtils.writeInputStreamToFile(m8688e, str)) {
+                            FileUtils.renameFile(str, pictureDataItem2.getLocalLyricPath());
                             return pictureDataItem2;
                         }
                         FileUtils.exists(str);
@@ -221,7 +221,7 @@ public class PictureManagerAdapter extends BaseAdapter {
         } else {
             this.f3126d = str;
         }
-        if (!FileUtils.m8419a(TTPodConfig.getArtistPath() + File.separator + this.f3126d + File.separator + "result.xml")) {
+        if (!FileUtils.exists(TTPodConfig.getArtistPath() + File.separator + this.f3126d + File.separator + "result.xml")) {
             this.networkLoadView.setLoadState(NetworkLoadView.EnumC2205a.IDLE);
         } else {
             TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Void, ArrayList<PictureDataItem>>(null) { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.1
@@ -399,7 +399,7 @@ public class PictureManagerAdapter extends BaseAdapter {
                                         PictureManagerAdapter.this.f3126d = FileUtils.removeWrongCharacter(m2139a.get(0).getArtist());
                                     }
                                     PictureSearchTask.m2127b(PictureManagerAdapter.this.mediaItem.getID(), PictureManagerAdapter.this.f3126d);
-                                    FileUtils.m8416a(trim, TTPodConfig.getArtistPath() + File.separator + PictureManagerAdapter.this.f3126d + "/result.xml");
+                                    FileUtils.writeStringToFile(trim, TTPodConfig.getArtistPath() + File.separator + PictureManagerAdapter.this.f3126d + "/result.xml");
                                 }
                                 return Integer.valueOf(size);
                             }

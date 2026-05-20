@@ -44,7 +44,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
 
         @Override // com.sds.android.ttpod.ThirdParty.update.UpdateCallback
         public boolean needInstallApp(String str, String str2) {
-            return FileUtils.m8419a(VersionUpdateModule.this.getSavePath(str, str2));
+            return FileUtils.exists(VersionUpdateModule.this.getSavePath(str, str2));
         }
 
         @Override // com.sds.android.ttpod.ThirdParty.update.UpdateCallback
@@ -124,7 +124,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
 
             @Override // com.sds.android.sdk.lib.request.RequestCallback
             public void onRequestFailure(AppVersionResult appVersionResult) {
-                notify("检查版本更新出错", new VersionUpdateData(appVersionResult), 2);
+                notify("检查版本更新出?", new VersionUpdateData(appVersionResult), 2);
                 statisticUpdateError();
             }
 
@@ -182,7 +182,7 @@ public final class VersionUpdateModule extends BaseModule implements DownloadPro
             */
             public void run() {
                 VersionUpdateModule.this.mIsStop = false;
-                if (FileUtils.m8419a(m4760a.getSavePath())) {
+                if (FileUtils.exists(m4760a.getSavePath())) {
                     FileUtils.exists(m4760a.getSavePath());
                 }
                 CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, m4760a));

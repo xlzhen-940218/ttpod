@@ -269,7 +269,7 @@ public class AudioEffectModule extends BaseModule {
         m4364b(settings.getName());
         String m4369a = m4369a(settings.getName());
         FileUtils.exists(m4369a);
-        FileUtils.m8416a(settings.toString(), m4369a);
+        FileUtils.writeStringToFile(settings.toString(), m4369a);
         CommandCenter.getInstance().m4595b(new Command(CommandID.UPDATE_SAVE_CUSTOM_EQUALIZER, settings), ModuleID.AUDIO_EFFECT);
     }
 
@@ -309,7 +309,7 @@ public class AudioEffectModule extends BaseModule {
                         if (file.getAbsolutePath().endsWith(".tteq")) {
                             try {
                                 TTEqualizer.Settings settings = new TTEqualizer.Settings(StringUtils.streamToString(new FileInputStream(file)));
-                                settings.setName(FileUtils.m8401k(file.getAbsolutePath()));
+                                settings.setName(FileUtils.getFilenameWithoutExtension(file.getAbsolutePath()));
                                 arrayList.add(settings);
                             } catch (Exception e) {
                                 e.printStackTrace();
@@ -326,7 +326,7 @@ public class AudioEffectModule extends BaseModule {
                                                 i++;
                                                 i2++;
                                             }
-                                            arrayList.add(new TTEqualizer.Settings(FileUtils.m8401k(file.getAbsolutePath()), (short) 10, sArr));
+                                            arrayList.add(new TTEqualizer.Settings(FileUtils.getFilenameWithoutExtension(file.getAbsolutePath()), (short) 10, sArr));
                                         } catch (NumberFormatException e2) {
                                             e.printStackTrace();
                                         }
@@ -555,7 +555,7 @@ public class AudioEffectModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: d */
     public PrivateEffectItem m4360d(String str) {
-        AudioEffectCache audioEffectCache = (AudioEffectCache) JSONUtils.fromJson(FileUtils.m8403i(str), AudioEffectCache.class);
+        AudioEffectCache audioEffectCache = (AudioEffectCache) JSONUtils.fromJson(FileUtils.readStringFromFile(str), AudioEffectCache.class);
         if (audioEffectCache == null) {
             return null;
         }

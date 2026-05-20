@@ -84,7 +84,7 @@ public final class ImageLoadTask {
     public void downloadAndLoad() {
         String path = this.imageRequestInfo.getLocalPath() + ".tmp";
         try {
-            if (download(this.imageRequestInfo.getImageUrl(), path) && FileUtils.m8410c(path, this.imageRequestInfo.getLocalPath())) {
+            if (download(this.imageRequestInfo.getImageUrl(), path) && FileUtils.renameFile(path, this.imageRequestInfo.getLocalPath())) {
                 loadImageFormCache();
             } else {
                 FileUtils.exists(path);

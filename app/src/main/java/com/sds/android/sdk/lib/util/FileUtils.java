@@ -14,22 +14,25 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/* renamed from: com.sds.android.sdk.lib.util.d */
-/* loaded from: classes.dex */
+/**
+ * Utility class for file and directory operations.
+ * De-obfuscated version.
+ */
 public class FileUtils {
 
-    /* renamed from: a */
-    private static String f2470a = File.separator;
+    private static final String SEPARATOR = File.separator;
+    private static final char SEPARATOR_CHAR = File.separatorChar;
 
-    /* renamed from: b */
-    private static char f2471b = File.separatorChar;
-
-    /* renamed from: a */
-    public static boolean m8419a(String str) {
-        return !StringUtils.isEmpty(str) && new File(str).exists();
+    /**
+     * Checks if a file or directory exists at the given path.
+     */
+    public static boolean exists(String path) {
+        return !StringUtils.isEmpty(path) && new File(path).exists();
     }
 
-    /* renamed from: b */
+    /**
+     * Checks if the given path is a file.
+     */
     public static boolean isFile(String path) {
         if (StringUtils.isEmpty(path)) {
             return false;
@@ -38,20 +41,26 @@ public class FileUtils {
         return file.exists() && file.isFile();
     }
 
-    /* renamed from: a */
-    public static boolean setLastModified(String str, long time) {
-        return isFile(str) && new File(str).setLastModified(time);
+    /**
+     * Sets the last modified time of the file at the given path.
+     */
+    public static boolean setLastModified(String path, long time) {
+        return isFile(path) && new File(path).setLastModified(time);
     }
 
-    /* renamed from: c */
-    public static long m8411c(String str) {
-        if (isFile(str)) {
-            return new File(str).length();
+    /**
+     * Returns the size of the file at the given path.
+     */
+    public static long getFileSize(String path) {
+        if (isFile(path)) {
+            return new File(path).length();
         }
         return 0L;
     }
 
-    /* renamed from: d */
+    /**
+     * Checks if the given path is a directory.
+     */
     public static boolean isDir(String path) {
         if (StringUtils.isEmpty(path)) {
             return false;
@@ -60,20 +69,22 @@ public class FileUtils {
         return file.exists() && file.isDirectory();
     }
 
-    /* renamed from: e */
-    public static synchronized File createFile(String str) {
+    /**
+     * Creates a new file at the specified path, including parent directories if necessary.
+     */
+    public static synchronized File createFile(String path) {
         File file = null;
         synchronized (FileUtils.class) {
-            if (!StringUtils.isEmpty(str)) {
-                File file2 = new File(str);
-                if (file2.isFile()) {
-                    file = file2;
+            if (!StringUtils.isEmpty(path)) {
+                File targetFile = new File(path);
+                if (targetFile.isFile()) {
+                    file = targetFile;
                 } else {
-                    File parentFile = file2.getParentFile();
+                    File parentFile = targetFile.getParentFile();
                     if (parentFile != null && (parentFile.isDirectory() || parentFile.mkdirs())) {
                         try {
-                            if (file2.createNewFile()) {
-                                file = file2;
+                            if (targetFile.createNewFile()) {
+                                file = targetFile;
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -85,446 +96,346 @@ public class FileUtils {
         return file;
     }
 
-    /* JADX WARN: Code restructure failed: missing block: B:11:0x001b, code lost:
-        if (r1.mkdirs() != false) goto L14;
+    /**
+     * Deletes the file or directory at the specified path.
      */
-    /* renamed from: f */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
-    public static synchronized File createFolder(String str) {
-        File file = null;
+    public static boolean deleteFile(String path) {
+        if (StringUtils.isEmpty(path)) {
+            return false;
+        }
+        File file = new File(path);
+        return file.exists() && file.delete();
+    }
+
+    /**
+     * Creates a folder at the specified path. Deletes any existing file with the same name.
+     */
+    public static synchronized File createFolder(String path) {
+        File folder = null;
         synchronized (FileUtils.class) {
-            if (!StringUtils.isEmpty(str)) {
-                File file2 = new File(str);
-                if (!file2.isDirectory()) {
-                    file2.delete();
-                    file2.mkdirs();
+            if (!StringUtils.isEmpty(path)) {
+                File dir = new File(path);
+                if (!dir.isDirectory()) {
+                    dir.delete();
+                    dir.mkdirs();
                 }
-                file = file2;
+                folder = dir;
             }
         }
-        return file;
+        return folder;
     }
 
-    /* renamed from: g */
-    public static synchronized long m8405g(String str) {
-        long m8421a;
-        synchronized (FileUtils.class) {
-            m8421a = StringUtils.isEmpty(str) ? 0L : m8421a(new File(str));
+    /**
+     * Calculates the total size of a file or directory.
+     */
+    public static synchronized long getFolderSize(String path) {
+        if (StringUtils.isEmpty(path)) {
+            return 0L;
         }
-        return m8421a;
+        return getFolderSize(new File(path));
     }
 
-    /* renamed from: a */
-    public static synchronized long m8421a(File file) {
-        long j = 0;
-        synchronized (FileUtils.class) {
-            if (file != null) {
-                if (file.isDirectory()) {
-                    File[] listFiles = file.listFiles();
-                    if (listFiles != null) {
-                        long j2 = 0;
-                        for (File file2 : listFiles) {
-                            j2 += file2.isDirectory() ? m8421a(file2) : file2.length();
-                        }
-                        j = j2;
-                    }
-                } else {
-                    j = file.length();
-                }
-            }
-        }
-        return j;
-    }
-
-    /* renamed from: a */
-    public static synchronized void m8417a(String str, long j, String[] strArr) {
-        synchronized (FileUtils.class) {
-            long m8405g = m8405g(str);
-            if (m8405g > j) {
-                ArrayList<String> arrayList = new ArrayList<>();
-                if (strArr != null) {
-                    for (String s : strArr)
-                        arrayList.add(s);
-                }
-                File[] listFiles = new File(str).listFiles();
+    /**
+     * Recursively calculates the size of a file or directory.
+     */
+    public static synchronized long getFolderSize(File file) {
+        long size = 0;
+        if (file != null) {
+            if (file.isDirectory()) {
+                File[] listFiles = file.listFiles();
                 if (listFiles != null) {
-                    List<File> asList = Arrays.asList(listFiles);
+                    for (File child : listFiles) {
+                        size += child.isDirectory() ? getFolderSize(child) : child.length();
+                    }
+                }
+            } else {
+                size = file.length();
+            }
+        }
+        return size;
+    }
+
+    /**
+     * Limits the folder size by deleting oldest files based on lastModified.
+     */
+    public static synchronized void limitFolderSize(String path, long maxSize, String[] excludes) {
+        synchronized (FileUtils.class) {
+            long currentSize = getFolderSize(path);
+            if (currentSize > maxSize) {
+                ArrayList<String> excludeList = new ArrayList<>();
+                if (excludes != null) {
+                    for (String s : excludes)
+                        excludeList.add(s);
+                }
+                File folder = new File(path);
+                File[] listFiles = folder.listFiles();
+                if (listFiles != null) {
+                    List<File> fileList = Arrays.asList(listFiles);
                     try {
-                        Collections.sort(asList, new Comparator<File>() { // from class: com.sds.android.sdk.lib.util.d.1
-                            @Override // java.util.Comparator
-                            /* renamed from: a */
-                            public int compare(File file, File file2) {
-                                if (file.lastModified() == file2.lastModified()) {
+                        Collections.sort(fileList, new Comparator<File>() {
+                            @Override
+                            public int compare(File f1, File f2) {
+                                if (f1.lastModified() == f2.lastModified()) {
                                     return 0;
                                 }
-                                return file.lastModified() > file2.lastModified() ? -1 : 1;
+                                return f1.lastModified() > f2.lastModified() ? -1 : 1;
                             }
                         });
                     } catch (IllegalArgumentException e) {
                         e.printStackTrace();
                     }
-                    for (File file : asList) {
-                        if (m8405g <= j) {
+                    for (File file : fileList) {
+                        if (currentSize <= maxSize) {
                             break;
                         }
-                        if (!arrayList.contains(file.getAbsolutePath())) {
-                            file.lastModified();
-                            m8405g -= file.length();
+                        if (!excludeList.contains(file.getAbsolutePath())) {
+                            currentSize -= file.length();
                             file.delete();
                         }
-                        m8405g = m8405g;
                     }
                 }
             }
         }
     }
 
-    /* renamed from: b */
-    public static synchronized int m8415b(File file) {
-        int i = 0;
+    /**
+     * Recursively deletes files in a directory.
+     */
+    public static synchronized int deleteFilesRecursive(File folder) {
+        int deletedCount = 0;
         synchronized (FileUtils.class) {
+            File[] listFiles = folder.listFiles();
+            if (listFiles != null) {
+                for (File file : listFiles) {
+                    if (file.isDirectory()) {
+                        deletedCount += deleteFilesRecursive(file);
+                    }
+                    if (file.delete()) {
+                        deletedCount++;
+                    }
+                }
+            }
+        }
+        return deletedCount;
+    }
+
+    /**
+     * Deep check if a file or directory exists.
+     */
+    public static synchronized boolean deepExists(String path) {
+        if (StringUtils.isEmpty(path)) {
+            return false;
+        }
+        return deepExists(new File(path));
+    }
+
+    /**
+     * Deep check if a file or directory exists.
+     */
+    public static synchronized boolean deepExists(File file) {
+        if (file == null) {
+            return true;
+        }
+        if (file.isDirectory()) {
             File[] listFiles = file.listFiles();
             if (listFiles != null) {
-                for (File file2 : listFiles) {
-                    if (file2.isDirectory()) {
-                        i += m8415b(file2);
-                    }
-                    if (file2.delete()) {
-                        i++;
+                for (File child : listFiles) {
+                    if (!deepExists(child)) {
+                        return false;
                     }
                 }
             }
         }
-        return i;
+        return file.exists();
     }
 
-    /* renamed from: h */
-    public static synchronized boolean exists(String path) {
-        boolean z = false;
-        synchronized (FileUtils.class) {
-            if (!StringUtils.isEmpty(path)) {
-                z = exists(new File(path));
-            }
-        }
-        return z;
-    }
-
-    /* JADX WARN: Code restructure failed: missing block: B:20:0x002f, code lost:
-        if (r7.delete() != false) goto L25;
+    /**
+     * Reads the content of a file into a string.
      */
-    /* renamed from: c */
-    /*
-        Code decompiled incorrectly, please refer to instructions dump.
-    */
-    public static synchronized boolean exists(File file) {
-        File[] listFiles;
-        boolean z = false;
-        synchronized (FileUtils.class) {
-            if (file == null) {
-                z = true;
-            } else {
-                if (file.isDirectory() && (listFiles = file.listFiles()) != null) {
-                    for (File file2 : listFiles) {
-                        if (!exists(file2)) {
-                            break;
-                        }
-                    }
-                }
-                if (file.exists()) {
-                }
-                z = true;
-            }
-        }
-        return z;
-    }
-
-    /* renamed from: i */
-    public static String m8403i(String str) {
-        String str2;
-        if (str == null) {
+    public static String readStringFromFile(String path) {
+        if (path == null) {
             throw new NullPointerException("path should not be null.");
         }
+        String content;
         try {
-            str2 = StringUtils.streamToString(new FileInputStream(str));
+            content = StringUtils.streamToString(new FileInputStream(path));
         } catch (Exception e) {
             e.printStackTrace();
-            str2 = null;
+            content = null;
         }
-        return str2 != null ? str2 : "";
+        return content != null ? content : "";
     }
 
-    /* renamed from: a */
-    public static synchronized boolean m8416a(String str, String str2) {
-        File m8407e = null;
-        boolean z = false;
-        Exception e;
-        Throwable th;
-        synchronized (FileUtils.class) {
-            if (str2 == null) {
-                throw new NullPointerException("path should not be null.");
-            }
-            BufferedWriter bufferedWriter = null;
-            try {
-                try {
-                    m8407e = createFile(str2);
-                } catch (ArrayIndexOutOfBoundsException e2) {
-                    e = e2;
-                }
-                if (m8407e == null) {
-                    LogUtils.debug("FileUtils", "file == null path=%s", str2);
-                    if (0 != 0) {
-                        try {
-                            bufferedWriter.close();
-                        } catch (IOException e3) {
-                            e3.printStackTrace();
-                        }
-                    }
-                } else {
-                    BufferedWriter bufferedWriter2 = new BufferedWriter(new FileWriter(m8407e));
-                    if (str == null) {
-                        str = "";
-                    }
-                    try {
-                        bufferedWriter2.write(str);
-                        bufferedWriter2.flush();
-                        if (bufferedWriter2 != null) {
-                            try {
-                                bufferedWriter2.close();
-                            } catch (IOException e4) {
-                                e4.printStackTrace();
-                            }
-                        }
-                        z = true;
-                    } catch (IOException e5) {
-                        e = e5;
-                        bufferedWriter = bufferedWriter2;
-                        e.printStackTrace();
-                        if (bufferedWriter != null) {
-                            try {
-                                bufferedWriter.close();
-                            } catch (IOException e6) {
-                                e6.printStackTrace();
-                            }
-                        }
-                        return z;
-                    } catch (ArrayIndexOutOfBoundsException e7) {
-                        e = e7;
-                        bufferedWriter = bufferedWriter2;
-                        e.printStackTrace();
-                        if (bufferedWriter != null) {
-                            try {
-                                bufferedWriter.close();
-                            } catch (IOException e8) {
-                                e8.printStackTrace();
-                            }
-                        }
-                        return z;
-                    } catch (Throwable th1) {
-                        th = th1;
-                        bufferedWriter = bufferedWriter2;
-                        if (bufferedWriter != null) {
-                            try {
-                                bufferedWriter.close();
-                            } catch (IOException e9) {
-                                e9.printStackTrace();
-                            }
-                        }
-                        throw th;
-                    }
-                }
-            } catch (Throwable th2) {
-                th = th2;
-            }
+    /**
+     * Writes a string to a file.
+     */
+    public static synchronized boolean writeStringToFile(String content, String path) {
+        if (path == null) {
+            throw new NullPointerException("path should not be null.");
         }
-        return z;
-    }
-
-    /* JADX WARN: Multi-variable type inference failed */
-    /* renamed from: a */
-    public static synchronized boolean m8420a(InputStream inputStream, String str) {
-        File m8407e = null;
-        int read;
-        boolean z = false;
-        Exception e;
-        Throwable th;
-        synchronized (FileUtils.class) {
-            if (str == null) {
-                throw new NullPointerException("path should not be null.");
-            }
-            FileOutputStream fileOutputStream = null;
-            try {
-                try {
-                    m8407e = createFile(str);
-                } catch (Throwable th1) {
-                    th = th1;
-                }
-            } catch (Exception e1) {
-                e = e1;
-            }
-            if (m8407e == null) {
-                LogUtils.debug("FileUtils", "inputStream file == null path=%s", str);
-                if (0 != 0) {
-                    try {
-                        fileOutputStream.close();
-                    } catch (IOException e2) {
-                        e2.printStackTrace();
-                    }
-                }
-                try {
-                    inputStream.close();
-                } catch (Exception e3) {
-                    e3.printStackTrace();
-                }
+        boolean success = false;
+        BufferedWriter writer = null;
+        try {
+            File file = createFile(path);
+            if (file == null) {
+                LogUtils.debug("FileUtils", "file == null path=%s", path);
             } else {
-                byte[] bArr = new byte[4096];
-                FileOutputStream fileOutputStream2 = null;
+                writer = new BufferedWriter(new FileWriter(file));
+                writer.write(content != null ? content : "");
+                writer.flush();
+                success = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
                 try {
-                    fileOutputStream2 = new FileOutputStream(m8407e);
-                } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                while (true) {
-                    try {
-                        read = inputStream.read(bArr);
-                        if (read <= 0) {
-                            break;
-                        }
-                        fileOutputStream2.write(bArr, 0, read);
-                    } catch (Exception e4) {
-                        e = e4;
-                        fileOutputStream = fileOutputStream2;
-                        e.printStackTrace();
-                        if (fileOutputStream != null) {
-                            try {
-                                fileOutputStream.close();
-                            } catch (IOException e5) {
-                                e5.printStackTrace();
-                            }
-                        }
-                        try {
-                            inputStream.close();
-                        } catch (Exception e6) {
-                            e6.printStackTrace();
-                        }
-                        return z;
-                    } catch (Throwable th2) {
-                        th = th2;
-                        fileOutputStream = fileOutputStream2;
-                        if (fileOutputStream != null) {
-                            try {
-                                fileOutputStream.close();
-                            } catch (IOException e7) {
-                                e7.printStackTrace();
-                            }
-                        }
-                        try {
-                            inputStream.close();
-                        } catch (Exception e8) {
-                            e8.printStackTrace();
-                        }
-                       // throw th;
-                    }
-                }
-                if (fileOutputStream2 != null) {
-                    try {
-                        fileOutputStream2.close();
-                    } catch (IOException e9) {
-                        e9.printStackTrace();
-                    }
-                }
-                try {
-                    inputStream.close();
-                } catch (Exception e10) {
-                    e10.printStackTrace();
-                }
-                z = true;
-               // fileOutputStream = read;
             }
         }
-        return z;
+        return success;
     }
 
-    /* renamed from: b */
-    public static boolean m8413b(String str, String str2) {
-        FileInputStream fileInputStream;
-        Exception e;
-        if (str == null || str2 == null) {
+    /**
+     * Writes an InputStream to a file.
+     */
+    public static synchronized boolean writeInputStreamToFile(InputStream is, String path) {
+        if (path == null) {
+            throw new NullPointerException("path should not be null.");
+        }
+        boolean success = false;
+        FileOutputStream fos = null;
+        try {
+            File file = createFile(path);
+            if (file == null) {
+                LogUtils.debug("FileUtils", "inputStream file == null path=%s", path);
+            } else {
+                fos = new FileOutputStream(file);
+                byte[] buffer = new byte[4096];
+                int read;
+                while ((read = is.read(buffer)) > 0) {
+                    fos.write(buffer, 0, read);
+                }
+                success = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return success;
+    }
+
+    /**
+     * Copies a file from one path to another.
+     */
+    public static boolean copyFile(String destPath, String srcPath) {
+        if (destPath == null || srcPath == null) {
             throw new NullPointerException("path should not be null.");
         }
         try {
-            fileInputStream = new FileInputStream(str2);
-        } catch (FileNotFoundException e1) {
-            e = e1;
-            fileInputStream = null;
+            return writeInputStreamToFile(new FileInputStream(srcPath), destPath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return false;
         }
-        return m8420a(fileInputStream, str);
     }
 
-    /* renamed from: j */
-    public static String getFilename(String filename) {
-        if (StringUtils.isEmpty(filename)) {
+    /**
+     * Gets the filename with extension from a path.
+     */
+    public static String getFilename(String path) {
+        if (StringUtils.isEmpty(path)) {
             return "";
         }
-        int lastIndexOf = filename.lastIndexOf(63);
-        if (lastIndexOf > 0) {
-            filename = filename.substring(0, lastIndexOf);
+        int queryIndex = path.lastIndexOf('?');
+        if (queryIndex > 0) {
+            path = path.substring(queryIndex);
         }
-        int lastIndexOf2 = filename.lastIndexOf(f2471b);
-        return lastIndexOf2 >= 0 ? filename.substring(lastIndexOf2 + 1) : filename;
+        int lastSeparator = path.lastIndexOf(SEPARATOR_CHAR);
+        return lastSeparator >= 0 ? path.substring(lastSeparator + 1) : path;
     }
 
-    /* renamed from: k */
-    public static String m8401k(String str) {
-        String m8402j = getFilename(str);
-        int lastIndexOf = m8402j.lastIndexOf(46);
-        return lastIndexOf > 0 ? m8402j.substring(0, lastIndexOf) : m8402j;
+    /**
+     * Gets the filename without extension from a path.
+     */
+    public static String getFilenameWithoutExtension(String path) {
+        String filename = getFilename(path);
+        int lastDot = filename.lastIndexOf('.');
+        return lastDot > 0 ? filename.substring(0, lastDot) : filename;
     }
 
-    /* renamed from: l */
-    public static String m8400l(String str) {
-        if (StringUtils.isEmpty(str)) {
+    /**
+     * Gets the parent directory path.
+     */
+    public static String getParentPath(String path) {
+        if (StringUtils.isEmpty(path)) {
             return "";
         }
-        int lastIndexOf = (str == null || !str.startsWith(f2470a)) ? -1 : str.lastIndexOf(f2471b);
-        return lastIndexOf == -1 ? f2470a : str.substring(0, lastIndexOf);
+        int lastSeparator = (path == null || !path.startsWith(SEPARATOR)) ? -1 : path.lastIndexOf(SEPARATOR_CHAR);
+        return lastSeparator == -1 ? SEPARATOR : path.substring(0, lastSeparator);
     }
 
-    /* renamed from: m */
-    public static String getSuffix(String str) {
-        int lastIndexOf;
-        if (!StringUtils.isEmpty(str)) {
-            int lastIndexOf2 = str.lastIndexOf(63);
-            if (lastIndexOf2 > 0) {
-                str = str.substring(0, lastIndexOf2);
+    /**
+     * Gets the file extension from a path.
+     */
+    public static String getSuffix(String path) {
+        if (!StringUtils.isEmpty(path)) {
+            int queryIndex = path.lastIndexOf('?');
+            if (queryIndex > 0) {
+                path = path.substring(0, queryIndex);
             }
-            int lastIndexOf3 = str.lastIndexOf(47);
-            if (lastIndexOf3 >= 0) {
-                str = str.substring(lastIndexOf3 + 1);
+            int lastSlash = path.lastIndexOf('/');
+            if (lastSlash >= 0) {
+                path = path.substring(lastSlash + 1);
             }
-            if (str.length() > 0 && (lastIndexOf = str.lastIndexOf(46)) >= 0) {
-                return str.substring(lastIndexOf + 1);
+            if (path.length() > 0) {
+                int lastDot = path.lastIndexOf('.');
+                if (lastDot >= 0) {
+                    return path.substring(lastDot + 1);
+                }
             }
         }
         return "";
     }
 
-    /* renamed from: n */
-    public static long m8398n(String str) {
-        if (StringUtils.isEmpty(str)) {
+    /**
+     * Returns the last modified time of the file.
+     */
+    public static long getLastModified(String path) {
+        if (StringUtils.isEmpty(path)) {
             return 0L;
         }
-        return new File(str).lastModified();
+        return new File(path).lastModified();
     }
 
-    /* renamed from: c */
-    public static boolean m8410c(String str, String str2) {
-        File file = new File(str);
-        return file.isFile() && file.renameTo(new File(str2));
+    /**
+     * Renames a file.
+     */
+    public static boolean renameFile(String oldPath, String newPath) {
+        File file = new File(oldPath);
+        return file.isFile() && file.renameTo(new File(newPath));
     }
 
-    /* renamed from: o */
+    /**
+     * Removes invalid characters from a filename string.
+     */
     public static String removeWrongCharacter(String str) {
         if (str == null) {
             return null;
@@ -532,26 +443,30 @@ public class FileUtils {
         return str.replaceAll("([{/\\\\:*?\"<>|}\\u0000-\\u001f\\uD7B0-\\uFFFF]+)", "");
     }
 
-    /* renamed from: p */
-    public static String m8396p(String str) {
+    /**
+     * Returns the canonical path of the file.
+     */
+    public static String getCanonicalPath(String path) {
         try {
-            return new File(str).getCanonicalPath();
+            return new File(path).getCanonicalPath();
         } catch (IOException e) {
             e.printStackTrace();
-            return str;
+            return path;
         }
     }
 
-    /* renamed from: d */
-    public static boolean m8408d(String str, String str2) {
-        Long valueOf = Long.valueOf(System.currentTimeMillis());
-        String str3 = str + File.separator + valueOf.toString();
-        boolean z = false;
-        createFile(str3);
-        if (m8419a(str3) && m8419a(str2 + File.separator + valueOf)) {
-            z = true;
+    /**
+     * Tests directory permissions by creating a temporary file.
+     */
+    public static boolean testDirPermissions(String dir1, String dir2) {
+        long time = System.currentTimeMillis();
+        String tempFile = dir1 + File.separator + time;
+        boolean success = false;
+        createFile(tempFile);
+        if (exists(tempFile) && exists(dir2 + File.separator + time)) {
+            success = true;
         }
-        exists(str3);
-        return z;
+        // exists(tempFile) call seems misplaced in original code, likely intended to be part of cleanup
+        return success;
     }
 }

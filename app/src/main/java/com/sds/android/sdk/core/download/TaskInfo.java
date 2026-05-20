@@ -65,9 +65,9 @@ public class TaskInfo implements Parcelable {
 
     private void loadDownloadLength() {
         if (FileUtils.isFile(buildTmpPath())) {
-            this.mDownloadLength.set((int) FileUtils.m8405g(buildTmpPath()));
+            this.mDownloadLength.set((int) FileUtils.getFolderSize(buildTmpPath()));
         } else if (FileUtils.isFile(this.mSavePath)) {
-            this.mDownloadLength.set((int) FileUtils.m8411c(this.mSavePath));
+            this.mDownloadLength.set((int) FileUtils.getFileSize(this.mSavePath));
         }
     }
 

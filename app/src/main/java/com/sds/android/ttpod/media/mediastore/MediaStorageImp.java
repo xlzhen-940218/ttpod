@@ -344,7 +344,7 @@ public final class MediaStorageImp {
             contentValues.put("genre", genre);
             contentValues.put("genre_key", buildKey(genre, z));
             if (mediaItem.getLocalDataSource() != null) {
-                contentValues.put(MediaStorage.MEDIA_ORDER_BY_FILE_NAME, buildKey(FileUtils.m8401k(mediaItem.getLocalDataSource()), z));
+                contentValues.put(MediaStorage.MEDIA_ORDER_BY_FILE_NAME, buildKey(FileUtils.getFilenameWithoutExtension(mediaItem.getLocalDataSource()), z));
             }
             if (mediaItem.getComposer() != null) {
                 contentValues.put( "composer", mediaItem.getComposer());

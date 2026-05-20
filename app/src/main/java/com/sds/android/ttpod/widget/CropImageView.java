@@ -535,7 +535,7 @@ public class CropImageView extends View {
         Bitmap bitmap3 = null;
         Throwable e;
         Throwable th;
-        long m8398n = FileUtils.m8398n(str);
+        long m8398n = FileUtils.getLastModified(str);
         try {
             try {
                 try {

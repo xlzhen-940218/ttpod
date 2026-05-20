@@ -124,7 +124,7 @@ public class BackgroundListFragment extends BackgroundBaseFragment {
                         next.setSkinUrl(substring + next.getSkinUrl());
                         BackgroundItem backgroundItem = new BackgroundItem(next);
                         backgroundItem.setImagePath(next.getId() + "_" + next.getName());
-                        if (FileUtils.m8419a(backgroundItem.getImagePath())) {
+                        if (FileUtils.exists(backgroundItem.getImagePath())) {
                             backgroundItem.setResourceTypeEnum(BackgroundItem.ResourceTypeEnum.ADD_BY_USER);
                         }
                         arrayList.add(backgroundItem);

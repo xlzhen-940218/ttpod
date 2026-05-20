@@ -243,7 +243,7 @@ public class DefaultSkinEventHandler implements SkinEventHandler {
     public void m5672b() {
         final MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         if (!m3225N.isNull()) {
-            if (FileUtils.m8419a(m3225N.getLocalDataSource())) {
+            if (FileUtils.exists(m3225N.getLocalDataSource())) {
                 PopupsUtils.m6755a(this.activity, m3225N, (DialogInterface.OnDismissListener) null, new ActionItem.InterfaceC1135b() { // from class: com.sds.android.ttpod.fragment.main.a.2
                     @Override // com.sds.android.ttpod.component.p085b.ActionItem.InterfaceC1135b
                     /* renamed from: a */

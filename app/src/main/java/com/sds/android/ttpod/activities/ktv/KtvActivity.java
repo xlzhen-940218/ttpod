@@ -232,7 +232,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
     }
 
     public void showDownloadDialog() {
-        MessageDialog messageDialog = new MessageDialog(this, "需要安装KTV插件(大约120kb)才能使用，要下载吗?", (BaseDialog.OnClickListener<MessageDialog>) null, (BaseDialog.OnClickListener<MessageDialog>) null);
+        MessageDialog messageDialog = new MessageDialog(this, "需要安装KTV插件(大约120kb)才能使用，要下载?", (BaseDialog.OnClickListener<MessageDialog>) null, (BaseDialog.OnClickListener<MessageDialog>) null);
         messageDialog.setTitle(R.string.prompt_title);
         messageDialog.m7261a(R.string.ok, new BaseDialog.OnClickListener<MessageDialog>() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.2
             @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
@@ -360,7 +360,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
     /* JADX INFO: Access modifiers changed from: private */
     public void downLoadApk(String str, String str2) {
         if (StringUtils.isEmpty(str)) {
-            PopupsUtils.m6721a("无法获取插件下载地址！");
+            PopupsUtils.m6721a("无法获取插件下载地址?");
             return;
         }
         //StatisticUtils.m4910a("ktv", "click", "download");
@@ -385,7 +385,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
             */
             public void run() {
                 KtvActivity.this.mIsStopDownloading = false;
-                if (FileUtils.m8419a(KtvActivity.this.mDownloadTaskInfo.getSavePath())) {
+                if (FileUtils.exists(KtvActivity.this.mDownloadTaskInfo.getSavePath())) {
                     FileUtils.exists(KtvActivity.this.mDownloadTaskInfo.getSavePath());
                 }
                 CommandCenter.getInstance().postInvokeResult(new Command(CommandID.ADD_DOWNLOAD_TASK, KtvActivity.this.mDownloadTaskInfo));
@@ -450,7 +450,7 @@ public class KtvActivity extends SlidingClosableActivity implements View.OnClick
                 updateView();
                 return;
             case 4:
-                PopupsUtils.m6721a("下载完成！");
+                PopupsUtils.m6721a("下载完成?");
                 updateProgress(downloadTaskInfo);
                 new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.activities.ktv.KtvActivity.7
                     @Override // java.lang.Runnable

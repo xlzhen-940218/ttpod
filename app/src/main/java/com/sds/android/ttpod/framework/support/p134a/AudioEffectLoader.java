@@ -380,7 +380,7 @@ public class AudioEffectLoader {
 
     /* renamed from: b */
     private void m2745b(String str) {
-        String m8403i = FileUtils.m8403i(str);
+        String m8403i = FileUtils.readStringFromFile(str);
         if (m8403i != null) {
             AudioEffectCache audioEffectCache = (AudioEffectCache) JSONUtils.fromJson(m8403i, AudioEffectCache.class);
             if (audioEffectCache != null) {
@@ -549,7 +549,7 @@ public class AudioEffectLoader {
         audioEffectCache.m4410a(audioEffectItem.getDataIsLimit());
         audioEffectCache.m4409a(audioEffectItem.getDataEqualizer());
         audioEffectCache.m4406b(System.currentTimeMillis());
-        FileUtils.m8416a(JSONUtils.toJson(audioEffectCache), m4340a);
+        FileUtils.writeStringToFile(JSONUtils.toJson(audioEffectCache), m4340a);
     }
 
     /* renamed from: e */

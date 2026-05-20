@@ -62,7 +62,7 @@ public class BackgroundListLoader implements Runnable {
             next.setPictureUrl(mainUrl + next.getRecommendPicUrl());
             next.setSkinUrl(mainUrl + next.getSkinUrl());
             BackgroundItem backgroundItem = new BackgroundItem(next);
-            if (FileUtils.m8419a(backgroundItem.getImagePath())) {
+            if (FileUtils.exists(backgroundItem.getImagePath())) {
                 backgroundItem.setResourceTypeEnum(BackgroundItem.ResourceTypeEnum.ADD_BY_USER);
             }
             arrayList.add(backgroundItem);

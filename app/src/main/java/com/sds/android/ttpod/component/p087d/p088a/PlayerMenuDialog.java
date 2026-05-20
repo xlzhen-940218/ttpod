@@ -140,7 +140,7 @@ public class PlayerMenuDialog extends Dialog {
         window.setWindowAnimations(R.style.Dialog_Window_Anim);
         MediaItem m3225N = Cache.getInstance().getCurrentPlayMediaItem();
         this.f3984f = new ArrayList<>();
-        boolean z = (m3225N.isNull() || FileUtils.m8419a(m3225N.getLocalDataSource()) || !m3225N.isOnline()) ? false : true;
+        boolean z = (m3225N.isNull() || FileUtils.exists(m3225N.getLocalDataSource()) || !m3225N.isOnline()) ? false : true;
         this.f3984f.add(new ActionItem(0, 0, (int) R.string.menu_search_artist_pic, (int) R.string.icon_search_pic));
         this.f3984f.add(new ActionItem(1, 0, (int) R.string.menu_search_lyric, (int) R.string.icon_search_lyric));
         this.f3984f.add(new ActionItem(2, 0, (int) R.string.adjust_lyric, (int) R.string.icon_edit_lyric));
@@ -151,7 +151,7 @@ public class PlayerMenuDialog extends Dialog {
             } else {
                 this.f3984f.add(new ActionItem(6, 0, (int) R.string.share, (int) R.string.icon_share_with_dot));
             }
-        } else if (FileUtils.m8419a(m3225N.getLocalDataSource())) {
+        } else if (FileUtils.exists(m3225N.getLocalDataSource())) {
             this.f3984f.add(new ActionItem(3, 0, (int) R.string.ringtone, (int) R.string.icon_set_ringtone));
             this.f3984f.add(new ActionItem(4, 0, (int) R.string.more, (int) R.string.icon_more_horizontal));
         }

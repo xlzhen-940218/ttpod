@@ -92,7 +92,7 @@ public final class Task implements Runnable {
                                 Task.this.taskCallback.start(Task.this.taskInfo);
                                 break;
                             case 2:
-                                FileUtils.m8410c(Task.this.taskInfo.buildTmpPath(), Task.this.taskInfo.getSavePath());
+                                FileUtils.renameFile(Task.this.taskInfo.buildTmpPath(), Task.this.taskInfo.getSavePath());
                                 Task.this.taskInfo.setDownloadSpend(0);
                                 Task.this.taskInfo.setState(4);
                                 Task.this.taskCallback.downloaded(Task.this.taskInfo);

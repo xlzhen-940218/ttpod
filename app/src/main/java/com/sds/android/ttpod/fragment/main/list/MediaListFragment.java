@@ -317,7 +317,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
 
     @Override // com.sds.android.ttpod.fragment.main.list.AbsMediaListFragment
     protected void showRightContextMenu(final MediaItem mediaItem) {
-        if (mediaItem.isOnline() || FileUtils.m8419a(mediaItem.getLocalDataSource())) {
+        if (mediaItem.isOnline() || FileUtils.exists(mediaItem.getLocalDataSource())) {
             showMediaRightContextMenu(getActivity(), mediaItem, this.mGroupID, new BaseDialog.OnClickListener<MoreOptionalDialog>() { // from class: com.sds.android.ttpod.fragment.main.list.MediaListFragment.2
                 @Override // com.sds.android.ttpod.common.p082a.BaseDialog.InterfaceC1064a
                 /* renamed from: a  reason: avoid collision after fix types in other method */
@@ -333,7 +333,7 @@ public class MediaListFragment extends AbsMediaListFragment implements IEditAble
     }
 
     public static void showMediaRightContextMenu(Activity activity, MediaItem mediaItem, String str, BaseDialog.OnClickListener<MoreOptionalDialog> onClickListener) {
-        boolean m8419a = FileUtils.m8419a(mediaItem.getLocalDataSource());
+        boolean m8419a = FileUtils.exists(mediaItem.getLocalDataSource());
         if (mediaItem.isOnline() && !m8419a) {
             new DownloadMenuHandler(activity).m6927a(mediaItem, null);
         } else if (m8419a) {

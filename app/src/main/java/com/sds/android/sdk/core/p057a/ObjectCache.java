@@ -500,7 +500,7 @@ public final class ObjectCache {
                                 ObjectCache.REENTRANT_LOCK.unlock();
                             }
                             if (z) {
-                                FileUtils.exists(file);
+                                FileUtils.deepExists(file);
                             }
                             ObjectCache.REENTRANT_LOCK.unlock();
                         } catch (Throwable th3) {

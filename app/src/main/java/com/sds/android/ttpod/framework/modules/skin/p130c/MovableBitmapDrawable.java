@@ -48,9 +48,11 @@ public class MovableBitmapDrawable extends BitmapDrawable {
         super.onBoundsChange(rect);
         int intrinsicWidth = super.getIntrinsicWidth();
         int intrinsicHeight = super.getIntrinsicHeight();
-        float max = Math.max(rect.width() / intrinsicWidth, rect.height() / intrinsicHeight);
-        this.width = (int) (intrinsicWidth * max);
-        this.height = (int) (max * intrinsicHeight);
+        if (intrinsicWidth > 0 && intrinsicHeight > 0) {
+            float max = Math.max((float) rect.width() / intrinsicWidth, (float) rect.height() / intrinsicHeight);
+            this.width = (int) (intrinsicWidth * max);
+            this.height = (int) (intrinsicHeight * max);
+        }
     }
 
     @Override // android.graphics.drawable.BitmapDrawable, android.graphics.drawable.Drawable

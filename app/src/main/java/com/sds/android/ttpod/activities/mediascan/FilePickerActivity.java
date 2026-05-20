@@ -349,7 +349,7 @@ public class FilePickerActivity extends SlidingClosableActivity {
             }
             ArrayList arrayList = new ArrayList(1);
             arrayList.add(str);
-            m8028a(FileUtils.m8400l(str), false, 0, arrayList);
+            m8028a(FileUtils.getParentPath(str), false, 0, arrayList);
         }
 
         /* JADX INFO: Access modifiers changed from: private */

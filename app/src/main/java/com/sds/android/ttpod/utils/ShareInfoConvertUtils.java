@@ -40,7 +40,7 @@ public class ShareInfoConvertUtils {
             shareInfo.m1955f(m8238a(mediaItem));
             shareInfo.m1970a(mediaItem.getID());
             shareInfo.m1971a(mediaItem.getSongID());
-            if (!FileUtils.m8419a(mediaItem.getLocalDataSource())) {
+            if (!FileUtils.exists(mediaItem.getLocalDataSource())) {
                 shareInfo.m1972a(mediaItem.getArtistID());
                 shareInfo.m1969a(false);
                 return shareInfo;

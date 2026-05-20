@@ -54,7 +54,7 @@ public class OnlineListDownloader implements Runnable {
 
     /* renamed from: a */
     protected String mo3720a(String str) {
-        return !TextUtils.isEmpty(str) ? FileUtils.m8400l(str) : TTPodConfig.getSkinPath();
+        return !TextUtils.isEmpty(str) ? FileUtils.getParentPath(str) : TTPodConfig.getSkinPath();
     }
 
     /* renamed from: b */
@@ -120,7 +120,7 @@ public class OnlineListDownloader implements Runnable {
             r0 = move-exception
             r3 = r4
         L41:
-            com.sds.android.sdk.lib.util.FileUtils.m8412c(r5)     // Catch: java.lang.Throwable -> L66
+            com.sds.android.sdk.lib.util.FileUtils.deleteFile(r5)     // Catch: java.lang.Throwable -> L66
             r0.printStackTrace()     // Catch: java.lang.Throwable -> L66
             m3721a(r3)
             m3721a(r2)

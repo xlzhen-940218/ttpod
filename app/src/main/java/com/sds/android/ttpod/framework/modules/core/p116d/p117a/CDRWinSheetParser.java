@@ -73,11 +73,11 @@ public class CDRWinSheetParser implements Iterator<CDRWinSheetEntry> {
                 String upperCase = this.f5977c.toUpperCase(Locale.US);
                 if (!upperCase.startsWith("TRACK ")) {
                     if (upperCase.startsWith("FILE ")) {
-                        String str2 = FileUtils.m8400l(str) + File.separatorChar;
+                        String str2 = FileUtils.getParentPath(str) + File.separatorChar;
                         this.f5978d = str2 + m4245b(this.f5977c);
                         File file = new File(this.f5978d);
                         if (!file.isFile() || !file.exists()) {
-                            this.f5978d = str2 + FileUtils.m8401k(str) + '.' + FileUtils.getSuffix(m4245b);
+                            this.f5978d = str2 + FileUtils.getFilenameWithoutExtension(str) + '.' + FileUtils.getSuffix(m4245b);
                             file = new File(this.f5978d);
                         }
                         if (!file.isFile() || !file.exists()) {

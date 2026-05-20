@@ -585,7 +585,7 @@ public final class DownloadManagerModule extends BaseModule {
             m4454f();
             m4456e();
         } else if (state.intValue() == 5) {
-            m4462b(FileUtils.m8401k(taskInfo.getSavePath()));
+            m4462b(FileUtils.getFilenameWithoutExtension(taskInfo.getSavePath()));
             m4456e();
         }
     }

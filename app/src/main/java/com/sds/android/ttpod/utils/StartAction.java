@@ -380,7 +380,7 @@ public class StartAction {
     private boolean m8195l(Bundle bundle) {
         String string = bundle.getString("uri");
         int m8227a = (int) m8227a(bundle, "play_mode", -1L);
-        if (StringUtils.isEmpty(string) || !FileUtils.m8419a(string)) {
+        if (StringUtils.isEmpty(string) || !FileUtils.exists(string)) {
             return false;
         }
         CommandCenter.getInstance().execute(new Command(CommandID.PLAY, string));
@@ -456,7 +456,7 @@ public class StartAction {
         int m8227a = (int) m8227a(bundle, "type", m8211c(string));
         int intValue = (m8227a > DownloadTaskInfo.TYPE_APP.intValue() || m8227a < DownloadTaskInfo.TYPE_AUDIO.intValue()) ? DownloadTaskInfo.TYPE_AUDIO.intValue() : m8227a;
         String string2 = bundle.getString("path");
-        if (StringUtils.isEmpty(string2) || !FileUtils.m8419a(string2)) {
+        if (StringUtils.isEmpty(string2) || !FileUtils.exists(string2)) {
             string2 = m8232a(intValue);
         }
         String string3 = bundle.getString("name");
@@ -469,7 +469,7 @@ public class StartAction {
                 append.append(".").append(m8399m);
             }
         } else {
-            string3 = FileUtils.m8401k(string);
+            string3 = FileUtils.getFilenameWithoutExtension(string);
             append.append(FileUtils.getFilename(string));
         }
         return DownloadUtils.m4760a(string, append.toString(), 0L, string3, Integer.valueOf(intValue), true, "thirdparty_download");
@@ -732,6 +732,6 @@ public class StartAction {
 
     /* renamed from: i */
     private boolean m8198i(String str) {
-        return !StringUtils.isEmpty(str) && FileUtils.m8419a(str);
+        return !StringUtils.isEmpty(str) && FileUtils.exists(str);
     }
 }

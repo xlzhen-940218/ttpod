@@ -167,7 +167,7 @@ public final class MediaLibraryVersionManager {
                     string = string.substring(0, indexOf);
                     i = intValue;
                 }
-                return new MediaItem(null, null, string, FileUtils.m8400l(string), cursor.getString(17), cursor.getString(18), cursor.getString(19), cursor.getString(20), cursor.getString(21), cursor.getString(23), Integer.valueOf(i), Integer.valueOf(cursor.getInt(11)), Integer.valueOf(cursor.getInt(9)), 0, 0, Integer.valueOf(cursor.getInt(7)), Integer.valueOf(cursor.getInt(8)), Integer.valueOf(cursor.getInt(15)), cursor.getString(22), Integer.valueOf(cursor.getInt(14)), Integer.valueOf(cursor.getInt(12)), Long.valueOf(cursor.getLong(5)), Long.valueOf(cursor.getLong(4)), Long.valueOf(cursor.getLong(13)), cursor.getInt(6) > 0, null, null);
+                return new MediaItem(null, null, string, FileUtils.getParentPath(string), cursor.getString(17), cursor.getString(18), cursor.getString(19), cursor.getString(20), cursor.getString(21), cursor.getString(23), Integer.valueOf(i), Integer.valueOf(cursor.getInt(11)), Integer.valueOf(cursor.getInt(9)), 0, 0, Integer.valueOf(cursor.getInt(7)), Integer.valueOf(cursor.getInt(8)), Integer.valueOf(cursor.getInt(15)), cursor.getString(22), Integer.valueOf(cursor.getInt(14)), Integer.valueOf(cursor.getInt(12)), Long.valueOf(cursor.getLong(5)), Long.valueOf(cursor.getLong(4)), Long.valueOf(cursor.getLong(13)), cursor.getInt(6) > 0, null, null);
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -92,7 +92,7 @@ public final class DownloadMenuHandler {
         }
         this.f3862e = list;
         if (m6924b() <= 0) {
-            PopupsUtils.m6721a("已经下载了");
+            PopupsUtils.m6721a("已经下载?");
         } else if (!EnvironmentUtils.DeviceConfig.isConnected()) {
             PopupsUtils.m6760a((int) R.string.network_unavailable);
         } else {
@@ -237,7 +237,7 @@ public final class DownloadMenuHandler {
             } else {
                 DownloadTaskInfo m4761a = DownloadUtils.m4761a((MediaItem) arrayList.get(size), audioQuality);
                 if (m4761a != null) {
-                    if (FileUtils.m8419a(m4761a.getSavePath())) {
+                    if (FileUtils.exists(m4761a.getSavePath())) {
                         MediaItemUtils.m4714a((MediaItem) arrayList.get(size), m4761a.getSavePath());
                         MediaStorage.updateMediaItem(this.activity, (MediaItem) arrayList.get(size));
                         arrayList.remove(size);

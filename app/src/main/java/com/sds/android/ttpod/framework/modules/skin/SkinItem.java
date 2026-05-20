@@ -127,7 +127,7 @@ public class SkinItem implements Serializable {
                 }
                 this.fileName = i < 0 ? this.path : this.path.substring(i + 1);
             } else {
-                this.fileName = FileUtils.m8401k(this.path);
+                this.fileName = FileUtils.getFilenameWithoutExtension(this.path);
             }
         }
         return this.fileName;

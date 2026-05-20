@@ -143,14 +143,14 @@ public class SkinInfoActivity extends ActionBarActivity {
     public void copyWithoutOverwriteExistFile(String str) {
         this.mDesSkinPath = getUniqueSkinFilePath(str);
         this.mDesFile = new File(this.mDesSkinPath);
-        FileUtils.createFolder(FileUtils.m8400l(this.mDesSkinPath));
-        FileUtils.m8413b(this.mDesSkinPath, this.mSrcSkinPath);
+        FileUtils.createFolder(FileUtils.getParentPath(this.mDesSkinPath));
+        FileUtils.copyFile(this.mDesSkinPath, this.mSrcSkinPath);
     }
 
     private String getUniqueSkinFilePath(String str) {
         int i = 0;
-        String m8400l = FileUtils.m8400l(str);
-        String m8401k = FileUtils.m8401k(str);
+        String m8400l = FileUtils.getParentPath(str);
+        String m8401k = FileUtils.getFilenameWithoutExtension(str);
         String m8399m = FileUtils.getSuffix(str);
         File file = new File(str);
         while (file.exists()) {
@@ -165,8 +165,8 @@ public class SkinInfoActivity extends ActionBarActivity {
     public void copyWithOverwriteExistFile(String str) {
         this.mDesSkinPath = str;
         this.mDesFile = new File(str);
-        FileUtils.createFolder(FileUtils.m8400l(this.mDesSkinPath));
-        FileUtils.m8413b(this.mDesSkinPath, this.mSrcSkinPath);
+        FileUtils.createFolder(FileUtils.getParentPath(this.mDesSkinPath));
+        FileUtils.copyFile(this.mDesSkinPath, this.mSrcSkinPath);
     }
 
     private void savePreference() {
@@ -185,7 +185,7 @@ public class SkinInfoActivity extends ActionBarActivity {
     /* JADX INFO: Access modifiers changed from: private */
     public void applySkinFileAsTTpodSkin() {
         String m8402j = FileUtils.getFilename(this.mSrcSkinPath);
-        String m8400l = FileUtils.m8400l(this.mSrcSkinPath);
+        String m8400l = FileUtils.getParentPath(this.mSrcSkinPath);
         String m5294n = TTPodConfig.getSkinPath();
         final String str = m5294n + File.separator + m8402j;
         this.mDesFile = new File(str);

@@ -259,7 +259,7 @@ public class FavoriteSubMediaListFragment extends SubMediaListFragment {
             iconTextView.clearAnimation();
             iconTextView.setVisibility(View.VISIBLE);
             if (!StringUtils.isEmpty(mediaItem.getLocalDataSource())) {
-                if (FileUtils.m8419a(mediaItem.getLocalDataSource())) {
+                if (FileUtils.exists(mediaItem.getLocalDataSource())) {
                     flushDownloadStateView(iconTextView, R.string.icon_download_downloaded);
                     return;
                 }

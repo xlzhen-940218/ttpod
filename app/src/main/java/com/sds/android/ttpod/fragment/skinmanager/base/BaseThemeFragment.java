@@ -679,7 +679,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
             String m3564h = skinItem.getFileName();
             if (BaseThemeFragment.sDownloadingSkinMap.containsKey(m3564h)) {
                 String savePath = BaseThemeFragment.sDownloadingSkinMap.get(m3564h).getSavePath();
-                if (FileUtils.m8419a(savePath) && !savePath.endsWith(BaseThemeFragment.UPDATE_TEMP_SUFFIX)) {
+                if (FileUtils.exists(savePath) && !savePath.endsWith(BaseThemeFragment.UPDATE_TEMP_SUFFIX)) {
                     skinItem.setType(0);
                     BaseThemeFragment.sDownloadingSkinMap.remove(m3564h);
                 }
@@ -902,7 +902,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
                 }
                 BaseThemeFragment.this.performSkinDownloaded(skinItem);
             } else if (intValue == 3 || intValue == 5) {
-                if (FileUtils.m8419a(downloadTaskInfo.getSavePath())) {
+                if (FileUtils.exists(downloadTaskInfo.getSavePath())) {
                     BaseThemeFragment.this.performSkinItemStateChange(fileName, 0);
                 } else {
                     BaseThemeFragment.this.performSkinItemStateChange(fileName, 4);
@@ -919,7 +919,7 @@ public abstract class BaseThemeFragment extends BaseFragment implements EditMode
             if (savePath.endsWith(BaseThemeFragment.UPDATE_TEMP_SUFFIX)) {
                 String substring = savePath.substring(0, savePath.length() - BaseThemeFragment.UPDATE_TEMP_SUFFIX.length());
                 FileUtils.exists(substring);
-                FileUtils.m8410c(savePath, substring);
+                FileUtils.renameFile(savePath, substring);
                 ImageCacheUtils.m4739b(substring, SkinThumbnailCreator.f6693a, SkinThumbnailCreator.f6694c);
             }
         }

@@ -113,7 +113,7 @@ public final class SkinModule extends BaseModule {
             case 0:
                 z = m3542a(str);
                 String str2 = TTPodConfig.getCacheTmpPath() + File.separator + SecurityUtils.MD5Hex.stringToMD5Hex(SkinUtils.m4646a(str, num.intValue()));
-                if (FileUtils.m8419a(str2)) {
+                if (FileUtils.exists(str2)) {
                     new File(str2).delete();
                     break;
                 }
@@ -247,7 +247,7 @@ public final class SkinModule extends BaseModule {
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: a */
     public boolean m3543a(Long l, String str) {
-        String m8401k = FileUtils.m8401k(str);
+        String m8401k = FileUtils.getFilenameWithoutExtension(str);
         if (TextUtils.isEmpty(m8401k)) {
             return true;
         }

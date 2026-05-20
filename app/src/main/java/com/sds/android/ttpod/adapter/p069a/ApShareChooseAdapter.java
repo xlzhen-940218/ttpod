@@ -89,7 +89,7 @@ public class ApShareChooseAdapter extends ApShareBaseAdapter {
             if (this.f3161b.containsKey(m5772a.getID())) {
                 arrayList.add(m5772a);
                 if (m5772a.getSize() <= 0) {
-                    m5772a.setSize(FileUtils.m8405g(m5772a.getLocalDataSource()));
+                    m5772a.setSize(FileUtils.getFolderSize(m5772a.getLocalDataSource()));
                 }
             }
         }

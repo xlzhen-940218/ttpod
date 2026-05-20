@@ -211,7 +211,7 @@ public class LocalMVCompletedFragment extends MVListFragment {
         });
         if (listFiles != null) {
             for (File file2 : listFiles) {
-                MVOnlineData parseMvDataFromFile = parseMvDataFromFile(FileUtils.m8401k(file2.getName()));
+                MVOnlineData parseMvDataFromFile = parseMvDataFromFile(FileUtils.getFilenameWithoutExtension(file2.getName()));
                 if (parseMvDataFromFile != null) {
                     arrayList.add(parseMvDataFromFile);
                     mMvFilePath.put(parseMvDataFromFile.hashCode(), file2.getPath());
