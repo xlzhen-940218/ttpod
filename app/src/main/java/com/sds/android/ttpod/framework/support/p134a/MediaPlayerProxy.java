@@ -336,7 +336,7 @@ public final class MediaPlayerProxy {
         Exception e;
         ByteArrayOutputStream byteArrayOutputStream = null;
         try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(EnvironmentUtils.m8526a(), 64);
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(EnvironmentUtils.getAppPackageName(), 64);
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
             byteArrayOutputStream = new ByteArrayOutputStream();
             Signature[] signatureArr = packageInfo.signatures;
@@ -572,7 +572,7 @@ public final class MediaPlayerProxy {
 
     /* renamed from: l */
     private TTMediaPlayer m2675l() {
-        TTMediaPlayer tTMediaPlayer = new TTMediaPlayer(this.f7056w, "/data/data/" + EnvironmentUtils.m8526a() + "/lib");
+        TTMediaPlayer tTMediaPlayer = new TTMediaPlayer(this.f7056w, "/data/data/" + EnvironmentUtils.getAppPackageName() + "/lib");
         tTMediaPlayer.setOnMediaPlayerNotifyEventListener(this.f7029A);
         return tTMediaPlayer;
     }

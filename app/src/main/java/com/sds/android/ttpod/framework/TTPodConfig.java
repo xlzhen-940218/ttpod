@@ -21,7 +21,7 @@ public class TTPodConfig {
 
     /* renamed from: a */
     public static void initTTPodConfig(boolean z) {
-        ttpodPath = EnvironmentUtils.C0605d.getSdcardPath() + File.separator + "ttpod";
+        ttpodPath = EnvironmentUtils.StorageConfig.getSdcardPath() + File.separator + "ttpod";
         cachePath = ttpodPath + File.separator + "cache";
         if (z) {
             FileUtils.createFolder(getCacheImagePath());
@@ -46,7 +46,7 @@ public class TTPodConfig {
 
     /* renamed from: a */
     public static String getTTPodLog() {
-        return EnvironmentUtils.C0605d.getSdcardPath() + File.separator + "TTPOD_LOG";
+        return EnvironmentUtils.StorageConfig.getSdcardPath() + File.separator + "TTPOD_LOG";
     }
 
     /* renamed from: b */

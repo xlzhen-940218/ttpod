@@ -109,7 +109,7 @@ public class Preferences {
     /* renamed from: g */
     public static Set<String> m2882g() {
         Set<String> m3091a = AccessHelper.m3091a(preferencesContent, PreferencesID.MEDIA_SCAN_EXCLUDE_FOLDER_SET.name(), (Set<String>) null);
-        String m8467b = EnvironmentUtils.C0605d.getSdcardPath();
+        String m8467b = EnvironmentUtils.StorageConfig.getSdcardPath();
         if (m3091a == null) {
             m3091a = new HashSet<>();
             m3091a.add("/system");

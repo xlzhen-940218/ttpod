@@ -68,7 +68,7 @@ public class FilePickerActivity extends SlidingClosableActivity {
     private TextView mTextViewHeader;
     private TextView mTextViewHeaderIcon;
     private int mToastId;
-    private static final File EXTERNAL_STORAGE_DIRECTORY = new File(EnvironmentUtils.C0605d.getSdcardPath());
+    private static final File EXTERNAL_STORAGE_DIRECTORY = new File(EnvironmentUtils.StorageConfig.getSdcardPath());
     private static final List<String> EMPTY_STRING_LIST = new ArrayList();
     private String mExcludedExtensions = "";
     private String mIncludeExtensions = "";
@@ -197,7 +197,7 @@ public class FilePickerActivity extends SlidingClosableActivity {
             this.mShowFileType = intent.getIntExtra(KEY_EXTRA_SHOW_FILE_TYPE, 0);
             this.mEntryPath = intent.getStringExtra(KEY_EXTRA_PATH);
             if (!FileUtils.isDir(this.mEntryPath)) {
-                this.mEntryPath = EnvironmentUtils.C0605d.getSdcardPath();
+                this.mEntryPath = EnvironmentUtils.StorageConfig.getSdcardPath();
             }
             this.mChoiceMode = intent.getIntExtra(KEY_EXTRA_CHOICE_MODE, 2);
             this.mIsNewFolderEnable = intent.getBooleanExtra(KEY_EXTRA_NEW_FOLDER, false);

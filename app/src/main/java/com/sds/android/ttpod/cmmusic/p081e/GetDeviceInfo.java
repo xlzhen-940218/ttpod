@@ -10,6 +10,6 @@ public class GetDeviceInfo {
     /* renamed from: a */
     public static BaseDeviceGetInfo m7273a() {
         return new BaseDeviceGetInfo("", "", "007317470438422765"
-                , "326a57cbd2c06585d84414e2a3f15845", "", EnvironmentUtils.m8526a(), "");
+                , "326a57cbd2c06585d84414e2a3f15845", "", EnvironmentUtils.getAppPackageName(), "");
     }
 }

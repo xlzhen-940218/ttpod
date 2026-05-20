@@ -66,7 +66,7 @@ public class BaseApplication extends MultiDexApplication {
         TTPodConfig.initTTPodConfig(true);
         application = this;
         pid = getCurrentPid();
-        EnvironmentUtils.m8525a(this);
+        EnvironmentUtils.init(this);
         LogUtils.setEnableLog(EnvironmentUtils.AppConfig.getTestMode());
         EffectDetect.detectAudioPlus(this);
         ExceptionReporter.setDefaultUncaughtExceptionHandler(this, Action.EXCEPTION_REPORT);
@@ -237,6 +237,6 @@ public class BaseApplication extends MultiDexApplication {
     /* renamed from: p */
     private void m4622p() {
         TTPodUser m2954aq = Preferences.m2954aq();
-        EnvironmentUtils.UUIDConfig.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
+        EnvironmentUtils.UUIDConfig.setTid(m2954aq != null ? m2954aq.getUserId() : 0L);
     }
 }

@@ -820,7 +820,7 @@ public final class MediaDBHelper extends SQLiteOpenHelper {
         static String getOnlineFavTable(SQLiteDatabase sQLiteDatabase) {
             long j;
             try {
-                j = EnvironmentUtils.UUIDConfig.m8486g();
+                j = EnvironmentUtils.UUIDConfig.getTid();
             } catch (Exception e) {
                 e.printStackTrace();
                 j = 0;

@@ -291,7 +291,7 @@ public final class Task implements Runnable {
 
     /* renamed from: b */
     private boolean m8725b(File file, HttpRequest.Response c0586a) {
-        if (EnvironmentUtils.C0605d.m8469a(file.getParentFile()) < c0586a.getContentLength()) {
+        if (EnvironmentUtils.StorageConfig.getUsableSpace(file.getParentFile()) < c0586a.getContentLength()) {
             this.threadCount = 1;
             m8734a(ErrorCodeType.STORAGE);
             c0586a.close();

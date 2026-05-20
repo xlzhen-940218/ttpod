@@ -74,12 +74,12 @@ public class ExceptionReporter {
     private static HashMap<String, Object> m8749a(String str, String str2) {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("time", m8747b());
-        hashMap.put("package", EnvironmentUtils.m8526a());
+        hashMap.put("package", EnvironmentUtils.getAppPackageName());
         hashMap.put("v", EnvironmentUtils.AppConfig.getAppVersion());
         hashMap.put("f", "f" + EnvironmentUtils.AppConfig.getChannelType());
         hashMap.put("mid", Build.MANUFACTURER + "#" + Build.MODEL);
         hashMap.put("splus", Build.VERSION.RELEASE);
-        hashMap.put("s", EnvironmentUtils.UUIDConfig.m8488e().get("s"));
+        hashMap.put("s", EnvironmentUtils.UUIDConfig.getUuidMaps().get("s"));
         hashMap.put("rom", Build.PRODUCT);
         hashMap.put("build", "#" + EnvironmentUtils.AppConfig.getBuild());
         hashMap.put("memory", m8751a());

@@ -13,12 +13,12 @@ import java.util.Map;
 public class FavoritesAPI {
     /* renamed from: a */
     public static Request<BaseResult> m8922a(String str, Collection<Long> collection) {
-        return new GetMethodRequest(BaseResult.class, "http://v1.ard.h.itlily.com/favorites", "create").m8542a(str).m8542a(collection).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.m8488e());
+        return new GetMethodRequest(BaseResult.class, "http://v1.ard.h.itlily.com/favorites", "create").m8542a(str).m8542a(collection).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 
     /* renamed from: b */
     public static Request<BaseResult> m8921b(String str, Collection<Long> collection) {
-        return new GetMethodRequest(BaseResult.class, "http://v1.ard.h.itlily.com/favorites", "destroy").m8542a(str).m8542a(collection).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.m8488e());
+        return new GetMethodRequest(BaseResult.class, "http://v1.ard.h.itlily.com/favorites", "destroy").m8542a(str).m8542a(collection).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 
     /* renamed from: a */

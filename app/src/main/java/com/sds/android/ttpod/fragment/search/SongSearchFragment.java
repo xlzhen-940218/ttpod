@@ -74,7 +74,7 @@ public class SongSearchFragment extends OnlineMediaListFragment implements Searc
 
     private void thirdSearch() {
         Intent intent = new Intent(getActivity(), WebActivity.class);
-        intent.setData(Uri.parse(SearchResultFragment.THIRD_SEACH_URL + this.mWord + "&v=" + EnvironmentUtils.UUIDConfig.m8491c()));
+        intent.setData(Uri.parse(SearchResultFragment.THIRD_SEACH_URL + this.mWord + "&v=" + EnvironmentUtils.UUIDConfig.getV()));
         intent.putExtra(WebFragment.EXTRA_TITLE, getString(R.string.online_search_third_part_title));
         intent.putExtra(WebFragment.EXTRA_HINT_BANNER_SHOW, true);
         startActivity(intent);

@@ -17,22 +17,22 @@ import java.util.Map;
 public class OnlineMediaSearchAPI {
     /* renamed from: a */
     public static Request<BaseResult> m8862a(String str) {
-        return new GetMethodRequest(BaseResult.class, "http://collect.log.ttpod.com/error/searchsong/index.html").putParams("q", str).m8540a(EnvironmentUtils.UUIDConfig.m8488e());
+        return new GetMethodRequest(BaseResult.class, "http://collect.log.ttpod.com/error/searchsong/index.html").putParams("q", str).m8540a(EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 
     /* renamed from: a */
     public static Request<OnlineMediaItemsResult> m8861a(String str, int i, int i2) {
-        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/v2", "songs/search").putParams("q", str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2)).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.m8488e());
+        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/v2", "songs/search").putParams("q", str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2)).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 
     /* renamed from: a */
     public static Request<OnlineMediaItemsResult> m8860a(String str, int i, int i2, String str2) {
-        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/s/song_with_out").putParams("q", str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2)).putParams("client_id", str2).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.m8488e());
+        return new GetMethodRequest(OnlineMediaItemsResult.class, "http://so.ard.iyyin.com/s/song_with_out").putParams("q", str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2)).putParams("client_id", str2).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 
     /* renamed from: b */
     public static Request<AlbumItemsResult> m8859b(String str, int i, int i2) {
-        return new GetMethodRequest(AlbumItemsResult.class, "http://so.ard.iyyin.com/albums", "search").putParams("q", str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2)).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.m8488e());
+        return new GetMethodRequest(AlbumItemsResult.class, "http://so.ard.iyyin.com/albums", "search").putParams("q", str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2)).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 
     /* renamed from: b */
@@ -42,7 +42,7 @@ public class OnlineMediaSearchAPI {
 
     /* renamed from: c */
     public static Request<PlaylistResult> m8857c(String str, int i, int i2, String str2) {
-        return new GetMethodRequest(PlaylistResult.class, "http://so.ard.iyyin.com/s/playlist").putParams("q", str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2)).putParams("sugg", str2).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.m8488e());
+        return new GetMethodRequest(PlaylistResult.class, "http://so.ard.iyyin.com/s/playlist").putParams("q", str).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2)).putParams("sugg", str2).m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 
     /* renamed from: a */

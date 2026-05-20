@@ -14,13 +14,13 @@ public class GlobalAPI {
     /* renamed from: a */
     public static Request<GlobalResult> m8887a() {
         GetMethodRequest getMethodRequest = new GetMethodRequest(GlobalResult.class, "http://client.api.ttpod.com/global");
-        getMethodRequest.m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.m8488e());
+        getMethodRequest.m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.getUuidMaps());
         getMethodRequest.m8545a(new Request.InterfaceC0601a() { // from class: com.sds.android.cloudapi.ttpod.a.k.1
             @Override // com.sds.android.sdk.lib.request.Request.InterfaceC0601a
             /* renamed from: a */
             public String mo8527a(String str) {
                 if (str != null && str.startsWith("538ab")) {
-                    return SecurityUtils.C0611c.m8355a(str);
+                    return SecurityUtils.RC4.decrypt(str);
                 }
                 return str;
             }

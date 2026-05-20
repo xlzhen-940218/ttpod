@@ -59,7 +59,7 @@ public class WebJsInterface {
 
     @JavascriptInterface
     public String getGeneralParameters() {
-        return JSONUtils.toJson(EnvironmentUtils.UUIDConfig.m8488e());
+        return JSONUtils.toJson(EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 
     @JavascriptInterface

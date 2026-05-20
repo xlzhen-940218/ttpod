@@ -104,7 +104,7 @@ public class FeedbackAPI {
 
     /* renamed from: a */
     private static JSONObject m8920a() {
-        HashMap<String, Object> m8488e = EnvironmentUtils.UUIDConfig.m8488e();
+        HashMap<String, Object> m8488e = EnvironmentUtils.UUIDConfig.getUuidMaps();
         JSONObject jSONObject = new JSONObject();
         try {
             for (Map.Entry<String, Object> entry : m8488e.entrySet()) {
@@ -137,7 +137,7 @@ public class FeedbackAPI {
 
     /* renamed from: b */
     private static String m8913b() {
-        String m8499a = EnvironmentUtils.UUIDConfig.m8499a();
+        String m8499a = EnvironmentUtils.UUIDConfig.getUtdid();
         if (StringUtils.isEmpty(m8499a)) {
             return null;
         }

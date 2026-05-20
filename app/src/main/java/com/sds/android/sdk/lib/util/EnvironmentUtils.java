@@ -53,23 +53,21 @@ import org.apache.http.conn.util.InetAddressUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/* loaded from: classes.dex */
+/**
+ * Utility class for environment-related information like SD card paths, device config, and app config.
+ * De-obfuscated version.
+ */
 public class EnvironmentUtils {
 
-    /* renamed from: a */
-    private static String packageName;
+    private static String appPackageName;
 
-    /* renamed from: b */
     private static String sdcardPath;
 
-    /* renamed from: c */
-    private static String f2434c;
+    private static String secondarySdcardPath;
 
-    /* renamed from: d */
     private static String externalPath;
 
-    /* renamed from: e */
-    private static final String spearator = File.separator + ".";
+    private static final String DOT_SEPARATOR = File.separator + ".";
 
     static {
         String absolutePath;
@@ -78,10 +76,12 @@ public class EnvironmentUtils {
             File externalStorageDirectory = Environment.getExternalStorageDirectory();
             if (!externalStorageDirectory.canWrite()) {
                 File[] listFiles = externalStorageDirectory.getParentFile().listFiles();
-                for (int i = 0; i < listFiles.length; i++) {
-                    if (listFiles[i].isDirectory() && listFiles[i].canWrite()) {
-                        file = listFiles[i];
-                        break;
+                if (listFiles != null) {
+                    for (File listFile : listFiles) {
+                        if (listFile.isDirectory() && listFile.canWrite()) {
+                            file = listFile;
+                            break;
+                        }
                     }
                 }
             }
@@ -95,22 +95,24 @@ public class EnvironmentUtils {
         sdcardPath = absolutePath;
     }
 
-    /* renamed from: a */
-    public static void m8525a(Context context) {
+    /**
+     * Initializes all configuration modules.
+     */
+    public static void init(Context context) {
         AppConfig.init(context);
-        DeviceConfig.initConfig(context);
+        DeviceConfig.init(context);
         UUIDConfig.init(context);
-        packageName = context.getPackageName();
+        appPackageName = context.getPackageName();
         setDefaultExecutor();
     }
 
     @TargetApi(11)
-    /* renamed from: g */
     private static void setDefaultExecutor() {
         if (SDKVersionUtils.sdkThan11()) {
             try {
                 Method method = AsyncTask.class.getMethod("setDefaultExecutor", Executor.class);
-                @SuppressLint("SoonBlockedPrivateApi") Field declaredField = ThreadPoolExecutor.class.getDeclaredField("defaultHandler");
+                @SuppressLint("SoonBlockedPrivateApi") 
+                Field declaredField = ThreadPoolExecutor.class.getDeclaredField("defaultHandler");
                 declaredField.setAccessible(true);
                 declaredField.set(null, new ThreadPoolExecutor.DiscardOldestPolicy());
                 method.invoke(null, (ThreadPoolExecutor) AsyncTask.THREAD_POOL_EXECUTOR);
@@ -120,279 +122,226 @@ public class EnvironmentUtils {
         }
     }
 
-    /* renamed from: a */
-    public static String m8526a() {
-        return packageName;
+    public static String getAppPackageName() {
+        return appPackageName;
     }
 
-    /* renamed from: com.sds.android.sdk.lib.util.EnvironmentUtils$d */
-    /* loaded from: classes.dex */
-    public static class C0605d {
+    /**
+     * Storage-related configuration and utilities.
+     */
+    public static class StorageConfig {
 
-        /* renamed from: a */
-        private static ArrayList<String> f2463a = new ArrayList<>();
+        private static ArrayList<String> storagePaths = new ArrayList<>();
 
-        /* renamed from: com.sds.android.sdk.lib.util.EnvironmentUtils$d$a */
-        /* loaded from: classes.dex */
-        public enum EnumC0607a {
+        public enum SdcardType {
             FIRST_SD_CARD,
             SECOND_SD_CARD
         }
 
-        /* renamed from: a */
-        public static boolean m8472a() {
-            return "mounted".equals(Environment.getExternalStorageState());
+        public static boolean isExternalStorageMounted() {
+            return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
         }
 
-        /* renamed from: a */
-        public static long m8469a(File file) {
+        public static long getUsableSpace(File file) {
             if (SDKVersionUtils.sdkThan9()) {
                 return file.getUsableSpace();
             }
             StatFs statFs = new StatFs(file.getPath());
-            return statFs.getBlockSize() * statFs.getAvailableBlocks();
+            return (long) statFs.getBlockSize() * (long) statFs.getAvailableBlocks();
         }
 
-        /* renamed from: a */
-        public static File m8471a(Context context) {
+        public static File getExternalCacheDir(Context context) {
             File externalCacheDir = SDKVersionUtils.sdkThan8() ? context.getExternalCacheDir() : null;
             if (externalCacheDir == null) {
                 externalCacheDir = new File(Environment.getExternalStorageDirectory().getPath() + ("/Android/data/" + context.getPackageName() + "/cache/"));
             }
-            externalCacheDir.mkdirs();
-            if (externalCacheDir.isDirectory()) {
-                return externalCacheDir;
+            if (!externalCacheDir.exists()) {
+                externalCacheDir.mkdirs();
             }
-            return null;
+            return externalCacheDir.isDirectory() ? externalCacheDir : null;
         }
 
-        /* renamed from: b */
         public static String getSdcardPath() {
             return EnvironmentUtils.sdcardPath;
         }
 
-        /* renamed from: b */
-        public static String m8466b(Context context) {
+        public static String getCacheDirPath(Context context) {
             File file = null;
-            if (m8472a()) {
-                file = m8471a(context);
+            if (isExternalStorageMounted()) {
+                file = getExternalCacheDir(context);
             }
             return file != null ? file.getAbsolutePath() : context.getCacheDir().getAbsolutePath();
         }
 
-        /* renamed from: a */
-        public static boolean m8468a(String str) {
-            if (new File(str).canWrite()) {
-                String str2 = str + File.separator;
+        public static boolean isPathWritable(String path) {
+            File file = new File(path);
+            if (file.canWrite()) {
+                String testPathBase = path + File.separator;
                 int i = 0;
-                while (FileUtils.isFile(str2 + i)) {
+                while (FileUtils.isFile(testPathBase + i)) {
                     i++;
                 }
-                File m8407e = FileUtils.createFile(str2 + i);
-                if (m8407e != null) {
-                    m8407e.delete();
+                File testFile = FileUtils.createFile(testPathBase + i);
+                if (testFile != null) {
+                    testFile.delete();
                     return true;
                 }
-                return false;
             }
             return false;
         }
 
-        /* renamed from: c */
-        public static String m8462c(Context context) {
-            String m8460d = m8460d(context);
-            if (StringUtils.isEmpty(m8460d) || !FileUtils.exists(m8460d)) {
+        public static String getMediaStoreAuthorityPath(Context context) {
+            String secondaryPath = getSecondarySdcardPath(context);
+            if (StringUtils.isEmpty(secondaryPath) || !FileUtils.exists(secondaryPath)) {
                 return EnvironmentUtils.sdcardPath + File.separator + MediaStoreOld.AUTHORITY;
             }
             if (SDKVersionUtils.sdkThan19()) {
                 return EnvironmentUtils.externalPath;
             }
-            return m8460d + File.separator + MediaStoreOld.AUTHORITY;
+            return secondaryPath + File.separator + MediaStoreOld.AUTHORITY;
         }
 
-        /* JADX WARN: Unsupported multi-entry loop pattern (BACK_EDGE: B:18:0x0051 -> B:19:0x000a). Please submit an issue!!! */
-        /* renamed from: d */
-        public static String m8460d(Context context) {
-            String str;
-            if (EnvironmentUtils.f2434c != null) {
-                return EnvironmentUtils.f2434c;
+        public static String getSecondarySdcardPath(Context context) {
+            if (EnvironmentUtils.secondarySdcardPath != null) {
+                return EnvironmentUtils.secondarySdcardPath;
             }
             try {
-                String unused = EnvironmentUtils.f2434c = m8459e(context);
+                EnvironmentUtils.secondarySdcardPath = getSecondarySdcardPathFromExternalFiles(context);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (!StringUtils.isEmpty(EnvironmentUtils.f2434c)) {
-                str = EnvironmentUtils.f2434c;
-            } else {
+            if (StringUtils.isEmpty(EnvironmentUtils.secondarySdcardPath)) {
                 try {
-                    String unused2 = EnvironmentUtils.f2434c = m8457g(context);
+                    EnvironmentUtils.secondarySdcardPath = getSecondarySdcardPathFromVolumePaths(context);
                 } catch (Exception e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
-                if (!StringUtils.isEmpty(EnvironmentUtils.f2434c)) {
-                    str = EnvironmentUtils.f2434c;
-                } else {
-                    String unused3 = EnvironmentUtils.f2434c = m8463c();
-                    if (!StringUtils.isEmpty(EnvironmentUtils.f2434c)) {
-                        str = EnvironmentUtils.f2434c;
-                    }
-                    str = EnvironmentUtils.f2434c;
+                if (StringUtils.isEmpty(EnvironmentUtils.secondarySdcardPath)) {
+                    EnvironmentUtils.secondarySdcardPath = scanForStoragePaths();
                 }
             }
-            return str;
+            return EnvironmentUtils.secondarySdcardPath;
         }
 
-        /* renamed from: a */
-        public static String m8470a(Context context, EnumC0607a enumC0607a) {
-            String str = null;
-            if (EnumC0607a.FIRST_SD_CARD == enumC0607a) {
-                str = getSdcardPath();
-            } else if (EnumC0607a.SECOND_SD_CARD == enumC0607a) {
-                str = m8460d(context);
+        public static String getDataPath(Context context, SdcardType type) {
+            String path = null;
+            if (SdcardType.FIRST_SD_CARD == type) {
+                path = getSdcardPath();
+            } else if (SdcardType.SECOND_SD_CARD == type) {
+                path = getSecondarySdcardPath(context);
             }
-            if (StringUtils.isEmpty(str)) {
-                str = "";
+            if (StringUtils.isEmpty(path)) {
+                path = "";
             }
-            return new StringBuffer(str).append(File.separator).append("Android").append(File.separator).append("data").append(File.separator).append(EnvironmentUtils.m8526a()).toString();
+            return path + File.separator + "Android" + File.separator + "data" + File.separator + EnvironmentUtils.getAppPackageName();
         }
 
-        /* renamed from: e */
-        private static String m8459e(Context context) {
+        private static String getSecondarySdcardPathFromExternalFiles(Context context) {
             if (EnvironmentUtils.externalPath == null) {
-                getExternalFilePath(context);
+                initExternalPath(context);
             }
             if (StringUtils.isEmpty(EnvironmentUtils.externalPath)) {
                 return "";
             }
-            StringBuffer stringBuffer = new StringBuffer(File.separator);
-            stringBuffer.append("Android");
-            stringBuffer.append(File.separator);
-            stringBuffer.append("data");
-            stringBuffer.append(File.separator);
-            stringBuffer.append(EnvironmentUtils.packageName);
-            return EnvironmentUtils.externalPath.replaceAll(stringBuffer.toString(), "");
+            String suffix = File.separator + "Android" + File.separator + "data" + File.separator + EnvironmentUtils.appPackageName;
+            return EnvironmentUtils.externalPath.replaceAll(suffix, "");
         }
 
-        /* renamed from: f */
-        private static String getExternalFilePath(Context context) {
+        private static String initExternalPath(Context context) {
             if (EnvironmentUtils.externalPath != null) {
                 return EnvironmentUtils.externalPath;
             }
             File[] externalFilesDirs = ContextCompat.getExternalFilesDirs(context, null);
             if (externalFilesDirs == null || externalFilesDirs.length < 2 || externalFilesDirs[1] == null) {
-                String unused = EnvironmentUtils.externalPath = "";
+                EnvironmentUtils.externalPath = "";
             } else {
                 try {
-                    try {
-                        String unused2 = EnvironmentUtils.externalPath = externalFilesDirs[1].getCanonicalPath().replaceAll(File.separator + "files", "");
-                        if (EnvironmentUtils.externalPath == null) {
-                            String unused3 = EnvironmentUtils.externalPath = "";
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        if (EnvironmentUtils.externalPath == null) {
-                            String unused4 = EnvironmentUtils.externalPath = "";
-                        }
-                    }
-                } catch (Throwable th) {
-                    if (EnvironmentUtils.externalPath == null) {
-                        String unused5 = EnvironmentUtils.externalPath = "";
-                    }
-                    throw th;
+                    EnvironmentUtils.externalPath = externalFilesDirs[1].getCanonicalPath().replaceAll(File.separator + "files", "");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    EnvironmentUtils.externalPath = "";
                 }
             }
             return EnvironmentUtils.externalPath;
         }
 
-        /* renamed from: g */
-        private static String m8457g(Context context) throws Exception {
-            String[] strArr;
+        private static String getSecondarySdcardPathFromVolumePaths(Context context) throws Exception {
             if (SDKVersionUtils.sdkThan11()) {
                 StorageManager storageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
-                for (String str : (String[]) storageManager.getClass().getMethod("getVolumePaths", (Class<?>[]) null)
-                        .invoke(storageManager, (Object[]) null)) {
-                    File file = new File(str);
-                    if (file.canWrite() && !FileUtils.testDirPermissions(str, EnvironmentUtils.sdcardPath)) {
-                        return file.getCanonicalPath();
+                String[] paths = (String[]) storageManager.getClass().getMethod("getVolumePaths").invoke(storageManager);
+                if (paths != null) {
+                    for (String path : paths) {
+                        File file = new File(path);
+                        if (file.canWrite() && !FileUtils.testDirPermissions(path, EnvironmentUtils.sdcardPath)) {
+                            return file.getCanonicalPath();
+                        }
                     }
                 }
             }
             return "";
         }
 
-        /* renamed from: c */
-        private static String m8463c() {
-            File[] listFiles;
-            if (!f2463a.isEmpty()) {
-                return f2463a.get(0);
+        private static String scanForStoragePaths() {
+            if (!storagePaths.isEmpty()) {
+                return storagePaths.get(0);
             }
-            File[] files = File.listRoots();
-            File[] subFiles = files[0].listFiles();
-            if(subFiles == null){
-                return "";
-            }
-            for (File file : files[0].listFiles(new FileFilter() { // from class: com.sds.android.sdk.lib.util.EnvironmentUtils.d.1
-                @Override // java.io.FileFilter
-                public boolean accept(File file2) {
-                    return !file2.getName().contains("dev");
+            File root = new File("/");
+            File[] rootFiles = root.listFiles(new FileFilter() {
+                @Override
+                public boolean accept(File file) {
+                    return !file.getName().contains("dev");
                 }
-            })) {
-                if (file.isDirectory() && file.canRead() && file.canWrite()) {
-                    m8465b(file);
-                } else {
-                    File[] listFiles2 = file.listFiles();
-                    if (listFiles2 != null) {
-                        for (File file2 : listFiles2) {
-                            m8465b(file2);
+            });
+            if (rootFiles != null) {
+                for (File file : rootFiles) {
+                    if (file.isDirectory() && file.canRead() && file.canWrite()) {
+                        checkAndAddStoragePath(file);
+                    } else {
+                        File[] subFiles = file.listFiles();
+                        if (subFiles != null) {
+                            for (File subFile : subFiles) {
+                                checkAndAddStoragePath(subFile);
+                            }
                         }
                     }
                 }
             }
-            if (f2463a.isEmpty()) {
-                return "";
-            }
-            return f2463a.get(0);
+            return storagePaths.isEmpty() ? "" : storagePaths.get(0);
         }
 
-        /* renamed from: b */
-        private static void m8465b(File file) {
-            if (file != null && file.canRead() && file.canWrite() && m8469a(file) > 3145728) {
-                m8464b(file.getAbsolutePath());
+        private static void checkAndAddStoragePath(File file) {
+            if (file != null && file.canRead() && file.canWrite() && getUsableSpace(file) > 3145728) { // > 3MB
+                addPathIfUnique(file.getAbsolutePath());
             }
         }
 
-        /* renamed from: b */
-        private static void m8464b(String str) {
-            boolean z;
-            if (!m8461c(str) && !FileUtils.testDirPermissions(str, EnvironmentUtils.sdcardPath)) {
-                if (f2463a.isEmpty()) {
-                    f2463a.add(str);
+        private static void addPathIfUnique(String path) {
+            if (!isDotPath(path) && !FileUtils.testDirPermissions(path, EnvironmentUtils.sdcardPath)) {
+                if (storagePaths.isEmpty()) {
+                    storagePaths.add(path);
                     return;
                 }
-                boolean z2 = false;
-                Iterator<String> it = f2463a.iterator();
-                while (true) {
-                    z = z2;
-                    if (!it.hasNext()) {
+                boolean exists = false;
+                for (String p : storagePaths) {
+                    if (p.contains(path) || path.contains(p)) {
+                        exists = true;
                         break;
                     }
-                    String next = it.next();
-                    z2 = (next.contains(str) || str.contains(next)) ? true : z;
                 }
-                if (!z) {
-                    f2463a.add(str);
+                if (!exists) {
+                    storagePaths.add(path);
                 }
             }
         }
 
-        /* renamed from: c */
-        private static boolean m8461c(String str) {
-            return str.contains(EnvironmentUtils.spearator);
+        private static boolean isDotPath(String path) {
+            return path.contains(EnvironmentUtils.DOT_SEPARATOR);
         }
     }
 
-    /* loaded from: classes.dex */
+    /**
+     * Native CPU information utility.
+     */
     public static class CPU {
         public static native int armArch();
 
@@ -409,41 +358,31 @@ public class EnvironmentUtils {
         }
     }
 
-    /* renamed from: com.sds.android.sdk.lib.util.EnvironmentUtils$c */
-    /* loaded from: classes.dex */
+    /**
+     * Device-specific configuration and identifiers.
+     */
     public static class DeviceConfig {
 
-        /* renamed from: a */
-        private static final int[] f2456a = {0, 0, 0, 3, 0, 3, 3, 0, 3, 3, 3, 0, 3, 3, 3, 3};
+        private static final int[] NETWORK_TYPE_MAPPING = {0, 0, 0, 3, 0, 3, 3, 0, 3, 3, 3, 0, 3, 3, 3, 3};
 
-        /* renamed from: b */
         private static String deviceId = "";
 
-        /* renamed from: c */
         private static String subscriberId = "";
 
-        /* renamed from: d */
         private static String macAddress = "";
 
-        /* renamed from: e */
-        private static NetworkInfo activeNetworkInfo;
+        private static int initialNetworkType;
 
-        /* renamed from: f */
-        private static int f2461f;
-
-        /* renamed from: g */
         private static ConnectivityManager connectivityManager;
 
-        /* renamed from: a */
         @SuppressLint("HardwareIds")
-        public static void initConfig(Context context) {
+        public static void init(Context context) {
             TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             try {
                 deviceId = telephonyManager.getDeviceId();
             } catch (SecurityException ex) {
                 ex.printStackTrace();
             }
-
             if (deviceId == null) {
                 deviceId = "";
             }
@@ -455,71 +394,76 @@ public class EnvironmentUtils {
             if (subscriberId == null) {
                 subscriberId = "";
             }
-            macAddress = ((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getConnectionInfo().getMacAddress();
+            WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+            if (wifiManager != null && wifiManager.getConnectionInfo() != null) {
+                macAddress = wifiManager.getConnectionInfo().getMacAddress();
+            }
             if (macAddress == null) {
                 macAddress = "";
             }
-            f2461f = f2456a[getNetworkType(context)];
+            initialNetworkType = NETWORK_TYPE_MAPPING[getTelephonyNetworkType(context)];
             connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         }
 
-        /* renamed from: a */
         public static String getDeviceId() {
             return deviceId;
         }
 
-        /* renamed from: b */
         public static String getSubscriberId() {
             return subscriberId;
         }
 
-        /* renamed from: c */
         public static String getMacAddress() {
             return macAddress;
         }
 
-        /* renamed from: d */
+        /**
+         * Returns the current network type.
+         * -1: No connection, 1: Mobile (WAP), 2: WiFi, 3: Mobile (Broadband)
+         */
         public static int getNetworkType() {
-            int i = f2461f;
             if (connectivityManager == null) {
                 return 1;
             }
-            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-            if (!isConnectedNetwork(activeNetworkInfo)) {
+            NetworkInfo activeInfo = connectivityManager.getActiveNetworkInfo();
+            if (activeInfo == null || !activeInfo.isConnected()) {
                 return -1;
             }
-            if (isConnected(activeNetworkInfo)) {
+            if (activeInfo.getType() == ConnectivityManager.TYPE_WIFI) {
                 return 2;
             }
-            if (m8477c(activeNetworkInfo)) {
+            if (isMobileWap(activeInfo)) {
                 return 1;
             }
-            return i;
+            return initialNetworkType;
         }
 
-        /* renamed from: e */
         public static boolean isConnected() {
-            return isConnectedNetwork(connectivityManager.getActiveNetworkInfo());
+            NetworkInfo activeInfo = connectivityManager.getActiveNetworkInfo();
+            return activeInfo != null && activeInfo.isConnected();
         }
 
-        /* renamed from: f */
-        public static String m8473f() {
-            return m8482a(true);
+        public static String getIPAddress() {
+            return getIPAddress(true);
         }
 
-        /* renamed from: a */
-        private static String m8482a(boolean z) {
+        private static String getIPAddress(boolean useIPv4) {
             try {
-                Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
-                while (networkInterfaces.hasMoreElements()) {
-                    Enumeration<InetAddress> inetAddresses = networkInterfaces.nextElement().getInetAddresses();
-                    while (inetAddresses.hasMoreElements()) {
-                        InetAddress nextElement = inetAddresses.nextElement();
-                        if (!nextElement.isLoopbackAddress()) {
-                            String hostAddress = nextElement.getHostAddress();
-                            if (z == InetAddressUtils.isIPv4Address(hostAddress)) {
-                                return hostAddress;
+                Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+                while (interfaces.hasMoreElements()) {
+                    Enumeration<InetAddress> addresses = interfaces.nextElement().getInetAddresses();
+                    while (addresses.hasMoreElements()) {
+                        InetAddress addr = addresses.nextElement();
+                        if (!addr.isLoopbackAddress()) {
+                            String sAddr = addr.getHostAddress();
+                            boolean isIPv4 = InetAddressUtils.isIPv4Address(sAddr);
+                            if (useIPv4) {
+                                if (isIPv4) return sAddr;
+                            } else {
+                                if (!isIPv4) {
+                                    int delim = sAddr.indexOf('%'); // drop ip6 zone suffix
+                                    return delim < 0 ? sAddr.toUpperCase() : sAddr.substring(0, delim).toUpperCase();
+                                }
                             }
                         }
                     }
@@ -530,146 +474,76 @@ public class EnvironmentUtils {
             return "";
         }
 
-        /* renamed from: b */
-        private static int getNetworkType(Context context) {
-
-            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE)
-                    != PackageManager.PERMISSION_GRANTED) {
+        private static int getTelephonyNetworkType(Context context) {
+            if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                 return 0;
             }
-            int networkType = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getNetworkType();
-            if (networkType < 0 || networkType >= f2456a.length) {
-                return 0;
-            }
-            return networkType;
+            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            int type = tm.getNetworkType();
+            return (type < 0 || type >= NETWORK_TYPE_MAPPING.length) ? 0 : type;
         }
 
-        /* renamed from: a */
-        private static boolean isConnectedNetwork(NetworkInfo networkInfo) {
-            return networkInfo != null && networkInfo.isConnected();
-        }
-
-        /* renamed from: b */
-        private static boolean m8479b(NetworkInfo networkInfo) {
-            return networkInfo.getType() == 0;
-        }
-
-        /* renamed from: c */
-        private static boolean m8477c(NetworkInfo networkInfo) {
-            return m8479b(networkInfo) && !StringUtils.isEmpty(Proxy.getDefaultHost());
-        }
-
-        /* renamed from: d */
-        private static boolean isConnected(NetworkInfo networkInfo) {
-            return networkInfo.getType() == 1;
+        private static boolean isMobileWap(NetworkInfo info) {
+            return info.getType() == ConnectivityManager.TYPE_MOBILE && !StringUtils.isEmpty(Proxy.getDefaultHost());
         }
     }
 
-    /* renamed from: com.sds.android.sdk.lib.util.EnvironmentUtils$a */
-    /* loaded from: classes.dex */
+    /**
+     * Application-specific configuration loaded from assets.
+     */
     public static class AppConfig {
 
-        /* renamed from: a */
         private static String appVersion = "";
-
-        /* renamed from: b */
         private static String versionName = "";
-
-        /* renamed from: c */
         private static boolean verificationEnable = false;
-
-        /* renamed from: d */
         private static boolean urlPrintEnable = false;
-
-        /* renamed from: e */
         private static boolean testMode = false;
-
-        /* renamed from: f */
-        private static boolean appcheckUpdateEnable = true;
-
-        /* renamed from: g */
+        private static boolean checkUpdateEnable = true;
         private static boolean logEnable = true;
-
-        /* renamed from: h */
         private static boolean adSdkEnable = true;
-
-        /* renamed from: i */
         private static String channelType = "";
-
-        /* renamed from: j */
         private static String channelNumber = "";
-
-        /* renamed from: k */
         private static String build = "";
-
-        /* renamed from: l */
         private static String updateCategory = "";
-
-        /* renamed from: m */
         private static String noAdChannels = "";
-
-        /* renamed from: n */
         private static String noShortcutChannels = "";
-
-        /* renamed from: o */
         private static boolean qihooUnionEnable = false;
-
-        /* renamed from: p */
         private static Map<String, String> configMaps;
 
-        /* renamed from: a */
         public static void init(Context context) {
-            initConfig(context);
-            readAssetsBuild(context);
-            readAssetsChannels(context);
+            loadConfig(context);
+            loadBuildInfo(context);
+            loadChannelInfo(context);
         }
 
-        /* renamed from: b */
-        private static void initConfig(Context context) {
-            InputStream inputStream = null;
+        private static void loadConfig(Context context) {
+            InputStream is = null;
             try {
-                try {
-                    inputStream = context.getAssets().open("config");
-                    configMaps = XmlUtils.m8332a(inputStream);
-                    readConfigParams();
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                } catch (Throwable th) {
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (IOException e2) {
-                            e2.printStackTrace();
-                        }
-                    }
-                    throw th;
-                }
-            } catch (Exception e3) {
-                e3.printStackTrace();
-                if (inputStream != null) {
+                is = context.getAssets().open("config");
+                configMaps = XmlUtils.m8332a(is);
+                parseConfigParams();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (is != null) {
                     try {
-                        inputStream.close();
-                    } catch (IOException e4) {
-                        e4.printStackTrace();
+                        is.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
             }
         }
 
-        /* renamed from: k */
-        private static void readConfigParams() {
+        private static void parseConfigParams() {
+            if (configMaps == null) return;
             try {
                 appVersion = configMaps.get("app_version");
                 verificationEnable = stringToBool(configMaps.get("verification_enable"), false);
                 versionName = configMaps.get("version_name");
                 urlPrintEnable = stringToBool(configMaps.get("url_print_enable"), false);
                 testMode = stringToBool(configMaps.get("test_mode"), false);
-                appcheckUpdateEnable = stringToBool(configMaps.get("app_checkupdate_enable"), true);
+                checkUpdateEnable = stringToBool(configMaps.get("app_checkupdate_enable"), true);
                 logEnable = stringToBool(configMaps.get("log_enable"), true);
                 adSdkEnable = stringToBool(configMaps.get("ad_sdk_enable"), true);
                 updateCategory = configMaps.get("update_category");
@@ -679,252 +553,121 @@ public class EnvironmentUtils {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            LogUtils.info("Config", "Build:" + build);
             LogUtils.info("Config", "AppVersion:" + appVersion);
-            LogUtils.info("Config", "VerificationEnable:" + verificationEnable);
-            LogUtils.info("Config", "VersionName:" + versionName);
-            LogUtils.info("Config", "UrlPrintEnable:" + urlPrintEnable);
-            LogUtils.info("Config", "TestMode:" + testMode);
-            LogUtils.info("Config", "AppCheckUpdateEnable:" + appcheckUpdateEnable);
-            LogUtils.info("Config", "LogEnable:" + logEnable);
-            LogUtils.info("Config", "AdSdkEnable:" + adSdkEnable);
-            LogUtils.info("Config", "UpdateCategory:" + updateCategory);
-            LogUtils.info("Config", "360UnionEnable:" + qihooUnionEnable);
         }
 
-        /* JADX WARN: Removed duplicated region for block: B:41:0x004d A[EXC_TOP_SPLITTER, SYNTHETIC] */
-        /* renamed from: c */
-        /*
-            Code decompiled incorrectly, please refer to instructions dump.
-        */
-        private static void readAssetsChannels(Context context) {
-            BufferedReader bufferedReader = null;
-            Exception e;
-            String str;
-            String str2 = "0";
-            Throwable th;
-            BufferedReader bufferedReader2 = null;
+        private static void loadChannelInfo(Context context) {
+            BufferedReader reader = null;
             try {
-                bufferedReader = new BufferedReader(new InputStreamReader(context.getAssets().open("channel")));
-            } catch (Exception e2) {
-                bufferedReader = null;
-                e = e2;
-                str = "0";
-            } catch (Throwable th1) {
-                th = th1;
-                if (bufferedReader2 != null) {
-                }
-                //throw th;
-            }
-            try {
-                try {
-                    str = m8514a("0", bufferedReader.readLine());
-                } catch (Exception e3) {
-                    e = e3;
-                    str = "0";
-                }
-                try {
-                    str2 = m8514a("0", bufferedReader.readLine());
-                    if (bufferedReader != null) {
-                        try {
-                            bufferedReader.close();
-                        } catch (IOException e4) {
-                            e4.printStackTrace();
-                        }
-                    }
-                } catch (Exception e5) {
-                    e = e5;
-                    e.printStackTrace();
-                    if (bufferedReader != null) {
-                        try {
-                            bufferedReader.close();
-                        } catch (IOException e6) {
-                            e6.printStackTrace();
-                        }
-                    }
-                    channelNumber = str2;
-                    channelType = str;
-                }
-                channelNumber = str2;
-                channelType = str;
-            } catch (Throwable th2) {
-                th = th2;
-                bufferedReader2 = bufferedReader;
-                if (bufferedReader2 != null) {
+                reader = new BufferedReader(new InputStreamReader(context.getAssets().open("channel")));
+                channelType = parseChannelPart("0", reader.readLine());
+                channelNumber = parseChannelPart("0", reader.readLine());
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (reader != null) {
                     try {
-                        bufferedReader2.close();
-                    } catch (IOException e7) {
-                        e7.printStackTrace();
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
-                //throw th;
             }
         }
 
-        /* renamed from: a */
-        private static String m8514a(String str, String str2) {
-            String trim;
-            int lastIndexOf;
-            if (str2 != null && (lastIndexOf = (trim = str2.trim()).lastIndexOf(95)) > -1) {
-                return trim.substring(lastIndexOf + 1);
+        private static String parseChannelPart(String defaultValue, String line) {
+            if (line != null) {
+                String trim = line.trim();
+                int idx = trim.lastIndexOf('_');
+                if (idx > -1) {
+                    return trim.substring(idx + 1);
+                }
             }
-            return str;
+            return defaultValue;
         }
 
-        /* renamed from: d */
-        private static void readAssetsBuild(Context context) {
-            Exception exc;
-            String str = null;
-            Throwable th;
-            BufferedReader bufferedReader = null;
+        private static void loadBuildInfo(Context context) {
+            BufferedReader reader = null;
             try {
-                try {
-                    BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(context.getAssets().open("build")));
-                    try {
-                        try {
-                            String readLine = bufferedReader2.readLine();
-                            if (readLine != null) {
-                                try {
-                                    str = readLine.trim();
-                                } catch (Exception e) {
-                                    str = readLine;
-                                    bufferedReader = bufferedReader2;
-                                    exc = e;
-                                    exc.printStackTrace();
-                                    if (bufferedReader != null) {
-                                        try {
-                                            bufferedReader.close();
-                                        } catch (IOException e2) {
-                                            e2.printStackTrace();
-                                        }
-                                    }
-                                    build = str;
-                                }
-                            } else {
-                                str = readLine;
-                            }
-                            if (bufferedReader2 != null) {
-                                try {
-                                    bufferedReader2.close();
-                                } catch (IOException e3) {
-                                    e3.printStackTrace();
-                                }
-                            }
-                        } catch (Throwable th1) {
-                            th = th1;
-                            bufferedReader = bufferedReader2;
-                            if (bufferedReader != null) {
-                                try {
-                                    bufferedReader.close();
-                                } catch (IOException e4) {
-                                    e4.printStackTrace();
-                                }
-                            }
-                            throw th;
-                        }
-                    } catch (Exception e5) {
-                        bufferedReader = bufferedReader2;
-                        exc = e5;
-                        str = "0";
-                    }
-                } catch (Throwable th2) {
-                    th = th2;
+                reader = new BufferedReader(new InputStreamReader(context.getAssets().open("build")));
+                String line = reader.readLine();
+                if (line != null) {
+                    build = line.trim();
                 }
-            } catch (Exception e6) {
-                exc = e6;
-                str = "0";
+            } catch (Exception e) {
+                e.printStackTrace();
+                build = "0";
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
-            build = str;
         }
 
-        /* renamed from: a */
         public static boolean getAppCheckUpdateEnable() {
-            return appcheckUpdateEnable;
+            return checkUpdateEnable;
         }
 
-        /* renamed from: b */
         public static String getChannelType() {
             return channelType;
         }
 
-        /* renamed from: c */
         public static String getChannelNumber() {
             return channelNumber;
         }
 
-        /* renamed from: d */
         public static String getBuild() {
             return build;
         }
 
-        /* renamed from: e */
         public static String getAppVersion() {
             return appVersion;
         }
 
-        /* renamed from: f */
         public static String getVersionName() {
             return versionName;
         }
 
-        /* renamed from: g */
         public static boolean getVerificationEnable() {
             return verificationEnable;
         }
 
-        /* renamed from: h */
-        public static boolean m8503h() {
-            return testMode;
-        }
-
-        /* renamed from: i */
         public static boolean getTestMode() {
             return testMode;
         }
 
-        /* renamed from: j */
         public static String getNoShortcutChannels() {
             return noShortcutChannels;
         }
 
-        /* renamed from: a */
-        private static boolean stringToBool(String str, boolean result) {
-            if ("false".equalsIgnoreCase(str)) {
-                return false;
-            }
-            if ("true".equalsIgnoreCase(str)) {
-                return true;
-            }
-            return result;
+        private static boolean stringToBool(String str, boolean def) {
+            if ("false".equalsIgnoreCase(str)) return false;
+            if ("true".equalsIgnoreCase(str)) return true;
+            return def;
         }
     }
 
-    /* renamed from: com.sds.android.sdk.lib.util.EnvironmentUtils$b */
-    /* loaded from: classes.dex */
+    /**
+     * Unique identifier configuration.
+     */
     public static class UUIDConfig {
 
-        /* renamed from: a */
         private static String utdid;
-
-        /* renamed from: b */
         private static HashMap<String, Object> uuidMaps = new HashMap<>();
-
-        /* renamed from: c */
         private static JSONObject uuidJsonObject;
 
-        /* renamed from: a */
         public static void init(Context context) {
             try {
                 OpenUDIDManager.m8571a(context);
                 uuidMaps.put("openudid", OpenUDIDManager.m8572a());
-                String replaceAll = DeviceConfig.getMacAddress().replaceAll("[-:]", "");
-                uuidMaps.put("hid", SecurityUtils.C0612d.m8352a(replaceAll));
-                String m8485a = DeviceConfig.getDeviceId();
-                HashMap<String, Object> hashMap = uuidMaps;
-                if (!StringUtils.isEmpty(m8485a)) {
-                    replaceAll = m8485a;
-                }
-                hashMap.put("uid", replaceAll);
+                String mac = DeviceConfig.getMacAddress().replaceAll("[-:]", "");
+                uuidMaps.put("hid", SecurityUtils.TEA.encrypt(mac));
+                String id = DeviceConfig.getDeviceId();
+                uuidMaps.put("uid", !StringUtils.isEmpty(id) ? id : mac);
                 uuidMaps.put("mid", URLEncoder.encode(Build.MODEL, "UTF-8"));
                 uuidMaps.put("imsi", URLEncoder.encode(DeviceConfig.getSubscriberId(), "UTF-8"));
                 uuidMaps.put("s", "s200");
@@ -933,15 +676,17 @@ public class EnvironmentUtils {
                 uuidMaps.put("v", "v" + AppConfig.getAppVersion());
                 uuidMaps.put("f", "f" + AppConfig.getChannelType());
                 uuidMaps.put("alf", "alf" + AppConfig.getChannelNumber());
-                uuidMaps.put("active", Integer.valueOf(m8490c(context) ? 1 : 0));
+                uuidMaps.put("active", isFirstActive(context) ? 1 : 0);
                 uuidMaps.put("net", 0);
-                uuidMaps.put("tid", new Long(0L));
-                uuidMaps.put("resolution", m8493b(context));
-                List<String> m8335c = StringUtils.stringToArray(context.getPackageName(), ".");
-                int size = m8335c.size();
-                if (size > 0) {
-                    uuidMaps.put("app", m8335c.get(size - 1));
+                uuidMaps.put("tid", 0L);
+                uuidMaps.put("resolution", getResolution(context));
+                
+                String pkg = context.getPackageName();
+                int idx = pkg.lastIndexOf('.');
+                if (idx > 0) {
+                    uuidMaps.put("app", pkg.substring(idx + 1));
                 }
+                
                 utdid = UTDevice.getUtdid(context);
                 uuidMaps.put("utdid", utdid);
                 uuidJsonObject = new JSONObject(uuidMaps);
@@ -950,40 +695,33 @@ public class EnvironmentUtils {
             }
         }
 
-        /* renamed from: b */
-        private static String m8493b(Context context) {
-            DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-            return displayMetrics.widthPixels + "x" + displayMetrics.heightPixels;
+        private static String getResolution(Context context) {
+            DisplayMetrics dm = context.getResources().getDisplayMetrics();
+            return dm.widthPixels + "x" + dm.heightPixels;
         }
 
-        /* renamed from: a */
-        public static String m8499a() {
+        public static String getUtdid() {
             return utdid;
         }
 
-        /* renamed from: b */
-        public static String m8494b() {
+        public static String getS() {
             return (String) uuidMaps.get("s");
         }
 
-        /* renamed from: c */
-        public static String m8491c() {
+        public static String getV() {
             return (String) uuidMaps.get("v");
         }
 
-        /* renamed from: d */
-        public static String m8489d() {
+        public static String getF() {
             return (String) uuidMaps.get("f");
         }
 
-        /* renamed from: e */
-        public static HashMap<String, Object> m8488e() {
-            uuidMaps.put("net", Integer.valueOf(DeviceConfig.getNetworkType()));
+        public static HashMap<String, Object> getUuidMaps() {
+            uuidMaps.put("net", DeviceConfig.getNetworkType());
             return uuidMaps;
         }
 
-        /* renamed from: f */
-        public static JSONObject m8487f() {
+        public static JSONObject getUuidJsonObject() {
             try {
                 uuidJsonObject.put("net", DeviceConfig.getNetworkType());
             } catch (JSONException e) {
@@ -992,51 +730,38 @@ public class EnvironmentUtils {
             return uuidJsonObject;
         }
 
-        /* renamed from: a */
-        public static void m8498a(long j) {
-            uuidMaps.put("tid", Long.valueOf(j));
+        public static void setTid(long tid) {
+            uuidMaps.put("tid", tid);
             try {
-                uuidJsonObject.put("tid", j);
+                uuidJsonObject.put("tid", tid);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
-        /* renamed from: g */
-        public static long m8486g() {
-            return ((Long) uuidMaps.get("tid")).longValue();
+        public static long getTid() {
+            return (Long) uuidMaps.get("tid");
         }
 
-        /* renamed from: c */
-        private static boolean m8490c(Context context) {
+        private static boolean isFirstActive(Context context) {
             try {
-                m8492b(context, "flag");
+                Closeable c = context.openFileInput("flag");
+                close(c);
                 return false;
             } catch (Exception e) {
-                m8496a(context, "flag");
+                try {
+                    close(context.openFileOutput("flag", Context.MODE_PRIVATE));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
                 return true;
             }
         }
 
-        /* renamed from: a */
-        private static void m8496a(Context context, String str) {
-            try {
-                m8495a(context.openFileOutput(str, 0));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        /* renamed from: b */
-        private static void m8492b(Context context, String str) throws FileNotFoundException {
-            m8495a(context.openFileInput(str));
-        }
-
-        /* renamed from: a */
-        private static void m8495a(Closeable closeable) {
-            if (closeable != null) {
+        private static void close(Closeable c) {
+            if (c != null) {
                 try {
-                    closeable.close();
+                    c.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

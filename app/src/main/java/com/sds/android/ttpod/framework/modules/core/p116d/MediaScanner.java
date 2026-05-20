@@ -174,8 +174,8 @@ public final class MediaScanner {
 
     /* renamed from: f */
     private String[] m4226f() {
-        String m8467b = EnvironmentUtils.C0605d.getSdcardPath();
-        String m8460d = EnvironmentUtils.C0605d.m8460d(BaseApplication.getApplication());
+        String m8467b = EnvironmentUtils.StorageConfig.getSdcardPath();
+        String m8460d = EnvironmentUtils.StorageConfig.getSecondarySdcardPath(BaseApplication.getApplication());
         ArrayList arrayList = new ArrayList();
         if (StringUtils.isEmpty(m8460d) || StringUtils.isEmpty(this.f5987f) || StringUtils.equals(this.f5987f, this.f5986e)) {
             return new String[]{m8467b};
@@ -190,19 +190,19 @@ public final class MediaScanner {
 
     /* renamed from: g */
     private void m4225g() {
-        String sdcardPath = EnvironmentUtils.C0605d.getSdcardPath();
-        String m8460d = EnvironmentUtils.C0605d.m8460d(BaseApplication.getApplication());
+        String sdcardPath = EnvironmentUtils.StorageConfig.getSdcardPath();
+        String m8460d = EnvironmentUtils.StorageConfig.getSecondarySdcardPath(BaseApplication.getApplication());
         this.f5986e = sdcardPath;
         this.f5987f = m8460d;
         try {
             if (StringUtils.isEmpty(m8460d) || sdcardPath.equals(m8460d) || !m4236a(sdcardPath) || !m4236a(m8460d)) {
                 this.f5987f = "";
-            } else if (SDKVersionUtils.sdkThan9() && Environment.isExternalStorageRemovable() && FileUtils.testDirPermissions(EnvironmentUtils.C0605d.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
-                this.f5986e = EnvironmentUtils.C0605d.m8460d(BaseApplication.getApplication());
-                this.f5987f = EnvironmentUtils.C0605d.getSdcardPath();
+            } else if (SDKVersionUtils.sdkThan9() && Environment.isExternalStorageRemovable() && FileUtils.testDirPermissions(EnvironmentUtils.StorageConfig.getSdcardPath(), Environment.getExternalStorageDirectory().getCanonicalPath())) {
+                this.f5986e = EnvironmentUtils.StorageConfig.getSecondarySdcardPath(BaseApplication.getApplication());
+                this.f5987f = EnvironmentUtils.StorageConfig.getSdcardPath();
             }
         } catch (Exception e) {
-            this.f5986e = EnvironmentUtils.C0605d.getSdcardPath();
+            this.f5986e = EnvironmentUtils.StorageConfig.getSdcardPath();
             this.f5987f = "";
             e.printStackTrace();
         }
@@ -223,8 +223,8 @@ public final class MediaScanner {
     /* renamed from: b */
     private String m4232b(String str) {
         String str2 = str + File.separator + MediaStoreOld.AUTHORITY;
-        if (SDKVersionUtils.sdkThan19() && this.f5987f.equals(str) && !this.f5987f.equals(EnvironmentUtils.C0605d.getSdcardPath())) {
-            str2 = EnvironmentUtils.C0605d.m8470a(BaseApplication.getApplication(), EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
+        if (SDKVersionUtils.sdkThan19() && this.f5987f.equals(str) && !this.f5987f.equals(EnvironmentUtils.StorageConfig.getSdcardPath())) {
+            str2 = EnvironmentUtils.StorageConfig.getDataPath(BaseApplication.getApplication(), EnvironmentUtils.StorageConfig.SdcardType.SECOND_SD_CARD);
         }
         if (!FileUtils.isDir(str2)) {
             FileUtils.createFolder(str2);
@@ -362,8 +362,8 @@ public final class MediaScanner {
                 m4211a(str5, sb, str4);
             }
             m4196f();
-            if (MediaScanner.this.f5985d && this.f6001n && !this.f5990c.contains(EnvironmentUtils.C0605d.getSdcardPath()) && this.f5996i.get() == 0) {
-                m4211a(EnvironmentUtils.C0605d.getSdcardPath(), sb, str4);
+            if (MediaScanner.this.f5985d && this.f6001n && !this.f5990c.contains(EnvironmentUtils.StorageConfig.getSdcardPath()) && this.f5996i.get() == 0) {
+                m4211a(EnvironmentUtils.StorageConfig.getSdcardPath(), sb, str4);
                 m4196f();
             }
             if (this.f5998k.size() > 0) {

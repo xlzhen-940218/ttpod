@@ -604,7 +604,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             sb.append("&auto=");
             sb.append(1);
             sb.append("&s=");
-            sb.append(EnvironmentUtils.UUIDConfig.m8494b());
+            sb.append(EnvironmentUtils.UUIDConfig.getS());
         } catch (Exception e2) {
             e2.printStackTrace();
         }

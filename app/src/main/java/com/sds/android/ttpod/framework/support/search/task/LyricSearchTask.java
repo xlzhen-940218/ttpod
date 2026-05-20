@@ -114,7 +114,7 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
             sb.append("&code=");
             sb.append(TTTextUtils.decryptLyricKey(str, str2, Integer.parseInt(str3)));
             sb.append("&s=");
-            sb.append(EnvironmentUtils.UUIDConfig.m8494b());
+            sb.append(EnvironmentUtils.UUIDConfig.getS());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -230,7 +230,7 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
             sb.append("&auto=");
             sb.append(this.lyricSearchTaskInfo.isAuto() ? 0 : 1);
             sb.append("&s=");
-            sb.append(EnvironmentUtils.UUIDConfig.m8494b());
+            sb.append(EnvironmentUtils.UUIDConfig.getS());
         } catch (Exception e) {
             e.printStackTrace();
         }

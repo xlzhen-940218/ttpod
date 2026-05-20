@@ -57,7 +57,7 @@ public class FeedbackModule extends BaseModule {
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.c.a.1
             @Override // java.lang.Runnable
             public void run() {
-                PostFeedbackResult postFeedbackResult = new PostFeedbackResult(FeedbackAPI.m8915a(feedbackItem.getProposalContent(), EnvironmentUtils.DeviceConfig.m8473f(), feedbackItem.getContactWay()).m8668b());
+                PostFeedbackResult postFeedbackResult = new PostFeedbackResult(FeedbackAPI.m8915a(feedbackItem.getProposalContent(), EnvironmentUtils.DeviceConfig.getIPAddress(), feedbackItem.getContactWay()).m8668b());
                 FeedbackItem feedbackItem2 = null;
                 if (postFeedbackResult.isConnected()) {
                     String m8681b = postFeedbackResult.m8681b();

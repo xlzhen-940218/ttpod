@@ -23,12 +23,12 @@ public class FindSongHotModuleAPI {
 
     /* renamed from: a */
     public static Request<FindSongModuleResult> m8899a(long j) {
-        return new GetMethodRequest(FindSongModuleResult.class, UrlList.recommend + "/recomm_modules").putParams("version", Long.valueOf(j)).putParams("s", EnvironmentUtils.UUIDConfig.m8494b()).putParams("v", EnvironmentUtils.UUIDConfig.m8491c()).putParams("f", "f" + EnvironmentUtils.AppConfig.getChannelType()).putParams("rom", EnvironmentUtils.UUIDConfig.m8488e().get("rom")).putParams("userId", EnvironmentUtils.UUIDConfig.m8488e().get("tid")).putParams("deviceId", EnvironmentUtils.UUIDConfig.m8488e().get("uid"));
+        return new GetMethodRequest(FindSongModuleResult.class, UrlList.recommend + "/recomm_modules").putParams("version", Long.valueOf(j)).putParams("s", EnvironmentUtils.UUIDConfig.getS()).putParams("v", EnvironmentUtils.UUIDConfig.getV()).putParams("f", "f" + EnvironmentUtils.AppConfig.getChannelType()).putParams("rom", EnvironmentUtils.UUIDConfig.getUuidMaps().get("rom")).putParams("userId", EnvironmentUtils.UUIDConfig.getUuidMaps().get("tid")).putParams("deviceId", EnvironmentUtils.UUIDConfig.getUuidMaps().get("uid"));
     }
 
     /* renamed from: a */
     public static Request<FindSongHotModuleResult> m8900a() {
-        return new GetMethodRequest(FindSongHotModuleResult.class, "http://star.dongting.com", "recommend/modulenew").putParams("v", EnvironmentUtils.UUIDConfig.m8491c());
+        return new GetMethodRequest(FindSongHotModuleResult.class, "http://star.dongting.com", "recommend/modulenew").putParams("v", EnvironmentUtils.UUIDConfig.getV());
     }
 
     /* renamed from: a */
@@ -43,7 +43,7 @@ public class FindSongHotModuleAPI {
 
     /* renamed from: a */
     public static Request<SingerListResult> m8897a(String str, int i, int i2, String str2, Collection collection) {
-        return new GetMethodRequest(SingerListResult.class, str).putParams("v", EnvironmentUtils.UUIDConfig.m8491c()).putParams("singer_name", str2).putParams("singer_id", collection).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
+        return new GetMethodRequest(SingerListResult.class, str).putParams("v", EnvironmentUtils.UUIDConfig.getV()).putParams("singer_name", str2).putParams("singer_id", collection).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: b */
@@ -53,6 +53,6 @@ public class FindSongHotModuleAPI {
 
     /* renamed from: c */
     public static Request<OperationZoneResult> m8894c() {
-        return new GetMethodRequest(OperationZoneResult.class, f2266a, "module/operationzone").m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.m8488e());
+        return new GetMethodRequest(OperationZoneResult.class, f2266a, "module/operationzone").m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 }

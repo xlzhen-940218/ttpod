@@ -21,12 +21,12 @@ public final class MusicCircleRecommendAPI {
 
     /* renamed from: a */
     public static Request<CirclePosterListResultLegacy> m8880a() {
-        return new GetMethodRequest(CirclePosterListResultLegacy.class, "http://v1.ard.tj.itlily.com/recommend", "poster").m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.m8488e());
+        return new GetMethodRequest(CirclePosterListResultLegacy.class, "http://v1.ard.tj.itlily.com/recommend", "poster").m8540a((Map<String, Object>) EnvironmentUtils.UUIDConfig.getUuidMaps());
     }
 
     /* renamed from: a */
     public static Request<RecommendPostResult> m8879a(int i, int i2) {
-        return new GetMethodRequest(RecommendPostResult.class, f2267a, "more_recomm").putParams("userId", EnvironmentUtils.UUIDConfig.m8488e().get("tid")).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
+        return new GetMethodRequest(RecommendPostResult.class, f2267a, "more_recomm").putParams("userId", EnvironmentUtils.UUIDConfig.getUuidMaps().get("tid")).putParams("page", Integer.valueOf(i)).putParams("size", Integer.valueOf(i2));
     }
 
     /* renamed from: b */

@@ -28,7 +28,7 @@ final class MediaTemporaryStore {
 
     /* JADX INFO: Access modifiers changed from: package-private */
     public MediaTemporaryStore(Context context) {
-        this.mCachePath = EnvironmentUtils.C0605d.m8466b(context);
+        this.mCachePath = EnvironmentUtils.StorageConfig.getCacheDirPath(context);
     }
 
     private static MediaItem buildMediaItem(ContentValues contentValues) {

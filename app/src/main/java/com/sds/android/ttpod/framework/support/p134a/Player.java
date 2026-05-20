@@ -232,7 +232,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                     }
                     if (-12 == i) {
                         Player.this.processPlayError(i);
-                        long m8469a = EnvironmentUtils.C0605d.m8469a(new File(Player.CACHE_MEDIA_PATH));
+                        long m8469a = EnvironmentUtils.StorageConfig.getUsableSpace(new File(Player.CACHE_MEDIA_PATH));
                         //ErrorStatistic.m5240a(str, m8469a, m2564h());
                         //new //SSystemEvent("SYS_PLAY", "error").append("uri", str).append("storage_state", m2564h()).append("usable_space", Long.valueOf(m8469a)).append("error_code", Integer.valueOf(i)).post();
                         return;
@@ -250,7 +250,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
 
         /* renamed from: h */
         private String m2564h() {
-            if (!EnvironmentUtils.C0605d.m8472a() && !EnvironmentUtils.C0605d.m8468a(EnvironmentUtils.C0605d.getSdcardPath())) {
+            if (!EnvironmentUtils.StorageConfig.isExternalStorageMounted() && !EnvironmentUtils.StorageConfig.isPathWritable(EnvironmentUtils.StorageConfig.getSdcardPath())) {
                 return "storage does not exist";
             }
             if (!FileUtils.isDir(TTPodConfig.getTTPodPath())) {
@@ -434,7 +434,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             String stringExtra3 = intent.getStringExtra("media_source");
             if (StringUtils.equals(stringExtra2, MediaStorage.GROUP_ID_FAV) || stringExtra2.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
                 TTPodUser m2954aq = Preferences.m2954aq();
-                EnvironmentUtils.UUIDConfig.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
+                EnvironmentUtils.UUIDConfig.setTid(m2954aq != null ? m2954aq.getUserId() : 0L);
             }
             MediaItem mediaItem2 = (MediaItem) intent.getExtras().get("mediaItem");
             if ((mediaItem2 != null && !mediaItem2.equals(this.mediaSelector.getMediaItem())) || !StringUtils.equals(Preferences.getLocalGroupId(), stringExtra2)) {
@@ -462,7 +462,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     public void m2624a(String str, String str2) {
         if (StringUtils.equals(str, MediaStorage.GROUP_ID_FAV) || str.startsWith(MediaStorage.GROUP_ID_ONLINE_FAV_PREFIX)) {
             TTPodUser m2954aq = Preferences.m2954aq();
-            EnvironmentUtils.UUIDConfig.m8498a(m2954aq != null ? m2954aq.getUserId() : 0L);
+            EnvironmentUtils.UUIDConfig.setTid(m2954aq != null ? m2954aq.getUserId() : 0L);
         }
         if (!StringUtils.equals(Preferences.getLocalGroupId(), str)) {
             m2638J();
@@ -626,7 +626,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
 
     /* renamed from: y */
     private boolean m2579y() {
-        return EnvironmentUtils.C0605d.m8469a(new File(EnvironmentUtils.C0605d.getSdcardPath())) < 3145728;
+        return EnvironmentUtils.StorageConfig.getUsableSpace(new File(EnvironmentUtils.StorageConfig.getSdcardPath())) < 3145728;
     }
 
     /* renamed from: z */
@@ -667,7 +667,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                         @Override // java.lang.Runnable
                         public void run() {
                             long m8405g = FileUtils.getFolderSize(Player.CACHE_MEDIA_PATH);
-                            if (m8405g > 209715200 || EnvironmentUtils.C0605d.m8469a(new File(Player.CACHE_MEDIA_PATH)) <= 52428800) {
+                            if (m8405g > 209715200 || EnvironmentUtils.StorageConfig.getUsableSpace(new File(Player.CACHE_MEDIA_PATH)) <= 52428800) {
                                 long j = m8405g - 41943040;
                                 long j2 = j > 0 ? j : 0L;
                                 String str = Player.CACHE_MEDIA_PATH;
@@ -719,9 +719,9 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             }
         }
         if (m2579y()) {
-            this.f7092f = EnvironmentUtils.C0605d.m8460d(this.context);
+            this.f7092f = EnvironmentUtils.StorageConfig.getSecondarySdcardPath(this.context);
             if (SDKVersionUtils.sdkThan19()) {
-                this.f7092f = EnvironmentUtils.C0605d.m8470a(this.context, EnvironmentUtils.C0605d.EnumC0607a.SECOND_SD_CARD);
+                this.f7092f = EnvironmentUtils.StorageConfig.getDataPath(this.context, EnvironmentUtils.StorageConfig.SdcardType.SECOND_SD_CARD);
             }
             if (StringUtils.isEmpty(this.f7092f)) {
                 this.context.sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", PlayStatus.STATUS_ERROR.ordinal()).putExtra("play_error_code", -5000));

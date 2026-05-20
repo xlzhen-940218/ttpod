@@ -172,7 +172,7 @@ public final class UserSystemModule extends BaseModule {
     public void logout() {
         //UTAnalytics.getInstance().updateUserAccount("", "");
         Preferences.m3022a((User) null);
-        EnvironmentUtils.UUIDConfig.m8498a(0L);
+        EnvironmentUtils.UUIDConfig.setTid(0L);
         CommandCenter.getInstance().m4604a(new Command(CommandID.LOGOUT_FINISHED, new Object[0]), ModuleID.USER_SYSTEM);
     }
 
@@ -343,7 +343,7 @@ public final class UserSystemModule extends BaseModule {
         User data = userResult.getData();
         long userId = data.getUserId();
         Preferences.m3022a(data);
-        EnvironmentUtils.UUIDConfig.m8498a(userId);
+        EnvironmentUtils.UUIDConfig.setTid(userId);
         if (!MediaStorage.isGroupExisted(sContext, MediaStorage.buildOnlineFavGroupID())) {
             MediaStorage.insertGroup(sContext, MediaStorage.GROUP_NAME_FAV_ONLINE, MediaStorage.buildOnlineFavGroupID(), GroupType.CUSTOM_ONLINE);
         }

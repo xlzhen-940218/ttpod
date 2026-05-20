@@ -104,22 +104,22 @@ public class DisplaySettingActivity extends SlidingClosableActivity {
         OptionalDialog m6747a;
         boolean isChecked = ((Checkable) actionItem).isChecked();
         Preferences.m2879g(isChecked);
-        if (isChecked && Preferences.m3006aA() && (m6747a = PopupsUtils.m6747a(this, (int) R.string.never_show_again, "提示", "如果遇到MIUI V5系统无法显示桌面歌词的情况，请找到设置->应用->天天动听->打开悬浮窗即可", (BaseDialog.OnClickListener<OptionalDialog>) null)) != null) {
+        if (isChecked && Preferences.m3006aA() && (m6747a = PopupsUtils.m6747a(this, (int) R.string.never_show_again, "提示", "如果遇到MIUI V5系统无法显示桌面歌词的情况，请找到设�?>应用->天天动听->打开悬浮窗即?", (BaseDialog.OnClickListener<OptionalDialog>) null)) != null) {
             m6747a.m7261a(R.string.set_at_once, new BaseDialog.OnClickListener<OptionalDialog>() { // from class: com.sds.android.ttpod.activities.setting.DisplaySettingActivity.2
                 /* renamed from: a */
                 private Intent m7817a() {
                     if (SDKVersionUtils.sdkThan9()) {
-                        return new Intent("android.settings.APPLICATION_DETAILS_SETTINGS", Uri.parse("package:" + EnvironmentUtils.m8526a()));
+                        return new Intent("android.settings.APPLICATION_DETAILS_SETTINGS", Uri.parse("package:" + EnvironmentUtils.getAppPackageName()));
                     }
                     if (SDKVersionUtils.sdkThan8()) {
                         Intent intent = new Intent("android.intent.action.VIEW");
                         intent.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-                        intent.putExtra("pkg", EnvironmentUtils.m8526a());
+                        intent.putExtra("pkg", EnvironmentUtils.getAppPackageName());
                         return intent;
                     }
                     Intent intent2 = new Intent("android.intent.action.VIEW");
                     intent2.setClassName("com.android.settings", "com.android.settings.InstalledAppDetails");
-                    intent2.putExtra("com.android.settings.ApplicationPkgName", EnvironmentUtils.m8526a());
+                    intent2.putExtra("com.android.settings.ApplicationPkgName", EnvironmentUtils.getAppPackageName());
                     return intent2;
                 }
 

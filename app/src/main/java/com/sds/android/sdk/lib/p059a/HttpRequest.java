@@ -320,7 +320,7 @@ public class HttpRequest {
     private static void m8717a(int i, String str) {
         Method[] methods;
         try {
-            for (Method method : Class.forName(EnvironmentUtils.m8526a() + ".HttpRequestErrorHook").getMethods()) {
+            for (Method method : Class.forName(EnvironmentUtils.getAppPackageName() + ".HttpRequestErrorHook").getMethods()) {
                 Class<?>[] parameterTypes = method.getParameterTypes();
                 if (parameterTypes.length == 2 && parameterTypes[0] == Integer.TYPE && parameterTypes[1] == String.class) {
                     method.invoke(null, Integer.valueOf(i), str);

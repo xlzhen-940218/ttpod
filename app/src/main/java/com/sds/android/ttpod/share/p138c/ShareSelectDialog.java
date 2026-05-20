@@ -232,7 +232,7 @@ public class ShareSelectDialog extends BaseDialog {
         if (activity != null && !activity.isFinishing() && shareInfo != null) {
             this.f7403g = activity;
             this.f7408l = shareInfo;
-            this.f7404h = EnvironmentUtils.C0605d.m8466b(activity);
+            this.f7404h = EnvironmentUtils.StorageConfig.getCacheDirPath(activity);
             m1988x();
             this.f7401d.m7414a(this.f7402e);
             this.f7401d.notifyDataSetChanged();

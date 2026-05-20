@@ -244,7 +244,7 @@ public class ThemeActivity extends BaseActivity {
                     i = R.string.play_error_code_23;
                     break;
                 case -12:
-                    if (!EnvironmentUtils.C0605d.m8472a()) {
+                    if (!EnvironmentUtils.StorageConfig.isExternalStorageMounted()) {
                         i = R.string.play_error_code_12;
                         break;
                     } else {
@@ -294,7 +294,7 @@ public class ThemeActivity extends BaseActivity {
 
     /* JADX INFO: Access modifiers changed from: protected */
     public boolean checkExternalStorageExisted() {
-        boolean m8472a = EnvironmentUtils.C0605d.m8472a();
+        boolean m8472a = EnvironmentUtils.StorageConfig.isExternalStorageMounted();
         if (!m8472a) {
             PopupsUtils.m6760a((int) R.string.sdcard_not_existed);
         }
