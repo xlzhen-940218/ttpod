@@ -19,8 +19,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/* loaded from: classes.dex */
-public class AutoScrollableTextView extends androidx.appcompat.widget.AppCompatCheckedTextView {
+public class AutoScrollableTextView extends android.widget.CheckedTextView {
 
     /* renamed from: a */
     private boolean autoScrollEnable;

@@ -10,7 +10,7 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.component.lockscreen.p101a.p102a.ObjectAnimator;
 
 /* loaded from: classes.dex */
-public class DataListFooterView extends androidx.appcompat.widget.AppCompatTextView {
+public class DataListFooterView extends TextView {
 
     /* renamed from: a */
     private Drawable f7521a;

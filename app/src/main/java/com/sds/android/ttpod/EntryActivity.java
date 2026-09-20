@@ -80,6 +80,14 @@ public class EntryActivity extends BaseActivity {
         if (z && !this.mSentLoadSplashCommand && !TTPodConfig.getFinishSplash()) {
             this.mSentLoadSplashCommand = true;
             CommandCenter.getInstance().postInvokeResult(new Command(CommandID.LOAD_SPLASH, Integer.valueOf((int) R.drawable.img_splash), Integer.valueOf((int) R.string.readme)));
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!EntryActivity.this.isFinishing() && !TTPodConfig.getFinishSplash()) {
+                        finishSplash();
+                    }
+                }
+            }, 3000L);
         }
     }
 
@@ -111,6 +119,9 @@ public class EntryActivity extends BaseActivity {
         if (FileUtils.isFile(str)) {
             WebView webView = new WebView(this);
             webView.getSettings().setJavaScriptEnabled(true);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+                webView.getSettings().setAllowFileAccess(true);
+            }
             if (SDKVersionUtils.sdkThan11()) {
                 webView.setLayerType(1, null);
             }
@@ -144,7 +155,16 @@ public class EntryActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() { // from class: com.sds.android.ttpod.EntryActivity.3
             @Override // java.lang.Runnable
             public void run() {
-                EntryActivity.this.startActivity(new Intent(EntryActivity.this, MainActivity.class).setData(EntryActivity.this.getIntent().getData()).putExtras(EntryActivity.this.getIntent()));
+                Intent mainIntent = new Intent(EntryActivity.this, MainActivity.class);
+                if (EntryActivity.this.getIntent() != null) {
+                    if (EntryActivity.this.getIntent().getData() != null) {
+                        mainIntent.setData(EntryActivity.this.getIntent().getData());
+                    }
+                    if (EntryActivity.this.getIntent().getExtras() != null) {
+                        mainIntent.putExtras(EntryActivity.this.getIntent().getExtras());
+                    }
+                }
+                EntryActivity.this.startActivity(mainIntent);
                 EntryActivity.this.finish();
             }
         }, MAINACTIVITY_DELAY_START);

@@ -127,7 +127,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
                             /* renamed from: a  reason: avoid collision after fix types in other method */
                             public void onClick(MessageDialog messageDialog2) {
                                 if (LocalMediaEntryFragment.this.mRegisteredBroadcast) {
-                                    LocalMediaEntryFragment.this.getActivity().unregisterReceiver(LocalMediaEntryFragment.this.mBroadcastReceiver);
+                                    com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(LocalMediaEntryFragment.this.getActivity(), LocalMediaEntryFragment.this.mBroadcastReceiver);
                                     LocalMediaEntryFragment.this.mRegisteredBroadcast = false;
                                 }
                                 //SUserUtils.m4956a(SAction.ACTION_ONE_KEY_MATCH_LRC_PIC_STOP_SURE, SPage.PAGE_NONE);
@@ -598,7 +598,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
         this.mTvSubtitle = (TextView) this.mLayoutMatcher.findViewById(R.id.tv_subtitle);
         flushHeaderView();
         this.mIvAction.setOnClickListener(this.mOnClickListener);
-        getActivity().registerReceiver(this.mBroadcastReceiver, new IntentFilter(Action.LYRIC_PIC_BATCH_OPERATE_RESULT));
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(getActivity(), this.mBroadcastReceiver, new IntentFilter(Action.LYRIC_PIC_BATCH_OPERATE_RESULT));
         this.mRegisteredBroadcast = true;
         doBatchLyricPicOperate("query");
     }
@@ -610,7 +610,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
             this.mPagerAdapter.m7428a();
         }
         if (this.mRegisteredBroadcast) {
-            getActivity().unregisterReceiver(this.mBroadcastReceiver);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(getActivity(), this.mBroadcastReceiver);
             this.mRegisteredBroadcast = false;
         }
     }
@@ -629,7 +629,7 @@ public class LocalMediaEntryFragment extends SlidingClosableFragment implements 
                 return;
             }
             if (!this.mRegisteredBroadcast) {
-                getActivity().registerReceiver(this.mBroadcastReceiver, new IntentFilter(Action.LYRIC_PIC_BATCH_OPERATE_RESULT));
+                com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(getActivity(), this.mBroadcastReceiver, new IntentFilter(Action.LYRIC_PIC_BATCH_OPERATE_RESULT));
                 this.mRegisteredBroadcast = true;
             }
             Preferences.m2929b(true);

@@ -58,7 +58,7 @@ public final class AppWidgetManager {
         Preferences.m3019a(PreferencesID.PLAY_MODE, this.f7120c);
         Preferences.m3019a(PreferencesID.IS_SHOW_DESKTOP_LYRIC_ENABLED, this.f7120c);
         this.f7119b = new Monitor();
-        BaseApplication.getApplication().registerReceiver(this.f7119b, Monitor.m2552a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(BaseApplication.getApplication(), this.f7119b, Monitor.m2552a());
     }
 
     /* renamed from: c */
@@ -67,7 +67,7 @@ public final class AppWidgetManager {
         Preferences.m2938b(PreferencesID.PLAY_MODE, this.f7120c);
         Preferences.m2938b(PreferencesID.IS_SHOW_DESKTOP_LYRIC_ENABLED, this.f7120c);
         AppWidgetProviderBase.m2551a();
-        BaseApplication.getApplication().unregisterReceiver(this.f7119b);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(BaseApplication.getApplication(), this.f7119b);
     }
 
     /* renamed from: a */

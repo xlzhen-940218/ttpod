@@ -322,7 +322,7 @@ public final class AccessHelper {
         synchronized (AccessHelper.class) {
             if (f6986a == null) {
                 f6986a = new C2030a();
-                context.registerReceiver(f6986a, C2030a.m3082b());
+                com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(context, f6986a, C2030a.m3082b());
             }
             f6986a.m3083a(preferencesID, interfaceC2031a);
         }
@@ -335,11 +335,7 @@ public final class AccessHelper {
             if (f6986a != null) {
                 f6986a.m3081b(preferencesID, interfaceC2031a);
                 if (f6986a.m3084a()) {
-                    try {
-                        context.unregisterReceiver(f6986a);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(context, f6986a);
                     f6986a = null;
                 }
             }

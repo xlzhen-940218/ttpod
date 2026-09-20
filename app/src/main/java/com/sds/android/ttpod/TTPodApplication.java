@@ -10,6 +10,7 @@ import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
 import com.sds.android.ttpod.framework.base.BaseApplication;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.media.mediastore.MediaDBHelper;
@@ -33,7 +34,7 @@ public class TTPodApplication extends BaseApplication {
     @Override // com.sds.android.ttpod.framework.base.BaseApplication
     /* renamed from: a */
     public void initMain() {
-        registerReceiver(this.f2484a, new IntentFilter(MediaDBHelper.ACTION_UPDATE_DB_VERSION));
+        ReceiverUtils.registerReceiver(this, this.f2484a, new IntentFilter(MediaDBHelper.ACTION_UPDATE_DB_VERSION));
         try {
             super.initMain();
             PopupsUtils.m6749a(this);

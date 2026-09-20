@@ -478,20 +478,20 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
     private void m2585s() {
         this.headsetPlugMonitor = new HeadsetPlugMonitor();
         this.headsetPlugMonitor.m2260a(this);
-        this.context.registerReceiver(this.headsetPlugMonitor, HeadsetPlugMonitor.m2261a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(this.context, this.headsetPlugMonitor, HeadsetPlugMonitor.m2261a());
         this.callMonitor = new CallMonitor();
         this.callMonitor.m2238a(this.context, this);
         this.lockScreenMonitor = new LockScreenMonitor(this);
-        this.context.registerReceiver(this.lockScreenMonitor, LockScreenMonitor.m2256a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(this.context, this.lockScreenMonitor, LockScreenMonitor.m2256a());
         MediaButtonReceiver.m2252b();
     }
 
     /* renamed from: t */
     private void m2584t() {
         this.headsetPlugMonitor.m2260a((HeadsetPlugMonitor.InterfaceC2081a) null);
-        this.context.unregisterReceiver(this.headsetPlugMonitor);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(this.context, this.headsetPlugMonitor);
         this.callMonitor.m2238a(this.context, (CallMonitor.InterfaceC2086a) null);
-        this.context.unregisterReceiver(this.lockScreenMonitor);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(this.context, this.lockScreenMonitor);
     }
 
     /* renamed from: e */

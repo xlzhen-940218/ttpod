@@ -1,11 +1,13 @@
 package com.sds.android.ttpod.framework.p106a;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -19,6 +21,29 @@ import com.sds.android.ttpod.media.player.PlayStatus;
 /* renamed from: com.sds.android.ttpod.framework.a.k */
 /* loaded from: classes.dex */
 public class NotificationUtils {
+
+    public static final String CHANNEL_ID_PLAYBACK = "ttpod_playback_channel";
+
+    public static void initNotificationChannels(Context context) {
+        if (context != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
+                NotificationManager nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+                if (nm != null && nm.getNotificationChannel(CHANNEL_ID_PLAYBACK) == null) {
+                    NotificationChannel channel = new NotificationChannel(
+                            CHANNEL_ID_PLAYBACK,
+                            "Playback",
+                            NotificationManager.IMPORTANCE_LOW
+                    );
+                    channel.setDescription("Music playback controls");
+                    channel.setSound(null, null);
+                    channel.enableVibration(false);
+                    nm.createNotificationChannel(channel);
+                }
+            } catch (Throwable th) {
+                th.printStackTrace();
+            }
+        }
+    }
 
     /* renamed from: a */
     private static long f5678a = 0;

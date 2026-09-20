@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.sds.android.ttpod.R;
 
 /* loaded from: classes.dex */
-public class RatioTextView extends androidx.appcompat.widget.AppCompatTextView {
+public class RatioTextView extends TextView {
 
     /* renamed from: a */
     private int ratio_width;

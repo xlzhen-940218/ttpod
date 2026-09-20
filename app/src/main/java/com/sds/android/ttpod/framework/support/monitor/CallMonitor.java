@@ -53,7 +53,11 @@ public class CallMonitor {
 
     /* renamed from: a */
     public boolean m2239a(Context context) {
-        return ((TelephonyManager) context.getSystemService("phone")).getCallState() == 0;
+        try {
+            return ((TelephonyManager) context.getSystemService("phone")).getCallState() == 0;
+        } catch (Throwable th) {
+            return true;
+        }
     }
 
     /* renamed from: a */
@@ -61,12 +65,20 @@ public class CallMonitor {
         this.f7247c = interfaceC2086a;
         if (this.f7247c != null && !this.f7248d) {
             this.f7248d = true;
-            context.registerReceiver(this.f7245a, CallStateReceiver.m4130a());
-            ((TelephonyManager) context.getSystemService("phone")).listen(this.f7246b, 32);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(context, this.f7245a, CallStateReceiver.m4130a());
+            try {
+                ((TelephonyManager) context.getSystemService("phone")).listen(this.f7246b, 32);
+            } catch (Throwable th) {
+                th.printStackTrace();
+            }
         } else if (this.f7247c == null && this.f7248d) {
             this.f7248d = false;
-            context.unregisterReceiver(this.f7245a);
-            ((TelephonyManager) context.getSystemService("phone")).listen(this.f7246b, 0);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(context, this.f7245a);
+            try {
+                ((TelephonyManager) context.getSystemService("phone")).listen(this.f7246b, 0);
+            } catch (Throwable th) {
+                th.printStackTrace();
+            }
             m2240a();
         }
     }

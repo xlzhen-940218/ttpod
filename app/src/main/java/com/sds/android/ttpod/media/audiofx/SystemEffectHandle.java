@@ -37,23 +37,27 @@ public class SystemEffectHandle implements IEffectHandle {
 
     @Override // com.sds.android.ttpod.media.audiofx.IEffectHandle
     public void setEqualizer(TTEqualizer.Settings settings) {
-        int i = 0;
         try {
             if (SDKVersionUtils.sdkThan9()) {
                 if (this.mEqualizer == null) {
                     this.mEqualizer = new Equalizer(0, this.mSessionID);
                 }
-                short[] bandLevels = settings.getBandLevels();
-                int length = bandLevels.length;
-                short s = 0;
-                while (i < length) {
-                    short s2 = (short) (s + 1);
-                    this.mEqualizer.setBandLevel(s, bandLevels[i]);
-                    i++;
-                    s = s2;
+                short[] bandLevels = settings != null ? settings.getBandLevels() : null;
+                if (bandLevels != null && this.mEqualizer != null) {
+                    short numBands = this.mEqualizer.getNumberOfBands();
+                    short[] bandLevelRange = this.mEqualizer.getBandLevelRange();
+                    int count = Math.min(bandLevels.length, (int) numBands);
+                    for (short band = 0; band < count; band++) {
+                        short level = bandLevels[band];
+                        if (bandLevelRange != null && bandLevelRange.length >= 2) {
+                            if (level < bandLevelRange[0]) level = bandLevelRange[0];
+                            if (level > bandLevelRange[1]) level = bandLevelRange[1];
+                        }
+                        this.mEqualizer.setBandLevel(band, level);
+                    }
                 }
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
     }

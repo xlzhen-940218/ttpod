@@ -12,7 +12,7 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 
 /* loaded from: classes.dex */
-public class TextViewFixTouchConsume extends androidx.appcompat.widget.AppCompatTextView {
+public class TextViewFixTouchConsume extends TextView {
 
     /* renamed from: a */
     private boolean f8056a;

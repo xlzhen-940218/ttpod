@@ -161,16 +161,15 @@ public class Support {
         }
     }
 
-    /* renamed from: z */
     private void m2450z() {
         this.context.bindService(new Intent(this.context, SupportService.class), this.f7142j, Context.BIND_AUTO_CREATE);
-        this.context.registerReceiver(this.f7139g, this.f7139g.m2449a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(this.context, this.f7139g, this.f7139g.m2449a());
     }
 
     /* renamed from: A */
     private void m2508A() {
         this.context.unbindService(this.f7142j);
-        this.context.unregisterReceiver(this.f7139g);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(this.context, this.f7139g);
         this.iSupportService = null;
     }
 

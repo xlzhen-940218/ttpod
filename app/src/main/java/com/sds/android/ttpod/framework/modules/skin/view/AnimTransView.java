@@ -21,8 +21,7 @@ import com.sds.android.ttpod.framework.modules.skin.p130c.ClipBitmapDrawable;
 import com.sds.android.ttpod.framework.p106a.PlatformUtils;
 import java.lang.ref.WeakReference;
 
-/* loaded from: classes.dex */
-public class AnimTransView extends androidx.appcompat.widget.AppCompatImageView {
+public class AnimTransView extends android.widget.ImageView {
 
     /* renamed from: a */
     private final Rect f6697a;

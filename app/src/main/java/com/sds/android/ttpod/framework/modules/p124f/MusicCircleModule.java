@@ -505,16 +505,21 @@ public final class MusicCircleModule extends BaseModule {
     /* renamed from: a */
     public MediaItemListResult m4057a(OnlineMediaItemsResult onlineMediaItemsResult) {
         MediaItemListResult mediaItemListResult = new MediaItemListResult();
-        mediaItemListResult.m4515a(m4051a(onlineMediaItemsResult.getDataList()));
-        mediaItemListResult.m4516a(onlineMediaItemsResult.getExtra());
-        mediaItemListResult.setCode(onlineMediaItemsResult.getCode());
-        mediaItemListResult.setMessage(onlineMediaItemsResult.getMessage());
+        if (onlineMediaItemsResult != null) {
+            mediaItemListResult.m4515a(m4051a(onlineMediaItemsResult.getDataList()));
+            mediaItemListResult.m4516a(onlineMediaItemsResult.getExtra());
+            mediaItemListResult.setCode(onlineMediaItemsResult.getCode());
+            mediaItemListResult.setMessage(onlineMediaItemsResult.getMessage());
+        }
         return mediaItemListResult;
     }
 
     /* renamed from: a */
     private ArrayList m4051a(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList();
+        if (arrayList == null) {
+            return arrayList2;
+        }
         Iterator it = arrayList.iterator();
         while (it.hasNext()) {
             Object next = it.next();

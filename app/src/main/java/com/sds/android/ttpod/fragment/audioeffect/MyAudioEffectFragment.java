@@ -183,7 +183,7 @@ public class MyAudioEffectFragment extends BaseFragment {
     }
 
     private void unLoadMonitor() {
-        BaseApplication.getApplication().unregisterReceiver(this.mPlayStatusMonitor);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(BaseApplication.getApplication(), this.mPlayStatusMonitor);
         this.mPlayStatusMonitor = null;
     }
 
@@ -196,7 +196,7 @@ public class MyAudioEffectFragment extends BaseFragment {
     private void loadMonitor() {
         LogUtils.debug(TAG, "loadMonitor");
         this.mPlayStatusMonitor = new PlayStatusMonitor();
-        BaseApplication.getApplication().registerReceiver(this.mPlayStatusMonitor, this.mPlayStatusMonitor.m5739a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(BaseApplication.getApplication(), this.mPlayStatusMonitor, this.mPlayStatusMonitor.m5739a());
     }
 
     public void updateSaveEffectToNetwork(AudioEffectAddResult audioEffectAddResult) {

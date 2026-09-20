@@ -359,18 +359,10 @@ public final class MediaPlayerProxy {
     }
 
     public MediaPlayerProxy(Context context) {
-        boolean z = false;
         this.f7044k = 1.0f;
         this.f7045l = 1.0f;
-        try {
-            if (EnvironmentUtils.CPU.cpuFamily() == 1 && (EnvironmentUtils.CPU.cpuFeatures() & 18) == 0) {
-                z = true;
-            }
-            this.f7037d = z;
-        } catch (Throwable th) {
-            this.f7037d = true;
-            th.printStackTrace();
-        }
+        // Default to SystemMediaPlayer & SystemEffectHandle for robust arm64-v8a support
+        this.f7037d = true;
         this.f7056w = m2724a(context);
         this.f7052s = m2682h(this.f7037d);
         float m2956ao = Preferences.m2956ao();

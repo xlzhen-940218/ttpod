@@ -16,7 +16,7 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.ttpod.R;
 
 /* loaded from: classes.dex */
-public class RoundedImageView extends androidx.appcompat.widget.AppCompatImageView {
+public class RoundedImageView extends ImageView {
 
     /* renamed from: a */
     static final /* synthetic */ boolean desiredAssertionStatus;

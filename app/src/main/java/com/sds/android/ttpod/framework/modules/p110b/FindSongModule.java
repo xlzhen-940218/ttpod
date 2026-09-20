@@ -239,6 +239,9 @@ public class FindSongModule extends BaseModule {
     /* renamed from: a */
     private ArrayList m4502a(ArrayList arrayList) {
         ArrayList arrayList2 = new ArrayList();
+        if (arrayList == null) {
+            return arrayList2;
+        }
         LinkedList linkedList = new LinkedList();
         LinkedList linkedList2 = new LinkedList();
         Iterator it = arrayList.iterator();
@@ -266,10 +269,12 @@ public class FindSongModule extends BaseModule {
     /* renamed from: a */
     public MediaItemListResult m4512a(OnlineMediaItemsResult onlineMediaItemsResult) {
         MediaItemListResult mediaItemListResult = new MediaItemListResult();
-        mediaItemListResult.m4515a(m4502a((ArrayList) onlineMediaItemsResult.getDataList()));
-        mediaItemListResult.m4516a(onlineMediaItemsResult.getExtra());
-        mediaItemListResult.setCode(onlineMediaItemsResult.getCode());
-        mediaItemListResult.setMessage(onlineMediaItemsResult.getMessage());
+        if (onlineMediaItemsResult != null) {
+            mediaItemListResult.m4515a(m4502a((ArrayList) onlineMediaItemsResult.getDataList()));
+            mediaItemListResult.m4516a(onlineMediaItemsResult.getExtra());
+            mediaItemListResult.setCode(onlineMediaItemsResult.getCode());
+            mediaItemListResult.setMessage(onlineMediaItemsResult.getMessage());
+        }
         return mediaItemListResult;
     }
 

@@ -442,19 +442,15 @@ public class VideoPlayManager {
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction("android.intent.action.PACKAGE_ADDED");
             intentFilter.addDataScheme("package");
-            context.registerReceiver(f4867i, intentFilter);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(context, f4867i, intentFilter);
         }
     }
 
     /* JADX INFO: Access modifiers changed from: private */
     /* renamed from: i */
     public static void m5794i() {
-        try {
-            if (f4863e != null && f4863e.get() != null) {
-                f4863e.get().unregisterReceiver(f4867i);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (f4863e != null && f4863e.get() != null) {
+            com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(f4863e.get(), f4867i);
         }
     }
 }

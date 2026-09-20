@@ -68,12 +68,12 @@ public final class MiniLyricManager {
                 MiniLyricManager.this.m2337b(z);
             }
         });
-        BaseApplication.getApplication().registerReceiver(f7189c, MiniLyricMonitor.m2325a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(BaseApplication.getApplication(), f7189c, MiniLyricMonitor.m2325a());
     }
 
     /* renamed from: k */
     private void m2326k() {
-        BaseApplication.getApplication().unregisterReceiver(f7189c);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(BaseApplication.getApplication(), f7189c);
         f7189c = null;
     }
 

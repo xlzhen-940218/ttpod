@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.telephony.TelephonyManager;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 
 import com.sds.android.sdk.lib.openudid.OpenUDIDManager;
@@ -111,13 +112,8 @@ public class EnvironmentUtils {
         if (SDKVersionUtils.sdkThan11()) {
             try {
                 Method method = AsyncTask.class.getMethod("setDefaultExecutor", Executor.class);
-                @SuppressLint("SoonBlockedPrivateApi") 
-                Field declaredField = ThreadPoolExecutor.class.getDeclaredField("defaultHandler");
-                declaredField.setAccessible(true);
-                declaredField.set(null, new ThreadPoolExecutor.DiscardOldestPolicy());
-                method.invoke(null, (ThreadPoolExecutor) AsyncTask.THREAD_POOL_EXECUTOR);
-            } catch (Exception e) {
-                e.printStackTrace();
+                method.invoke(null, AsyncTask.THREAD_POOL_EXECUTOR);
+            } catch (Throwable ignored) {
             }
         }
     }
@@ -343,18 +339,46 @@ public class EnvironmentUtils {
      * Native CPU information utility.
      */
     public static class CPU {
-        public static native int armArch();
-
-        public static native int cpuFamily();
-
-        public static native int cpuFeatures();
-
-        static {
-            try {
-                System.loadLibrary("environmentutils_cpu");
-            } catch (UnsatisfiedLinkError e) {
-                e.printStackTrace();
+        public static int armArch() {
+            String[] abis = android.os.Build.SUPPORTED_ABIS;
+            if (abis != null && abis.length > 0) {
+                for (String abi : abis) {
+                    if (abi.contains("arm64") || abi.contains("aarch64")) {
+                        return 8;
+                    }
+                    if (abi.contains("v7a")) {
+                        return 7;
+                    }
+                }
             }
+            String cpuAbi = android.os.Build.CPU_ABI;
+            if (cpuAbi != null) {
+                if (cpuAbi.contains("arm64") || cpuAbi.contains("aarch64")) {
+                    return 8;
+                }
+                if (cpuAbi.contains("v7a")) {
+                    return 7;
+                }
+            }
+            return 7;
+        }
+
+        public static int cpuFamily() {
+            // ANDROID_CPU_FAMILY_ARM = 1
+            String[] abis = android.os.Build.SUPPORTED_ABIS;
+            if (abis != null && abis.length > 0) {
+                String primary = abis[0].toLowerCase();
+                if (primary.contains("x86_64")) return 5;
+                if (primary.contains("x86")) return 2;
+                if (primary.contains("mips")) return 3;
+                return 1; // ARM
+            }
+            return 1;
+        }
+
+        public static int cpuFeatures() {
+            // ARMv7(1) | VFPv3(2) | NEON(4) | LDREX_STREX(8) | VFPv2(16)
+            return 1 | 2 | 4 | 8 | 16;
         }
     }
 
@@ -377,26 +401,34 @@ public class EnvironmentUtils {
 
         @SuppressLint("HardwareIds")
         public static void init(Context context) {
-            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            try {
-                deviceId = telephonyManager.getDeviceId();
-            } catch (SecurityException ex) {
-                ex.printStackTrace();
+            if (Build.VERSION.SDK_INT < 29) {
+                try {
+                    TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                    if (telephonyManager != null) {
+                        deviceId = telephonyManager.getDeviceId();
+                        subscriberId = telephonyManager.getSubscriberId();
+                    }
+                } catch (Throwable ignored) {
+                }
+            }
+            if (deviceId == null || deviceId.isEmpty()) {
+                try {
+                    deviceId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+                } catch (Throwable ignored) {
+                }
             }
             if (deviceId == null) {
                 deviceId = "";
             }
-            try {
-                subscriberId = telephonyManager.getSubscriberId();
-            } catch (SecurityException ex) {
-                ex.printStackTrace();
-            }
             if (subscriberId == null) {
                 subscriberId = "";
             }
-            WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-            if (wifiManager != null && wifiManager.getConnectionInfo() != null) {
-                macAddress = wifiManager.getConnectionInfo().getMacAddress();
+            try {
+                WifiManager wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                if (wifiManager != null && wifiManager.getConnectionInfo() != null) {
+                    macAddress = wifiManager.getConnectionInfo().getMacAddress();
+                }
+            } catch (Throwable ignored) {
             }
             if (macAddress == null) {
                 macAddress = "";
@@ -701,19 +733,22 @@ public class EnvironmentUtils {
         }
 
         public static String getUtdid() {
-            return utdid;
+            return utdid != null ? utdid : "";
         }
 
         public static String getS() {
-            return (String) uuidMaps.get("s");
+            Object obj = uuidMaps.get("s");
+            return obj != null ? obj.toString() : "s200";
         }
 
         public static String getV() {
-            return (String) uuidMaps.get("v");
+            Object obj = uuidMaps.get("v");
+            return obj != null ? obj.toString() : "";
         }
 
         public static String getF() {
-            return (String) uuidMaps.get("f");
+            Object obj = uuidMaps.get("f");
+            return obj != null ? obj.toString() : "";
         }
 
         public static HashMap<String, Object> getUuidMaps() {
@@ -723,6 +758,9 @@ public class EnvironmentUtils {
 
         public static JSONObject getUuidJsonObject() {
             try {
+                if (uuidJsonObject == null) {
+                    uuidJsonObject = new JSONObject(uuidMaps);
+                }
                 uuidJsonObject.put("net", DeviceConfig.getNetworkType());
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -733,14 +771,20 @@ public class EnvironmentUtils {
         public static void setTid(long tid) {
             uuidMaps.put("tid", tid);
             try {
-                uuidJsonObject.put("tid", tid);
+                if (uuidJsonObject != null) {
+                    uuidJsonObject.put("tid", tid);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
 
         public static long getTid() {
-            return (Long) uuidMaps.get("tid");
+            Object obj = uuidMaps.get("tid");
+            if (obj instanceof Number) {
+                return ((Number) obj).longValue();
+            }
+            return 0L;
         }
 
         private static boolean isFirstActive(Context context) {

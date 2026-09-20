@@ -20,15 +20,16 @@ public class SceneFactory {
         if (skinCache != null) {
             skinCache.m3581g();
             try {
-                CodeIdentifyInputStreamReader codeIdentifyInputStreamReader = new CodeIdentifyInputStreamReader(new ByteArrayInputStream(skinCache.loadTskResource("/scene.xml")));
-                KXmlParser kXmlParser = new KXmlParser();
-                kXmlParser.setInput(codeIdentifyInputStreamReader);
-                kXmlParser.nextTag();
-                kXmlParser.require(2, null, "Scene");
-                if ("Snow".equals(kXmlParser.getAttributeValue(null, "Name"))) {
-                    snowSceneRenderer = m6631a(context, skinCache, kXmlParser);
-                } else {
-                    skinCache.handleClose();
+                byte[] sceneData = skinCache.loadTskResource("/scene.xml");
+                if (sceneData != null && sceneData.length > 0) {
+                    CodeIdentifyInputStreamReader codeIdentifyInputStreamReader = new CodeIdentifyInputStreamReader(new ByteArrayInputStream(sceneData));
+                    KXmlParser kXmlParser = new KXmlParser();
+                    kXmlParser.setInput(codeIdentifyInputStreamReader);
+                    kXmlParser.nextTag();
+                    kXmlParser.require(2, null, "Scene");
+                    if ("Snow".equals(kXmlParser.getAttributeValue(null, "Name"))) {
+                        snowSceneRenderer = m6631a(context, skinCache, kXmlParser);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.sds.android.ttpod.R;
 
 /* loaded from: classes.dex */
-public class SquareImageView extends androidx.appcompat.widget.AppCompatImageView {
+public class SquareImageView extends ImageView {
 
     /* renamed from: a */
     private int ratio_width;

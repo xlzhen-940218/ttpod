@@ -25,36 +25,24 @@ public class TTAudioEffect {
     public static final int VOLUME_PARAM_LIMIT_ENABLED = 5;
     private EffectUUID mEffectUuid;
 
-    public static native void configEffect(EffectConfig effectConfig);
+    public static void configEffect(EffectConfig effectConfig) {}
 
-    public static native void createEffect(EffectUUID effectUUID);
+    public static void createEffect(EffectUUID effectUUID) {}
 
-    public static native void disable(EffectUUID effectUUID);
+    public static void disable(EffectUUID effectUUID) {}
 
-    public static native void enable(EffectUUID effectUUID);
+    public static void enable(EffectUUID effectUUID) {}
 
-    public static native void getEffectParams(EffectUUID effectUUID, int[] iArr, short[] sArr);
+    public static void getEffectParams(EffectUUID effectUUID, int[] iArr, short[] sArr) {}
 
-    private static native void nativeInit();
+    private static void nativeInit() {}
 
-    private static native void nativeRelease(EffectUUID effectUUID);
+    private static void nativeRelease(EffectUUID effectUUID) {}
 
-    private static native void nativeReset(EffectUUID effectUUID);
+    private static void nativeReset(EffectUUID effectUUID) {}
 
-    public static native int setEffectParams(EffectUUID effectUUID, int[] iArr, short[] sArr);
-
-    static {
-        try {
-            System.loadLibrary("osal");
-        } catch (UnsatisfiedLinkError e) {
-            e.printStackTrace();
-        }
-        try {
-            System.loadLibrary("audiofx");
-        } catch (UnsatisfiedLinkError e2) {
-            e2.printStackTrace();
-        }
-        nativeInit();
+    public static int setEffectParams(EffectUUID effectUUID, int[] iArr, short[] sArr) {
+        return 0;
     }
 
     public TTAudioEffect(EffectUUID effectUUID) {

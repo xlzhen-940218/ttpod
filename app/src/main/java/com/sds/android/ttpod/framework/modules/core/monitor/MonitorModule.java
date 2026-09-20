@@ -78,25 +78,25 @@ public final class MonitorModule extends BaseModule {
     public void onCreate() {
         super.onCreate();
         this.f6078a = new SDCardMountReceiver();
-        sContext.registerReceiver(this.f6078a, SDCardMountReceiver.m4124a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.f6078a, SDCardMountReceiver.m4124a());
         this.f6079b = new SystemMediaScanStartedReceiver();
-        sContext.registerReceiver(this.f6079b, SystemMediaScanStartedReceiver.m4122a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.f6079b, SystemMediaScanStartedReceiver.m4122a());
         this.f6080c = new NetworkTypeChangeReceiver();
-        sContext.registerReceiver(this.f6080c, NetworkTypeChangeReceiver.m4126a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.f6080c, NetworkTypeChangeReceiver.m4126a());
         this.f6081d = new PushClientIdReceiver();
-        sContext.registerReceiver(this.f6081d, PushClientIdReceiver.m4125a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.f6081d, PushClientIdReceiver.m4125a());
         this.f6082e = new CallStateReceiver(this.f6088k);
-        sContext.registerReceiver(this.f6082e, CallStateReceiver.m4130a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.f6082e, CallStateReceiver.m4130a());
         this.f6083f = new LockScreenReceiver();
-        sContext.registerReceiver(this.f6083f, LockScreenReceiver.m4121a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.f6083f, LockScreenReceiver.m4121a());
         this.searchEventReceiver = new SearchEventReceiver();
-        sContext.registerReceiver(this.searchEventReceiver, SearchEventReceiver.m4123a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.searchEventReceiver, SearchEventReceiver.m4123a());
         this.f6085h = new DownloadStateReceiver();
-        sContext.registerReceiver(this.f6085h, DownloadStateReceiver.m4128a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.f6085h, DownloadStateReceiver.m4128a());
         this.f6086i = new HeadsetPlugReceiver();
-        sContext.registerReceiver(this.f6086i, HeadsetPlugReceiver.m4127a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.f6086i, HeadsetPlugReceiver.m4127a());
         this.f6087j = new AudioEffectChangedReceiver();
-        sContext.registerReceiver(this.f6087j, AudioEffectChangedReceiver.m4131a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(sContext, this.f6087j, AudioEffectChangedReceiver.m4131a());
         m4119b();
     }
 
@@ -107,26 +107,34 @@ public final class MonitorModule extends BaseModule {
     @Override // com.sds.android.ttpod.framework.base.BaseModule
     public void onDestroy() {
         super.onDestroy();
-        sContext.unregisterReceiver(this.f6079b);
-        sContext.unregisterReceiver(this.f6078a);
-        sContext.unregisterReceiver(this.f6080c);
-        sContext.unregisterReceiver(this.f6081d);
-        sContext.unregisterReceiver(this.f6082e);
-        sContext.unregisterReceiver(this.f6083f);
-        sContext.unregisterReceiver(this.searchEventReceiver);
-        sContext.unregisterReceiver(this.f6085h);
-        sContext.unregisterReceiver(this.f6086i);
-        sContext.unregisterReceiver(this.f6087j);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.f6079b);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.f6078a);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.f6080c);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.f6081d);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.f6082e);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.f6083f);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.searchEventReceiver);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.f6085h);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.f6086i);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(sContext, this.f6087j);
         m4118c();
     }
 
     /* renamed from: b */
     private void m4119b() {
-        ((TelephonyManager) sContext.getSystemService("phone")).listen(this.f6088k, 32);
+        try {
+            ((TelephonyManager) sContext.getSystemService("phone")).listen(this.f6088k, 32);
+        } catch (Throwable th) {
+            th.printStackTrace();
+        }
     }
 
     /* renamed from: c */
     private void m4118c() {
-        ((TelephonyManager) sContext.getSystemService("phone")).listen(this.f6088k, 0);
+        try {
+            ((TelephonyManager) sContext.getSystemService("phone")).listen(this.f6088k, 0);
+        } catch (Throwable th) {
+            th.printStackTrace();
+        }
     }
 }

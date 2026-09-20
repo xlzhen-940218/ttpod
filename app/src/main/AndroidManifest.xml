@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -43,7 +44,6 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SET_WALLPAPER_HINTS" />
     <uses-permission android:name="com.baidu.appsearch.extinvoker.LAUNCH" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
@@ -66,7 +66,6 @@
         android:allowBackup="true"
         android:allowTaskReparenting="true"
         android:enableOnBackInvokedCallback="true"
-        android:exported="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/ttpod"
@@ -589,7 +588,8 @@
             android:process=":remote" />-->
         <service
             android:name="com.sds.android.ttpod.framework.support.SupportService"
-            android:exported="true"/>
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback"/>
 
         <receiver
             android:name="com.sds.android.ttpod.framework.support.monitor.MediaButtonReceiver"
@@ -800,6 +800,7 @@
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:noHistory="true"
+            android:exported="true"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -810,6 +811,7 @@
         </activity>
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
+            android:exported="false"
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="orientation|keyboardHidden">

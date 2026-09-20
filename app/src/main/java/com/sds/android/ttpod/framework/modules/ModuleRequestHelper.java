@@ -35,28 +35,26 @@ public class ModuleRequestHelper {
         TaskScheduler.start(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.e.1
             @Override // java.lang.Runnable
             public void run() {
-                BaseResult m4562a = null;
-                BaseResult m4562a1;
+                BaseResult result = null;
                 ValidityResult m3207a = Cache.getInstance().m3207a(host);
                 if (ModuleRequestHelper.checkValidityResult(m3207a, EnvironmentUtils.DeviceConfig.isConnected())) {
                     long currentTimeMillis2 = System.currentTimeMillis();
-                    m4562a1 = request.execute();
+                    result = request.execute();
                     LogUtils.warning("ModuleRequestHelper", "request.execute cost--> " + (System.currentTimeMillis() - currentTimeMillis2) + "ms  " + request.m8532e());
-                    //new //SSystemEvent("SYS_PAGE_REQUEST", "finish").append("uri", request.m8532e()).append("duration", Long.valueOf(System.currentTimeMillis() - currentTimeMillis)).append("error_code", Integer.valueOf(m4562a1.getCode())).post();
-                    if (!ModuleRequestHelper.m4085a(m4562a1)) {
-                        boolean z = (m4562a1 instanceof DataListResult) && ListUtils.m4718a(((DataListResult) m4562a1).getDataList());
-                        if (m4562a1.isSuccess() && !z) {
-                            Cache.getInstance().m3206a(host, new ValidityResult(m4562a1, host));
+                    //new //SSystemEvent("SYS_PAGE_REQUEST", "finish").append("uri", request.m8532e()).append("duration", Long.valueOf(System.currentTimeMillis() - currentTimeMillis)).append("error_code", Integer.valueOf(result != null ? result.getCode() : -1)).post();
+                    if (result != null && !ModuleRequestHelper.m4085a(result)) {
+                        boolean z = (result instanceof DataListResult) && ListUtils.m4718a(((DataListResult) result).getDataList());
+                        if (result.isSuccess() && !z) {
+                            Cache.getInstance().m3206a(host, new ValidityResult(result, host));
                         }
                     }
-                } else {
-                    m4562a1 = m3207a.m4562a();
+                } else if (m3207a != null) {
+                    result = m3207a.m4562a();
                 }
                 if (resultConvert != null) {
-                    m4562a1 = resultConvert.mo4042a((Result) m4562a);
+                    result = resultConvert.mo4042a((Result) result);
                 }
-                m4562a = m4562a1;
-                BaseResult finalM4562a = m4562a;
+                final BaseResult finalM4562a = result;
                 handler.post(new Runnable() { // from class: com.sds.android.ttpod.framework.modules.e.1.1
                     @Override // java.lang.Runnable
                     public void run() {

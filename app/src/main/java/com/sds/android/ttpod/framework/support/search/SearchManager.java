@@ -135,13 +135,13 @@ public final class SearchManager {
     public void m2222b() {
         ImageSwitcherEngine.m4724d().m4721f();
         Manager.getInstance().removeThreadPoolByName("lyrics_picture_file_download");
-        BaseApplication.getApplication().unregisterReceiver(this.searchManagerReceiver);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(BaseApplication.getApplication(), this.searchManagerReceiver);
         this.searchManagerReceiver = null;
         searchManager = null;
     }
 
     private SearchManager() {
-        BaseApplication.getApplication().registerReceiver(this.searchManagerReceiver, this.searchManagerReceiver.m2212a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(BaseApplication.getApplication(), this.searchManagerReceiver, this.searchManagerReceiver.m2212a());
     }
 
     /* renamed from: a */

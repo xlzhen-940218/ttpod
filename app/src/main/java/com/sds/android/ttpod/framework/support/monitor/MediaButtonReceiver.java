@@ -68,7 +68,15 @@ public class MediaButtonReceiver extends BroadcastReceiver {
             LogUtils.debug("Receiver", "keyCode: " + keyCode + " action: " + action + " eventTime: " + eventTime);
             switch (keyCode) {
                 case 79:
-                    int callState = ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE)).getCallState();
+                    int callState = 0;
+                    try {
+                        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                        if (tm != null) {
+                            callState = tm.getCallState();
+                        }
+                    } catch (Throwable th) {
+                        callState = 0;
+                    }
                     if (callState != 1 && callState != 2) {
                         str = "play_pause_command";
                         break;

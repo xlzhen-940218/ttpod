@@ -1539,7 +1539,7 @@ public class NumberPicker extends LinearLayout {
     }
 
     /* loaded from: classes.dex */
-    public static class CustomEditText extends androidx.appcompat.widget.AppCompatEditText {
+    public static class CustomEditText extends android.widget.EditText {
         public CustomEditText(Context context, AttributeSet attributeSet) {
             super(context, attributeSet);
         }

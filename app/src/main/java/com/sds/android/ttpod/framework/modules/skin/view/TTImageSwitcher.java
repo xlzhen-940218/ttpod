@@ -189,7 +189,7 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
         try {
             super.onDetachedFromWindow();
             this.visible = false;
-            getContext().unregisterReceiver(this.broadcastReceiver);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(getContext(), this.broadcastReceiver);
             m3347a();
             Iterator<Bitmap> it = this.bitmapArrayList.iterator();
             while (it.hasNext()) {
@@ -214,7 +214,7 @@ public class TTImageSwitcher extends ImageSwitcher implements ViewSwitcher.ViewF
         intentFilter.addAction("android.intent.action.SCREEN_OFF");
         intentFilter.addAction("android.intent.action.USER_PRESENT");
         intentFilter.addAction(Action.ACTION_AUTO_PLAY_ARTIST_IMAGE);
-        getContext().registerReceiver(this.broadcastReceiver, intentFilter);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(getContext(), this.broadcastReceiver, intentFilter);
         m3347a();
     }
 

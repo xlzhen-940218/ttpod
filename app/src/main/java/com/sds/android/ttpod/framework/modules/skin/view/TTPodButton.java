@@ -8,8 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 
-/* loaded from: classes.dex */
-public class TTPodButton extends androidx.appcompat.widget.AppCompatImageView {
+public class TTPodButton extends android.widget.ImageView {
 
     /* renamed from: a */
     private long elapsedRealtime;

@@ -49,8 +49,9 @@ public class TTAudioTrack {
     private long mPrevTimeInMills = 0;
     private byte[] mPCMBuffer = new byte[BUFFER_SIZE];
 
-    /* JADX INFO: Access modifiers changed from: private */
-    public native int fillPCMBuffer(byte[] bArr, int i, int i2);
+    public int fillPCMBuffer(byte[] bArr, int i, int i2) {
+        return 0;
+    }
 
     static /* synthetic */ int access$020(TTAudioTrack tTAudioTrack, int i) {
         int i2 = tTAudioTrack.mBytesInPCMBuffer - i;

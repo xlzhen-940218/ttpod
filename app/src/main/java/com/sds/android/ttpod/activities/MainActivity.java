@@ -119,7 +119,8 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         onNewIntent(getIntent());
         checkExternalStorageExisted();
         if (EnvironmentUtils.DeviceConfig.isConnected()) {
-            if (new Date().getTime() - Preferences.m2953ar().longValue() > 86400000) {
+            Long lastCheckTime = Preferences.m2953ar();
+            if (lastCheckTime != null && new Date().getTime() - lastCheckTime.longValue() > 86400000) {
                 CommandCenter.getInstance().postInvokeResult(new Command(CommandID.CHECK_UPGRADE, Boolean.TRUE), 30);
             }
             requestUpdateSkinList();
@@ -153,6 +154,9 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
     @Override // android.support.v4.app.FragmentActivity, android.app.Activity
     public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        if (intent == null) {
+            return;
+        }
         if (Action.NOTIFICATION_START_DOWNLOAD_MANAGER.equals(intent.getAction())) {
             closeLandscapeFragment();
             if (this.mPanelPlayerLayout != null && (this.mPanelPlayerLayout.m1494h() || this.mPanelPlayerLayout.m1534a())) {

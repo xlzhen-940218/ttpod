@@ -31,10 +31,14 @@ public class SystemMediaPlayer extends MediaPlayer implements IMediaPlayer {
                     .setUsage(AudioAttributes.USAGE_MEDIA)
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
                     .build());
-            this.mVisualizer = new Visualizer(getAudioSessionId());
-            this.mVisualizer.setEnabled(true);
+            int sessionId = getAudioSessionId();
+            if (sessionId != 0) {
+                this.mVisualizer = new Visualizer(sessionId);
+                this.mVisualizer.setEnabled(true);
+            }
         } catch (Throwable th) {
-            th.printStackTrace();
+            // Visualizer engine may fail if RECORD_AUDIO permission is not granted on modern Android
+            this.mVisualizer = null;
         }
     }
 
@@ -182,11 +186,22 @@ public class SystemMediaPlayer extends MediaPlayer implements IMediaPlayer {
     @Override // android.media.MediaPlayer, com.sds.android.ttpod.media.player.IMediaPlayer
     public void release() {
         if (this.mVisualizer != null) {
-            this.mVisualizer.release();
+            try {
+                this.mVisualizer.release();
+            } catch (Throwable th) {
+            }
             this.mVisualizer = null;
         }
-        super.stop();
-        super.release();
+        try {
+            if (isPlaying()) {
+                super.stop();
+            }
+        } catch (Throwable th) {
+        }
+        try {
+            super.release();
+        } catch (Throwable th) {
+        }
     }
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer

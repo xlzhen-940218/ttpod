@@ -5,8 +5,10 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import android.widget.ImageView;
+
 /* loaded from: classes.dex */
-public class CheckImageView extends androidx.appcompat.widget.AppCompatImageView {
+public class CheckImageView extends ImageView {
 
     /* renamed from: a */
     private boolean checked;

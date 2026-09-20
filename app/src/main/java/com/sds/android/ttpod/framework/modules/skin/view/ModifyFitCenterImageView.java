@@ -6,8 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
-/* loaded from: classes.dex */
-public class ModifyFitCenterImageView extends androidx.appcompat.widget.AppCompatImageView {
+public class ModifyFitCenterImageView extends android.widget.ImageView {
 
     /* renamed from: a */
     private boolean f6826a;

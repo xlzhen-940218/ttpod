@@ -200,13 +200,13 @@ public abstract class AppWidget91Base extends RelativeLayout implements View.OnL
         intentFilter.addAction(Action.EXIT);
         intentFilter.addAction(Action.LAUNCHER);
         intentFilter.addAction(Action.PLAYLIST_IS_EMPTY);
-        getContext().registerReceiver(this.mRefreshWidgetMonitor, intentFilter);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(getContext(), this.mRefreshWidgetMonitor, intentFilter, com.sds.android.ttpod.framework.base.ReceiverUtils.RECEIVER_EXPORTED);
     }
 
     private void unLoadMonitor() {
         LogUtils.debug(TAG, "unLoadMonitor");
         if (this.mRefreshWidgetMonitor != null) {
-            getContext().unregisterReceiver(this.mRefreshWidgetMonitor);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(getContext(), this.mRefreshWidgetMonitor);
             this.mRefreshWidgetMonitor = null;
         }
     }

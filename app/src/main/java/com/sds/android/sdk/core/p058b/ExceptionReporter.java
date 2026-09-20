@@ -34,10 +34,11 @@ public class ExceptionReporter {
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() { // from class: com.sds.android.sdk.core.b.b.1
             @Override // java.lang.Thread.UncaughtExceptionHandler
             public void uncaughtException(Thread thread, Throwable th) {
+                th.printStackTrace();
                 StringWriter stringWriter = new StringWriter();
                 th.printStackTrace(new PrintWriter(stringWriter));
                 String obj = stringWriter.toString();
-                LogUtils.error("ExceptionReporter", "TTPod_Crash_Exception:\n" + obj);
+                android.util.Log.e("ExceptionReporter", "TTPod_Crash_Exception:\n" + obj);
                 if (context != null && EnvironmentUtils.DeviceConfig.isConnected()) {
                     Intent intent = new Intent(str);
                     intent.putExtra("android.intent.extra.SUBJECT", th.toString());

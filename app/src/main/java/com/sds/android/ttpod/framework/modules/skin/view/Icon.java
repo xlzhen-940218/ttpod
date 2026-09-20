@@ -6,8 +6,7 @@ import android.util.AttributeSet;
 
 import java.util.Vector;
 
-/* loaded from: classes.dex */
-public class Icon extends androidx.appcompat.widget.AppCompatImageView {
+public class Icon extends android.widget.ImageView {
 
     /* renamed from: a */
     private int state;

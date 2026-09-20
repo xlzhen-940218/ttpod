@@ -12,13 +12,14 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
+import android.widget.ImageView;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.framework.modules.theme.ThemeElement;
 import com.sds.android.ttpod.framework.p106a.BitmapUtils;
 import com.sds.android.ttpod.utils.ThemeUtils;
 
 /* loaded from: classes.dex */
-public class GlobalMenuThumbImageView extends androidx.appcompat.widget.AppCompatImageView {
+public class GlobalMenuThumbImageView extends ImageView {
 
     /* renamed from: a */
     private Bitmap f7683a;

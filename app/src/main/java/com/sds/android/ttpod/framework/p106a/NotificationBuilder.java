@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RemoteViews;
 import android.widget.TextView;
+import android.os.Build;
 import com.sds.android.sdk.lib.util.SDKVersionUtils;
 
 @SuppressLint({"NewApi"})
@@ -100,7 +101,10 @@ public class NotificationBuilder {
 
     public NotificationBuilder(Context context) {
         this.f5655d = context;
-        if (SDKVersionUtils.sdkThan11()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationUtils.initNotificationChannels(context);
+            this.f5654A = new Notification.Builder(context, NotificationUtils.CHANNEL_ID_PLAYBACK);
+        } else if (SDKVersionUtils.sdkThan11()) {
             this.f5654A = new Notification.Builder(context);
         } else {
             this.f5654A = null;
@@ -171,7 +175,11 @@ public class NotificationBuilder {
     public Notification m4710a() {
         Notification m4698d;
         if (this.f5654A != null) {
-            m4698d = ((Notification.Builder) this.f5654A).getNotification();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                m4698d = ((Notification.Builder) this.f5654A).build();
+            } else {
+                m4698d = ((Notification.Builder) this.f5654A).getNotification();
+            }
         } else {
             m4698d = m4698d();
         }
@@ -243,7 +251,9 @@ public class NotificationBuilder {
                 Notification notification = new Notification();
                 //notification.setLatestEventInfo(context, "{notification_title_test_tag}", "{notification_text_test_tag}", null);
                 LinearLayout linearLayout = new LinearLayout(context);
-                m4704a((ViewGroup) notification.contentView.apply(context, linearLayout));
+                if (notification.contentView != null) {
+                    m4704a((ViewGroup) notification.contentView.apply(context, linearLayout));
+                }
                 linearLayout.removeAllViews();
                 f5651a = true;
             } catch (Exception e) {

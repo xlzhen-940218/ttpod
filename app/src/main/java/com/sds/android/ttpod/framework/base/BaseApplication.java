@@ -44,28 +44,33 @@ public class BaseApplication extends MultiDexApplication {
     @Override // android.app.Application
     public final void onCreate() {
         super.onCreate();
+        pid = getCurrentPid();
+        application = this;
         startFakeServer();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (!Environment.isExternalStorageManager()) {
-                try {
-                    Uri uri = Uri.parse("package:" + getPackageName());
-                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                } catch (Exception ex) {
-                    Intent intent = new Intent();
-                    intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+        if (isMainPid() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            try {
+                if (!Environment.isExternalStorageManager()) {
+                    try {
+                        Uri uri = Uri.parse("package:" + getPackageName());
+                        Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    } catch (Exception ex) {
+                        Intent intent = new Intent();
+                        intent.setAction(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
                 }
+            } catch (Throwable th) {
+                th.printStackTrace();
             }
         }
+        com.sds.android.ttpod.framework.p106a.NotificationUtils.initNotificationChannels(this);
         Preferences.setContext(this);
         BaseModule.setContext(this);
         DisplayUtils.init(this);
         TTPodConfig.initTTPodConfig(true);
-        application = this;
-        pid = getCurrentPid();
         EnvironmentUtils.init(this);
         LogUtils.setEnableLog(EnvironmentUtils.AppConfig.getTestMode());
         EffectDetect.detectAudioPlus(this);
@@ -87,12 +92,15 @@ public class BaseApplication extends MultiDexApplication {
     }
 
     private void startFakeServer() {
+        if (!isMainPid()) {
+            return;
+        }
         if (fakeHttpServer == null) {
             new Thread(() -> {
-                fakeHttpServer = new FakeHttpServer();
                 try {
+                    fakeHttpServer = new FakeHttpServer();
                     fakeHttpServer.start();
-                } catch (IOException e) {
+                } catch (Throwable e) {
                     e.printStackTrace();
                 }
             }).start();
@@ -187,7 +195,7 @@ public class BaseApplication extends MultiDexApplication {
 
     /* renamed from: g */
     public boolean isMainPid() {
-        return "com.sds.android.ttpod.main".equals(pid);
+        return "com.sds.android.ttpod.main".equals(pid) || getPackageName().equals(pid) || pid == null;
     }
 
     /* renamed from: h */
@@ -207,15 +215,29 @@ public class BaseApplication extends MultiDexApplication {
 
     /* renamed from: m */
     private String getCurrentPid() {
-        List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE)).getRunningAppProcesses();
-        if (runningAppProcesses != null) {
-            for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) {
-                if (Process.myPid() == runningAppProcessInfo.pid) {
-                    return runningAppProcessInfo.processName;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            try {
+                String processName = android.app.Application.getProcessName();
+                if (processName != null) {
+                    return processName;
                 }
+            } catch (Throwable th) {
+                th.printStackTrace();
             }
         }
-        return null;
+        try {
+            List<ActivityManager.RunningAppProcessInfo> runningAppProcesses = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE)).getRunningAppProcesses();
+            if (runningAppProcesses != null) {
+                for (ActivityManager.RunningAppProcessInfo runningAppProcessInfo : runningAppProcesses) {
+                    if (Process.myPid() == runningAppProcessInfo.pid) {
+                        return runningAppProcessInfo.processName;
+                    }
+                }
+            }
+        } catch (Throwable th) {
+            th.printStackTrace();
+        }
+        return "com.sds.android.ttpod.main";
     }
 
     /* renamed from: k */

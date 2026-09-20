@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 /* JADX INFO: Access modifiers changed from: package-private */
 /* loaded from: classes.dex */
-public class ImageViewTouch extends androidx.appcompat.widget.AppCompatImageView {
+public class ImageViewTouch extends ImageView {
 
     /* renamed from: a */
     protected Matrix f4795a;

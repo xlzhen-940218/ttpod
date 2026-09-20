@@ -237,7 +237,7 @@ public final class WifiAPManager {
             intentFilter.addAction(f3789g);
         }
         this.f3805v = context;
-        context.registerReceiver(this.f3806x, intentFilter);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(context, this.f3806x, intentFilter);
     }
 
     /* renamed from: a */

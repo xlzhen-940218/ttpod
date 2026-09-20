@@ -152,7 +152,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         updateTime();
         if (!this.mIsReceiverRegistered) {
             this.mIsReceiverRegistered = true;
-            registerReceiver(this.mTickReceiver, buildTimeTickFilter());
+            com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(this, this.mTickReceiver, buildTimeTickFilter());
         }
         showCachedLyricAndPic();
         ((AnimationDrawable) this.mImgViewSlidingUnlock.getBackground()).start();
@@ -170,7 +170,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
         ((AnimationDrawable) this.mImgViewSlidingUnlock.getBackground()).stop();
         if (this.mIsReceiverRegistered) {
             this.mIsReceiverRegistered = false;
-            unregisterReceiver(this.mTickReceiver);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(this, this.mTickReceiver);
         }
         if (this.mRefreshHandler != null) {
             this.mRefreshHandler.removeMessages(0);
@@ -184,7 +184,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
     public void onDetachedFromWindow() {
         if (this.mIsReceiverRegistered) {
             this.mIsReceiverRegistered = false;
-            unregisterReceiver(this.mTickReceiver);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(this, this.mTickReceiver);
         }
         super.onDetachedFromWindow();
     }

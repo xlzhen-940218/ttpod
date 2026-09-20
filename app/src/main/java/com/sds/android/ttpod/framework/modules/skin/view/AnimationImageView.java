@@ -5,8 +5,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 
-/* loaded from: classes.dex */
-public class AnimationImageView extends androidx.appcompat.widget.AppCompatImageView {
+public class AnimationImageView extends android.widget.ImageView {
 
     /* renamed from: a */
     private boolean animRunning;

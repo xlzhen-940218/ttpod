@@ -249,14 +249,14 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         Preferences.m3019a(PreferencesID.NOTIFICATION_PRIORITY, this.f6998g);
         this.f6993b = new AppInstallMonitor();
         this.f6994c = new NetworkBroadcast(this);
-        registerReceiver(this.f6993b, AppInstallMonitor.m2265a());
-        registerReceiver(this.f6994c, NetworkBroadcast.m2243a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(this, this.f6993b, AppInstallMonitor.m2265a());
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(this, this.f6994c, NetworkBroadcast.m2243a());
     }
 
     /* renamed from: q */
     private void m2770q() {
-        unregisterReceiver(this.f6993b);
-        unregisterReceiver(this.f6994c);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(this, this.f6993b);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(this, this.f6994c);
         this.f6993b = null;
         this.f6994c = null;
         Preferences.m2938b(PreferencesID.IS_SHOW_NOTIFICATION_WHILE_PAUSED_ENABLED, this.f6998g);

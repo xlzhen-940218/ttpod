@@ -17,7 +17,7 @@ import com.sds.android.ttpod.R;
 
 @Deprecated
 /* loaded from: classes.dex */
-public class RoundRectImageView extends androidx.appcompat.widget.AppCompatImageView {
+public class RoundRectImageView extends ImageView {
 
     /* renamed from: a */
     protected final RectF f7872a;

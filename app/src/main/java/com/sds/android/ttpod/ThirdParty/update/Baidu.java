@@ -106,17 +106,13 @@ public class Baidu implements UpdateInterface {
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction("android.intent.action.PACKAGE_ADDED");
             intentFilter.addDataScheme("package");
-            context.registerReceiver(this.mAppInstallReceiver, intentFilter);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(context, this.mAppInstallReceiver, intentFilter);
         }
     }
 
     private void unRegisterReceiver() {
-        try {
-            if (this.mContext != null) {
-                this.mContext.unregisterReceiver(this.mAppInstallReceiver);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (this.mContext != null) {
+            com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(this.mContext, this.mAppInstallReceiver);
         }
     }
 

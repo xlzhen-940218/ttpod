@@ -17,8 +17,7 @@ import java.io.IOException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
-/* loaded from: classes.dex */
-public class SeekBarExpansion extends androidx.appcompat.widget.AppCompatSeekBar {
+public class SeekBarExpansion extends android.widget.SeekBar {
 
     /* renamed from: a */
     private int orientation;

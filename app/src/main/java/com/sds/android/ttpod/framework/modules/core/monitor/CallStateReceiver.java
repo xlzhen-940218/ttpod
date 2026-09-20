@@ -33,13 +33,31 @@ public class CallStateReceiver extends BroadcastReceiver {
 
     @Override // android.content.BroadcastReceiver
     public void onReceive(Context context, Intent intent) {
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
         String stringExtra = intent.getStringExtra("android.intent.extra.PHONE_NUMBER");
         if (TextUtils.isEmpty(stringExtra)) {
             stringExtra = intent.getStringExtra("incoming_number");
         }
-        int callState = telephonyManager.getCallState();
-        this.f6077b.onCallStateChanged(callState, stringExtra);
+        int callState = 0;
+        String stateStr = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
+        if (TelephonyManager.EXTRA_STATE_RINGING.equals(stateStr)) {
+            callState = TelephonyManager.CALL_STATE_RINGING;
+        } else if (TelephonyManager.EXTRA_STATE_OFFHOOK.equals(stateStr)) {
+            callState = TelephonyManager.CALL_STATE_OFFHOOK;
+        } else if (TelephonyManager.EXTRA_STATE_IDLE.equals(stateStr)) {
+            callState = TelephonyManager.CALL_STATE_IDLE;
+        } else {
+            try {
+                TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService("phone");
+                if (telephonyManager != null) {
+                    callState = telephonyManager.getCallState();
+                }
+            } catch (Throwable th) {
+                callState = 0;
+            }
+        }
+        if (this.f6077b != null) {
+            this.f6077b.onCallStateChanged(callState, stringExtra);
+        }
         m4129a(callState);
     }
 

@@ -2042,7 +2042,7 @@ public class LyricView extends View implements OnMeasureTextListener {
         super.onAttachedToWindow();
         IntentFilter intentFilter = new IntentFilter("android.intent.action.SCREEN_OFF");
         intentFilter.addAction("android.intent.action.SCREEN_ON");
-        getContext().registerReceiver(this.screenOnOffBroadcastReceiver, intentFilter);
+        com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(getContext(), this.screenOnOffBroadcastReceiver, intentFilter);
         this.registerScreenOnOffBroadcastReceiver = true;
     }
 
@@ -2050,7 +2050,7 @@ public class LyricView extends View implements OnMeasureTextListener {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (this.registerScreenOnOffBroadcastReceiver) {
-            getContext().unregisterReceiver(this.screenOnOffBroadcastReceiver);
+            com.sds.android.ttpod.framework.base.ReceiverUtils.unregisterReceiver(getContext(), this.screenOnOffBroadcastReceiver);
         }
     }
 

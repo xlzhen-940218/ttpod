@@ -43,76 +43,65 @@ public class TTMediaPlayer implements IMediaPlayer {
         void onMediaPlayerNotify(int i, int i2, int i3, Object obj);
     }
 
-    private static native void nativeCongfigProxyServer(String str, int i, String str2, boolean z);
+    private static void nativeCongfigProxyServer(String str, int i, String str2, boolean z) {}
 
-    private native int nativeGetCurFreq(short[] sArr, int i);
+    private int nativeGetCurFreq(short[] sArr, int i) { return 0; }
 
-    private native int nativeGetCurFreqAndWave(short[] sArr, short[] sArr2, int i);
+    private int nativeGetCurFreqAndWave(short[] sArr, short[] sArr2, int i) { return 0; }
 
-    private native int nativeGetCurWave(short[] sArr, int i);
+    private int nativeGetCurWave(short[] sArr, int i) { return 0; }
 
-    private native void nativeRelease();
+    private void nativeRelease() {}
 
-    private static native void nativeSetAudioEffectLowDelay(boolean z);
+    private static void nativeSetAudioEffectLowDelay(boolean z) {}
 
-    private native void nativeSetCacheFilePath(String str);
+    private void nativeSetCacheFilePath(String str) {}
 
-    private native int nativeSetDataSourceAsync(String str);
+    private int nativeSetDataSourceAsync(String str) { return 0; }
 
-    private native int nativeSetDataSourceSync(String str);
+    private int nativeSetDataSourceSync(String str) { return 0; }
 
-    private native void nativeSetVolume(int i, int i2);
+    private void nativeSetVolume(int i, int i2) {}
 
-    private native void nativeSetup(Object obj, byte[] bArr, int i, String str);
+    private void nativeSetup(Object obj, byte[] bArr, int i, String str) {}
 
-    private native int nativeStop();
-
-    @Override // com.sds.android.ttpod.media.player.IMediaPlayer
-    public native int bufferedPercent();
-
-    public native int bufferedSize();
+    private int nativeStop() { return 0; }
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer
-    public native int duration();
+    public int bufferedPercent() { return 100; }
+
+    public int bufferedSize() { return 0; }
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer
-    public native int getPosition();
-
-    public native int getStatus();
+    public int duration() { return 0; }
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer
-    public native void pause();
+    public int getPosition() { return 0; }
+
+    public int getStatus() { return 4; }
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer
-    public native int play();
+    public void pause() {}
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer
-    public native void resume();
+    public int play() { return 0; }
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer
-    public native void setActiveNetWorkType(int i);
+    public void resume() {}
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer
-    public native void setPlayRange(int i, int i2);
+    public void setActiveNetWorkType(int i) {}
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer
-    public native void setPosition(int i);
+    public void setPlayRange(int i, int i2) {}
 
-    public native int size();
+    @Override // com.sds.android.ttpod.media.player.IMediaPlayer
+    public void setPosition(int i) {}
 
-    static {
-        try {
-            System.loadLibrary("osal");
-            System.loadLibrary("audiofx");
-            System.loadLibrary("mediaplayer");
-            System.loadLibrary("resample");
-        } catch (UnsatisfiedLinkError e) {
-            e.printStackTrace();
-        }
-    }
+    public int size() { return 0; }
 
     public TTMediaPlayer(byte[] bArr, String str) {
-        nativeSetup(this, bArr, TTAudioTrack.maxOutputSamplerate(), str);
+        // Pure Java stub constructor
     }
 
     @Override // com.sds.android.ttpod.media.player.IMediaPlayer
