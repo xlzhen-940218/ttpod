@@ -33,6 +33,9 @@ public class SupportFactory {
 
     /* renamed from: b */
     private static String getContextProcessName(Context context) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+            return android.app.Application.getProcessName();
+        }
         List<ActivityManager.RunningAppProcessInfo> runningAppProcesses
                 = ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE)).getRunningAppProcesses();
         if (runningAppProcesses != null) {

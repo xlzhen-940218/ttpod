@@ -66,10 +66,12 @@ public class CallMonitor {
         if (this.f7247c != null && !this.f7248d) {
             this.f7248d = true;
             com.sds.android.ttpod.framework.base.ReceiverUtils.registerReceiver(context, this.f7245a, CallStateReceiver.m4130a());
-            try {
-                ((TelephonyManager) context.getSystemService("phone")).listen(this.f7246b, 32);
-            } catch (Throwable th) {
-                th.printStackTrace();
+            if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.S || context.checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE) == android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                try {
+                    ((TelephonyManager) context.getSystemService("phone")).listen(this.f7246b, 32);
+                } catch (Throwable th) {
+                    th.printStackTrace();
+                }
             }
         } else if (this.f7247c == null && this.f7248d) {
             this.f7248d = false;

@@ -15,17 +15,24 @@ public class ReceiverUtils {
         if (context == null || receiver == null || filter == null) {
             return null;
         }
-        boolean hasSystemAction = false;
-        int count = filter.countActions();
-        for (int i = 0; i < count; i++) {
-            String action = filter.getAction(i);
-            if (action != null && (action.startsWith("android.") || action.startsWith("com.android."))) {
-                hasSystemAction = true;
-                break;
-            }
+        // In Android 14+ (targetSdk >= 34), internal broadcasts sent across processes or components
+        // are dropped if registered as RECEIVER_NOT_EXPORTED without explicit components.
+        // Using RECEIVER_EXPORTED ensures both internal app broadcasts and system broadcasts are delivered.
+        return registerReceiver(context, receiver, filter, RECEIVER_EXPORTED);
+    }
+
+    public static void sendBroadcast(Context context, Intent intent) {
+        if (context == null || intent == null) {
+            return;
         }
-        int flags = hasSystemAction ? RECEIVER_EXPORTED : RECEIVER_NOT_EXPORTED;
-        return registerReceiver(context, receiver, filter, flags);
+        if (intent.getPackage() == null && intent.getComponent() == null) {
+            intent.setPackage(context.getPackageName());
+        }
+        try {
+            context.sendBroadcast(intent);
+        } catch (Throwable th) {
+            th.printStackTrace();
+        }
     }
 
     public static Intent registerReceiver(Context context, BroadcastReceiver receiver, IntentFilter filter, boolean exported) {

@@ -7,6 +7,7 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.environment.PreferencesID;
 import com.sds.android.ttpod.framework.support.p134a.Player;
@@ -84,7 +85,7 @@ public class ImageSwitcherEngine {
         Intent intent = new Intent(Action.SWITCH_ARTIST_BITMAP);
         intent.putExtra("media_id", this.f5644c);
         intent.putExtra("path", str);
-        BaseApplication.getApplication().sendBroadcast(intent);
+        ReceiverUtils.sendBroadcast(BaseApplication.getApplication(), intent);
     }
 
     /* renamed from: c */

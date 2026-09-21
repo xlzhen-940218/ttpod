@@ -14,6 +14,7 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.modules.search.p127a.SearchTaskInfoUtils;
 import com.sds.android.ttpod.framework.p106a.ImageSwitcherEngine;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -314,7 +315,7 @@ public final class SearchManager {
         intent.putExtra("success_count", this.successCount);
         intent.putExtra("failed_count", this.failedCount);
         intent.putExtra("skip_count", this.skipCount);
-        BaseApplication.getApplication().sendBroadcast(intent);
+        ReceiverUtils.sendBroadcast(BaseApplication.getApplication(), intent);
     }
 
     /* renamed from: i */

@@ -14,6 +14,7 @@ import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.p106a.DownloadUtils;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.storage.database.SqliteDb;
@@ -261,7 +262,7 @@ public final class DownloadTaskFacade {
         if (enumC0579b != null) {
             intent.putExtra("download_error", enumC0579b.getErrorCode());
         }
-        BaseApplication.getApplication().sendBroadcast(intent);
+        ReceiverUtils.sendBroadcast(BaseApplication.getApplication(), intent);
     }
 
     /* renamed from: a */

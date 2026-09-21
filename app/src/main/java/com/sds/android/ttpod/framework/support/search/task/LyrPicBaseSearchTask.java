@@ -11,6 +11,7 @@ import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.modules.core.p113b.AutoDownloadNetworkType;
 import com.sds.android.ttpod.framework.modules.search.p127a.KXmlParser;
 import com.sds.android.ttpod.framework.modules.search.p127a.SearchTaskInfoUtils;
@@ -188,7 +189,7 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         if (arrayList2 != null) {
             intent.putStringArrayListExtra("download_result_list", arrayList2);
         }
-        BaseApplication.getApplication().sendBroadcast(intent);
+        ReceiverUtils.sendBroadcast(BaseApplication.getApplication(), intent);
     }
 
     /* renamed from: a */

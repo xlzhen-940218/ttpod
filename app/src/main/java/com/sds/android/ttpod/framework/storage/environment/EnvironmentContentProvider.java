@@ -13,6 +13,7 @@ import com.sds.android.sdk.lib.util.SharedPreferencesUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 
 import java.util.Set;
 
@@ -142,7 +143,7 @@ public final class EnvironmentContentProvider extends ContentProvider {
                 m3107b = m3107b.substring(0, m3107b.indexOf("PREFIX") + "PREFIX".length());
             }
             if (PreferencesID.valueOf(m3107b).isNotifyChanged()) {
-                BaseApplication.getApplication().sendBroadcast(new Intent(Action.PREFERENCES_CHANGED).putExtra("preferences_id", m3107b));
+                ReceiverUtils.sendBroadcast(BaseApplication.getApplication(), new Intent(Action.PREFERENCES_CHANGED).putExtra("preferences_id", m3107b));
             }
         } catch (Exception e) {
             LogUtils.warning("EnvironmentContentProvider", "key:" + m3107b + " not existed!");

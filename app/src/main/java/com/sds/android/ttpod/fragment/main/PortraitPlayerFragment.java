@@ -483,7 +483,7 @@ public class PortraitPlayerFragment extends BasePlayerFragment implements Player
     }
 
     private void startupSearchLyricPic() {
-        BaseApplication.getApplication().startService(new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", "search_lyric_pic_command"));
+        SupportFactory.getInstance(BaseApplication.getApplication()).m2477c(new Intent(BaseApplication.getApplication(), SupportService.class).putExtra("command", "search_lyric_pic_command"));
     }
 
     @Override // com.sds.android.ttpod.framework.base.BaseFragment, androidx.fragment.app.Fragment

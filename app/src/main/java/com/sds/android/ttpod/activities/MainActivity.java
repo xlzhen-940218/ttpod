@@ -131,6 +131,11 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
         CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_FOLDER));
         CommandCenter.getInstance().postInvokeResult(new Command(CommandID.QUERY_GROUP_ITEM_LIST, GroupType.DEFAULT_ARTIST));
         UnicomFlowUtil.m3954a(this);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, 1001);
+            }
+        }
     }
 
     /* JADX INFO: Access modifiers changed from: protected */

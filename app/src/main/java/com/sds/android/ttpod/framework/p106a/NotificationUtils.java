@@ -123,9 +123,13 @@ public class NotificationUtils {
         notificationBuilder.m4708a(f5678a);
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_play);
         remoteViews.setTextViewText(R.id.title, charSequence);
-        remoteViews.setTextColor(R.id.title, NotificationBuilder.m4701b());
+        if (NotificationBuilder.m4701b() != 0) {
+            remoteViews.setTextColor(R.id.title, NotificationBuilder.m4701b());
+        }
         remoteViews.setTextViewText(R.id.text, charSequence2);
-        remoteViews.setTextColor(R.id.text, NotificationBuilder.m4699c());
+        if (NotificationBuilder.m4699c() != 0) {
+            remoteViews.setTextColor(R.id.text, NotificationBuilder.m4699c());
+        }
         if (bitmap != null) {
             remoteViews.setImageViewBitmap(R.id.imageview_notification_play, bitmap);
         }
@@ -147,22 +151,26 @@ public class NotificationUtils {
             remoteViews.setOnClickPendingIntent(R.id.button_next_notification_play, pendingIntent4);
             remoteViews.setOnClickPendingIntent(R.id.button_exit_notification_play, pendingIntent5);
         }
-        Notification m4710a = notificationBuilder.m4710a();
+        RemoteViews remoteViews2 = null;
         if (SDKVersionUtils.sdkThan16()) {
-            m4710a.priority = f5679b.get(Preferences.m2989aR());
-            RemoteViews remoteViews2 = new RemoteViews(context.getPackageName(), R.layout.notification_play_hasjellybean);
+            remoteViews2 = new RemoteViews(context.getPackageName(), R.layout.notification_play_hasjellybean);
             if (charSequence != null) {
                 remoteViews2.setTextViewText(R.id.title, charSequence);
-                remoteViews2.setTextColor(R.id.title, NotificationBuilder.m4701b());
+                if (NotificationBuilder.m4701b() != 0) {
+                    remoteViews2.setTextColor(R.id.title, NotificationBuilder.m4701b());
+                }
                 remoteViews2.setTextViewText(R.id.text, charSequence2);
-                remoteViews2.setTextColor(R.id.text, NotificationBuilder.m4699c());
+                if (NotificationBuilder.m4699c() != 0) {
+                    remoteViews2.setTextColor(R.id.text, NotificationBuilder.m4699c());
+                }
                 remoteViews2.setTextViewText(R.id.text2, charSequence3);
-                remoteViews2.setTextColor(R.id.text2, NotificationBuilder.m4699c());
+                if (NotificationBuilder.m4699c() != 0) {
+                    remoteViews2.setTextColor(R.id.text2, NotificationBuilder.m4699c());
+                }
             }
             if (bitmap != null) {
                 remoteViews2.setImageViewBitmap(R.id.imageview_notification_play_hasjellybean, bitmap);
             }
-            m4710a.bigContentView = remoteViews2;
             if (playStatus == PlayStatus.STATUS_PLAYING) {
                 remoteViews2.setViewVisibility(R.id.button_play_notification_play_hasjellybean, View.GONE);
                 remoteViews2.setViewVisibility(R.id.button_pause_notification_play_hasjellybean, View.VISIBLE);
@@ -175,8 +183,16 @@ public class NotificationUtils {
             remoteViews2.setOnClickPendingIntent(R.id.button_previous_notification_play_hasjellybean, pendingIntent2);
             remoteViews2.setOnClickPendingIntent(R.id.button_next_notification_play_hasjellybean, pendingIntent4);
             remoteViews2.setOnClickPendingIntent(R.id.button_exit_notification_play_hasjellybean, pendingIntent5);
-            remoteViews2.setViewVisibility(R.id.button_exit_notification_play_hasjellybean, Preferences.m2988aS() ? View.VISIBLE : View.GONE);
+            remoteViews2.setViewVisibility(R.id.button_previous_notification_play_hasjellybean, Preferences.m2988aS() ? View.VISIBLE : View.GONE);
             remoteViews2.setViewVisibility(R.id.button_exit_notification_play_hasjellybean, Preferences.m2987aT() ? View.VISIBLE : View.GONE);
+            notificationBuilder.m4704b(remoteViews2);
+        }
+        Notification m4710a = notificationBuilder.m4710a();
+        if (SDKVersionUtils.sdkThan16()) {
+            m4710a.priority = f5679b.get(Preferences.m2989aR());
+            if (m4710a.bigContentView == null) {
+                m4710a.bigContentView = remoteViews2;
+            }
         }
         return m4710a;
     }

@@ -12,6 +12,7 @@ import com.sds.android.sdk.lib.util.FileUtils;
 import com.sds.android.sdk.lib.util.JSONUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.framework.base.Action;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectCache;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectParam;
 import com.sds.android.ttpod.framework.modules.core.audioeffect.AudioEffectUtils;
@@ -259,7 +260,7 @@ public class AudioEffectLoader {
         m2741c(this.f7018k);
         m2762a(this.f7017j);
         if (z) {
-            this.f7025r.sendBroadcast(new Intent(Action.AUDIOEFFECT_CHANGED));
+            ReceiverUtils.sendBroadcast(this.f7025r, new Intent(Action.AUDIOEFFECT_CHANGED));
         }
     }
 
@@ -273,7 +274,7 @@ public class AudioEffectLoader {
         m2741c(audioEffectItem.getDataIsLimit());
         m2762a(audioEffectItem.getDataBalance());
         if (z) {
-            this.f7025r.sendBroadcast(new Intent(Action.AUDIOEFFECT_CHANGED));
+            ReceiverUtils.sendBroadcast(this.f7025r, new Intent(Action.AUDIOEFFECT_CHANGED));
         }
     }
 

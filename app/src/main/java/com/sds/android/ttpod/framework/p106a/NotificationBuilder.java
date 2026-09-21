@@ -12,6 +12,7 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.os.Build;
 import com.sds.android.sdk.lib.util.SDKVersionUtils;
+import com.sds.android.ttpod.R;
 
 @SuppressLint({"NewApi"})
 /* renamed from: com.sds.android.ttpod.framework.a.j */
@@ -124,6 +125,9 @@ public class NotificationBuilder {
     /* renamed from: a */
     public NotificationBuilder m4709a(int i) {
         this.f5657f = i;
+        if (this.f5654A != null && i != 0) {
+            ((Notification.Builder) this.f5654A).setSmallIcon(i);
+        }
         return this;
     }
 
@@ -149,7 +153,22 @@ public class NotificationBuilder {
     public NotificationBuilder m4703a(RemoteViews remoteViews) {
         this.f5665n = remoteViews;
         if (this.f5654A != null) {
-            ((Notification.Builder) this.f5654A).setContent(remoteViews);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                ((Notification.Builder) this.f5654A).setCustomContentView(remoteViews);
+            } else {
+                ((Notification.Builder) this.f5654A).setContent(remoteViews);
+            }
+        }
+        return this;
+    }
+
+    /* renamed from: b */
+    public NotificationBuilder m4704b(RemoteViews remoteViews) {
+        this.f5669r = remoteViews;
+        if (this.f5654A != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                ((Notification.Builder) this.f5654A).setCustomBigContentView(remoteViews);
+            }
         }
         return this;
     }
@@ -175,6 +194,11 @@ public class NotificationBuilder {
     public Notification m4710a() {
         Notification m4698d;
         if (this.f5654A != null) {
+            if (this.f5657f != 0) {
+                ((Notification.Builder) this.f5654A).setSmallIcon(this.f5657f);
+            } else {
+                ((Notification.Builder) this.f5654A).setSmallIcon(R.drawable.img_notification_tickericon);
+            }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 m4698d = ((Notification.Builder) this.f5654A).build();
             } else {

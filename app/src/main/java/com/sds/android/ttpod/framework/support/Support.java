@@ -153,7 +153,7 @@ public class Support {
         try {
             m2476c(supportCallback);
             this.f7138f.remove(supportCallback);
-            if (this.f7138f.size() > 0) {
+            if (this.f7138f.isEmpty()) {
                 m2508A();
             }
         } catch (Exception e) {
@@ -574,7 +574,11 @@ public class Support {
     public void m2477c(Intent intent) {
         if (this.context != null && !this.isExitCommand) {
             this.isExitCommand = "exit_command".equals(intent.getStringExtra("command"));
-            this.context.startService(intent);
+            try {
+                this.context.startService(intent);
+            } catch (Throwable th) {
+                LogUtils.error("Support", "startService failed: " + th.getMessage());
+            }
         }
     }
 

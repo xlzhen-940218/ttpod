@@ -27,6 +27,7 @@ import com.sds.android.ttpod.common.p083b.DisplayUtils;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.modules.skin.view.LyricView;
 import com.sds.android.ttpod.framework.p106a.NotificationUtils;
@@ -542,8 +543,8 @@ public class MiniLyric implements View.OnTouchListener {
         } else if (view.equals(this.lockImageView)) {
             m2285l();
         } else if (view.equals(this.ttpodImageView)) {
-            this.context.sendBroadcast(new Intent(Action.STOP_LOCK_SCREEN));
-            this.context.startActivity(new Intent(Action.START_ENTRY).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            ReceiverUtils.sendBroadcast(this.context, new Intent(Action.STOP_LOCK_SCREEN));
+            this.context.startActivity(new Intent(Action.START_ENTRY).setPackage(this.context.getPackageName()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else if (view.equals(this.fontZoomOutImageView)) {
             m2280q();
         } else if (view.equals(this.fontZoomInImageView)) {

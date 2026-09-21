@@ -51,15 +51,19 @@ public abstract class BaseActivity extends FragmentActivity {
     private static Handler mBackgroundHandler = new Handler() { // from class: com.sds.android.ttpod.framework.base.BaseActivity.1
         @Override // android.os.Handler
         public void handleMessage(Message message) {
-            boolean booleanValue = ((Boolean) message.obj).booleanValue();
-            Preferences.m3033X(booleanValue);
-            if (booleanValue) {
-                SupportFactory.getInstance(BaseApplication.getApplication()).m2460p();
-                CommandCenter.getInstance().execute(new Command(CommandID.SAVE_UNICOM_TOTAL_FLOW, new Object[0]));
-                //StartupStatistic.m4922b();
-                return;
+            try {
+                boolean booleanValue = ((Boolean) message.obj).booleanValue();
+                Preferences.m3033X(booleanValue);
+                if (booleanValue) {
+                    SupportFactory.getInstance(BaseApplication.getApplication()).m2460p();
+                    CommandCenter.getInstance().execute(new Command(CommandID.SAVE_UNICOM_TOTAL_FLOW, new Object[0]));
+                    //StartupStatistic.m4922b();
+                    return;
+                }
+                SupportFactory.getInstance(BaseApplication.getApplication()).m2459q();
+            } catch (Throwable th) {
+                th.printStackTrace();
             }
-            SupportFactory.getInstance(BaseApplication.getApplication()).m2459q();
         }
     };
     private boolean mIsMoveAction = false;

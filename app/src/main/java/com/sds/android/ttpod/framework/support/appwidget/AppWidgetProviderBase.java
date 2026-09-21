@@ -23,6 +23,7 @@ import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseApplication;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.SupportService;
 import com.sds.android.ttpod.framework.support.p134a.PlayMode;
@@ -261,7 +262,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
         } catch (Exception e2) {
             e2.printStackTrace();
         }
-        context.sendBroadcast(new Intent(Action.APP_WIDGET_QUERY));
+        ReceiverUtils.sendBroadcast(context, new Intent(Action.APP_WIDGET_QUERY));
     }
 
     /* renamed from: a */
@@ -307,7 +308,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
         super.onEnabled(context);
         LogUtils.error("AppWidgetProviderBase", "onEnabled");
         AppWidgetPreference.m2525a().m2518b(true);
-        context.sendBroadcast(new Intent(Action.APP_WIDGET_ENABLE_CHANGED).putExtra("app_widget_enable", true));
+        ReceiverUtils.sendBroadcast(context, new Intent(Action.APP_WIDGET_ENABLE_CHANGED).putExtra("app_widget_enable", true));
     }
 
     @Override // android.appwidget.AppWidgetProvider
@@ -315,7 +316,7 @@ public abstract class AppWidgetProviderBase extends AppWidgetProvider {
         super.onDisabled(context);
         LogUtils.error("AppWidgetProviderBase", "onDisabled");
         AppWidgetPreference.m2525a().m2518b(false);
-        context.sendBroadcast(new Intent(Action.APP_WIDGET_ENABLE_CHANGED).putExtra("app_widget_enable", false));
+        ReceiverUtils.sendBroadcast(context, new Intent(Action.APP_WIDGET_ENABLE_CHANGED).putExtra("app_widget_enable", false));
     }
 
     /* renamed from: b */

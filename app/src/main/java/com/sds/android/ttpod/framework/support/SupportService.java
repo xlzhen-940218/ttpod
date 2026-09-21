@@ -142,7 +142,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
         if (m2606g != null) {
             m2792b(m2606g);
         }
-        sendBroadcast(new Intent(Action.LAUNCHER));
+        sendBroadcast(new Intent(Action.LAUNCHER).setPackage(getPackageName()));
     }
 
     @Override // android.app.Service
@@ -180,7 +180,7 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
             Player.getInstance().m2594m();
         }
         this.f6997f.m2424b();
-        sendBroadcast(new Intent(Action.EXIT));
+        sendBroadcast(new Intent(Action.EXIT).setPackage(getPackageName()));
         stopSelf();
     }
 
@@ -297,7 +297,12 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     private void m2792b(MediaItem mediaItem) {
         Bundle bundle = new Bundle();
         bundle.putParcelable("mediaItem", mediaItem);
-        sendBroadcast(new Intent(Action.PLAY_MEDIA_CHANGED).putExtra("song_title", mediaItem != null ? mediaItem.getTitle() : "").putExtra("play_status", Player.getInstance().m2604h().ordinal()).putExtras(bundle));
+        Intent intent = new Intent(Action.PLAY_MEDIA_CHANGED);
+        intent.setPackage(getPackageName());
+        intent.putExtra("song_title", mediaItem != null ? mediaItem.getTitle() : "");
+        intent.putExtra("play_status", Player.getInstance().m2604h().ordinal());
+        intent.putExtras(bundle);
+        sendBroadcast(intent);
     }
 
     @Override // com.sds.android.ttpod.framework.support.p134a.Player.InterfaceC2056c
@@ -305,7 +310,11 @@ public class SupportService extends BaseService implements Player.InterfaceC2054
     public void mo2558a() {
         LogUtils.debug("SupportService", "onPlayStatusChanged");
         MediaItem m2606g = Player.getInstance().getMediaItem();
-        sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", Player.getInstance().m2604h().ordinal()).putExtra("song_title", m2606g != null ? m2606g.getTitle() : ""));
+        Intent intent = new Intent(Action.PLAY_STATUS_CHANGED);
+        intent.setPackage(getPackageName());
+        intent.putExtra("play_status", Player.getInstance().m2604h().ordinal());
+        intent.putExtra("song_title", m2606g != null ? m2606g.getTitle() : "");
+        sendBroadcast(intent);
         m2769r();
     }
 

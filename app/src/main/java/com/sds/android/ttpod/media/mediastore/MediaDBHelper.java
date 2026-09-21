@@ -3,6 +3,7 @@ package com.sds.android.ttpod.media.mediastore;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -158,7 +159,7 @@ public final class MediaDBHelper extends SQLiteOpenHelper {
     }
 
     private void notifyUpdateDbVersion(int i, int i2) {
-        this.mContext.sendBroadcast(new Intent(ACTION_UPDATE_DB_VERSION).putExtra(KEY_DB_VERSION_OLD, i).putExtra(KEY_DB_VERSION_NEW, i2));
+        ReceiverUtils.sendBroadcast(this.mContext, new Intent(ACTION_UPDATE_DB_VERSION).putExtra(KEY_DB_VERSION_OLD, i).putExtra(KEY_DB_VERSION_NEW, i2));
     }
 
     /* JADX INFO: Access modifiers changed from: package-private */

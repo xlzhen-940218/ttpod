@@ -6,6 +6,7 @@ import android.telephony.TelephonyManager;
 import com.sds.android.sdk.lib.util.LogUtils;
 import com.sds.android.ttpod.framework.base.Action;
 import com.sds.android.ttpod.framework.base.BaseModule;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.ModuleID;
 import java.lang.reflect.Method;
@@ -59,7 +60,7 @@ public final class MonitorModule extends BaseModule {
                 this.f6090b = i;
                 switch (i) {
                     case 1:
-                        MonitorModule.sContext.sendBroadcast(new Intent(Action.CALL_STATE_RINGING));
+                        ReceiverUtils.sendBroadcast(MonitorModule.sContext, new Intent(Action.CALL_STATE_RINGING));
                         return;
                     default:
                         return;

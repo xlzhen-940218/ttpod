@@ -22,6 +22,7 @@ import com.sds.android.sdk.lib.util.SecurityUtils;
 import com.sds.android.sdk.lib.util.StringUtils;
 import com.sds.android.ttpod.framework.TTPodConfig;
 import com.sds.android.ttpod.framework.base.Action;
+import com.sds.android.ttpod.framework.base.ReceiverUtils;
 import com.sds.android.ttpod.framework.modules.skin.p130c.DateTimeUtils;
 import com.sds.android.ttpod.framework.p106a.MediaItemUtils;
 import com.sds.android.ttpod.framework.p106a.OnlineMediaItemUtils;
@@ -300,14 +301,14 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         public void mo2567e() {
             if (System.currentTimeMillis() - Player.this.currentTimeMillis > 4000) {
                 Player.this.currentTimeMillis = System.currentTimeMillis();
-                Player.this.context.sendBroadcast(new Intent(Action.PLAY_BUFFERING_STARTED));
+                ReceiverUtils.sendBroadcast(Player.this.context, new Intent(Action.PLAY_BUFFERING_STARTED));
             }
         }
 
         @Override // com.sds.android.ttpod.framework.support.p134a.MediaPlayerProxy.InterfaceC2044c
         /* renamed from: f */
         public void mo2566f() {
-            Player.this.context.sendBroadcast(new Intent(Action.PLAY_BUFFERING_DONE));
+            ReceiverUtils.sendBroadcast(Player.this.context, new Intent(Action.PLAY_BUFFERING_DONE));
         }
 
         @Override // com.sds.android.ttpod.framework.support.p134a.MediaPlayerProxy.InterfaceC2044c
@@ -682,7 +683,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             } else {
                 m2582v();
                 LogUtils.debug("Player", "PLAYLIST_IS_EMPTY");
-                this.context.sendBroadcast(new Intent(Action.PLAYLIST_IS_EMPTY));
+                ReceiverUtils.sendBroadcast(this.context, new Intent(Action.PLAYLIST_IS_EMPTY));
             }
             this.f7105t = true;
         } catch (Exception e) {
@@ -724,7 +725,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                 this.f7092f = EnvironmentUtils.StorageConfig.getDataPath(this.context, EnvironmentUtils.StorageConfig.SdcardType.SECOND_SD_CARD);
             }
             if (StringUtils.isEmpty(this.f7092f)) {
-                this.context.sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", PlayStatus.STATUS_ERROR.ordinal()).putExtra("play_error_code", -5000));
+                ReceiverUtils.sendBroadcast(this.context, new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", PlayStatus.STATUS_ERROR.ordinal()).putExtra("play_error_code", -5000));
                 return;
             } else {
                 m2578z();
@@ -780,7 +781,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         }
         Preferences.getPositionInfo("");
         m2647A();
-        this.context.sendBroadcast(new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", PlayStatus.STATUS_ERROR.ordinal()).putExtra("play_error_code", i));
+        ReceiverUtils.sendBroadcast(this.context, new Intent(Action.PLAY_STATUS_CHANGED).putExtra("play_status", PlayStatus.STATUS_ERROR.ordinal()).putExtra("play_error_code", i));
     }
 
     /* renamed from: B */
@@ -866,7 +867,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
         Intent intent = new Intent(Action.UPDATE_MEDIA_DURATION);
         intent.putExtra("media_id", getMediaItem().getID());
         intent.putExtra("media_duration", i);
-        this.context.sendBroadcast(intent);
+        ReceiverUtils.sendBroadcast(this.context, intent);
     }
 
     @Override // com.sds.android.ttpod.framework.support.monitor.HeadsetPlugMonitor.InterfaceC2081a
@@ -877,7 +878,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
             this.f7106u = true;
             m2646B();
         }
-        this.context.sendBroadcast(new Intent(Action.PLAY_HEADSET_UNPLUG));
+        ReceiverUtils.sendBroadcast(this.context, new Intent(Action.PLAY_HEADSET_UNPLUG));
         MediaButtonReceiver.m2254a();
     }
 
@@ -895,7 +896,7 @@ public final class Player implements HeadsetPlugMonitor.InterfaceC2081a, LockScr
                     m2592n();
                 }
             }
-            this.context.sendBroadcast(new Intent(Action.PLAY_HEADSET_PLUG));
+            ReceiverUtils.sendBroadcast(this.context, new Intent(Action.PLAY_HEADSET_PLUG));
         }
         MediaButtonReceiver.m2254a();
     }
