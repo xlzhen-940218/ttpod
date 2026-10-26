@@ -26,6 +26,7 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.SkinUtils;
+import com.sds.android.ttpod.framework.p106a.WindowCompatUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import java.lang.reflect.Method;
@@ -54,6 +55,7 @@ public class EntryActivity extends BaseActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_entry);
+        WindowCompatUtils.setFullScreen(this, true);
     }
 
     /* JADX INFO: Access modifiers changed from: protected */
@@ -133,7 +135,6 @@ public class EntryActivity extends BaseActivity {
             addContentView(webView, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             webView.loadUrl("file://" + str);
         }
-        getWindow().setFlags(1024, 1024);
     }
 
     public void finishSplash() {

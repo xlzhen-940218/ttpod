@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import com.sds.android.ttpod.R;
 import com.sds.android.ttpod.component.p087d.PopupsUtils;
+import com.sds.android.ttpod.framework.p106a.WindowCompatUtils;
 import com.sds.android.ttpod.widget.CropImageView;
 import java.io.File;
 
@@ -51,8 +52,8 @@ public class CropImageActivity extends Activity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         requestWindowFeature(1);
-        getWindow().setFlags(1024, 1024);
         setContentView(R.layout.activity_crop_image);
+        WindowCompatUtils.setFullScreen(this, true);
         this.f3074c = findViewById(R.id.linearylayout_crop_cancel);
         this.f3074c.setOnClickListener(this.f3076e);
         this.f3075d = findViewById(R.id.linearylayout_crop_save);

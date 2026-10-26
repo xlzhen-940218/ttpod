@@ -21,6 +21,6 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="@string/offline_mode_tip"
-        android:textColor="#474342"
+        android:textColor="@color/dialog_content_text_color"
         android:textSize="16sp" />
 </LinearLayout>

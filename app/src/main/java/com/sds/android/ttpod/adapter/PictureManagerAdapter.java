@@ -115,6 +115,10 @@ public class PictureManagerAdapter extends BaseAdapter {
                     InputStream m8688e = m8708a != null ? m8708a.getInputStream() : null;
                     if (m8688e != null) {
                         String str = pictureDataItem2.getLocalLyricPath() + ".tmp";
+                        File parent = new File(str).getParentFile();
+                        if (parent != null) {
+                            FileUtils.createFolder(parent.getAbsolutePath());
+                        }
                         if (FileUtils.writeInputStreamToFile(m8688e, str)) {
                             FileUtils.renameFile(str, pictureDataItem2.getLocalLyricPath());
                             return pictureDataItem2;
@@ -221,140 +225,8 @@ public class PictureManagerAdapter extends BaseAdapter {
         } else {
             this.f3126d = str;
         }
-        if (!FileUtils.exists(TTPodConfig.getArtistPath() + File.separator + this.f3126d + File.separator + "result.xml")) {
-            this.networkLoadView.setLoadState(NetworkLoadView.EnumC2205a.IDLE);
-        } else {
-            TaskScheduler.m8582a(new TaskScheduler.SchedulerAsyncTask<Void, ArrayList<PictureDataItem>>(null) { // from class: com.sds.android.ttpod.adapter.PictureManagerAdapter.1
-                /* JADX INFO: Access modifiers changed from: protected */
-                /* JADX WARN: Removed duplicated region for block: B:63:0x010a A[EXC_TOP_SPLITTER, SYNTHETIC] */
-                @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
-                /* renamed from: a  reason: avoid collision after fix types in other method */
-                /*
-                    Code decompiled incorrectly, please refer to instructions dump.
-                */
-                public ArrayList<PictureDataItem> inBackground(Void r11) {
-                    FileInputStream fileInputStream = null;
-                    FileInputStream fileInputStream2;
-                    KXmlParser kXmlParser = null;
-                    ArrayList<ResultData> m2139a = null;
-                    Exception e;
-                    Throwable th;
-                    PictureManagerAdapter.this.reentrantReadWriteLock.readLock().lock();
-                    if (PictureManagerAdapter.this.context == null || PictureManagerAdapter.this.mediaItem == null) {
-                        return null;
-                    }
-                    String str2 = TTPodConfig.getArtistPath() + File.separator + PictureManagerAdapter.this.f3126d + File.separator + "result.xml";
-                    try {
-                        kXmlParser = new KXmlParser();
-                        fileInputStream = new FileInputStream(str2);
-                    } catch (Exception e1) {
-                        e = e1;
-                        fileInputStream2 = null;
-                    } catch (Throwable th1) {
-                        th = th1;
-                        fileInputStream = null;
-                    }
-                    try {
-                        kXmlParser.setInput(fileInputStream, "UTF-8");
-                        m2139a = PictureSearchTask.m2139a(kXmlParser, mediaItem, 7, PictureManagerAdapter.this.f3126d);
-                    } catch (Exception e2) {
-                        e = e2;
-                        fileInputStream2 = fileInputStream;
-                        try {
-                            e.printStackTrace();
-                            PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
-                            if (fileInputStream2 != null) {
-                                try {
-                                    fileInputStream2.close();
-                                } catch (Exception e3) {
-                                    e3.printStackTrace();
-                                }
-                            }
-                            return null;
-                        } catch (Throwable th2) {
-                            th = th2;
-                            fileInputStream = fileInputStream2;
-                            PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
-                            if (fileInputStream != null) {
-                                try {
-                                    fileInputStream.close();
-                                } catch (Exception e4) {
-                                    e4.printStackTrace();
-                                }
-                            }
-                            //throw th;
-                        }
-                    } catch (Throwable th3) {
-                        th = th3;
-                        PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
-                        if (fileInputStream != null) {
-                        }
-                        //throw th;
-                    }
-                    if ((m2139a != null ? m2139a.size() : 0) <= 0) {
-                        PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
-                        if (fileInputStream != null) {
-                            try {
-                                fileInputStream.close();
-                            } catch (Exception e5) {
-                                e5.printStackTrace();
-                            }
-                        }
-                        return null;
-                    }
-                    ArrayList<PictureDataItem> arrayList = new ArrayList<>();
-                    for (ResultData resultData : m2139a) {
-                        if (resultData != null && resultData.getLyricArray() != null) {
-                            ResultData.Item[] m2179c = resultData.getLyricArray();
-                            for (ResultData.Item item : m2179c) {
-                                if (item != null) {
-                                    arrayList.add(new PictureDataItem(item));
-                                }
-                            }
-                        }
-                    }
-                    PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
-                    if (fileInputStream != null) {
-                        try {
-                            fileInputStream.close();
-                        } catch (Exception e6) {
-                            e6.printStackTrace();
-                        }
-                    }
-                    return arrayList;
-                }
-
-                /* JADX INFO: Access modifiers changed from: protected */
-                @Override // com.sds.android.sdk.lib.p065e.TaskScheduler.AbstractAsyncTaskC0595a
-                /* renamed from: a */
-                public void postExecute(ArrayList<PictureDataItem> arrayList) {
-                    PictureManagerAdapter.this.reentrantReadWriteLock.readLock().lock();
-                    if (PictureManagerAdapter.this.context != null && PictureManagerAdapter.this.mediaItem != null) {
-                        PictureManagerAdapter.this.pictureDataItemArrayList = arrayList;
-                        if (PictureManagerAdapter.this.pictureDataItemArrayList == null || PictureManagerAdapter.this.pictureDataItemArrayList.isEmpty()) {
-                            PictureManagerAdapter.this.networkLoadView.setLoadState(NetworkLoadView.EnumC2205a.FAILED);
-                        } else {
-                            PictureManagerAdapter.this.networkLoadView.setLoadState(NetworkLoadView.EnumC2205a.IDLE);
-                        }
-                        PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
-                        PictureManagerAdapter.this.notifyDataSetChanged();
-                    }
-                }
-
-                @Override // android.os.AsyncTask
-                protected void onCancelled() {
-                    super.onCancelled();
-                    PictureManagerAdapter.this.reentrantReadWriteLock.readLock().lock();
-                    if (PictureManagerAdapter.this.context != null && PictureManagerAdapter.this.mediaItem != null) {
-                        PictureManagerAdapter.this.pictureDataItemArrayList = null;
-                        PictureManagerAdapter.this.networkLoadView.setLoadState(NetworkLoadView.EnumC2205a.FAILED);
-                        LogUtils.debug("PictureManagerAdapter", "onCancelled %s - %s", mediaItem.getArtist(), mediaItem.getTitle());
-                        PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
-                        PictureManagerAdapter.this.notifyDataSetChanged();
-                    }
-                }
-            });
-        }
+        // 旧的 result.xml 缓存接口已失效，改为直接在线搜索网易云封面
+        m7693a(this.f3126d);
     }
 
     /* renamed from: c */
@@ -364,8 +236,7 @@ public class PictureManagerAdapter extends BaseAdapter {
 
     /* renamed from: a */
     public void m7693a(final String str) {
-        final String m7688b = m7688b(str);
-        if (!this.f3128f && !StringUtils.isEmpty(m7688b)) {
+        if (!this.f3128f && !StringUtils.isEmpty(str)) {
             this.f3130h = true;
             this.f3128f = true;
             this.pictureDataItemArrayList = null;
@@ -377,40 +248,38 @@ public class PictureManagerAdapter extends BaseAdapter {
                 /* renamed from: a  reason: avoid collision after fix types in other method */
                 public Integer inBackground(Void r10) {
                     PictureManagerAdapter.this.reentrantReadWriteLock.readLock().lock();
-                    if (PictureManagerAdapter.this.context == null || PictureManagerAdapter.this.mediaItem == null) {
-                        return 0;
-                    }
-                    HttpRequest.Response m8708a = HttpRequest.m8708a(new HttpGet(m7688b), (HashMap<String, Object>) null, (HashMap<String, Object>) null);
-                    String m8347a = StringUtils.streamToString(m8708a != null ? m8708a.getInputStream() : null);
-                    LogUtils.debug("PictureManagerAdapter", "requestList lookpic %s - %s resultContent=%s", PictureManagerAdapter.this.mediaItem.getArtist(), PictureManagerAdapter.this.mediaItem.getTitle(), m8347a);
-                    if (m8347a != null) {
-                        String trim = m8347a.trim();
-                        try {
-                            if (trim.startsWith("<?xml")) {
-                                KXmlParser kXmlParser = new KXmlParser();
-                                kXmlParser.setInput(new ByteArrayInputStream(trim.getBytes("UTF-8")), "UTF-8");
-                                ArrayList<ResultData> m2139a = PictureSearchTask.m2139a(kXmlParser, (MediaItem) null, 2, (String) null);
-                                int size = m2139a != null ? m2139a.size() : 0;
-                                if (size > 0) {
-                                    String m8397o = FileUtils.removeWrongCharacter(str);
-                                    if (TTTextUtils.isValidateMediaString(m8397o)) {
-                                        PictureManagerAdapter.this.f3126d = m8397o;
-                                    } else {
-                                        PictureManagerAdapter.this.f3126d = FileUtils.removeWrongCharacter(m2139a.get(0).getArtist());
-                                    }
-                                    PictureSearchTask.m2127b(PictureManagerAdapter.this.mediaItem.getID(), PictureManagerAdapter.this.f3126d);
-                                    FileUtils.writeStringToFile(trim, TTPodConfig.getArtistPath() + File.separator + PictureManagerAdapter.this.f3126d + "/result.xml");
-                                }
-                                return Integer.valueOf(size);
-                            }
-                            LogUtils.error("PictureManagerAdapter", "searchResult not xml: pic, %s - %s, result=%s", PictureManagerAdapter.this.mediaItem.getArtist(), PictureManagerAdapter.this.mediaItem.getTitle(), trim);
-                            return -1;
-                        } catch (Exception e) {
-                            LogUtils.error("PictureManagerAdapter", "searchResult found exception: pic, %s - %s, result=%s", PictureManagerAdapter.this.mediaItem.getArtist(), PictureManagerAdapter.this.mediaItem.getTitle(), trim);
-                            e.printStackTrace();
-                        } finally {
-                            PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
+                    try {
+                        if (PictureManagerAdapter.this.context == null || PictureManagerAdapter.this.mediaItem == null) {
+                            return 0;
                         }
+                        ArrayList<ResultData> results = PictureSearchTask.searchArtistPictures(PictureManagerAdapter.this.mediaItem, str);
+                        ArrayList<PictureDataItem> items = new ArrayList<>();
+                        if (results != null) {
+                            for (ResultData resultData : results) {
+                                if (resultData == null || resultData.getLyricArray() == null) {
+                                    continue;
+                                }
+                                for (ResultData.Item item : resultData.getLyricArray()) {
+                                    if (item != null) {
+                                        items.add(new PictureDataItem(item));
+                                    }
+                                }
+                            }
+                        }
+                        if (items.isEmpty()) {
+                            return 0;
+                        }
+                        PictureManagerAdapter.this.pictureDataItemArrayList = items;
+                        String m8397o = FileUtils.removeWrongCharacter(str);
+                        if (TTTextUtils.isValidateMediaString(m8397o)) {
+                            PictureManagerAdapter.this.f3126d = m8397o;
+                        }
+                        PictureSearchTask.m2127b(PictureManagerAdapter.this.mediaItem.getID(), PictureManagerAdapter.this.f3126d);
+                        return items.size();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    } finally {
+                        PictureManagerAdapter.this.reentrantReadWriteLock.readLock().unlock();
                     }
                     return -1;
                 }
@@ -424,7 +293,8 @@ public class PictureManagerAdapter extends BaseAdapter {
                         long longValue = PictureManagerAdapter.this.mediaItem.getSongID() == null ? 0L : PictureManagerAdapter.this.mediaItem.getSongID().longValue();
                         if (num.intValue() > 0) {
                             PictureManagerAdapter.this.m7692a("search", str, 1, longValue);
-                            PictureManagerAdapter.this.m7694a(PictureManagerAdapter.this.mediaItem, PictureManagerAdapter.this.f3126d);
+                            PictureManagerAdapter.this.networkLoadView.setLoadState(NetworkLoadView.EnumC2205a.IDLE);
+                            PictureManagerAdapter.this.notifyDataSetChanged();
                             return;
                         }
                         PictureManagerAdapter.this.m7692a("search", str, 2, longValue);
@@ -449,14 +319,6 @@ public class PictureManagerAdapter extends BaseAdapter {
         this.reentrantReadWriteLock.readLock().unlock();
     }
 
-    /* renamed from: b */
-    private String m7688b(String str) {
-        if (StringUtils.isEmpty(str)) {
-            return null;
-        }
-        return PictureSearchTask.m2138a(SearchTaskInfoUtils.m3885b(this.mediaItem, null, str));
-    }
-
     /* loaded from: classes.dex */
     public static class PictureDataItem extends ResultData.Item {
 
@@ -471,9 +333,16 @@ public class PictureManagerAdapter extends BaseAdapter {
 
         PictureDataItem(ResultData.Item item) {
             super(item.getType(), item.getUrl(), item.getLocalLyricPath(), item.getId());
-            int lastIndexOf;
-            if (this.url != null && (lastIndexOf = this.url.lastIndexOf(47)) > 0) {
-                this.f3143e = this.url.substring(0, lastIndexOf) + "/144/192" + this.url.substring(lastIndexOf);
+            if (this.url != null) {
+                if (this.url.contains("music.126.net")) {
+                    // 网易云图片使用 query 参数生成缩略图，旧的 /144/192 路径拼接会 404
+                    this.f3143e = this.url + (this.url.contains("?") ? "&" : "?") + "param=200y200";
+                } else {
+                    int lastIndexOf = this.url.lastIndexOf(47);
+                    if (lastIndexOf > 0) {
+                        this.f3143e = this.url.substring(0, lastIndexOf) + "/144/192" + this.url.substring(lastIndexOf);
+                    }
+                }
             }
             this.f3145g = FileUtils.isFile(item.getLocalLyricPath());
         }

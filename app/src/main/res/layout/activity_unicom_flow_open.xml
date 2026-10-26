@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="开通天天动听-包流量畅听：9元/月"
-        android:textColor="#666666"
+        android:textColor="@color/setting_text_primary"
         android:textSize="16sp" />
 
     <EditText
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="5dp"
-            android:textColor="#9c9c9c"
+            android:textColor="@color/setting_text_secondary"
             android:textSize="13sp" />
     </LinearLayout>
 </LinearLayout>

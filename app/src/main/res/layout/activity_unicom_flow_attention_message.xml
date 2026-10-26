@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="如有疑问，请咨询联通客服：10010"
-        android:textColor="#000000"
+        android:textColor="@color/setting_text_primary"
         android:textSize="16dp" />
 
     <TextView
@@ -19,7 +19,7 @@
         android:layout_marginTop="10dp"
         android:lineSpacingExtra="6dp"
         android:text="@string/unicom_attention_message"
-        android:textColor="#ff1e1e1e"
+        android:textColor="@color/setting_text_primary"
         android:textSize="14dp" />
 
     <View
@@ -37,6 +37,6 @@
         android:layout_marginTop="5dp"
         android:gravity="left"
         android:text="常见问题 &gt;&gt;"
-        android:textColor="#000000"
+        android:textColor="@color/setting_text_primary"
         android:textSize="14dp" />
 </LinearLayout>

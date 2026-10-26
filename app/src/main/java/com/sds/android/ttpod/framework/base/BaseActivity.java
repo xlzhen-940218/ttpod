@@ -18,6 +18,7 @@ import com.sds.android.ttpod.framework.base.p108a.Command;
 import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.p106a.SmartBarUtils;
+import com.sds.android.ttpod.framework.p106a.WindowCompatUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
@@ -75,6 +76,7 @@ public abstract class BaseActivity extends FragmentActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         SmartBarUtils.m4642a(getWindow().getDecorView());
+        WindowCompatUtils.applyEdgeToEdge(this);
         this.mStatus = 0;
         ActivityManager.getInstance().m4617a(this);
         Map<CommandID, Method> requestCommandMap = requestCommandMap();

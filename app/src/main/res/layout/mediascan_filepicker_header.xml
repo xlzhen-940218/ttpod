@@ -5,7 +5,7 @@
     android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="56dp"
-    android:background="@android:color/white"
+    android:background="@color/setting_card_background"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -29,7 +29,7 @@
         android:gravity="left"
         android:lines="1"
         android:singleLine="true"
-        android:textColor="#ff222222"
+        android:textColor="@color/setting_text_primary"
         android:textSize="16sp"
         tools:ignore="EllipsizeMaxLines" />
 </RelativeLayout>

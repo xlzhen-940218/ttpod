@@ -33,7 +33,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#ffe7e7e7" />
+        android:background="@color/divider_line" />
 
     <TableLayout
         android:id="@+id/table1"
@@ -54,7 +54,7 @@
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="1dp"
-                android:background="#ffffff"
+                android:background="@color/setting_card_background"
                 android:gravity="center"
                 android:text="开启时间"
                 android:textColor="@color/unicom_flow_title_color"
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@color/setting_card_background"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="2014-10-14"
@@ -82,7 +82,7 @@
                 android:layout_width="120dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="1dp"
-                android:background="#ffffff"
+                android:background="@color/setting_card_background"
                 android:gravity="center"
                 android:text="结束时间"
                 android:textColor="@color/unicom_flow_title_color"
@@ -94,7 +94,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/textview_flow"
                 android:layout_weight="1"
-                android:background="#ffffff"
+                android:background="@color/setting_card_background"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="2014-10-14"
@@ -137,6 +137,6 @@
         android:paddingLeft="10dp"
         android:paddingTop="6dp"
         android:text="注意事项 &gt;&gt;"
-        android:textColor="#5d5d5d"
+        android:textColor="@color/setting_text_primary"
         android:textSize="16dp" />
 </LinearLayout>

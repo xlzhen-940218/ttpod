@@ -17,6 +17,7 @@ import com.sds.android.ttpod.framework.p106a.PlatformUtils;
 import com.sds.android.ttpod.framework.storage.database.SearchSqliteDb;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.support.search.SearchManager;
+import com.sds.android.ttpod.framework.support.search.SearchStatus;
 import com.sds.android.ttpod.framework.support.search.p135a.PictureSearchTaskInfo;
 import com.sds.android.ttpod.media.MediaTag;
 import com.sds.android.ttpod.media.mediastore.MediaItem;
@@ -509,54 +510,241 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
     protected ArrayList<ResultData> requestResultDataArrayList(String initialUrl) {
         ArrayList<ResultData> resultDataArrayList = new ArrayList<>();
         MediaItem mediaItem = getLyricSearchTaskInfo().getMediaItem();
+        if (mediaItem == null) {
+            return resultDataArrayList;
+        }
         String artist = mediaItem.getArtist();
         if (TextUtils.isEmpty(artist)) {
             artist = getLyricSearchTaskInfo().getSinger();
         }
-        if (TextUtils.isEmpty(artist)) {
-            return resultDataArrayList;
+        // 替换已不可达的 Deezer 接口，改用网易云专辑封面
+        ArrayList<ResultData> searchResults = searchNeteaseSongs(mediaItem.getTitle(), artist, mediaItem.getID(), 10);
+        if (searchResults.isEmpty() && !TextUtils.isEmpty(artist) && !TextUtils.isEmpty(mediaItem.getTitle())) {
+            // 歌手信息缺失或不准确时，退化为只按歌名搜索
+            searchResults = searchNeteaseSongs(mediaItem.getTitle(), null, mediaItem.getID(), 10);
         }
+        if (!searchResults.isEmpty()) {
+            resultDataArrayList.add(searchResults.get(0));
+        }
+        return resultDataArrayList;
+    }
 
+    /**
+     * 按歌曲/歌手搜索网易云，返回带专辑封面的结果（供自动搜索与手动换图页共用）。
+     */
+    public static ArrayList<ResultData> searchArtistPictures(MediaItem mediaItem, String artist) {
+        String title = mediaItem != null ? mediaItem.getTitle() : null;
+        String mediaId = mediaItem != null ? mediaItem.getID() : null;
+        ArrayList<ResultData> results = searchNeteaseSongs(title, artist, mediaId, 12);
+        if (results.isEmpty() && !TextUtils.isEmpty(artist)) {
+            results = searchNeteaseSongs(null, artist, mediaId, 12);
+        }
+        return results;
+    }
+
+    private static ArrayList<ResultData> searchNeteaseSongs(String title, String artist, String mediaId, int limit) {
+        ArrayList<ResultData> results = new ArrayList<>();
+        if (TextUtils.isEmpty(artist) && TextUtils.isEmpty(title)) {
+            return results;
+        }
         try {
-            String searchUrl = "https://api.deezer.com/search/artist?q=" + URLEncoder.encode(artist, "UTF-8");
-            String json = requestData(searchUrl);
+            String query = (TextUtils.isEmpty(title) ? "" : title) + (TextUtils.isEmpty(artist) ? "" : " " + artist);
+            String json = requestData("https://music.163.com/api/search/get/web?s="
+                    + URLEncoder.encode(query.trim(), "UTF-8")
+                    + "&type=1&offset=0&total=true&limit=" + limit);
             if (TextUtils.isEmpty(json)) {
-                return resultDataArrayList;
+                return results;
+            }
+            com.google.gson.JsonObject root = com.google.gson.JsonParser.parseString(json).getAsJsonObject();
+            if (root == null || !root.has("result") || root.get("result").isJsonNull()) {
+                return results;
+            }
+            com.google.gson.JsonObject resultObj = root.getAsJsonObject("result");
+            if (resultObj == null || !resultObj.has("songs") || resultObj.get("songs").isJsonNull()) {
+                return results;
+            }
+            com.google.gson.JsonArray songs = resultObj.getAsJsonArray("songs");
+            ArrayList<com.google.gson.JsonObject> matched = new ArrayList<>();
+            for (int i = 0; i < songs.size() && matched.size() < limit; i++) {
+                com.google.gson.JsonElement element = songs.get(i);
+                if (element == null || !element.isJsonObject()) {
+                    continue;
+                }
+                com.google.gson.JsonObject song = element.getAsJsonObject();
+                String name = stringValue(song, "name");
+                String songArtist = joinArtists(song);
+                if (!TextUtils.isEmpty(title) && !isTitleMatched(title, name)) {
+                    continue;
+                }
+                if (!TextUtils.isEmpty(artist) && !isArtistMatched(artist, songArtist)) {
+                    continue;
+                }
+                matched.add(song);
+            }
+            if (matched.isEmpty()) {
+                return results;
             }
 
-            com.google.gson.JsonObject root = com.google.gson.JsonParser.parseString(json).getAsJsonObject();
-            if (root != null && root.has("data") && root.get("data").isJsonArray()) {
-                com.google.gson.JsonArray data = root.getAsJsonArray("data");
-                if (data != null && data.size() > 0) {
-                    com.google.gson.JsonElement element = data.get(0);
-                    if (element != null && element.isJsonObject()) {
-                        com.google.gson.JsonObject artistObj = element.getAsJsonObject();
-                        String picUrl = null;
-                        if (artistObj.has("picture_xl") && !artistObj.get("picture_xl").isJsonNull()) {
-                            picUrl = artistObj.get("picture_xl").getAsString();
-                        } else if (artistObj.has("picture_big") && !artistObj.get("picture_big").isJsonNull()) {
-                            picUrl = artistObj.get("picture_big").getAsString();
+            java.util.HashMap<Long, String> picUrls = new java.util.HashMap<>();
+            StringBuilder ids = new StringBuilder("[");
+            for (int i = 0; i < matched.size(); i++) {
+                if (i > 0) {
+                    ids.append(',');
+                }
+                ids.append(songId(matched.get(i)));
+            }
+            ids.append(']');
+            String detailJson = requestData("https://music.163.com/api/song/detail?ids="
+                    + URLEncoder.encode(ids.toString(), "UTF-8"));
+            if (!TextUtils.isEmpty(detailJson)) {
+                com.google.gson.JsonObject detailRoot = com.google.gson.JsonParser.parseString(detailJson).getAsJsonObject();
+                if (detailRoot != null && detailRoot.has("songs") && !detailRoot.get("songs").isJsonNull()) {
+                    com.google.gson.JsonArray detailSongs = detailRoot.getAsJsonArray("songs");
+                    for (int i = 0; i < detailSongs.size(); i++) {
+                        com.google.gson.JsonElement element = detailSongs.get(i);
+                        if (element == null || !element.isJsonObject()) {
+                            continue;
                         }
-
-                        if (!TextUtils.isEmpty(picUrl) && artistObj.has("id") && !artistObj.get("id").isJsonNull()) {
-                            ResultData resultData = new ResultData();
-                            resultData.setArtist(artist);
-                            resultData.setTitle(mediaItem.getTitle());
-
-                            ResultData.Item[] items = new ResultData.Item[1];
-                            int artistId = artistObj.get("id").getAsInt();
-                            String localPath = TTPodConfig.getArtistPath() + File.separator + FileUtils.removeWrongCharacter(artist) + File.separator + artistId + ".jpg";
-                            items[0] = new ResultData.Item("artist", picUrl, localPath, artistId);
-                            resultData.setLyricArray(items);
-                            resultDataArrayList.add(resultData);
+                        com.google.gson.JsonObject song = element.getAsJsonObject();
+                        if (!song.has("album") || song.get("album").isJsonNull() || !song.get("album").isJsonObject()) {
+                            continue;
+                        }
+                        String picUrl = stringValue(song.getAsJsonObject("album"), "picUrl");
+                        if (!TextUtils.isEmpty(picUrl)) {
+                            picUrls.put(songId(song), normalizePicUrl(picUrl));
                         }
                     }
                 }
             }
+
+            for (com.google.gson.JsonObject song : matched) {
+                long id = songId(song);
+                String picUrl = picUrls.get(id);
+                if (TextUtils.isEmpty(picUrl) && song.has("album") && !song.get("album").isJsonNull()
+                        && song.get("album").isJsonObject()) {
+                    picUrl = normalizePicUrl(stringValue(song.getAsJsonObject("album"), "picUrl"));
+                }
+                if (TextUtils.isEmpty(picUrl)) {
+                    continue;
+                }
+                String name = stringValue(song, "name");
+                String songArtist = joinArtists(song);
+                // 目录以当前歌曲自身歌手为准，保证 mo2135a 能按同一目录找回封面
+                String folder = FileUtils.removeWrongCharacter(!TextUtils.isEmpty(artist) ? artist : songArtist);
+                if (StringUtils.isEmpty(folder)) {
+                    folder = "unknown";
+                }
+                int itemId = (int) (id & 0x7fffffff);
+                // 文件名带上当前媒体 ID 的稳定前缀，避免同歌手目录下其他歌曲的封面被误当成本曲封面
+                String mediaKey = TextUtils.isEmpty(mediaId)
+                        ? String.valueOf(itemId) : Integer.toHexString(mediaId.hashCode());
+                String localPath = TTPodConfig.getArtistPath() + File.separator + folder
+                        + File.separator + mediaKey + "_" + itemId + ".jpg";
+                ResultData resultData = new ResultData();
+                resultData.setTitle(name);
+                resultData.setArtist(songArtist);
+                resultData.setAlbum(albumName(song));
+                resultData.setLyricArray(new ResultData.Item[]{
+                        new ResultData.Item("album", picUrl, localPath, itemId)
+                });
+                results.add(resultData);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return resultDataArrayList;
+        return results;
+    }
+
+    private static long songId(com.google.gson.JsonObject song) {
+        return song != null && song.has("id") && !song.get("id").isJsonNull() ? song.get("id").getAsLong() : 0L;
+    }
+
+    private static String stringValue(com.google.gson.JsonObject obj, String key) {
+        return obj != null && obj.has(key) && !obj.get(key).isJsonNull() ? obj.get(key).getAsString() : "";
+    }
+
+    private static String joinArtists(com.google.gson.JsonObject song) {
+        if (song == null || !song.has("artists") || song.get("artists").isJsonNull() || !song.get("artists").isJsonArray()) {
+            return "";
+        }
+        com.google.gson.JsonArray artists = song.getAsJsonArray("artists");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < artists.size(); i++) {
+            com.google.gson.JsonElement element = artists.get(i);
+            if (element == null || !element.isJsonObject()) {
+                continue;
+            }
+            String name = stringValue(element.getAsJsonObject(), "name");
+            if (TextUtils.isEmpty(name)) {
+                continue;
+            }
+            if (sb.length() > 0) {
+                sb.append('/');
+            }
+            sb.append(name);
+        }
+        return sb.toString();
+    }
+
+    private static String albumName(com.google.gson.JsonObject song) {
+        if (song == null || !song.has("album") || song.get("album").isJsonNull() || !song.get("album").isJsonObject()) {
+            return "";
+        }
+        return stringValue(song.getAsJsonObject("album"), "name");
+    }
+
+    private static String normalizePicUrl(String picUrl) {
+        if (TextUtils.isEmpty(picUrl)) {
+            return "";
+        }
+        return picUrl.startsWith("http://") ? "https://" + picUrl.substring("http://".length()) : picUrl;
+    }
+
+    /**
+     * 自行下载封面图片，避免 DownloadManager 对重定向 / Referer 校验的兼容问题。
+     */
+    @Override
+    public void downloadLyric(final ResultData.Item item, final boolean z) {
+        com.sds.android.sdk.lib.p065e.TaskScheduler.start(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    m2155b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_STARTED);
+                    byte[] data = requestBytes(item.getUrl());
+                    if (data != null && data.length > 0
+                            && BitmapFactory.decodeByteArray(data, 0, data.length) != null) {
+                        File target = new File(item.getLocalLyricPath());
+                        File parent = target.getParentFile();
+                        if (parent != null) {
+                            FileUtils.createFolder(parent.getAbsolutePath());
+                        }
+                        FileOutputStream fileOutputStream = new FileOutputStream(target);
+                        try {
+                            fileOutputStream.write(data);
+                        } finally {
+                            try {
+                                fileOutputStream.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        ArrayList<String> list = new ArrayList<>();
+                        list.add(item.getLocalLyricPath());
+                        m2154b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_FINISHED, null, list, item.getId());
+                        if (z) {
+                            m2164a(SearchStatus.SEARCH_ONLINE_FINISHED);
+                        }
+                        return;
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                m2154b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_FAILURE, null, null, item.getId());
+                if (z) {
+                    m2164a(SearchStatus.SEARCH_ONLINE_FAILURE);
+                }
+            }
+        });
     }
 
     /* renamed from: a */
@@ -565,7 +753,7 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
         try {
             MediaItem i = pictureSearchTaskInfo.getMediaItem();
             boolean e = pictureSearchTaskInfo.isAuto();
-            sb.append("http://picdown.ttpod.cn/picsearch?");
+            sb.append("https://music.163.com/api/search/get/web?");
             String artist = i.getArtist();
             if (e && !TextUtils.isEmpty(pictureSearchTaskInfo.m2196g())) {
                 artist = pictureSearchTaskInfo.m2196g();
@@ -631,8 +819,10 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
     @Override // com.sds.android.ttpod.framework.support.search.task.LyrPicBaseSearchTask
     /* renamed from: a */
     protected ArrayList<String> mo2135a(String str, String str2) {
-        ArrayList<String> arrayList;
         MediaItem i = getLyricSearchTaskInfo().getMediaItem();
+        if (i == null || StringUtils.isEmpty(i.getID())) {
+            return null;
+        }
         String m2124d = m2124d(i.getID());
         if (StringUtils.isEmpty(m2124d)) {
             m2124d = FileUtils.removeWrongCharacter(i.getArtist());
@@ -640,24 +830,43 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
                 return null;
             }
         }
-        File[] listFiles = new File(TTPodConfig.getArtistPath() + File.separator + m2124d).listFiles(new FilenameFilter() { // from class: com.sds.android.ttpod.framework.support.search.task.c.1
-            @Override // java.io.FilenameFilter
-            public boolean accept(File file, String str3) {
-                String lowerCase = str3.toLowerCase();
-                if (PictureSearchTask.f7307c.contains(lowerCase)) {
-                    return false;
-                }
-                String m8399m = FileUtils.getSuffix(lowerCase);
-                return ("thumb".equals(m8399m) || "tmp".equals(m8399m)) ? false : true;
+        // 只认属于当前歌曲的文件（文件名以媒体 ID 的哈希为前缀），
+        // 避免把同歌手目录下其他歌曲的封面误当成本曲封面从而跳过联网搜索。
+        String prefix = Integer.toHexString(i.getID().hashCode()) + "_";
+        File dir = new File(TTPodConfig.getArtistPath() + File.separator + m2124d);
+        File[] files = dir.listFiles();
+        if (files == null || files.length == 0) {
+            return null;
+        }
+        ArrayList<File> validFiles = new ArrayList<>();
+        for (File file : files) {
+            if (file == null || !file.isFile()) {
+                continue;
+            }
+            String lowerCase = file.getName().toLowerCase();
+            if (!lowerCase.startsWith(prefix)) {
+                continue;
+            }
+            if (!(lowerCase.endsWith(".jpg") || lowerCase.endsWith(".jpeg")
+                    || lowerCase.endsWith(".png") || lowerCase.endsWith(".webp"))) {
+                continue;
+            }
+            if (m2125c(file.getAbsolutePath())) {
+                validFiles.add(file);
+            }
+        }
+        if (validFiles.isEmpty()) {
+            return null;
+        }
+        java.util.Collections.sort(validFiles, new java.util.Comparator<File>() {
+            @Override
+            public int compare(File a, File b) {
+                return Long.compare(b.lastModified(), a.lastModified());
             }
         });
-        if (listFiles != null) {
-            arrayList = new ArrayList<>(listFiles.length);
-            for (File file : listFiles) {
-                arrayList.add(file.getAbsolutePath());
-            }
-        } else {
-            arrayList = null;
+        ArrayList<String> arrayList = new ArrayList<>(validFiles.size());
+        for (File file : validFiles) {
+            arrayList.add(file.getAbsolutePath());
         }
         return arrayList;
     }
@@ -749,9 +958,64 @@ public class PictureSearchTask extends LyrPicBaseSearchTask {
             }
         }
         if (m2125c(str)) {
+            return str;
+        }
+        return findFolderArtwork(localDataSource);
+    }
+
+    /**
+     * 当音频没有内嵌封面时，尝试使用歌曲所在目录的封面图（cover.jpg / folder.jpg 等）。
+     */
+    private String findFolderArtwork(String localDataSource) {
+        File audio = new File(localDataSource);
+        File dir = audio.getParentFile();
+        if (dir == null || !dir.isDirectory()) {
             return null;
         }
-        return str;
+        String baseName = FileUtils.getFilenameWithoutExtension(audio.getName());
+        String baseLower = baseName == null ? null : baseName.toLowerCase();
+        String[] commonNames = {"cover", "folder", "album", "albumart", "albumart1", "albumartsmall", "front", "artwork"};
+        String[] extensions = {"jpg", "jpeg", "png", "webp"};
+        File[] files = dir.listFiles();
+        if (files == null) {
+            return null;
+        }
+        for (File file : files) {
+            if (file == null || !file.isFile()) {
+                continue;
+            }
+            String name = file.getName().toLowerCase();
+            int dot = name.lastIndexOf('.');
+            if (dot <= 0) {
+                continue;
+            }
+            String extension = name.substring(dot + 1);
+            boolean extensionMatched = false;
+            for (String candidate : extensions) {
+                if (candidate.equals(extension)) {
+                    extensionMatched = true;
+                    break;
+                }
+            }
+            if (!extensionMatched) {
+                continue;
+            }
+            String stem = name.substring(0, dot);
+            boolean nameMatched = false;
+            for (String candidate : commonNames) {
+                if (candidate.equals(stem)) {
+                    nameMatched = true;
+                    break;
+                }
+            }
+            if (!nameMatched && baseLower != null && baseLower.equals(stem)) {
+                nameMatched = true;
+            }
+            if (nameMatched && m2125c(file.getAbsolutePath())) {
+                return file.getAbsolutePath();
+            }
+        }
+        return null;
     }
 
     /* renamed from: c */

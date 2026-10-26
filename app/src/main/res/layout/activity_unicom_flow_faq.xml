@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="注意事项:"
-        android:textColor="#828282"
+        android:textColor="@color/setting_text_secondary"
         android:textSize="16dp" />
 
     <TextView

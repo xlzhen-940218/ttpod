@@ -123,7 +123,40 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
 
     @Override
     public void downloadLyric(final ResultData.Item item, final boolean z) {
-        if (item.getUrl() != null && item.getUrl().startsWith("lrclib:")) {
+        if (item.getUrl() != null && item.getUrl().startsWith("netease:")) {
+            com.sds.android.sdk.lib.p065e.TaskScheduler.start(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        m2155b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_STARTED);
+                        String id = item.getUrl().substring("netease:".length());
+                        String json = requestData("https://music.163.com/api/song/lyric?id=" + id + "&lv=1&kv=1&tv=-1");
+                        String lrc = parseNeteaseLyric(json);
+                        if (!TextUtils.isEmpty(lrc)) {
+                            File lrcFile = new File(item.getLocalLyricPath());
+                            File parent = lrcFile.getParentFile();
+                            if (parent != null) {
+                                FileUtils.createFolder(parent.getAbsolutePath());
+                            }
+                            FileUtils.writeStringToFile(lrc, item.getLocalLyricPath());
+                            ArrayList<String> list = new ArrayList<>();
+                            list.add(item.getLocalLyricPath());
+                            m2154b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_FINISHED, null, list, item.getId());
+                            if (z) {
+                                m2164a(SearchStatus.SEARCH_ONLINE_FINISHED);
+                            }
+                            return;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    m2154b(getLyricSearchTaskInfo(), SearchStatus.SEARCH_DOWNLOAD_FAILURE, null, null, item.getId());
+                    if (z) {
+                        m2164a(SearchStatus.SEARCH_ONLINE_FAILURE);
+                    }
+                }
+            });
+        } else if (item.getUrl() != null && item.getUrl().startsWith("lrclib:")) {
             com.sds.android.sdk.lib.p065e.TaskScheduler.start(new Runnable() {
                 @Override
                 public void run() {
@@ -240,34 +273,173 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
     @Override
     protected ArrayList<ResultData> requestResultDataArrayList(String initialUrl) {
         ArrayList<ResultData> resultDataArrayList = new ArrayList<>();
+        MediaItem mediaItem = lyricSearchTaskInfo.getMediaItem();
         String title = lyricSearchTaskInfo.getTitle();
+        if (TextUtils.isEmpty(title) && mediaItem != null) {
+            title = mediaItem.getTitle();
+        }
         String artist = lyricSearchTaskInfo.getSinger();
+        if (TextUtils.isEmpty(artist) && mediaItem != null) {
+            artist = mediaItem.getArtist();
+        }
         if (TextUtils.isEmpty(title)) {
             return resultDataArrayList;
         }
 
+        // 网易云曲库对华语歌曲覆盖更好，优先使用；无结果时再用 lrclib 兜底
+        searchNeteaseLyric(title, artist, resultDataArrayList);
+        if (resultDataArrayList.isEmpty()) {
+            searchLrclibLyric(title, artist, resultDataArrayList);
+        }
+        return resultDataArrayList;
+    }
+
+    /* loaded from: classes.dex */
+    private static class NeteaseSong {
+        long id;
+        String name;
+        String artist;
+        String album;
+        int score;
+
+        NeteaseSong(long id, String name, String artist, String album, int score) {
+            this.id = id;
+            this.name = name;
+            this.artist = artist;
+            this.album = album;
+            this.score = score;
+        }
+    }
+
+    private void searchNeteaseLyric(String title, String artist, ArrayList<ResultData> out) {
         try {
-            String query = title;
-            if (!TextUtils.isEmpty(artist)) {
-                query += " " + artist;
+            ArrayList<NeteaseSong> candidates = new ArrayList<>();
+            String primaryQuery = TextUtils.isEmpty(artist) ? title : title + " " + artist;
+            appendNeteaseCandidates(primaryQuery, title, artist, candidates);
+            boolean artistFound = false;
+            for (NeteaseSong candidate : candidates) {
+                if (isArtistMatched(artist, candidate.artist) && !TextUtils.isEmpty(artist)) {
+                    artistFound = true;
+                    break;
+                }
             }
+            // 首次查询若没有命中目标歌手（常见于同名翻唱排在前面），再用纯歌名查一次
+            if (!artistFound && !TextUtils.isEmpty(artist)) {
+                appendNeteaseCandidates(title, title, artist, candidates);
+            }
+
+            java.util.HashSet<Long> addedIds = new java.util.HashSet<>();
+            ArrayList<NeteaseSong> distinct = new ArrayList<>();
+            for (NeteaseSong candidate : candidates) {
+                if (addedIds.add(candidate.id)) {
+                    distinct.add(candidate);
+                }
+            }
+            java.util.Collections.sort(distinct, new java.util.Comparator<NeteaseSong>() {
+                @Override
+                public int compare(NeteaseSong a, NeteaseSong b) {
+                    return b.score - a.score;
+                }
+            });
+            for (NeteaseSong candidate : distinct) {
+                if (out.size() >= 5) {
+                    break;
+                }
+                ResultData resultData = new ResultData();
+                resultData.setTitle(candidate.name);
+                resultData.setArtist(candidate.artist);
+                resultData.setAlbum(candidate.album);
+                String localLyricPath = TTPodConfig.getLyricPath() + File.separator
+                        + m2145b(candidate.artist, candidate.name);
+                ResultData.Item[] items = new ResultData.Item[1];
+                items[0] = new ResultData.Item("lrc", "netease:" + candidate.id,
+                        localLyricPath + ".lrc", (int) (candidate.id & 0x7fffffff));
+                resultData.setLyricArray(items);
+                out.add(resultData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void appendNeteaseCandidates(String query, String title, String artist,
+                                         ArrayList<NeteaseSong> candidates) {
+        try {
+            String searchUrl = "https://music.163.com/api/search/get/web?s="
+                    + URLEncoder.encode(query, "UTF-8")
+                    + "&type=1&offset=0&total=true&limit=10";
+            String json = requestData(searchUrl);
+            if (TextUtils.isEmpty(json)) {
+                return;
+            }
+            com.google.gson.JsonObject root = com.google.gson.JsonParser.parseString(json).getAsJsonObject();
+            if (root == null || !root.has("result") || root.get("result").isJsonNull()) {
+                return;
+            }
+            com.google.gson.JsonObject resultObj = root.getAsJsonObject("result");
+            if (resultObj == null || !resultObj.has("songs") || resultObj.get("songs").isJsonNull()) {
+                return;
+            }
+            com.google.gson.JsonArray songs = resultObj.getAsJsonArray("songs");
+            String normalizedTitle = normalizeSearchText(title);
+            for (int i = 0; i < songs.size(); i++) {
+                com.google.gson.JsonElement element = songs.get(i);
+                if (element == null || !element.isJsonObject()) {
+                    continue;
+                }
+                com.google.gson.JsonObject song = element.getAsJsonObject();
+                if (!song.has("id") || song.get("id").isJsonNull()) {
+                    continue;
+                }
+                String name = stringValue(song, "name");
+                String songArtist = joinArtists(song);
+                if (!isTitleMatched(title, name)) {
+                    continue;
+                }
+                int score = normalizedTitle.equals(normalizeSearchText(name)) ? 20 : 10;
+                if (!TextUtils.isEmpty(artist) && isArtistMatched(artist, songArtist)) {
+                    score += 10;
+                }
+                candidates.add(new NeteaseSong(song.get("id").getAsLong(), name, songArtist,
+                        albumName(song), score));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void searchLrclibLyric(String title, String artist, ArrayList<ResultData> out) {
+        String query = TextUtils.isEmpty(artist) ? title : title + " " + artist;
+        appendLrclibResults(query, out);
+        if (out.isEmpty() && !TextUtils.isEmpty(artist)) {
+            appendLrclibResults(title, out);
+        }
+    }
+
+    private void appendLrclibResults(String query, ArrayList<ResultData> out) {
+        try {
             String searchUrl = "https://lrclib.net/api/search?q=" + URLEncoder.encode(query, "UTF-8");
             String json = requestData(searchUrl);
             if (TextUtils.isEmpty(json)) {
-                return resultDataArrayList;
+                return;
             }
-
             com.google.gson.JsonArray array = com.google.gson.JsonParser.parseString(json).getAsJsonArray();
             for (int i = 0; i < array.size(); i++) {
+                if (out.size() >= 5) {
+                    break;
+                }
                 com.google.gson.JsonElement element = array.get(i);
                 if (element == null || !element.isJsonObject()) {
                     continue;
                 }
                 com.google.gson.JsonObject obj = element.getAsJsonObject();
                 ResultData resultData = new ResultData();
-                resultData.setTitle(obj.has("trackName") && !obj.get("trackName").isJsonNull() ? obj.get("trackName").getAsString() : "");
-                resultData.setArtist(obj.has("artistName") && !obj.get("artistName").isJsonNull() ? obj.get("artistName").getAsString() : "");
-                resultData.setAlbum(obj.has("albumName") && !obj.get("albumName").isJsonNull() ? obj.get("albumName").getAsString() : "");
+                resultData.setTitle(stringValue(obj, "trackName"));
+                resultData.setArtist(stringValue(obj, "artistName"));
+                resultData.setAlbum(stringValue(obj, "albumName"));
+                if (!isTitleMatched(query, resultData.getTitle())) {
+                    continue;
+                }
 
                 String lrc = "";
                 if (obj.has("syncedLyrics") && !obj.get("syncedLyrics").isJsonNull()) {
@@ -277,21 +449,78 @@ public class LyricSearchTask extends LyrPicBaseSearchTask {
                 }
 
                 if (!TextUtils.isEmpty(lrc) && obj.has("id") && !obj.get("id").isJsonNull()) {
-                    ResultData.Item[] items = new ResultData.Item[1];
                     int id = obj.get("id").getAsInt();
-                    // We use a special URL format that we will handle in downloadLyric
-                    String downloadUrl = "lrclib:" + id;
-                    String localLyricPath = TTPodConfig.getLyricPath() + File.separator + m2145b(resultData.getArtist(), resultData.getTitle());
-                    items[0] = new ResultData.Item("lrc", downloadUrl, localLyricPath + ".lrc", id);
+                    String localLyricPath = TTPodConfig.getLyricPath() + File.separator
+                            + m2145b(resultData.getArtist(), resultData.getTitle());
+                    ResultData.Item[] items = new ResultData.Item[1];
+                    items[0] = new ResultData.Item("lrc", "lrclib:" + id, localLyricPath + ".lrc", id);
                     resultData.setLyricArray(items);
-                    resultDataArrayList.add(resultData);
+                    out.add(resultData);
                 }
-                if (resultDataArrayList.size() >= 10) break;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return resultDataArrayList;
+    }
+
+    private static String stringValue(com.google.gson.JsonObject obj, String key) {
+        return obj != null && obj.has(key) && !obj.get(key).isJsonNull() ? obj.get(key).getAsString() : "";
+    }
+
+    private static String joinArtists(com.google.gson.JsonObject song) {
+        if (song == null || !song.has("artists") || song.get("artists").isJsonNull() || !song.get("artists").isJsonArray()) {
+            return "";
+        }
+        com.google.gson.JsonArray artists = song.getAsJsonArray("artists");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < artists.size(); i++) {
+            com.google.gson.JsonElement element = artists.get(i);
+            if (element == null || !element.isJsonObject()) {
+                continue;
+            }
+            String name = stringValue(element.getAsJsonObject(), "name");
+            if (TextUtils.isEmpty(name)) {
+                continue;
+            }
+            if (sb.length() > 0) {
+                sb.append('/');
+            }
+            sb.append(name);
+        }
+        return sb.toString();
+    }
+
+    private static String albumName(com.google.gson.JsonObject song) {
+        if (song == null || !song.has("album") || song.get("album").isJsonNull() || !song.get("album").isJsonObject()) {
+            return "";
+        }
+        return stringValue(song.getAsJsonObject("album"), "name");
+    }
+
+    private static String parseNeteaseLyric(String json) {
+        if (TextUtils.isEmpty(json)) {
+            return null;
+        }
+        try {
+            com.google.gson.JsonObject root = com.google.gson.JsonParser.parseString(json).getAsJsonObject();
+            if (root == null) {
+                return null;
+            }
+            if (root.has("nolyric") && !root.get("nolyric").isJsonNull() && root.get("nolyric").getAsBoolean()) {
+                return null;
+            }
+            if (!root.has("lrc") || root.get("lrc").isJsonNull() || !root.get("lrc").isJsonObject()) {
+                return null;
+            }
+            com.google.gson.JsonObject lrcObj = root.getAsJsonObject("lrc");
+            if (lrcObj.has("lyric") && !lrcObj.get("lyric").isJsonNull()) {
+                String lrc = lrcObj.get("lyric").getAsString();
+                return TextUtils.isEmpty(lrc.trim()) ? null : lrc;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /* renamed from: b */

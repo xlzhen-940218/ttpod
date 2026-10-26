@@ -151,4 +151,13 @@
     <color name="view_border_line">#aab0b4</color>
     <color name="volume_seekbar_progress">#ff8eaf46</color>
     <color name="white">@android:color/white</color>
+
+    <!-- 语义颜色：设置页 / 通用界面，values-night 中提供深色覆盖 -->
+    <color name="setting_card_background">#ffffff</color>
+    <color name="setting_card_title_color">#959fa5</color>
+    <color name="setting_text_primary">#ff2f2f2f</color>
+    <color name="setting_text_secondary">#959fa5</color>
+    <color name="setting_item_icon_color">#91b1bb</color>
+    <color name="actionbar_title_text_color">#1b3b43</color>
+    <color name="dialog_edit_label_color">#ff000000</color>
 </resources>

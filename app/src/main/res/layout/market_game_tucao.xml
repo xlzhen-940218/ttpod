@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="#ffffff" android:scrollbars="none" android:fadingEdge="none" android:layout_width="match_parent" android:layout_height="match_parent">
-    <RelativeLayout android:orientation="vertical" android:id="@+id/tucao_view_container" android:background="#ffffff" android:layout_width="match_parent" android:layout_height="wrap_content">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="@color/activity_background_default" android:scrollbars="none" android:fadingEdge="none" android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout android:orientation="vertical" android:id="@+id/tucao_view_container" android:background="@color/activity_background_default" android:layout_width="match_parent" android:layout_height="wrap_content">
         <View android:id="@+id/fake_view" android:layout_width="0dp" android:layout_height="0dp" android:layout_centerHorizontal="true"/>
         <com.sds.android.ttpod.widget.market.GameTucaoView android:id="@+id/imageview_market_tucao_left" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignRight="@+id/fake_view" android:layout_alignParentLeft="true" android:layout_alignParentTop="true"/>
         <com.sds.android.ttpod.widget.market.GameTucaoView android:id="@+id/imageview_market_tucao_right" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toRightOf="@+id/imageview_market_tucao_left" android:layout_alignParentRight="@+id/imageview_market_tucao_left"/>

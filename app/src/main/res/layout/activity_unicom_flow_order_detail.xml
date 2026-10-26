@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="下载歌曲"
-                    android:textColor="#3d3d3d"
+                    android:textColor="@color/setting_text_primary"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="在线听歌"
-                    android:textColor="#3d3d3d"
+                    android:textColor="@color/setting_text_primary"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="下载MV"
-                    android:textColor="#3d3d3d"
+                    android:textColor="@color/setting_text_primary"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>
@@ -88,7 +88,7 @@
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="天天动听联合中国联通推出特惠流量包服务"
-            android:textColor="#828282"
+            android:textColor="@color/setting_text_secondary"
             android:textSize="16sp" />
 
         <LinearLayout

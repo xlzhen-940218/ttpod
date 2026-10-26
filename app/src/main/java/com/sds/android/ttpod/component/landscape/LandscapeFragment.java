@@ -33,6 +33,7 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.skin.lyric.Lyric;
 import com.sds.android.ttpod.framework.modules.skin.view.LyricView;
+import com.sds.android.ttpod.framework.p106a.WindowCompatUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -253,6 +254,7 @@ public class LandscapeFragment extends BasePlayerFragment {
     public void onStart() {
         super.onStart();
         this.mDialog.show();
+        WindowCompatUtils.setFullScreen(this.mDialog, true);
     }
 
     public void show(FragmentManager fragmentManager) {
@@ -261,6 +263,7 @@ public class LandscapeFragment extends BasePlayerFragment {
 
     public void dismiss() {
         if (this.mDialog != null) {
+            WindowCompatUtils.setFullScreen(this.mDialog, false);
             this.mDialog.dismiss();
         }
         getFragmentManager().beginTransaction().remove(this).commitAllowingStateLoss();
@@ -270,9 +273,11 @@ public class LandscapeFragment extends BasePlayerFragment {
     public void onHiddenChanged(boolean z) {
         super.onHiddenChanged(z);
         if (z) {
+            WindowCompatUtils.setFullScreen(this.mDialog, false);
             this.mDialog.dismiss();
         } else {
             this.mDialog.show();
+            WindowCompatUtils.setFullScreen(this.mDialog, true);
         }
     }
 

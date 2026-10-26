@@ -415,7 +415,7 @@ public class Preferences {
 
     /* renamed from: E */
     public static boolean m3072E() {
-        return AccessHelper.m3096a(preferencesContent, PreferencesID.IS_SHOW_INNER_PICTURE_ENABLED.name(), (Boolean) false);
+        return AccessHelper.m3096a(preferencesContent, PreferencesID.IS_SHOW_INNER_PICTURE_ENABLED.name(), (Boolean) true);
     }
 
     /* renamed from: v */

@@ -1,6 +1,7 @@
 package com.sds.android.ttpod.framework.support.search.task;
 
 import android.content.Intent;
+import android.text.TextUtils;
 
 import com.sds.android.sdk.core.download.Manager;
 import com.sds.android.sdk.core.download.Task;
@@ -408,6 +409,12 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         }
         m3886b.setTitle(mediaItem.getTitle());
         m3886b.setSinger(mediaItem.getArtist());
+        // 在线歌词（netease:/lrclib:）不能交给系统下载器，需由任务自行解析下载
+        if ("lyric_type".equals(str) && item.getUrl() != null
+                && (item.getUrl().startsWith("netease:") || item.getUrl().startsWith("lrclib:"))) {
+            new LyricSearchTask((LyricSearchTaskInfo) m3886b).downloadLyric(item, true);
+            return;
+        }
         TaskInfo taskInfo = new TaskInfo(item.getUrl(), item.getLocalLyricPath(), false);
         Task.TaskCallback abstractC0578a = new Task.TaskCallback() { // from class: com.sds.android.ttpod.framework.support.search.task.a.2
             @Override // com.sds.android.sdk.core.download.Task.AbstractC0578a
@@ -458,13 +465,26 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         //SSystemEvent.post();
     }
 
-    protected String requestData(String url) {
+    private static final String HTTP_USER_AGENT = "Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36";
+
+    /**
+     * 创建带统一请求头的连接，在线歌词/封面接口（尤其网易云）需要 UA 与 Referer 才返回正常数据。
+     */
+    private static HttpURLConnection openConnection(String url) throws IOException {
+        HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(url).openConnection();
+        httpURLConnection.setRequestMethod("GET");
+        httpURLConnection.setConnectTimeout(10000);
+        httpURLConnection.setReadTimeout(10000);
+        httpURLConnection.setRequestProperty("User-Agent", HTTP_USER_AGENT);
+        httpURLConnection.setRequestProperty("Referer", "https://music.163.com/");
+        httpURLConnection.setRequestProperty("Accept", "*/*");
+        return httpURLConnection;
+    }
+
+    protected static String requestData(String url) {
         String response = "";
         try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(url).openConnection();
-            httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.setConnectTimeout(10000);
-            httpURLConnection.setReadTimeout(10000);
+            HttpURLConnection httpURLConnection = openConnection(url);
             int responseCode = httpURLConnection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 byte[] data = getBytesByInputStream(httpURLConnection.getInputStream());
@@ -480,7 +500,55 @@ public abstract class LyrPicBaseSearchTask implements Runnable {
         return response;
     }
 
-    private byte[] getBytesByInputStream(InputStream is) {
+    /**
+     * 下载二进制内容（封面图片等）。
+     */
+    protected static byte[] requestBytes(String url) {
+        try {
+            HttpURLConnection httpURLConnection = openConnection(url);
+            int responseCode = httpURLConnection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                return getBytesByInputStream(httpURLConnection.getInputStream());
+            }
+            LogUtils.error("LyrPicBaseSearchTask", "requestBytes failed, responseCode=" + responseCode + " url=" + url);
+        } catch (Exception e) {
+            LogUtils.error("LyrPicBaseSearchTask", "requestBytes exception, url=" + url + " exception=" + e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * 归一化歌曲/歌手名：去括号内容、空白、常见标点并转小写，用于模糊匹配。
+     */
+    protected static String normalizeSearchText(String text) {
+        if (TextUtils.isEmpty(text)) {
+            return "";
+        }
+        String value = text.toLowerCase();
+        value = value.replaceAll("[\\(（\\[【\\{][^\\)）\\]】\\}]*[\\)）\\]】\\}]", "");
+        value = value.replaceAll("[\\s\\-_/\\\\\\.·,，。！!？?：:；;、'\"“”‘’《》<>~～]", "");
+        return value.trim();
+    }
+
+    protected static boolean isTitleMatched(String queryTitle, String resultTitle) {
+        String a = normalizeSearchText(queryTitle);
+        String b = normalizeSearchText(resultTitle);
+        if (a.length() == 0 || b.length() == 0) {
+            return false;
+        }
+        return a.equals(b) || a.contains(b) || b.contains(a);
+    }
+
+    protected static boolean isArtistMatched(String queryArtist, String resultArtist) {
+        String a = normalizeSearchText(queryArtist);
+        String b = normalizeSearchText(resultArtist);
+        if (a.length() == 0 || b.length() == 0) {
+            return true;
+        }
+        return a.equals(b) || a.contains(b) || b.contains(a);
+    }
+
+    private static byte[] getBytesByInputStream(InputStream is) {
         if (is == null) {
             return new byte[0];
         }

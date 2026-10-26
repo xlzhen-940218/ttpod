@@ -22,7 +22,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="@string/unicom_trial_detail_msg"
-        android:textColor="#666666"
+        android:textColor="@color/setting_text_primary"
         android:textSize="16sp" />
 
     <Button

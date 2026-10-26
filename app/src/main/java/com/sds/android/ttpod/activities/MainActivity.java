@@ -49,6 +49,7 @@ import com.sds.android.ttpod.framework.base.p108a.CommandCenter;
 import com.sds.android.ttpod.framework.modules.CommandID;
 import com.sds.android.ttpod.framework.modules.p126h.UnicomFlowUtil;
 import com.sds.android.ttpod.framework.modules.theme.ThemeManager;
+import com.sds.android.ttpod.framework.p106a.WindowCompatUtils;
 import com.sds.android.ttpod.framework.p106a.p107a.SPage;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.media.mediastore.GroupType;
@@ -419,13 +420,13 @@ public class MainActivity extends ThemeActivity implements GlobalMenuDialog.Inte
             this.mLandscapeFragment = new LandscapeFragment();
             this.mLandscapeFragment.initLyricArtistBitmap(this.mPortraitPlayerFragment.getCurrentLyric(), this.mPortraitPlayerFragment.getCurrentArtistBitmap(), this.mPortraitPlayerFragment.getCurrentArtistBitmapPath());
             this.mLandscapeFragment.show(getSupportFragmentManager());
-            getWindow().setFlags(1024, 1024);
+            WindowCompatUtils.setFullScreen(this, true);
         }
     }
 
     private void closeLandscapeFragment() {
         if (this.mLandscapeFragment != null) {
-            getWindow().clearFlags(1024);
+            WindowCompatUtils.setFullScreen(this, false);
             this.mLandscapeFragment.dismiss();
             this.mLandscapeFragment = null;
             setContentViewVisible(true);

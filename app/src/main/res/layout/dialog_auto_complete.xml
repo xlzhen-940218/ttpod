@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="@color/setting_card_background">
 
     <ScrollView
         android:id="@+id/scroll_container"
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="#ffffff"
+            android:background="@color/setting_card_background"
             android:orientation="vertical" />
     </ScrollView>
 </LinearLayout>

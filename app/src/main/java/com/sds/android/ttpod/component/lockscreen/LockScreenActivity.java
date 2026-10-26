@@ -41,6 +41,7 @@ import com.sds.android.ttpod.framework.modules.skin.view.AnimTransView;
 import com.sds.android.ttpod.framework.modules.skin.view.LyricView;
 import com.sds.android.ttpod.framework.p106a.ImageCacheUtils;
 import com.sds.android.ttpod.framework.p106a.ViewUtils;
+import com.sds.android.ttpod.framework.p106a.WindowCompatUtils;
 import com.sds.android.ttpod.framework.storage.environment.Preferences;
 import com.sds.android.ttpod.framework.storage.p133a.Cache;
 import com.sds.android.ttpod.framework.support.SupportFactory;
@@ -127,11 +128,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
             window.addFlags(4194304);
         }
         window.addFlags(AccessibilityEventCompat.TYPE_GESTURE_DETECTION_END);
-        if (Preferences.m3070F()) {
-            window.setFlags(1024, 1024);
-        } else {
-            window.clearFlags(1024);
-        }
+        WindowCompatUtils.setFullScreen(this, Preferences.m3070F());
         try {
             bindView();
             initView();
@@ -149,6 +146,7 @@ public class LockScreenActivity extends SlidingClosableActivity implements View.
     @Override // com.sds.android.ttpod.framework.base.BaseActivity, android.support.v4.app.FragmentActivity, android.app.Activity
     public void onResume() {
         super.onResume();
+        WindowCompatUtils.setFullScreen(this, Preferences.m3070F());
         updateTime();
         if (!this.mIsReceiverRegistered) {
             this.mIsReceiverRegistered = true;

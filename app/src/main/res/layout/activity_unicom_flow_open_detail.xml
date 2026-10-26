@@ -42,7 +42,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:background="#ffe7e7e7" />
+            android:background="@color/divider_line" />
 
         <TextView
             android:layout_width="match_parent"
@@ -154,7 +154,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:background="#f9f9f9"
+                android:background="@color/setting_card_background"
                 android:orientation="vertical"
                 android:padding="10dp">
 
@@ -162,7 +162,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="流量订购状态"
-                    android:textColor="#4f4f4f"
+                    android:textColor="@color/setting_text_primary"
                     android:textSize="15sp" />
 
                 <TextView
@@ -172,7 +172,7 @@
                     android:layout_marginTop="8dp"
                     android:singleLine="true"
                     android:text="开启时间:"
-                    android:textColor="#696969"
+                    android:textColor="@color/setting_text_primary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -181,7 +181,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="终止时间:持续使用"
-                    android:textColor="#696969"
+                    android:textColor="@color/setting_text_primary"
                     android:textSize="14sp" />
 
                 <TextView
@@ -193,7 +193,7 @@
                     android:clickable="true"
                     android:gravity="right"
                     android:text="详情及退订&gt;&gt;"
-                    android:textColor="#9c9c9c"
+                    android:textColor="@color/setting_text_secondary"
                     android:textSize="14sp" />
             </LinearLayout>
         </LinearLayout>

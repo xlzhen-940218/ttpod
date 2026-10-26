@@ -18,7 +18,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="@dimen/common_margin"
         android:text="@string/string_dialog_remove"
-        android:textColor="#959fa5"
+        android:textColor="@color/dialog_message_text_color"
         android:textSize="12sp" />
 
     <LinearLayout
